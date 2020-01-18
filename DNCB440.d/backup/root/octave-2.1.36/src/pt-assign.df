@@ -1,0 +1,1 @@
+   XDEFVAR_INTERNAL("print_rhs_assign_val", SBV_print_rhs_assign_val, 0.0, false, print_rhs_assign_val, "-*- texinfo -*-\n@defvr print_rhs_assign_val\nIf the value of this variable is non-zero, Octave will print the value\nof the right hand side of assignment expressions instead of the value\nof the left hand side (after the assignment).\n@end defvr") ;

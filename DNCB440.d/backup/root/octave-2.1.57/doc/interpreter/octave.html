@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html40/loose.dtd">
+<HTML>
+<!-- Created on March, 12 2004 by texi2html 1.66 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people <dev@texi2html.cvshome.org>
+Send bugs and suggestions to <users@texi2html.cvshome.org>
+
+-->
+<HEAD>
+<TITLE>GNU Octave: GNU Octave</TITLE>
+
+<META NAME="description" CONTENT="GNU Octave: GNU Octave">
+<META NAME="keywords" CONTENT="GNU Octave: GNU Octave">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.66">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC_Top"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="octave.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="octave_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="octave_42.html#SEC241">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="octave_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1>GNU Octave</H1>
+
+<P>
+
+This manual documents how to run, install and port GNU Octave, as well
+as its new features and incompatibilities, and how to report bugs.
+It corresponds to GNU Octave version 2.1.x.
+</P>
+<P>
+
+</P>
+<TABLE BORDER="0" CELLSPACING="0">
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_1.html#SEC1">Preface</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC5">1. A Brief Introduction to Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">A brief introduction to Octave.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC24">2. Getting Started</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_4.html#SEC42">3. Data Types</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_5.html#SEC50">4. Numeric Data Types</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_6.html#SEC56">5. Strings</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_7.html#SEC61">6. Data Structures</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_8.html#SEC62">7. Containers</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_9.html#SEC65">8. I/O Streams</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_10.html#SEC66">9. Variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC72">10. Expressions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_12.html#SEC85">11. Evaluation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC86">12. Statements</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Looping and program flow control.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC98">13. Functions and Script Files</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_15.html#SEC108">14. Error Handling</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_16.html#SEC109">15. Debugging</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC110">16. Input and Output</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_18.html#SEC135">17. Plotting</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_19.html#SEC143">18. Matrix Manipulation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_20.html#SEC148">19. Arithmetic</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_21.html#SEC156">20. Linear Algebra</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_22.html#SEC160">21. Nonlinear Equations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_23.html#SEC161">22. Quadrature</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_24.html#SEC164">23. Differential Equations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_25.html#SEC167">24. Optimization</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_26.html#SEC172">25. Statistics</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_27.html#SEC177">26. Financial Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_28.html#SEC178">27. Sets</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_29.html#SEC179">28. Polynomial Manipulations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC180">29. Control Theory</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_31.html#SEC201">30. Signal Processing</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_32.html#SEC202">31. Image Processing</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_33.html#SEC203">32. Audio Processing</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_34.html#SEC204">33. Quaternions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC205">34. System Utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_36.html#SEC215">A. Tips and Standards</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC221">B. Known Causes of Trouble</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">If you have trouble installing Octave.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_38.html#SEC229">C. Installing Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to configure, compile and install Octave.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_39.html#SEC231">D. Emacs Octave Support</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_40.html#SEC236">E. Grammar</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_41.html#SEC238">F. GNU GENERAL PUBLIC LICENSE</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">The GNU General Public License.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_42.html#SEC241">Concept Index</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">An item for each concept.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_43.html#SEC242">Variable Index</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">An item for each documented variable.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_44.html#SEC243">Function Index</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">An item for each documented function.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_45.html#SEC244">Operator Index</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">An item for each documented operator.</TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP"> -- The Detailed Node Listing ---
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Preface
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_1.html#SEC2">Acknowledgements</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_1.html#SEC3">How You Can Contribute to Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_1.html#SEC4">Distribution</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">A Brief Introduction to Octave
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC6">1.1 Running Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC7">1.2 Simple Examples</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC15">1.3 Conventions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Conventions
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC16">1.3.1 Fonts</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC17">1.3.2 Evaluation Notation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC18">1.3.3 Printing Notation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC19">1.3.4 Error Messages</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC20">1.3.5 Format of Descriptions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Format of Descriptions
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC21">1.3.5.1 A Sample Function Description</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC22">1.3.5.2 A Sample Command Description</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_2.html#SEC23">1.3.5.3 A Sample Variable Description</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Getting Started
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC25">2.1 Invoking Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC28">2.2 Quitting Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC29">2.3 Commands for Getting Help</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC30">2.4 Command Line Editing</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC39">2.5 How Octave Reports Errors</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC40">2.6 Executable Octave Programs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC41">2.7 Comments in Octave Programs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Invoking Octave
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC26">2.1.1 Command Line Options</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC27">2.1.2 Startup Files</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Command Line Editing
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC31">2.4.1 Cursor Motion</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC32">2.4.2 Killing and Yanking</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC33">2.4.3 Commands For Changing Text</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC34">2.4.4 Letting Readline Type For You</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC35">2.4.5 Commands For Manipulating The History</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC36">2.4.6 Customizing <CODE>readline</CODE></A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC37">2.4.7 Customizing the Prompt</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_3.html#SEC38">2.4.8 Diary and Echo Commands</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Data Types
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_4.html#SEC43">3.1 Built-in Data Types</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_4.html#SEC48">3.2 User-defined Data Types</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_4.html#SEC49">3.3 Object Sizes</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Built-in Data Types
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_4.html#SEC44">3.1.1 Numeric Objects</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_4.html#SEC46">3.1.3 String Objects</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_4.html#SEC47">3.1.4 Data Structure Objects</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Numeric Data Types
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_5.html#SEC51">4.1 Matrices</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_5.html#SEC53">4.2 Ranges</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_5.html#SEC54">4.3 Logical Values</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_5.html#SEC55">4.4 Predicates for Numeric Objects</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Matrices
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_5.html#SEC52">4.1.1 Empty Matrices</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Strings
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_6.html#SEC57">5.1 Creating Strings</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_6.html#SEC58">5.2 Searching and Replacing</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_6.html#SEC59">5.3 String Conversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_6.html#SEC60">5.4 Character Class Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Containers
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_8.html#SEC63">7.1 Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_8.html#SEC64">7.2 Cell Arrays</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Variables
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_10.html#SEC67">9.1 Global Variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_10.html#SEC69">9.3 Status of Variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_10.html#SEC70">9.4 Summary of Built-in Variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_10.html#SEC71">9.5 Defaults from the Environment</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Expressions
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC73">10.1 Index Expressions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC74">10.2 Calling Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC77">10.3 Arithmetic Operators</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC78">10.4 Comparison Operators</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC79">10.5 Boolean Expressions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC82">10.6 Assignment Expressions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC83">10.7 Increment Operators</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC84">10.8 Operator Precedence</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Calling Functions
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC75">10.2.1 Call by Value</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC76">10.2.2 Recursion</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Boolean Expressions
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC80">10.5.1 Element-by-element Boolean Operators</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_11.html#SEC81">10.5.2 Short-circuit Boolean Operators</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Statements
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC87">12.1 The <CODE>if</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC88">12.2 The <CODE>switch</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC89">12.3 The <CODE>while</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC90">12.4 The <CODE>do-until</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC91">12.5 The <CODE>for</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC93">12.6 The <CODE>break</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC94">12.7 The <CODE>continue</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC95">12.8 The <CODE>unwind_protect</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC96">12.9 The <CODE>try</CODE> Statement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC97">12.10 Continuation Lines</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">The <CODE>for</CODE> Statement
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_13.html#SEC92">12.5.1 Looping Over Structure Elements</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Functions and Script Files
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC99">13.1 Defining Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC100">13.2 Multiple Return Values</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC101">13.3 Variable-length Argument Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC102">13.4 Variable-length Return Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC103">13.5 Returning From a Function</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC104">13.6 Function Files</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC105">13.7 Script Files</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC106">13.8 Dynamically Linked Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_14.html#SEC107">13.9 Organization of Functions Distributed with Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Error Handling
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Debugging
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Input and Output
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC111">16.1 Basic Input and Output</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC115">16.2 C-Style I/O Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Basic Input and Output
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC112">16.1.1 Terminal Output</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC113">16.1.2 Terminal Input</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC114">16.1.3 Simple File I/O</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">C-Style I/O Functions
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC116">16.2.1 Opening and Closing Files</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC117">16.2.2 Simple Output</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC118">16.2.3 Line-Oriented Input</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC119">16.2.4 Formatted Output</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC120">16.2.5 Output Conversion for Matrices</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC121">16.2.6 Output Conversion Syntax</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC122">16.2.7 Table of Output Conversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC123">16.2.8 Integer Conversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC124">16.2.9 Floating-Point Conversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Other Output Conversions::</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC125">16.2.10 Other Output Conversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC126">16.2.11 Formatted Input</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC127">16.2.12 Input Conversion Syntax</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC128">16.2.13 Table of Input Conversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC129">16.2.14 Numeric Input Conversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC130">16.2.15 String Input Conversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC131">16.2.16 Binary I/O</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC132">16.2.17 Temporary Files</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC133">16.2.18 End of File and Errors</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_17.html#SEC134">16.2.19 File Positioning</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Plotting
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_18.html#SEC136">17.1 Two-Dimensional Plotting</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_18.html#SEC137">17.2 Specialized Two-Dimensional Plots</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_18.html#SEC138">17.3 Three-Dimensional Plotting</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_18.html#SEC139">17.4 Plot Annotations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_18.html#SEC140">17.5 Multiple Plots on One Page</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_18.html#SEC141">17.6 Multiple Plot Windows</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_18.html#SEC142">17.7 Interaction with <CODE>gnuplot</CODE></A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Matrix Manipulation
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_19.html#SEC144">18.1 Finding Elements and Checking Conditions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_19.html#SEC145">18.2 Rearranging Matrices</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_19.html#SEC146">18.3 Special Utility Matrices</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_19.html#SEC147">18.4 Famous Matrices</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Arithmetic
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_20.html#SEC149">19.1 Utility Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_20.html#SEC150">19.2 Complex Arithmetic</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_20.html#SEC151">19.3 Trigonometry</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_20.html#SEC152">19.4 Sums and Products</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_20.html#SEC153">19.5 Special Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_20.html#SEC155">19.7 Mathematical Constants</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Linear Algebra
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_21.html#SEC157">20.1 Basic Matrix Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_21.html#SEC158">20.2 Matrix Factorizations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_21.html#SEC159">20.3 Functions of a Matrix</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Quadrature
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_23.html#SEC162">22.1 Functions of One Variable</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_23.html#SEC163">22.2 Orthogonal Collocation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Differential Equations
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_24.html#SEC165">23.1 Ordinary Differential Equations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_24.html#SEC166">23.2 Differential-Algebraic Equations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Optimization
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_25.html#SEC169">24.2 Quadratic Programming</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_25.html#SEC170">24.3 Nonlinear Programming</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_25.html#SEC171">24.4 Linear Least Squares</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Statistics
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_26.html#SEC173">25.1 Basic Statistical Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_26.html#SEC174">25.2 Tests</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_26.html#SEC175">25.3 Models</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_26.html#SEC176">25.4 Distributions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Control Theory
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC181">29.1 System Data Structure</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC186">29.2 System Construction and Interface Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC193">29.3 System display functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC194">29.4 Block Diagram Manipulations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC195">29.5 Numerical Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC196">29.6 System Analysis-Properties</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC197">29.7 System Analysis-Time Domain</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC198">29.8 System Analysis-Frequency Domain</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC199">29.9 Controller Design</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC200">29.10 Miscellaneous Functions (Not yet properly filed/documented)</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">System Data Structure
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC182">29.1.1 Variables common to all OCST system formats</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC183">29.1.2 <CODE>tf</CODE> format variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC184">29.1.3 <CODE>zp</CODE> format variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC185">29.1.4 <CODE>ss</CODE> format variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">System Construction and Interface Functions
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC187">29.2.1 Finite impulse response system interface functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC188">29.2.2 State space system interface functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC189">29.2.3 Transfer function system interface functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC190">29.2.4 Zero-pole system interface functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC191">29.2.5 Data structure access functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_30.html#SEC192">29.2.6 Data structure internal functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">System Utilities
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC206">34.1 Timing Utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC207">34.2 Filesystem Utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC208">34.3 Controlling Subprocesses</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC209">34.4 Process, Group, and User IDs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC210">34.5 Environment Variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC211">34.6 Current Working Directory</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC212">34.7 Password Database Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC213">34.8 Group Database Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_35.html#SEC214">34.9 System Information</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Tips and Standards
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_36.html#SEC216">A.1 Writing Clean Octave Programs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Writing clean and robust programs.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_36.html#SEC217">A.2 Tips for Making Code Run Faster.</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Making code run faster.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_36.html#SEC218">A.3 Tips for Documentation Strings</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Writing readable documentation strings.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_36.html#SEC219">A.4 Tips on Writing Comments</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Conventions for writing comments.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_36.html#SEC220">A.5 Conventional Headers for Octave Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Standard headers for functions.</TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Known Causes of Trouble with Octave
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC222">B.1 Actual Bugs We Haven't Fixed Yet</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Bugs we will fix later.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC223">B.2 Reporting Bugs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC224">B.3 Have You Found a Bug?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC225">B.4 Where to Report Bugs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC226">B.5 How to Report Bugs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC227">B.6 Sending Patches for Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC228">B.7 How To Get Help with Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Reporting Bugs
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC224">B.3 Have You Found a Bug?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC225">B.4 Where to Report Bugs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Where to send your bug report.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC226">B.5 How to Report Bugs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to report a bug effectively.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_37.html#SEC227">B.6 Sending Patches for Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to send a patch for Octave.</TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Installing Octave
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_38.html#SEC230">C.1 Installation Problems</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Emacs Octave Support
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_39.html#SEC232">D.1 Installing EOS</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_39.html#SEC233">D.2 Using Octave Mode</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_39.html#SEC234">D.3 Running Octave From Within Emacs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_39.html#SEC235">D.4 Using the Emacs Info Reader for Octave</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">Grammar
+</TH></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="octave_40.html#SEC237">E.1 Keywords</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TH COLSPAN="3" ALIGN="left" VALIGN="TOP">
+</TH></TR>
+</TABLE>
+<P>
+
+<HR SIZE=1>
+<BR>
+<FONT SIZE="-1">
+This document was generated
+by <I>John W. Eaton</I> on <I>March, 12 2004</I>
+using <A HREF="http://texi2html.cvshome.org"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

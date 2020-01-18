@@ -1,0 +1,13 @@
+# $Id: cut-outside-block.pod,v 1.1 2003/03/04 17:16:25 petdance Exp $
+
+use strict;
+
+=cut
+
+=head1 COPYRIGHT
+
+Copyright 2002, Andy Lester
+
+=cut
+
+use warnings;

@@ -1,0 +1,15 @@
+K 10
+svn:author
+V 6
+mitchb
+K 8
+svn:date
+V 27
+2008-12-08T05:34:25.079536Z
+K 7
+svn:log
+V 96
+Input checking compatibility with sodaweb; allow some non-alphanumeric
+characters in usernames.
+
+END

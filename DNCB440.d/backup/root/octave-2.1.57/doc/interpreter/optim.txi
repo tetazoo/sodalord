@@ -1,0 +1,37 @@
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Optimization
+@chapter Optimization
+
+@menu
+* Linear Programming::       
+* Quadratic Programming::       
+* Nonlinear Programming::       
+* Linear Least Squares::        
+@end menu
+
+@c @cindex linear programming
+@cindex quadratic programming
+@cindex nonlinear programming
+@cindex optimization
+@cindex LP
+@cindex QP
+@cindex NLP
+
+@node Linear Programming
+@section Linear Programming
+
+@node Quadratic Programming
+@section Quadratic Programming
+
+@node Nonlinear Programming
+@section Nonlinear Programming
+
+@node Linear Least Squares
+@section Linear Least Squares
+
+@DOCSTRING(gls)
+
+@DOCSTRING(ols)

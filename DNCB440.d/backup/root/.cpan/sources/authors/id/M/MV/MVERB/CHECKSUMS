@@ -1,0 +1,115 @@
+# CHECKSUMS file written on Fri Jun 21 08:38:47 2002 by CPAN::Checksums (v1.008)
+$cksum = {
+  'GIFgraph-1.10.tar.gz' => {
+    'md5-ungz' => '67b62a61fea2de0edddd1012f45aafac',
+    'mtime' => '1998-08-25',
+    'md5' => '1bba4331bc82dd9e669a4dee592e5f02',
+    'shortname' => 'gifgr110.tgz',
+    'size' => '109925'
+  },
+  'GDGraph-1.24.tar.gz' => {
+    'md5-ungz' => '9600cea60d2503ef3a3ebc05ad0307d6',
+    'mtime' => '2000-01-30',
+    'md5' => '83f76acc936845d3018d8f66c444c6b5',
+    'shortname' => 'gdgra124.tgz',
+    'size' => '98077'
+  },
+  'GDGraph-1.23.tar.gz' => {
+    'md5-ungz' => 'ba44652f79b604a83f6b3e8fe6e53c7f',
+    'mtime' => '2000-01-18',
+    'md5' => 'ee5b5144d51bd266368f99509fb19c9b',
+    'shortname' => 'gdgra123.tgz',
+    'size' => '95925'
+  },
+  'GDGraph-1.35.tar.gz' => {
+    'md5-ungz' => 'b1af2be4d6b055b53af5f5186ec4548c',
+    'mtime' => '2002-06-21',
+    'md5' => '8fffcaa9857bdfe9c7dc0fb352e6863a',
+    'shortname' => 'gdgra135.tgz',
+    'size' => '120833'
+  },
+  'GDGraph-1.34.tar.gz' => {
+    'md5-ungz' => '9d35000490094f2f0ef6cf512fd25528',
+    'mtime' => '2002-06-09',
+    'md5' => '7013fdc924d8a83e3cbb457b3e99b862',
+    'shortname' => 'gdgra134.tgz',
+    'size' => '118116'
+  },
+  'GIFgraph-1.20.tar.gz' => {
+    'md5-ungz' => 'b40bfe36a9d75af9b2d3259ca5e0d01d',
+    'mtime' => '1999-12-30',
+    'md5' => 'b4171f7d88c01acb0df5c5d515b24714',
+    'shortname' => 'gifgr120.tgz',
+    'size' => '29434'
+  },
+  'GDTextUtil-0.75.tar.gz' => {
+    'md5-ungz' => '8e2091ab732c310bdcf3577f8155008d',
+    'mtime' => '2000-04-30',
+    'md5' => '3ee57030a1ba7c092bea815c8363938a',
+    'shortname' => 'gdtex075.tgz',
+    'size' => '36126'
+  },
+  'GDTextUtil-0.71.tar.gz' => {
+    'md5-ungz' => '06c3310da60e94789171ae08c100aa4a',
+    'mtime' => '2000-02-28',
+    'md5' => 'f973ae0896d68b5c85adf504d75c5f4b',
+    'shortname' => 'gdtex071.tgz',
+    'size' => '35120'
+  },
+  'GDTextUtil-0.70.tar.gz' => {
+    'md5-ungz' => '124fd821ae3ede59681912858739bbda',
+    'mtime' => '2000-01-30',
+    'md5' => 'a19fa86a89c8fc4dd26f1992a785c2d5',
+    'shortname' => 'gdtex070.tgz',
+    'size' => '34945'
+  },
+  'GDGraph-1.33.tar.gz' => {
+    'md5-ungz' => 'a43df3db601920f4468097ec194ac080',
+    'mtime' => '2000-10-07',
+    'md5' => '7ad74a355a46fdad0ebdc686efd1f1c8',
+    'shortname' => 'gdgra133.tgz',
+    'size' => '113158'
+  },
+  'GDGraph-1.32.tar.gz' => {
+    'md5-ungz' => 'c5254c3086492c2384fab79f0fa4dc74',
+    'mtime' => '2000-05-06',
+    'md5' => '78db703a3b1d8ee7d69c67b996932af0',
+    'shortname' => 'gdgra132.tgz',
+    'size' => '112913'
+  },
+  'GDGraph-1.31.tar.gz' => {
+    'md5-ungz' => '7c505bc619506477454b41635436697e',
+    'mtime' => '2000-04-30',
+    'md5' => '2025224a0220f5c36ccf3fd0a65889b5',
+    'shortname' => 'gdgra131.tgz',
+    'size' => '110324'
+  },
+  'GDGraph-1.30.tar.gz' => {
+    'md5-ungz' => '69c23e141bf18847bee16e81b03f081a',
+    'mtime' => '2000-04-15',
+    'md5' => '3e496733e2375ed7854a8959363fbf39',
+    'shortname' => 'gdgra130.tgz',
+    'size' => '108824'
+  },
+  'GDTextUtil-0.83.tar.gz' => {
+    'md5-ungz' => '0c5751cd3df2ecbdae3c6d5ff2208f00',
+    'mtime' => '2002-06-14',
+    'md5' => 'e804db597ab3a6302b15a8d3be96501f',
+    'shortname' => 'gdtex083.tgz',
+    'size' => '42624'
+  },
+  'GDTextUtil-0.80.tar.gz' => {
+    'md5-ungz' => 'f7618fb653123644208b81392607ded1',
+    'mtime' => '2000-09-18',
+    'md5' => '3569b86f250ad28bdb771cbc6c83d0aa',
+    'shortname' => 'gdtex080.tgz',
+    'size' => '36855'
+  },
+  'GDTextUtil-0.82.tar.gz' => {
+    'md5-ungz' => '0a706841455a09704cf8fec2fb53b8bb',
+    'mtime' => '2002-01-19',
+    'md5' => '15dc6084dbcac093e3f482e5d947777d',
+    'shortname' => 'gdtex082.tgz',
+    'size' => '42047'
+  }
+};

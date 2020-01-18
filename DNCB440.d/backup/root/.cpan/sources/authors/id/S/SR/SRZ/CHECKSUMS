@@ -1,0 +1,52 @@
+# CHECKSUMS file written on Wed Dec 13 13:31:25 2000 by CPAN::Checksums (v1.007)
+$cksum = {
+  'Archive-Tar-0.072.tar.gz' => {
+    'md5-ungz' => 'fb1e0039570e03c5b22e6c41e174e851',
+    'mtime' => '1998-04-10',
+    'md5' => '887375a7686f9a77a3901617d0eda7fc',
+    'shortname' => 'arch0072.tgz',
+    'size' => 8262
+  },
+  'Archive-Tar-0.22.tar.gz' => {
+    'md5-ungz' => 'a9d7d99cbbcd1d0e7a3156700b1c9977',
+    'mtime' => '2000-04-28',
+    'md5' => 'd77f1de1241c4eb7879916a853910285',
+    'shortname' => 'archi022.tgz',
+    'size' => 14766
+  },
+  'Archive-Tar-0.21.tar.gz' => {
+    'md5-ungz' => '0ff23ea284068bbee3f5c852084c31a4',
+    'mtime' => '1999-02-02',
+    'md5' => '12cd89bccd871359d6529867a69a8c1d',
+    'shortname' => 'archi021.tgz',
+    'size' => 12990
+  },
+  'Archive-Tar-0.20.tar.gz' => {
+    'md5-ungz' => 'd80a015209785463b0c60627c1be31c1',
+    'mtime' => '1999-01-10',
+    'md5' => '2819997dacdda165aa6f77263bc335bc',
+    'shortname' => 'archi020.tgz',
+    'size' => 12987
+  },
+  'Net-Interface-0.04.tar.gz' => {
+    'md5-ungz' => '21cbea6a224dea4c2e1dfae30807d44d',
+    'mtime' => '1998-07-30',
+    'md5' => 'f2068361cc7613769770202952bf3d5d',
+    'shortname' => 'netin004.tgz',
+    'size' => 5231
+  },
+  'Net-Interface-0.03.tar.gz' => {
+    'md5-ungz' => '338104665f808b4b1383573b62dd1260',
+    'mtime' => '1998-05-26',
+    'md5' => '89b36f958f14a22b3cc98dba2784603d',
+    'shortname' => 'netin003.tgz',
+    'size' => 4246
+  },
+  'Archive-Tar-0.08.tar.gz' => {
+    'md5-ungz' => '66e70785d19a076e939058e8847448f9',
+    'mtime' => '1998-07-30',
+    'md5' => 'd887b67aabd5f8b33a15cbed5ed9f621',
+    'shortname' => 'archi008.tgz',
+    'size' => 9831
+  }
+};

@@ -1,0 +1,2 @@
+ XDEFUN_INTERNAL (isstr, args,, false, "-*- texinfo -*-\n@deftypefn {Built-in Function} {} isstr (@var{a})\nReturn 1 if @var{a} is a string.  Otherwise, return 0.\n@end deftypefn") 
+ XDEFUN_INTERNAL (setstr, args,, false, "-*- texinfo -*-\n@deftypefn {Built-in Function} {} setstr (@var{x})\nConvert a matrix to a string.  Each element of the matrix is converted\nto the corresponding ASCII \ncharacter.  For example,\n\n@example\n@group\nsetstr ([97, 98, 99])\n     @result{} \"abc\"\n@end group\n@end example\n@end deftypefn") 

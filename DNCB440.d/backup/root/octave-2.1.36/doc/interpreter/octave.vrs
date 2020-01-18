@@ -1,0 +1,145 @@
+\initial {A}
+\entry {\code {all_va_args}}{96}
+\entry {\code {ans}}{110}
+\entry {\code {argv}}{15}
+\entry {\code {automatic_replot}}{57, 132}
+\initial {B}
+\entry {\code {beep_on_error}}{57, 108}
+\initial {C}
+\entry {\code {completion_append_char}}{20, 57}
+\entry {\code {crash_dumps_octave_core}}{58, 114}
+\initial {D}
+\entry {\code {default_eval_print_flag}}{57, 77}
+\entry {\code {default_global_variable_value}}{54}
+\entry {\code {DEFAULT_LOADPATH}}{56, 99}
+\entry {\code {default_return_value}}{57, 95}
+\entry {\code {default_save_format}}{58, 114}
+\entry {\code {define_all_return_values}}{58, 95}
+\entry {\code {do_fortran_indexing}}{58, 63}
+\entry {\code {do_what_i_mean_not_what_i_say}}{11}
+\initial {E}
+\entry {\code {e}}{163}
+\entry {\code {echo_executing_commands}}{24}
+\entry {\code {EDITOR}}{22, 56, 61}
+\entry {\code {empty_list_elements_ok}}{35, 58}
+\entry {\code {eps}}{163}
+\entry {\code {error_text}}{107}
+\entry {\code {EXEC_PATH}}{57, 287}
+\initial {F}
+\entry {\code {F_DUPFD}}{288}
+\entry {\code {F_GETFD}}{288}
+\entry {\code {F_GETFL}}{289}
+\entry {\code {F_SETFD}}{289}
+\entry {\code {F_SETFL}}{289}
+\entry {\code {false}}{36}
+\entry {\code {fixed_point_format}}{34, 58}
+\initial {G}
+\entry {\code {gnuplot_binary}}{58, 141}
+\entry {\code {gnuplot_command_axes}}{142}
+\entry {\code {gnuplot_command_end}}{142}
+\entry {\code {gnuplot_command_plot}}{142}
+\entry {\code {gnuplot_command_replot}}{142}
+\entry {\code {gnuplot_command_splot}}{142}
+\entry {\code {gnuplot_command_title}}{142}
+\entry {\code {gnuplot_command_using}}{142}
+\entry {\code {gnuplot_command_with}}{142}
+\entry {\code {gnuplot_has_frames}}{141}
+\entry {\code {gnuplot_has_multiplot}}{142}
+\initial {H}
+\entry {\code {history_file}}{22, 58}
+\entry {\code {history_size}}{22, 58}
+\initial {I}
+\entry {\code {i}}{162}
+\entry {\code {I}}{162}
+\entry {\code {If}}{54, 73, 104}
+\entry {\code {ignore_function_time_stamp}}{58, 99}
+\entry {\code {IMAGEPATH}}{271}
+\entry {\code {implicit_num_to_str_ok}}{43, 58}
+\entry {\code {implicit_str_to_num_ok}}{43, 58}
+\entry {\code {inf}}{162}
+\entry {\code {Inf}}{162}
+\entry {\code {INFO_FILE}}{17, 57}
+\entry {\code {INFO_PROGRAM}}{17, 57}
+\initial {J}
+\entry {\code {j}}{162}
+\entry {\code {J}}{162}
+\initial {L}
+\entry {\code {LOADPATH}}{57, 99}
+\initial {M}
+\entry {\code {MAKEINFO_PROGRAM}}{17}
+\entry {\code {max_recursion_depth}}{59, 67}
+\initial {N}
+\entry {\code {nan}}{163}
+\entry {\code {NaN}}{163}
+\entry {\code {nargin}}{93}
+\entry {\code {nargout}}{94}
+\initial {O}
+\entry {\code {O_APPEND}}{289}
+\entry {\code {O_ASYNC}}{289}
+\entry {\code {O_NONBLOCK}}{289}
+\entry {\code {O_RDONLY}}{289}
+\entry {\code {O_RDWR}}{289}
+\entry {\code {O_SYNC}}{289}
+\entry {\code {O_WRONLY}}{289}
+\entry {\code {OCTAVE_EXEC_PATH}}{61}
+\entry {\code {OCTAVE_HISTFILE}}{61}
+\entry {\code {OCTAVE_HISTSIZE}}{61}
+\entry {\code {OCTAVE_HOME}}{57}
+\entry {\code {OCTAVE_INFO_FILE}}{61}
+\entry {\code {OCTAVE_INFO_PROGRAM}}{61}
+\entry {\code {OCTAVE_PATH}}{61}
+\entry {\code {OCTAVE_VERSION}}{292}
+\entry {\code {ok_to_lose_imaginary_part}}{59, 150}
+\entry {\code {output_max_field_width}}{33, 59}
+\entry {\code {output_precision}}{33, 59}
+\initial {P}
+\entry {\code {page_output_immediately}}{109}
+\entry {\code {page_screen_output}}{59, 109}
+\entry {\code {PAGER}}{57, 109}
+\entry {\code {pi}}{163}
+\entry {\code {prefer_column_vectors}}{59, 64}
+\entry {\code {prefer_zero_one_indexing}}{64}
+\entry {\code {print_answer_id_name}}{59, 112}
+\entry {\code {print_empty_dimensions}}{34, 59}
+\entry {\code {program_invocation_name}}{15}
+\entry {\code {program_name}}{15}
+\entry {\code {propagate_empty_matrices}}{35}
+\entry {\code {PS1}}{23, 57}
+\entry {\code {PS2}}{23, 57}
+\entry {\code {PS4}}{23, 57}
+\initial {R}
+\entry {\code {realmax}}{163}
+\entry {\code {realmin}}{163}
+\entry {\code {resize_on_range_error}}{59, 65}
+\entry {\code {return}}{97}
+\entry {\code {return_last_computed_value}}{59, 98}
+\initial {S}
+\entry {\code {save_header_format_string}}{115}
+\entry {\code {save_precision}}{59, 115}
+\entry {\code {saving_history}}{22, 59}
+\entry {\code {SEEK_CUR}}{129}
+\entry {\code {SEEK_END}}{129}
+\entry {\code {SEEK_SET}}{129}
+\entry {\code {silent_functions}}{60, 93}
+\entry {\code {split_long_rows}}{33, 60}
+\entry {\code {stderr}}{116}
+\entry {\code {stdin}}{116}
+\entry {\code {stdout}}{116}
+\entry {\code {string_fill_char}}{38}
+\entry {\code {struct_levels_to_print}}{46, 60}
+\entry {\code {suppress_verbose_help_message}}{18, 60}
+\initial {T}
+\entry {\code {treat_neg_dim_as_zero}}{60, 150}
+\entry {\code {true}}{36}
+\initial {W}
+\entry {\code {warn_assign_as_truth_value}}{60, 81}
+\entry {\code {warn_comma_in_global_decl}}{60}
+\entry {\code {warn_divide_by_zero}}{60, 69}
+\entry {\code {warn_function_name_clash}}{60, 100}
+\entry {\code {warn_future_time_stamp}}{100}
+\entry {\code {warn_missing_semicolon}}{93}
+\entry {\code {warn_reload_forces_clear}}{60, 103}
+\entry {\code {warn_separator_insert}}{32}
+\entry {\code {warn_single_quote_string}}{43}
+\entry {\code {warn_variable_switch_label}}{60, 82}
+\entry {\code {whitespace_in_literal_matrix}}{32, 60}

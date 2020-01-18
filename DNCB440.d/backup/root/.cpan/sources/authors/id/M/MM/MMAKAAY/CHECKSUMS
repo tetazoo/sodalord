@@ -1,0 +1,10 @@
+# CHECKSUMS file written on Tue Feb  5 14:54:42 2002 by CPAN::Checksums (v1.008)
+$cksum = {
+  'Curses-UI-0.71.tar.gz' => {
+    'md5-ungz' => '1b17994d01954d5a9bb8eda3d33976d6',
+    'mtime' => '2002-02-02',
+    'md5' => '30c36fd462c10145ea598260f4f9caa1',
+    'shortname' => 'curse071.tgz',
+    'size' => '98495'
+  }
+};

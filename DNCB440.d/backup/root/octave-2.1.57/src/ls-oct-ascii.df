@@ -1,0 +1,1 @@
+   XDEFVAR_INTERNAL("save_precision", SBV_save_precision, 15.0, false, save_precision, "-*- texinfo -*-\n@defvr {Built-in Variable} save_precision\nThis variable specifies the number of digits to keep when saving data in\ntext format.  The default value is 17.\n@end defvr") ;

@@ -1,0 +1,82 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	2003.09.04.02.29.35;	author kchen;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2003.09.04.02.16.27;	author root;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2003.09.04.02.03.53;	author kchen;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2003.07.07.04.34.28;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@krbtkfile, not krb5tkfile
+@
+text
+@#!/bin/bash
+
+export KRB5CCNAME=/tmp/krb5cc_soda KRBTKFILE=/tmp/tkt_soda
+#/usr/athena/bin/kdestroy
+/usr/athena/bin/kinit -k -t /etc/krb5.keytab
+@
+
+
+1.3
+log
+@just the kinit
+@
+text
+@d3 1
+a3 1
+#export KRB5CCNAME=/tmp/krb5cc_soda KRB5TKFILE=/tmp/tkt_soda
+@
+
+
+1.2
+log
+@trying just kinit by itself
+@
+text
+@d3 1
+a3 2
+#export KRB5CCNAME=/tmp/krb5cc_35366 KRB5TKFILE=/tmp/tkt35366
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 1
+a3 1
+export KRB5CCNAME=/tmp/krb5cc_35366 KRB5TKFILE=/tmp/tkt35366
+d5 1
+a5 1
+/usr/athena/bin/kdestroy
+a6 1
+ 
+@

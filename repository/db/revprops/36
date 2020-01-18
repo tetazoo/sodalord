@@ -1,0 +1,16 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-10-18T20:31:46.351692Z
+K 7
+svn:log
+V 255
+added more useful messages to cmd_buy ... it now lists the new balance 
+(after the purchase), and is very clear about when it doesn't 
+bill an account because the selection is (probably) sold out. 
+also, sends zephyr when a selection is presumed sold out.
+END

@@ -1,0 +1,867 @@
+<HTML>
+<HEAD>
+<!-- This HTML file has been created by texi2html 1.51
+     from octave.texi on 1 May 2002 -->
+
+<TITLE>GNU Octave - Signal Processing</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_29.html">previous</A>, <A HREF="octave_31.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC197" HREF="octave_toc.html#TOC197">Signal Processing</A></H1>
+
+<P>
+I hope that someday Octave will include more signal processing
+functions.  If you would like to help improve Octave in this area,
+please contact <A HREF="mailto:bug-octave@bevo.che.wisc.edu">bug-octave@bevo.che.wisc.edu</A>.
+
+</P>
+<P>
+@anchor{doc-detrend}
+<DL>
+<DT><U>Function File:</U>  <B>detrend</B> <I>(<VAR>x</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX1119"></A>
+If <VAR>x</VAR> is a vector, <CODE>detrend (<VAR>x</VAR>, <VAR>p</VAR>)</CODE> removes the
+best fit of a polynomial of order <VAR>p</VAR> from the data <VAR>x</VAR>.
+
+</P>
+<P>
+If <VAR>x</VAR> is a matrix, <CODE>detrend (<VAR>x</VAR>, <VAR>p</VAR>)</CODE> does the same
+for each column in <VAR>x</VAR>.
+
+</P>
+<P>
+The second argument is optional.  If it is not specified, a value of 1
+is assumed.  This corresponds to removing a linear trend.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-fft}
+<DL>
+<DT><U>Loadable Function:</U>  <B>fft</B> <I>(<VAR>a</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX1120"></A>
+Compute the FFT of <VAR>a</VAR> using subroutines from FFTPACK.  If <VAR>a</VAR>
+is a matrix, <CODE>fft</CODE> computes the FFT for each column of <VAR>a</VAR>.
+
+</P>
+<P>
+If called with two arguments, <VAR>n</VAR> is expected to be an integer
+specifying the number of elements of <VAR>a</VAR> to use.  If <VAR>a</VAR> is a
+matrix, <VAR>n</VAR> specifies the number of rows of <VAR>a</VAR> to use.  If
+<VAR>n</VAR> is larger than the size of <VAR>a</VAR>, <VAR>a</VAR> is resized and
+padded with zeros.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-ifft}
+<DL>
+<DT><U>Loadable Function:</U>  <B>ifft</B> <I>(<VAR>a</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX1121"></A>
+Compute the inverse FFT of <VAR>a</VAR> using subroutines from FFTPACK.  If
+<VAR>a</VAR> is a matrix, <CODE>fft</CODE> computes the inverse FFT for each column
+of <VAR>a</VAR>.
+
+</P>
+<P>
+If called with two arguments, <VAR>n</VAR> is expected to be an integer
+specifying the number of elements of <VAR>a</VAR> to use.  If <VAR>a</VAR> is a
+matrix, <VAR>n</VAR> specifies the number of rows of <VAR>a</VAR> to use.  If
+<VAR>n</VAR> is larger than the size of <VAR>a</VAR>, <VAR>a</VAR> is resized and
+padded with zeros.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-fft2}
+<DL>
+<DT><U>Loadable Function:</U>  <B>fft2</B> <I>(<VAR>a</VAR>, <VAR>n</VAR>, <VAR>m</VAR>)</I>
+<DD><A NAME="IDX1122"></A>
+Compute the two dimensional FFT of <VAR>a</VAR>.
+
+</P>
+<P>
+The optional arguments <VAR>n</VAR> and <VAR>m</VAR> may be used specify the
+number of rows and columns of <VAR>a</VAR> to use.  If either of these is
+larger than the size of <VAR>a</VAR>, <VAR>a</VAR> is resized and padded with
+zeros.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-ifft2}
+<DL>
+<DT><U>Loadable Function:</U>  <B>ifft2</B> <I>(<VAR>a</VAR>, <VAR>n</VAR>, <VAR>m</VAR>)</I>
+<DD><A NAME="IDX1123"></A>
+Compute the two dimensional inverse FFT of <VAR>a</VAR>.
+
+</P>
+<P>
+The optional arguments <VAR>n</VAR> and <VAR>m</VAR> may be used specify the
+number of rows and columns of <VAR>a</VAR> to use.  If either of these is
+larger than the size of <VAR>a</VAR>, <VAR>a</VAR> is resized and padded with
+zeros.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-fftconv}
+<DL>
+<DT><U>Function File:</U>  <B>fftconv</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX1124"></A>
+Return the convolution of the vectors <VAR>a</VAR> and <VAR>b</VAR>, as a vector
+with length equal to the <CODE>length (a) + length (b) - 1</CODE>.  If <VAR>a</VAR>
+and <VAR>b</VAR> are the coefficient vectors of two polynomials, the returned
+value is the coefficient vector of the product polynomial.
+
+</P>
+<P>
+The computation uses the FFT by calling the function <CODE>fftfilt</CODE>.  If
+the optional argument <VAR>n</VAR> is specified, an N-point FFT is used.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-fftfilt}
+<DL>
+<DT><U>Function File:</U>  <B>fftfilt</B> <I>(<VAR>b</VAR>, <VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX1125"></A>
+
+</P>
+<P>
+With two arguments, <CODE>fftfilt</CODE> filters <VAR>x</VAR> with the FIR filter
+<VAR>b</VAR> using the FFT.
+
+</P>
+<P>
+Given the optional third argument, <VAR>n</VAR>, <CODE>fftfilt</CODE> uses the
+overlap-add method to filter <VAR>x</VAR> with <VAR>b</VAR> using an N-point FFT.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-filter}
+<DL>
+<DT><U>Loadable Function:</U> y = <B>filter</B> <I>(<VAR>b</VAR>, <VAR>a</VAR>, <VAR>x</VAR>)</I>
+<DD><A NAME="IDX1126"></A>
+<DT><U>Loadable Function:</U> [<VAR>y</VAR>, <VAR>sf</VAR>] = <B>filter</B> <I>(<VAR>b</VAR>, <VAR>a</VAR>, <VAR>x</VAR>, <VAR>si</VAR>)</I>
+<DD><A NAME="IDX1127"></A>
+Return the solution to the following linear, time-invariant difference
+equation:
+
+</P>
+
+<PRE>
+   N                   M
+  SUM a(k+1) y(n-k) = SUM b(k+1) x(n-k)      for 1&#60;=n&#60;=length(x)
+  k=0                 k=0
+</PRE>
+
+<P>
+where
+ N=length(a)-1 and M=length(b)-1.
+An equivalent form of this equation is:
+
+</P>
+
+<PRE>
+            N                   M
+  y(n) = - SUM c(k+1) y(n-k) + SUM d(k+1) x(n-k)  for 1&#60;=n&#60;=length(x)
+           k=1                 k=0
+</PRE>
+
+<P>
+where
+ c = a/a(1) and d = b/a(1).
+
+</P>
+<P>
+If the fourth argument <VAR>si</VAR> is provided, it is taken as the
+initial state of the system and the final state is returned as
+<VAR>sf</VAR>.  The state vector is a column vector whose length is
+equal to the length of the longest coefficient vector minus one.
+If <VAR>si</VAR> is not supplied, the initial state vector is set to all
+zeros.
+
+</P>
+<P>
+In terms of the z-transform, y is the result of passing the discrete-
+time signal x through a system characterized by the following rational
+system function:
+
+</P>
+
+<PRE>
+             M
+            SUM d(k+1) z^(-k)
+            k=0
+  H(z) = ----------------------
+               N
+          1 + SUM c(k+1) z(-k)
+              k=1
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-freqz}
+<DL>
+<DT><U>Function File:</U> [<VAR>h</VAR>, <VAR>w</VAR>] = <B>freqz</B> <I>(<VAR>b</VAR>, <VAR>a</VAR>, <VAR>n</VAR>, "whole")</I>
+<DD><A NAME="IDX1128"></A>
+Return the complex frequency response <VAR>h</VAR> of the rational IIR filter
+whose numerator and denominator coefficients are <VAR>b</VAR> and <VAR>a</VAR>,
+respectively.  The response is evaluated at <VAR>n</VAR> angular frequencies
+between 0 and
+ 2*pi.
+
+</P>
+<P>
+The output value <VAR>w</VAR> is a vector of the frequencies.
+
+</P>
+<P>
+If the fourth argument is omitted, the response is evaluated at
+frequencies between 0 and
+ pi.
+
+</P>
+<P>
+If <VAR>n</VAR> is omitted, a value of 512 is assumed.
+
+</P>
+<P>
+If <VAR>a</VAR> is omitted, the denominator is assumed to be 1 (this
+corresponds to a simple FIR filter).
+
+</P>
+<P>
+For fastest computation, <VAR>n</VAR> should factor into a small number of
+small primes.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-sinc}
+<DL>
+<DT><U>Function File:</U>  <B>sinc</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX1129"></A>
+Return
+ sin(pi*x)/(pi*x).
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-arch_fit}
+<DL>
+<DT><U>Function File:</U> [<VAR>a</VAR>, <VAR>b</VAR>] = <B>arch_fit</B> <I>(<VAR>y</VAR>, <VAR>x</VAR>, <VAR>p</VAR>, <VAR>iter</VAR>, <VAR>gamma</VAR>, <VAR>a0</VAR>, <VAR>b0</VAR>)</I>
+<DD><A NAME="IDX1130"></A>
+Fit an ARCH regression model to the time series <VAR>y</VAR> using the
+scoring algorithm in Engle's original ARCH paper.  The model is
+
+</P>
+
+<PRE>
+y(t) = b(1) * x(t,1) + ... + b(k) * x(t,k) + e(t),
+h(t) = a(1) + a(2) * e(t-1)^2 + ... + a(p+1) * e(t-p)^2
+</PRE>
+
+<P>
+in which @math{e(t)} is @math{N(0, h(t))}, given a time-series vector
+<VAR>y</VAR> up to time @math{t-1} and a matrix of (ordinary) regressors
+<VAR>x</VAR> up to @math{t}.  The order of the regression of the residual
+variance is specified by <VAR>p</VAR>.
+
+</P>
+<P>
+If invoked as <CODE>arch_fit (<VAR>y</VAR>, <VAR>k</VAR>, <VAR>p</VAR>)</CODE> with a
+positive integer <VAR>k</VAR>, fit an ARCH(<VAR>k</VAR>, <VAR>p</VAR>) process,
+i.e., do the above with the @math{t}-th row of <VAR>x</VAR> given by
+
+</P>
+
+<PRE>
+[1, y(t-1), ..., y(t-k)]
+</PRE>
+
+<P>
+Optionally, one can specify the number of iterations <VAR>iter</VAR>, the
+updating factor <VAR>gamma</VAR>, and initial values @math{a0} and
+@math{b0} for the scoring algorithm.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-arch_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>arch_rnd</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>, <VAR>t</VAR>)</I>
+<DD><A NAME="IDX1131"></A>
+Simulate an ARCH sequence of length <VAR>t</VAR> with AR
+coefficients <VAR>b</VAR> and CH coefficients <VAR>a</VAR>.  I.e., the result
+@math{y(t)} follows the model
+
+</P>
+
+<PRE>
+y(t) = b(1) + b(2) * y(t-1) + ... + b(lb) * y(t-lb+1) + e(t),
+</PRE>
+
+<P>
+where @math{e(t)}, given <VAR>y</VAR> up to time @math{t-1}, is
+@math{N(0, h(t))}, with
+
+</P>
+
+<PRE>
+h(t) = a(1) + a(2) * e(t-1)^2 + ... + a(la) * e(t-la+1)^2
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-arch_test}
+<DL>
+<DT><U>Function File:</U>  <B>[<VAR>pval</VAR>, <VAR>lm</VAR>] =</B> <I>arch_test (<VAR>y</VAR>, <VAR>x</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX1132"></A>
+For a linear regression model
+
+</P>
+
+<PRE>
+y = x * b + e
+</PRE>
+
+<P>
+perform a Lagrange Multiplier (LM) test of the null hypothesis of no
+conditional heteroscedascity against the alternative of CH(<VAR>p</VAR>).
+
+</P>
+<P>
+I.e., the model is
+
+</P>
+
+<PRE>
+y(t) = b(1) * x(t,1) + ... + b(k) * x(t,k) + e(t),
+</PRE>
+
+<P>
+given <VAR>y</VAR> up to @math{t-1} and <VAR>x</VAR> up to @math{t},
+@math{e}(t) is @math{N(0, h(t))} with
+
+</P>
+
+<PRE>
+h(t) = v + a(1) * e(t-1)^2 + ... + a(p) * e(t-p)^2,
+</PRE>
+
+<P>
+and the null is @math{a(1)} == ... == @math{a(p)} == 0.
+
+</P>
+<P>
+If the second argument is a scalar integer, @math{k}, perform the same
+test in a linear autoregression model of order @math{k}, i.e., with
+
+</P>
+
+<PRE>
+[1, y(t-1), ..., y(t-<VAR>k</VAR>)]
+</PRE>
+
+<P>
+as the @math{t}-th row of <VAR>x</VAR>.
+
+</P>
+<P>
+Under the null, LM approximately has a chisquare distribution with
+<VAR>p</VAR> degrees of freedom and <VAR>pval</VAR> is the @math{p}-value (1
+minus the CDF of this distribution at LM) of the test.
+
+</P>
+<P>
+If no output argument is given, the @math{p}-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-arma_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>arma_rnd</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>, <VAR>v</VAR>, <VAR>t</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX1133"></A>
+Return a simulation of the ARMA model
+
+</P>
+
+<PRE>
+x(n) = a(1) * x(n-1) + ... + a(k) * x(n-k)
+     + e(n) + b(1) * e(n-1) + ... + b(l) * e(n-l)
+</PRE>
+
+<P>
+in which <VAR>k</VAR> is the length of vector <VAR>a</VAR>, <VAR>l</VAR> is the
+length of vector <VAR>b</VAR> and <VAR>e</VAR> is gaussian white noise with
+variance <VAR>v</VAR>.  The function returns a vector of length <VAR>t</VAR>.
+
+</P>
+<P>
+The optional parameter <VAR>n</VAR> gives the number of dummy
+<VAR>x</VAR>(<VAR>i</VAR>) used for initialization, i.e., a sequence of length
+<VAR>t</VAR>+<VAR>n</VAR> is generated and <VAR>x</VAR>(<VAR>n</VAR>+1:<VAR>t</VAR>+<VAR>n</VAR>)
+is returned.  If <VAR>n</VAR> is omitted, <VAR>n</VAR> = 100 is used. 
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-autocor}
+<DL>
+<DT><U>Function File:</U>  <B>autocor</B> <I>(<VAR>x</VAR>, <VAR>h</VAR>)</I>
+<DD><A NAME="IDX1134"></A>
+Return the autocorrelations from lag 0 to <VAR>h</VAR> of vector <VAR>x</VAR>.
+If <VAR>h</VAR> is omitted, all autocorrelations are computed.
+If <VAR>x</VAR> is a matrix, the autocorrelations of each column are
+computed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-autocov}
+<DL>
+<DT><U>Function File:</U>  <B>autocov</B> <I>(<VAR>x</VAR>, <VAR>h</VAR>)</I>
+<DD><A NAME="IDX1135"></A>
+Return the autocovariances from lag 0 to <VAR>h</VAR> of vector <VAR>x</VAR>.
+If <VAR>h</VAR> is omitted, all autocovariances are computed.
+If <VAR>x</VAR> is a matrix, the autocovariances of each column are
+computed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-autoreg_matrix}
+<DL>
+<DT><U>Function File:</U>  <B>autoreg_matrix</B> <I>(<VAR>y</VAR>, <VAR>k</VAR>)</I>
+<DD><A NAME="IDX1136"></A>
+Given a time series (vector) <VAR>y</VAR>, return a matrix with ones in the
+first column and the first <VAR>k</VAR> lagged values of <VAR>y</VAR> in the
+other columns.  I.e., for <VAR>t</VAR> &#62; <VAR>k</VAR>, <CODE>[1,
+<VAR>y</VAR>(<VAR>t</VAR>-1), ..., <VAR>y</VAR>(<VAR>t</VAR>-<VAR>k</VAR>)]</CODE> is the t-th row
+of the result.  The resulting matrix may be used as a regressor matrix
+in autoregressions.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-bartlett}
+<DL>
+<DT><U>Function File:</U>  <B>bartlett</B> <I>(<VAR>m</VAR>)</I>
+<DD><A NAME="IDX1137"></A>
+Return the filter coefficients of a Bartlett (triangular) window of
+length <VAR>m</VAR>.
+
+</P>
+<P>
+For a definition of the Bartlett window, see e.g. A. V. Oppenheim &#38;
+R. W. Schafer, "Discrete-Time Signal Processing".
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-blackman}
+<DL>
+<DT><U>Function File:</U>  <B>blackman</B> <I>(<VAR>m</VAR>)</I>
+<DD><A NAME="IDX1138"></A>
+Return the filter coefficients of a Blackman window of length <VAR>m</VAR>.
+
+</P>
+<P>
+For a definition of the  Blackman window, see e.g. A. V. Oppenheim &#38;
+R. W. Schafer, "Discrete-Time Signal Processing".
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-diffpara}
+<DL>
+<DT><U>Function File:</U> [<VAR>d</VAR>, <VAR>dd</VAR>] <B>=</B> <I>diffpara (<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX1139"></A>
+Return the estimator <VAR>d</VAR> for the differencing parameter of an
+integrated time series.
+
+</P>
+<P>
+The frequencies from @math{[2*pi*a/t, 2*pi*b/T]} are used for the
+estimation.  If <VAR>b</VAR> is omitted, the interval
+@math{[2*pi/T, 2*pi*a/T]} is used.  If both <VAR>b</VAR> and <VAR>a</VAR> are
+omitted then @math{a = 0.5 * sqrt (T)} and @math{b = 1.5 * sqrt (T)}
+is used, where @math{T} is the sample size.  If <VAR>x</VAR> is a matrix,
+the differencing parameter of each column is estimated.
+
+</P>
+<P>
+The estimators for all frequencies in the intervals
+described above is returned in <VAR>dd</VAR>.  The value of <VAR>d</VAR> is
+simply the mean of <VAR>dd</VAR>.
+
+</P>
+<P>
+Reference: Brockwell, Peter J. &#38; Davis, Richard A. Time Series:
+Theory and Methods Springer 1987.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-durbinlevinson}
+<DL>
+<DT><U>Function File:</U>  <B>durbinlevinson</B> <I>(<VAR>c</VAR>, <VAR>oldphi</VAR>, <VAR>oldv</VAR>)</I>
+<DD><A NAME="IDX1140"></A>
+Perform one step of the Durbin-Levinson algorithm.
+
+</P>
+<P>
+The vector <VAR>c</VAR> specifies the autocovariances <CODE>[gamma_0, ...,
+gamma_t]</CODE> from lag 0 to <VAR>t</VAR>, <VAR>oldphi</VAR> specifies the
+coefficients based on <VAR>c</VAR>(<VAR>t</VAR>-1) and <VAR>oldv</VAR> specifies the
+corresponding error.
+
+</P>
+<P>
+If <VAR>oldphi</VAR> and <VAR>oldv</VAR> are omitted, all steps from 1 to
+<VAR>t</VAR> of the algorithm are performed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-fftshift}
+<DL>
+<DT><U>Function File:</U>  <B>fftshift</B> <I>(<VAR>v</VAR>)</I>
+<DD><A NAME="IDX1141"></A>
+Perform a shift of the vector <VAR>v</VAR>, for use with the <CODE>fft</CODE>
+and <CODE>ifft</CODE> functions, in order the move the frequency 0 to the
+center of the vector or matrix.
+
+</P>
+<P>
+If <VAR>v</VAR> is a vector of @math{E} elements corresponding to @math{E}
+time samples spaced of @math{Dt} each, then @code{fftshift (fft
+(<VAR>v</VAR>))} corresponds to frequencies
+
+</P>
+
+<PRE>
+f = linspace (-E/(4*Dt), (E/2-1)/(2*Dt), E)
+</PRE>
+
+<P>
+If <VAR>v</VAR> is a matrix, the same holds for rows and columns.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-fractdiff}
+<DL>
+<DT><U>Function File:</U>  <B>fractdiff</B> <I>(<VAR>x</VAR>, <VAR>d</VAR>)</I>
+<DD><A NAME="IDX1142"></A>
+Compute the fractional differences @math{(1-L)^d x} where @math{L}
+denotes the lag-operator and @math{d} is greater than -1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hamming}
+<DL>
+<DT><U>Function File:</U>  <B>hamming</B> <I>(<VAR>m</VAR>)</I>
+<DD><A NAME="IDX1143"></A>
+Return the filter coefficients of a Hamming window of length <VAR>m</VAR>.
+
+</P>
+<P>
+For a definition of the Hamming window, see e.g. A. V. Oppenheim &#38;
+R. W. Schafer, "Discrete-Time Signal Processing".
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hanning}
+<DL>
+<DT><U>Function File:</U>  <B>hanning</B> <I>(<VAR>m</VAR>)</I>
+<DD><A NAME="IDX1144"></A>
+Return the filter coefficients of a Hanning window of length <VAR>m</VAR>.
+
+</P>
+<P>
+For a definition of this window type, see e.g. A. V. Oppenheim &#38;
+R. W. Schafer, "Discrete-Time Signal Processing".
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hurst}
+<DL>
+<DT><U>Function File:</U>  <B>hurst</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX1145"></A>
+Estimate the Hurst parameter of sample <VAR>x</VAR> via the rescaled range
+statistic.  If <VAR>x</VAR> is a matrix, the parameter is estimated for
+every single column.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-periodogram}
+<DL>
+<DT><U>Function File:</U>  <B>periodogram</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX1146"></A>
+For a data matrix <VAR>x</VAR> from a sample of size <VAR>n</VAR>, return the
+periodogram.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-rectangle_lw}
+<DL>
+<DT><U>Function File:</U>  <B>rectangle_lw</B> <I>(<VAR>n</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX1147"></A>
+Rectangular lag window. Subfunction used for spectral density
+estimation.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-rectangle_sw}
+<DL>
+<DT><U>Function File:</U>  <B>rectangle_sw</B> <I>(<VAR>n</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX1148"></A>
+Rectangular spectral window.  Subfunction used for spectral density
+estimation.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-sinetone}
+<DL>
+<DT><U>Function File:</U>  <B>sinetone</B> <I>(<VAR>freq</VAR>, <VAR>rate</VAR>, <VAR>sec</VAR>, <VAR>ampl</VAR>)</I>
+<DD><A NAME="IDX1149"></A>
+Return a sinetone of frequency <VAR>freq</VAR> with length of <VAR>sec</VAR>
+seconds at sampling rate <VAR>rate</VAR> and with amplitude <VAR>ampl</VAR>.
+The arguments <VAR>freq</VAR> and <VAR>ampl</VAR> may be vectors of common size.
+
+</P>
+<P>
+Defaults are <VAR>rate</VAR> = 8000, <VAR>sec</VAR> = 1 and <VAR>ampl</VAR> = 64.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-sinewave}
+<DL>
+<DT><U>Function File:</U>  <B>sinewave</B> <I>(<VAR>m</VAR>, <VAR>n</VAR>, <VAR>d</VAR>)</I>
+<DD><A NAME="IDX1150"></A>
+Return an <VAR>m</VAR>-element vector with <VAR>i</VAR>-th element given by
+<CODE>sin (2 * pi * (<VAR>i</VAR>+<VAR>d</VAR>-1) / <VAR>n</VAR>)</CODE>.
+
+</P>
+<P>
+The default value for <VAR>d</VAR> is 0.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-spectral_adf}
+<DL>
+<DT><U>Function File:</U>  <B>spectral_adf</B> <I>(<VAR>c</VAR>, <VAR>win</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX1151"></A>
+Return the spectral density estimator given a vector of
+autocovariances <VAR>c</VAR>, window name <VAR>win</VAR>, and bandwidth,
+<VAR>b</VAR>.
+
+</P>
+<P>
+The window name, e.g., <CODE>"triangle"</CODE> or <CODE>"rectangle"</CODE> is
+used to search for a function called <CODE><VAR>win</VAR>_sw</CODE>.
+
+</P>
+<P>
+If <VAR>win</VAR> is omitted, the triangle window is used.  If <VAR>b</VAR> is
+omitted, <CODE>1 / sqrt (length (<VAR>x</VAR>))</CODE> is used.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-spectral_xdf}
+<DL>
+<DT><U>Function File:</U>  <B>spectral_xdf</B> <I>(<VAR>x</VAR>, <VAR>win</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX1152"></A>
+Return the spectral density estimator given a data vector <VAR>x</VAR>,
+window name <VAR>win</VAR>, and bandwidth, <VAR>b</VAR>.
+
+</P>
+<P>
+The window name, e.g., <CODE>"triangle"</CODE> or <CODE>"rectangle"</CODE> is
+used to search for a function called <CODE><VAR>win</VAR>_sw</CODE>.
+
+</P>
+<P>
+If <VAR>win</VAR> is omitted, the triangle window is used.  If <VAR>b</VAR> is
+omitted, <CODE>1 / sqrt (length (<VAR>x</VAR>))</CODE> is used.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-spencer}
+<DL>
+<DT><U>Function File:</U>  <B>spencer</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX1153"></A>
+Return Spencer's 15 point moving average of every single column of
+<VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-stft}
+<DL>
+<DT><U>Function File:</U> [<VAR>y</VAR>, <VAR>c</VAR>] <B>=</B> <I>stft (<VAR>x</VAR>, <VAR>win_size</VAR>, <VAR>inc</VAR>, <VAR>num_coef</VAR>, <VAR>w_type</VAR>)</I>
+<DD><A NAME="IDX1154"></A>
+Compute the short-term Fourier transform of the vector <VAR>x</VAR> with
+<VAR>num_coef</VAR> coefficients by applying a window of <VAR>win_size</VAR> data
+points and an increment of <VAR>inc</VAR> points.
+
+</P>
+<P>
+Before computing the Fourier transform, one of the following windows
+is applied:
+
+</P>
+<DL COMPACT>
+
+<DT>hanning
+<DD>
+w_type = 1
+<DT>hamming
+<DD>
+w_type = 2
+<DT>rectangle
+<DD>
+w_type = 3
+</DL>
+
+<P>
+The window names can be passed as strings or by the <VAR>w_type</VAR> number.
+
+</P>
+<P>
+If not all arguments are specified, the following defaults are used:
+<VAR>win_size</VAR> = 80, <VAR>inc</VAR> = 24, <VAR>num_coef</VAR> = 64, and
+<VAR>w_type</VAR> = 1.
+
+</P>
+<P>
+<CODE><VAR>y</VAR> = stft (<VAR>x</VAR>, ...)</CODE> returns the absolute values
+of the Fourier coefficients according to the <VAR>num_coef</VAR> positive
+frequencies.
+
+</P>
+<P>
+<CODE>[<VAR>y</VAR>, <VAR>c</VAR>] = stft (<CODE>x</CODE>, ...)</CODE> returns the
+entire STFT-matrix <VAR>y</VAR> and a 3-element vector <VAR>c</VAR> containing
+the window size, increment, and window type, which is needed by the
+synthesis function.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-synthesis}
+<DL>
+<DT><U>Function File:</U>  <B>synthesis</B> <I>(<VAR>y</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX1155"></A>
+Compute a signal from its short-time Fourier transform <VAR>y</VAR> and a
+3-element vector <VAR>c</VAR> specifying window size, increment, and
+window type.
+
+</P>
+<P>
+The values <VAR>y</VAR> and <VAR>c</VAR> can be derived by
+
+</P>
+
+<PRE>
+[<VAR>y</VAR>, <VAR>c</VAR>] = stft (<VAR>x</VAR> , ...)
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-triangle_lw}
+<DL>
+<DT><U>Function File:</U>  <B>triangle_lw</B> <I>(<VAR>n</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX1156"></A>
+Triangular lag window. Subfunction used for spectral density
+estimation.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-triangle_sw}
+<DL>
+<DT><U>Function File:</U>  <B>triangle_sw</B> <I>(<VAR>n</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX1157"></A>
+Triangular spectral window.  Subfunction used for spectral density
+estimation.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-yulewalker}
+<DL>
+<DT><U>Function File:</U> [<VAR>a</VAR>, <VAR>v</VAR>] = <B>yulewalker</B> <I>(<VAR>c</VAR>)</I>
+<DD><A NAME="IDX1158"></A>
+Fit an AR (p)-model with Yule-Walker estimates given a vector <VAR>c</VAR>
+of autocovariances <CODE>[gamma_0, ..., gamma_p]</CODE>.
+
+</P>
+<P>
+Returns the AR coefficients, <VAR>a</VAR>, and the variance of white
+noise, <VAR>v</VAR>.
+</DL>
+
+</P>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_29.html">previous</A>, <A HREF="octave_31.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

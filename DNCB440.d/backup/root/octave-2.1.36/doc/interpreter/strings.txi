@@ -1,0 +1,236 @@
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Strings, Data Structures, Numeric Data Types, Top
+@chapter Strings
+@cindex strings
+@cindex character strings
+@opindex "
+@opindex '
+
+A @dfn{string constant} consists of a sequence of characters enclosed in
+either double-quote or single-quote marks.  For example, both of the
+following expressions
+
+@example
+@group
+"parrot"
+'parrot'
+@end group
+@end example
+
+@noindent
+represent the string whose contents are @samp{parrot}.  Strings in
+Octave can be of any length.
+
+Since the single-quote mark is also used for the transpose operator
+(@pxref{Arithmetic Ops}) but double-quote marks have no other purpose in
+Octave, it is best to use double-quote marks to denote strings.
+
+@c XXX FIXME XXX -- this is probably pretty confusing.
+
+@cindex escape sequence notation
+Some characters cannot be included literally in a string constant.  You
+represent them instead with @dfn{escape sequences}, which are character
+sequences beginning with a backslash (@samp{\}).
+
+One use of an escape sequence is to include a double-quote
+(single-quote) character in a string constant that has been defined
+using double-quote (single-quote) marks.  Since a plain double-quote
+would end the string, you must use @samp{\"} to represent a single
+double-quote character as a part of the string.  The backslash character
+itself is another character that cannot be included normally.  You must
+write @samp{\\} to put one backslash in the string.  Thus, the string
+whose contents are the two characters @samp{"\} may be written
+@code{"\"\\"} or @code{'"\\'}.  Similarly, the string whose contents are
+the two characters @samp{'\} may be written @code{'\'\\'} or @code{"'\\"}.
+
+Another use of backslash is to represent unprintable characters
+such as newline.  While there is nothing to stop you from writing most
+of these characters directly in a string constant, they may look ugly.
+
+Here is a table of all the escape sequences used in Octave.  They are
+the same as those used in the C programming language.
+
+@table @code
+@item \\
+Represents a literal backslash, @samp{\}.
+
+@item \"
+Represents a literal double-quote character, @samp{"}.
+
+@item \'
+Represents a literal single-quote character, @samp{'}.
+
+@item \0
+Represents the ``nul'' character, control-@, ASCII code 0.
+
+@item \a
+Represents the ``alert'' character, control-g, ASCII code 7.
+
+@item \b
+Represents a backspace, control-h, ASCII code 8.
+
+@item \f
+Represents a formfeed, control-l, ASCII code 12.
+
+@item \n
+Represents a newline, control-j, ASCII code 10.
+
+@item \r
+Represents a carriage return, control-m, ASCII code 13.
+
+@item \t
+Represents a horizontal tab, control-i, ASCII code 9.
+
+@item \v
+Represents a vertical tab, control-k, ASCII code 11.
+
+@c We don't do octal or hex this way yet.
+@c
+@c @item \@var{nnn}
+@c Represents the octal value @var{nnn}, where @var{nnn} are one to three
+@c digits between 0 and 7.  For example, the code for the ASCII ESC
+@c (escape) character is @samp{\033}.@refill
+@c 
+@c @item \x@var{hh}@dots{}
+@c Represents the hexadecimal value @var{hh}, where @var{hh} are hexadecimal
+@c digits (@samp{0} through @samp{9} and either @samp{A} through @samp{F} or
+@c @samp{a} through @samp{f}).  Like the same construct in @sc{ansi} C,
+@c the escape 
+@c sequence continues until the first non-hexadecimal digit is seen.  However,
+@c using more than two hexadecimal digits produces undefined results.  (The
+@c @samp{\x} escape sequence is not allowed in @sc{posix} @code{awk}.)@refill
+@end table
+
+Strings may be concatenated using the notation for defining matrices.
+For example, the expression
+
+@example
+[ "foo" , "bar" , "baz" ]
+@end example
+
+@noindent
+produces the string whose contents are @samp{foobarbaz}.  @xref{Numeric
+Data Types}, for more information about creating matrices.
+
+@menu
+* Creating Strings::            
+* Searching and Replacing::     
+* String Conversions::          
+* Character Class Functions::   
+@end menu
+
+@node Creating Strings, Searching and Replacing, Strings, Strings
+@section Creating Strings
+
+@DOCSTRING(blanks)
+
+@DOCSTRING(int2str)
+
+@DOCSTRING(com2str)
+
+@DOCSTRING(setstr)
+
+@DOCSTRING(strcat)
+
+@DOCSTRING(string_fill_char)
+
+@DOCSTRING(str2mat)
+
+@DOCSTRING(isstr)
+
+@node Searching and Replacing, String Conversions, Creating Strings, Strings
+@section Searching and Replacing
+
+@DOCSTRING(deblank)
+
+@DOCSTRING(findstr)
+
+@DOCSTRING(index)
+
+@DOCSTRING(rindex)
+
+@DOCSTRING(split)
+
+@DOCSTRING(strcmp)
+
+@DOCSTRING(strrep)
+
+@DOCSTRING(substr)
+
+@node String Conversions, Character Class Functions, Searching and Replacing, Strings
+@section String Conversions
+
+@DOCSTRING(bin2dec)
+
+@DOCSTRING(dec2bin)
+
+@DOCSTRING(dec2hex)
+
+@DOCSTRING(hex2dec)
+
+@DOCSTRING(dec2base)
+
+@DOCSTRING(base2dec)
+
+@DOCSTRING(strjust)
+
+@DOCSTRING(str2num)
+
+@DOCSTRING(toascii)
+
+@DOCSTRING(tolower)
+
+@DOCSTRING(toupper)
+
+@DOCSTRING(do_string_escapes)
+
+@DOCSTRING(undo_string_escapes)
+
+@DOCSTRING(implicit_num_to_str_ok)
+
+@DOCSTRING(implicit_str_to_num_ok)
+
+@DOCSTRING(warn_single_quote_string)
+
+@node Character Class Functions,  , String Conversions, Strings
+@section Character Class Functions
+
+Octave also provides the following character class test functions
+patterned after the functions in the standard C library.  They all
+operate on string arrays and return matrices of zeros and ones.
+Elements that are nonzero indicate that the condition was true for the
+corresponding character in the string array.  For example,
+
+@example
+@group
+isalpha ("!Q@@WERT^Y&")
+     @result{} [ 0, 1, 0, 1, 1, 1, 1, 0, 1, 0 ]
+@end group
+@end example
+
+@DOCSTRING(isalnum)
+
+@DOCSTRING(isalpha)
+
+@DOCSTRING(isascii)
+
+@DOCSTRING(iscntrl)
+
+@DOCSTRING(isdigit)
+
+@DOCSTRING(isgraph)
+
+@DOCSTRING(islower)
+
+@DOCSTRING(isprint)
+
+@DOCSTRING(ispunct)
+
+@DOCSTRING(isspace)
+
+@DOCSTRING(isupper)
+
+@DOCSTRING(isxdigit)

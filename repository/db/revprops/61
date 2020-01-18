@@ -1,0 +1,16 @@
+K 10
+svn:author
+V 8
+cmerrill
+K 8
+svn:date
+V 27
+2009-09-15T23:27:42.484307Z
+K 7
+svn:log
+V 75
+Fixed mistake in cmd_daily that improperly processed arguments.
+~cmerrill
+
+
+END

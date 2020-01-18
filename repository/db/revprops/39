@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-10-19T07:20:04.188569Z
+K 7
+svn:log
+V 131
+made cardchars re global, added .strip() to lines with card data on them (so '   __carddata__' will work as well as '__carddata__')
+END

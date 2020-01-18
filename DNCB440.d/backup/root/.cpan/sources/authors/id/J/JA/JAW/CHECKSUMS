@@ -1,0 +1,57 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Sat Feb 14 17:44:31 2004 by CPAN::Checksums (v1.016)
+$cksum = {
+  'Devel-Profile-1.03.tar.gz' => {
+    'mtime' => '2003-12-08',
+    'md5-ungz' => 'fa3ee3ca2ddc58c62d8d718d58de855f',
+    'md5' => '77c02bae146c86b2ec973b7deec3bc58',
+    'size' => 6713
+  },
+  'Devel-Profile-1.02.tar.gz' => {
+    'mtime' => '2003-07-09',
+    'md5-ungz' => '058997639d5290cea1847077367af8c2',
+    'md5' => '7637666252eaf4dc3493ee6ac9f1d1cf',
+    'size' => 6529
+  },
+  'Devel-Profile-1.00.tar.gz' => {
+    'mtime' => '2003-04-13',
+    'md5-ungz' => 'e21dee133fd0749d4bc1372c7cbfe65b',
+    'md5' => 'f8002cad9a6195c54d86af68bb150a03',
+    'size' => 4863
+  },
+  'LispFmt-0.00.tar.gz' => {
+    'mtime' => '2003-12-08',
+    'md5-ungz' => 'cb48cf2ba837cbce2be79aeed560fe7b',
+    'md5' => '8deedccff1c8d97df0693e269aeea063',
+    'size' => 13209
+  },
+  'Chart-Strip-1.0.tar.gz' => {
+    'mtime' => '2004-02-12',
+    'md5-ungz' => '38132a20901a87182eee2db9d73c1ab0',
+    'md5' => '61d6a0f48483e6d59601284903fb7f12',
+    'size' => 29891
+  },
+  'Devel-Profile-1.01.tar.gz' => {
+    'mtime' => '2003-04-15',
+    'md5-ungz' => '6037a13be0735bbe252f23dc53b6a9ed',
+    'md5' => '08561aceb83895e0862e663205dcc19c',
+    'size' => 6376
+  },
+  'Chart-Strip-1.01.tar.gz' => {
+    'mtime' => '2004-02-14',
+    'md5-ungz' => '5a6db6a1d184bda143efc580f4502033',
+    'md5' => 'b80cee36a8172df8ca0ec3dcd7284c4e',
+    'size' => 27514
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQFALl5/Mo2oZ0UPiewRAq7eAJ94/tj2mYkDlXzelhZwFfJWQGShHQCfcplA
+kiyDDDHbAWmjZLBv5Tv77/c=
+=k9PY
+-----END PGP SIGNATURE-----

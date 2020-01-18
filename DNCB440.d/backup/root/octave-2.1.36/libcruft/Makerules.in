@@ -1,0 +1,98 @@
+# @configure_input@
+#
+# Common rules for octave's libcruft directories.
+#
+# XXX FIXME XXX -- assumes that the libcruft directory tree is only
+# one level deep.
+#
+# John W. Eaton
+# jwe@bevo.che.wisc.edu
+# University of Wisconsin-Madison
+# Department of Chemical Engineering
+
+SOURCES = *.f
+
+DISTFILES = Makefile.in $(SOURCES) $(SPECIAL)
+
+CRUFT_SRC = $(wildcard $(srcdir)/*.f) \
+             $(wildcard $(srcdir)/*.c) \
+             $(wildcard $(srcdir)/*.cc)
+CRUFT_BASE = $(basename $(notdir $(CRUFT_SRC)) )
+CRUFT_OBJ = $(addsuffix .o, $(CRUFT_BASE) )
+
+ifeq ($(SHARED_LIBS), true)
+  ifdef FPICFLAG
+    CRUFT_PICOBJ := $(addprefix pic/, $(CRUFT_OBJ))
+  else
+    CRUFT_PICOBJ := $(CRUFT_OBJ)
+  endif
+endif
+
+CWD = $(shell pwd)
+THISDIR = $(notdir $(CWD))
+
+LIBCRUFT_OBJS = $(CRUFT_OBJ) $(SPECIAL_DEPEND)
+
+ifeq ($(STATIC_LIBS), true)
+  LIBCRUFT_DEPEND := $(LIBCRUFT_OBJS)
+endif
+
+all: pic $(LIBCRUFT_DEPEND) $(CRUFT_PICOBJ) $(SPECIAL_PICDEPEND)
+	@echo "warning: run make in parent directory to update libraries"
+.PHONY: all
+
+.PRECIOUS: $(LIBCRUFT_OBJS)
+
+stmp-pic: pic
+	@if [ -f stmp-pic ]; then \
+	  true; \
+	else \
+	  echo "touch stmp-pic"; \
+	  touch stmp-pic; \
+	fi
+
+pic:
+	@if [ -d pic ]; then \
+	  true; \
+	else \
+	  echo "mkdir pic"; \
+	  mkdir pic; \
+	fi
+
+$(CRUFT_PICOBJ): stmp-pic
+
+install:: all
+.PHONY: install
+
+uninstall::
+.PHONY: uninstall
+
+tags: $(SOURCES)
+	ctags $(SOURCES)
+
+TAGS: $(SOURCES)
+	etags $(SOURCES)
+
+clean::
+	rm -f *.a *.o pic/*.o
+	-rmdir pic
+	rm -f stmp-pic
+.PHONY: clean
+
+mostlyclean::
+	rm -f *.o pic/*.o
+	-rmdir pic
+	rm -f stmp-pic
+.PHONY: mostlyclean
+
+distclean:: clean
+	rm -f Makefile
+.PHONY: distclean
+	
+maintainer-clean:: distclean
+	rm -f tags TAGS
+.PHONY: maintainer-clean
+
+dist:
+	ln $(EXTERNAL_DISTFILES) ../../`cat ../../.fname`/libcruft/$(THISDIR)
+.PHONY: dist

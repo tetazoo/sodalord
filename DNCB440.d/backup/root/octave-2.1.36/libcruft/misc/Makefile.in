@@ -1,0 +1,62 @@
+#
+# Makefile for octave's libcruft/misc directory
+#
+# John W. Eaton
+# jwe@bevo.che.wisc.edu
+# University of Wisconsin-Madison
+# Department of Chemical Engineering
+
+TOPDIR = ../..
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+
+SPECIAL := machar.c d1mach-tst.for f77-extern.cc \
+	f77-fcn.c f77-fcn.h lo-error.c lo-error.h
+
+SPECIAL_DEPEND := machar.o f77-extern.o f77-fcn.o lo-error.o
+
+EXTERNAL_DISTFILES = $(DISTFILES)
+
+include $(TOPDIR)/Makeconf
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+
+INCLUDES := f77-fcn.h lo-error.h
+
+ifeq ($(SHARED_LIBS), true)
+  ifdef CPICFLAG
+    CPICDEP := pic/machar.o pic/f77-fcn.o
+  endif
+  ifdef CXXPICFLAG
+    CXXPICDEP := pic/f77-extern.o pic/lo-error.o
+  endif
+  SPECIAL_PICDEPEND := $(CPICDEP) $(CXXPICDEP)
+endif
+
+include ../Makerules
+
+install install-strip::
+	$(top_srcdir)/mkinstalldirs $(octincludedir)/octave
+	for f in $(INCLUDES); do \
+	  rm -f $(octincludedir)/octave/$$f; \
+	  $(INSTALL_DATA) $(srcdir)/$$f $(octincludedir)/octave/$$f; \
+	done
+	$(mk-includedir-link)
+
+uninstall::
+	for f in $(INCLUDES); do rm -f $(octincludedir)/octave/$$f; done
+
+# Don't optimize.
+
+XCC = $(patsubst -O%, , $(CC))
+XALL_CFLAGS = $(patsubst -O%, , $(ALL_CFLAGS))
+
+machar.o: $(srcdir)/machar.c
+	$(XCC) -c $(CPPFLAGS) $(XALL_CFLAGS) -DDP $<
+
+pic/machar.o: $(srcdir)/machar.c
+	$(XCC) -c $(CPPFLAGS) $(CPICFLAG) $(XALL_CFLAGS) -DDP $< -o $@

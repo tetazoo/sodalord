@@ -1,0 +1,361 @@
+This file documents the installation of Octave.
+
+   Octave is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation.
+
+Installing Octave
+*****************
+
+   Here is the procedure for installing Octave from scratch on a Unix
+system.
+
+   * Run the shell script `configure'.  This will determine the features
+     your system has (or doesn't have) and create a file named
+     `Makefile' from each of the files named `Makefile.in'.
+
+     Here is a summary of the configure options that are most
+     frequently used when building Octave:
+
+    `--prefix=PREFIX'
+          Install Octave in subdirectories below PREFIX.  The default
+          value of PREFIX is `/usr/local'.
+
+    `--srcdir=DIR'
+          Look for Octave sources in the directory DIR.
+
+    `--with-f2c'
+          Use `f2c' even if a Fortran compiler is available.
+
+    `--with-g77'
+          Use `g77' to compile Fortran code.
+
+    `--enable-shared'
+          Create shared libraries.  If you are planning to use
+          `--enable-lite-kernel' or the dynamic loading features, you
+          will probably want to use this option.  It will make your
+          `.oct' files much smaller and on some systems it may be
+          necessary to build shared libraries in order to use
+          dynamically linked functions.
+
+          You may also want to build a shared version of `libstdc++',
+          if your system doesn't already have one.  Note that a patch
+          is needed to build shared versions of version 2.7.2 of
+          `libstdc++' on the HP-PA architecture.  You can find the
+          patch at
+          <ftp://ftp.cygnus.com/pub/g++/libg++-2.7.2-hppa-gcc-fix>.
+
+    `--enable-dl'
+          Use `dlopen' and friends to make Octave capable of dynamically
+          linking externally compiled functions.  This only works on
+          systems that actually have these functions.  If you plan on
+          using this feature, you should probably also use
+          `--enable-shared' to reduce the size of your `.oct' files.
+
+    `--enable-shl'
+          Use `shl_load' and friends to make Octave capable of
+          dynamically linking externally compiled functions.  This only
+          works on systems that actually have these functions (only
+          HP-UX systems).  If you plan on using this feature, you
+          should probably also use `--enable-shared' to reduce the size
+          of your `.oct' files.
+
+    `--enable-lite-kernel'
+          Compile smaller kernel.  This currently requires the dynamic
+          linking functions `dlopen' or `shl_load' and friends so that
+          Octave can load functions at run time that are not loaded at
+          compile time.
+
+    `--without-fastblas'
+          Compile and use the generic BLAS and LAPACK versions included
+          with Octave.  By default, configure first looks for BLAS and
+          LAPACK matrix libraries on your system, including optimized
+          BLAS implementations such as the free ATLAS 3.0, as well as
+          vendor-tuned libraries.  (The use of an optimized BLAS will
+          generally result in several-times faster matrix operations.)
+          Only use this option if your system has BLAS/LAPACK libraries
+          that cause problems for some reason.  You can also use
+          `--with-fastblas=lib' to specify a particular BLAS library
+          `-llib' that configure doesn't check for automatically.
+
+    `--help'
+          Print a summary of the options recognized by the configure
+          script.
+
+     See the file `INSTALL' for more information about the command line
+     options used by configure.  That file also contains instructions
+     for compiling in a directory other than where the source is
+     located.
+
+   * Run make.
+
+     You will need a recent version of GNU Make.  Modifying Octave's
+     makefiles to work with other make programs is probably not worth
+     your time.  We recommend you get and compile GNU Make instead.
+
+     For plotting, you will need to have gnuplot installed on your
+     system.  Gnuplot is a command-driven interactive function plotting
+     program.  Gnuplot is copyrighted, but freely distributable.  The
+     `gnu' in gnuplot is a coincidence--it is not related to the GNU
+     project or the FSF in any but the most peripheral sense.
+
+     To compile Octave, you will need a recent version of GNU Make.  You
+     will also need `g++' 2.7.2 or later.  Version 2.8.0 or `egcs'
+     1.0.x should work.  Later versions may work, but C++ is still
+     evolving, so don't be too surprised if you run into some trouble.
+
+     It is no longer necessary to have `libg++', but you do need to have
+     the GNU implementation of `libstdc++'.  If you are using `g++'
+     2.7.2, `libstdc++' is distributed along with `libg++', but for
+     later versions, `libstdc++' is distributed separately.  For
+     `egcs', `libstdc++' is included with the compiler distribution.
+
+     If you plan to modify the parser you will also need GNU `bison' and
+     `flex'.  If you modify the documentation, you will need GNU
+     Texinfo, along with the patch for the `makeinfo' program that is
+     distributed with Octave.
+
+     GNU Make, `gcc', and `libstdc++', `gnuplot', `bison', `flex', and
+     Texinfo are all available from many anonymous ftp archives.  The
+     primary site is <ftp.gnu.org>, but it is often very busy.  A list
+     of sites that mirror the software on <ftp.gnu.org> is available by
+     anonymous ftp from <ftp://ftp.gnu.org/pub/gnu/GNUinfo/FTP>.
+
+     If you don't have a Fortran compiler, or if your Fortran compiler
+     doesn't work like the traditional Unix f77, you will need to have
+     the Fortran to C translator `f2c'.  You can get `f2c' from any
+     number of anonymous ftp archives.  The most recent version of `f2c'
+     is always available from <netlib.att.com>.
+
+     On an otherwise idle Pentium 133 running Linux, it will take
+     somewhere between 1-1/2 to 3 hours to compile everything,
+     depending on whether you are building shared libraries.  You will
+     need about 100 megabytes of disk storage to work with
+     (considerably less if you don't compile with debugging symbols).
+     To do that, use the command
+
+          make CFLAGS=-O CXXFLAGS=-O LDFLAGS=
+
+     instead of just `make'.
+
+   * If you encounter errors while compiling Octave, first check the
+     list of known problems below to see if there is a workaround or
+     solution for your problem.  If not, see the file BUGS for
+     information about how to report bugs.
+
+   * Once you have successfully compiled Octave, run `make install'.
+
+     This will install a copy of octave, its libraries, and its
+     documentation in the destination directory.  As distributed,
+     Octave is installed in the following directories.  In the table
+     below, PREFIX defaults to `/usr/local', VERSION stands for the
+     current version number of the interpreter, and ARCH is the type of
+     computer on which Octave is installed (for example,
+     `i586-unknown-gnu').
+
+    `PREFIX/bin'
+          Octave and other binaries that people will want to run
+          directly.
+
+    `PREFIX/lib'
+          Libraries like libcruft.a and liboctave.a.
+
+    `PREFIX/share'
+          Architecture-independent data files.
+
+    `PREFIX/include/octave'
+          Include files distributed with Octave.
+
+    `PREFIX/man/man1'
+          Unix-style man pages describing Octave.
+
+    `PREFIX/info'
+          Info files describing Octave.
+
+    `PREFIX/share/octave/VERSION/m'
+          Function files distributed with Octave.  This includes the
+          Octave version, so that multiple versions of Octave may be
+          installed at the same time.
+
+    `PREFIX/lib/octave/VERSION/exec/ARCH'
+          Executables to be run by Octave rather than the user.
+
+    `PREFIX/lib/octave/VERSION/oct/ARCH'
+          Object files that will be dynamically loaded.
+
+    `PREFIX/share/octave/VERSION/imagelib'
+          Image files that are distributed with Octave.
+
+Installation Problems
+=====================
+
+   This section contains a list of problems (and some apparent problems
+that don't really mean anything is wrong) that may show up during
+installation of Octave.
+
+   * On some SCO systems, `info' fails to compile if `HAVE_TERMIOS_H'
+     is defined int `config.h'.  Simply removing the definition from
+     `info/config.h' should allow it to compile.
+
+   * If `configure' finds `dlopen', `dlsym', `dlclose', and `dlerror',
+     but not the header file `dlfcn.h', you need to find the source for
+     the header file and install it in the directory `usr/include'.
+     This is reportedly a problem with Slackware 3.1.  For Linux/GNU
+     systems, the source for `dlfcn.h' is in the `ldso' package.
+
+   * Building `.oct' files doesn't work.
+
+     You should probably have a shared version of `libstdc++'.  A patch
+     is needed to build shared versions of version 2.7.2 of `libstdc++'
+     on the HP-PA architecture.  You can find the patch at
+     <ftp://ftp.cygnus.com/pub/g++/libg++-2.7.2-hppa-gcc-fix>.
+
+   * On some alpha systems there may be a problem with the `libdxml'
+     library, resulting in floating point errors and/or segmentation
+     faults in the linear algebra routines called by Octave.  If you
+     encounter such problems, then you should modify the configure
+     script so that `SPECIAL_MATH_LIB' is not set to `-ldxml'.
+
+   * On FreeBSD systems Octave may hang while initializing some internal
+     constants.  The fix appears to be to use
+
+          options      GPL_MATH_EMULATE
+
+     rather than
+
+          options      MATH_EMULATE
+
+     in the kernel configuration files (typically found in the directory
+     `/sys/i386/conf'.  After making this change, you'll need to rebuild
+     the kernel, install it, and reboot.
+
+   * If you encounter errors like
+
+          passing `void (*)()' as argument 2 of
+            `octave_set_signal_handler(int, void (*)(int))'
+
+     or
+
+          warning: ANSI C++ prohibits conversion from `(int)' to `(...)'
+
+     while compiling `sighandlers.cc', you may need to edit some files
+     in the `gcc' include subdirectory to add proper prototypes for
+     functions there.  For example, Ultrix 4.2 needs proper
+     declarations for the `signal' function and the `SIG_IGN' macro in
+     the file `signal.h'.
+
+     On some systems the `SIG_IGN' macro is defined to be something like
+     this:
+
+          #define  SIG_IGN  (void (*)())1
+
+     when it should really be something like:
+
+          #define  SIG_IGN  (void (*)(int))1
+
+     to match the prototype declaration for the `signal' function.  This
+     change should also be made for the `SIG_DFL' and `SIG_ERR'
+     symbols. It may be necessary to change the definitions in
+     `sys/signal.h' as well.
+
+     The `gcc' `fixincludes' and `fixproto' scripts should probably fix
+     these problems when `gcc' installs its modified set of header
+     files, but I don't think that's been done yet.
+
+     *You should not change the files in `/usr/include'*.  You can find
+     the `gcc' include directory tree by running the command
+
+          gcc -print-libgcc-file-name
+
+     The directory of `gcc' include files normally begins in the same
+     directory that contains the file `libgcc.a'.
+
+   * Some of the Fortran subroutines may fail to compile with older
+     versions of the Sun Fortran compiler.  If you get errors like
+
+          zgemm.f:
+          	zgemm:
+          warning: unexpected parent of complex expression subtree
+          zgemm.f, line 245: warning: unexpected parent of complex
+            expression subtree
+          warning: unexpected parent of complex expression subtree
+          zgemm.f, line 304: warning: unexpected parent of complex
+            expression subtree
+          warning: unexpected parent of complex expression subtree
+          zgemm.f, line 327: warning: unexpected parent of complex
+            expression subtree
+          pcc_binval: missing IR_CONV in complex op
+          make[2]: *** [zgemm.o] Error 1
+
+     when compiling the Fortran subroutines in the `libcruft'
+     subdirectory, you should either upgrade your compiler or try
+     compiling with optimization turned off.
+
+   * On NeXT systems, if you get errors like this:
+
+          /usr/tmp/cc007458.s:unknown:Undefined local symbol LBB7656
+          /usr/tmp/cc007458.s:unknown:Undefined local symbol LBE7656
+
+     when compiling `Array.cc' and `Matrix.cc', try recompiling these
+     files without `-g'.
+
+   * Some people have reported that calls to shell_cmd and the pager do
+     not work on SunOS systems.  This is apparently due to having
+     `G_HAVE_SYS_WAIT' defined to be 0 instead of 1 when compiling
+     `libg++'.
+
+   * On NeXT systems, linking to `libsys_s.a' may fail to resolve the
+     following functions
+
+          _tcgetattr
+          _tcsetattr
+          _tcflow
+
+     which are part of `libposix.a'.  Unfortunately, linking Octave with
+     `-posix' results in the following undefined symbols.
+
+          .destructors_used
+          .constructors_used
+          _objc_msgSend
+          _NXGetDefaultValue
+          _NXRegisterDefaults
+          .objc_class_name_NXStringTable
+          .objc_class_name_NXBundle
+
+     One kluge around this problem is to extract `termios.o' from
+     `libposix.a', put it in Octave's `src' directory, and add it to
+     the list of files to link together in the makefile.  Suggestions
+     for better ways to solve this problem are welcome!
+
+   * If Octave crashes immediately with a floating point exception, it
+     is likely that it is failing to initialize the IEEE floating point
+     values for infinity and NaN.
+
+     If your system actually does support IEEE arithmetic, you should
+     be able to fix this problem by modifying the function
+     `octave_ieee_init' in the file `lo-ieee.cc' to correctly
+     initialize Octave's internal infinity and NaN variables.
+
+     If your system does not support IEEE arithmetic but Octave's
+     configure script incorrectly determined that it does, you can work
+     around the problem by editing the file `config.h' to not define
+     `HAVE_ISINF', `HAVE_FINITE', and `HAVE_ISNAN'.
+
+     In any case, please report this as a bug since it might be
+     possible to modify Octave's configuration script to automatically
+     determine the proper thing to do.
+
+   * After installing the binary distribution of Octave in an alternate
+     directory, the Emacs command `run-octave' doesn't work.  Emacs
+     hangs in `accept-process-output' in `inferior-octave-startup'.
+
+     This seems to be a problem with executing a shell script using the
+     comint package.  You can avoid the problem by changing the way
+     Octave is installed to eliminate the need for the shell script.
+     You can either compile and install Octave using the source
+     distribution, reinstall the binary distribution in the default
+     directory, or copy the commands in the octave shell script wrapper
+     to your shell startup files (and the shell startup files for
+     anyone else who is using Octave) and then rename the file
+     `octave.bin' to be `octave'.
+

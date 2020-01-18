@@ -1,0 +1,237 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Data Types
+@chapter Data Types
+@cindex data types
+
+All versions of Octave include a number of built-in data types,
+including real and complex scalars and matrices, character strings, and
+a data structure type.
+
+It is also possible to define new specialized data types by writing a
+small amount of C++ code.  On some systems, new data types can be loaded
+dynamically while Octave is running, so it is not necessary to recompile
+all of Octave just to add a new type.  @xref{Dynamically Linked
+Functions}, for more information about Octave's dynamic linking
+capabilities.  @ref{User-defined Data Types} describes what you must do
+to define a new data type for Octave.
+
+@anchor{doc-typeinfo}
+@deftypefn {Built-in Function} {} typeinfo (@var{expr})
+
+Return the type of the expression @var{expr}, as a string.  If
+@var{EXPR}  is omitted, return an array of strings containing all the
+currently installed data types.
+@end deftypefn
+
+
+@menu
+* Built-in Data Types::         
+* User-defined Data Types::     
+* Object Sizes::                
+@end menu
+
+@node Built-in Data Types
+@section Built-in Data Types
+@cindex data types, built-in
+@cindex built-in data types
+
+The standard built-in data types are real and complex scalars and
+matrices, ranges, character strings, and a data structure type.
+Additional built-in data types may be added in future versions.  If you
+need a specialized data type that is not currently provided as a
+built-in type, you are encouraged to write your own user-defined data
+type and contribute it for distribution in a future release of Octave.
+
+@menu
+* Numeric Objects::             
+* Missing Data::                
+* String Objects::              
+* Data Structure Objects::      
+@end menu
+
+@node Numeric Objects
+@subsection Numeric Objects
+@cindex numeric constant
+@cindex numeric value
+
+Octave's built-in numeric objects include real and complex scalars and
+matrices.  All built-in numeric data is currently stored as double
+precision numbers.  On systems that use the IEEE floating point format,
+values in the range of approximately
+@iftex
+@tex
+ $2.2251\times10^{-308}$ to $1.7977\times10^{308}$
+@end tex
+@end iftex
+@ifinfo
+ 2.2251e-308 to 1.7977e+308
+@end ifinfo
+ can be stored, and the relative precision is approximately
+@iftex
+@tex
+ $2.2204\times10^{-16}$.
+@end tex
+@end iftex
+@ifinfo
+ 2.2204e-16.
+@end ifinfo
+The exact values are given by the variables @code{realmin},
+@code{realmax}, and @code{eps}, respectively.
+
+Matrix objects can be of any size, and can be dynamically reshaped and
+resized.  It is easy to extract individual rows, columns, or submatrices
+using a variety of powerful indexing features.  @xref{Index Expressions}.
+
+@xref{Numeric Data Types}, for more information.
+
+@node Missing Data
+@subsection Missing Data
+@cindex missing data
+
+@anchor{doc-NA}
+@defvr {Built-in Variable} NA
+Missing value.
+@end defvr
+
+
+@anchor{doc-isna}
+@deftypefn {Mapping Function} {} isna (@var{x})
+Return 1 for elements of @var{x} that are NA (missing) values and zero
+otherwise. For example,
+
+@example
+@group
+is_NA ([13, Inf, NA, NaN])
+     @result{} [ 0, 0, 1, 0 ]
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-is_nan_or_na}
+@deftypefn {Mapping Function} {} is_nan_or_na (@var{x})
+Return 1 for elements of @var{x} that are NaN or NA (missing) values
+and zero otherwise. For example,
+
+@example
+@group
+is_NAN_or_NA ([13, Inf, NA, NaN])
+     @result{} [ 0, 0, 1, 1 ]
+@end group
+@end example
+@end deftypefn
+
+
+@node String Objects
+@subsection String Objects
+@cindex strings
+@cindex character strings
+@opindex "
+@opindex '
+
+A character string in Octave consists of a sequence of characters
+enclosed in either double-quote or single-quote marks.  Internally,
+Octave currently stores strings as matrices of characters.  All the
+indexing operations that work for matrix objects also work for strings.
+
+@xref{Strings}, for more information.
+
+@node Data Structure Objects
+@subsection Data Structure Objects
+@cindex structures
+@cindex data structures
+
+Octave's data structure type can help you to organize related objects of
+different types.  The current implementation uses an associative array
+with indices limited to strings, but the syntax is more like C-style
+structures.
+
+@xref{Data Structures}, for more information.
+
+@node User-defined Data Types
+@section User-defined Data Types
+@cindex user-defined data types
+@cindex data types, user-defined
+
+Someday I hope to expand this to include a complete description of
+Octave's mechanism for managing user-defined data types.  Until this
+feature is documented here, you will have to make do by reading the code
+in the @file{ov.h}, @file{ops.h}, and related files from Octave's
+@file{src} directory.
+
+@node Object Sizes
+@section Object Sizes
+
+The following functions allow you to determine the size of a variable or
+expression.  These functions are defined for all objects.  They return
+@minus{}1 when the operation doesn't make sense.  For example, Octave's
+data structure type doesn't have rows or columns, so the @code{rows} and
+@code{columns} functions return @minus{}1 for structure arguments.
+
+@anchor{doc-columns}
+@deftypefn {Function File} {} columns (@var{a})
+Return the number of columns of @var{a}.
+@end deftypefn
+@seealso{size, rows, length, isscalar, isvector, and ismatrix}
+
+
+@anchor{doc-rows}
+@deftypefn {Function File} {} rows (@var{a})
+Return the number of rows of @var{a}.
+@end deftypefn
+@seealso{size, columns, length, isscalar, isvector, and ismatrix}
+
+
+@anchor{doc-length}
+@deftypefn {Built-in Function} {} length (@var{a})
+Return the `length' of the object @var{a}.  For matrix objects, the
+length is the number of rows or columns, whichever is greater (this
+odd definition is used for compatibility with Matlab).
+@end deftypefn
+
+
+@anchor{doc-size}
+@deftypefn {Built-in Function} {} size (@var{a}, @var{n})
+Return the number rows and columns of @var{a}.
+
+With one input argument and one output argument, the result is returned
+in a row vector.  If there are multiple output arguments, the number of
+rows is assigned to the first, and the number of columns to the second,
+etc.  For example,
+
+@example
+@group
+size ([1, 2; 3, 4; 5, 6])
+     @result{} [ 3, 2 ]
+
+[nr, nc] = size ([1, 2; 3, 4; 5, 6])
+     @result{} nr = 3
+     @result{} nc = 2
+@end group
+@end example
+
+If given a second argument, @code{size} will return the size of the
+corresponding dimension.  For example
+
+@example
+size ([1, 2; 3, 4; 5, 6], 2)
+     @result{} 2
+@end example
+
+@noindent
+returns the number of columns in the given matrix.
+@end deftypefn
+
+
+@anchor{doc-isempty}
+@deftypefn {Built-in Function} {} isempty (@var{a})
+Return 1 if @var{a} is an empty matrix (either the number of rows, or
+the number of columns, or both are zero).  Otherwise, return 0.
+@end deftypefn
+
+

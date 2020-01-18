@@ -1,0 +1,845 @@
+A mysqld process already exists at  Sat Feb 8 23:24:58 EST 2003
+030208 23:25:06  mysqld started
+/usr/sbin/mysqld: ready for connections
+030208 23:29:17  /usr/sbin/mysqld: Normal shutdown
+
+030208 23:29:17  /usr/sbin/mysqld: Shutdown Complete
+
+030208 23:29:17  mysqld ended
+
+030208 23:29:20  mysqld started
+/usr/sbin/mysqld: option `--skip-networking' doesn't allow an argument
+/usr/sbin/mysqld  Ver 3.23.55 for pc-linux on i686
+Copyright (C) 2000 MySQL AB, by Monty and others
+This software comes with ABSOLUTELY NO WARRANTY. This is free software,
+and you are welcome to modify and redistribute it under the GPL license
+Starts the MySQL server
+
+Usage: /usr/sbin/mysqld [OPTIONS]
+
+  --ansi		Use ANSI SQL syntax instead of MySQL syntax
+  -b, --basedir=path	Path to installation directory. All paths are
+			usually resolved relative to this
+  --big-tables		Allow big result sets by saving all temporary sets
+			on file (Solves most 'table full' errors)
+  --bind-address=IP	Ip address to bind to
+  --bootstrap		Used by mysql installation scripts
+  --character-sets-dir=...
+                        Directory where character sets are
+  --chroot=path		Chroot mysqld daemon during startup
+  --core-file		Write core on errors
+  -h, --datadir=path	Path to the database root
+  --default-character-set=charset
+			Set the default character set
+  --default-table-type=type
+			Set the default table type for tables
+  --delay-key-write-for-all-tables
+			Don't flush key buffers between writes for any MyISAM
+			table
+  --enable-locking	Enable system locking
+  -T, --exit-info	Used for debugging;  Use at your own risk!
+  --flush		Flush tables to disk between SQL commands
+  -?, --help		Display this help and exit
+  --init-file=file	Read SQL commands from this file at startup
+  -L, --language=...	Client error messages in given language. May be
+			given as a full path
+  --local-infile=[1|0]  Enable/disable LOAD DATA LOCAL INFILE
+  -l, --log[=file]	Log connections and queries to file
+  --log-bin[=file]      Log queries in new binary format (for replication)
+  --log-bin-index=file  File that holds the names for last binary log files
+  --log-update[=file]	Log updates to file.# where # is a unique number
+			if not given.
+  --log-isam[=file]	Log all MyISAM changes to file
+  --log-long-format	Log some extra information to update log
+  --low-priority-updates INSERT/DELETE/UPDATE has lower priority than selects
+  --log-slow-queries=[file]
+			Log slow queries to this log file.  Defaults logging
+                        to hostname-slow.log
+  --pid-file=path	Pid file used by safe_mysqld
+  --myisam-recover[=option[,option...]] where options is one of DEAULT,
+			BACKUP or FORCE.
+  --memlock		Lock mysqld in memory
+  -n, --new		Use very new possible 'unsafe' functions
+  -o, --old-protocol	Use the old (3.20) protocol
+  -P, --port=...	Port number to use for connection
+
+  -O, --set-variable var=option
+			Give a variable an value. --help lists variables
+  -Sg, --skip-grant-tables
+			Start without grant tables. This gives all users
+			FULL ACCESS to all tables!
+  --safe-mode		Skip some optimize stages (for testing)
+  --safe-show-database  Don't show databases for which the user has no
+                        privileges
+  --safe-user-create	Don't new users cretaion without privileges to the
+		        mysql.user table
+  --skip-concurrent-insert
+		        Don't use concurrent insert with MyISAM
+  --skip-delay-key-write
+			Ignore the delay_key_write option for all tables
+  --skip-host-cache	Don't cache host names
+  --skip-locking	Don't use system locking. To use isamchk one has
+			to shut down the server.
+  --skip-name-resolve	Don't resolve hostnames.
+			All hostnames are IP's or 'localhost'
+  --skip-networking	Don't allow connection with TCP/IP.
+  --skip-new		Don't use new, possible wrong routines.
+
+  --skip-stack-trace    Don't print a stack trace on failure
+  --skip-show-database  Don't allow 'SHOW DATABASE' commands
+  --skip-thread-priority
+			Don't give threads different priorities.
+  --socket=...		Socket file to use for connection
+  -t, --tmpdir=path	Path for temporary files
+  --sql-mode=option[,option[,option...]] where option can be one of:
+                        REAL_AS_FLOAT, PIPES_AS_CONCAT, ANSI_QUOTES,
+                        IGNORE_SPACE, SERIALIZE, ONLY_FULL_GROUP_BY.
+  --transaction-isolation
+		        Default transaction isolation level
+  --temp-pool           Use a pool of temporary files
+  -u, --user=user_name	Run mysqld daemon as user
+  -V, --version		output version information and exit
+  -W, --warnings        Log some not critical warnings to the log file
+
+
+Default options are read from the following files in the given order:
+/etc/my.cnf /var/lib/mysql/my.cnf ~/.my.cnf 
+The following groups are read: mysqld server
+The following options may be given as the first argument:
+--print-defaults	Print the program argument list and exit
+--no-defaults		Don't read default options from any options file
+--defaults-file=#	Only read default options from the given file #
+--defaults-extra-file=# Read this file after the global files are read
+
+To see what values a running MySQL server is using, type
+'mysqladmin variables' instead of 'mysqld --help'.
+The default values (after parsing the command line arguments) are:
+
+basedir:     /
+datadir:     /var/lib/mysql/
+tmpdir:      /tmp/
+language:    /usr/share/mysql/english/
+pid file:    /var/lib/mysql/sodalord.pid
+TCP port:    3306
+Unix socket: /var/lib/mysql/mysql.sock
+
+system locking is not in use
+
+Possible variables for option --set-variable (-O) are:
+back_log              current value: 50
+binlog_cache_size     current value: 32768
+connect_timeout       current value: 5
+delayed_insert_timeout  current value: 300
+delayed_insert_limit  current value: 100
+delayed_queue_size    current value: 1000
+flush_time            current value: 0
+interactive_timeout   current value: 28800
+join_buffer_size      current value: 131072
+key_buffer_size       current value: 8388600
+long_query_time       current value: 10
+lower_case_table_names  current value: 0
+max_allowed_packet    current value: 1048576
+max_binlog_cache_size  current value: 4294967295
+max_binlog_size       current value: 1073741824
+max_connections       current value: 100
+max_connect_errors    current value: 10
+max_delayed_threads   current value: 20
+max_heap_table_size   current value: 16777216
+max_join_size         current value: 4294967295
+max_sort_length       current value: 1024
+max_tmp_tables        current value: 32
+max_user_connections  current value: 0
+max_write_lock_count  current value: 4294967295
+myisam_max_extra_sort_file_size  current value: 256
+myisam_max_sort_file_size  current value: 2047
+myisam_sort_buffer_size  current value: 8388608
+net_buffer_length     current value: 16384
+net_retry_count       current value: 10
+net_read_timeout      current value: 30
+net_write_timeout     current value: 60
+open_files_limit      current value: 0
+query_buffer_size     current value: 0
+record_buffer         current value: 131072
+record_rnd_buffer     current value: 0
+slave_net_timeout     current value: 3600
+slow_launch_time      current value: 2
+sort_buffer           current value: 2097144
+table_cache           current value: 64
+thread_concurrency    current value: 10
+thread_cache_size     current value: 0
+tmp_table_size        current value: 33554432
+thread_stack          current value: 65536
+wait_timeout          current value: 28800
+030208 23:29:20  mysqld ended
+
+030208 23:30:00  mysqld started
+/usr/sbin/mysqld: option `--skip-networking' doesn't allow an argument
+/usr/sbin/mysqld  Ver 3.23.55 for pc-linux on i686
+Copyright (C) 2000 MySQL AB, by Monty and others
+This software comes with ABSOLUTELY NO WARRANTY. This is free software,
+and you are welcome to modify and redistribute it under the GPL license
+Starts the MySQL server
+
+Usage: /usr/sbin/mysqld [OPTIONS]
+
+  --ansi		Use ANSI SQL syntax instead of MySQL syntax
+  -b, --basedir=path	Path to installation directory. All paths are
+			usually resolved relative to this
+  --big-tables		Allow big result sets by saving all temporary sets
+			on file (Solves most 'table full' errors)
+  --bind-address=IP	Ip address to bind to
+  --bootstrap		Used by mysql installation scripts
+  --character-sets-dir=...
+                        Directory where character sets are
+  --chroot=path		Chroot mysqld daemon during startup
+  --core-file		Write core on errors
+  -h, --datadir=path	Path to the database root
+  --default-character-set=charset
+			Set the default character set
+  --default-table-type=type
+			Set the default table type for tables
+  --delay-key-write-for-all-tables
+			Don't flush key buffers between writes for any MyISAM
+			table
+  --enable-locking	Enable system locking
+  -T, --exit-info	Used for debugging;  Use at your own risk!
+  --flush		Flush tables to disk between SQL commands
+  -?, --help		Display this help and exit
+  --init-file=file	Read SQL commands from this file at startup
+  -L, --language=...	Client error messages in given language. May be
+			given as a full path
+  --local-infile=[1|0]  Enable/disable LOAD DATA LOCAL INFILE
+  -l, --log[=file]	Log connections and queries to file
+  --log-bin[=file]      Log queries in new binary format (for replication)
+  --log-bin-index=file  File that holds the names for last binary log files
+  --log-update[=file]	Log updates to file.# where # is a unique number
+			if not given.
+  --log-isam[=file]	Log all MyISAM changes to file
+  --log-long-format	Log some extra information to update log
+  --low-priority-updates INSERT/DELETE/UPDATE has lower priority than selects
+  --log-slow-queries=[file]
+			Log slow queries to this log file.  Defaults logging
+                        to hostname-slow.log
+  --pid-file=path	Pid file used by safe_mysqld
+  --myisam-recover[=option[,option...]] where options is one of DEAULT,
+			BACKUP or FORCE.
+  --memlock		Lock mysqld in memory
+  -n, --new		Use very new possible 'unsafe' functions
+  -o, --old-protocol	Use the old (3.20) protocol
+  -P, --port=...	Port number to use for connection
+
+  -O, --set-variable var=option
+			Give a variable an value. --help lists variables
+  -Sg, --skip-grant-tables
+			Start without grant tables. This gives all users
+			FULL ACCESS to all tables!
+  --safe-mode		Skip some optimize stages (for testing)
+  --safe-show-database  Don't show databases for which the user has no
+                        privileges
+  --safe-user-create	Don't new users cretaion without privileges to the
+		        mysql.user table
+  --skip-concurrent-insert
+		        Don't use concurrent insert with MyISAM
+  --skip-delay-key-write
+			Ignore the delay_key_write option for all tables
+  --skip-host-cache	Don't cache host names
+  --skip-locking	Don't use system locking. To use isamchk one has
+			to shut down the server.
+  --skip-name-resolve	Don't resolve hostnames.
+			All hostnames are IP's or 'localhost'
+  --skip-networking	Don't allow connection with TCP/IP.
+  --skip-new		Don't use new, possible wrong routines.
+
+  --skip-stack-trace    Don't print a stack trace on failure
+  --skip-show-database  Don't allow 'SHOW DATABASE' commands
+  --skip-thread-priority
+			Don't give threads different priorities.
+  --socket=...		Socket file to use for connection
+  -t, --tmpdir=path	Path for temporary files
+  --sql-mode=option[,option[,option...]] where option can be one of:
+                        REAL_AS_FLOAT, PIPES_AS_CONCAT, ANSI_QUOTES,
+                        IGNORE_SPACE, SERIALIZE, ONLY_FULL_GROUP_BY.
+  --transaction-isolation
+		        Default transaction isolation level
+  --temp-pool           Use a pool of temporary files
+  -u, --user=user_name	Run mysqld daemon as user
+  -V, --version		output version information and exit
+  -W, --warnings        Log some not critical warnings to the log file
+
+
+Default options are read from the following files in the given order:
+/etc/my.cnf /var/lib/mysql/my.cnf ~/.my.cnf 
+The following groups are read: mysqld server
+The following options may be given as the first argument:
+--print-defaults	Print the program argument list and exit
+--no-defaults		Don't read default options from any options file
+--defaults-file=#	Only read default options from the given file #
+--defaults-extra-file=# Read this file after the global files are read
+
+To see what values a running MySQL server is using, type
+'mysqladmin variables' instead of 'mysqld --help'.
+The default values (after parsing the command line arguments) are:
+
+basedir:     /
+datadir:     /var/lib/mysql/
+tmpdir:      /tmp/
+language:    /usr/share/mysql/english/
+pid file:    /var/lib/mysql/sodalord.pid
+TCP port:    3306
+Unix socket: /var/lib/mysql/mysql.sock
+
+system locking is not in use
+
+Possible variables for option --set-variable (-O) are:
+back_log              current value: 50
+binlog_cache_size     current value: 32768
+connect_timeout       current value: 5
+delayed_insert_timeout  current value: 300
+delayed_insert_limit  current value: 100
+delayed_queue_size    current value: 1000
+flush_time            current value: 0
+interactive_timeout   current value: 28800
+join_buffer_size      current value: 131072
+key_buffer_size       current value: 8388600
+long_query_time       current value: 10
+lower_case_table_names  current value: 0
+max_allowed_packet    current value: 1048576
+max_binlog_cache_size  current value: 4294967295
+max_binlog_size       current value: 1073741824
+max_connections       current value: 100
+max_connect_errors    current value: 10
+max_delayed_threads   current value: 20
+max_heap_table_size   current value: 16777216
+max_join_size         current value: 4294967295
+max_sort_length       current value: 1024
+max_tmp_tables        current value: 32
+max_user_connections  current value: 0
+max_write_lock_count  current value: 4294967295
+myisam_max_extra_sort_file_size  current value: 256
+myisam_max_sort_file_size  current value: 2047
+myisam_sort_buffer_size  current value: 8388608
+net_buffer_length     current value: 16384
+net_retry_count       current value: 10
+net_read_timeout      current value: 30
+net_write_timeout     current value: 60
+open_files_limit      current value: 0
+query_buffer_size     current value: 0
+record_buffer         current value: 131072
+record_rnd_buffer     current value: 0
+slave_net_timeout     current value: 3600
+slow_launch_time      current value: 2
+sort_buffer           current value: 2097144
+table_cache           current value: 64
+thread_concurrency    current value: 10
+thread_cache_size     current value: 0
+tmp_table_size        current value: 33554432
+thread_stack          current value: 65536
+wait_timeout          current value: 28800
+030208 23:30:00  mysqld ended
+
+030208 23:30:13  mysqld started
+/usr/sbin/mysqld: option `--skip-networking' doesn't allow an argument
+/usr/sbin/mysqld  Ver 3.23.55 for pc-linux on i686
+Copyright (C) 2000 MySQL AB, by Monty and others
+This software comes with ABSOLUTELY NO WARRANTY. This is free software,
+and you are welcome to modify and redistribute it under the GPL license
+Starts the MySQL server
+
+Usage: /usr/sbin/mysqld [OPTIONS]
+
+  --ansi		Use ANSI SQL syntax instead of MySQL syntax
+  -b, --basedir=path	Path to installation directory. All paths are
+			usually resolved relative to this
+  --big-tables		Allow big result sets by saving all temporary sets
+			on file (Solves most 'table full' errors)
+  --bind-address=IP	Ip address to bind to
+  --bootstrap		Used by mysql installation scripts
+  --character-sets-dir=...
+                        Directory where character sets are
+  --chroot=path		Chroot mysqld daemon during startup
+  --core-file		Write core on errors
+  -h, --datadir=path	Path to the database root
+  --default-character-set=charset
+			Set the default character set
+  --default-table-type=type
+			Set the default table type for tables
+  --delay-key-write-for-all-tables
+			Don't flush key buffers between writes for any MyISAM
+			table
+  --enable-locking	Enable system locking
+  -T, --exit-info	Used for debugging;  Use at your own risk!
+  --flush		Flush tables to disk between SQL commands
+  -?, --help		Display this help and exit
+  --init-file=file	Read SQL commands from this file at startup
+  -L, --language=...	Client error messages in given language. May be
+			given as a full path
+  --local-infile=[1|0]  Enable/disable LOAD DATA LOCAL INFILE
+  -l, --log[=file]	Log connections and queries to file
+  --log-bin[=file]      Log queries in new binary format (for replication)
+  --log-bin-index=file  File that holds the names for last binary log files
+  --log-update[=file]	Log updates to file.# where # is a unique number
+			if not given.
+  --log-isam[=file]	Log all MyISAM changes to file
+  --log-long-format	Log some extra information to update log
+  --low-priority-updates INSERT/DELETE/UPDATE has lower priority than selects
+  --log-slow-queries=[file]
+			Log slow queries to this log file.  Defaults logging
+                        to hostname-slow.log
+  --pid-file=path	Pid file used by safe_mysqld
+  --myisam-recover[=option[,option...]] where options is one of DEAULT,
+			BACKUP or FORCE.
+  --memlock		Lock mysqld in memory
+  -n, --new		Use very new possible 'unsafe' functions
+  -o, --old-protocol	Use the old (3.20) protocol
+  -P, --port=...	Port number to use for connection
+
+  -O, --set-variable var=option
+			Give a variable an value. --help lists variables
+  -Sg, --skip-grant-tables
+			Start without grant tables. This gives all users
+			FULL ACCESS to all tables!
+  --safe-mode		Skip some optimize stages (for testing)
+  --safe-show-database  Don't show databases for which the user has no
+                        privileges
+  --safe-user-create	Don't new users cretaion without privileges to the
+		        mysql.user table
+  --skip-concurrent-insert
+		        Don't use concurrent insert with MyISAM
+  --skip-delay-key-write
+			Ignore the delay_key_write option for all tables
+  --skip-host-cache	Don't cache host names
+  --skip-locking	Don't use system locking. To use isamchk one has
+			to shut down the server.
+  --skip-name-resolve	Don't resolve hostnames.
+			All hostnames are IP's or 'localhost'
+  --skip-networking	Don't allow connection with TCP/IP.
+  --skip-new		Don't use new, possible wrong routines.
+
+  --skip-stack-trace    Don't print a stack trace on failure
+  --skip-show-database  Don't allow 'SHOW DATABASE' commands
+  --skip-thread-priority
+			Don't give threads different priorities.
+  --socket=...		Socket file to use for connection
+  -t, --tmpdir=path	Path for temporary files
+  --sql-mode=option[,option[,option...]] where option can be one of:
+                        REAL_AS_FLOAT, PIPES_AS_CONCAT, ANSI_QUOTES,
+                        IGNORE_SPACE, SERIALIZE, ONLY_FULL_GROUP_BY.
+  --transaction-isolation
+		        Default transaction isolation level
+  --temp-pool           Use a pool of temporary files
+  -u, --user=user_name	Run mysqld daemon as user
+  -V, --version		output version information and exit
+  -W, --warnings        Log some not critical warnings to the log file
+
+
+Default options are read from the following files in the given order:
+/etc/my.cnf /var/lib/mysql/my.cnf ~/.my.cnf 
+The following groups are read: mysqld server
+The following options may be given as the first argument:
+--print-defaults	Print the program argument list and exit
+--no-defaults		Don't read default options from any options file
+--defaults-file=#	Only read default options from the given file #
+--defaults-extra-file=# Read this file after the global files are read
+
+To see what values a running MySQL server is using, type
+'mysqladmin variables' instead of 'mysqld --help'.
+The default values (after parsing the command line arguments) are:
+
+basedir:     /
+datadir:     /var/lib/mysql/
+tmpdir:      /tmp/
+language:    /usr/share/mysql/english/
+pid file:    /var/lib/mysql/sodalord.pid
+TCP port:    3306
+Unix socket: /var/lib/mysql/mysql.sock
+
+system locking is not in use
+
+Possible variables for option --set-variable (-O) are:
+back_log              current value: 50
+binlog_cache_size     current value: 32768
+connect_timeout       current value: 5
+delayed_insert_timeout  current value: 300
+delayed_insert_limit  current value: 100
+delayed_queue_size    current value: 1000
+flush_time            current value: 0
+interactive_timeout   current value: 28800
+join_buffer_size      current value: 131072
+key_buffer_size       current value: 8388600
+long_query_time       current value: 10
+lower_case_table_names  current value: 0
+max_allowed_packet    current value: 1048576
+max_binlog_cache_size  current value: 4294967295
+max_binlog_size       current value: 1073741824
+max_connections       current value: 100
+max_connect_errors    current value: 10
+max_delayed_threads   current value: 20
+max_heap_table_size   current value: 16777216
+max_join_size         current value: 4294967295
+max_sort_length       current value: 1024
+max_tmp_tables        current value: 32
+max_user_connections  current value: 0
+max_write_lock_count  current value: 4294967295
+myisam_max_extra_sort_file_size  current value: 256
+myisam_max_sort_file_size  current value: 2047
+myisam_sort_buffer_size  current value: 8388608
+net_buffer_length     current value: 16384
+net_retry_count       current value: 10
+net_read_timeout      current value: 30
+net_write_timeout     current value: 60
+open_files_limit      current value: 0
+query_buffer_size     current value: 0
+record_buffer         current value: 131072
+record_rnd_buffer     current value: 0
+slave_net_timeout     current value: 3600
+slow_launch_time      current value: 2
+sort_buffer           current value: 2097144
+table_cache           current value: 64
+thread_concurrency    current value: 10
+thread_cache_size     current value: 0
+tmp_table_size        current value: 33554432
+thread_stack          current value: 65536
+wait_timeout          current value: 28800
+030208 23:30:13  mysqld ended
+
+030208 23:31:41  mysqld started
+/usr/sbin/mysqld: ready for connections
+030304  3:04:44  /usr/sbin/mysqld: Normal shutdown
+
+030304  3:04:44  /usr/sbin/mysqld: Shutdown Complete
+
+030304 03:04:44  mysqld ended
+
+030304 12:52:59  mysqld started
+/usr/sbin/mysqld: ready for connections
+030329 23:52:40  /usr/sbin/mysqld: Normal shutdown
+
+030329 23:52:40  /usr/sbin/mysqld: Shutdown Complete
+
+030329 23:52:40  mysqld ended
+
+030330 09:05:31  mysqld started
+/usr/sbin/mysqld: ready for connections
+030405 14:39:18  mysqld started
+/usr/sbin/mysqld: ready for connections
+030429  3:10:11  /usr/sbin/mysqld: Normal shutdown
+
+030429  3:10:11  /usr/sbin/mysqld: Shutdown Complete
+
+030429 03:10:11  mysqld ended
+
+030429 03:12:48  mysqld started
+/usr/sbin/mysqld: ready for connections
+030818 21:22:43  /usr/sbin/mysqld: Normal shutdown
+
+030818 21:22:43  /usr/sbin/mysqld: Shutdown Complete
+
+030818 21:22:43  mysqld ended
+
+030818 21:27:54  mysqld started
+/usr/sbin/mysqld: ready for connections
+030823 16:23:18  mysqld started
+/usr/sbin/mysqld: ready for connections
+030923 22:23:28  mysqld started
+/usr/sbin/mysqld: ready for connections
+030923 22:54:03  mysqld started
+/usr/sbin/mysqld: ready for connections
+030930 02:23:13  mysqld started
+/usr/sbin/mysqld: ready for connections
+031202 21:22:12  /usr/sbin/mysqld: Normal shutdown
+
+031202 21:22:12  /usr/sbin/mysqld: Shutdown Complete
+
+031202 21:22:12  mysqld ended
+
+031202 21:24:40  mysqld started
+/usr/sbin/mysqld: ready for connections
+031202 22:52:46  /usr/sbin/mysqld: Normal shutdown
+
+031202 22:52:46  /usr/sbin/mysqld: Shutdown Complete
+
+031202 22:52:47  mysqld ended
+
+031202 22:55:13  mysqld started
+/usr/sbin/mysqld: ready for connections
+031204  4:59:00  /usr/sbin/mysqld: Normal shutdown
+
+031204  4:59:00  /usr/sbin/mysqld: Shutdown Complete
+
+031204 04:59:00  mysqld ended
+
+031204 05:01:28  mysqld started
+/usr/sbin/mysqld: ready for connections
+031204  6:16:58  /usr/sbin/mysqld: Normal shutdown
+
+031204  6:16:58  /usr/sbin/mysqld: Shutdown Complete
+
+031204 06:16:58  mysqld ended
+
+031204 06:19:25  mysqld started
+/usr/sbin/mysqld: ready for connections
+031204  7:34:59  /usr/sbin/mysqld: Normal shutdown
+
+031204  7:34:59  /usr/sbin/mysqld: Shutdown Complete
+
+031204 07:34:59  mysqld ended
+
+031204 07:37:26  mysqld started
+/usr/sbin/mysqld: ready for connections
+031204  8:53:00  /usr/sbin/mysqld: Normal shutdown
+
+031204  8:53:00  /usr/sbin/mysqld: Shutdown Complete
+
+031204 08:53:00  mysqld ended
+
+031204 08:55:27  mysqld started
+/usr/sbin/mysqld: ready for connections
+031204 10:11:00  /usr/sbin/mysqld: Normal shutdown
+
+031204 10:11:00  /usr/sbin/mysqld: Shutdown Complete
+
+031204 10:11:00  mysqld ended
+
+031204 10:13:27  mysqld started
+/usr/sbin/mysqld: ready for connections
+031204 10:52:14  /usr/sbin/mysqld: Normal shutdown
+
+031204 10:52:14  /usr/sbin/mysqld: Shutdown Complete
+
+031204 10:52:14  mysqld ended
+
+031204 10:54:41  mysqld started
+/usr/sbin/mysqld: ready for connections
+031204 13:31:34  /usr/sbin/mysqld: Normal shutdown
+
+031204 13:31:36  /usr/sbin/mysqld: Shutdown Complete
+
+031204 13:31:36  mysqld ended
+
+031204 13:34:41  mysqld started
+/usr/sbin/mysqld: ready for connections
+031204 14:28:23  /usr/sbin/mysqld: Normal shutdown
+
+031204 14:28:23  /usr/sbin/mysqld: Shutdown Complete
+
+031204 14:28:23  mysqld ended
+
+031204 14:32:35  mysqld started
+/usr/sbin/mysqld: ready for connections
+A mysqld process already exists at  Sun Dec 7 16:08:24 EST 2003
+031207 16:11:08  /usr/sbin/mysqld: Normal shutdown
+
+031207 16:11:08  /usr/sbin/mysqld: Shutdown Complete
+
+031207 16:11:08  mysqld ended
+
+031207 16:14:07  mysqld started
+/usr/sbin/mysqld: ready for connections
+031208 21:33:33  mysqld started
+/usr/sbin/mysqld: ready for connections
+031210 16:30:09  /usr/sbin/mysqld: Normal shutdown
+
+031210 16:30:10  /usr/sbin/mysqld: Shutdown Complete
+
+031210 16:30:10  mysqld ended
+
+031210 16:33:09  mysqld started
+/usr/sbin/mysqld: ready for connections
+031211 14:59:44  /usr/sbin/mysqld: Normal shutdown
+
+031211 14:59:44  /usr/sbin/mysqld: Shutdown Complete
+
+031211 14:59:44  mysqld ended
+
+031211 15:02:44  mysqld started
+/usr/sbin/mysqld: ready for connections
+031212 21:36:44  /usr/sbin/mysqld: Normal shutdown
+
+031212 21:36:44  /usr/sbin/mysqld: Shutdown Complete
+
+031212 21:36:45  mysqld ended
+
+031212 21:36:47  mysqld started
+/usr/sbin/mysqld: ready for connections
+031213  2:10:10  /usr/sbin/mysqld: Normal shutdown
+
+031213  2:10:10  /usr/sbin/mysqld: Shutdown Complete
+
+031213 02:10:10  mysqld ended
+
+031213 02:10:12  mysqld started
+/usr/sbin/mysqld: ready for connections
+040121  1:16:57  /usr/sbin/mysqld: Normal shutdown
+
+040121  1:16:59  /usr/sbin/mysqld: Shutdown Complete
+
+040121 01:16:59  mysqld ended
+
+040121 01:20:01  mysqld started
+/usr/sbin/mysqld: ready for connections
+040124 16:12:34  mysqld started
+/usr/sbin/mysqld: ready for connections
+040125 04:17:47  mysqld started
+/usr/sbin/mysqld: ready for connections
+040125  4:30:58  /usr/sbin/mysqld: Normal shutdown
+
+040125  4:30:58  /usr/sbin/mysqld: Shutdown Complete
+
+040125 04:30:58  mysqld ended
+
+040125 04:36:33  mysqld started
+/usr/sbin/mysqld: ready for connections
+040125  5:16:10  /usr/sbin/mysqld: Normal shutdown
+
+040125  5:16:10  /usr/sbin/mysqld: Shutdown Complete
+
+040125 05:16:10  mysqld ended
+
+040125 16:27:24  mysqld started
+/usr/sbin/mysqld: ready for connections
+040131 02:36:11  mysqld started
+/usr/sbin/mysqld: ready for connections
+040204 19:05:54  mysqld started
+/usr/sbin/mysqld: ready for connections
+040210 16:11:24  mysqld started
+/usr/sbin/mysqld: ready for connections
+040211 15:23:20  mysqld started
+/usr/sbin/mysqld: ready for connections
+040221 18:40:27  /usr/sbin/mysqld: Normal shutdown
+
+040221 18:40:27  /usr/sbin/mysqld: Shutdown Complete
+
+040221 18:40:27  mysqld ended
+
+040221 18:57:04  mysqld started
+/usr/sbin/mysqld: ready for connections
+040221 20:21:49  mysqld started
+/usr/sbin/mysqld: ready for connections
+040222 16:40:05  mysqld started
+/usr/sbin/mysqld: ready for connections
+040305 21:29:05  mysqld started
+/usr/sbin/mysqld: ready for connections
+040324  0:05:34  /usr/sbin/mysqld: Normal shutdown
+
+040324  0:05:35  /usr/sbin/mysqld: Shutdown Complete
+
+040324 00:05:35  mysqld ended
+
+040324 00:08:29  mysqld started
+/usr/sbin/mysqld: ready for connections
+040412 23:04:40  /usr/sbin/mysqld: Normal shutdown
+
+040412 23:04:40  /usr/sbin/mysqld: Shutdown Complete
+
+040412 23:04:40  mysqld ended
+
+040412 23:07:37  mysqld started
+/usr/sbin/mysqld: ready for connections
+040424 18:07:15  mysqld started
+/usr/sbin/mysqld: ready for connections
+040427  0:20:24  /usr/sbin/mysqld: Normal shutdown
+
+040427  0:20:25  /usr/sbin/mysqld: Shutdown Complete
+
+040427 00:20:25  mysqld ended
+
+040427 00:23:56  mysqld started
+/usr/sbin/mysqld: ready for connections
+040503 15:07:12  mysqld started
+/usr/sbin/mysqld: ready for connections
+040516 15:07:41  mysqld started
+/usr/sbin/mysqld: ready for connections
+040705 15:04:50  mysqld started
+/usr/sbin/mysqld: ready for connections
+040713 22:42:41  /usr/sbin/mysqld: Normal shutdown
+
+040713 22:42:43  /usr/sbin/mysqld: Shutdown Complete
+
+040713 22:42:43  mysqld ended
+
+040713 22:45:51  mysqld started
+/usr/sbin/mysqld: ready for connections
+040714  0:10:14  /usr/sbin/mysqld: Normal shutdown
+
+040714  0:10:15  /usr/sbin/mysqld: Shutdown Complete
+
+040714 00:10:15  mysqld ended
+
+040714 00:13:19  mysqld started
+/usr/sbin/mysqld: ready for connections
+040714  3:53:05  /usr/sbin/mysqld: Normal shutdown
+
+040714  3:53:06  /usr/sbin/mysqld: Shutdown Complete
+
+040714 03:53:06  mysqld ended
+
+040714 03:56:50  mysqld started
+/usr/sbin/mysqld: ready for connections
+040817  1:26:11  /usr/sbin/mysqld: Normal shutdown
+
+040817  1:26:12  /usr/sbin/mysqld: Shutdown Complete
+
+040817 01:26:12  mysqld ended
+
+040817 01:29:43  mysqld started
+/usr/sbin/mysqld: ready for connections
+040908  0:29:41  /usr/sbin/mysqld: Normal shutdown
+
+040908  0:29:41  /usr/sbin/mysqld: Shutdown Complete
+
+040908 00:29:41  mysqld ended
+
+040908 00:35:11  mysqld started
+/usr/sbin/mysqld: ready for connections
+040915 01:41:03  mysqld started
+/usr/sbin/mysqld: ready for connections
+040915  2:05:47  /usr/sbin/mysqld: Normal shutdown
+
+040915  2:05:47  /usr/sbin/mysqld: Shutdown Complete
+
+040915 02:05:47  mysqld ended
+
+040915 02:09:27  mysqld started
+/usr/sbin/mysqld: ready for connections
+040916 03:08:13  mysqld started
+/usr/sbin/mysqld: ready for connections
+040918 21:37:23  mysqld started
+/usr/sbin/mysqld: ready for connections
+041114 22:25:35  /usr/sbin/mysqld: Normal shutdown
+
+041114 22:25:36  /usr/sbin/mysqld: Shutdown Complete
+
+041114 22:25:36  mysqld ended
+
+041114 22:29:06  mysqld started
+/usr/sbin/mysqld: ready for connections
+041221 16:35:20  mysqld started
+/usr/sbin/mysqld: ready for connections
+050207 00:01:46  mysqld started
+/usr/sbin/mysqld: ready for connections
+050207  1:08:25  /usr/sbin/mysqld: Normal shutdown
+
+050207  1:08:27  /usr/sbin/mysqld: Shutdown Complete
+
+050207 01:08:27  mysqld ended
+
+050207 01:12:42  mysqld started
+/usr/sbin/mysqld: ready for connections
+050322 23:48:53  /usr/sbin/mysqld: Normal shutdown
+
+050322 23:48:53  /usr/sbin/mysqld: Shutdown Complete
+
+050322 23:48:54  mysqld ended
+
+050323 00:30:33  mysqld started
+/usr/sbin/mysqld: ready for connections
+050821 14:17:14  mysqld started
+/usr/sbin/mysqld: ready for connections
+050821 14:23:24  /usr/sbin/mysqld: Normal shutdown
+
+050821 14:23:24  /usr/sbin/mysqld: Shutdown Complete
+
+050821 14:23:24  mysqld ended
+
+050821 14:32:01  mysqld started
+/usr/sbin/mysqld: ready for connections

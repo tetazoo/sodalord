@@ -1,0 +1,2 @@
+#!/bin/sh
+mysqldump sodalord | mail -s "weekly sodalord mysql dump" sodalord-internal@mit.edu

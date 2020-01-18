@@ -1,0 +1,752 @@
+# CHECKSUMS file written on Sun Jul 21 00:39:06 2002 by CPAN::Checksums (v1.008)
+$cksum = {
+  'DNA-0.02.tar.gz' => {
+    'md5-ungz' => 'd500e4d70e4c4962a5270ed770cef818',
+    'mtime' => '2001-11-24',
+    'md5' => '6e6ea9851a36ec6c8ae6b7377b20cc7b',
+    'shortname' => 'dna002.tgz',
+    'size' => '3717'
+  },
+  'Function-Override-0.01.tar.gz' => {
+    'md5-ungz' => '648fc2c92c1336addfe67d16883649c8',
+    'mtime' => '2000-08-24',
+    'md5' => 'd71d1a06811e662b507546a6725252e4',
+    'shortname' => 'funct001.tgz',
+    'size' => '3569'
+  },
+  'ExtUtils-MakeMaker-6.01.tar.gz' => {
+    'md5-ungz' => 'c68efdc0c19665a2c5e1f768ca0d25e8',
+    'mtime' => '2002-05-30',
+    'md5' => '099e6eff33d353add2b40485af45c739',
+    'shortname' => 'extut601.tgz',
+    'size' => '183989'
+  },
+  'ExtUtils-MakeMaker-5.55_02.tar.gz' => {
+    'md5-ungz' => 'ddc9103b581194a881f14851c4302a57',
+    'mtime' => '2002-04-06',
+    'md5' => 'a5af71908aebf72d72d62feb860272f5',
+    'shortname' => 'extut556.tgz',
+    'size' => '169553'
+  },
+  'foundation-0.02.tar.gz' => {
+    'md5-ungz' => 'f1e84dede7842c77d08ecd41ec0aa546',
+    'mtime' => '2000-12-11',
+    'md5' => 'afe92b5448add1e8cf944231ae2290df',
+    'shortname' => 'found002.tgz',
+    'size' => '3350'
+  },
+  'mixin-0.02.tar.gz' => {
+    'md5-ungz' => '90141da0643c9869f7613dea1744c322',
+    'mtime' => '2002-04-17',
+    'md5' => 'b93d5d6acbbff3ee04569ca032d018a3',
+    'shortname' => 'mixin002.tgz',
+    'size' => '22804'
+  },
+  'ExtUtils-MakeMaker-6.02.tar.gz' => {
+    'md5-ungz' => '5fe8d53917dcf37d216821e72acc845a',
+    'mtime' => '2002-06-16',
+    'md5' => 'c2e3548a7db40fcd02341a583aaffb2a',
+    'shortname' => 'extut602.tgz',
+    'size' => '184999'
+  },
+  'ExtUtils-MakeMaker-5.55_03.tar.gz' => {
+    'md5-ungz' => '219c8bdd19796cafb858da98e7de9a40',
+    'mtime' => '2002-04-07',
+    'md5' => '7eb89a6ce0243f5c12ff9efc31907b74',
+    'shortname' => 'extut557.tgz',
+    'size' => '169579'
+  },
+  'foundation-0.03.tar.gz' => {
+    'md5-ungz' => '4aa08e2cdbfc73e46486e5cbc05443e0',
+    'mtime' => '2000-12-11',
+    'md5' => 'b25913ac93e2e66f0a5ef0406fa7a24e',
+    'shortname' => 'found003.tgz',
+    'size' => '3431'
+  },
+  'Test-Harness-2.20.tar.gz' => {
+    'md5-ungz' => 'cb602e01202f27e17a459079de9a3030',
+    'mtime' => '2002-05-05',
+    'md5' => '740d90a7ee4e9fe41b9ee584a242f1d2',
+    'shortname' => 'testh220.tgz',
+    'size' => '47021'
+  },
+  'mixin-0.03.tar.gz' => {
+    'md5-ungz' => '78e120cf2fb861f9ffdf79d4592ca0b1',
+    'mtime' => '2002-04-29',
+    'md5' => 'c82f140905cc88957dd1d922edf5d1e3',
+    'shortname' => 'mixin003.tgz',
+    'size' => '22879'
+  },
+  'Exporter-Lite-0.01.tar.gz' => {
+    'md5-ungz' => 'fa72b41f3d17b412059bff743a70e061',
+    'mtime' => '2001-12-17',
+    'md5' => 'e45c93513ecb22e183748592069bdaf8',
+    'shortname' => 'expor001.tgz',
+    'size' => '20650'
+  },
+  'Module-Info-0.11.tar.gz' => {
+    'md5-ungz' => '0738426ac678b1093cf6b75bdba340fc',
+    'mtime' => '2002-02-02',
+    'md5' => '973d275c393ef7eac78c8f67669de719',
+    'shortname' => 'modul011.tgz',
+    'size' => '31398'
+  },
+  'ExtUtils-MakeMaker-5.54_01.tar.gz' => {
+    'md5-ungz' => 'c00c1770109c484abfdf504957528217',
+    'mtime' => '2002-03-31',
+    'md5' => 'a9739bdeed76cbe6a12a6202a2195dff',
+    'shortname' => 'extut554.tgz',
+    'size' => '166245'
+  },
+  'ExtUtils-MakeMaker-6.03.tar.gz' => {
+    'md5-ungz' => 'cb9e7a7b4639a2a2538196896cce6a49',
+    'mtime' => '2002-06-19',
+    'md5' => 'd26f50bcc7a9b9edbcd8f3ac56ea36de',
+    'shortname' => 'extut603.tgz',
+    'size' => '185409'
+  },
+  'Carp-Assert-0.16.tar.gz' => {
+    'md5-ungz' => '763473f16224f8397044591b3fa755ed',
+    'mtime' => '2001-09-09',
+    'md5' => 'f541506db24e8e0df6db95a1c5ae2158',
+    'shortname' => 'carpa016.tgz',
+    'size' => '8754'
+  },
+  'File-chdir-0.01.tar.gz' => {
+    'md5-ungz' => '471b137426d7e09a0dcc52c368e1b428',
+    'mtime' => '2001-09-01',
+    'md5' => '89e3991f59eac801846a686bc7de3d2d',
+    'shortname' => 'filec001.tgz',
+    'size' => '2770'
+  },
+  'uny2k-19.100.tar.gz' => {
+    'md5-ungz' => 'fd0ce0fb9c99f4d255f333c6444e45bb',
+    'mtime' => '2000-04-01',
+    'md5' => '689aab68a0550b6fe5dd3db081ebe220',
+    'shortname' => 'uny2191.tgz',
+    'size' => '2844'
+  },
+  'Test-Harness-2.03.tar.gz' => {
+    'md5-ungz' => '64be2dacf7ff71fb362af5d3d57f8376',
+    'mtime' => '2002-04-25',
+    'md5' => 'ee758fb8ad3ce9865d0ca37d6ce3e44d',
+    'shortname' => 'testh203.tgz',
+    'size' => '47330'
+  },
+  'ExtUtils-MakeMaker-5.90_01.tar.gz' => {
+    'md5-ungz' => '3c6547ea365aef869a56490535235521',
+    'mtime' => '2002-04-11',
+    'md5' => '5b0d3375b3a4405029e1bfd2f4c87eff',
+    'shortname' => 'extut590.tgz',
+    'size' => '170956'
+  },
+  'Test-Harness-2.21.tar.gz' => {
+    'md5-ungz' => '65b8b79bbf4f36a49ef2f9b17f42a195',
+    'mtime' => '2002-05-06',
+    'md5' => 'c10a83032f02053c74fd7b11706eb8b2',
+    'shortname' => 'testh221.tgz',
+    'size' => '46685'
+  },
+  'mixin-0.04.tar.gz' => {
+    'md5-ungz' => '35c7c1fe208ba81d9657e0fa705dcaa8',
+    'mtime' => '2002-04-30',
+    'md5' => 'cc1932a0a90dd905726373d7c2f6377f',
+    'shortname' => 'mixin004.tgz',
+    'size' => '23133'
+  },
+  'Class-Data-Inheritable-0.02.tar.gz' => {
+    'md5-ungz' => '40b24230f4d503b92ff10ce3e00f4f3f',
+    'mtime' => '2000-04-17',
+    'md5' => 'd3a9fff92ede1085643341179fd9263b',
+    'shortname' => 'class002.tgz',
+    'size' => '3307'
+  },
+  'Module-Info-0.12.tar.gz' => {
+    'md5-ungz' => 'ab8a238b13d4a58ee961f00565467096',
+    'mtime' => '2002-02-03',
+    'md5' => '9bfefb7f9346cf4664c51fb90552c355',
+    'shortname' => 'modul012.tgz',
+    'size' => '32126'
+  },
+  'ExtUtils-MakeMaker-5.96_01.tar.gz' => {
+    'md5-ungz' => 'b0d3d0c960649d7fdea61a1f1ae10149',
+    'mtime' => '2002-05-23',
+    'md5' => '86c0e938cab3581fd6c51c0bc84a016a',
+    'shortname' => 'extut597.tgz',
+    'size' => '182181'
+  },
+  'Test-Simple-0.42.tar.gz' => {
+    'md5-ungz' => '72f6cf25dd0561e26d35e611c365557f',
+    'mtime' => '2002-03-06',
+    'md5' => 'ba58100f8c73c14e2f29f3b5ebbf2348',
+    'shortname' => 'tests042.tgz',
+    'size' => '39704'
+  },
+  'Carp-Assert-0.17.tar.gz' => {
+    'md5-ungz' => '0f6aacb8a41e01e4d497f985d719a156',
+    'mtime' => '2001-10-01',
+    'md5' => '94c208587f49a85b3d3d354d0d3a7dc4',
+    'shortname' => 'carpa017.tgz',
+    'size' => '8815'
+  },
+  'File-chdir-0.02.tar.gz' => {
+    'md5-ungz' => '3ad56d7d9a00c5714b20eeacd0b737c2',
+    'mtime' => '2001-09-03',
+    'md5' => '748017080e2c46969ff0bb7587493fd8',
+    'shortname' => 'filec002.tgz',
+    'size' => '3402'
+  },
+  'Test-More-0.08.tar.gz' => {
+    'md5-ungz' => 'b51488877199987d58c558ec4c8b38cf',
+    'mtime' => '2001-08-21',
+    'md5' => '519d83f6117b6343d0eff56cca0904b1',
+    'shortname' => 'testm008.tgz',
+    'size' => '9699'
+  },
+  'uny2k-19.101.tar.gz' => {
+    'md5-ungz' => 'c7c23b998a0c97eb4ff3435663ebdd1d',
+    'mtime' => '2001-08-13',
+    'md5' => '59f7e3447eabb7dad8486d88751d974e',
+    'shortname' => 'uny2192.tgz',
+    'size' => '3655'
+  },
+  'Test-Harness-2.04.tar.gz' => {
+    'md5-ungz' => 'b942c854e5315594f2ffc6642ae5050f',
+    'mtime' => '2002-04-30',
+    'md5' => '1b54afff94068fb44ab081d384e095d3',
+    'shortname' => 'testh204.tgz',
+    'size' => '47339'
+  },
+  'Geo-TigerLine-0.01.tar.gz' => {
+    'md5-ungz' => 'ad175ee9bcad929772d10d4d2b2eed9e',
+    'mtime' => '2000-12-07',
+    'md5' => '71422eb2171cccc9aa8923a9cced0058',
+    'shortname' => 'geoti001.tgz',
+    'size' => '33911'
+  },
+  'Class-Virtual-0.01.tar.gz' => {
+    'md5-ungz' => 'a026217ff6acd02db83d8c53b3aeb586',
+    'mtime' => '2000-11-29',
+    'md5' => '42dd46c22f13e895da350e7885ccc40a',
+    'shortname' => 'class004.tgz',
+    'size' => '3610'
+  },
+  'Test-Harness-2.22.tar.gz' => {
+    'md5-ungz' => 'ff1ffe47cfbfb0e759ca858995d5607e',
+    'mtime' => '2002-05-17',
+    'md5' => 'a0c05db3af3db77f347ca324cceefd4b',
+    'shortname' => 'testh222.tgz',
+    'size' => '47148'
+  },
+  'Sex-0.69.tar.gz' => {
+    'md5-ungz' => '291933a29b94ac6c722562f1a7911347',
+    'mtime' => '2000-04-01',
+    'md5' => '3d958dd91d090cea5863d6395fe0dbf7',
+    'shortname' => 'sex069.tgz',
+    'size' => '3567'
+  },
+  'Text-Metaphone-0.02.tar.gz' => {
+    'md5-ungz' => 'dc8b0a51a7dca230d783e6d66495bace',
+    'mtime' => '1997-12-02',
+    'md5' => 'a100d401faccecef3e0d4f94fdbd7cbb',
+    'shortname' => 'textm002.tgz',
+    'size' => '6774'
+  },
+  'Test-Simple-0.43.tar.gz' => {
+    'md5-ungz' => 'e859cd2d55748102c50384cc207c9294',
+    'mtime' => '2002-04-12',
+    'md5' => '9940a69adceb4f73a37a15013b2229d9',
+    'shortname' => 'tests043.tgz',
+    'size' => '40798'
+  },
+  'File-chdir-0.03.tar.gz' => {
+    'md5-ungz' => '70218b4ba09c4e856e6c559656dfd565',
+    'mtime' => '2001-11-26',
+    'md5' => '818c382444af5f5c3b6cbb8001f713b8',
+    'shortname' => 'filec003.tgz',
+    'size' => '3614'
+  },
+  'Class-WhiteHole-0.01.tar.gz' => {
+    'md5-ungz' => '58568d16983819fe4fa4dc9788b5fb0b',
+    'mtime' => '2000-07-07',
+    'md5' => '70a8ef94cad7bb375877c4178f37890e',
+    'shortname' => 'class001.tgz',
+    'size' => '2506'
+  },
+  'Class-Virtual-0.02.tar.gz' => {
+    'md5-ungz' => 'bae353d100fe2e86f90f57d1d79e5643',
+    'mtime' => '2001-02-09',
+    'md5' => '2b2d6661ec1ce1bd05f7a296658f0e61',
+    'shortname' => 'class005.tgz',
+    'size' => '3837'
+  },
+  'Test-Harness-2.23.tar.gz' => {
+    'md5-ungz' => '1fb5f007e55f2a3a86db6fe6576e8b36',
+    'mtime' => '2002-05-22',
+    'md5' => '20d34fb94bdeb77668f832ef68944f89',
+    'shortname' => 'testh223.tgz',
+    'size' => '47776'
+  },
+  'D-oh-Year-0.04.tar.gz' => {
+    'md5-ungz' => 'f384f4585051206eee8f70b56778b874',
+    'mtime' => '1999-10-31',
+    'md5' => '3604942b57d35ce95d19ee76921de585',
+    'shortname' => 'dohye004.tgz',
+    'size' => '4990'
+  },
+  'Test-Simple-0.44.tar.gz' => {
+    'md5-ungz' => 'e3736e65e26a67fc02da0cba51545066',
+    'mtime' => '2002-04-25',
+    'md5' => '934bc4db7fbed19ac5b2909880b7edec',
+    'shortname' => 'tests044.tgz',
+    'size' => '41821'
+  },
+  'Data-Hash-Utils-0.03.tar.gz' => {
+    'md5-ungz' => '18cfe5290b711b56bb9cb995a8d21ea8',
+    'mtime' => '2002-03-10',
+    'md5' => 'a40d4060a58b06a13411d3a0911b749c',
+    'shortname' => 'datah003.tgz',
+    'size' => '4904'
+  },
+  'ExtUtils-MakeMaker-5.95_01.tar.gz' => {
+    'md5-ungz' => 'fc62ddef0135a9c8c53d0629b128e9ea',
+    'mtime' => '2002-05-18',
+    'md5' => '52b09520ce77f75363036cf18896edbc',
+    'shortname' => 'extut596.tgz',
+    'size' => '181691'
+  },
+  'Tie-Math-0.01.tar.gz' => {
+    'md5-ungz' => 'a8780bd864183cc364f3b504653d8750',
+    'mtime' => '2000-05-25',
+    'md5' => '023c3404fca317a0d25e34d95d97c915',
+    'shortname' => 'tiema001.tgz',
+    'size' => '2655'
+  },
+  'Tie-Math-0.10.tar.gz' => {
+    'md5-ungz' => 'a57f4d4066dcb020702fe0590f45326c',
+    'mtime' => '2000-07-15',
+    'md5' => '8bfff972166789560e530af534becc81',
+    'shortname' => 'tiema010.tgz',
+    'size' => '5270'
+  },
+  'Class-Virtual-0.03.tar.gz' => {
+    'md5-ungz' => '1653d8b045bc288908b5834b539e7aa2',
+    'mtime' => '2001-03-02',
+    'md5' => '785249e3a29951c5ca587957bba306be',
+    'shortname' => 'class006.tgz',
+    'size' => '5556'
+  },
+  'Test-Harness-2.24.tar.gz' => {
+    'md5-ungz' => 'c4753ee85740d327204e572ca4757639',
+    'mtime' => '2002-05-30',
+    'md5' => '5dd5732a0574fd7350c66a054d36e0f2',
+    'shortname' => 'testh224.tgz',
+    'size' => '48112'
+  },
+  'Tie-Cache-LRU-0.20.tar.gz' => {
+    'md5-ungz' => 'c07e3b2a44ed515f35c6da24f72ca390',
+    'mtime' => '2001-07-31',
+    'md5' => 'bc4d914bc10c4a144752af7d7237334d',
+    'shortname' => 'tieca020.tgz',
+    'size' => '142248'
+  },
+  'Test-Simple-0.45.tar.gz' => {
+    'md5-ungz' => 'f85bd67718b22ea240b9b2052bee0baa',
+    'mtime' => '2002-06-19',
+    'md5' => '2e9a94945683e5670063a773b6808c03',
+    'shortname' => 'tests045.tgz',
+    'size' => '42857'
+  },
+  'File-chdir-0.05.tar.gz' => {
+    'md5-ungz' => '5cc829583c3a1a404fc6bf8cda3d8f7d',
+    'mtime' => '2002-05-04',
+    'md5' => '7b21bf714f0b88dbd9f765cd0f55b9ea',
+    'shortname' => 'filec005.tgz',
+    'size' => '21583'
+  },
+  'Class-WhiteHole-0.03.tar.gz' => {
+    'md5-ungz' => 'bd9c6ed8e3b4dc8a830a1473122b0325',
+    'mtime' => '2000-07-09',
+    'md5' => 'c14e55c571adbf1cd181aae61d99ab9e',
+    'shortname' => 'class003.tgz',
+    'size' => '3025'
+  },
+  'Test-Harness-2.25.tar.gz' => {
+    'md5-ungz' => '45acf1d6e2ef5afe18e4c28298753ab0',
+    'mtime' => '2002-06-16',
+    'md5' => 'a455167d9754038a11f9fc9fe11e575e',
+    'shortname' => 'testh225.tgz',
+    'size' => '48651'
+  },
+  'Tie-Cache-LRU-0.21.tar.gz' => {
+    'md5-ungz' => '019266f0b54e3f864a7e44381cd87eb4',
+    'mtime' => '2002-04-11',
+    'md5' => '114890d5a3c1ecf6f51d743086c5372f',
+    'shortname' => 'tieca021.tgz',
+    'size' => '142338'
+  },
+  'ExtUtils-MakeMaker-5.52_01.tar.gz' => {
+    'md5-ungz' => '7c9d8807936f0b7b211ec0b184fada76',
+    'mtime' => '2002-03-26',
+    'md5' => '5ce9eb58dd7d6ccafd52f0adfc996b0a',
+    'shortname' => 'extut552.tgz',
+    'size' => '163686'
+  },
+  'Test-Simple-0.46.tar.gz' => {
+    'md5-ungz' => '9366eb8b2963f5238f1e0eeb0ec8474a',
+    'mtime' => '2002-07-21',
+    'md5' => 'b53b629d90d6e4f1d8cdf4c04b7ab08d',
+    'shortname' => 'tests046.tgz',
+    'size' => '44935'
+  },
+  'CLASS-0.02.tar.gz' => {
+    'md5-ungz' => '53166c9706e4669c5eb46e5036aceca4',
+    'mtime' => '2001-08-25',
+    'md5' => 'cc9a600e9d2a2667eaa1f42c8462cb06',
+    'shortname' => 'class008.tgz',
+    'size' => '12148'
+  },
+  'loose-0.01.tar.gz' => {
+    'md5-ungz' => '27ea369f572a5f932d579a888aa1506e',
+    'mtime' => '2000-04-01',
+    'md5' => 'e203b04a10709b931504b6c67149bd14',
+    'shortname' => 'loose001.tgz',
+    'size' => '2194'
+  },
+  'Test-1.19.tar.gz' => {
+    'md5-ungz' => '49313e4e568b99e20926dcb5ede5e936',
+    'mtime' => '2001-12-18',
+    'md5' => '26d96a5909ac13354450d43e0490328b',
+    'shortname' => 'test119.tgz',
+    'size' => '9205'
+  },
+  'Sub-Uplevel-0.03.tar.gz' => {
+    'md5-ungz' => '58cfd10a5ef99d5164e1bee15041c355',
+    'mtime' => '2001-09-19',
+    'md5' => '0811da8c2949327cb8f85a07b144fa1d',
+    'shortname' => 'subup003.tgz',
+    'size' => '2796'
+  },
+  'Tree.tar.gz' => {
+    'md5-ungz' => 'ca932a39b9d0623b61b7a9282056e00b',
+    'mtime' => '1999-10-31',
+    'md5' => '15a8d7cf894e96aaf3e076948bee24b3',
+    'shortname' => 'treetar0.tgz',
+    'size' => '20507'
+  },
+  'Test-Harness-2.26.tar.gz' => {
+    'md5-ungz' => '01528d5fa36ad699b8b26646f2a373ba',
+    'mtime' => '2002-06-19',
+    'md5' => 'ec1b1ebc715614a5b06fe7ff5d355f25',
+    'shortname' => 'testh226.tgz',
+    'size' => '48725'
+  },
+  'ExtUtils-MakeMaker-5.94_01.tar.gz' => {
+    'md5-ungz' => '2540c831a90dad2922172c2c93e458e6',
+    'mtime' => '2002-05-17',
+    'md5' => 'be45c05bad24fe9d495a0d15aa8f6d5f',
+    'shortname' => 'extut594.tgz',
+    'size' => '181444'
+  },
+  'CLASS-0.03.tar.gz' => {
+    'md5-ungz' => '4a82e2d2fc4f8aca570c34a20e4a490b',
+    'mtime' => '2001-08-28',
+    'md5' => '6e72c97be53281fd64f07e4393758e04',
+    'shortname' => 'class009.tgz',
+    'size' => '11975'
+  },
+  'Sub-Uplevel-0.04.tar.gz' => {
+    'md5-ungz' => 'b7ba80dfba2a8736d72fe8099d32418f',
+    'mtime' => '2001-09-19',
+    'md5' => '7166cdcd76a44145236a720515b514d0',
+    'shortname' => 'subup004.tgz',
+    'size' => '3234'
+  },
+  'Geo-Walkabout-0.01.tar.gz' => {
+    'md5-ungz' => '85c151151868c4e57070a4f27a36e87b',
+    'mtime' => '2000-12-07',
+    'md5' => '7f934d4fd5eaa5f420956c8597ef5b7a',
+    'shortname' => 'geowa001.tgz',
+    'size' => '41694'
+  },
+  'ExtUtils-MakeMaker-5.94_02.tar.gz' => {
+    'md5-ungz' => '49aa2564a7e7ecbe2b76adb5cb49ed03',
+    'mtime' => '2002-05-17',
+    'md5' => 'bb4c6c2d857552510fea912307de28f0',
+    'shortname' => 'extut595.tgz',
+    'size' => '181522'
+  },
+  'Class-Fields-0.13.tar.gz' => {
+    'md5-ungz' => '4377b688551707796d6a1fd38849268c',
+    'mtime' => '2001-04-05',
+    'md5' => 'e656724a874be224fc704f9536851571',
+    'shortname' => 'class013.tgz',
+    'size' => '19476'
+  },
+  'Sub-Uplevel-0.05.tar.gz' => {
+    'md5-ungz' => 'bb4e19d02be9b530e63eede85fe2b22f',
+    'mtime' => '2001-09-19',
+    'md5' => '620cdbd5bb6ad12053514cc396a26a14',
+    'shortname' => 'subup005.tgz',
+    'size' => '3482'
+  },
+  'ExtUtils-MakeMaker-5.51_01.tar.gz' => {
+    'md5-ungz' => '33b2328891752d37c7f1ccec7d75711c',
+    'mtime' => '2002-03-25',
+    'md5' => 'e38938cff608e9422bbcefdd03b19031',
+    'shortname' => 'extut551.tgz',
+    'size' => '163364'
+  },
+  'UNIVERSAL-exports-0.01.tar.gz' => {
+    'md5-ungz' => '572506b2f6858524b2235346a24da048',
+    'mtime' => '2001-01-22',
+    'md5' => '3420f3f6bb91b566907de0f7f2d4d707',
+    'shortname' => 'unive001.tgz',
+    'size' => '4583'
+  },
+  'Tie-VecArray-0.01.tar.gz' => {
+    'md5-ungz' => 'b552bd584451d673588576133240a7ac',
+    'mtime' => '2000-02-21',
+    'md5' => '0609f96a694fc3a556a3c7b3628facc5',
+    'shortname' => 'tieve001.tgz',
+    'size' => '3270'
+  },
+  'ExtUtils-MakeMaker-5.93_01.tar.gz' => {
+    'md5-ungz' => '1fdf372f3ed0cef436f4b456c446b5f2',
+    'mtime' => '2002-05-06',
+    'md5' => '35ebac3341bb60977f1feafa97dbe5ac',
+    'shortname' => 'extut593.tgz',
+    'size' => '181001'
+  },
+  'Class-Fields-0.14.tar.gz' => {
+    'md5-ungz' => '9fea27cdad3b1b24e9f3dc0d89501207',
+    'mtime' => '2001-08-24',
+    'md5' => '05688ce65e0efe5fd8805700694af4e1',
+    'shortname' => 'class014.tgz',
+    'size' => '20874'
+  },
+  'Sub-Uplevel-0.06.tar.gz' => {
+    'md5-ungz' => 'f901e70ac4dfad19f3ef11eb7c308de6',
+    'mtime' => '2001-09-20',
+    'md5' => '1436ca7aa406c1f8096ca6f56f0c69ed',
+    'shortname' => 'subup006.tgz',
+    'size' => '16833'
+  },
+  'AnyLoader-0.01.tar.gz' => {
+    'md5-ungz' => 'ab4266e3bf4b4ec3fa2d8b64e2527fc1',
+    'mtime' => '2000-09-11',
+    'md5' => '54a8e6b851256b62c6ee3d568a7b689f',
+    'shortname' => 'anylo001.tgz',
+    'size' => '3504'
+  },
+  'Class-Accessor-0.16.tar.gz' => {
+    'md5-ungz' => '7e77bd86be96e7988598291c85516b5a',
+    'mtime' => '2000-12-14',
+    'md5' => '46ecf22baad75bc4c9959d418e005b4e',
+    'shortname' => 'class016.tgz',
+    'size' => '10289'
+  },
+  'Archive-Any-0.01.tar.gz' => {
+    'md5-ungz' => '8b118e8a06cd88ca0542959780746cd7',
+    'mtime' => '2001-08-26',
+    'md5' => '641c87f9e4dbda4621c10b6b8c042c60',
+    'shortname' => 'archi001.tgz',
+    'size' => '53261'
+  },
+  'UNIVERSAL-exports-0.03.tar.gz' => {
+    'md5-ungz' => 'ca769bebc714ca3dbeebd054f54d7804',
+    'mtime' => '2001-12-17',
+    'md5' => '7672d8e740d99c3af612205e6fde8644',
+    'shortname' => 'unive003.tgz',
+    'size' => '4497'
+  },
+  'Pod-Tests-0.09.tar.gz' => {
+    'md5-ungz' => '08d6ff3fe2b7836c2fb68f325eef4e40',
+    'mtime' => '2001-08-29',
+    'md5' => 'de4e84855247eecb45ae9a79070cb10c',
+    'shortname' => 'podte009.tgz',
+    'size' => '485'
+  },
+  'Class-Accessor-0.17.tar.gz' => {
+    'md5-ungz' => '6fb5419395cfadf7f3cb0e3553132f1c',
+    'mtime' => '2001-04-02',
+    'md5' => '2d7d388b201b505158c0761cc6efed4f',
+    'shortname' => 'class017.tgz',
+    'size' => '10376'
+  },
+  'ExtUtils-MakeMaker-5.50_01.tar.gz' => {
+    'md5-ungz' => '06f5486bb3ebd29b5e638eee0ab0db1f',
+    'mtime' => '2002-03-05',
+    'md5' => '64d8206eaa8086c31a5f40b5e055f458',
+    'shortname' => 'extut550.tgz',
+    'size' => '199756'
+  },
+  'Dunce-0.01.tar.gz' => {
+    'md5-ungz' => '1f9bdd29a92324a4c34b5a3cdb2efd7f',
+    'mtime' => '2000-08-24',
+    'md5' => 'e21b39b0ce368936e56feb1b9c1a1c01',
+    'shortname' => 'dunce001.tgz',
+    'size' => '3445'
+  },
+  'Class-Object-0.01.tar.gz' => {
+    'md5-ungz' => 'a6aef341c55037dc56a03194c0191208',
+    'mtime' => '2001-07-02',
+    'md5' => 'db28cbf7b8ff442bf137a616d22b84f1',
+    'shortname' => 'class007.tgz',
+    'size' => '12565'
+  },
+  'Semi-Semicolons-0.01.tar.gz' => {
+    'md5-ungz' => '0ee6f37369628aac0f61021bf62470d8',
+    'mtime' => '1999-12-20',
+    'md5' => '161951918ca7a5726a73eff02d43a17c',
+    'shortname' => 'semis001.tgz',
+    'size' => '2666'
+  },
+  'ExtUtils-MakeMaker-5.92_01.tar.gz' => {
+    'md5-ungz' => 'b1697377a9314c8fa9ea978cc081f449',
+    'mtime' => '2002-04-30',
+    'md5' => 'a8ddd0fa869275171e44dbd66e3c8fc5',
+    'shortname' => 'extut592.tgz',
+    'size' => '180361'
+  },
+  'Archive-Any-0.03.tar.gz' => {
+    'md5-ungz' => 'a9a1a09845407e7b477678fd33078d14',
+    'mtime' => '2001-09-04',
+    'md5' => '039b2f36ef1cb0bd586188db853d978f',
+    'shortname' => 'archi003.tgz',
+    'size' => '53482'
+  },
+  'Dunce-0.02.tar.gz' => {
+    'md5-ungz' => '5a636b65056da91cc182081952310bad',
+    'mtime' => '2001-02-04',
+    'md5' => 'a3625996f93e5bc150c21f5001b2ba8b',
+    'shortname' => 'dunce002.tgz',
+    'size' => '4139'
+  },
+  'Semi-Semicolons-0.02.tar.gz' => {
+    'md5-ungz' => 'dabd8c222c17047a2d3ffd01dd0a57af',
+    'mtime' => '1999-12-20',
+    'md5' => 'f5e01c7c8a54077a068167afe42a27a2',
+    'shortname' => 'semis002.tgz',
+    'size' => '2759'
+  },
+  'Test-Inline-0.14.tar.gz' => {
+    'md5-ungz' => 'd82c202d43c2cfd512e404bddaf24eb8',
+    'mtime' => '2002-02-28',
+    'md5' => '7b8c3c712208b74503b728fae704c89b',
+    'shortname' => 'testi014.tgz',
+    'size' => '13785'
+  },
+  'AnyLoader-0.04.tar.gz' => {
+    'md5-ungz' => 'c1552a0ef87ff944e86823efbf50562a',
+    'mtime' => '2000-11-29',
+    'md5' => '5368e3c6cfe9cd2c9354ff632f7f57ce',
+    'shortname' => 'anylo004.tgz',
+    'size' => '3990'
+  },
+  'your-0.01.tar.gz' => {
+    'md5-ungz' => '2a42c2a1ce5e03d2d17cd7c16dd5e39c',
+    'mtime' => '2001-05-22',
+    'md5' => '975fc488ae006f7827017ff0e96217e1',
+    'shortname' => 'your001.tgz',
+    'size' => '11411'
+  },
+  'Devel-Tinderbox-Reporter-0.10.tar.gz' => {
+    'md5-ungz' => 'b36ef1de7dd7a78131fc01e60fc6da96',
+    'mtime' => '2001-10-02',
+    'md5' => '71b675ba2567729ccfd49a2641329b3a',
+    'shortname' => 'devel010.tgz',
+    'size' => '3155'
+  },
+  'Text-Metaphone-1.95.tar.gz' => {
+    'md5-ungz' => 'cb43b6a429df6925e313958db4789482',
+    'mtime' => '1999-01-27',
+    'md5' => 'c0ab2e7a8811ced5b061796428666135',
+    'shortname' => 'textm195.tgz',
+    'size' => '10051'
+  },
+  'ExtUtils-MakeMaker-6.00.tar.gz' => {
+    'md5-ungz' => 'f6a0d7e6374f3df56324cdf211da8481',
+    'mtime' => '2002-05-26',
+    'md5' => 'aee044f61af723989749b0c6425ce2a7',
+    'shortname' => 'extut600.tgz',
+    'size' => '182156'
+  },
+  'DNA-0.01.tar.gz' => {
+    'md5-ungz' => 'f37d21e5699835c82055ac50340cb42e',
+    'mtime' => '2001-04-01',
+    'md5' => 'e32a122596081e5ad2ab655a71bf3cbd',
+    'shortname' => 'dna001.tgz',
+    'size' => '3595'
+  },
+  'Semi-Semicolons-0.03.tar.gz' => {
+    'md5-ungz' => 'f7a5f30f1cd2022fd746d006136a0222',
+    'mtime' => '1999-12-20',
+    'md5' => '84e7169d91060258c350597d66db650d',
+    'shortname' => 'semis003.tgz',
+    'size' => '2903'
+  },
+  'Test-Inline-0.15.tar.gz' => {
+    'md5-ungz' => '6391bd595928efac393e37a1a32198a1',
+    'mtime' => '2002-04-11',
+    'md5' => '8b1128b4102578c093a01ad0b86f6616',
+    'shortname' => 'testi015.tgz',
+    'size' => '14074'
+  },
+  'ExtUtils-MakeMaker-5.55_01.tar.gz' => {
+    'md5-ungz' => '4e4f9aadc515363993b90648ae2018ef',
+    'mtime' => '2002-04-05',
+    'md5' => '461de4ac426b11d824783435e685e767',
+    'shortname' => 'extut555.tgz',
+    'size' => '169095'
+  },
+  'Bone-Easy-0.04.tar.gz' => {
+    'md5-ungz' => '625015ec90c2480691da31b2e82ac242',
+    'mtime' => '2000-09-12',
+    'md5' => '7cd26698ba25522db52dbd70cac5fe68',
+    'shortname' => 'bonee004.tgz',
+    'size' => '8850'
+  },
+  'foundation-0.01.tar.gz' => {
+    'md5-ungz' => '51245b77f3d8bbbea0c7e84871a16c3b',
+    'mtime' => '2000-12-11',
+    'md5' => 'e7ec5da645d4e7a902fd6026b059d709',
+    'shortname' => 'found001.tgz',
+    'size' => '2812'
+  },
+  'Text-Metaphone-1.96.tar.gz' => {
+    'md5-ungz' => 'b5ffa66343a639f7307a8a3a3ae764fa',
+    'mtime' => '1999-03-04',
+    'md5' => 'b918985b2364b8d3a5bd0b0ba714ebd0',
+    'shortname' => 'textm196.tgz',
+    'size' => '10192'
+  },
+  'Class-DBI-Join-0.03.tar.gz' => {
+    'md5-ungz' => '16640f863b9975e881e42a29a3810e92',
+    'mtime' => '2002-04-17',
+    'md5' => '97d08135e513da9e43a854dd4741630e',
+    'shortname' => 'class010.tgz',
+    'size' => '3116'
+  },
+  'mixin-0.01.tar.gz' => {
+    'md5-ungz' => 'ba34127949e986c0258de85ec0639383',
+    'mtime' => '2002-04-16',
+    'md5' => '457885a96747577d143389c162076539',
+    'shortname' => 'mixin001.tgz',
+    'size' => '22640'
+  },
+  'ExtUtils-MakeMaker-5.91_01.tar.gz' => {
+    'md5-ungz' => 'd1118013e50be3b08bcb9946d401a0ab',
+    'mtime' => '2002-04-24',
+    'md5' => '46633756378e809c5755815b65b330a7',
+    'shortname' => 'extut591.tgz',
+    'size' => '173007'
+  },
+  'Test-1.20.tar.gz' => {
+    'md5-ungz' => 'a024c43e208f660317cb3e0fddeb8d30',
+    'mtime' => '2002-02-08',
+    'md5' => '93bca260aa6d7ba70466159c44542ec6',
+    'shortname' => 'test120.tgz',
+    'size' => '9372'
+  }
+};

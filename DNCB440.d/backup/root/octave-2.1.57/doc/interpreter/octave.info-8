@@ -1,0 +1,1644 @@
+This is octave.info, produced by makeinfo version 4.5 from octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  Prev: Basic Matrix Functions,  Up: Linear Algebra
+
+Matrix Factorizations
+=====================
+
+ - Loadable Function:  chol (A)
+     Compute the Cholesky factor, R, of the symmetric positive definite
+     matrix A, where
+
+          r' * r = a.
+
+ - Loadable Function: H = hess (A)
+ - Loadable Function: [P, H] = hess (A)
+     Compute the Hessenberg decomposition of the matrix A.
+
+     The Hessenberg decomposition is usually used as the first step in
+     an eigenvalue computation, but has other applications as well (see
+     Golub, Nash, and Van Loan, IEEE Transactions on Automatic Control,
+     1979).  The Hessenberg decomposition is `p * h * p' = a' where `p'
+     is a square unitary matrix (`p' * p = I', using complex-conjugate
+     transposition) and `h' is upper Hessenberg (`i >= j+1 => h (i, j)
+     = 0').
+
+ - Loadable Function: [L, U, P] = lu (A)
+     Compute the LU decomposition of A, using subroutines from LAPACK.
+     The result is returned in a permuted form, according to the
+     optional return value P.  For example, given the matrix `a = [1,
+     2; 3, 4]',
+
+          [l, u, p] = lu (a)
+
+     returns
+
+          l =
+          
+            1.00000  0.00000
+            0.33333  1.00000
+          
+          u =
+          
+            3.00000  4.00000
+            0.00000  0.66667
+          
+          p =
+          
+            0  1
+            1  0
+
+     The matrix is not required to be square..
+
+ - Loadable Function: [Q, R, P] = qr (A)
+     Compute the QR factorization of A, using standard LAPACK
+     subroutines.  For example, given the matrix `a = [1, 2; 3, 4]',
+
+          [q, r] = qr (a)
+
+     returns
+
+          q =
+          
+            -0.31623  -0.94868
+            -0.94868   0.31623
+          
+          r =
+          
+            -3.16228  -4.42719
+             0.00000  -0.63246
+
+     The `qr' factorization has applications in the solution of least
+     squares problems
+
+          `min norm(A x - b)'
+
+     for overdetermined systems of equations (i.e., `a'  is a tall,
+     thin matrix).  The QR factorization is `q * r = a' where `q' is an
+     orthogonal matrix and `r' is upper triangular.
+
+     The permuted QR factorization `[Q, R, P] = qr (A)' forms the QR
+     factorization such that the diagonal entries of `r' are decreasing
+     in magnitude order.  For example, given the matrix `a = [1, 2; 3,
+     4]',
+
+          [q, r, p] = qr(a)
+
+     returns
+
+          q =
+          
+            -0.44721  -0.89443
+            -0.89443   0.44721
+          
+          r =
+          
+            -4.47214  -3.13050
+             0.00000   0.44721
+          
+          p =
+          
+             0  1
+             1  0
+
+     The permuted `qr' factorization `[q, r, p] = qr (a)' factorization
+     allows the construction of an orthogonal basis of `span (a)'.
+
+ - Loadable Function: LAMBDA = qz (A, B)
+     Generalized eigenvalue problem A x = s B x, QZ decomposition.
+     Three ways to call:
+       1. `lambda = qz(A,B)'
+
+          Computes the generalized eigenvalues LAMBDA of (A - sB).
+
+       2. `[AA, BB, Q, Z, V, W, lambda] = qz (A, B)'
+
+          Computes qz decomposition, generalized eigenvectors, and
+            generalized eigenvalues of (A - sB)
+                       A V = B V diag(lambda)
+                       W' A = diag(lambda) W' B
+                       AA = Q'*A*Z, BB = Q'*B*Z  with Q, Z orthogonal (unitary)= I
+
+       3. `[AA,BB,Z{,lambda}] = qz(A,B,opt)'
+
+          As in form [2], but allows ordering of generalized eigenpairs
+                 for (e.g.) solution of discrete time algebraic
+          Riccati equations.          Form 3 is not available for
+          complex matrices and does not compute         the generalized
+          eigenvectors V, W, nor the orthogonal matrix Q.
+         OPT
+               for ordering eigenvalues of the GEP pencil.  The leading
+               block              of the revised pencil contains all
+               eigenvalues that satisfy:
+              `"N"'
+                    = unordered (default)
+
+              `"S"'
+                    = small: leading block has all |lambda| <=1
+
+              `"B"'
+                    = big: leading block has all |lambda >= 1
+
+              `"-"'
+                    = negative real part: leading  block has all
+                    eigenvalues                   in the open left
+                    half-plant
+
+              `"+"'
+                    = nonnegative real part:  leading block has all
+                    eigenvalues                   in the closed right
+                    half-plane
+
+     Note: qz performs permutation balancing, but not scaling (see
+     balance).        Order of output arguments was selected for
+     compatibility with MATLAB
+
+     See also: balance, dare, eig, schur
+
+ - Function File: [AA, BB, Q, Z] = qzhess (A, B)
+     Compute the Hessenberg-triangular decomposition of the matrix
+     pencil `(A, B)', returning `AA = Q * A * Z', `BB = Q * B * Z',
+     with Q and Z orthogonal.  For example,
+
+          [aa, bb, q, z] = qzhess ([1, 2; 3, 4], [5, 6; 7, 8])
+          => aa = [ -3.02244, -4.41741;  0.92998,  0.69749 ]
+          => bb = [ -8.60233, -9.99730;  0.00000, -0.23250 ]
+          =>  q = [ -0.58124, -0.81373; -0.81373,  0.58124 ]
+          =>  z = [ 1, 0; 0, 1 ]
+
+     The Hessenberg-triangular decomposition is the first step in Moler
+     and Stewart's QZ decomposition algorithm.
+
+     Algorithm taken from Golub and Van Loan, `Matrix Computations, 2nd
+     edition'.
+
+ - Loadable Function: S = schur (A)
+ - Loadable Function: [U, S] = schur (A, OPT)
+     The Schur decomposition is used to compute eigenvalues of a square
+     matrix, and has applications in the solution of algebraic Riccati
+     equations in control (see `are' and `dare').  `schur' always
+     returns `s = u' * a * u' where `u'  is a unitary matrix (`u'* u'
+     is identity) and `s' is upper triangular.  The eigenvalues of `a'
+     (and `s') are the diagonal elements of `s' If the matrix `a' is
+     real, then the real Schur decomposition is computed, in which the
+     matrix `u' is orthogonal and `s' is block upper triangular with
+     blocks of size at most `2 x 2' along the diagonal.  The diagonal
+     elements of `s' (or the eigenvalues of the `2 x 2' blocks, when
+     appropriate) are the eigenvalues of `a' and `s'.
+
+     The eigenvalues are optionally ordered along the diagonal
+     according to the value of `opt'.  `opt = "a"' indicates that all
+     eigenvalues with negative real parts should be moved to the leading
+     block of `s' (used in `are'), `opt = "d"' indicates that all
+     eigenvalues with magnitude less than one should be moved to the
+     leading block of `s' (used in `dare'), and `opt = "u"', the
+     default, indicates that no ordering of eigenvalues should occur.
+     The leading `k' columns of `u' always span the `a'-invariant
+     subspace corresponding to the `k' leading eigenvalues of `s'.
+
+ - Loadable Function: S = svd (A)
+ - Loadable Function: [U, S, V] = svd (A)
+     Compute the singular value decomposition of A
+
+          a = u * sigma * v'
+
+     The function `svd' normally returns the vector of singular values.
+     If asked for three return values, it computes U, S, and V.  For
+     example,
+
+          svd (hilb (3))
+
+     returns
+
+          ans =
+          
+            1.4083189
+            0.1223271
+            0.0026873
+
+     and
+
+          [u, s, v] = svd (hilb (3))
+
+     returns
+
+          u =
+          
+            -0.82704   0.54745   0.12766
+            -0.45986  -0.52829  -0.71375
+            -0.32330  -0.64901   0.68867
+          
+          s =
+          
+            1.40832  0.00000  0.00000
+            0.00000  0.12233  0.00000
+            0.00000  0.00000  0.00269
+          
+          v =
+          
+            -0.82704   0.54745   0.12766
+            -0.45986  -0.52829  -0.71375
+            -0.32330  -0.64901   0.68867
+
+     If given a second argument, `svd' returns an economy-sized
+     decomposition, eliminating the unnecessary rows or columns of U or
+     V.
+
+ - Function File: [HOUSV, BETA, ZER] = housh (X, J, Z)
+     Computes householder reflection vector housv to reflect x to be
+     jth column of identity, i.e., (I - beta*housv*housv')x =e(j) inputs
+      x: vector   j: index into vector   z: threshold for zero
+     (usually should be the number 0) outputs: (see Golub and Van Loan)
+      beta: If beta = 0, then no reflection need be applied (zer set
+     to 0)   housv: householder vector
+
+ - Function File: [U, H, NU] = krylov (A, V, K, EPS1, PFLG);
+     construct orthogonal basis U of block Krylov subspace;  [v a*v
+     a^2*v ... a^(k+1)*v]; method used: householder reflections to
+     guard against loss of orthogonality eps1: threshhold for 0
+     (default: 1e-12) pflg: flag to use row pivoting  (improves
+     numerical behavior)   0 [default]: no pivoting; prints a warning
+     message if trivial                null space is corrupted   1
+        : pivoting performed
+
+     outputs:   u: orthogonal basis of block krylov subspace   h:
+     Hessenberg matrix; if v is a vector then a u = u h      otherwise
+     h is meaningless  nu: dimension of span of krylov subspace (based
+     on eps1) if b is a vector and k > m-1, krylov returns h = the
+     Hessenberg decompostion of a.
+
+     Reference: Hodel and Misra, "Partial Pivoting in the Computation of
+        Krylov Subspaces", to be submitted to Linear Algebra and its
+      Applications
+
+
+File: octave.info,  Node: Functions of a Matrix,  Prev: Matrix Factorizations,  Up: Linear Algebra
+
+Functions of a Matrix
+=====================
+
+ - Loadable Function:  expm (A)
+     Return the exponential of a matrix, defined as the infinite Taylor
+     series
+
+          expm(a) = I + a + a^2/2! + a^3/3! + ...
+
+     The Taylor series is _not_ the way to compute the matrix
+     exponential; see Moler and Van Loan, `Nineteen Dubious Ways to
+     Compute the Exponential of a Matrix', SIAM Review, 1978.  This
+     routine uses Ward's diagonal Pade' approximation method with three
+     step preconditioning (SIAM Journal on Numerical Analysis, 1977).
+     Diagonal Pade'  approximations are rational polynomials of matrices
+
+               -1
+          D (a)   N (a)
+
+     whose Taylor series matches the first `2q+1' terms of the Taylor
+     series above; direct evaluation of the Taylor series (with the
+     same preconditioning steps) may be desirable in lieu of the Pade'
+     approximation when `Dq(a)' is ill-conditioned.
+
+ - Function File:  logm (A)
+     Compute the matrix logarithm of the square matrix A.  Note that
+     this is currently implemented in terms of an eigenvalue expansion
+     and needs to be improved to be more robust.
+
+ - Loadable Function: [RESULT, ERROR_ESTIMATE] = sqrtm (A)
+     Compute the matrix square root of the square matrix A.
+
+     Ref: Nicholas J. Higham. A new sqrtm for MATLAB. Numerical Analysis
+     Report No. 336, Manchester Centre for Computational Mathematics,
+     Manchester, England, January 1999.
+
+ - Function File:  kron (A, B)
+     Form the kronecker product of two matrices, defined block by block
+     as
+
+          x = [a(i, j) b]
+
+     For example,
+
+          kron (1:4, ones (3, 1))
+                =>  1  2  3  4
+                    1  2  3  4
+                    1  2  3  4
+
+ - Loadable Function: X = syl (A, B, C)
+     Solve the Sylvester equation
+
+          A X + X B + C = 0
+     using standard LAPACK subroutines.  For example,
+
+          syl ([1, 2; 3, 4], [5, 6; 7, 8], [9, 10; 11, 12])
+               => [ -0.50000, -0.66667; -0.66667, -0.50000 ]
+
+
+File: octave.info,  Node: Nonlinear Equations,  Next: Quadrature,  Prev: Linear Algebra,  Up: Top
+
+Nonlinear Equations
+*******************
+
+   Octave can solve sets of nonlinear equations of the form
+
+     F (x) = 0
+
+using the function `fsolve', which is based on the MINPACK subroutine
+`hybrd'.
+
+ - Loadable Function: [X, INFO, MSG] = fsolve (FCN, X0)
+     Given FCN, the name of a function of the form `f (X)' and an
+     initial starting point X0, `fsolve' solves the set of equations
+     such that `f(X) == 0'.
+
+     If FCN is a two-element string array, the first element names the
+     function f described above, and the second element names a
+     function of the form `j (X)' to compute the Jacobian matrix with
+     elements
+
+                     df_i
+          jac(i,j) = ----
+                     dx_j
+
+     You can use the function `fsolve_options' to set optional
+     parameters for `fsolve'.
+
+ - Loadable Function:  fsolve_options (OPT, VAL)
+     When called with two arguments, this function allows you set
+     options parameters for the function `fsolve'.  Given one argument,
+     `fsolve_options' returns the value of the corresponding option.  If
+     no arguments are supplied, the names of all the available options
+     and their current values are displayed.
+
+     Options include
+
+    `"tolerance"'
+          Nonnegative relative tolerance.
+
+   Here is a complete example.  To solve the set of equations
+
+     -2x^2 + 3xy   + 4 sin(y) = 6
+      3x^2 - 2xy^2 + 3 cos(x) = -4
+
+you first need to write a function to compute the value of the given
+function.  For example:
+
+     function y = f (x)
+       y(1) = -2*x(1)^2 + 3*x(1)*x(2)   + 4*sin(x(2)) - 6;
+       y(2) =  3*x(1)^2 - 2*x(1)*x(2)^2 + 3*cos(x(1)) + 4;
+     endfunction
+
+   Then, call `fsolve' with a specified initial condition to find the
+roots of the system of equations.  For example, given the function `f'
+defined above,
+
+     [x, info] = fsolve ("f", [1; 2])
+
+results in the solution
+
+     x =
+     
+       0.57983
+       2.54621
+     
+     info = 1
+
+   A value of `info = 1' indicates that the solution has converged.
+
+   The function `perror' may be used to print English messages
+corresponding to the numeric error codes.  For example,
+
+     perror ("fsolve", 1)
+          -| solution converged to requested tolerance
+
+
+File: octave.info,  Node: Quadrature,  Next: Differential Equations,  Prev: Nonlinear Equations,  Up: Top
+
+Quadrature
+**********
+
+* Menu:
+
+* Functions of One Variable::
+* Orthogonal Collocation::
+
+
+File: octave.info,  Node: Functions of One Variable,  Next: Orthogonal Collocation,  Up: Quadrature
+
+Functions of One Variable
+=========================
+
+ - Loadable Function: [V, IER, NFUN, ERR] = quad (F, A, B, TOL, SING)
+     Integrate a nonlinear function of one variable using Quadpack.
+     The first argument is the name of the  function to call to compute
+     the value of the integrand.  It must have the form
+
+          y = f (x)
+
+     where Y and X are scalars.
+
+     The second and third arguments are limits of integration.  Either
+     or both may be infinite.
+
+     The optional argument TOL is a vector that specifies the desired
+     accuracy of the result.  The first element of the vector is the
+     desired absolute tolerance, and the second element is the desired
+     relative tolerance.  To choose a relative test only, set the
+     absolute tolerance to zero.  To choose an absolute test only, set
+     the relative tolerance to zero.
+
+     The optional argument SING is a vector of values at which the
+     integrand is known to be singular.
+
+     The result of the integration is returned in V and IER contains an
+     integer error code (0 indicates a successful integration).  The
+     value of NFUN indicates how many function evaluations were
+     required, and ERR contains an estimate of the error in the
+     solution.
+
+     You can use the function `quad_options' to set optional parameters
+     for `quad'.
+
+ - Loadable Function:  quad_options (OPT, VAL)
+     When called with two arguments, this function allows you set
+     options parameters for the function `quad'.  Given one argument,
+     `quad_options' returns the value of the corresponding option.  If
+     no arguments are supplied, the names of all the available options
+     and their current values are displayed.
+
+     Options include
+
+    `"absolute tolerance"'
+          Absolute tolerance; may be zero for pure relative error test.
+
+    `"relative tolerance"'
+          Nonnegative relative tolerance.  If the absolute tolerance is
+          zero, the relative tolerance must be greater than or equal to
+          `max (50*eps, 0.5e-28)'.
+
+   Here is an example of using `quad' to integrate the function
+
+       F(X) = X * sin (1/X) * sqrt (abs (1 - X))
+
+from X = 0 to X = 3.
+
+   This is a fairly difficult integration (plot the function over the
+range of integration to see why).
+
+   The first step is to define the function:
+
+     function y = f (x)
+       y = x .* sin (1 ./ x) .* sqrt (abs (1 - x));
+     endfunction
+
+   Note the use of the `dot' forms of the operators.  This is not
+necessary for the call to `quad', but it makes it much easier to
+generate a set of points for plotting (because it makes it possible to
+call the function with a vector argument to produce a vector result).
+
+   Then we simply call quad:
+
+     [v, ier, nfun, err] = quad ("f", 0, 3)
+          => 1.9819
+          => 1
+          => 5061
+          => 1.1522e-07
+
+   Although `quad' returns a nonzero value for IER, the result is
+reasonably accurate (to see why, examine what happens to the result if
+you move the lower bound to 0.1, then 0.01, then 0.001, etc.).
+
+
+File: octave.info,  Node: Orthogonal Collocation,  Prev: Functions of One Variable,  Up: Quadrature
+
+Orthogonal Collocation
+======================
+
+ - Loadable Function: [R, AMAT, BMAT, Q] = colloc (N, "left", "right")
+     Compute derivative and integral weight matrices for orthogonal
+     collocation using the subroutines given in J. Villadsen and M. L.
+     Michelsen, `Solution of Differential Equation Models by Polynomial
+     Approximation'.
+
+   Here is an example of using `colloc' to generate weight matrices for
+solving the second order differential equation U' - ALPHA * U" = 0 with
+the boundary conditions U(0) = 0 and U(1) = 1.
+
+   First, we can generate the weight matrices for N points (including
+the endpoints of the interval), and incorporate the boundary conditions
+in the right hand side (for a specific value of ALPHA).
+
+     n = 7;
+     alpha = 0.1;
+     [r, a, b] = colloc (n-2, "left", "right");
+     at = a(2:n-1,2:n-1);
+     bt = b(2:n-1,2:n-1);
+     rhs = alpha * b(2:n-1,n) - a(2:n-1,n);
+
+   Then the solution at the roots R is
+
+     u = [ 0; (at - alpha * bt) \ rhs; 1]
+          => [ 0.00; 0.004; 0.01 0.00; 0.12; 0.62; 1.00 ]
+
+
+File: octave.info,  Node: Differential Equations,  Next: Optimization,  Prev: Quadrature,  Up: Top
+
+Differential Equations
+**********************
+
+   Octave has two built-in functions for solving differential equations.
+Both are based on reliable ODE solvers written in Fortran.
+
+* Menu:
+
+* Ordinary Differential Equations::
+* Differential-Algebraic Equations::
+
+
+File: octave.info,  Node: Ordinary Differential Equations,  Next: Differential-Algebraic Equations,  Up: Differential Equations
+
+Ordinary Differential Equations
+===============================
+
+   The function `lsode' can be used to solve ODEs of the form
+
+     dx
+     -- = f (x, t)
+     dt
+
+using Hindmarsh's ODE solver LSODE.
+
+ - Loadable Function: [X, ISTATE, MSG] lsode (FCN, X_0, T, T_CRIT)
+     Solve the set of differential equations
+
+          dx
+          -- = f(x, t)
+          dt
+
+     with
+
+          x(t_0) = x_0
+
+     The solution is returned in the matrix X, with each row
+     corresponding to an element of the vector T.  The first element of
+     T should be t_0 and should correspond to the initial state of the
+     system X_0, so that the first row of the output is X_0.
+
+     The first argument, FCN, is a string that names the function to
+     call to compute the vector of right hand sides for the set of
+     equations.  The function must have the form
+
+          XDOT = f (X, T)
+
+     in which XDOT and X are vectors and T is a scalar.
+
+     If FCN is a two-element string array, the first element names the
+     function f described above, and the second element names a function
+     to compute the Jacobian of f.  The Jacobian function must have the
+     form
+
+          JAC = j (X, T)
+
+     in which JAC is the matrix of partial derivatives
+
+                       | df_1  df_1       df_1 |
+                       | ----  ----  ...  ---- |
+                       | dx_1  dx_2       dx_N |
+                       |                       |
+                       | df_2  df_2       df_2 |
+                       | ----  ----  ...  ---- |
+                df_i   | dx_1  dx_2       dx_N |
+          jac = ---- = |                       |
+                dx_j   |  .    .     .    .    |
+                       |  .    .      .   .    |
+                       |  .    .       .  .    |
+                       |                       |
+                       | df_N  df_N       df_N |
+                       | ----  ----  ...  ---- |
+                       | dx_1  dx_2       dx_N |
+
+     The second and third arguments specify the intial state of the
+     system, x_0, and the initial value of the independent variable t_0.
+
+     The fourth argument is optional, and may be used to specify a set
+     of times that the ODE solver should not integrate past.  It is
+     useful for avoiding difficulties with singularities and points
+     where there is a discontinuity in the derivative.
+
+     After a successful computation, the value of ISTATE will be 2
+     (consistent with the Fortran version of LSODE).
+
+     If the computation is not successful, ISTATE will be something
+     other than 2 and MSG will contain additional information.
+
+     You can use the function `lsode_options' to set optional
+     parameters for `lsode'.
+
+ - Loadable Function:  lsode_options (OPT, VAL)
+     When called with two arguments, this function allows you set
+     options parameters for the function `lsode'.  Given one argument,
+     `lsode_options' returns the value of the corresponding option.  If
+     no arguments are supplied, the names of all the available options
+     and their current values are displayed.
+
+     Options include
+
+    `"absolute tolerance"'
+          Absolute tolerance.  May be either vector or scalar.  If a
+          vector, it must match the dimension of the state vector.
+
+    `"relative tolerance"'
+          Relative tolerance parameter.  Unlike the absolute tolerance,
+          this parameter may only be a scalar.
+
+          The local error test applied at each integration step is
+
+                 abs (local error in x(i)) <= rtol * abs (y(i)) + atol(i)
+
+    `"integration method"'
+          A string specifing the method of integration to use to solve
+          the ODE system.  Valid values are
+
+         "adams"
+         "non-stiff"
+               No Jacobian used (even if it is available).
+
+         "bdf"
+
+         "stiff"
+               Use stiff backward differentiation formula (BDF) method.
+               If a function to compute the Jacobian is not supplied,
+               `lsode' will compute a finite difference approximation
+               of the Jacobian matrix.
+
+    `"initial step size"'
+          The step size to be attempted on the first step (default is
+          determined automatically).
+
+    `"maximum order"'
+          Restrict the maximum order of the solution method.  If using
+          the Adams method, this option must be between 1 and 12.
+          Otherwise, it must be between 1 and 5, inclusive.
+
+    `"maximum step size"'
+          Setting the maximum stepsize will avoid passing over very
+          large regions  (default is not specified).
+
+    `"minimum step size"'
+          The minimum absolute step size allowed (default is 0).
+
+    `"step limit"'
+          Maximum number of steps allowed (default is 100000).
+
+   Here is an example of solving a set of three differential equations
+using `lsode'.  Given the function
+
+     function xdot = f (x, t)
+     
+       xdot = zeros (3,1);
+     
+       xdot(1) = 77.27 * (x(2) - x(1)*x(2) + x(1) \
+                 - 8.375e-06*x(1)^2);
+       xdot(2) = (x(3) - x(1)*x(2) - x(2)) / 77.27;
+       xdot(3) = 0.161*(x(1) - x(3));
+     
+     endfunction
+
+and the initial condition `x0 = [ 4; 1.1; 4 ]', the set of equations
+can be integrated using the command
+
+     t = linspace (0, 500, 1000);
+     
+     y = lsode ("f", x0, t);
+
+   If you try this, you will see that the value of the result changes
+dramatically between T = 0 and 5, and again around T = 305.  A more
+efficient set of output points might be
+
+     t = [0, logspace (-1, log10(303), 150), \
+             logspace (log10(304), log10(500), 150)];
+
+   Octave also includes ODESSA, a modification of LSODE that allows for
+the computation of parametric sensitivity information simultaneously
+with the solution of the set of ODEs.
+
+ - Loadable Function: [X, SX, ISTATE, MSG] odessa (FCN, X_0, P, SX_0,
+          T, T_CRIT)
+     Solve the set of differential equations
+
+          dx
+          -- = f(x, t; p)
+          dt
+
+     with
+
+          x(t_0) = x_0
+
+     and simultaneously compute the first-order sensitivity coefficients
+     given by
+
+          s'(t) = j(t)*s(t) + df/dp
+
+     in which
+
+          s(t)  = dx(t)/dp        (sensitivity functions)
+          s'(t) = d(dx(t)/dp)/dt
+          j(t)  = df(x,t;p)/dx(t) (Jacobian matrix)
+          df/dp = df(x,t;p)/dp    (inhomogeneity matrix)
+
+     The solution is returned in the matrix X, with each row
+     corresponding to an element of the vector T.  The first element of
+     T should be t_0 and should correspond to the initial state of the
+     system X_0, so that the first row of the output is X_0.
+
+     The sensitivities are returned in a list of matrices, SX, with
+     each element of the list corresponding to an element of the vector
+     T.
+
+     The first argument, FCN, is a string that names the function to
+     call to compute the vector of right hand sides for the set of
+     equations.  The function must have the form
+
+          XDOT = f (X, T, P)
+
+     in which XDOT and X are vectors and T is a scalar.
+
+     The variable P is a vector of parameters.
+
+     The FCN argument may also be an array of strings
+
+          ["f"; "j"; "b"]
+
+     in which the first element names the function f described above,
+     the second element names a function to compute the Jacobian of f,
+     and the third element names a function to compute the
+     inhomogeneity matrix.
+
+     The Jacobian function must have the form
+
+          JAC = j (X, T, P)
+
+     in which X, T, and P have the same meanings as above for the
+     function F, and  JAC is the matrix of partial derivatives
+
+                df_i
+          jac = ----
+                dx_j
+
+     The function B must have the form
+
+          DFDP = b (X, T, P, C)
+
+     in which X, T, and P have the same meanings as above for the
+     function F, C indicates which partial derivatives to return in
+     DFDP.  For example, if C is 2, you should return the vector
+
+                 df_i
+          dfdp = ----,    i = 1:length(x)
+                 dp_2
+
+     The second argument, X_0, specifies the intial state of the system.
+
+     The third argument, P, specifies the set of parameters.
+
+     The fourth argument, SX_0 specifies the initial values of the
+     sensitivities.
+
+     The sixth argument is optional, and may be used to specify a set of
+     times that the ODE solver should not integrate past.  It is useful
+     for avoiding difficulties with singularities and points where
+     there is a discontinuity in the derivative.
+
+     After a successful computation, the value of ISTATE will be 2
+     (consistent with the Fortran version of ODESSA).
+
+     If the computation is not successful, ISTATE will be something
+     other than 2 and MSG will contain additional information.
+
+     You can use the function `lsode_options' to set optional
+     parameters for `lsode'.
+
+ - Loadable Function:  odessa_options (OPT, VAL)
+     When called with two arguments, this function allows you set
+     options parameters for the function `odessa'.  Given one argument,
+     `odessa_options' returns the value of the corresponding option.
+     If no arguments are supplied, the names of all the available
+     options and their current values are displayed.
+
+     Options include
+
+    `"absolute tolerance"'
+          Absolute tolerance.  May be either vector or scalar.  If a
+          vector, it must match the dimension of the state vector.
+
+    `"relative tolerance"'
+          Relative tolerance parameter.  Unlike the absolute tolerance,
+          this parameter may only be a scalar.
+
+          The local error test applied at each integration step is
+
+                 abs (local error in x(i)) <= rtol * abs (y(i)) + atol(i)
+
+    `"integration method"'
+          A string specifing the method of integration to use to solve
+          the ODE system.  Valid values are
+
+         "adams"
+         "non-stiff"
+               No Jacobian used (even if it is available).
+
+         "bdf"
+
+         "stiff"
+               Use stiff backward differentiation formula (BDF) method.
+               If a function to compute the Jacobian is not supplied,
+               `lsode' will compute a finite difference approximation
+               of the Jacobian matrix.
+
+    `"initial step size"'
+          The step size to be attempted on the first step (default is
+          determined automatically).
+
+    `"maximum order"'
+          Restrict the maximum order of the solution method.  If using
+          the Adams method, this option must be between 1 and 12.
+          Otherwise, it must be between 1 and 5, inclusive.
+
+    `"maximum step size"'
+          Setting the maximum stepsize will avoid passing over very
+          large regions  (default is not specified).
+
+    `"minimum step size"'
+          The minimum absolute step size allowed (default is 0).
+
+    `"step limit"'
+          Maximum number of steps allowed (default is 100000).
+
+   See Alan C. Hindmarsh, `ODEPACK, A Systematized Collection of ODE
+Solvers', in Scientific Computing, R. S. Stepleman, editor, (1983) for
+more information about the inner workings of `lsode'.
+
+
+File: octave.info,  Node: Differential-Algebraic Equations,  Prev: Ordinary Differential Equations,  Up: Differential Equations
+
+Differential-Algebraic Equations
+================================
+
+   The function `daspk' can be used to solve DAEs of the form
+
+     0 = f (x-dot, x, t),    x(t=0) = x_0, x-dot(t=0) = x-dot_0
+
+using Petzold's DAE solver DASPK.
+
+ - Loadable Function: [X, XDOT, ISTATE, MSG] = daspk (FCN, X_0, XDOT_0,
+          T, T_CRIT)
+     Solve the set of differential-algebraic equations
+
+          0 = f (x, xdot, t)
+
+     with
+
+          x(t_0) = x_0, xdot(t_0) = xdot_0
+
+     The solution is returned in the matrices X and XDOT, with each row
+     in the result matrices corresponding to one of the elements in the
+     vector T.  The first element of T should be t_0 and correspond to
+     the initial state of the system X_0 and its derivative XDOT_0, so
+     that the first row of the output X is X_0 and the first row of the
+     output XDOT is XDOT_0.
+
+     The first argument, FCN, is a string that names the function to
+     call to compute the vector of residuals for the set of equations.
+     It must have the form
+
+          RES = f (X, XDOT, T)
+
+     in which X, XDOT, and RES are vectors, and T is a scalar.
+
+     If FCN is a two-element string array, the first element names the
+     function f described above, and the second element names a
+     function to compute the modified Jacobian
+
+                df       df
+          jac = -- + c ------
+                dx     d xdot
+
+     The modified Jacobian function must have the form
+
+
+          JAC = j (X, XDOT, T, C)
+
+     The second and third arguments to `daspk' specify the initial
+     condition of the states and their derivatives, and the fourth
+     argument specifies a vector of output times at which the solution
+     is desired, including the time corresponding to the initial
+     condition.
+
+     The set of initial states and derivatives are not strictly
+     required to be consistent.  If they are not consistent, you must
+     use the `daspk_options' function to provide additional information
+     so that `daspk' can compute a consistent starting point.
+
+     The fifth argument is optional, and may be used to specify a set of
+     times that the DAE solver should not integrate past.  It is useful
+     for avoiding difficulties with singularities and points where
+     there is a discontinuity in the derivative.
+
+     After a successful computation, the value of ISTATE will be
+     greater than zero (consistent with the Fortran version of DASPK).
+
+     If the computation is not successful, the value of ISTATE will be
+     less than zero and MSG will contain additional information.
+
+     You can use the function `daspk_options' to set optional
+     parameters for `daspk'.
+
+ - Loadable Function:  daspk_options (OPT, VAL)
+     When called with two arguments, this function allows you set
+     options parameters for the function `daspk'.  Given one argument,
+     `daspk_options' returns the value of the corresponding option.  If
+     no arguments are supplied, the names of all the available options
+     and their current values are displayed.
+
+     Options include
+
+    `"absolute tolerance"'
+          Absolute tolerance.  May be either vector or scalar.  If a
+          vector, it must match the dimension of the state vector, and
+          the relative tolerance must also be a vector of the same
+          length.
+
+    `"relative tolerance"'
+          Relative tolerance.  May be either vector or scalar.  If a
+          vector, it must match the dimension of the state vector, and
+          the absolute tolerance must also be a vector of the same
+          length.
+
+          The local error test applied at each integration step is
+
+                 abs (local error in x(i)) <= rtol(i) * abs (Y(i)) + atol(i)
+
+    `"compute consistent initial condition"'
+          Denoting the differential variables in the state vector by
+          `Y_d' and the algebraic variables by `Y_a', `ddaspk' can solve
+          one of two initialization problems:
+
+            1. Given Y_d, calculate Y_a and Y'_d
+
+            2. Given Y', calculate Y.
+
+          In either case, initial values for the given components are
+          input, and initial guesses for the unknown components must
+          also be provided as input.  Set this option to 1 to solve the
+          first problem, or 2 to solve the second (the default default
+          is 0, so you must provide a set of initial conditions that
+          are consistent).
+
+          If this option is set to a nonzero value, you must also set
+          the `"algebraic variables"' option to declare which variables
+          in the problem are algebraic.
+
+    `"use initial condition heuristics"'
+          Set to a nonzero value to use the initial condition
+          heuristics options described below.
+
+    `"initial condition heuristics"'
+          A vector of the following parameters that can be used to
+          control the initial condition calculation.
+
+         `MXNIT'
+               Maximum number of Newton iterations (default is 5).
+
+         `MXNJ'
+               Maximum number of Jacobian evaluations (default is 6).
+
+         `MXNH'
+               Maximum number of values of the artificial stepsize
+               parameter to be tried if the `"compute consistent
+               initial condition"' option has been set to 1 (default is
+               5).
+
+               Note that the maximum number of Newton iterations
+               allowed in all is `MXNIT*MXNJ*MXNH' if the `"compute
+               consistent initial condition"' option has been set to 1
+               and `MXNIT*MXNJ' if it is set to 2.
+
+         `LSOFF'
+               Set to a nonzero value to disable the linesearch
+               algorithm (default is 0).
+
+         `STPTOL'
+               Minimum scaled step in linesearch algorithm (default is
+               eps^(2/3)).
+
+         `EPINIT'
+               Swing factor in the Newton iteration convergence test.
+               The test is applied to the residual vector,
+               premultiplied by the approximate Jacobian.  For
+               convergence, the weighted RMS norm of this vector
+               (scaled by the error weights) must be less than
+               `EPINIT*EPCON', where `EPCON' = 0.33 is the analogous
+               test constant used in the time steps. The default is
+               `EPINIT' = 0.01.
+
+    `"print initial condition info"'
+          Set this option to a nonzero value to display detailed
+          information about the initial condition calculation (default
+          is 0).
+
+    `"exclude algebraic variables from error test"'
+          Set to a nonzero value to exclude algebraic variables from
+          the error test.  You must also set the `"algebraic
+          variables"' option to declare which variables in the problem
+          are algebraic (default is 0).
+
+    `"algebraic variables"'
+          A vector of the same length as the state vector.  A nonzero
+          element indicates that the corresponding element of the state
+          vector is an algebraic variable (i.e., its derivative does
+          not appear explicitly in the equation set.
+
+          This option is required by the `compute consistent initial
+          condition"' and `"exclude algebraic variables from error
+          test"' options.
+
+    `"enforce inequality constraints"'
+          Set to one of the following values to enforce the inequality
+          constraints specified by the `"inequality constraint types"'
+          option (default is 0).
+
+            1. To have constraint checking only in the initial
+               condition calculation.
+
+            2. To enforce constraint checking during the integration.
+
+            3. To enforce both options 1 and 2.
+
+    `"inequality constraint types"'
+          A vector of the same length as the state specifying the type
+          of inequality constraint.  Each element of the vector
+          corresponds to an element of the state and should be assigned
+          one of the following codes
+
+         -2
+               Less than zero.
+
+         -1
+               Less than or equal to zero.
+
+         0
+               Not constrained.
+
+         1
+               Greater than or equal to zero.
+
+         2
+               Greater than zero.
+
+          This option only has an effect if the `"enforce inequality
+          constraints"' option is nonzero.
+
+    `"initial step size"'
+          Differential-algebraic problems may occaisionally suffer from
+          severe scaling difficulties on the first step.  If you know a
+          great deal about the scaling of your problem, you can help to
+          alleviate this problem by specifying an initial stepsize
+          (default is computed automatically).
+
+    `"maximum order"'
+          Restrict the maximum order of the solution method.  This
+          option must be between 1 and 5, inclusive (default is 5).
+
+    `"maximum step size"'
+          Setting the maximum stepsize will avoid passing over very
+          large regions (default is not specified).
+
+   Octave also includes DASSL, an earlier version of DASPK, and DASRT,
+which can be used to solve DAEs with constraints (stopping conditions).
+
+ - Loadable Function: [X, XDOT, T_OUT, ISTAT, MSG] = dasrt (FCN [, G],
+          X_0, XDOT_0, T [, T_CRIT])
+     Solve the set of differential-algebraic equations
+
+          0 = f (xdot, x, t)
+
+     with
+
+          x(t_0) = x_0, xdot(t_0) = xdot_0
+
+     with functional stopping criteria (root solving).
+
+     The solution is returned in the matrices X and XDOT, with each row
+     in the result matrices corresponding to one of the elements in the
+     vector T_OUT.  The first element of T should be t_0 and correspond
+     to the initial state of the system X_0 and its derivative XDOT_0,
+     so that the first row of the output X is X_0 and the first row of
+     the output XDOT is XDOT_0.
+
+     The vector T provides an upper limit on the length of the
+     integration.  If the stopping condition is met, the vector T_OUT
+     will be shorter than T, and the final element of T_OUT will be the
+     point at which the stopping condition was met, and may not
+     correspond to any element of the vector T.
+
+     The first argument, FCN, is a string that names the function to
+     call to compute the vector of residuals for the set of equations.
+     It must have the form
+
+          RES = f (X, XDOT, T)
+
+     in which X, XDOT, and RES are vectors, and T is a scalar.
+
+     If FCN is a two-element string array, the first element names the
+     function f described above, and the second element names a
+     function to compute the modified Jacobian
+
+                df       df
+          jac = -- + c ------
+                dx     d xdot
+
+     The modified Jacobian function must have the form
+
+
+          JAC = j (X, XDOT, T, C)
+
+     The optional second argument names a function that defines the
+     constraint functions whose roots are desired during the
+     integration.  This function must have the form
+
+          G_OUT = g (X, T)
+
+     and return a vector of the constraint function values.  If the
+     value of any of the constraint functions changes sign, DASRT will
+     attempt to stop the integration at the point of the sign change.
+
+     If the name of the constraint function is omitted, `dasrt' solves
+     the saem problem as `daspk' or `dassl'.
+
+     Note that because of numerical errors in the constraint functions
+     due to roundoff and integration error, DASRT may return false
+     roots, or return the same root at two or more nearly equal values
+     of T.  If such false roots are suspected, the user should consider
+     smaller error tolerances or higher precision in the evaluation of
+     the constraint functions.
+
+     If a root of some constraint function defines the end of the
+     problem, the input to DASRT should nevertheless allow integration
+     to a point slightly past that root, so that DASRT can locate the
+     root by interpolation.
+
+     The third and fourth arguments to `dasrt' specify the initial
+     condition of the states and their derivatives, and the fourth
+     argument specifies a vector of output times at which the solution
+     is desired, including the time corresponding to the initial
+     condition.
+
+     The set of initial states and derivatives are not strictly
+     required to be consistent.  In practice, however, DASSL is not
+     very good at determining a consistent set for you, so it is best
+     if you ensure that the initial values result in the function
+     evaluating to zero.
+
+     The sixth argument is optional, and may be used to specify a set of
+     times that the DAE solver should not integrate past.  It is useful
+     for avoiding difficulties with singularities and points where
+     there is a discontinuity in the derivative.
+
+     After a successful computation, the value of ISTATE will be
+     greater than zero (consistent with the Fortran version of DASSL).
+
+     If the computation is not successful, the value of ISTATE will be
+     less than zero and MSG will contain additional information.
+
+     You can use the function `dasrt_options' to set optional
+     parameters for `dasrt'.
+
+ - Loadable Function:  dasrt_options (OPT, VAL)
+     When called with two arguments, this function allows you set
+     options parameters for the function `dasrt'.  Given one argument,
+     `dasrt_options' returns the value of the corresponding option.  If
+     no arguments are supplied, the names of all the available options
+     and their current values are displayed.
+
+     Options include
+
+    `"absolute tolerance"'
+          Absolute tolerance.  May be either vector or scalar.  If a
+          vector, it must match the dimension of the state vector, and
+          the relative tolerance must also be a vector of the same
+          length.
+
+    `"relative tolerance"'
+          Relative tolerance.  May be either vector or scalar.  If a
+          vector, it must match the dimension of the state vector, and
+          the absolute tolerance must also be a vector of the same
+          length.
+
+          The local error test applied at each integration step is
+                 abs (local error in x(i)) <= rtol(i) * abs (Y(i)) + atol(i)
+
+    `"initial step size"'
+          Differential-algebraic problems may occaisionally suffer from
+          severe scaling difficulties on the first step.  If you know a
+          great deal about the scaling of your problem, you can help to
+          alleviate this problem by specifying an initial stepsize.
+
+    `"maximum order"'
+          Restrict the maximum order of the solution method.  This
+          option must be between 1 and 5, inclusive.
+
+    `"maximum step size"'
+          Setting the maximum stepsize will avoid passing over very
+          large regions.
+
+    `"step limit"'
+          Maximum number of integration steps to attempt on a single
+          call to the underlying Fortran code.
+
+   See K. E. Brenan, et al., `Numerical Solution of Initial-Value
+Problems in Differential-Algebraic Equations', North-Holland (1989) for
+more information about the implementation of DASSL.
+
+
+File: octave.info,  Node: Optimization,  Next: Statistics,  Prev: Differential Equations,  Up: Top
+
+Optimization
+************
+
+* Menu:
+
+* Linear Programming::
+* Quadratic Programming::
+* Nonlinear Programming::
+* Linear Least Squares::
+
+
+File: octave.info,  Node: Linear Programming,  Next: Quadratic Programming,  Up: Optimization
+
+Linear Programming
+==================
+
+
+File: octave.info,  Node: Quadratic Programming,  Next: Nonlinear Programming,  Prev: Linear Programming,  Up: Optimization
+
+Quadratic Programming
+=====================
+
+
+File: octave.info,  Node: Nonlinear Programming,  Next: Linear Least Squares,  Prev: Quadratic Programming,  Up: Optimization
+
+Nonlinear Programming
+=====================
+
+
+File: octave.info,  Node: Linear Least Squares,  Prev: Nonlinear Programming,  Up: Optimization
+
+Linear Least Squares
+====================
+
+ - Function File: [BETA, V, R] = gls (Y, X, O)
+     Generalized least squares estimation for the multivariate model y
+     = x b + e with mean (e) = 0 and cov (vec (e)) = (s^2) o,  where y
+     is a t by p matrix, x is a t by k matrix, b is a k by p matrix, e
+     is a t by p matrix, and o is a t p by t p matrix.
+
+     Each row of Y and X is an observation and each column a variable.
+     The return values BETA, V, and R are defined as follows.
+
+    BETA
+          The GLS estimator for b.
+
+    V
+          The GLS estimator for s^2.
+
+    R
+          The matrix of GLS residuals, r = y - x beta.
+
+ - Function File: [BETA, SIGMA, R] = ols (Y, X)
+     Ordinary least squares estimation for the multivariate model y = x
+     b + e with mean (e) = 0 and cov (vec (e)) = kron (s, I).   where y
+     is a t by p matrix, x is a t by k matrix, b is a k by p matrix, and
+     e is a t by p matrix.
+
+     Each row of Y and X is an observation and each column a variable.
+
+     The return values BETA, SIGMA, and R are defined as follows.
+
+    BETA
+          The OLS estimator for B, `BETA = pinv (X) * Y', where `pinv
+          (X)' denotes the pseudoinverse of X.
+
+    SIGMA
+          The OLS estimator for the matrix S,
+
+               SIGMA = (Y-X*BETA)'
+                 * (Y-X*BETA)
+                 / (T-rank(X))
+
+    R
+          The matrix of OLS residuals, `R = Y - X * BETA'.
+
+
+File: octave.info,  Node: Statistics,  Next: Financial Functions,  Prev: Optimization,  Up: Top
+
+Statistics
+**********
+
+   I hope that someday Octave will include more statistics functions.
+If you would like to help improve Octave in this area, please contact
+<bug-octave@bevo.che.wisc.edu>.
+
+* Menu:
+
+* Basic Statistical Functions::
+* Tests::
+* Models::
+* Distributions::
+
+
+File: octave.info,  Node: Basic Statistical Functions,  Next: Tests,  Up: Statistics
+
+Basic Statistical Functions
+===========================
+
+ - Function File:  mean (X, DIM, OPT)
+     If X is a vector, compute the mean of the elements of X
+
+          mean (x) = SUM_i x(i) / N
+     If X is a matrix, compute the mean for each column and return them
+     in a row vector.
+
+     With the optional argument OPT, the kind of mean computed can be
+     selected.  The following options are recognized:
+
+    `"a"'
+          Compute the (ordinary) arithmetic mean.  This is the default.
+
+    `"g"'
+          Computer the geometric mean.
+
+    `"h"'
+          Compute the harmonic mean.
+
+     If the optional argument DIM is supplied, work along dimension DIM.
+
+     Both DIM and OPT are optional.  If both are supplied, either may
+     appear first.
+
+ - Function File:  median (X)
+     If X is a vector, compute the median value of the elements of X.
+
+                      x(ceil(N/2)),             N odd
+          median(x) =
+                      (x(N/2) + x((N/2)+1))/2,  N even
+     If X is a matrix, compute the median value for each column
+     and return them in a row vector.
+
+ - Function File:  std (X)
+     If X is a vector, compute the standard deviation of the elements
+     of X.
+
+          std (x) = sqrt (sumsq (x - mean (x)) / (n - 1))
+     If X is a matrix, compute the standard deviation for each
+     column and return them in a row vector.
+
+ - Function File:  cov (X, Y)
+     If each row of X and Y is an observation and each column is a
+     variable, the (I,J)-th entry of `cov (X, Y)' is the covariance
+     between the I-th variable in X and the J-th variable in Y.  If
+     called with one argument, compute `cov (X, X)'.
+
+ - Function File:  corrcoef (X, Y)
+     If each row of X and Y is an observation and each column is a
+     variable, the (I,J)-th entry of `corrcoef (X, Y)' is the
+     correlation between the I-th variable in X and the J-th variable
+     in Y.  If called with one argument, compute `corrcoef (X, X)'.
+
+ - Function File:  kurtosis (X)
+     If X is a vector of length N, return the kurtosis
+
+          kurtosis (x) = N^(-1) std(x)^(-4) sum ((x - mean(x)).^4) - 3
+
+     of X.  If X is a matrix, return the row vector containing the
+     kurtosis of each column.
+
+ - Function File:  mahalanobis (X, Y)
+     Return the Mahalanobis' D-square distance between the multivariate
+     samples X and Y, which must have the same number of components
+     (columns), but may have a different number of observations (rows).
+
+ - Function File:  skewness (X)
+     If X is a vector of length n, return the skewness
+
+          skewness (x) = N^(-1) std(x)^(-3) sum ((x - mean(x)).^3)
+
+     of X.  If X is a matrix, return the row vector containing the
+     skewness of each column.
+
+ - Function File:  values (X)
+     Return the different values in a column vector, arranged in
+     ascending order.
+
+ - Function File:  var (X)
+     For vector arguments, return the (real) variance of the values.
+     For matrix arguments, return a row vector contaning the variance
+     for each column.
+
+ - Function File: [T, L_X] = table (X)
+ - Function File: [T, L_X, L_Y] = table (X, Y)
+     Create a contingency table T from data vectors.  The L vectors are
+     the corresponding levels.
+
+     Currently, only 1- and 2-dimensional tables are supported.
+
+ - Function File:  studentize (X)
+     If X is a vector, subtract its mean and divide by its standard
+     deviation.
+
+     If X is a matrix, do the above for each column.
+
+ - Function File:  statistics (X)
+     If X is a matrix, return a matrix with the minimum, first
+     quartile, median, third quartile, maximum, mean, standard
+     deviation, skewness and kurtosis of the columns of X as its rows.
+
+     If X is a vector, treat it as a column vector.
+
+ - Function File:  spearman (X, Y)
+     Compute Spearman's rank correlation coefficient RHO for each of
+     the variables specified by the input arguments.
+
+     For matrices, each row is an observation and each column a
+     variable; vectors are always observations and may be row or column
+     vectors.
+
+     `spearman (X)' is equivalent to `spearman (X, X)'.
+
+     For two data vectors X and Y, Spearman's RHO is the correlation of
+     the ranks of X and Y.
+
+     If X and Y are drawn from independent distributions, RHO has zero
+     mean and variance `1 / (n - 1)', and is asymptotically normally
+     distributed.
+
+ - Function File:  run_count (X, N)
+     Count the upward runs in the columns of X of length 1, 2, ..., N-1
+     and greater than or equal to N.
+
+ - Function File:  ranks (X)
+     If X is a vector, return the (column) vector of ranks of X
+     adjusted for ties.
+
+     If X is a matrix, do the above for each column of X.
+
+ - Function File:  range (X)
+     If X is a vector, return the range, i.e., the difference between
+     the maximum and the minimum, of the input data.
+
+     If X is a matrix, do the above for each column of X.
+
+ - Function File: [Q, S] = qqplot (X, DIST, PARAMS)
+     Perform a QQ-plot (quantile plot).
+
+     If F is the CDF of the distribution DIST with parameters PARAMS
+     and G its inverse, and X a sample vector of length N, the QQ-plot
+     graphs ordinate S(I) = I-th largest element of x versus abscissa
+     Q(If) = G((I - 0.5)/N).
+
+     If the sample comes from F except for a transformation of location
+     and scale, the pairs will approximately follow a straight line.
+
+     The default for DIST is the standard normal distribution.  The
+     optional argument PARAMS contains a list of parameters of DIST.
+     For example, for a quantile plot of the uniform distribution on
+     [2,4] and X, use
+
+          qqplot (x, "uniform", 2, 4)
+
+     If no output arguments are given, the data are plotted directly.
+
+ - Function File:  probit (P)
+     For each component of P, return the probit (the quantile of the
+     standard normal distribution) of P.
+
+ - Function File: [P, Y] = ppplot (X, DIST, PARAMS)
+     Perform a PP-plot (probability plot).
+
+     If F is the CDF of the distribution DIST with parameters PARAMS
+     and X a sample vector of length N, the PP-plot graphs ordinate
+     Y(I) = F (I-th largest element of X) versus abscissa P(I) = (I -
+     0.5)/N.  If the sample comes from F, the pairs will approximately
+     follow a straight line.
+
+     The default for DIST is the standard normal distribution.  The
+     optional argument PARAMS contains a list of parameters of DIST.
+     For example, for a probability plot of the uniform distribution on
+     [2,4] and X, use
+
+          ppplot (x, "uniform", 2, 4)
+
+     If no output arguments are given, the data are plotted directly.
+
+ - Function File:  moment (X, P, OPT)
+     If X is a vector, compute the P-th moment of X.
+
+     If X is a matrix, return the row vector containing the P-th moment
+     of each column.
+
+     With the optional string opt, the kind of moment to be computed can
+     be specified.  If opt contains `"c"' or `"a"', central and/or
+     absolute moments are returned.  For example,
+
+          moment (x, 3, "ac")
+
+     computes the third central absolute moment of X.
+
+ - Function File:  meansq (X)
+     For vector arguments, return the mean square of the values.  For
+     matrix arguments, return a row vector contaning the mean square of
+     each column.
+
+ - Function File:  logit (P)
+     For each component of P, return the logit `log (P / (1-P))' of P.
+
+ - Function File:  kendall (X, Y)
+     Compute Kendall's TAU for each of the variables specified by the
+     input arguments.
+
+     For matrices, each row is an observation and each column a
+     variable; vectors are always observations and may be row or column
+     vectors.
+
+     `kendall (X)' is equivalent to `kendall (X, X)'.
+
+     For two data vectors X, Y of common length N, Kendall's TAU is the
+     correlation of the signs of all rank differences of X and Y;
+     i.e., if both X and Y have distinct entries, then
+
+                   1
+          tau = -------   SUM sign (q(i) - q(j)) * sign (r(i) - r(j))
+                n (n-1)   i,j
+
+     in which the Q(I) and R(I)  are the ranks of X and Y, respectively.
+
+     If X and Y are drawn from independent distributions, Kendall's TAU
+     is asymptotically normal with mean 0 and variance `(2 * (2N+5)) /
+     (9 * N * (N-1))'.
+
+ - Function File:  iqr (X)
+     If X is a vector, return the interquartile range, i.e., the
+     difference between the upper and lower quartile, of the input data.
+
+     If X is a matrix, do the above for each column of X.
+
+ - Function File:  cut (X, BREAKS)
+     Create categorical data out of numerical or continuous data by
+     cutting into intervals.
+
+     If BREAKS is a scalar, the data is cut into that many equal-width
+     intervals.  If BREAKS is a vector of break points, the category
+     has `length (BREAKS) - 1' groups.
+
+     The returned value is a vector of the same size as X telling which
+     group each point in X belongs to.  Groups are labelled from 1 to
+     the number of groups; points outside the range of BREAKS are
+     labelled by `NaN'.
+
+ - Function File:  cor (X, Y)
+     The (I,J)-th entry of `cor (X, Y)' is the correlation between the
+     I-th variable in X and the J-th variable in Y.
+
+     For matrices, each row is an observation and each column a
+     variable; vectors are always observations and may be row or column
+     vectors.
+
+     `cor (X)' is equivalent to `cor (X, X)'.
+
+ - Function File:  cloglog (X)
+     Return the complementary log-log function of X, defined as
+
+          - log (- log (X))
+
+ - Function File:  center (X)
+     If X is a vector, subtract its mean.  If X is a matrix, do the
+     above for each column.
+

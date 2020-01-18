@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2009-01-06T01:25:09.816808Z
+K 7
+svn:log
+V 69
+fixed get_tickets (unique ticket cache) and send_zephyr (quoted zsig)
+END

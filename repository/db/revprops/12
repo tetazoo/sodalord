@@ -1,0 +1,18 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-08-18T06:30:21.000731Z
+K 7
+svn:log
+V 322
+added add_dicts, which adds an arbitrary number of dictionaries (preference
+given to the values in earlier dicts) - converted a bunch of string
+substitutions to use "% add_dicts(locals(), globals())", etc
+made cash purchases not echo zephyr status to the screen
+fixed a few typos - hopefully I didn't make to many more :)
+
+END

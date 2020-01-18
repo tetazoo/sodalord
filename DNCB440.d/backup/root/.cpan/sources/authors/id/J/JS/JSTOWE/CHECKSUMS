@@ -1,0 +1,115 @@
+# CHECKSUMS file written on Sun Jul 28 12:18:45 2002 by CPAN::Checksums (v1.008)
+$cksum = {
+  'Term-Cap-1.07.tar.gz' => {
+    'md5-ungz' => '148e90443c49b04b659bd5e64f9fb19d',
+    'mtime' => '2002-01-02',
+    'md5' => '173ebf95065c80887a974522525f37e3',
+    'shortname' => 'termc107.tgz',
+    'size' => '9786'
+  },
+  'Sys-Lastlog-1.2.tar.gz' => {
+    'md5-ungz' => 'a81114c25773f5ec109dac9362658ba6',
+    'mtime' => '2001-03-05',
+    'md5' => '8a9aab0c52eaca5df0f287fdeaf3ae94',
+    'shortname' => 'syslas12.tgz',
+    'size' => '5125'
+  },
+  'Sys-Utmp-1.5.tar.gz' => {
+    'md5-ungz' => '5f41874c7a2d6e57c5bc1a1bedad07f4',
+    'mtime' => '2001-09-14',
+    'md5' => '82ba5a8b398b9c990eadfe1d439917c8',
+    'shortname' => 'sysutm15.tgz',
+    'size' => '7282'
+  },
+  'Net-SNMP-Interfaces-0.4.tar.gz' => {
+    'md5-ungz' => 'd46b662c2b4f1a5949d388419300a073',
+    'mtime' => '2002-03-14',
+    'md5' => '015589455faee7dab50ccf4e8d94db77',
+    'shortname' => 'netsnm04.tgz',
+    'size' => '12366'
+  },
+  'Linux-Cpuinfo-1.4.tar.gz' => {
+    'md5-ungz' => '0debbd6149fb075910ccf01c4faa1cee',
+    'mtime' => '2002-01-29',
+    'md5' => 'bdc950c614c5675be42b38c46435fd2b',
+    'shortname' => 'linuxc14.tgz',
+    'size' => '6560'
+  },
+  'XML-XSLT-0.40.tar.gz' => {
+    'md5-ungz' => '381ddd2c9c6284e6d3360c9a314c42be',
+    'mtime' => '2001-12-24',
+    'md5' => '5edfeeb9b2190938c9a5c39295771574',
+    'shortname' => 'xmlxs040.tgz',
+    'size' => '242962'
+  },
+  'CGI-XMLPost-1.2.tar.gz' => {
+    'md5-ungz' => 'e0ea9dc6e06dad0a4379a629cf6d2ea2',
+    'mtime' => '2002-05-26',
+    'md5' => '0999ba12f6b2339d18e7ec1fbe8a7bf6',
+    'shortname' => 'cgixml12.tgz',
+    'size' => '3469'
+  },
+  'TermReadKey-2.19.tar.gz' => {
+    'md5-ungz' => '4273a7c05c6ca6aa3685363b5cfab8fb',
+    'mtime' => '2002-03-21',
+    'md5' => '18edae6f42a788f13b4f65642dba78bb',
+    'shortname' => 'termr219.tgz',
+    'size' => '34676'
+  },
+  'TermReadKey-2.20.tar.gz' => {
+    'md5-ungz' => '03ee0257c62aec6563a83276f48174b1',
+    'mtime' => '2002-05-24',
+    'md5' => '25f56ae64b3f1ef86c24fcd349acb48d',
+    'shortname' => 'termr220.tgz',
+    'size' => '34742'
+  },
+  'Term-Screen-1.01.tar.gz' => {
+    'md5-ungz' => 'd5f56ee41b1659c822a05f6d4b8381a9',
+    'mtime' => '2001-10-30',
+    'md5' => 'f57998450e99da5ff8075addd8514353',
+    'shortname' => 'terms101.tgz',
+    'size' => '7247'
+  },
+  'Linux-Cpuinfo-1.5.tar.gz' => {
+    'md5-ungz' => '7e39747aaf2d3028a3e83862826ca578',
+    'mtime' => '2002-06-10',
+    'md5' => '782205a2913204602374ba2b778d2e15',
+    'shortname' => 'linuxc15.tgz',
+    'size' => '6983'
+  },
+  'CGI-Form2XML-1.2.tar.gz' => {
+    'md5-ungz' => 'f44368c6eec9e108fda02cf7a766fca8',
+    'mtime' => '2002-05-25',
+    'md5' => '3e595b4f11f99ee0e9146ab0bf613a9c',
+    'shortname' => 'cgifor12.tgz',
+    'size' => '4797'
+  },
+  'Linux-Fuser-1.2.tar.gz' => {
+    'md5-ungz' => '7449b49b9c5da3fd8708898e58ce6c5f',
+    'mtime' => '2001-11-07',
+    'md5' => '364d4d922c8d51d4ac687290ec29a31a',
+    'shortname' => 'linuxf12.tgz',
+    'size' => '3493'
+  },
+  'Linux-Svgalib-1.2.tar.gz' => {
+    'md5-ungz' => '5bd9250c0041677f735e47c3a704f518',
+    'mtime' => '2001-04-11',
+    'md5' => '5d9b1cc7e1068792e21b46b161eb3d67',
+    'shortname' => 'linuxs12.tgz',
+    'size' => '19775'
+  },
+  'TermReadKey-2.21.tar.gz' => {
+    'md5-ungz' => 'd45920c0088a6168ca22113eddc9c306',
+    'mtime' => '2002-07-28',
+    'md5' => '888aabb723b8c21e35c55e979655f08e',
+    'shortname' => 'termr221.tgz',
+    'size' => '34878'
+  },
+  'CGI-Form2XML-1.3.tar.gz' => {
+    'md5-ungz' => '8d58f7ad4bf6ed1603515caf0fc9ba48',
+    'mtime' => '2002-07-28',
+    'md5' => '884710ad6fa00b9db3c40d17accd4d8d',
+    'shortname' => 'cgifor13.tgz',
+    'size' => '4889'
+  }
+};

@@ -1,0 +1,16 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-08-19T00:47:19.931777Z
+K 7
+svn:log
+V 186
+fixed retarded bug where I ask for the userid from the alias in order to 
+enter the userid an alias into the alias table in cmd_adduser
+fixed newly introduced newline bug in cmd_addcard
+
+END

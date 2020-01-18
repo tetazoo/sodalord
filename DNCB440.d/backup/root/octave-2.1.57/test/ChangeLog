@@ -1,0 +1,194 @@
+2002-10-31  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/arith/prod-4.m, octave.test/arith/sum-4.m:
+	Cover more cases for empty matrices.
+
+2002-10-15  Paul Kienzle <pkienzle@users.sf.net>
+
+	* Makefile.in: Use @library_path_var@ instead of LD_LIBRARY_PATH.
+
+2002-09-27  Paul Kienzle <pkienzle@users.sf.net>
+
+	* qr-7.m: Remove randomness from complex matrix generator.
+	Increase tolerance on rosser matrix test.
+
+2002-09-26  Paul Kienzle <pkienzle@users.sf.net>
+
+	* octave.test/linalg/qr-7.m: Replace large random matrix tests 
+	of economy QR decomposition with small predictable tests.
+	Include numerically sensitive rosser matrix test.  Don't
+	report the measured norms. 
+
+2002-04-24  Bill Lash  <lash@tellabs.com>
+
+	* test/octave.test/signal/signal.exp: Add unwrap test.
+	* test/octave.test/signal/unwrap-1.m: New file.
+
+2002-04-24  David Billinghurst <David.Billinghurst@riotinto.com.au>
+
+	* octave.test/signal/signal.exp: Add tests for fft, ifft
+	fft2, ifft2 and detrend.
+	* octave.test/signal/detrend-1.m: New test.
+	* octave.test/signal/detrend-2.m: New test.
+	* octave.test/signal/detrend-3.m: New test.
+	* octave.test/signal/fft-1.m: New test.
+	* octave.test/signal/ifft-1.m: New test.
+	* octave.test/signal/fft2-1.m: New test.
+	* octave.test/signal/ifft2-1.m: New test.
+
+2002-04-22  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/diffeq/dassl-1.m (tol): Use relative tolerance for test. 
+	* octave.test/diffeq/dassl-2.m (tol): Likewise.
+	* octave.test/diffeq/lsode-1.m (tol): Likewise.
+	* octave.test/diffeq/lsode-2.m (tol): Likewise.
+	* octave.test/diffeq/lsode-3.m (tol): Likewise.
+
+2002-04-12  Kienzle <pkienzle@jazz.ncnr.nist.gov>
+
+	* config/unix.exp: Allow running of individual tests with
+	"runtest *.exp" from any of the directories under test/octave.test.
+
+2002-04-02  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/linalg/qr-7.m: New test.
+	From Paul Kienzle <pkienzle@jazz.ncnr.nist.gov>.
+	
+2001-04-24  Christoph Spiel <cspiel@hammersmith-consulting.com>
+
+	* Makefile.in (check): Allow user to specify which .exp file to run.
+	* octave.test/try, octave.test/eval-catch: New directories and tests.
+
+2000-06-07  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* octave.test/quad/quad-1.m: Use absolute value of difference
+	from expected value when comparing with sqrt (eps).  Potential
+	problems like this were noticed by Przemek Klosowski
+	<przemek@rrdjazz.nist.gov>.
+	* octave.test/quad/quad-2.m: Likewise.
+	* octave.test/arith/exp-1.m: Likewise.
+	* octave.test/linalg/cond-1.m: Likewise.
+	* octave.test/linalg/eig-1.m: Likewise.
+	* octave.test/linalg/eig-2.m: Likewise.
+	* octave.test/linalg/inv-1.m: Likewise.
+	* octave.test/linalg/lu-2.m: Likewise.
+	* octave.test/linalg/svd-2.m: Likewise.
+	* octave.test/linalg/svd-10.m: Likewise.
+
+1999-10-29  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/system/mktime-1.m (t): Compare whole seconds only.
+
+Fri Dec  4 20:55:47 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/system/clock-1.m: Use standard format specifiers %d
+	and %H instead of %e and %k.
+
+Fri Oct 23 15:53:01 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/arith/exp-5.m: New test.
+
+	* octave.test/stats/mean-3.m: New version of mean accepts a second
+	optional arg.
+
+	* octave.test/system/date-1.m: Correct test for new Y2K-compliant
+	date function.
+
+Wed May 27 00:38:27 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/diffeq/dassl-1.m, octave.test/diffeq/dassl-2.m,
+	octave.test/diffeq/lsode-1.m: New tests, from David Billinghurst
+	<David.Billinghurst@riotinto.com.au>.
+
+	* octave.test/diffeq/lsode-2.m, octave.test/diffeq/lsode-3.m:
+ 	New tests, from Peter Hopfgartner <phopfgartner@memc.inet.it>.
+
+Thu Apr 23 01:45:16 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in: If $(SHARED_LIBS), set LD_LIBRARY_PATH for running
+	Octave before installation is complete.
+
+Wed Apr 15 15:23:43 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/index/dfi-f/m-2.m, octave.test/index/dfi-f/index.exp:
+	Expect this test to succed now.
+
+Thu Mar  5 20:35:26 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/system/gmtime-1.m, octave.test/system/localtime-1.m:
+	Not all systems have time zone info in the struct.
+
+Mon Mar  2 14:36:50 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/io/binary-io-1.m (id): Use binary flag in fopen call.
+
+Wed Apr  2 21:59:15 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/prefer/prefer.exp: Delete prefer-36 and prefer-37.
+	* octave.test/prefer/prefer-36.m, octave.test/prefer/prefer-37.m:
+	Delete test files.
+
+Wed Mar 12 16:56:41 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install-strip): New target.
+
+Sat Mar  1 15:23:14 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.5 released.
+
+Thu Feb 20 02:58:05 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.4 released.
+
+Tue Feb 18 09:22:04 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.3 released.
+
+Mon Jan 27 15:51:58 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.2 released.
+
+Thu Jan 23 13:48:19 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* octave.test/unwind/unwind-2.m: Scripts now stop executing when
+	errors are encountered.
+
+	* octave.test/return/return.exp: Return at top level is no longer
+	an error.
+
+Tue Jan  7 00:16:23 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.1 released.
+
+Tue Dec 10 01:43:05 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0 released.
+
+Fri Dec  6 15:23:39 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.94.
+
+Wed Nov 20 01:00:02 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.93.
+
+Thu Nov 14 00:05:57 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.92
+
+Thu Nov  7 12:43:03 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.91.
+
+Wed Oct 30 17:19:12 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.90.
+
+	* Makefile.in (DISTFILES): Add ChangeLog.
+
+Fri Feb  9 21:40:49 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (OCTAVE_SCRIPT_PATH): Add ../src directory (for .oct
+	files) and current directory (why not?).
+
+See ChangeLog.1 in the top level directory for earlier changes.

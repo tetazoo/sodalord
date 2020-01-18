@@ -1,0 +1,289 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Fri Nov 28 01:45:45 2003 by CPAN::Checksums (v1.016)
+$cksum = {
+  'DBI-1.35.tar.gz' => {
+    'mtime' => '2003-03-07',
+    'md5-ungz' => '401d6d164350db735e569ab794de2fde',
+    'md5' => '8ede0b8817ac8b0db6cc5db36109060c',
+    'size' => 288058
+  },
+  'DBI-1.39.meta' => {
+    'mtime' => '2003-11-12',
+    'md5' => '1e408bb7c43c8daa8105dcbbc3a2a3f7',
+    'size' => 286
+  },
+  'DBD-Oracle-1.09.tar.gz' => {
+    'mtime' => '2001-08-29',
+    'md5-ungz' => '79fbbe4ced2bd090f63183903650ab7a',
+    'md5' => 'f37850230a66b7a0b3240b9667fbf812',
+    'size' => 171660
+  },
+  'DBI-1.14-1.30.diff' => {
+    'mtime' => '2002-07-19',
+    'md5' => 'bdfecd0117dbdfa70d5ad5cc3f067e2e',
+    'size' => 352450
+  },
+  'DBI-1.34.tar.gz' => {
+    'mtime' => '2003-02-28',
+    'md5-ungz' => '8d508be876de9a444af1d905a0b5a2ea',
+    'md5' => 'f0056760bea3d5697c21d64358617895',
+    'size' => 290116
+  },
+  'DBI-1.19.tar.gz' => {
+    'mtime' => '2001-07-20',
+    'md5-ungz' => 'ba3214368a768722fc0aba3b570521ff',
+    'md5' => '0c9e128862d13e66437440be0d2ab06d',
+    'size' => 201082
+  },
+  'OraclePerlTalk_200201.ppt' => {
+    'mtime' => '2002-02-08',
+    'md5' => 'c76358d7af850211af32a3b18bc48b3d',
+    'size' => 179712
+  },
+  'DBI-1.37.tar.gz' => {
+    'mtime' => '2003-05-15',
+    'md5-ungz' => 'c6d94278eb839b739a3d0ddcd0079c8e',
+    'md5' => '0113d0f47cf13b0694e0bfb2d13a5789',
+    'size' => 294495
+  },
+  'DBI-1.20.tar.gz' => {
+    'mtime' => '2001-08-24',
+    'md5-ungz' => '8f6d32b5707d8db18b3208abd6ddb1c8',
+    'md5' => '71002061526134cb4e0417e47a6b5b66',
+    'size' => 191676
+  },
+  'Oracle-OCI-0.04.tar.gz' => {
+    'mtime' => '2001-07-21',
+    'md5-ungz' => '8b088cc4fcfc9e602624db0c4a88d75f',
+    'md5' => '73d5ef3012f88cbe3ea2c6fbbea29e45',
+    'size' => 34930
+  },
+  'DBI-1.38.tar.gz' => {
+    'mtime' => '2003-08-25',
+    'md5-ungz' => 'b36e9d807fe0f83dfe06586fc2aea2c9',
+    'md5' => '58c8192d88511e08ea59a1cc70bd0a80',
+    'size' => 299955
+  },
+  'perl5.004_03.tar.gz' => {
+    'mtime' => '1997-09-05',
+    'md5-ungz' => '0b93975f773084e6fa1dfdcb86661dc9',
+    'md5' => 'c1204a48dd98687d549987c6e5343508',
+    'size' => 2549385
+  },
+  'DBI' => {
+    'isdir' => 1
+  },
+  'DBI-1.39.tar.gz' => {
+    'mtime' => '2003-11-27',
+    'md5-ungz' => '4773e0b9ef454613c81abd18e0b1171e',
+    'md5' => '6d543c9f06d9d940dfe3aec1c4b6841d',
+    'size' => 301567
+  },
+  'DBI-1.15.tar.gz' => {
+    'mtime' => '2001-03-30',
+    'md5-ungz' => '4e227a8dd564793a3b7bb3839489062e',
+    'md5' => 'b1e37f03bdbd91451102e1b8e4b093d4',
+    'size' => 192879
+  },
+  'perl5.004_02.tar.gz' => {
+    'mtime' => '1997-08-07',
+    'md5-ungz' => 'a91f25e794e9d6cc25cc4cce5c161493',
+    'md5' => 'f7f6762c5621f108c77c391f899a161c',
+    'size' => 2545207
+  },
+  'DBI-1.16.tar.gz' => {
+    'mtime' => '2001-05-29',
+    'md5-ungz' => 'e9cb95556e2d42fd93aff10787e5b403',
+    'md5' => '569acc58c879e3313d2bc498a8afab98',
+    'size' => 194781
+  },
+  'DBI-1.13.tar.gz' => {
+    'mtime' => '1999-07-12',
+    'md5-ungz' => 'f869b31d79a0cca1fe61ede7800e2578',
+    'md5' => 'cef6c295a31b90deaff412346d33e021',
+    'size' => 168389
+  },
+  'DBI-1.25.tar.gz' => {
+    'mtime' => '2002-06-05',
+    'md5-ungz' => '5ba860ccce9ba180de00f59bd348d609',
+    'md5' => '9e2212ea061ba3cce3243ec08473b0b0',
+    'size' => 247689
+  },
+  'DBI_Talk4_2000.tar.gz' => {
+    'mtime' => '2000-08-02',
+    'md5-ungz' => '7175e5a3d41e365c7d98b2410169f726',
+    'md5' => 'fd9989a015cc07d0348cfa3f7ca60b90',
+    'size' => 1924810
+  },
+  'DBD-Oracle-1.13.tar.gz' => {
+    'mtime' => '2003-03-14',
+    'md5-ungz' => '0fe5f531de3b8e4c1daf46a068ec0c0e',
+    'md5' => 'bcb1a887ac8f5da415a78fe7abb012b5',
+    'size' => 194630
+  },
+  'OCI_Talk1_200106.zip' => {
+    'mtime' => '2001-06-25',
+    'md5' => 'ab3fe29a166617684a8f74192efe7998',
+    'size' => 1022900
+  },
+  'DBI-1.32.tar.gz' => {
+    'mtime' => '2002-12-01',
+    'md5-ungz' => '167a03e79a9c9771b2f23de81e9ebf36',
+    'md5' => '5a6b8fb4433da1a9363a0b2ab1d6f21e',
+    'size' => 277594
+  },
+  'Oracle-OCI-0.06.tar.gz' => {
+    'mtime' => '2001-09-01',
+    'md5-ungz' => 'f59fb700607ad5555d3f4321d4c40a54',
+    'md5' => 'af2839c322a72b9863da3fbaa834d056',
+    'size' => 36106
+  },
+  'DBD-Oracle-1.08.tar.gz' => {
+    'mtime' => '2001-08-07',
+    'md5-ungz' => 'e5c0d500f9b705913f5eb8bb346e8f6e',
+    'md5' => '3007a6365b12c49f1654b01a133220b9',
+    'size' => 164106
+  },
+  'DBI_Talk2_1998.tar.gz' => {
+    'mtime' => '1998-12-15',
+    'md5-ungz' => '50e21bf0426361879b359de0a0d7238b',
+    'md5' => '3916f17c85a8938a701f604649bd2220',
+    'size' => 727472
+  },
+  'DBI_Talk5_2001.tar.gz' => {
+    'mtime' => '2001-07-25',
+    'md5-ungz' => '72995dcf6e936c5e41952cfdb753a5ca',
+    'md5' => 'b304f9d99e5d616688b188a67f66799b',
+    'size' => 2284324
+  },
+  'DBI-1.18.tar.gz' => {
+    'mtime' => '2001-06-04',
+    'md5-ungz' => '9ea822841ba5cd0e8584e9295e8884c4',
+    'md5' => 'b8542df1a83d46b816d95eb6204a73e2',
+    'size' => 198250
+  },
+  'dbd-summaries-19990519.tar.gz' => {
+    'mtime' => '1999-05-21',
+    'md5-ungz' => 'fc9bfb5faec36a16f24f9df171786bf9',
+    'md5' => 'fb817ef8d7e7ad766fa3c1e414e21a87',
+    'size' => 201837
+  },
+  'DBI_Talk1_1997.tar.gz' => {
+    'mtime' => '1998-12-15',
+    'md5-ungz' => 'bf11e689dc39bcca7bbd40ad2bd4ba69',
+    'md5' => '16fdbd510e5759474f82faf3e48ac400',
+    'size' => 532056
+  },
+  'Oracle-OCI-0.05.tar.gz' => {
+    'mtime' => '2001-08-31',
+    'md5-ungz' => '68d2c3195feccfadafa819b8046f9ce5',
+    'md5' => '57645748f91850daff2b0455a6008cf2',
+    'size' => 35355
+  },
+  'DBI-1.17.tar.gz' => {
+    'mtime' => '2001-06-04',
+    'md5-ungz' => 'adbab211d475c35f9c90b762869c9d7e',
+    'md5' => '272a4a9b0d7a24a715bd3681e4647acb',
+    'size' => 198225
+  },
+  'DBD-ODBC-0.20.tar.gz' => {
+    'mtime' => '1998-08-14',
+    'md5-ungz' => 'f2c50f537783816f084caea8f40a7c7c',
+    'md5' => 'a87bdd46c1645d9e36661455dc3f5c96',
+    'size' => 92647
+  },
+  'DBI-1.30.tar.gz' => {
+    'mtime' => '2002-07-18',
+    'md5-ungz' => 'd570ffdbaa9229b28acc28acc903015f',
+    'md5' => '30e6b539fb36da93c862c7c7df0f3bf8',
+    'size' => 257016
+  },
+  'DBI-1.21.tar.gz' => {
+    'mtime' => '2002-02-07',
+    'md5-ungz' => '29ac61898c731ad9b24d1e5f43cacd53',
+    'md5' => 'c781eee2559de5e4a72e28a8120cb1d9',
+    'size' => 208384
+  },
+  'DBD-Oracle-1.14.tar.gz' => {
+    'mtime' => '2003-03-27',
+    'md5-ungz' => 'f20daf51f895c2dd2887d9efdbff6b85',
+    'md5' => 'ec364509df5dfd57a4c05e2c410f358f',
+    'size' => 199667
+  },
+  'DBI_AdvancedTalk_200307.tar.gz' => {
+    'mtime' => '2003-07-09',
+    'md5-ungz' => '068e3e0b1a2ee38d0f9b36d26bda7395',
+    'md5' => '98873f5b33565332e66c9c3ff37240a0',
+    'size' => 2867635
+  },
+  'DBI-1.14.tar.gz' => {
+    'mtime' => '2000-06-14',
+    'md5-ungz' => '9cbc774058ed7d8e6d8d4b4964c678b1',
+    'md5' => 'a2d1dbf5cd083e08861bc596e3892bdb',
+    'size' => 178349
+  },
+  'DBI_AdvancedTalk_2002.tar.gz' => {
+    'mtime' => '2002-07-19',
+    'md5-ungz' => '5f906cd44afa9bfde051e46ac566bac8',
+    'md5' => 'f89d88150d7156afb25a7b8816f3052b',
+    'size' => 2492561
+  },
+  'DBI-1.38.meta' => {
+    'mtime' => '2003-08-20',
+    'md5' => 'c7e72ae0920c53b3c257ae10de0f81d3',
+    'size' => 236
+  },
+  'DBI-1.28.tar.gz' => {
+    'mtime' => '2002-06-14',
+    'md5-ungz' => 'b9b41367b54f889bcfeda0339e6263e0',
+    'md5' => '0c323bdc712fe379ec92d826514615e3',
+    'size' => 251663
+  },
+  'perl5.004_04.tar.gz' => {
+    'mtime' => '1997-10-15',
+    'md5-ungz' => 'dff29bf8cfdc9f8bdf1fdd859d38fdf9',
+    'md5' => '2618029201ad19cfb9a7d02a498eb1f4',
+    'size' => 2581811
+  },
+  'perl5.004_01.tar.gz' => {
+    'mtime' => '1997-06-13',
+    'md5-ungz' => '3c82586a86cc84c72e893e8a9027f68a',
+    'md5' => 'bc29b3bd93b6511234455ba733913ea0',
+    'size' => 2507999
+  },
+  'DBD-Oracle-1.07.tar.gz' => {
+    'mtime' => '2001-06-06',
+    'md5-ungz' => '0bbca071bc6f72d0b027d1632ce39c24',
+    'md5' => '8f09afc63db67ce3e252c31b84556168',
+    'size' => 159853
+  },
+  'DBD-Oracle-1.06.tar.gz' => {
+    'mtime' => '2000-07-14',
+    'md5-ungz' => '6ce97c1f345abe1e71ff621d56c7078b',
+    'md5' => '83faad3768669940dc55117862daaa5b',
+    'size' => 151269
+  },
+  'DBD-Oracle-1.12.tar.gz' => {
+    'mtime' => '2001-08-31',
+    'md5-ungz' => '2acc967dd60599af0e82a2e0b1ab63e0',
+    'md5' => '89f33ade9fbbdb09e07178339ee44f4f',
+    'size' => 172858
+  },
+  'DBI-1.23.tar.gz' => {
+    'mtime' => '2002-05-25',
+    'md5-ungz' => '66bd3164654446df9451fea8f6ed9471',
+    'md5' => '6e95f1dda641a2b46c9125d81b148a80',
+    'size' => 235409
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQE/xqjKMo2oZ0UPiewRAirgAJ9xq1FdEPbP/HWg8tzWQQlg7dmCAACggCOs
+KzxndYq+0cPH331XQy6FYT4=
+=TG8q
+-----END PGP SIGNATURE-----

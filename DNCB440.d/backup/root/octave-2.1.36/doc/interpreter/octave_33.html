@@ -1,0 +1,246 @@
+<HTML>
+<HEAD>
+<!-- This HTML file has been created by texi2html 1.51
+     from octave.texi on 1 May 2002 -->
+
+<TITLE>GNU Octave - Quaternions</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_32.html">previous</A>, <A HREF="octave_34.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC200" HREF="octave_toc.html#TOC200">Quaternions</A></H1>
+
+<P>
+Quaternions are hypercomplex numbers used to represent spatial
+rotations in three dimensions.  This set of routines provides a useful
+basis for working with quaternions in Octave.  A tutorial is in the
+Octave source, scripts/quaternion/quaternion.ps.
+
+</P>
+<P>
+These functions were written by A. S. Hodel, Associate Professor,
+Auburn University.
+
+</P>
+<P>
+@anchor{doc-quaternion}
+<DL>
+<DT><U>Function File:</U> [<VAR>a</VAR>, <VAR>b</VAR>, <VAR>c</VAR>, <VAR>d</VAR>] = <B>quaternion</B> <I>(w)</I>
+<DD><A NAME="IDX1188"></A>
+<DT><U>Function File:</U> [<VAR>vv</VAR>, <VAR>theta</VAR>] = <B>quaternion</B> <I>(w)</I>
+<DD><A NAME="IDX1189"></A>
+<DT><U>Function File:</U> <VAR>w</VAR> = <B>quaternion</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>, <VAR>c</VAR>, <VAR>d</VAR>)</I>
+<DD><A NAME="IDX1190"></A>
+<DT><U>Function File:</U> <VAR>w</VAR> = <B>quaternion</B> <I>(<VAR>vv</VAR>, <VAR>theta</VAR>)</I>
+<DD><A NAME="IDX1191"></A>
+Construct or extract a quaternion
+
+</P>
+
+<PRE>
+w = a*i + b*j + c*k + d
+</PRE>
+
+<P>
+from given data.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-qconj}
+<DL>
+<DT><U>Function File:</U>  <B>qconj</B> <I>(<VAR>q</VAR>)</I>
+<DD><A NAME="IDX1192"></A>
+Conjugate of a quaternion.
+
+</P>
+
+<PRE>
+q = [w, x, y, z] = w*i + x*j + y*k + z
+qconj (q) = -w*i -x*j -y*k + z
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-qderiv}
+<DL>
+<DT><U>Function File:</U>  <B>qderiv</B> <I>(omega)</I>
+<DD><A NAME="IDX1193"></A>
+Derivative of a quaternion.
+
+</P>
+<P>
+Let Q be a quaternion to transform a vector from a fixed frame to
+a rotating frame.  If the rotating frame is rotating about the 
+[x, y, z] axes at angular rates [wx, wy, wz], then the derivative
+of Q is given by
+
+</P>
+
+<PRE>
+Q' = qderivmat (omega) * Q
+</PRE>
+
+<P>
+If the passive convention is used (rotate the frame, not the vector),
+then
+
+</P>
+
+<PRE>
+Q' = -qderivmat (omega) * Q
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-qderivmat}
+<DL>
+<DT><U>Function File:</U>  <B>qderivmat</B> <I>(<VAR>omega</VAR>)</I>
+<DD><A NAME="IDX1194"></A>
+Derivative of a quaternion.
+
+</P>
+<P>
+Let Q be a quaternion to transform a vector from a fixed frame to
+a rotating frame.  If the rotating frame is rotating about the 
+[x, y, z] axes at angular rates [wx, wy, wz], then the derivative
+of Q is given by
+
+</P>
+
+<PRE>
+Q' = qderivmat (omega) * Q
+</PRE>
+
+<P>
+If the passive convention is used (rotate the frame, not the vector),
+then
+
+</P>
+
+<PRE>
+Q' = -qderivmat (omega) * Q.
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-qinv}
+<DL>
+<DT><U>Function File:</U>  <B>qinv</B> <I>(<VAR>q</VAR>)</I>
+<DD><A NAME="IDX1195"></A>
+Return the inverse of a quaternion.
+
+</P>
+
+<PRE>
+q = [w, x, y, z] = w*i + x*j + y*k + z
+qmult (q, qinv (q)) = 1 = [0 0 0 1]
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-qmult}
+<DL>
+<DT><U>Function File:</U>  <B>qmult</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX1196"></A>
+Multiply two quaternions.
+
+</P>
+
+<PRE>
+[w, x, y, z] = w*i + x*j + y*k + z
+</PRE>
+
+<P>
+identities:
+
+</P>
+
+<PRE>
+i^2 = j^2 = k^2 = -1
+ij = k                 jk = i
+ki = j                 kj = -i
+ji = -k                ik = -j
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-qtrans}
+<DL>
+<DT><U>Function File:</U>  <B>qtrans</B> <I>(<VAR>v</VAR>, <VAR>q</VAR>)</I>
+<DD><A NAME="IDX1197"></A>
+Transform the unit quaternion <VAR>v</VAR> by the unit quaternion <VAR>q</VAR>.
+Returns <CODE><VAR>v</VAR> = <VAR>q</VAR>*<VAR>v</VAR>/<VAR>q</VAR></CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-qtransv}
+<DL>
+<DT><U>Function File:</U>  <B>qtransv</B> <I>(<VAR>v</VAR>, <VAR>q</VAR>)</I>
+<DD><A NAME="IDX1198"></A>
+Transform the 3-D vector <VAR>v</VAR> by the unit quaternion <VAR>q</VAR>.
+Return a column vector.
+
+</P>
+
+<PRE>
+vi = (2*real(q)^2 - 1)*vb + 2*imag(q)*(imag(q)'*vb) 
+   + 2*real(q)*cross(imag(q),vb)
+</PRE>
+
+<P>
+Where imag(q) is a column vector of length 3.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-qtransvmat}
+<DL>
+<DT><U>Function File:</U>  <B>qtransvmat</B> <I>(<VAR>qib</VAR>)</I>
+<DD><A NAME="IDX1199"></A>
+Construct a 3x3 transformation matrix from quaternion <VAR>qib</VAR> that
+is equivalent to rotation of th radians about axis <VAR>vv</VAR>, where
+<CODE>[<VAR>vv</VAR>, <VAR>th</VAR>] = quaternion (<VAR>qib</VAR>)</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-qcoordinate_plot}
+<DL>
+<DT><U>Function File:</U>  <B>qcoordinate_plot</B> <I>(<VAR>qf</VAR>, <VAR>qb</VAR>, <VAR>qv</VAR>)</I>
+<DD><A NAME="IDX1200"></A>
+Plot in the current figure a set of coordinate axes as viewed from 
+the orientation specified by quaternion <VAR>qv</VAR>.  Inertial axes are
+also plotted:
+
+</P>
+<DL COMPACT>
+
+<DT><VAR>qf</VAR>
+<DD>
+Quaternion from reference (x,y,z) to inertial.
+<DT><VAR>qb</VAR>
+<DD>
+Quaternion from reference to body.
+<DT><VAR>qv</VAR>
+<DD>
+Quaternion from reference to view angle.
+</DL>
+</DL>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_32.html">previous</A>, <A HREF="octave_34.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

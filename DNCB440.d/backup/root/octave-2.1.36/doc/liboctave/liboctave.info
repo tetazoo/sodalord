@@ -1,0 +1,56 @@
+This is liboctave.info, produced by makeinfo version 4.0f from
+./liboctave.texi.
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+Indirect:
+liboctave.info-1: 692
+liboctave.info-2: 30070
+liboctave.info-3: 78676
+
+Tag Table:
+(Indirect)
+Node: Top692
+Node: Acknowledgements1688
+Node: Contributors1900
+Node: Copying2203
+Node: Introduction21419
+Node: Arrays21669
+Node: Constructors and Assignment21833
+Node: Matrix and Vector Operations30070
+Node: Matrix Factorizations61063
+Node: Ranges67270
+Node: Nonlinear Functions67947
+Node: Nonlinear Equations68482
+Node: Optimization69393
+Node: Objective Functions69668
+Node: Bounds70248
+Node: Linear Constraints71334
+Node: Nonlinear Constraints72304
+Node: Quadratic Programming72688
+Node: Nonlinear Programming74254
+Node: Quadrature75755
+Node: Collocation Weights77417
+Node: Ordinary Differential Equations78676
+Node: Differential Algebraic Equations80181
+Node: Error Handling80971
+Node: Installation81121
+Node: Bugs81239
+Node: Concept Index81340
+Node: Function Index83464
+
+End Tag Table

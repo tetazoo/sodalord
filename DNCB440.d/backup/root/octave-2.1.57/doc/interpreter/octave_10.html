@@ -1,0 +1,916 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Variables</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_9.html">previous</A>, <A HREF="octave_11.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC66" HREF="octave_toc.html#TOC66">Variables</A></H1>
+<P>
+<A NAME="IDX250"></A>
+<A NAME="IDX251"></A>
+
+
+<P>
+Variables let you give names to values and refer to them later.  You have
+already seen variables in many of the examples.  The name of a variable
+must be a sequence of letters, digits and underscores, but it may not begin
+with a digit.  Octave does not enforce a limit on the length of variable
+names, but it is seldom useful to have variables with names longer than
+about 30 characters.  The following are all valid variable names
+
+
+<P>
+<A NAME="IDX252"></A>
+<A NAME="IDX253"></A>
+<A NAME="IDX254"></A>
+
+<PRE>
+x
+x15
+__foo_bar_baz__
+fucnrdthsucngtagdjb
+</PRE>
+
+<P>
+However, names like <CODE>__foo_bar_baz__</CODE> that begin and end with two
+underscores are understood to be reserved for internal use by Octave.
+You should not use them in code you write, except to access Octave's
+documented internal variables and built-in symbolic constants.
+
+
+<P>
+Case is significant in variable names.  The symbols <CODE>a</CODE> and
+<CODE>A</CODE> are distinct variables.
+
+
+<P>
+A variable name is a valid expression by itself.  It represents the
+variable's current value.  Variables are given new values with
+<EM>assignment operators</EM> and <EM>increment operators</EM>.
+See section <A HREF="octave_11.html#SEC82">Assignment Expressions</A>.
+
+
+<P>
+A number of variables have special built-in meanings.  For example,
+<CODE>ans</CODE> holds the current working directory, and <CODE>pi</CODE> names the
+ratio of the circumference of a circle to its diameter. See section <A HREF="octave_10.html#SEC70">Summary of Built-in Variables</A>, for a list of all the predefined variables.  Some
+of these built-in symbols are constants and may not be changed.  Others
+can be used and assigned just like all other variables, but their values
+are also used or changed automatically by Octave.
+
+
+<P>
+Variables in Octave do not have fixed types, so it is possible to first
+store a numeric value in a variable and then to later use the same name
+to hold a string value in the same program.  Variables may not be used
+before they have been given a value.  Doing so results in an error.
+
+
+
+
+<H2><A NAME="SEC67" HREF="octave_toc.html#TOC67">Global Variables</A></H2>
+<P>
+<A NAME="IDX255"></A>
+<A NAME="IDX256"></A>
+<A NAME="IDX257"></A>
+
+
+<P>
+A variable that has been declared <EM>global</EM> may be accessed from
+within a function body without having to pass it as a formal parameter.
+
+
+<P>
+A variable may be declared global using a <CODE>global</CODE> declaration
+statement.  The following statements are all global declarations.
+
+
+
+<PRE>
+global a
+global a b
+global c = 2
+global d = 3 e f = 5
+</PRE>
+
+<P>
+A global variable may only be initialized once in a <CODE>global</CODE>
+statement.  For example, after executing the following code
+
+
+
+<PRE>
+global gvar = 1
+global gvar = 2
+</PRE>
+
+<P>
+the value of the global variable <CODE>gvar</CODE> is 1, not 2.
+
+
+<P>
+It is necessary declare a variable as global within a function body in
+order to access it.  For example,
+
+
+
+<PRE>
+global x
+function f ()
+  x = 1;
+endfunction
+f ()
+</PRE>
+
+<P>
+does <EM>not</EM> set the value of the global variable <CODE>x</CODE> to 1.  In
+order to change the value of the global variable <CODE>x</CODE>, you must also
+declare it to be global within the function body, like this
+
+
+
+<PRE>
+function f ()
+  global x;
+  x = 1;
+endfunction
+</PRE>
+
+<P>
+Passing a global variable in a function parameter list will
+make a local copy and not modify the global value.  For example, given
+the function
+
+
+
+<PRE>
+function f (x)
+  x = 0
+endfunction
+</PRE>
+
+<P>
+and the definition of <CODE>x</CODE> as a global variable at the top level,
+
+
+
+<PRE>
+global x = 13
+</PRE>
+
+<P>
+the expression
+
+
+
+<PRE>
+f (x)
+</PRE>
+
+<P>
+will display the value of <CODE>x</CODE> from inside the function as 0,
+but the value of <CODE>x</CODE> at the top level remains unchanged, because
+the function works with a <EM>copy</EM> of its argument.
+
+
+<P>
+@anchor{doc-isglobal}
+<DL>
+<DT><U>Built-in Function:</U>  <B>isglobal</B> <I>(<VAR>name</VAR>)</I>
+<DD><A NAME="IDX258"></A>
+Return 1 if <VAR>name</VAR> is globally visible.  Otherwise, return 0.  For
+example,
+
+
+
+<PRE>
+global x
+isglobal ("x")
+     => 1
+</PRE>
+
+</DL>
+
+
+
+<H2><A NAME="SEC68" HREF="octave_toc.html#TOC68">Persistent Variables</A></H2>
+<P>
+<A NAME="IDX259"></A>
+<A NAME="IDX260"></A>
+<A NAME="IDX261"></A>
+
+
+<P>
+A variable that has been declared <EM>persistent</EM> within a function
+will retain its contents in memory between subsequent calls to the
+same function. The difference between persistent variables and global
+variables is that persistent variables are local in scope to a
+particular function and are not visible elsewhere.
+
+
+<P>
+A variable may be declared persistent using a <CODE>persistent</CODE>
+declaration statement.  The following statements are all persistent
+declarations.
+
+
+
+<PRE>
+persistent a
+persistent a b
+persistent c = 2
+persistent d = 3 e f = 5
+</PRE>
+
+<P>
+The behavior of persistent variables is equivalent to the behavior of
+static variables in C. The command <CODE>static</CODE> in octave is also
+recognized and is equivalent to <CODE>persistent</CODE>. Unlike global
+variables, every initialization statement will re-initialize the
+variable. For example, after executing the following code
+
+
+
+<PRE>
+persistent pvar = 1
+persistent pvar = 2
+</PRE>
+
+<P>
+the value of the persistent variable <CODE>pvar</CODE> is 2.
+
+
+
+
+<H2><A NAME="SEC69" HREF="octave_toc.html#TOC69">Status of Variables</A></H2>
+
+<P>
+@anchor{doc-clear}
+<DL>
+<DT><U>Command:</U> <B>clear</B> <I>[-x] pattern ...</I>
+<DD><A NAME="IDX262"></A>
+Delete the names matching the given patterns from the symbol table.  The
+pattern may contain the following special characters:
+
+
+<DL COMPACT>
+
+<DT><CODE>?</CODE>
+<DD>
+Match any single character.
+
+<DT><CODE>*</CODE>
+<DD>
+Match zero or more characters.
+
+<DT><CODE>[ <VAR>list</VAR> ]</CODE>
+<DD>
+Match the list of characters specified by <VAR>list</VAR>.  If the first
+character is <CODE>!</CODE> or <CODE>^</CODE>, match all characters except those
+specified by <VAR>list</VAR>.  For example, the pattern <SAMP>`[a-zA-Z]'</SAMP> will
+match all lower and upper case alphabetic characters.
+</DL>
+
+<P>
+For example, the command
+
+
+
+<PRE>
+clear foo b*r
+</PRE>
+
+<P>
+clears the name <CODE>foo</CODE> and all names that begin with the letter
+<CODE>b</CODE> and end with the letter <CODE>r</CODE>.
+
+
+<P>
+If <CODE>clear</CODE> is called without any arguments, all user-defined
+variables (local and global) are cleared from the symbol table.  If
+<CODE>clear</CODE> is called with at least one argument, only the visible
+names matching the arguments are cleared.  For example, suppose you have
+defined a function <CODE>foo</CODE>, and then hidden it by performing the
+assignment <CODE>foo = 2</CODE>.  Executing the command <KBD>clear foo</KBD> once
+will clear the variable definition and restore the definition of
+<CODE>foo</CODE> as a function.  Executing <KBD>clear foo</KBD> a second time will
+clear the function definition.
+
+
+<P>
+With -x, clear the variables that don't match the patterns.
+
+
+<P>
+This command may not be used within a function body.
+</DL>
+
+
+<P>
+@anchor{doc-who}
+<DL>
+<DT><U>Command:</U> <B>who</B> <I>options pattern ...</I>
+<DD><A NAME="IDX263"></A>
+<DT><U>Command:</U> <B>whos</B> <I>options pattern ...</I>
+<DD><A NAME="IDX264"></A>
+List currently defined symbols matching the given patterns.  The
+following are valid options.  They may be shortened to one character but
+may not be combined.
+
+
+<DL COMPACT>
+
+<DT><CODE>-all</CODE>
+<DD>
+List all currently defined symbols.
+
+<DT><CODE>-builtins</CODE>
+<DD>
+List built-in variables and functions.  This includes all currently
+compiled function files, but does not include all function files that
+are in the <CODE>LOADPATH</CODE>.
+
+<DT><CODE>-functions</CODE>
+<DD>
+List user-defined functions.
+
+<DT><CODE>-long</CODE>
+<DD>
+Print a long listing including the type and dimensions of any symbols.
+The symbols in the first column of output indicate whether it is
+possible to redefine the symbol, and whether it is possible for it to be
+cleared.
+
+<DT><CODE>-variables</CODE>
+<DD>
+List user-defined variables.
+</DL>
+
+<P>
+Valid patterns are the same as described for the <CODE>clear</CODE> command
+above.  If no patterns are supplied, all symbols from the given category
+are listed.  By default, only user defined functions and variables
+visible in the local scope are displayed.
+
+
+<P>
+The command <KBD>whos</KBD> is equivalent to <KBD>who -long</KBD>.
+</DL>
+
+
+<P>
+@anchor{doc-exist}
+<DL>
+<DT><U>Built-in Function:</U>  <B>exist</B> <I>(<VAR>name</VAR>, <VAR>type</VAR>)</I>
+<DD><A NAME="IDX265"></A>
+Return 1 if the name exists as a variable, 2 if the name (after
+appending <SAMP>`.m'</SAMP>) is a function file in Octave's LOADPATH, 3 if the
+name is a <SAMP>`.oct'</SAMP> file in Octave's LOADPATH, 5 if the name is a
+built-in function, 7 if the name is a directory, 101 if the name is
+a built-in variable, 102 if the name is a built-in constant, or 103
+if the name is a function not associated with a file (entered on
+the command line).
+
+
+<P>
+Otherwise, return 0.
+
+
+<P>
+This function also returns 2 if a regular file called <VAR>name</VAR>
+exists in Octave's <CODE>LOADPATH</CODE>.  If you want information about
+other types of files, you should use some combination of the functions
+<CODE>file_in_path</CODE> and <CODE>stat</CODE> instead.
+
+
+<P>
+If the optional argument <VAR>type</VAR> is supplied, check only for
+symbols of the specified type.  Valid types are
+
+
+<DL COMPACT>
+
+<DT><SAMP>`"var"'</SAMP>
+<DD>
+Check only for variables.
+<DT><SAMP>`"builtin"'</SAMP>
+<DD>
+Check only for built-in functions.
+<DT><SAMP>`"file"'</SAMP>
+<DD>
+Check only for files.
+<DT><SAMP>`"dir"'</SAMP>
+<DD>
+Check only for directories.
+</DL>
+</DL>
+
+<P>
+@anchor{doc-document}
+<DL>
+<DT><U>Built-in Function:</U>  <B>document</B> <I>(<VAR>symbol</VAR>, <VAR>text</VAR>)</I>
+<DD><A NAME="IDX266"></A>
+Set the documentation string for <VAR>symbol</VAR> to <VAR>text</VAR>.
+</DL>
+
+
+<P>
+@anchor{doc-type}
+<DL>
+<DT><U>Command:</U> <B>type</B> <I>options name ...</I>
+<DD><A NAME="IDX267"></A>
+Display the definition of each <VAR>name</VAR> that refers to a function.
+
+
+<P>
+Normally also displays if each <VAR>name</VAR> is user-defined or builtin;
+the <CODE>-q</CODE> option suppresses this behaviour.
+
+
+<P>
+Currently, Octave can only display functions that can be compiled
+cleanly, because it uses its internal representation of the function to
+recreate the program text.
+
+
+<P>
+Comments are not displayed because Octave's parser currently discards
+them as it converts the text of a function file to its internal
+representation.  This problem may be fixed in a future release.
+</DL>
+
+
+<P>
+@anchor{doc-which}
+<DL>
+<DT><U>Command:</U> <B>which</B> <I>name ...</I>
+<DD><A NAME="IDX268"></A>
+Display the type of each <VAR>name</VAR>.  If <VAR>name</VAR> is defined from a
+function file, the full name of the file is also displayed.
+</DL>
+
+
+
+
+<H2><A NAME="SEC70" HREF="octave_toc.html#TOC70">Summary of Built-in Variables</A></H2>
+
+<P>
+Here is a summary of all of Octave's built-in variables along with
+cross references to additional information and their default values.  In
+the following table <VAR>octave-home</VAR> stands for the root directory
+where all of Octave is installed (the default is <TT>`/usr/local'</TT>,
+<VAR>version</VAR> stands for the Octave version number (for example,
+2.1.x) and <VAR>arch</VAR> stands for the type of system for which
+Octave was compiled (for example, <CODE>i586-pc-linux-gnu</CODE>).
+
+
+<DL COMPACT>
+
+<DT><CODE>DEFAULT_LOADPATH</CODE>
+<DD>
+<A NAME="IDX269"></A>
+See section <A HREF="octave_14.html#SEC104">Function Files</A>.
+
+Default value: <CODE>".:<VAR>octave-home</VAR>/lib/<VAR>version</VAR>"</CODE>.
+
+<DT><CODE>EDITOR</CODE>
+<DD>
+<A NAME="IDX270"></A>
+See section <A HREF="octave_3.html#SEC35">Commands For Manipulating The History</A>.
+
+Default value: <CODE>"emacs"</CODE>.
+
+<DT><CODE>EXEC_PATH</CODE>
+<DD>
+<A NAME="IDX271"></A>
+See section <A HREF="octave_35.html#SEC208">Controlling Subprocesses</A>.
+
+Default value: <CODE>":$PATH"</CODE>.
+
+<DT><CODE>INFO_FILE</CODE>
+<DD>
+<A NAME="IDX272"></A>
+See section <A HREF="octave_3.html#SEC29">Commands for Getting Help</A>.
+
+Default value: <CODE>"<VAR>octave-home</VAR>/info/octave.info"</CODE>.
+
+<DT><CODE>INFO_PROGRAM</CODE>
+<DD>
+<A NAME="IDX273"></A>
+See section <A HREF="octave_3.html#SEC29">Commands for Getting Help</A>.
+
+Default value: <CODE>"<VAR>octave-home</VAR>/libexec/octave/<VAR>version</VAR>/exec/<VAR>arch</VAR>/info"</CODE>.
+
+<DT><CODE>LOADPATH</CODE>
+<DD>
+<A NAME="IDX274"></A>
+See section <A HREF="octave_14.html#SEC104">Function Files</A>.
+
+Default value: <CODE>":"</CODE>, which tells Octave to use the directories
+specified by the built-in variable <CODE>DEFAULT_LOADPATH</CODE>.
+
+<DT><CODE>OCTAVE_HOME</CODE>
+<DD>
+<A NAME="IDX275"></A>
+
+Default value: <CODE>"/usr/local"</CODE>.
+
+<DT><CODE>PAGER</CODE>
+<DD>
+<A NAME="IDX276"></A>
+See section <A HREF="octave_17.html#SEC110">Input and Output</A>.
+
+Default value: <CODE>"less", or "more"</CODE>.
+
+<DT><CODE>PS1</CODE>
+<DD>
+<A NAME="IDX277"></A>
+See section <A HREF="octave_3.html#SEC37">Customizing the Prompt</A>.
+
+Default value: <CODE>"\s:\#&#62; "</CODE>.
+
+<DT><CODE>PS2</CODE>
+<DD>
+<A NAME="IDX278"></A>
+See section <A HREF="octave_3.html#SEC37">Customizing the Prompt</A>.
+
+Default value: <CODE>"&#62; "</CODE>.
+
+<DT><CODE>PS4</CODE>
+<DD>
+<A NAME="IDX279"></A>
+See section <A HREF="octave_3.html#SEC37">Customizing the Prompt</A>.
+
+Default value: <CODE>"+ "</CODE>.
+
+<DT><CODE>automatic_replot</CODE>
+<DD>
+<A NAME="IDX280"></A>
+See section <A HREF="octave_18.html#SEC136">Two-Dimensional Plotting</A>.
+
+Default value: 0.
+
+<DT><CODE>beep_on_error</CODE>
+<DD>
+<A NAME="IDX281"></A>
+See section <A HREF="octave_15.html#SEC108">Error Handling</A>.
+
+Default value: 0.
+
+<DT><CODE>completion_append_char</CODE>
+<DD>
+<A NAME="IDX282"></A>
+See section <A HREF="octave_3.html#SEC34">Letting Readline Type For You</A>.
+
+Default value: <CODE>" "</CODE>.
+
+<DT><CODE>default_save_format</CODE>
+<DD>
+<A NAME="IDX283"></A>
+See section <A HREF="octave_17.html#SEC114">Simple File I/O</A>.
+
+Default value: <CODE>"ascii"</CODE>.
+
+<DT><CODE>crash_dumps_octave_core</CODE>
+<DD>
+<A NAME="IDX284"></A>
+See section <A HREF="octave_17.html#SEC114">Simple File I/O</A>.
+
+Default value: 1.
+
+<DT><CODE>fixed_point_format</CODE>
+<DD>
+<A NAME="IDX285"></A>
+See section <A HREF="octave_5.html#SEC51">Matrices</A>.
+
+Default value: 0.
+
+<DT><CODE>gnuplot_binary</CODE>
+<DD>
+<A NAME="IDX286"></A>
+See section <A HREF="octave_18.html#SEC138">Three-Dimensional Plotting</A>.
+
+Default value: <CODE>"gnuplot"</CODE>.
+
+<DT><CODE>history_file</CODE>
+<DD>
+<A NAME="IDX287"></A>
+See section <A HREF="octave_3.html#SEC35">Commands For Manipulating The History</A>.
+
+Default value: <CODE>"~/.octave_hist"</CODE>.
+
+<DT><CODE>history_size</CODE>
+<DD>
+<A NAME="IDX288"></A>
+See section <A HREF="octave_3.html#SEC35">Commands For Manipulating The History</A>.
+
+Default value: 1024.
+
+<DT><CODE>ignore_function_time_stamp</CODE>
+<DD>
+<A NAME="IDX289"></A>
+See section <A HREF="octave_14.html#SEC104">Function Files</A>.
+
+Default value: <CODE>"system"</CODE>.
+
+<DT><CODE>max_recursion_depth</CODE>
+<DD>
+<A NAME="IDX290"></A>
+See section <A HREF="octave_11.html#SEC76">Recursion</A>.
+
+Default value: 256.
+
+<DT><CODE>output_max_field_width</CODE>
+<DD>
+<A NAME="IDX291"></A>
+See section <A HREF="octave_5.html#SEC51">Matrices</A>.
+
+Default value: 10.
+
+<DT><CODE>output_precision</CODE>
+<DD>
+<A NAME="IDX292"></A>
+See section <A HREF="octave_5.html#SEC51">Matrices</A>.
+
+Default value: 5.
+
+<DT><CODE>page_screen_output</CODE>
+<DD>
+<A NAME="IDX293"></A>
+See section <A HREF="octave_17.html#SEC110">Input and Output</A>.
+
+Default value: 1.
+
+<DT><CODE>print_answer_id_name</CODE>
+<DD>
+<A NAME="IDX294"></A>
+See section <A HREF="octave_17.html#SEC112">Terminal Output</A>.
+
+Default value: 1.
+
+<DT><CODE>print_empty_dimensions</CODE>
+<DD>
+<A NAME="IDX295"></A>
+See section <A HREF="octave_5.html#SEC52">Empty Matrices</A>.
+
+Default value: 1.
+
+<DT><CODE>return_last_computed_value</CODE>
+<DD>
+<A NAME="IDX296"></A>
+See section <A HREF="octave_14.html#SEC103">Returning From a Function</A>.
+
+Default value: 0.
+
+<DT><CODE>save_precision</CODE>
+<DD>
+<A NAME="IDX297"></A>
+See section <A HREF="octave_17.html#SEC114">Simple File I/O</A>.
+
+Default value: 17.
+
+<DT><CODE>saving_history</CODE>
+<DD>
+<A NAME="IDX298"></A>
+See section <A HREF="octave_3.html#SEC35">Commands For Manipulating The History</A>.
+
+Default value: 1.
+
+<DT><CODE>sighup_dumps_octave_core</CODE>
+<DD>
+<A NAME="IDX299"></A>
+See section <A HREF="octave_17.html#SEC114">Simple File I/O</A>.
+
+Default value: 1.
+
+<DT><CODE>sigterm_dumps_octave_core</CODE>
+<DD>
+<A NAME="IDX300"></A>
+See section <A HREF="octave_17.html#SEC114">Simple File I/O</A>.
+
+Default value: 1.
+
+<DT><CODE>silent_functions</CODE>
+<DD>
+<A NAME="IDX301"></A>
+See section <A HREF="octave_14.html#SEC99">Defining Functions</A>.
+
+Default value: 0.
+
+<DT><CODE>split_long_rows</CODE>
+<DD>
+<A NAME="IDX302"></A>
+See section <A HREF="octave_5.html#SEC51">Matrices</A>.
+
+Default value: 1.
+
+<DT><CODE>struct_levels_to_print</CODE>
+<DD>
+<A NAME="IDX303"></A>
+See section <A HREF="octave_7.html#SEC61">Data Structures</A>.
+
+Default value: 2.
+
+<DT><CODE>suppress_verbose_help_message</CODE>
+<DD>
+<A NAME="IDX304"></A>
+See section <A HREF="octave_3.html#SEC29">Commands for Getting Help</A>.
+
+Default value: 1.
+
+<DT><CODE>warn_assign_as_truth_value</CODE>
+<DD>
+<A NAME="IDX305"></A>
+See section <A HREF="octave_13.html#SEC87">The <CODE>if</CODE> Statement</A>.
+
+Default value: 1.
+
+<DT><CODE>warn_comma_in_global_decl</CODE>
+<DD>
+<A NAME="IDX306"></A>
+See section <A HREF="octave_10.html#SEC67">Global Variables</A>.
+
+Default value: 1.
+
+<DT><CODE>warn_divide_by_zero</CODE>
+<DD>
+<A NAME="IDX307"></A>
+See section <A HREF="octave_11.html#SEC77">Arithmetic Operators</A>.
+
+Default value: 1.
+
+<DT><CODE>warn_empty_list_elements</CODE>
+<DD>
+<A NAME="IDX308"></A>
+See section <A HREF="octave_5.html#SEC52">Empty Matrices</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_fortran_indexing</CODE>
+<DD>
+<A NAME="IDX309"></A>
+See section <A HREF="octave_11.html#SEC73">Index Expressions</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_function_name_clash</CODE>
+<DD>
+<A NAME="IDX310"></A>
+See section <A HREF="octave_14.html#SEC104">Function Files</A>.
+
+Default value: 1.
+
+<DT><CODE>warn_imag_to_real</CODE>
+<DD>
+<A NAME="IDX311"></A>
+See section <A HREF="octave_19.html#SEC146">Special Utility Matrices</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_missing_semicolon</CODE>
+<DD>
+<A NAME="IDX312"></A>
+See section <A HREF="octave_14.html#SEC99">Defining Functions</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_neg_dim_as_zero</CODE>
+<DD>
+<A NAME="IDX313"></A>
+See section <A HREF="octave_19.html#SEC146">Special Utility Matrices</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_num_to_str</CODE>
+<DD>
+<A NAME="IDX314"></A>
+See section <A HREF="octave_6.html#SEC59">String Conversions</A>.
+
+Default value: 1.
+
+<DT><CODE>warn_reload_forces_clear</CODE>
+<DD>
+<A NAME="IDX315"></A>
+See section <A HREF="octave_14.html#SEC106">Dynamically Linked Functions</A>.
+
+Default value: 1.
+
+<DT><CODE>warn_resize_on_range_error</CODE>
+<DD>
+<A NAME="IDX316"></A>
+See section <A HREF="octave_11.html#SEC73">Index Expressions</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_separator_insert</CODE>
+<DD>
+<A NAME="IDX317"></A>
+See section <A HREF="octave_5.html#SEC51">Matrices</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_single_quote_string</CODE>
+<DD>
+<A NAME="IDX318"></A>
+See section <A HREF="octave_6.html#SEC59">String Conversions</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_str_to_num</CODE>
+<DD>
+<A NAME="IDX319"></A>
+See section <A HREF="octave_6.html#SEC59">String Conversions</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_undefined_return_values</CODE>
+<DD>
+<A NAME="IDX320"></A>
+See section <A HREF="octave_14.html#SEC100">Multiple Return Values</A>.
+
+Default value: 0.
+
+<DT><CODE>warn_variable_switch_label</CODE>
+<DD>
+<A NAME="IDX321"></A>
+See section <A HREF="octave_13.html#SEC88">The <CODE>switch</CODE> Statement</A>.
+
+Default value: 0.
+</DL>
+
+
+
+<H2><A NAME="SEC71" HREF="octave_toc.html#TOC71">Defaults from the Environment</A></H2>
+
+<P>
+Octave uses the values of the following environment variables to set the
+default values for the corresponding built-in variables.  In addition,
+the values from the environment may be overridden by command-line
+arguments.  See section <A HREF="octave_3.html#SEC26">Command Line Options</A>.
+
+
+<DL COMPACT>
+
+<DT><CODE>EDITOR</CODE>
+<DD>
+<A NAME="IDX322"></A>
+See section <A HREF="octave_3.html#SEC35">Commands For Manipulating The History</A>.
+
+Built-in variable: <CODE>EDITOR</CODE>.
+
+<DT><CODE>OCTAVE_EXEC_PATH</CODE>
+<DD>
+<A NAME="IDX323"></A>
+See section <A HREF="octave_35.html#SEC208">Controlling Subprocesses</A>.
+
+Built-in variable: <CODE>EXEC_PATH</CODE>.
+Command-line argument: <CODE>--exec-path</CODE>.
+
+<DT><CODE>OCTAVE_PATH</CODE>
+<DD>
+<A NAME="IDX324"></A>
+See section <A HREF="octave_14.html#SEC104">Function Files</A>.
+
+Built-in variable: <CODE>LOADPATH</CODE>.
+Command-line argument: <CODE>--path</CODE>.
+
+<DT><CODE>OCTAVE_INFO_FILE</CODE>
+<DD>
+<A NAME="IDX325"></A>
+See section <A HREF="octave_3.html#SEC29">Commands for Getting Help</A>.
+
+Built-in variable: <CODE>INFO_FILE</CODE>.
+Command-line argument: <CODE>--info-file</CODE>.
+
+<DT><CODE>OCTAVE_INFO_PROGRAM</CODE>
+<DD>
+<A NAME="IDX326"></A>
+See section <A HREF="octave_3.html#SEC29">Commands for Getting Help</A>.
+
+Built-in variable: <CODE>INFO_PROGRAM</CODE>.
+Command-line argument: <CODE>--info-program</CODE>.
+
+<DT><CODE>OCTAVE_HISTSIZE</CODE>
+<DD>
+<A NAME="IDX327"></A>
+See section <A HREF="octave_3.html#SEC35">Commands For Manipulating The History</A>.
+
+Built-in variable: <CODE>history_size</CODE>.
+
+<DT><CODE>OCTAVE_HISTFILE</CODE>
+<DD>
+<A NAME="IDX328"></A>
+See section <A HREF="octave_3.html#SEC35">Commands For Manipulating The History</A>.
+
+Built-in variable: <CODE>history_file</CODE>.
+</DL>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_9.html">previous</A>, <A HREF="octave_11.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

@@ -1,0 +1,59 @@
+# CHECKSUMS file written on Wed Jul 25 19:29:02 2001 by CPAN::Checksums (v1.008)
+$cksum = {
+  'Curses-1.05.tar.gz' => {
+    'md5-ungz' => '47770c499cb4ec474fcfc43eeb7672c1',
+    'mtime' => '2000-07-16',
+    'md5' => '966d3ef5ed5a30f00f3f66ab68b6bf35',
+    'shortname' => 'curse105.tgz',
+    'size' => '60897'
+  },
+  'Curses-1.04.tar.gz' => {
+    'md5-ungz' => '1e19181f82c0d797e453c08231d85ea2',
+    'mtime' => '2000-06-16',
+    'md5' => '803af1a50975b15438869694b55b28e2',
+    'shortname' => 'curse104.tgz',
+    'size' => '58971'
+  },
+  'Curses-1.02.tar.gz' => {
+    'md5-ungz' => '49b6748178758e8bd1042fe64a9b97f9',
+    'mtime' => '1998-02-19',
+    'md5' => '6a7aa8cfd9ca5089b62f07335a875b42',
+    'shortname' => 'curse102.tgz',
+    'size' => '33427'
+  },
+  'Curses-1.01.tar.gz' => {
+    'md5-ungz' => '1cd3631658599c4769e5bb39792727c0',
+    'mtime' => '1996-12-14',
+    'md5' => '411e6b202a948a1670aedf9922542066',
+    'shortname' => 'curse101.tgz',
+    'size' => '33813'
+  },
+  'Curses-1.06.tar.gz' => {
+    'md5-ungz' => 'efed84a06068845927ed999fdd9aa2fb',
+    'mtime' => '2001-07-25',
+    'md5' => '569c7966f2e591676f7eb09e5b7a84c0',
+    'shortname' => 'curse106.tgz',
+    'size' => '75923'
+  },
+  'Curses-a8.tar.gz' => {
+    'md5-ungz' => '4fad35ab1b9f452c3c9b66280d785fd3',
+    'mtime' => '1995-08-20',
+    'md5' => '5d5b9a696ce4f667b15992c8947952cc',
+    'shortname' => 'curses8.tgz',
+    'size' => '26935'
+  },
+  'Curses-a9.tar.gz' => {
+    'md5-ungz' => 'a3dd0ae708858ab76e9248e8ecfba035',
+    'mtime' => '1996-03-17',
+    'md5' => '02d8610aecd4482bd61ec253996e0c37',
+    'shortname' => 'curses9.tgz',
+    'size' => '29548'
+  },
+  'Curses-1.0.tar.gz' => {
+    'md5-ungz' => 'a2530e156914335f5b1d73049e1ee7ce',
+    'mtime' => '1996-06-15',
+    'md5' => '475f5baf869d36feb33fc6a0c9a6b4e6',
+    'shortname' => 'curses10.tgz',
+    'size' => '29913'
+  }
+};

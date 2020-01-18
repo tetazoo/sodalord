@@ -1,0 +1,304 @@
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node System Utilities, Tips, Quaternions, Top
+@chapter System Utilities
+
+This chapter describes the functions that are available to allow you to
+get information about what is happening outside of Octave, while it is
+still running, and use this information in your program.  For example,
+you can get information about environment variables, the current time,
+and even start other programs from the Octave prompt.
+
+@menu
+* Timing Utilities::            
+* Filesystem Utilities::        
+* Controlling Subprocesses::    
+* Process ID Information::      
+* Environment Variables::       
+* Current Working Directory::   
+* Password Database Functions::  
+* Group Database Functions::    
+* System Information::          
+@end menu
+
+@node Timing Utilities, Filesystem Utilities, System Utilities, System Utilities
+@section Timing Utilities
+
+Octave's core set of functions for manipulating time values are
+patterned after the corresponding functions from the standard C library.
+Several of these functions use a data structure for time that includes
+the following elements:
+
+@table @code
+@item usec
+Microseconds after the second (0-999999).
+
+@item sec
+Seconds after the minute (0-61).  This number can be 61 to account
+for leap seconds.
+
+@item min
+Minutes after the hour (0-59).
+
+@item hour
+Hours since midnight (0-23).
+
+@item mday
+Day of the month (1-31).
+
+@item mon
+Months since January (0-11).
+
+@item year
+Years since 1900.
+
+@item wday
+Days since Sunday (0-6).
+
+@item yday
+Days since January 1 (0-365).
+
+@item isdst
+Daylight Savings Time flag.
+
+@item zone
+Time zone.
+@end table
+
+@noindent
+In the descriptions of the following functions, this structure is
+referred to as a @var{tm_struct}.
+
+@DOCSTRING(time)
+
+@DOCSTRING(ctime)
+
+@DOCSTRING(gmtime)
+
+@DOCSTRING(localtime)
+
+@DOCSTRING(mktime)
+
+@DOCSTRING(asctime)
+
+@DOCSTRING(strftime)
+
+Most of the remaining functions described in this section are not
+patterned after the standard C library.  Some are available for
+compatiblity with @sc{Matlab} and others are provided because they are
+useful.
+
+@DOCSTRING(clock)
+
+@DOCSTRING(date)
+
+@DOCSTRING(etime)
+
+@DOCSTRING(cputime)
+
+@DOCSTRING(is_leap_year)
+
+@DOCSTRING(tic)
+
+@DOCSTRING(pause)
+
+@DOCSTRING(sleep)
+
+@DOCSTRING(usleep)
+
+@node Filesystem Utilities, Controlling Subprocesses, Timing Utilities, System Utilities
+@section Filesystem Utilities
+
+Octave includes the following functions for renaming and deleting files,
+creating, deleting, and reading directories, and for getting information
+about the status of files.
+
+@DOCSTRING(rename)
+
+@DOCSTRING(link)
+
+@DOCSTRING(symlink)
+
+@DOCSTRING(unlink)
+
+@DOCSTRING(readdir)
+
+@DOCSTRING(mkdir)
+
+@DOCSTRING(rmdir)
+
+@DOCSTRING(mkfifo)
+
+@DOCSTRING(umask)
+
+@DOCSTRING(stat)
+
+@DOCSTRING(glob)
+
+@DOCSTRING(fnmatch)
+
+@DOCSTRING(file_in_path)
+
+@DOCSTRING(tilde_expand)
+
+@node Controlling Subprocesses, Process ID Information, Filesystem Utilities, System Utilities
+@section Controlling Subprocesses
+
+Octave includes some high-level commands like @code{system} and
+@code{popen} for starting subprocesses.  If you want to run another
+program to perform some task and then look at its output, you will
+probably want to use these functions.
+
+Octave also provides several very low-level Unix-like functions which
+can also be used for starting subprocesses, but you should probably only
+use them if you can't find any way to do what you need with the
+higher-level functions.
+
+@DOCSTRING(system)
+
+@DOCSTRING(popen)
+
+@DOCSTRING(pclose)
+
+@DOCSTRING(popen2)
+
+@DOCSTRING(EXEC_PATH)
+
+In most cases, the following functions simply decode their arguments and
+make the corresponding Unix system calls.  For a complete example of how
+they can be used, look at the definition of the function @code{popen2}.
+
+@DOCSTRING(fork)
+
+@DOCSTRING(exec)
+
+@DOCSTRING(pipe)
+
+@DOCSTRING(dup2)
+
+@DOCSTRING(waitpid)
+
+@DOCSTRING(fcntl)
+
+@node Process ID Information, Environment Variables, Controlling Subprocesses, System Utilities
+@section Process, Group, and User IDs
+
+@DOCSTRING(getpgrp)
+
+@DOCSTRING(getpid)
+
+@DOCSTRING(getppid)
+
+@DOCSTRING(geteuid)
+
+@DOCSTRING(getuid)
+
+@DOCSTRING(getegid)
+
+@DOCSTRING(getgid)
+
+@node Environment Variables, Current Working Directory, Process ID Information, System Utilities
+@section Environment Variables
+
+@DOCSTRING(getenv)
+
+@DOCSTRING(putenv)
+
+@node Current Working Directory, Password Database Functions, Environment Variables, System Utilities
+@section Current Working Directory
+
+@DOCSTRING(cd)
+
+@DOCSTRING(ls)
+
+@DOCSTRING(pwd)
+
+@node Password Database Functions, Group Database Functions, Current Working Directory, System Utilities
+@section Password Database Functions
+
+Octave's password database functions return information in a structure
+with the following fields.
+
+@table @code
+@item name
+The user name.
+
+@item passwd
+The encrypted password, if available.
+
+@item uid
+The numeric user id.
+
+@item gid
+The numeric group id.
+
+@item gecos
+The GECOS field.
+
+@item dir
+The home directory.
+
+@item shell
+The initial shell.
+@end table
+
+In the descriptions of the following functions, this data structure is
+referred to as a @var{pw_struct}.
+
+@DOCSTRING(getpwent)
+
+@DOCSTRING(getpwuid)
+
+@DOCSTRING(getpwnam)
+
+@DOCSTRING(setpwent)
+
+@DOCSTRING(endpwent)
+
+@node Group Database Functions, System Information, Password Database Functions, System Utilities
+@section Group Database Functions
+
+Octave's group database functions return information in a structure
+with the following fields.
+
+@table @code
+@item name
+The user name.
+
+@item passwd
+The encrypted password, if available.
+
+@item gid
+The numeric group id.
+
+@item mem
+The members of the group.
+@end table
+
+In the descriptions of the following functions, this data structure is
+referred to as a @var{grp_struct}.
+
+@DOCSTRING(getgrent)
+
+@DOCSTRING(getgrgid)
+         
+@DOCSTRING(getgrnam)
+
+@DOCSTRING(setgrent)
+
+@DOCSTRING(endgrent)
+
+@node System Information,  , Group Database Functions, System Utilities
+@section System Information
+
+@DOCSTRING(computer)
+
+@DOCSTRING(isieee)
+
+@DOCSTRING(OCTAVE_VERSION)
+
+@DOCSTRING(octave_config_info)
+
+@DOCSTRING(getrusage)

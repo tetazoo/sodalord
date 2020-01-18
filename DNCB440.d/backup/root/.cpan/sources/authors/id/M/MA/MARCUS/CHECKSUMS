@@ -1,0 +1,183 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Thu Jun 24 09:30:46 2004 by CPAN::Checksums (v1.016)
+$cksum = {
+  'Curses-UI-Mousehandler-GPM-0.01.meta' => {
+    'mtime' => '2004-02-17',
+    'md5' => 'f5001b8ca264994500dade9fe451fedf',
+    'size' => 336
+  },
+  'CPANPLUS-Shell-Curses-0.06.tar.gz' => {
+    'mtime' => '2004-02-17',
+    'md5-ungz' => 'c37f94907db2ea71c416ba2e6f7e9fd3',
+    'md5' => 'ff06438346c9581a981f8a83836b63ca',
+    'size' => 11734
+  },
+  'Curses-UI-0.85.meta' => {
+    'mtime' => '2003-10-16',
+    'md5' => '99d66ba800dc88125d839699be9f4db0',
+    'size' => 450
+  },
+  'Curses-UI-0.91.tar.gz' => {
+    'mtime' => '2004-02-20',
+    'md5-ungz' => 'c6a8348aed9d8611a1523fa5862e7167',
+    'md5' => 'ded94ccfb2474d8bff5244bae41651ef',
+    'size' => 119472
+  },
+  'CPANPLUS-Shell-Curses-0.07.meta' => {
+    'mtime' => '2004-06-24',
+    'md5' => '9d7086a0e03f4f323f13359019b5b0ed',
+    'size' => 629
+  },
+  'Curses-UI-0.73.tar.gz' => {
+    'mtime' => '2003-03-28',
+    'md5-ungz' => '37d3be8bb54c9f7316e8d4ab98cd822a',
+    'md5' => 'cf9ae3779450c139f90b0c2f4871bb6d',
+    'size' => 100971
+  },
+  'GraphViz-ISA-Multi-0.02.tar.gz' => {
+    'mtime' => '2003-10-07',
+    'md5-ungz' => 'd1c2a39f081459373123665115413a60',
+    'md5' => '815969c35edc7daa0807d632d8527eca',
+    'size' => 11138
+  },
+  'Curses-UI-0.74.tar.gz' => {
+    'mtime' => '2003-04-27',
+    'md5-ungz' => '0c4ba91c8abd15289b529fefe3e5a369',
+    'md5' => '5cc4da09b7f7d6cbd793ff5004798d0d',
+    'size' => 101250
+  },
+  'CPANPLUS-Shell-Curses-0.06.meta' => {
+    'mtime' => '2004-02-17',
+    'md5' => '7e99cc1a4bf12091e4005bb068c45e65',
+    'size' => 629
+  },
+  'CPANPLUS-Shell-Curses-0.05.tar.gz' => {
+    'mtime' => '2003-10-08',
+    'md5-ungz' => '6344f3336fd945df855b626ad4be4886',
+    'md5' => '7481b3a347ea0b6d1bad64c907cbffd5',
+    'size' => 11319
+  },
+  'Curses-UI-0.72.tar.gz' => {
+    'mtime' => '2003-03-25',
+    'md5-ungz' => '13cdf9bd8515602f698a4b2d2b25d64b',
+    'md5' => 'ac06f27f691476c5ea970a6fa370a608',
+    'size' => 98770
+  },
+  'Curses-UI-0.85.tar.gz' => {
+    'mtime' => '2003-10-16',
+    'md5-ungz' => '3cefd4179cc9ec5991fd546b1a8a84cf',
+    'md5' => '30697f7f86dd25c4aea61ef2cacfd7c3',
+    'size' => 116082
+  },
+  'Curses-UI-0.80.meta' => {
+    'mtime' => '2003-10-08',
+    'md5' => 'ba4d1a35955699ebd2a9106ba44468d5',
+    'size' => 376
+  },
+  'Curses-UI-0.90.meta' => {
+    'mtime' => '2004-02-17',
+    'md5' => '9464bb70b29fa246d6f483df0ca52ad5',
+    'size' => 450
+  },
+  'Curses-UI-Mousehandler-GPM-0.01.tar.gz' => {
+    'mtime' => '2004-02-17',
+    'md5-ungz' => '222ad11e4f7c0e563294d16126ec80c9',
+    'md5' => '9b3aa0e1298ae612b2f4cdd2076af699',
+    'size' => 13148
+  },
+  'CPANPLUS-Shell-Curses-0.01.tar.gz' => {
+    'mtime' => '2003-04-13',
+    'md5-ungz' => 'd899cda1480c3f6eb458b3af52d988f9',
+    'md5' => 'fc201226edfc9eeb023d2af8bf26bbe7',
+    'size' => 10182
+  },
+  'Curses-UI-0.93.tar.gz' => {
+    'mtime' => '2004-06-24',
+    'md5-ungz' => 'ca767159ef9e98f4a750a63575ca889f',
+    'md5' => '1f47d1eabbbb1a691748d28a11fbbe1e',
+    'size' => 121991
+  },
+  'GraphViz-ISA-Multi-0.01.meta' => {
+    'mtime' => '2003-10-07',
+    'md5' => '37ee011cfed1c61ba10369934919020e',
+    'size' => 397
+  },
+  'CPANPLUS-Shell-Curses-0.05.meta' => {
+    'mtime' => '2003-10-08',
+    'md5' => '23dfad7b18543256103a34249843e7a3',
+    'size' => 628
+  },
+  'Curses-UI-0.91.meta' => {
+    'mtime' => '2004-02-20',
+    'md5' => '296d32535f8b3ce44cec97dd3b7dd841',
+    'size' => 450
+  },
+  'Curses-UI-0.93.meta' => {
+    'mtime' => '2004-06-24',
+    'md5' => 'd41161a12fe6b314740628176da4141b',
+    'size' => 450
+  },
+  'Curses-UI-0.92.tar.gz' => {
+    'mtime' => '2004-02-27',
+    'md5-ungz' => '459eecdc2ac541eac38ebfd2fec65c1e',
+    'md5' => 'a7514927424a517c5c94b72dfe84b838',
+    'size' => 120022
+  },
+  'CPANPLUS-Shell-Curses-0.07.tar.gz' => {
+    'mtime' => '2004-06-24',
+    'md5-ungz' => '7c175738d8dbe7ef61a21c1786a3ec84',
+    'md5' => 'f7f180db6e447f2273b9a6b9d762c363',
+    'size' => 11794
+  },
+  'Curses-UI-0.92.meta' => {
+    'mtime' => '2004-02-27',
+    'md5' => '17a4ab6aec29e1b24e6093dfae2398bb',
+    'size' => 450
+  },
+  'Curses-UI-0.90.tar.gz' => {
+    'mtime' => '2004-02-17',
+    'md5-ungz' => '55bbf0c732f07b26e1826868e61fe4ad',
+    'md5' => '10cb6015bb940cb1eb69b5813d092d3b',
+    'size' => 119084
+  },
+  'Curses-UI-0.75.tar.gz' => {
+    'mtime' => '2003-08-31',
+    'md5-ungz' => '2b196752894d0785cbcd58448977b7b8',
+    'md5' => '47fd1f3ebcde119793307aee15728762',
+    'size' => 107856
+  },
+  'GraphViz-ISA-Multi-0.02.meta' => {
+    'mtime' => '2003-10-07',
+    'md5' => '545fc3e28449ad012db2fb5773b63e77',
+    'size' => 397
+  },
+  'Curses-UI-0.80.tar.gz' => {
+    'mtime' => '2003-10-08',
+    'md5-ungz' => 'b804a514ca0317e8d439e658b7c314c9',
+    'md5' => '60db39e95228542162ebcdf489baf031',
+    'size' => 114554
+  },
+  'GraphViz-ISA-Multi-0.01.tar.gz' => {
+    'mtime' => '2003-10-07',
+    'md5-ungz' => '2beb858ecdb4e950215c5a5a04305138',
+    'md5' => 'ae7dfdebba3a8edb9878a580fb39b511',
+    'size' => 10893
+  },
+  'CPANPLUS-Shell-Curses-0.02.tar.gz' => {
+    'mtime' => '2003-04-30',
+    'md5-ungz' => '6fe623778f7f63b615d64a56ae29a55e',
+    'md5' => '6f15233144acd69f8303defda008cb93',
+    'size' => 13565
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQFA2p9HMo2oZ0UPiewRAjr8AJ9eYYzMPjfk1MAVBEGIEfxcOPLPkACfUleS
+ccHYSGylNktlkTtn0kvgRy4=
+=IKa4
+-----END PGP SIGNATURE-----

@@ -1,0 +1,2750 @@
+2002-05-01  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* skip-autoheader: New file, for autogen.sh.
+	* Makefile.in (DISTFILES): Add it to the list.
+
+2002-04-29  Paul Kienzle <pkienzle@users.sf.net>
+
+	* general/repmat.m: New function.
+
+2002-04-25  Paul Kienzle <pkienzle@users.sf.net>
+
+	* audio/lin2mu.m: Accept matrices and [-1,1] normalized audio.
+	Use optional parameter to specify the number of bits in the input.
+	* audio/mu2lin.m: Accept matrices, return n-bit integers or 
+	floats in the range [-1,1], 2x speedup.
+
+	* strings/index.m, strings/rindex.m: Vectorize for speed.
+
+2002-04-25  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/kron.m: Delete.
+
+2002-04-24  Paul Kienzle <pkienzle@users.sf.net>
+
+	* signal/freqz.m: If nargout is zero, plot results instead of
+	returning them.
+	* signal/freqz_plot.m: New file.
+
+2002-04-24  Bill Lash <lash@tellabs.com>
+
+	* scripts/signal/unwrap.m: New file.
+
+2002-04-23  Paul Kienzle <pkienzle@users.sf.net>
+
+	* image/rgb2hsv.m: Faster, more accurate, remove the
+	divide by zero warning.
+
+2002-04-09  Paul Kienzle <pkienzle@users.sf.net>
+
+	* strings/deblank.m: Trim \0 as well as blank.
+
+	* scripts/freqz.m: Evaluate a specific range of frequencies
+	expressed in radians or Hz relative to a supplied sample rate.
+
+2002-04-04  Paul Kienzle <pkienzle@users.sf.net>
+
+	* signal/fftfilt.m: Filter columns if called with a matrix.
+
+	* strings/findstr.m: Vectorize as much as possible.
+
+2002-04-04  Dirk Laurie <dirk@calvyn.puk.ac.za>
+
+	* special-matrix/invhilb.m: New version that is faster and more
+	accurate.
+
+2002-04-03  Steven G. Johnson <stevenj@alum.mit.edu>
+
+	* configure.in: Update for autoconf 2.5x.
+
+2002-04-03  Paul Kienzle <pkienzle@users.sf.net>
+
+	* special-matrix/vander.m: Code tidy and vectorize.
+
+2002-04-02  Paul Kienzle <pkienzle@users.sf.net>
+
+	* linear-algebra/cross.m: Accept nx3 and 3xn matrices, in addition
+	to vectors.  Issue a warning in the case x matches y' but return a
+	column vector as Octave currently does.
+
+	* plot/contour.m: Set default number of levels for contour(x,y,z).
+
+	* control/system/starp.m: Leave more of the documentation
+	processing to texinfo and less to the @format block.
+
+	* image/imagesc.m: Only display image if no output is requested.
+	Code tidying.
+
+2002-03-07  Paul Kienzle  <pkienzle@kienzle.powernet.co.uk>
+ 
+ 	* statistics/base/center.m: Accept and return empty matrix.
+ 	
+2002-02-22  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/erfinv.m: Fix usage message.
+
+2002-02-08  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* elfun/coth.m: Use 1 ./ tanh(z) instead of cosh(z) ./ sinh(z).
+	From "Michael O'Brien" <mobrien@kento.unm.edu>.
+
+2001-06-06  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/distributions/discrete_cdf.m: Downcase incorrectly
+	capitalized variable names.
+
+2001-05-30  Jean-Francois Cardoso  <cardoso@tsi.enst.fr>
+
+	* m/image/saveimage.m: fix saving an image to Postscript format.
+
+2001-04-18  A. Scottedward Hodel <a.s.hodel@eng.auburn.edu>
+
+	* control/system/is_stabilizable.m: Pass a to sys2ss, not sys.
+
+2001-02-28  Kai Habel  <kai.habel@gmx.de>
+
+	* general/cart2pol.m: New file.
+	* general/pol2cart.m: New file.
+	* general/cart2sph.m: New file.
+	* general/sph2cart.m: New file.
+	* image/rgb2hsv.m: New file.
+	* image/hsv2rgb.m: New file.
+
+2001-02-26  Paul Kienzle  <pkienzle@kienzle.powernet.co.uk>
+
+	* plot/meshgrid.m: Avoid for loops.
+	* plot/meshdom.m: Likewise.
+
+2001-02-22  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/norm.m: Use sqrt instead of ^0.5.
+
+2001-02-22  Heinz Bauschke  <bauschke@cecm.sfu.ca>
+
+	* linear-algebra/norm.m: Use more efficient method for Frobenius
+	norm.
+
+2001-02-09  David Livings  <david.livings@asa.co.uk>
+
+	* statistics/tests/welch_test.m: Fix typo.
+
+	* statistics/distributions/chisquare_cdf.m:
+	Don't restrict inputs to be only positive integers.
+	* statistics/distributions/chisquare_inv.m: Likewise.
+	* statistics/distributions/chisquare_pdf.m: Likewise.
+	* statistics/distributions/chisquare_rnd.m: Likewise.
+	* statistics/distributions/f_cdf.m: Likewise.
+	* statistics/distributions/f_inv.m: Likewise.
+	* statistics/distributions/f_pdf.m: Likewise.
+	* statistics/distributions/f_rnd.m: Likewise.
+	* statistics/distributions/t_cdf.m: Likewise.
+	* statistics/distributions/t_inv.m: Likewise.
+	* statistics/distributions/t_pdf.m: Likewise.
+	* statistics/distributions/t_rnd.m: Likewise.
+
+2001-02-08  Paul Kienzle  <pkienzle@kienzle.powernet.co.uk>
+
+	* strings/dec2base.m: New file.
+	* strings/base2dec.m: New file.
+	* strings/strjust.m: New file.
+	* strings/dec2hex.m: Replace with version that just calls 2dec2base.
+	* strings/dec2bin.m: Likewise.
+	* strings/hex2dec.m: Replace with version that just calls base2dec.
+	* strings/bin2dec.m: Likewise.
+
+2001-02-07  David Livings <david.livings@asa.co.uk>
+
+	* statistics/base/ppplot.m: Use gset, not set.
+	* statistics/base/qqplot.m: Likewise.
+
+2001-02-05  Ondrej Popp <ondrej@geocities.com>
+
+	* control/system/c2d.m: Add missing endif.
+
+2000-12-15  Teemu Ikonen  <tpikonen@pcu.helsinki.fi>
+
+	* strings/index.m: Return 0 if either string is empty.
+
+2000-12-15  Ben Sapp  <bsapp@lanl.gov>
+
+	* control/system/c2d.m: Allow option of matched pole/zero
+	equivalent for conversion.  
+
+2000-12-15  Matthew W. Roberts  <matt@lehi.tamu.edu>
+
+	* strings/findstr.m: Return empty matrix if search string is empty.
+
+2000-12-15  Kai Habel  <kai.habel@gmx.de>
+
+	* saveimage.m: Do create rawbit image for black and white images,
+	but do it correctly.
+
+2000-12-13   Teemu Ikonen  <tpikonen@pcu.helsinki.fi>
+
+        * polynomial/deconv.m: For compatibility with Matlab, don't reduce
+	  result polynomials.
+
+2000-12-07  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/saveimage.m: Don't try to create rawbit image.
+
+2000-11-21  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (bin-dist): Pass -C to $(MAKE), not -c.
+
+2000-11-16  Paul Kienzle <pkienzle@kienzle.powernet.co.uk>
+
+	* plot/contour.m: Reorder args for Matlab compatibility.
+
+2000-10-27  Mats Jansson  <mats.e.jansson@home.se>
+
+	* set/create_set.m: Avoid empty matrix in matrix list warning.
+
+2000-09-08  Teemu Ikonen  <tpikonen@pcu.helsinki.fi>
+
+	* plot/errorbar.m, plot/__errplot__.m: New functions.
+
+	* plot/mesh.m: Also set nologscale before plotting.
+	* plot/__pltopt1__.m: Handle xerrorbars, yerrorbars, and
+	xyerrorbars instead of just errorbars.
+
+2000-08-25  Thomas Walter  <walter@pctc.chemie.uni-erlangen.de>
+
+	* image/image.m: Try display (from ImageMagick) first.
+
+2000-08-01  Rolf Fabian  <fabian@tu-cottbus.de>
+
+	* plot/meshgrid.m: Use transpose to reorient vectors, not complex
+	conjugate transpose.
+
+2000-07-21  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/str2mat.m: Apply setstr to each argument.
+
+2000-07-17  Gabriele Pannocchia  <pannocchia@ing.unipi.it>
+
+	* control/base/dkalman.m: New file.
+	* control/base/dlqe.m: Handle singular A matrix.
+	* control/base/dlqr.m: Likewise.
+
+2000-07-14  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/strcmp.m: Return 0 instead of an error if row and column
+	dimensions don't match.
+
+2000-06-30  Kai Habel  <kahacjde@calvados.zrz.TU-Berlin.DE>
+
+	* plot/hist.m: Allow 3 argument form to work.
+
+2000-06-27  Matthew W. Roberts <matt@lehi.tamu.edu>
+
+	* plot/plot.m: Add examples in doc string.
+
+2000-06-08  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* control/base/__stepimp__.m: Reset multiplot state when done.
+	Do the right thing even if automatic_replot is not zero.
+	Avoid failure if system has pure imaginary poles.
+
+2000-06-06  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/logical.m: Return arg if it is empty.  Better error
+	message for non-numeric types.	
+
+2000-05-31  A. Scottedward Hodel <a.s.hodel@eng.auburn.edu>
+
+	* control/base/dlqe.m: Update documentation.  Fix typo.  Warn
+	about difference with Matlab dlqe function.
+
+	* control/system/sysmult.m: Fix typo in argument dimensions checking.
+
+2000-05-24  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* strings/strrep.m: Fix typo.
+
+2000-05-13  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/strrep.m: Don't transpose result for case of jump > 0.
+
+2000-05-13  Paul Kienzle <pkienzle@kienzle.powernet.co.uk>
+
+	* strings/strrep.m: Avoid for loop for speed.
+	* plot/axis.m: Handle string options for Matlab compatibility. 
+
+2000-04-04  John Smith <john@arrows.demon.co.uk>
+
+	* statistics/distributions/beta_inv.m: Provide better(?) initial
+	guess for iteration.
+
+2000-03-31   Paul Kienzle  <pkienzle@kienzle.powernet.co.uk>
+
+	* image/image.m: Allow image (A) or image (x, y, A).
+	* image/imagesc.m: Likewise.
+
+	* image/image.m: If zoom is not supplied, or if it is an empty
+	matrix, autoscale the image.
+
+2000-03-22  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/title.m, plot/bottom_title.m, plot/top_title.m: 
+	Undo string escapes in text twice(!) before sending to gnuplot.
+
+	* image/saveimage.m: Add comment to file saying who created it and
+	when it was created.  Suggested by Stephen Eglen
+	<stephen@cogsci.ed.ac.uk>.
+
+2000-03-21  Paul Kienzle <pkienzle@kienzle.powernet.co.uk>
+
+	* polynomial/polyreduce.m: Simplify by looking for the first
+	non-zero element rather than the last of the first set of zero
+	elements.
+
+	* plot/__pltopt1__.m: Accept "--", "-.", and ":" line styles.
+
+2000-03-21  Kai Habel <kahacjde@calvados.zrz.TU-Berlin.DE>
+
+	* image/saveimage.m: Swap black and white colormaps so zero is
+	displayed as black and 1 is displayed as white.
+	Fix indexing bug in ppm case.
+
+2000-03-06  Stephen Eglen  <stephen@anc.ed.ac.uk>
+
+	* statistics/tests/kolmogorov_smirnov_test_2.m: Account for ties
+	between the two distributions (took same approach as ks.test() in R.)
+
+2000-02-29  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/base/bode.m: Temporarily disable automatic_replot.
+
+2000-02-23  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (clean): Also remove gethelp.
+
+	* specfun/erfinv.m: Use z_new in convergence test, not z_old.
+
+2000-02-11  Georg Thimm <mgeorg@SGraphicsWS1.mpe.ntu.edu.sg>
+
+	* set/create_set.m: Use find to avoid while loop.
+
+2000-02-11  Stephen Eglen <stephen@cogsci.ed.ac.uk>
+
+	* plot/hist.m: New optional third argument.
+
+2000-02-10  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/bug_report.m: Use octave-bug script with version
+	number appended.
+
+2000-02-04  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* gethelp.cc: Sprinkle with std:: qualifier.
+
+2000-01-30  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/saveimage.m: Delete some debugging code.
+
+2000-01-27  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* signal/sinc.m: Avoid reshaping.
+
+	* image/rgb2ind.m: No longer needs to reset do_fortran_indexing.
+	* image/ind2rgb.m: Ditto.
+	* image/ind2gray.m: Ditto.
+	* general/reshape.m: Ditto.  Also no longer needs to reset
+	implicit_str_to_num_ok.
+
+2000-01-26  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/popen2.m: Deal with the fact that pipe now returns
+	a list of file structures, not a vector of numeric file ids.
+
+2000-01-25  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/__axis_label__.m: New function.
+	Undo string escapes in text twice(!) before sending to gnuplot.
+	* plot/xlabel.m: Use it.
+	* plot/ylabel.m: Ditto.
+	* plot/zlabel.m: Ditto.
+
+	* plot/mesh.m: Fix error message to reflect reality.
+
+2000-01-24  Cyril Humbert <humbert@phobos.univ-mlv.fr>
+
+	* statistics/distributions/weibull_pdf.m: Use correct formula.
+
+2000-01-22  Michael Reifenberger <mike@Plaut.de>
+
+	* audio/saveaudio.m: Also accept files with .ul extension.
+	* audio/loadaudio.m: Ditto.
+	* audio/playaudio.m: Ditto.
+
+2000-01-19  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/distributions/beta_cdf.m: Texinfoize doc string.
+	* statistics/distributions/beta_inv.m: Ditto.
+	* statistics/distributions/beta_pdf.m: Ditto.
+	* statistics/distributions/beta_rnd.m: Ditto.
+	* statistics/distributions/binomial_cdf.m: Ditto.
+	* statistics/distributions/binomial_inv.m: Ditto.
+	* statistics/distributions/binomial_pdf.m: Ditto.
+	* statistics/distributions/binomial_rnd.m: Ditto.
+	* statistics/distributions/cauchy_cdf.m: Ditto.
+	* statistics/distributions/cauchy_inv.m: Ditto.
+	* statistics/distributions/cauchy_pdf.m: Ditto.
+	* statistics/distributions/cauchy_rnd.m: Ditto.
+	* statistics/distributions/chisquare_cdf.m: Ditto.
+	* statistics/distributions/chisquare_inv.m: Ditto.
+	* statistics/distributions/chisquare_pdf.m: Ditto.
+	* statistics/distributions/chisquare_rnd.m: Ditto.
+	* statistics/distributions/discrete_cdf.m: Ditto.
+	* statistics/distributions/discrete_inv.m: Ditto.
+	* statistics/distributions/discrete_pdf.m: Ditto.
+	* statistics/distributions/discrete_rnd.m: Ditto.
+	* statistics/distributions/empirical_cdf.m: Ditto.
+	* statistics/distributions/empirical_inv.m: Ditto.
+	* statistics/distributions/empirical_pdf.m: Ditto.
+	* statistics/distributions/empirical_rnd.m: Ditto.
+	* statistics/distributions/exponential_cdf.m: Ditto.
+	* statistics/distributions/exponential_inv.m: Ditto.
+	* statistics/distributions/exponential_pdf.m: Ditto.
+	* statistics/distributions/exponential_rnd.m: Ditto.
+	* statistics/distributions/f_cdf.m: Ditto.
+	* statistics/distributions/f_inv.m: Ditto.
+	* statistics/distributions/f_pdf.m: Ditto.
+	* statistics/distributions/f_rnd.m: Ditto.
+	* statistics/distributions/gamma_cdf.m: Ditto.
+	* statistics/distributions/gamma_inv.m: Ditto.
+	* statistics/distributions/gamma_pdf.m: Ditto.
+	* statistics/distributions/gamma_rnd.m: Ditto.
+	* statistics/distributions/geometric_cdf.m: Ditto.
+	* statistics/distributions/geometric_inv.m: Ditto.
+	* statistics/distributions/geometric_pdf.m: Ditto.
+	* statistics/distributions/geometric_rnd.m: Ditto.
+	* statistics/distributions/hypergeometric_cdf.m: Ditto.
+	* statistics/distributions/hypergeometric_inv.m: Ditto.
+	* statistics/distributions/hypergeometric_pdf.m: Ditto.
+	* statistics/distributions/hypergeometric_rnd.m: Ditto.
+	* statistics/distributions/kolmogorov_smirnov_cdf.m: Ditto.
+	* statistics/distributions/laplace_cdf.m: Ditto.
+	* statistics/distributions/laplace_inv.m: Ditto.
+	* statistics/distributions/laplace_pdf.m: Ditto.
+	* statistics/distributions/laplace_rnd.m: Ditto.
+	* statistics/distributions/logistic_cdf.m: Ditto.
+	* statistics/distributions/logistic_inv.m: Ditto.
+	* statistics/distributions/logistic_pdf.m: Ditto.
+	* statistics/distributions/logistic_rnd.m: Ditto.
+	* statistics/distributions/lognormal_cdf.m: Ditto.
+	* statistics/distributions/lognormal_inv.m: Ditto.
+	* statistics/distributions/lognormal_pdf.m: Ditto.
+	* statistics/distributions/lognormal_rnd.m: Ditto.
+	* statistics/distributions/normal_cdf.m: Ditto.
+	* statistics/distributions/normal_inv.m: Ditto.
+	* statistics/distributions/normal_pdf.m: Ditto.
+	* statistics/distributions/normal_rnd.m: Ditto.
+	* statistics/distributions/pascal_cdf.m: Ditto.
+	* statistics/distributions/pascal_inv.m: Ditto.
+	* statistics/distributions/pascal_pdf.m: Ditto.
+	* statistics/distributions/pascal_rnd.m: Ditto.
+	* statistics/distributions/poisson_cdf.m: Ditto.
+	* statistics/distributions/poisson_inv.m: Ditto.
+	* statistics/distributions/poisson_pdf.m: Ditto.
+	* statistics/distributions/poisson_rnd.m: Ditto.
+	* statistics/distributions/stdnormal_cdf.m: Ditto.
+	* statistics/distributions/stdnormal_inv.m: Ditto.
+	* statistics/distributions/stdnormal_pdf.m: Ditto.
+	* statistics/distributions/stdnormal_rnd.m: Ditto.
+	* statistics/distributions/t_cdf.m: Ditto.
+	* statistics/distributions/t_inv.m: Ditto.
+	* statistics/distributions/t_pdf.m: Ditto.
+	* statistics/distributions/t_rnd.m: Ditto.
+	* statistics/distributions/uniform_cdf.m: Ditto.
+	* statistics/distributions/uniform_inv.m: Ditto.
+	* statistics/distributions/uniform_pdf.m: Ditto.
+	* statistics/distributions/uniform_rnd.m: Ditto.
+	* statistics/distributions/weibull_cdf.m: Ditto.
+	* statistics/distributions/weibull_inv.m: Ditto.
+	* statistics/distributions/weibull_pdf.m: Ditto.
+	* statistics/distributions/weibull_rnd.m: Ditto.
+	* statistics/distributions/wiener_rnd.m: Ditto.
+
+2000-01-18  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/base/values.m: Texinfoize doc string.
+	* statistics/base/var.m: Ditto.
+	* statistics/base/table.m: Ditto.
+	* statistics/base/studentize.m: Ditto.
+	* statistics/base/statistics.m: Ditto.
+	* statistics/base/spearman.m: Ditto.
+	* statistics/base/run_count.m: Ditto.
+	* statistics/base/ranks.m: Ditto.
+	* statistics/base/range.m: Ditto.
+	* statistics/base/qqplot.m: Ditto.
+	* statistics/base/probit.m: Ditto.
+	* statistics/base/ppplot.m: Ditto.
+	* statistics/base/moment.m: Ditto.
+	* statistics/base/meansq.m: Ditto.
+	* statistics/base/logit.m: Ditto.
+	* statistics/base/kendall.m: Ditto.
+	* statistics/base/iqr.m: Ditto.
+	* statistics/base/cut.m: Ditto.
+	* statistics/base/cor.m: Ditto.
+	* statistics/base/cloglog.m: Ditto.
+	* statistics/base/center.m: Ditto.
+	* statistics/models/logistic_regression.m: Ditto.
+	* statistics/models/logistic_regression_derivative.m: Ditto.
+	* statistics/models/logistic_regression_likelihood.m: Ditto.
+	* statistics/tests/anova.m: Ditto.
+	* statistics/tests/bartlett_test.m: Ditto.
+	* statistics/tests/chisquare_test_homogeneity.m: Ditto.
+	* statistics/tests/chisquare_test_independence.m: Ditto.
+	* statistics/tests/cor_test.m: Ditto.
+	* statistics/tests/f_test_regression.m: Ditto.
+	* statistics/tests/hotelling_test.m: Ditto.
+	* statistics/tests/hotelling_test_2.m: Ditto.
+	* statistics/tests/kolmogorov_smirnov_test.m: Ditto.
+	* statistics/tests/kolmogorov_smirnov_test_2.m: Ditto.
+	* statistics/tests/kruskal_wallis_test.m: Ditto.
+	* statistics/tests/manova.m: Ditto.
+	* statistics/tests/mcnemar_test.m: Ditto.
+	* statistics/tests/prop_test_2.m: Ditto.
+	* statistics/tests/run_test.m: Ditto.
+	* statistics/tests/sign_test.m: Ditto.
+	* statistics/tests/t_test.m: Ditto.
+	* statistics/tests/t_test_2.m: Ditto.
+	* statistics/tests/t_test_regression.m: Ditto.
+	* statistics/tests/u_test.m: Ditto.
+	* statistics/tests/var_test.m: Ditto.
+	* statistics/tests/welch_test.m: Ditto.
+	* statistics/tests/wilcoxon_test.m: Ditto.
+	* statistics/tests/z_test.m: Ditto.
+	* statistics/tests/z_test_2.m: Ditto.
+
+2000-01-17  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/bin2dec.m: Texinfoize doc string.
+	* plot/__plr1__.m: Ditto.
+	* plot/__pltopt__.m: Ditto.
+	* plot/__plt__.m: Ditto.
+	* plot/__plt2vv__.m: Ditto.
+	* plot/__plr2__.m: Ditto.
+	* plot/__plr__.m: Ditto.
+	* plot/__plt1__.m: Ditto.
+	* plot/__plt2__.m: Ditto.
+	* plot/__plt2mm__.m: Ditto.
+	* plot/__plt2mv__.m: Ditto.
+	* plot/__plt2ss__.m: Ditto.
+	* miscellaneous/paren.m: Ditto.
+	* miscellaneous/comma.m: Ditto.
+	* miscellaneous/semicolon.m: Ditto.
+	* miscellaneous/path.m: Ditto.
+	* miscellaneous/list_primes.m: Ditto.
+	* miscellaneous/flops.m: Ditto.
+	* miscellaneous/dump_prefs.m: Ditto.
+	* miscellaneous/bug_report.m: Ditto.
+	* linear-algebra/dot.m: Ditto
+	* linear-algebra/dmult.m: Ditto.
+	* general/randperm.m: Ditto.
+	* general/logical.m: Ditto.
+	* general/is_duplicate_entry.m: Ditto.
+	* signal/arch_fit.m: Ditto.
+	* signal/arch_rnd.m: Ditto.
+	* signal/arch_test.m: Ditto.
+	* signal/arma_rnd.m: Ditto.
+	* signal/autocor.m: Ditto.
+	* signal/autocov.m: Ditto.
+	* signal/autoreg_matrix.m: Ditto.
+	* signal/bartlett.m: Ditto.
+	* signal/blackman.m: Ditto.
+	* signal/detrend.m: Ditto.
+	* signal/diffpara.m: Ditto.
+	* signal/durbinlevinson.m: Ditto.
+	* signal/fftconv.m: Ditto.
+	* signal/fftfilt.m: Ditto.
+	* signal/fftshift.m: Ditto.
+	* signal/fractdiff.m: Ditto.
+	* signal/freqz.m: Ditto.
+	* signal/hamming.m: Ditto.
+	* signal/hanning.m: Ditto.
+	* signal/hurst.m: Ditto.
+	* signal/periodogram.m: Ditto.
+	* signal/rectangle_lw.m: Ditto.
+	* signal/rectangle_sw.m: Ditto.
+	* signal/sinc.m: Ditto.
+	* signal/sinetone.m: Ditto.
+	* signal/sinewave.m: Ditto.
+	* signal/spectral_adf.m: Ditto.
+	* signal/spectral_xdf.m: Ditto.
+	* signal/spencer.m: Ditto.
+	* signal/stft.m: Ditto.
+	* signal/synthesis.m: Ditto.
+	* signal/triangle_lw.m: Ditto.
+	* signal/triangle_sw.m: Ditto.
+	* signal/yulewalker.m: Ditto.
+	* control/util/strappend.m: Ditto.
+	* control/base/nichols.m: Ditto.
+	* control/system/is_signal_list.m: Ditto.
+	* control/system/listidx.m: Ditto.
+	* control/system/sysgettsam.m: Ditto.
+	* control/system/sysidx.m: Ditto.
+
+2000-01-14  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/system/__abcddims__.m: Rename from
+	control/system/abcddims.m, change all callers.
+	* control/base/__bodquist__.m: Likewise.
+	* control/base/__freqresp__.m: Likewise.
+	* control/util/__outlist__.m: Likewise.
+	* control/base/__stepimp__.m: Likewise.
+	* control/system/__syschnamesl__.m: Likewise.
+	* control/system/__syscont_disc__.m: Likewise.
+	* control/system/__sysdefioname__.m: Likewise.
+	* control/system/__sysdefstname__.m: Likewise.
+	* control/system/__sysgroupn__.m: Likewise.
+	* control/system/__tf2sysl__.m: Likewise.
+	* control/util/__zgpbal__.m: Likewise.
+	* control/system/__zp2ssg2__.m: Likewise.
+
+	* quaternion/demoquat.m: Add copyright notice, Texinfoize doc string.
+	* quaternion/qconj.m: Ditto.
+	* quaternion/qcoordinate_plot.m: Ditto.
+	* quaternion/qderiv.m: Ditto.
+	* quaternion/qderivmat.m: Ditto.
+	* quaternion/qinv.m: Ditto.
+	* quaternion/qmult.m: Ditto.
+	* quaternion/qtrans.m: Ditto.
+	* quaternion/qtransv.m: Ditto.
+	* quaternion/qtransvmat.m: Ditto.
+	* quaternion/quaternion.m: Ditto.
+
+2000-01-13  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/base/Makefile.in: Ditto.
+	* control/hinf/Makefile.in: New file.
+	* control/marsyas/Makefile.in: Ditto.
+	* control/obsolete/Makefile.in: Ditto.
+	* control/system/Makefile.in: Ditto.
+	* control/util/Makefile.in: Ditto.
+
+	* strings/com2str.m: Move here from control directory.
+
+	* control/base: New directory.
+	* control/base/DEMOcontrol.m: Move here from control directory.
+	* control/base/analdemo.m: Ditto.
+	* control/base/are.m: Ditto.
+	* control/base/bddemo.m: Ditto.
+	* control/base/bode.m: Ditto.
+	* control/base/bode_bounds.m: Ditto.
+	* control/base/bodquist.m: Ditto.
+	* control/base/controldemo.m: Ditto.
+	* control/base/ctrb.m: Ditto.
+	* control/base/damp.m: Ditto.
+	* control/base/dare.m: Ditto.
+	* control/base/dcgain.m: Ditto.
+	* control/base/dgram.m: Ditto.
+	* control/base/dlqe.m: Ditto.
+	* control/base/dlqr.m: Ditto.
+	* control/base/dlyap.m: Ditto.
+	* control/base/dre.m: Ditto.
+	* control/base/frdemo.m: Ditto.
+	* control/base/freqchkw.m: Ditto.
+	* control/base/freqresp.m: Ditto.
+	* control/base/gram.m: Ditto.
+	* control/base/impulse.m: Ditto.
+	* control/base/lqe.m: Ditto.
+	* control/base/lqg.m: Ditto.
+	* control/base/lqr.m: Ditto.
+	* control/base/lsim.m: Ditto.
+	* control/base/ltifr.m: Ditto.
+	* control/base/lyap.m: Ditto.
+	* control/base/nichols.m: Ditto.
+	* control/base/nyquist.m: Ditto.
+	* control/base/obsv.m: Ditto.
+	* control/base/place.m: Ditto.
+	* control/base/pzmap.m: Ditto.
+	* control/base/rldemo.m: Ditto.
+	* control/base/rlocus.m: Ditto.
+	* control/base/step.m: Ditto.
+	* control/base/stepimp.m: Ditto.
+	* control/base/tzero.m: Ditto.
+	* control/base/tzero2.m: Ditto.
+
+	* control/hinf: New directory.
+	* control/hinf/dhinfdemo.m: Move here from control directory.
+	* control/hinf/h2norm.m: Ditto.
+	* control/hinf/h2syn.m: Ditto.
+	* control/hinf/hinf_ctr.m: Ditto.
+	* control/hinf/hinfdemo.m: Ditto.
+	* control/hinf/hinfnorm.m: Ditto.
+	* control/hinf/hinfsyn.m: Ditto.
+	* control/hinf/hinfsyn_chk.m: Ditto.
+	* control/hinf/hinfsyn_ric.m: Ditto.
+	* control/hinf/wgt1o.m: Ditto.
+	* control/hinf/dgkfdemo.m: Ditto.
+	* control/hinf/is_dgkf.m: Ditto.
+
+	* control/marsyas: New directory.
+	* control/marsyas/demomarsyas.m: Move here from control directory.
+	* control/marsyas/susball.m: Ditto.
+
+	* control/obsolete/dezero.m: Move here from control directory.
+	* control/obsolete/rotg.m: Ditto.
+
+	* control/system: New directory.
+	* control/system/abcddim.m: Move here from control directory.
+	* control/system/abcddims.m: Ditto.
+	* control/system/buildssic.m: Ditto.
+	* control/system/c2d.m: Ditto.
+	* control/system/d2c.m: Ditto.
+	* control/system/dmr2d.m: Ditto.
+	* control/system/fir2sys.m: Ditto.
+	* control/system/is_abcd.m: Ditto.
+	* control/system/is_digital.m: Ditto.
+	* control/system/is_sample.m: Ditto.
+	* control/system/is_signal_list.m: Ditto.
+	* control/system/is_siso.m: Ditto.
+	* control/system/is_controllable.m: Ditto.
+	* control/system/is_detectable.m: Ditto.
+	* control/system/is_observable.m: Ditto.
+	* control/system/is_stabilizable.m: Ditto.
+	* control/system/is_stable.m: Ditto.
+	* control/system/jet707.m: Ditto.
+	* control/system/listidx.m: Ditto.
+	* control/system/moddemo.m: Ditto.
+	* control/system/ord2.m: Ditto.
+	* control/system/packedform.m: Ditto.
+	* control/system/parallel.m: Ditto.
+	* control/system/ss2sys.m: Ditto.
+	* control/system/ss2tf.m: Ditto.
+	* control/system/ss2zp.m: Ditto.
+	* control/system/starp.m: Ditto.
+	* control/system/sys2fir.m: Ditto.
+	* control/system/sys2ss.m: Ditto.
+	* control/system/sys2tf.m: Ditto.
+	* control/system/sys2zp.m: Ditto.
+	* control/system/sysadd.m: Ditto.
+	* control/system/sysappend.m: Ditto.
+	* control/system/syschnamesl.m: Ditto.
+	* control/system/syschtsam.m: Ditto.
+	* control/system/sysconnect.m: Ditto.
+	* control/system/syscont.m: Ditto.
+	* control/system/syscont_disc.m: Ditto.
+	* control/system/sysdefioname.m: Ditto.
+	* control/system/sysdefstname.m: Ditto.
+	* control/system/sysdimensions.m: Ditto.
+	* control/system/sysdisc.m: Ditto.
+	* control/system/sysdup.m: Ditto.
+	* control/system/sysgetsignals.m: Ditto.
+	* control/system/sysgettsam.m: Ditto.
+	* control/system/sysgettype.m: Ditto.
+	* control/system/sysgroup.m: Ditto.
+	* control/system/sysgroupn.m: Ditto.
+	* control/system/sysidx.m: Ditto.
+	* control/system/sysmin.m: Ditto.
+	* control/system/sysmult.m: Ditto.
+	* control/system/sysout.m: Ditto.
+	* control/system/sysprune.m: Ditto.
+	* control/system/sysreorder.m: Ditto.
+	* control/system/sysrepdemo.m: Ditto.
+	* control/system/sysscale.m: Ditto.
+	* control/system/syssetsignals.m: Ditto.
+	* control/system/syssub.m: Ditto.
+	* control/system/sysupdate.m: Ditto.
+	* control/system/tf2ss.m: Ditto.
+	* control/system/tf2sys.m: Ditto.
+	* control/system/tf2sysl.m: Ditto.
+	* control/system/tf2zp.m: Ditto.
+	* control/system/tfout.m: Ditto.
+	* control/system/ugain.m: Ditto.
+	* control/system/zp2ss.m: Ditto.
+	* control/system/zp2ssg2.m: Ditto.
+	* control/system/zp2sys.m: Ditto.
+	* control/system/zp2tf.m: Ditto.
+	* control/system/zpout.m: Ditto.
+
+	* control/util: New directory.
+	* control/util/axis2dlim.m: Move here from control directory.
+	* control/util/outlist.m: Ditto.
+	* control/util/prompt.m: Ditto.
+	* control/util/run_cmd.m: Ditto.
+	* control/util/sortcom.m: Ditto.
+	* control/util/strappend.m: Ditto.
+	* control/util/swap.m: Ditto.
+	* control/util/zgfmul.m: Ditto.
+	* control/util/zgfslv.m: Ditto.
+	* control/util/zginit.m: Ditto.
+	* control/util/zgpbal.m: Ditto.
+	* control/util/zgreduce.m: Ditto.
+	* control/util/zgrownorm.m: Ditto.
+	* control/util/zgscal.m: Ditto.
+	* control/util/zgsgiv.m: Ditto.
+	* control/util/zgshsr.m: Ditto.
+
+2000-01-13  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* gethelp.cc (extract_help_text): Discard first space character
+	after consecutive comment characters.
+
+Thu Jan 13 00:56:57 2000  John W. Eaton  <jwe@bahaha.che.wisc.edu>
+
+	* control/obsolete: New directory
+	* control/obsolete/swaprows.m: Move here from control directory.
+	* control/obsolete/swapcols.m: Ditto.
+	* control/obsolete/dlqg.m: Ditto.
+	* control/obsolete/minfo.m: Ditto.
+	* control/obsolete/packsys.m: Ditto.
+	* control/obsolete/qzval.m: Ditto.
+	* control/obsolete/unpacksys.m: Ditto.
+	* control/obsolete/series.m: Ditto.
+	* control/obsolete/syschnames.m: Ditto.
+	* polynomial/polyout.m: Ditto.
+
+2000-01-13  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/fliplr.m: Eliminate useless copy of arg.
+	* general/flipud.m: Ditto.
+
+2000-01-11  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/cross.m: Only return a row vector if both args
+	are row vectors.
+	* polynomial/polyfit.m: Likewise.
+
+	* signal/autocov.m: Don't reset prefer_column_vectors.
+
+	* statistics/distributions/discrete_rnd.m:
+	Always generate a row vector.
+	* statistics/distributions/hypergeometric_rnd.m: Likewise.
+
+2000-01-11  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* strings/upper.m: Add missing `-*- texinfo -*-' tag to doc string.
+
+	* audio/setaudio.m: Texinfoize doc string.
+	* control/com2str.m: Likewise.
+	* control/controldemo.m: Likewise.
+	* control/DEMOcontrol.m: Likewise.
+	* control/dezero.m: Likewise.
+	* control/dre.m: Likewise.
+	* control/hinfsyn_ric.m: Likewise.
+
+2000-01-05  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* io/printf.m: Add @seealso{...} to doc string.
+	* io/puts.m: Likewise.
+	* plot/semilogx.m: Likewise.
+	* plot/semilogy.m: Likewise.
+	* plot/__pltopt__.m: Likewise.
+	* plot/bar.m: Likewise.
+	* plot/xlabel.m: Likewise.
+	* plot/grid.m: Likewise.
+	* plot/shg.m: Likewise.
+	* plot/title.m: Likewise.
+	* plot/mesh.m: Likewise.
+	* plot/__pltopt1__.m: Likewise.
+	* plot/contour.m: Likewise.
+	* plot/hist.m: Likewise.
+	* plot/stairs.m: Likewise.
+	* plot/meshgrid.m: Likewise.
+	* plot/polar.m: Likewise.
+	* plot/loglog.m: Likewise.
+	* plot/plot.m: Likewise.
+	* miscellaneous/semicolon.m: Likewise.
+	* miscellaneous/menu.m: Likewise.
+	* miscellaneous/etime.m: Likewise.
+	* miscellaneous/texas_lotto.m: Likewise.
+	* miscellaneous/comma.m: Likewise.
+	* audio/lin2mu.m: Likewise.
+	* audio/playaudio.m: Likewise.
+	* audio/loadaudio.m: Likewise.
+	* audio/saveaudio.m: Likewise.
+	* audio/mu2lin.m: Likewise.
+	* audio/record.m: Likewise.
+	* strings/isletter.m: Likewise.
+	* strings/lower.m: Likewise.
+	* strings/lower.m: Likewise.
+	* strings/upper.m: Likewise.
+	* specfun/erfinv.m: Likewise.
+	* specfun/gammai.m: Likewise.
+	* specfun/log2.m: Likewise.
+	* specfun/pow2.m: Likewise.
+	* elfun/gcd.m: Likewise.
+	* elfun/lcm.m: Likewise.
+	* special-matrix/vander.m: Likewise.
+	* special-matrix/sylvester_matrix.m: Likewise.
+	* special-matrix/hilb.m: Likewise.
+	* special-matrix/hankel.m: Likewise.
+	* special-matrix/toeplitz.m: Likewise.
+	* special-matrix/invhilb.m: Likewise.
+	* statistics/base/std.m: Likewise.
+	* statistics/base/median.m: Likewise.
+	* linear-algebra/cond.m: Likewise.
+	* linear-algebra/norm.m: Likewise.
+	* finance/nper.m: Likewise.
+	* finance/pmt.m: Likewise.
+	* finance/pv.m: Likewise.
+	* finance/rate.m: Likewise.
+	* finance/npv.m: Likewise.
+	* general/fliplr.m: Likewise.
+	* general/flipud.m: Likewise.
+	* general/is_scalar.m: Likewise.
+	* general/rem.m: Likewise.
+	* general/perror.m: Likewise.
+	* general/tril.m: Likewise.
+	* general/rot90.m: Likewise.
+	* general/num2str.m: Likewise.
+	* general/int2str.m: Likewise.
+	* general/reshape.m: Likewise.
+	* general/logspace.m: Likewise.
+	* general/is_symmetric.m: Likewise.
+	* general/is_vector.m: Likewise.
+	* general/nextpow2.m: Likewise.
+	* general/columns.m: Likewise.
+	* general/is_square.m: Likewise.
+	* general/rows.m: Likewise.
+	* control/ugain.m: Likewise.
+	* control/damp.m: Likewise.
+	* control/dare.m: Likewise.
+	* control/are.m: Likewise.
+	* control/sys2fir.m: Likewise.
+	* control/abcddim.m: Likewise.
+	* control/is_abcd.m: Likewise.
+	* control/step.m: Likewise.
+	* control/is_observable.m: Likewise.
+	* control/is_controllable.m: Likewise.
+	* control/jet707.m: Likewise.
+	* control/polyout.m: Likewise.
+	* control/impulse.m: Likewise.
+	* control/lqg.m: Likewise.
+	* control/is_detectable.m: Likewise.
+	* control/sysdimensions.m: Likewise.
+	* control/sysupdate.m: Likewise.
+	* control/stepimp.m: Likewise.
+	* control/is_stable.m: Likewise.
+	* control/tfout.m: Likewise.
+	* control/zpout.m: Likewise.
+
+2000-01-05  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* set/complement.m: Add @seealso{} stuff.
+	* set/create_set.m: Likewise.
+	* set/intersection.m: Likewise.
+	* set/union.m: Likewise.
+
+1999-12-22  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/d2c.m: Use double quotes instead of single quotes for
+	string constants.
+	* control/dgkfdemo.m: Likewise.
+	* control/fir2sys.m: Likewise.
+	* control/frdemo.m: Likewise.
+	* control/moddemo.m: Likewise.
+	* control/minfo.m: Likewise.
+	* control/is_stabilizable.m: Likewise.
+	* control/is_dgkf.m: Likewise.
+	* control/polyout.m: Likewise.
+	* control/sysconnect.m: Likewise.
+	* control/sysrepdemo.m: Likewise.
+	* control/tf2sys.m: Likewise.
+	* control/tfout.m: Likewise.
+	* control/zp2sys.m: Likewise.
+	* control/zpout.m: Likewise.
+	* control/tzero.m: Likewise.
+
+	* control/DEMOcontrol.m: Handle moddemo case too.
+
+	* image/loadimage.m: Use double quotes instead of single quotes
+	for string constants.  Use sprintf instead of square brackets to
+	construct string.
+
+	* control/DEMOcontrol.m: Formatting tweaks.
+	* control/fir2sys.m: Likewise.
+
+1999-12-17  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* mkdoc: Only delete spaces before @ characters at the beginning
+	of a line.
+
+1999-12-15  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/bddemo.m: Make it more likely to work with any value of
+	whitespace_in_literal_matrix.
+	* control/analdemo.m: Ditto.
+	* control/dgkfdemo.m: Ditto.
+	* control/frdemo.m: Ditto.
+	* control/sysrepdemo.m: Ditto.
+	* control/moddemo.m: Ditto.
+	* control/zp2ss.m: Ditto.
+	* control/zp2tf.m: Ditto.
+	* control/syssub.m: Ditto.
+	* finance/npv.m: Ditto.
+	* statistics/base/studentize.m: Ditto.
+	* statistics/base/values.m: Ditto.
+	* statistics/distributions/exponential_cdf.m: Ditto.
+	* statistics/distributions/poisson_cdf.m: Ditto.
+
+	* control/dezero.m: Use toascii to convert string to ASCII value
+	instead of multiplying it by 1.
+
+	* control/zp2sys.m: Don't save and restore implicit_str_to_num_ok.
+	* control/zpout.m: Ditto.
+	* control/tfout.m: Ditto.
+	* control/tf2sys.m: Ditto.
+	* control/syssub.m: Ditto.
+	* control/syssetsignals.m: Ditto.
+	* control/sysout.m: Ditto.
+	* control/sysmult.m: Ditto.
+	* control/sysgroup.m: Ditto.
+	* control/sysdup.m: Ditto.
+	* control/sysdisc.m: Ditto.
+	* control/syscont.m: Ditto.
+	* control/sysconnect.m: Ditto.
+	* control/sysappend.m: Ditto.
+	* control/sysadd.m: Ditto.
+	* control/ss2sys.m: Ditto.
+	* control/nyquist.m: Ditto.
+	* control/lqg.m: Ditto.
+	* control/fir2sys.m: Ditto.
+	* control/dmr2d.m: Ditto.
+	* control/dezero.m: Ditto.
+	* control/d2c.m: Ditto.
+	* control/c2d.m: Ditto.
+	* control/bddemo.m: Ditto.
+	* control/pzmap.m: Ditto.
+
+1999-12-08  Daniel Calvelo <dcalvelo@pharion.univ-lille2.fr>
+
+	* signal/spectral_adf.m: Fix typo.
+
+1999-11-23  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/cond.m: Texinfoize doc string.
+	* linear-algebra/kron.m: Ditto.
+	* linear-algebra/norm.m: Ditto.
+	* linear-algebra/null.m: Ditto.
+	* linear-algebra/orth.m: Ditto.
+	* linear-algebra/rank.m: Ditto.
+	* linear-algebra/trace.m: Ditto.
+	* linear-algebra/qzhess.m: Ditto.
+	* miscellaneous/menu.m: Ditto.
+	* general/perror.m: Ditto.
+	* general/strerror.m: Ditto.
+	* general/columns.m: Ditto.
+	* general/rows.m: Ditto.
+	* image/colormap.m: Ditto.
+	* image/gray.m: Ditto.
+	* image/gray2ind.m: Ditto.
+	* image/image.m: Ditto.
+	* image/imagesc.m: Ditto.
+	* image/imshow.m: Ditto.
+	* image/ind2gray.m: Ditto.
+	* image/ind2rgb.m: Ditto.
+	* image/loadimage.m: Ditto.
+	* image/rgb2ntsc.m: Ditto.
+	* image/ntsc2rgb.m: Ditto.
+	* image/ocean.m: Ditto.
+	* image/rgb2ind.m: Ditto.
+	* image/saveimage.m: Ditto.
+	* io/printf.m: Ditto.
+	* io/puts.m: Ditto.
+
+1999-11-21  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* special-matrix/hankel.m: Texinfoize doc string.
+	* special-matrix/hilb.m: Ditto.
+	* special-matrix/invhilb.m: Ditto.
+	* special-matrix/sylvester_matrix.m: Ditto.
+	* special-matrix/toeplitz.m: Ditto.
+	* special-matrix/vander.m: Ditto.
+	* linear-algebra/vec.m: Ditto.
+	* linear-algebra/vech.m: Ditto.
+	* general/common_size.m: Ditto.
+	* general/diff.m: Ditto.
+	* general/fliplr.m: Ditto.
+	* general/flipud.m: Ditto.
+	* general/rot90.m: Ditto.
+	* general/reshape.m: Ditto.
+	* general/shift.m: Ditto.
+	* general/tril.m: Ditto.
+	* general/triu.m: Ditto.
+	* general/logspace.m: Ditto.
+	* general/nargchk.m: Ditto.
+
+1999-11-20  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/base/mean: Texinfoize doc string.
+	* statistics/base/median: Ditto.
+	* statistics/base/std: Ditto.
+	* statistics/base/cov: Ditto.
+	* statistics/base/corrcoef: Ditto.
+	* statistics/base/kurtosis: Ditto.
+	* statistics/base/mahalanobis: Ditto.
+	* statistics/base/skewness: Ditto.
+	* statistics/base/gls.m: Ditto.
+	* statistics/base/ols.m: Ditto.
+	* signal/detrend.m: Ditto.
+	* signal/freqz.m: Ditto.
+	* signal/sinc.m: Ditto.
+	* signal/fftconv.m: Ditto.
+	* signal/fftfilt.m: Ditto.
+	* set/create_set.m: Ditto.
+	* set/union.m: Ditto.
+	* set/intersection.m: Ditto.
+	* set/complement.m: Ditto.
+	* poly/compan.m: Ditto.
+	* poly/conv: Ditto.
+	* poly/deconv: Ditto.
+	* poly/poly: Ditto.
+	* poly/polyderiv: Ditto.
+	* poly/polyfit: Ditto.
+	* poly/polyinteg: Ditto.
+	* poly/polyreduce: Ditto.
+	* poly/polyval: Ditto.
+	* poly/polyvalm: Ditto.
+	* poly/residue: Ditto.
+	* poly/roots: Ditto.
+	* plot/top_title.m: Ditto
+	* plot/subwindow.m: Ditto
+	* plot/subplot.m: Ditto
+	* plot/plot_border.m: Ditto
+	* plot/oneplot.m: Ditto
+	* plot/multiplot.m: Ditto
+	* plot/mplot.m: Ditto
+	* plot/xlabel.m: Ditto
+	* plot/figure.m: Ditto
+	* plot/meshdom.m: Ditto
+	* plot/mesh.m: Ditto
+	* plot/stairs.m: Ditto
+	* plot/polar.m: Ditto
+	* plot/loglog.m: Ditto
+	* plot/hist.m: Ditto
+	* plot/contour.m: Ditto
+	* plot/bar.m: Ditto
+	* plot/axis.m: Ditto
+	* plot/plot.m: Ditto.
+
+1999-11-19  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/pinv.m: Delete.
+
+	* Makefile.in (DOCSTRINGS): Don't echo $(ALL_M_FILES).
+
+	* strings/blanks.m: Texinfoize doc string.
+	* strings/strcat.m: Ditto.
+	* strings/str2mat.m: Ditto.
+	* strings/deblank.m: Ditto.
+	* strings/findstr.m: Ditto.
+	* strings/index.m: Ditto.
+	* strings/rindex.m: Ditto.
+	* strings/split.m: Ditto.
+	* strings/strcmp.m: Ditto.
+	* strings/strrep.m: Ditto.
+	* strings/substr.m: Ditto.
+	* general/int2str.m: Ditto.
+	* general/num2str.m: Ditto.
+	* strings/dec2bin.m: Ditto.
+	* strings/bin2dec: Ditto.
+	* strings/dec2bin: Ditto.
+	* strings/dec2hex: Ditto.
+	* strings/hex2dec: Ditto.
+	* strings/str2num: Ditto.
+
+1999-11-10  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (DISTFILES): Include DOCSTRINGS.
+
+1999-11-09  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* control/DEMOcontrol.m: Texinfoize doc string.
+	* control/abcddim.m: Ditto.
+	* control/abcddims.m: Ditto.
+	* control/analdemo.m: Ditto.
+	* control/are.m: Ditto.
+	* control/axis2dlim.m: Ditto.
+	* control/bddemo.m: Ditto.
+	* control/bode.m: Ditto.
+	* control/bode_bounds.m: Ditto.
+	* control/bodquist.m: Ditto.
+	* control/buildssic.m: Ditto.
+	* control/c2d.m: Ditto.
+	* control/ctrb.m: Ditto.
+	* control/d2c.m: Ditto.
+	* control/damp.m: Ditto.
+	* control/dare.m: Ditto.
+	* control/dcgain.m: Ditto.
+	* control/dgkfdemo.m: Ditto.
+	* control/dgram.m: Ditto.
+	* control/dlqe.m: Ditto.
+	* control/dlqr.m: Ditto.
+	* control/dlyap.m: Ditto.
+	* control/dmr2d.m: Ditto.
+	* control/fir2sys.m: Ditto.
+	* control/frdemo.m: Ditto.
+	* control/freqchkw.m: Ditto.
+	* control/freqresp.m: Ditto.
+	* control/gram.m: Ditto.
+	* control/h2norm.m: Ditto.
+	* control/h2syn.m: Ditto.
+	* control/hinf_ctr.m: Ditto.
+	* control/hinfdemo.m: Ditto.
+	* control/hinfnorm.m: Ditto.
+	* control/hinfsyn.m: Ditto.
+	* control/hinfsyn_chk.m: Ditto.
+	* control/impulse.m: Ditto.
+	* control/is_abcd.m: Ditto.
+	* control/is_controllable.m: Ditto.
+	* control/is_detectable.m: Ditto.
+	* control/is_dgkf.m: Ditto.
+	* control/is_digital.m: Ditto.
+	* control/is_observable.m: Ditto.
+	* control/is_sample.m: Ditto.
+	* control/is_signal_list.m: Ditto.
+	* control/is_siso.m: Ditto.
+	* control/is_stabilizable.m: Ditto.
+	* control/is_stable.m: Ditto.
+	* control/jet707.m: Ditto.
+	* control/lqe.m: Ditto.
+	* control/lqg.m: Ditto.
+	* control/lqr.m: Ditto.
+	* control/lsim.m: Ditto.
+	* control/ltifr.m: Ditto.
+	* control/lyap.m: Ditto.
+	* control/moddemo.m: Ditto.
+	* control/nyquist.m: Ditto.
+	* control/obsv.m: Ditto.
+	* control/ord2.m: Ditto.
+	* control/outlist.m: Ditto.
+	* control/pinv.m: Ditto.
+	* control/place.m: Ditto.
+	* control/polyout.m: Ditto.
+	* control/prompt.m: Ditto.
+	* control/pzmap.m: Ditto.
+	* control/qzval.m: Ditto.
+	* control/rldemo.m: Ditto.
+	* control/rlocus.m: Ditto.
+	* control/sortcom.m: Ditto.
+	* control/ss2sys.m: Ditto.
+	* control/ss2tf.m: Ditto.
+	* control/ss2zp.m: Ditto.
+	* control/starp.m: Ditto.
+	* control/step.m: Ditto.
+	* control/stepimp.m: Ditto.
+	* control/susball.m: Ditto.
+	* control/sys2fir.m: Ditto.
+	* control/sys2ss.m: Ditto.
+	* control/sys2tf.m: Ditto.
+	* control/sys2zp.m: Ditto.
+	* control/sysadd.m: Ditto.
+	* control/sysappend.m: Ditto.
+	* control/syschnames.m: Ditto.
+	* control/syschnamesl.m: Ditto.
+	* control/syschtsam.m: Ditto.
+	* control/sysconnect.m: Ditto.
+	* control/syscont.m: Ditto.
+	* control/syscont_disc.m: Ditto.
+	* control/sysdefioname.m: Ditto.
+	* control/sysdefstname.m: Ditto.
+	* control/sysdimensions.m: Ditto.
+	* control/sysdisc.m: Ditto.
+	* control/sysdup.m: Ditto.
+	* control/sysgetsignals.m: Ditto.
+	* control/sysgettype.m: Ditto.
+	* control/sysgroup.m: Ditto.
+	* control/sysgroupn.m: Ditto.
+	* control/sysmult.m: Ditto.
+	* control/sysout.m: Ditto.
+	* control/sysprune.m: Ditto.
+	* control/sysreorder.m: Ditto.
+	* control/sysrepdemo.m: Ditto.
+	* control/sysscale.m: Ditto.
+	* control/syssetsignals.m: Ditto.
+	* control/syssub.m: Ditto.
+	* control/sysupdate.m: Ditto.
+	* control/tf2ss.m: Ditto.
+	* control/tf2sys.m: Ditto.
+	* control/tf2sysl.m: Ditto.
+	* control/tf2zp.m: Ditto.
+	* control/tfout.m: Ditto.
+	* control/tzero.m: Ditto.
+	* control/tzero2.m: Ditto.
+	* control/ugain.m: Ditto.
+	* control/wgt1o.m: Ditto.
+	* control/zgfmul.m: Ditto.
+	* control/zgfslv.m: Ditto.
+	* control/zginit.m: Ditto.
+	* control/zgpbal.m: Ditto.
+	* control/zgreduce.m: Ditto.
+	* control/zgrownorm.m: Ditto.
+	* control/zgscal.m: Ditto.
+	* control/zgsgiv.m: Ditto.
+	* control/zgshsr.m: Ditto.
+	* control/zp2ss.m: Ditto.
+	* control/zp2ssg2.m: Ditto.
+	* control/zp2sys.m: Ditto.
+	* control/zp2tf.m: Ditto.
+	* control/zpout.m: Ditto.
+
+1999-11-02  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* scripts/audio/lin2mu.m: Texinfoize doc string.
+	* scripts/audio/loadaudio.m: Ditto.
+	* scripts/audio/mu2lin.m: Ditto.
+	* scripts/audio/playaudio.m: Ditto.
+	* scripts/audio/record.m: Ditto.
+	* scripts/audio/saveaudio.m: Ditto.
+
+1999-10-26  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* elfun/acot.m: Texinfoize doc string.
+	* elfun/acsc.m: Ditto.
+	* elfun/acsch.m: Ditto.
+	* elfun/asec.m: Ditto.
+	* elfun/asech.m: Ditto.
+	* elfun/cot.m: Ditto.
+	* elfun/coth.m: Ditto.
+	* elfun/csc.m: Ditto.
+	* elfun/csch.m: Ditto.
+	* elfun/gcd.m: Ditto.
+	* elfun/lcm.m: Ditto.
+	* elfun/sec.m: Ditto.
+	* elfun/sech.m: Ditto.
+	* general/nextpow2.m: Ditto.
+	* general/rem.m: Ditto.
+	* linear-algebra/commutation_matrix.m: Ditto.
+	* linear-algebra/cross.m: Ditto.
+	* linear-algebra/duplication_matrix.m: Ditto.
+	* miscellaneous/bincoeff.m: Ditto.
+	* miscellaneous/xor.m: Ditto.
+	* specfun/bessel.m: Ditto.
+	* specfun/beta.m: Ditto.
+	* specfun/betai.m: Ditto.
+	* specfun/erfinv.m: Ditto.
+	* specfun/gammai.m: Ditto.
+	* specfun/log2.m: Ditto.
+	* specfun/pow2.m: Ditto.
+
+1999-10-23  Ben Sapp <bsapp@nua.lampf.lanl.gov>
+
+	* general/is_scalar.m: Texinfoize help text.
+	* general/is_square.m: Ditto.
+	* general/is_symmetric.m: Ditto.
+
+1999-10-22  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/split.m: If the string to be split is empty, just return
+	an empty string.
+
+1999-10-21  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (ALL_M_FILES): New macro.
+	(DOCSTRINGS): No longer .PHONY; depend on $(ALL_M_FILES).
+
+1999-10-20  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/bode.m: Don't return anything if nargout == 0.
+
+1999-10-20  James B. Rawlings  <jbraw@bevo.che.wisc.edu>
+
+	* control/bode.m: Don't do axis scaling for magnitude plots.
+
+1999-10-20  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (DISTFILES): Add move-if-change, mkdoc, and
+	gethelp.cc to the list.
+
+1999-10-19  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* time/asctime.m: Texinfoize help text.
+	* time/clock.m: Ditto.
+	* time/date.m: Ditto.
+	* miscellaneous/cputime.m: Ditto.
+	* miscellaneous/etime.m: Ditto.
+	* miscellaneous/is_leap_year.m: Ditto.
+	* miscellaneous/popen2.m: Ditto.
+	* miscellaneous/version.m: Ditto.
+	* miscellaneous/tic.m: Ditto.
+	* miscellaneous/toc.m: Just refer to tic.m.
+
+	* Makefile.in (dist, bin-dist): Use `$(MAKE) -C dir' instead of
+	`cd dir; $(MAKE); cd ..'.
+	($(SUBDIRS)): Likewise.
+
+	* statistics/Makefile.in ($(SUBDIRS)): Likewise.
+
+	* statistics/Makefile.in (bin-dist): Use `$(MAKE) -C dir' instead
+	of `cd dir; $(MAKE)'.
+
+	* gethelp.cc, mkdoc: New files.
+	* Makefile.in: Use them to create DOCSTRINGS file from .m file
+	sources.
+
+1999-10-14  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/kron.m: Fix typo in previous change
+
+1999-10-13  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/bode.m: Allow optional 5th arg to specify plot style.
+
+Wed Sep 22 22:12:03 1999 A. Scottedward Hodel <a.s.hodel@eng.auburn.edu>
+
+	* linear-algebra/krylov.m: Correctly handle case of V having full
+	rank when V has more columns than rows.
+
+Mon Sep 20 23:04:57 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/linspace.m, linear-algebra/pinv.m: Delete.
+
+	* statistics/tests/manova.m: Avoid problems if
+	whitespace_in_literal_matrix is set to "traditional".
+	* statistics/tests/t_test_regression.m: Likewise.
+	* statistics/tests/u_test.m: Likewise.
+	* statistics/tests/chisquare_test_homogeneity.m: Likewise.
+	* statistics/tests/anova.m: Likewise.
+	* statistics/tests/kruskal_wallis_test.m: Likewise.
+	* statistics/base/statistics.m: Likewise.
+	* image/saveimage.m: Likewise.
+	* signal/arch_fit.m: Likewise.
+	* signal/autoreg_matrix.m: Likewise.
+	* signal/triangle_lw.m: Likewise.
+	* strings/dec2hex.m: Likewise.
+
+Thu Sep  9 19:31:58 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/saveimage.m: Initialize scale.
+
+Sun Sep  5 22:13:47 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/reshape.m: Allow reshape (a, size (b)).
+
+Fri Sep  3 00:01:38 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/erfinv.m: Improve stopping criterion.
+	Add iteration count as second return value.
+
+Mon Aug 30 12:07:00 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/base/mean.m: Use .', not ' to reorient row vectors.
+
+Tue Aug 17 11:11:27 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/pack.m: New function.
+
+Mon Aug 16 07:46:57 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/figure.m: Always return figure number.  With no args,
+ 	figure now creates a new figure window and returns its number.
+	Accept figure (property, value) syntax, but do nothing.
+
+Thu Aug 12 09:28:01 PDT 1999  Tom Poage <tfpoage@ucdavis.edu>
+
+	* general/shift.m: Avoid printing temporary value for backward shift.
+
+Mon Aug  2 16:39:04 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/bar.m: Compute bar widths correctly when x-values are not
+	evenly spaced.
+
+Mon Jul 12 22:48:34 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/cond.m: Avoid returning NaN for matrices that
+	contain only zeros.
+
+Sun Jun 20 22:24:27 1999  Eduardo Gallestey <eduardo@faceng.anu.edu.au>
+
+	* linear-algebra/kron.m: Create result matrix and insert blocks
+	instead of appending them.
+
+Sat Jun 19 01:52:18 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/bodquist.m, control/buildssic.m, control/is_digital.m,
+	control/stepimp.m, control/sysmin.m, control/syssetsignals.m:
+	Update from A. S. Hodel.
+
+Fri Jun 18 12:19:22 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* polynomial/polyfit.m: Correct previous change.
+
+Wed Apr  7 13:57:26 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/qrhouse.m, linear-algebra/krygetq.m: Delete.
+
+Wed Apr  7 13:22:43 1999  A. S. Hodel <a.s.hodel@eng.auburn.edu>
+
+	* control/is_controllable.m, control/zgscal.m: Accomodate new
+	version of krylov and krylovb.
+
+	* control/outlist.m, control/sysout.m: Fix typos.
+
+	* control/sysdimensions.m: Add option for total number of states.
+
+	* linear-algebra/krylov.m: Improve robustness by row-pivoting.
+	* linear-algebra/krylovb.m: Just call krylov with appropriate
+	arguments.
+
+Tue Mar 30 00:43:09 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/index.m: Fail with meaningful error message if either
+	arg is a string array.
+
+Wed Mar 24 20:34:48 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/norm.m: Do the right thing for 1- and
+	infinity-norms of complex matrices.  From Sven Khatri
+	<khatri@saturn.vocalpoint.com>.
+
+Tue Mar 16 13:36:36 1999  A. Scottedward Hodel" <scotte@eng.auburn.edu>
+
+	* linear-algebra/qrhouse.m: Handle default args correctly.
+
+Thu Mar 11 12:52:34 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/split.m: Avoid problems when splitting strings that have
+	\ in them.
+
+Thu Mar 11 12:36:13 1999  Massimo Lorenzin <maxlorenzin@tin.it>
+
+	* image/colormap.m: Do better arg checking, handle string args
+	that name the colormap function to call (e.g., colormap ("ocean")).
+
+Mon Mar  8 22:23:24 1999  Rolf Fabian <fabian@TU-Cottbus.De>
+
+	* polynomial/polyfit.m: Use .' transpose operator, not '.
+	* linear-algebra/dot.m: Likewise.
+	* linear-algebra/cross.m: Likewise.
+	* general/rot90.m: Likewise.
+
+Sat Mar  6 01:45:00 1999  A Scott Hodel <hodel@edalf1.msfc.nasa.gov>
+
+	* linear-algebra/qrhouse.m: Permute columns at each iteration so
+	that the leading column is not all zeros.
+
+Fri Mar  5 00:37:47 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/shift.m: Fix potential problems with
+	whitespace_in_literal_matrix.
+	* signal/arch_rnd.m: Ditto.
+	* signal/autocov.m: Ditto.
+	* signal/diffpara.m: Ditto.
+	* signal/hurst.m: Ditto.
+	* signal/periodogram.m: Ditto.
+	* signal/spectral_adf.m: Ditto.
+	* signal/spectral_xdf.m: Ditto.
+	* signal/spencer.m: Ditto.
+	* signal/synthesis.m: Ditto.
+	* statistics/distributions/wiener_rnd.m: Ditto.
+	* statistics/models/logistic_regression_likelihood.m: Ditto.
+	* statistics/models/logistic_regression.m: Ditto.
+	* statistics/models/logistic_regression_derivatives.m: Ditto.
+	* statistics/tests/run_test.m: Ditto.
+	* statistics/tests/chisquare_test_independence.m: Ditto.
+
+Wed Mar  3 02:25:00 1999  Joao Cardoso <jcardoso@inescn.pt>
+
+	* plot/__plr2__.m: Fix typo.
+
+Tue Jan 12 10:31:15 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/__pltopt1__.m: Accept "k" to mean black.
+
+Fri Dec 11 10:43:19 1998  A Scott Hodel <hodel@edalf1.msfc.nasa.gov>
+
+	* linear-algebra/krylov.m: Force empty_list_elements_ok for this
+	function.
+
+Thu Dec 10 11:07:00 1998  A Scott Hodel <hodel@edalf1.msfc.nasa.gov>
+
+	* control/ss2sys.m: Fix typo.
+
+Wed Dec  9 12:42:19 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/subplot.m, plot/oneplot.m: Don't call clearplot.
+
+	* control: Update from A. S. Hodel <a.s.hodel@eng.auburn.edu> for
+	signal names as lists of strings instead of string arrays.
+
+Fri Dec  4 16:08:42 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* quaternion: New directory of functions from A. S. Hodel
+	<a.s.hodel@eng.auburn.edu>.
+	* Makefile.in (SUBDIRS): Add it to the list.
+	* quaternion/Makefile.in: New file.
+	* configure.in (AC_OUTPUT): Add quaternion/Makefile.
+
+Tue Nov 24 21:41:31 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/saveimage.m: Make it work again for black and white colormaps.
+
+	* image/imagesc.m: Use rows (colormap), not length (colormap),
+	since there can be fewer rows than columns.  Round values to
+	nearest position in colormap instead of truncating. Correct usage
+	message.
+
+Tue Nov 24 14:50:52 1998  A Scott Hodel <hodel@edalf1.msfc.nasa.gov>
+
+	* linear-algebra/krylov.m: New arg pflg.  If nonzero, avoid using
+	zero rows of [A,v] as householder pivots; this avoids spurious
+	non-zero entries in returned orthogonal matrix U, but destroys the
+	Householder matrix structure of H.
+
+Fri Nov 20 12:46:46 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/logical.m: Just copy input to output if argument is
+	already a logical object.
+
+Fri Nov  6 10:17:00 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* New files from OCST, in control subdiretory:
+
+	    DEMOcontrol.m      is_siso.m          syschnames.m
+	    abcddim.m          is_stabilizable.m  syschnamesl.m
+	    abcddims.m         is_stable.m        syschtsam.m
+	    analdemo.m         jet707.m           sysconnect.m
+	    are.m              lqe.m              syscont.m
+	    axis2dlim.m        lqg.m              syscont_disc.m
+	    bddemo.m           lqr.m              sysdefioname.m
+	    bode.m             lsim.m             sysdefstname.m
+	    bode_bounds.m      ltifr.m            sysdimensions.m
+	    bodquist.m         lyap.m             sysdisc.m
+	    buildssic.m        mb.m               sysdup.m
+	    c2d.m              minfo.m            sysgetsignals.m
+	    com2str.m,v        moddemo.m          sysgettsam.m
+	    controldemo.m      nichols.m          sysgettype.m
+	    ctrb.m             nyquist.m          sysgroup.m
+	    d2c.m              obsv.m             sysgroupn.m
+	    damp.m             ord2.m             sysmult.m
+	    dare.m             outlist.m          sysout.m
+	    dcgain.m           packedform.m       sysprune.m
+	    demomarsyas.m      packsys.m          sysreorder.m
+	    dezero.m;          parallel.m         sysrepdemo.m
+	    dgkfdemo.m         place.m            sysscale.m
+	    dgram.m            polyout.m          syssub.m
+	    dhinfdemo.m        prompt.m           sysupdate.m
+	    dlqe.m             pzmap.m            tf2ss.m
+	    dlqg.m             qzval.m            tf2sys.m
+	    dlqr.m             rldemo.m           tf2sysl.m
+	    dlyap.m            rlocus.m           tf2zp.m
+	    dmr2d.m            rotg.m             tfout.m
+	    fir2sys.m          run_cmd.m;         tzero.m
+	    frdemo.m           series.m           tzero2.m
+	    freqchkw.m         sortcom.m          ugain.m
+	    freqresp.m         ss2sys.m           unpacksys.m
+	    gram.m             ss2tf.m            wgt1o.m
+	    h2norm.m           ss2zp.m            zgfmul.m
+	    h2syn.m            starp.m            zgfslv.m
+	    hinf_ctr.m         step.m             zginit.m
+	    hinfdemo.m         stepimp.m          zgpbal.m
+	    hinfnorm.m         strappend.m;       zgreduce.m
+	    hinfsyn.m          susball.m          zgrownorm.m
+	    hinfsyn_chk.m      swap.m             zgscal.m
+	    impulse.m          swapcols.m         zgsgiv.m
+	    is_abcd.m          swaprows.m         zgshsr.m
+	    is_controllable.m  sys2fir.m          zp2ss.m
+	    is_detectable.m    sys2ss.m           zp2ssg2.m
+	    is_dgkf.m          sys2tf.m           zp2sys.m
+	    is_digital.m       sys2zp.m           zp2tf.m
+	    is_observable.m    sysadd.m           zpout.m
+	    is_sample.m        sysappend.m
+
+Thu Nov  5 13:28:40 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* configure.in (AC_OUTPUT): Escape newlinew in macro call with \.
+
+	* strings/deblank.m: Make it work for string arrays too.
+
+Wed Nov  4 21:51:13 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/housh.m: New file from the OCST.
+	* linear-algebra/krygetq.m: Ditto.
+	* linear-algebra/krylov.m: Ditto.
+	* linear-algebra/krylovb.m: Ditto.
+	* linear-algebra/qrhouse.m: Ditto.
+	* general/is_duplicate_entry.m: Ditto.
+
+	* general/is_symmetric.m: Call is_square instead of doing that
+	check in line.
+
+Wed Oct 28 11:51:14 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/is_square.m: 
+
+	* general/isempty.m, general/is_matrix.m: Delete.
+
+	* general/is_symmetric: Delete special case for strings.  Whether
+	the conversion is valid should depend on implicit_str_to_num_ok.
+
+	* general/is_square.m: If arg is not a matrix, don't check size,
+	just return 0.
+	* general/is_symmetric: Likewise.
+	* general/is_vector.m: Likewise.
+	* general/is_scalar.m: Likewise.
+
+	* general/length.m: Delete.
+
+Fri Oct 23 00:21:55 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* configure.in: Add finance/Makefile, statistics/base/Makefile,
+	statistics/distributions/Makefile, statistics/models/Makefile, 
+	and statistics/tests/Makefile to the list of files to create.
+
+	* finance/Makefile.in, statistics/base/Makefile.in,
+	statistics/distributions/Makefile.in, statistics/models/Makefile.in,
+  	statistics/tests/Makefile.in: New files.
+	* statistics/Makefile.in: Delete file lists.  Now only handle
+	subdirectories.
+	* Makefile.in (SUBDIRS): Add finance.
+
+	* Move the following files from statistics to statistics/base:
+
+	    corrcoef.m
+	    kurtosis.m
+	    mahalanobis.m
+	    median.m
+	    ols.m
+	    skewness.m
+	    std.m
+	
+	New files, from Kurt Hornik's octave-ci package:
+
+	* finance (new directory):
+
+	    fv.m
+	    fvl.m
+	    irr.m
+	    nper.m
+	    npv.m
+	    pmt.m
+	    pv.m
+	    pvl.m
+	    rate.m
+	    vol.m
+
+	* linear-algebra/dmult.m
+
+	* signal:
+
+	    arch_fit.m
+	    arch_rnd.m
+	    arch_test.m
+	    arma_rnd.m
+	    autocor.m
+	    autocov.m
+	    autoreg_matrix.m
+	    bartlett.m
+	    blackman.m
+	    diffpara.m
+	    durbinlevinson.m
+	    fractdiff.m
+	    hamming.m
+	    hanning.m
+	    hurst.m
+	    periodogram.m
+	    rectangle_lw.m
+	    rectangle_sw.m
+	    sinetone.m
+	    sinewave.m
+	    spectral_adf.m
+	    spectral_xdf.m
+	    spencer.m
+	    stft.m
+	    synthesis.m
+	    triangle_lw.m
+	    triangle_sw.m
+	    yulewalker.m
+
+	* statistics/base (new directory):
+
+	    center.m
+	    cloglog.m
+	    cor.m
+	    cov.m
+	    cut.m
+	    iqr.m
+	    kendall.m
+	    logit.m
+	    mean.m
+	    meansq.m
+	    moment.m
+	    ppplot.m
+	    probit.m
+	    qqplot.m
+	    range.m
+	    ranks.m
+	    run_count.m
+	    spearman.m
+	    statistics.m
+	    studentize.m
+	    table.m
+	    values.m
+	    var.m
+
+	(Replaces cov.m and mean.m with new versions.)
+
+	* statistics/distributions (new directory):
+
+	    beta_cdf.m
+	    beta_inv.m
+	    beta_pdf.m
+	    beta_rnd.m
+	    binomial_cdf.m
+	    binomial_inv.m
+	    binomial_pdf.m
+	    binomial_rnd.m
+	    cauchy_cdf.m
+	    cauchy_inv.m
+	    cauchy_pdf.m
+	    cauchy_rnd.m
+	    chisquare_cdf.m
+	    chisquare_inv.m
+	    chisquare_pdf.m
+	    chisquare_rnd.m
+	    discrete_cdf.m
+	    discrete_inv.m
+	    discrete_pdf.m
+	    discrete_rnd.m
+	    empirical_cdf.m
+	    empirical_inv.m
+	    empirical_pdf.m
+	    empirical_rnd.m
+	    exponential_cdf.m
+	    exponential_inv.m
+	    exponential_pdf.m
+	    exponential_rnd.m
+	    f_cdf.m
+	    f_inv.m
+	    f_pdf.m
+	    f_rnd.m
+	    gamma_cdf.m
+	    gamma_inv.m
+	    gamma_pdf.m
+	    gamma_rnd.m
+	    geometric_cdf.m
+	    geometric_inv.m
+	    geometric_pdf.m
+	    geometric_rnd.m
+	    hypergeometric_cdf.m
+	    hypergeometric_inv.m
+	    hypergeometric_pdf.m
+	    hypergeometric_rnd.m
+	    kolmogorov_smirnov_cdf.m
+	    laplace_cdf.m
+	    laplace_inv.m
+	    laplace_pdf.m
+	    laplace_rnd.m
+	    logistic_cdf.m
+	    logistic_inv.m
+	    logistic_pdf.m
+	    logistic_rnd.m
+	    lognormal_cdf.m
+	    lognormal_inv.m
+	    lognormal_pdf.m
+	    lognormal_rnd.m
+	    normal_cdf.m
+	    normal_inv.m
+	    normal_pdf.m
+	    normal_rnd.m
+	    pascal_cdf.m
+	    pascal_inv.m
+	    pascal_pdf.m
+	    pascal_rnd.m
+	    poisson_cdf.m
+	    poisson_inv.m
+	    poisson_pdf.m
+	    poisson_rnd.m
+	    stdnormal_cdf.m
+	    stdnormal_inv.m
+	    stdnormal_pdf.m
+	    stdnormal_rnd.m
+	    t_cdf.m
+	    t_inv.m
+	    t_pdf.m
+	    t_rnd.m
+	    uniform_cdf.m
+	    uniform_inv.m
+	    uniform_pdf.m
+	    uniform_rnd.m
+	    weibull_cdf.m
+	    weibull_inv.m
+	    weibull_pdf.m
+	    weibull_rnd.m
+	    wiener_rnd.m
+	
+	* statistics/models (new directory):
+
+	    logistic_regression.m
+	    logistic_regression_derivatives.m
+	    logistic_regression_likelihood.m
+
+	* statistics/tests (new directory):
+
+	    anova.m
+	    bartlett_test.m
+	    chisquare_test_homogeneity.m
+	    chisquare_test_independence.m
+	    cor_test.m
+	    f_test_regression.m
+	    hotelling_test.m
+	    hotelling_test_2.m
+	    kolmogorov_smirnov_test.m
+	    kolmogorov_smirnov_test_2.m
+	    kruskal_wallis_test.m
+	    manova.m
+	    mcnemar_test.m
+	    prop_test_2.m
+	    run_test.m
+	    sign_test.m
+	    t_test.m
+	    t_test_2.m
+	    t_test_regression.m
+	    u_test.m
+	    var_test.m
+	    welch_test.m
+	    wilcoxon_test.m
+	    z_test.m
+	    z_test_2.m
+
+Thu Oct 22 12:25:55 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* time/date.m: Use %Y, not %y in format string, for Matlab 5
+	compatibility and to avoid Y2K problems.
+
+Mon Oct 19 17:26:35 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* polynomial/polyfit.m: Just use the \ operator to handle the
+	least-squares solution.
+
+Thu Sep  3 12:40:47 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/str2num.m: If eval returns a string, return an empty matrix.
+
+	* strings/strrep.m: Don't convert args to numeric values.
+	Prevent warnings for empty string args.
+	From Georg Thimm <thimm@idiap.ch>.
+
+	* strings/strcat.m: Prevent warnings for empty string args.
+
+Wed Sep  2 17:20:24 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/menu.m: Remove special case for empty string
+	returned from input().  Add second arg to eval() to catch errors.
+
+Thu Jun 18 16:32:15 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/__plt__.m: Don't call usleep.
+
+Mon May 18 11:42:36 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/dot.m: New function.
+
+	* strings/lower.m, strings/upper.m: New functions, for Matlab
+	compatibility.
+
+Fri May 15 01:16:53 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/hist.m: Also allow just one output argument.
+
+Sun May 10 23:00:45 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/deblank.m: Make it work if the string is only blanks.
+
+Tue May  5 00:53:36 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/__plt2mv__.m: Delete calls to keyboard.
+
+Mon May  4 11:43:31 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/oneplot.m: Fix typo.
+
+Wed Apr 22 12:11:27 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/flops.m: Allow a single argument too.
+
+Tue Apr 21 10:18:20 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/str2mat.m: Also handle case when there are no empty
+	strings correctly.
+
+Mon Apr 20 22:14:15 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/isletter.m: New function, for Matlab compatibility.
+
+Fri Apr 17 10:53:39 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/str2mat.m: Handle string matrices too.
+
+Wed Apr 15 11:16:01 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* audio/loadaudio.m: Accept "pcm" as another file extension for
+	linear encoding.
+
+	* audio/saveaudio.m, audio/loadaudio.m, audio/playaudio.m,
+	audio/record.m: Open files in binary mode.
+
+Fri Apr 10 10:46:21 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/dump_prefs.m: Use string array for list of values.
+	Move functionality of dump_1_pref here, but use built-in function
+	type to extract value, and put it inside try/catch block.
+	* miscellaneous/dump_1_pref.m: Delete unused function.
+
+Wed Apr  8 13:17:58 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/__pltopt1.m__: New file.
+	* plot/__pltopt.m__: Handle opt as a string array by calling
+	__pltopt1__ multiple times and returning a string array with rows
+	corresponding to the rows of opt.
+	* plot/__plt2ss__.m, plot/__plt2vv__.m, plot/__plt2vm__.m,
+	plot/__plt2mv__.m, plot/__plt2mm__.m: Handle fmt as a string
+	array.
+
+Fri Mar 27 03:00:40 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/mplot.m: Fix misspellings of global variables.
+	Don't call clearplot.
+
+Tue Mar 17 17:45:25 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/subplot.m, plot/multiplot.m: Set gnuplot_command_replot to
+	"cle;rep" when going in ot multiplot mode.
+	* plot/oneplot.m: Reset gnuplot_command_replot to "rep" when
+	switching out of multiplot mode.
+
+Fri Feb 20 01:31:32 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/mplot.m, plot/subplot.m, plot/oneplot.m, plot/multiplot.m,
+	plot/subwindow.m: Call clearplot after setting up multiplot mode.
+
+Tue Feb  3 00:18:40 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* special-matrix/sylvester_matrix.m: Rename from hadamard.m
+
+	* miscellaneous/bug_report.m: Don't try to get smart with
+	OCTAVE_HOME.  Assume octave-bug can be found in EXEC_PATH.
+
+	* Makefile.in (install): Create separate ls-R files for
+	$(datadir) and $(libexecdir).
+	(uninstall): Remove both ls-R files.
+
+Sat Jan 31 01:09:32 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* signal/fftshift.m: New file.
+
+	* plot/contour.m: Fix for non-square case.
+
+	* general/randperm.m: New file.
+
+Fri Jan 30 15:20:39 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/betai.m: Restore file for compatibility with previous
+	versions.  Call betainc with reordered args.
+	* specfun/gammai.m: Likewise, call gammainc with reordered args.
+
+Wed Jan 28 22:44:59 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/contour.m: Handle discrete contour levels.
+
+Tue Jan 27 04:31:22 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/lyap.m: For compatibility with Matlab, solve
+ 	A*X + X*A' + C = 0 instead of A'*X + X*A + C = 0.
+
+Wed Dec 10 00:14:29 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/bessel.m: New file.
+
+	* specfun/betai.m, specfun/betainc.m, specfun/gammai.m,
+	specfun/gammainc.m: Delete.
+
+Wed Nov 19 00:19:18 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/colormap.m: Initialize __current_color_map__ in global
+	statement.
+	* miscellaneous/toc.m: Initialize __tic_toc_timestamp__ in global
+	statement.
+	* plot/axis.m: Initialize __current_axis__ in global statement.
+	* plot/mplot.m, plot/multiplot.m, plot/oneplot.m, plot/subplot.m,
+	plot/subwindow.m: Initialize __multiplot_mode__ in global statement.
+
+Tue Nov 18 01:35:50 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* time/tic.m: Rename _time_tic_called to __tic_toc_timestamp__.
+	* time/toc.m: Likewise.
+
+	* image/colormap.m: Rename CURRENT_COLOR_MAP to __current_color_map__.
+
+	* plot/mplot.m, plot/multiplot.m, plot/subplot.m: Don't do
+	anything special for automatic_replot when in multiplot mode --
+	recent 3.6beta releases handle this correctly.
+
+	* plot/figure.m: Ensure that we are not in multiplot mode before
+	setting the terminal type.
+
+	* plot/mplot.m, plot/multiplot.m, plot/oneplot.m, plot/subplot.m,
+ 	plot/subwindow.m: Use leading and trailing underscores for
+ 	`private' globals.
+
+	* plot/oneplot.m: Don't do anything if gnuplot_has_multiplot is false.
+
+Fri Nov 14 10:53:11 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/__pltopt__.m: Use sprintf instead of strcat when adding TITLE.
+
+Fri Oct 10 11:18:10 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/gammai.m: Avoid problems with whitespace when
+	constructing matrices.
+
+	* polynomial/polyfit.m: Compute yf correctly.  From Seung Lee
+	<SJL@nrc.gov>.  Also return yf in the same orientation as the
+	original y vector.
+
+Fri Sep 19 17:04:40 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/cross.m: Use direct formula instead of calling
+	det three times in a loop.  If both args are column (row) vectors,
+	return a column (row) vector.  If they don't match, pay attention
+	to the value of prefer_column_vectors.
+
+Thu Aug 28 15:31:20 1997  Rolf Fabian <fabian@olymp.Umwelt.TU-Cottbus.de>
+
+	* polynomial/polyvalm.m: Don't assume orthogonal eigenvectors for
+	nonsymmetric matrices.
+
+	* general/tril.m: Fix usage message.
+
+	* polynomial/polyvalm.m: Fix error messages.
+	* polynomial/polyderiv.m: Likewise.
+	* polynomial/polyval.m: Likewise.
+
+Wed Aug 13 14:14:16 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/blanks.m: Allow blanks(0) to return empty string.
+	Allow negative arguments if treat_neg_dim_as_zero is true.
+
+Wed Jun 25 21:26:24 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/mesh.m: Set noparametric plot mode after plotting.
+
+Wed Jun 25 21:06:10 1997  Rick Niles <niles@axp745.gsfc.nasa.gov>
+
+	* plot/__pltopt__.m: Handle key/legend names.
+	Correctly set colors, line styles, and point styles.
+
+Wed Jun 25 13:34:06 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* polynomial/polyfit.m: Return fit y values as second output.
+	Don't use QR factorization to solve least squares problem.
+
+Wed Jun 18 10:24:00 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/dlqr.m: Use ao, not a, to compute k.
+
+Tue Jun  3 12:16:00 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/path.m: New file.
+
+Wed May 21 11:45:31 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/bug_report.m: Pass file id to dump_prefs, not file
+	name.
+
+Mon May 12 02:04:01 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/erfinv.m: Add missing semicolon.
+
+Wed Apr  2 22:04:03 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/xor.m: Make type of return value logical.
+
+Fri Mar 28 16:19:53 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/dump_prefs.m: Delete call to dump_1_pref for
+	warn_comma_in_global_decl.
+
+Tue Mar 25 22:00:49 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/bug_report.m: Use __OCTAVE_HOME__ to find
+	octave-bug script.
+
+Mon Mar 24 16:49:47 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/dump_prefs.m: Delete call to dump_1_pref for
+	prefer_zero_one_indexing.
+
+	* general/logical.m: New file.
+
+Sat Mar 15 15:07:30 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/nextpow2.m: Correctly handle new meaning of is_scalar()
+	and is_vector().
+
+Thu Mar 13 16:36:35 1997  Kurt Hornik <Kurt.Hornik@ci.tuwien.ac.at>
+
+	* specfun/erfinv.m: Scale update by sqrt (pi) / 2.
+	Use tolerance of 2 * eps.
+
+Wed Mar 12 16:57:45 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install-strip): New target.
+	* audio/Makefile.in: Ditto.
+	* control/Makefile.in: Ditto.
+	* elfun/Makefile.in: Ditto.
+	* general/Makefile.in: Ditto.
+	* image/Makefile.in: Ditto.
+	* io/Makefile.in: Ditto.
+	* linear-algebra/Makefile.in: Ditto.
+	* miscellaneous/Makefile.in: Ditto.
+	* plot/Makefile.in: Ditto.
+	* polynomial/Makefile.in: Ditto.
+	* set/Makefile.in: Ditto.
+	* signal/Makefile.in: Ditto.
+	* specfun/Makefile.in: Ditto.
+	* special-matrix/Makefile.in: Ditto.
+	* startup/Makefile.in: Ditto.
+	* statistics/Makefile.in: Ditto.
+	* strings/Makefile.in: Ditto.
+
+Tue Mar 11 10:14:26 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* elfun/coth.m: Write as cosh(x) ./ sinh(x) instead of 1 ./ tanh(x).
+
+Fri Mar  7 23:06:48 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/corrcoef.m: Make it actually work.
+
+Thu Mar  6 12:36:30 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/corrcoef.m: Don't fail if single argument is a matrix.
+
+Sat Mar  1 15:23:14 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.5 released.
+
+Wed Feb 26 01:48:28 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (maintainer-clean): Also remove configure.
+
+	* signal/fftconv.m: Check inputs with is_vector(), not is_matrix().
+
+	* general/is_matrix.m: Return zero for empty matrices.
+
+Tue Feb 25 15:16:04 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/vech.m: Size result just once.
+
+Sun Feb 23 00:15:57 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/is_square.m: Handle empty matrices correctly.
+	* general/is_symmetric.m: Handle empty matrices and strings.
+
+Sat Feb 22 01:06:22 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* polynomial/conv.m: Check inputs with is_vector(), not is_matrix().
+	* polynomial/deconv.m: Likewise.
+	* polynomial/polyderiv.m: Likewise.
+	* polynomial/polyinteg.m: Likewise.
+	* polynomial/polyreduce.m: Likewise.
+	* polynomial/polyval.m: Likewise.
+	* polynomial/polyvalm.m: Likewise.
+	* general/postpad.m: Likewise.
+	* general/prepad.m: Likewise.
+
+	* polynomial/compan.m: Check input with is_vector(), not
+	is_matrix().  Handle scalar case.
+
+Fri Feb 21 13:36:58 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/contour.m: Order data so that it is consistent with
+	meshgrid and mesh.
+
+	* plot/meshdom.m, plot/meshgrid.m: Change help message.
+	* plot/sombrero.m: Use meshgrid, not meshdom.
+
+Thu Feb 20 02:58:05 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.4 released.
+
+Wed Feb 19 10:30:14 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/paren.m: New file.
+
+Tue Feb 18 09:22:04 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.3 released.
+
+Thu Feb 13 19:06:42 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/saveimage.m: Only clip image data that is actually out of
+	range.
+
+Sun Feb  9 19:52:08 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/is_matrix.m: Scalars, vectors, and empty matrices may
+	also be considered to be matrices.
+
+	* general/is_vector.m: Scalars may also be considered to be vectors.
+
+	* general/isempty.m: Use size(), not rows() and columns().
+
+	* plot/contour.m: Convert set to gset.
+	Set view to 0, 0, 1, 1, not 0, 0, 1.9, 1.
+
+Fri Feb  7 12:55:55 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/erfinv.m: Fix typo in last change.
+
+Fri Jan 31 09:30:16 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/loadimage.m: Make it possible to load files with image
+	data named X or img.
+
+	* image/default.img: Change name of image from X to img to match
+	what saveimage does now.
+
+	* image/loadimage.m: Rename X to be img, to match what saveimage
+	does now.
+
+Mon Jan 27 13:48:31 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.2 released.
+
+	* plot/__plt__.m: Use usleep() instead of replot to try to avoid
+	weird missing-lines bug without creating extra plots unecessarily.
+
+Sat Jan 25 22:37:07 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in, audio/Makefile.in, control/Makefile.in,
+	elfun/Makefile.in, general/Makefile.in, image/Makefile.in,
+	io/Makefile.in, linear-algebra/Makefile.in,
+	miscellaneous/Makefile.in, plot/Makefile.in,
+	polynomial/Makefile.in, set/Makefile.in, signal/Makefile.in,
+	specfun/Makefile.in, special-matrix/Makefile.in,
+	startup/Makefile.in, statistics/Makefile.in, strings/Makefile.in,
+	time/Makefile.in (bin-dist): New target.
+
+Wed Jan 22 11:28:30 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/erfinv.m: Avoid A([]) = X, X != [] error.
+
+Tue Jan 21 11:16:40 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/xor.m: Make it work.
+
+Mon Jan 20 12:28:34 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/sombrero.m: Doc fix.
+
+Tue Jan  7 00:16:52 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.1 released.
+
+Thu Dec 19 22:16:46 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* elfun/lcm.m: Replace missing if statement.
+
+	* elfun/gcd.m: Report error if no input args.
+	* elfun/lcm.m: Likewise.
+
+Mon Dec 16 15:23:04 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install): Use ls -LR to create ls-R database.
+	Also list contents of $libexecdir/octave in ls-R database.
+
+Tue Dec 10 01:43:07 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0 released.
+
+Fri Dec  6 15:23:46 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.94.
+
+Sun Dec  1 20:55:34 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/str2num.m: New file.
+
+Wed Nov 20 01:00:24 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.93.
+
+Tue Nov 19 15:13:35 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* linear-algebra/commutation_matrix.m, linear-algebra/cross.m,
+	linear-algebra/duplication_matrix.m, linear-algebra/vec.m,
+	linear-algebra/vech.m: New files from Kurt Hornik.
+
+	* general/nextpow2.m, general/shift.m, general/diff.m,
+	general/common_size.m: New files from Kurt Hornik.
+
+	* miscellaneous/bincoeff.m, miscellaneous/xor.m:
+	New files from Kurt Hornik.
+
+	* signal/detrend.m: New file from Kurt Hornik.
+
+	* specfun/betai.m, specfun/gammai.m, specfun/erfinv.m,
+	specfun/pow2.m, specfun/log2.m:
+	New files and updates from Kurt Hornik.
+
+Fri Nov 15 18:13:00 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/__plt__.m: Add explicit replot after last command is
+	issued, to force all lines to be displayed.  Hmm.
+
+Thu Nov 14 00:06:34 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/axis.m, plot/bottom_title.m, plot/contour.m,
+	plot/figure.m, plot/grid.m, plot/loglog.m, plot/mesh.m,
+	plot/mplot.m, plot/multiplot.m, plot/oneplot.m, plot/plot.m,
+	plot/plot_border.m, plot/polar.m, plot/semilogx.m,
+	plot/semilogy.m, plot/subplot.m, plot/subwindow.m, plot/title.m,
+	plot/top_title.m, plot/xlabel.m, plot/ylabel.m, plot/zlabel.m:
+	Uset gset, not set.
+
+	* Version 1.92.
+
+Thu Nov  7 12:43:12 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/saveimage.m: When writing PostScript, name Octave as the
+	almighty Creator.  Use single call to fprintf instead of looping.
+
+	* image/Makefile.in: Delete references to octtopnm.
+
+	* general/logspace.m: Doc fix.
+
+	* Version 1.91.
+
+Sat Nov  2 21:06:29 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/image.m: Use tmpnam() instead of home-brew scheme.
+
+	* audio/record.m, audio/playaudio.m: Use tmpnam() instead of
+	octave_tmp_file_name().  Use unwind_protect to ensure tmp file is
+	deleted.
+	* miscellaneous/bug_report.m: Likewise.  Also use unlink() instead
+	of a system() command to delete the tmp file.
+
+Wed Oct 30 17:19:45 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.90.
+
+	* Makefile.in (DISTFILES): Add ChangeLog.
+
+Thu Oct 10 17:31:01 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/subplot.m, plot/multiplot.m, plot/mplot.m:
+	Don't check for string value of automatic_replot.
+
+	* image/ind2ind.m, image/ind2rgb.m, image/ind2gray.m:
+	Temporarily set do_fortran_indexing to 1, not "true".
+
+	* miscellaneous/menu.m: Temporarily set page_screen_output to 0,
+	not "false".
+
+	* linear-algebra/cond.m: Don't compare propagate_empty_matrices to
+	"false".
+
+Tue Aug 20 18:27:36 1996  Kurt Hornik  <Kurt.Hornik@ci.tuwien.ac.at>
+
+	* strings/substr.m: Allow negative OFFSET.  LEN is now optional.
+
+Mon Jul 15 16:15:22 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/bug_report.m: Don't redirect output to /dev/tty in
+	system command.
+	
+Fri Jul 12 12:24:29 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* __plr1__.m: Renamed from polar_int_1.m.
+	* __plr2__.m: Renamed from polar_int_2.m.
+	* __plr__.m: Renamed from polar_int.m.
+	* __plt1__.m: Renamed from plot_int_1.m.
+	* __plt2__.m: Renamed from plot_int_2.m.
+	* __plt2mm__.m: Renamed from plot_2_m_m_.m.
+	* __plt2mv__.m: Renamed from plot_2_m_v_.m.
+	* __plt2ss__.m: Renamed from plot_2_s_s_.m.
+	* __plt2vm__.m: Renamed from plot_2_v_m_.m.
+	* __plt2vv__.m: Renamed from plot_2_v_v_.m.
+	* __plt__.m: Renamed from plot_int.m.
+	* __pltopt__.m: Renamed from plot_opt.m.
+	Change all callers.
+
+Thu Jul 11 17:24:29 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* All .m files: Add regular Author:, Created:, and Adapted-By:
+	comments like those found in Emacs lisp files.
+
+Mon Jun 24 04:16:41 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* All .m files: Change comment style.
+
+Fri Jun 14 01:42:21 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* bottom_title.m, mplot.m, multiplot.m, oneplot.m, plot_border.m,
+	subplot.m, subwindow.m, top_title.m:
+	Print error message if gnuplot_has_multiplot is not true.
+
+Thu Jun  6 00:18:54 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/figure.m: New function.
+
+Wed Jun  5 18:19:00 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/strrep.m: New function.
+
+Thu May 23 15:04:22 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strings/bin2dec.m, strings/blanks.m, strings/deblank.m,
+	strings/dec2bin.m, strings/dec2hex.m, strings/findstr.m,
+	strings/hex2dec.m, strings/index.m, strings/rindex.m,
+	strings/split.m, strings/str2mat.m, strings/substr.m:
+	New functions from Kurt Hornik, heavily modified by jwe.
+
+	* general/reshape.m: Allow strings to be reshaped too.
+
+	* strings/strcmp.m: No longer need to set implicit_str_to_num_ok.
+	Always return a scalar.
+
+Wed May 22 19:52:11 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* polynomial/polyfit.m: Make orientation of result compatible with
+	Matlab.
+
+Sat May 18 17:32:15 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* polynomial/polyfit.m: Add missing close paren.
+
+Thu May 16 10:23:11 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/plot_opt.m: Set compatibility arg in call to sscanf.
+
+	* io/scanf.m: Delete.
+
+Mon May 13 09:37:38 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/median.m: Fix typo in usage message.
+
+Wed Apr 24 02:45:52 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/popen2.m: New file.
+
+Wed Apr 17 18:34:04 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* configure.in (AC_OUTPUT): Add io/Makefile.
+
+	* io: New directory.
+	* Makefile.in (SUBDIRS): Add it to the list.
+
+	* miscellaneous/flops.m: New file.
+
+Fri Mar 22 04:40:48 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/cputime.m: Return three arguments instead of a
+	vector, for compatibility with previous versions and with Matlab
+	(which only returns one scalar value).
+
+Wed Mar 20 05:09:48 1996  Kurt Hornik  <Kurt.Hornik@tuwien.ac.at>
+
+	* general/triu.m: Compute lower bound on loop index correctly.
+	* general/tril.m: Likewise, for upper bound.
+
+Tue Feb  6 09:29:43 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/saveimage.m: For color images, make sure indices into
+	temporary colormap and result matrix have proper orientation.
+	Set grey flag correctly.
+
+Tue Jan  9 00:12:14 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statistics/std.m: Use better formula (from Jim Van Zandt
+	jrv@vanzandt.mv.com).
+
+Sun Jan  7 20:12:14 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* meshgrid.m: New file (from Jim Van Zandt jrv@vanzandt.mv.com).
+	* mesh.m: Transpose Z if only one arg.
+ 	Handle case of all three args being matrices (from Jim Van Zandt
+	jrv@vanzandt.mv.com).
+	* meshdom.m: Undo previous change.
+
+Wed Dec 20 13:48:12 1995  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* configure.in (AC_OUTPUT): Add audio/Makefile
+
+Thu Nov 16 13:07:07 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* audio: New directory of files from Kurt Hornik and Andreas
+	Weingessel.
+	* audio/Makefile.in: New file.
+	* Makefile.in (SUBDIRS): Add audio to the list.
+
+Mon Nov  6 07:29:35 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* polynomial/polyfit.m: Use `economy-stle' QR factorization.
+
+Fri Nov  3 00:38:46 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/mesh.m: Require, length (y) == rows (z) and length (x) ==
+	columns (z), not the other way around.
+	* plot/meshdom.m: Don't reverse order of elements in y.
+
+Thu Nov  2 23:56:53 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/axis.m: Return current axis if nargin == 0.
+
+Tue Oct 31 04:11:28 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* polynomial/roots.m: Updates from Kurt Hornik.
+
+	* polynomial/polyder.m: New file.
+
+	* polynomial/polyderiv.m: Give return value and arg different names.
+
+Mon Oct 30 23:27:02 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* specfun/betainc.m: New file.
+	* specfun/gammainc.m: New file.
+
+Wed Oct 18 23:45:52 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* general/strerror.m: New file.
+	* general/perror.m: Implement using strerror().
+
+Thu Oct  5 03:21:36 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/bottom_title.m plot/mplot.m plot/multiplot.m plot/oneplot.m
+	plot/plot_border.m plot/subplot.m plot/subwindow.m
+	plot/top_title.m plot/zlabel.m: New files, from Vinayak Dutt.
+
+	* image/saveimage.m: Round img values first.
+
+Tue Oct  3 03:55:18 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/abcddim.m control/are.m general/tril.m general/triu.m
+	image/saveimage.m linear-algebra/kron.m linear-algebra/norm.m
+	linear-algebra/null.m miscellaneous/etime.m plot/contour.m
+	plot/mesh.m plot/plot_int.m plot/polar_int.m
+	special-matrix/hankel.m special-matrix/toeplitz.m
+	tuwien/strfun/split.m: Add missing semicolons.
+
+	* plot/polar_int.m: Use .', not ' to make vectors conform.
+
+	* image/Makefile.in: Don't build or install octtoppm.
+
+	* image/saveimage.m: Rewrite to avoid using octoppm and pbm
+	routines so that people who don't have the the pbm stuff installed
+	can still use this function.
+
+Mon Oct  2 05:10:44 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* image/saveimage.m: Better error checking, clean up a bit.
+
+Tue Sep 26 00:04:56 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* plot/plot_opt.m: Change more to more_opts as a temporary fix to
+	avoid conflict with new built-in text-style function more.
+
+	* linear-algebra/norm.m: Also allow 2nd arg == "inf".
+
+	* startup/Makefile.in (install): Also install octaverc in
+	$localfcnfiledir/startup/octavrc.
+
+Wed Sep 20 00:01:30 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* mkinstalldirs: New file.
+	* Makefile.in (DISTFILES): Add it to the list.
+
+	* Makefile.in (DISTFILES): Distribute configure.in and configure.
+
+Thu Sep 14 03:56:19 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* special-matrix/hankel.m: Compatibility fix.  Complain if 
+	r(1) != c(nr), not if r(1) != c(1).
+	
+	* signal/filter.m: Doc fix.
+
+Wed Sep 13 03:19:05 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* miscellaneous/cputime.m: Use new resource structure names (no
+	ru_ or tv_ prefixes).
+
+Tue Sep 12 02:20:44 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* time/ctime.m: Fix doc string and usage message.
+
+Mon Sep 11 18:43:46 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* time/clock.m: Use new time structure names (no tm_ prefix).
+
+Thu Aug 24 20:53:08 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* control/c2d.m: Make function work for any value of
+	whitespace_in_literal_matrix.
+	* control/dare.m: Likewise.
+	* control/tzero.m: Likewise.
+	* elfun/gcd.m: Likewise.
+	* elfun/lcm.m: Likewise.
+	* general/postpad.m: Likewise.
+	* general/prepad.m: Likewise.
+	* linear-algebra/kron.m: Likewise.
+	* miscellaneous/etime.m: Likewise.
+	* polynomial/conv.m: Likewise.
+	* polynomial/deconv.m: Likewise.
+	* polynomial/poly.m: Likewise.
+	* polynomial/roots.m: Likewise.
+	* signal/filter.m: Likewise.
+	* signal/freqz.m: Likewise.
+	* signal/fftfilt.m: Likewise.
+
+Tue Jun  6 22:34:04 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* miscellaneous/is_leap_year.m: Make work for vector args.
+
+Tue May  2 16:18:33 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* plot/polar_int_2.m: Add missing semicolons.
+	Set theta = theta', not rho'.
+
+Sun Apr 30 11:19:11 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* polynomial/roots.m: Make it work for any value of
+	whitespace_in_literal_matrix.
+
+Mon Apr 10 09:37:17 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* configure.in: New file.
+
+Thu Mar 30 13:29:35 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* control/lyap.m: Add missing semicolon.
+
+	* miscellaneous/cputime.m: New function file.
+
+Wed Mar 29 22:50:49 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* time: New directory.
+	* time/asctime.m, time/clock.m, time/ctime.m, time/date.m:
+	New function files.
+	* time/Makefile.in: New file.
+	* Makefile.in (SUBDIRS): Add time.
+
+Thu Mar 23 15:42:26 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* polynomial/polyreduce.m: Make sure initial index is not empty.
+
+Tue Mar 14 23:38:24 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* plot/plot_int_1.m: Transpose data with .', not '.
+
+Fri Mar 10 10:40:13 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* Makefile.in (install uninstall clean mostlyclean distclean
+	realclean): Use SUBDIR_FOR_COMMAND.  Combine actions.
+
+Sun Feb 26 22:18:22 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* Makefile.in (install): Create ls-R database file.
+	(uninstall): Delete it.
+
+Fri Feb 24 10:36:01 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* scripts/image/saveimage.m: Fix typo.
+
+See ChangeLog.1 in the top level directory for earlier changes.

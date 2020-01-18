@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2009-01-11T19:56:34.641942Z
+K 7
+svn:log
+V 97
+fork of sodalord.py that uses libsoda. currently doesn't use mdb at all so it can be run remotely
+END

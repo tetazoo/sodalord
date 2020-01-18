@@ -1,0 +1,720 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Mon Dec  8 04:44:16 2003 by CPAN::Checksums (v1.016)
+$cksum = {
+  'WWW-Mechanize-0.69_01.tar.gz' => {
+    'mtime' => '2003-11-26',
+    'md5-ungz' => '10960f31cca3a963eb996b449185938b',
+    'md5' => '42b438e0cb2c3ffdcfec1d09ef551eeb',
+    'size' => 77538
+  },
+  'Test-Harness-2.39_01.tar.gz' => {
+    'mtime' => '2003-12-08',
+    'md5-ungz' => 'd34a4eb35fca1a6852e032fbe68cc50b',
+    'md5' => '4d1aa5a2f3cd0370ae2fe47ad1a3bc10',
+    'size' => 58088
+  },
+  'Test-Harness-2.27_01.tar.gz' => {
+    'mtime' => '2003-03-24',
+    'md5-ungz' => 'e3d4e1f072c55e0b6a7ca558e9aaddad',
+    'md5' => '3f0bdbdb5e9b52e1f4dda16aa5a0eacc',
+    'size' => 50374
+  },
+  'MARC-Record-1.31.tar.gz' => {
+    'mtime' => '2003-10-16',
+    'md5-ungz' => 'd785233f44b13e31d7b1022e14bd7125',
+    'md5' => '10b681e17339a129aa6ef9d13647e785',
+    'size' => 111669
+  },
+  'Test-Harness-2.37_03.tar.gz' => {
+    'mtime' => '2003-11-19',
+    'md5-ungz' => 'ced43d3001129abf443ed32538f04b26',
+    'md5' => 'b58a52011611d57a941df3d7aedd60ea',
+    'size' => 57734
+  },
+  'release-0.14.tar.gz' => {
+    'mtime' => '2003-03-12',
+    'md5-ungz' => 'be68d34a6710c58162cc119656636201',
+    'md5' => '57f8f9cafdd50762170fc313236149fd',
+    'size' => 7645
+  },
+  'HTML-Lint-1.23.meta' => {
+    'mtime' => '2003-09-02',
+    'md5' => 'ec08869722560412aa25ec3b6de760fc',
+    'size' => 530
+  },
+  'WWW-Mechanize-0.58.tar.gz' => {
+    'mtime' => '2003-08-15',
+    'md5-ungz' => 'f14aabc4684801beb9ad19878eb8da42',
+    'md5' => '46ab2a1cd773f6d7290c714df556909b',
+    'size' => 70687
+  },
+  'Test-Harness-2.31_04.tar.gz' => {
+    'mtime' => '2003-11-04',
+    'md5-ungz' => 'be9616212f55de0f0e536460ebb1fd9f',
+    'md5' => '3dfa9a6ce5697e70291383d5b708c147',
+    'size' => 54992
+  },
+  'HTML-Lint-1.24.tar.gz' => {
+    'mtime' => '2003-09-12',
+    'md5-ungz' => '55a32545ed152dabc0fa729fe0f6856a',
+    'md5' => 'f1730af97717c1128c8fa02fea3bc670',
+    'size' => 59259
+  },
+  'Carp-Assert-More-0.03.tar.gz' => {
+    'mtime' => '2002-08-16',
+    'md5-ungz' => 'edba469e50ec913f39c5940fcaaad75a',
+    'md5' => '1eea85cde82eee8ff973fed3f24f1288',
+    'size' => 3021
+  },
+  'Test-Pod-0.95.tar.gz' => {
+    'mtime' => '2003-03-03',
+    'md5-ungz' => '829d28bbceaabe80c51f08cbc2487fdd',
+    'md5' => '6b2a233f5f443f5b5789a5cca449d4f4',
+    'size' => 3701
+  },
+  'WWW-Mechanize-0.54.tar.gz' => {
+    'mtime' => '2003-07-20',
+    'md5-ungz' => 'baa94cc4363421487e413cfb83e89469',
+    'md5' => 'b07a2536546a9502f5996212930d5e4e',
+    'size' => 66962
+  },
+  'release-0.23.tar.gz' => {
+    'mtime' => '2003-06-23',
+    'md5-ungz' => '1e0540ca18525b60df7a6115179c7274',
+    'md5' => '633d5544a0d3cc4cba1627a0ce1fa340',
+    'size' => 10643
+  },
+  'Test-Data-0.92.tar.gz' => {
+    'mtime' => '2003-05-12',
+    'md5-ungz' => 'd04865dd24a40b76792e3fe8a104bfd2',
+    'md5' => 'e858fe0ba63b32aad836425f4623e11e',
+    'size' => 7964
+  },
+  'ConfigReader-Simple-1.16.tar.gz' => {
+    'mtime' => '2003-03-24',
+    'md5-ungz' => '1500b7299c864fafc448b852314f6f2f',
+    'md5' => '379989aef45baaa80ba69fd996203af7',
+    'size' => 7313
+  },
+  'Carp-Assert-More-0.02.tar.gz' => {
+    'mtime' => '2002-08-08',
+    'md5-ungz' => '0e60a3655455e2632607a4a24258d883',
+    'md5' => 'a923d218412f806f5120dd0b8a3781d5',
+    'size' => 2854
+  },
+  'WDDX-1.02.tar.gz' => {
+    'mtime' => '2003-12-02',
+    'md5-ungz' => '2453ebb5ef8c2c8e47b967de44dfbd86',
+    'md5' => 'e2d01a914affb9e562b2a12c7b765b29',
+    'size' => 26453
+  },
+  'Test-Pod-1.02.tar.gz' => {
+    'mtime' => '2003-11-10',
+    'md5-ungz' => 'e05659c25d11c3408afba00d1c0af33d',
+    'md5' => '128c6bc12d7dd377e1bdb16e1c4272c8',
+    'size' => 5494
+  },
+  'WWW-Mechanize-0.45.tar.gz' => {
+    'mtime' => '2003-06-17',
+    'md5-ungz' => '5c4451f80d90445bdd21201e41589603',
+    'md5' => 'fd6708140ad65d90c1ec37a6f6278df9',
+    'size' => 61353
+  },
+  'Test-Harness-2.37_01.tar.gz' => {
+    'mtime' => '2003-11-18',
+    'md5-ungz' => 'e2b5071973ab55f995504cdde05d6cec',
+    'md5' => 'e3766301fe5d515a4ca72187b3b95d1f',
+    'size' => 57630
+  },
+  'Test-Harness-2.35_01.tar.gz' => {
+    'mtime' => '2003-11-13',
+    'md5-ungz' => '638ab2f3163f075971cff1efa9ba4f02',
+    'md5' => 'cc79afccaf8d89128eb0613ff1bd7300',
+    'size' => 57222
+  },
+  'Test-Harness-2.34.tar.gz' => {
+    'mtime' => '2003-11-09',
+    'md5-ungz' => 'a20e40f4d37cbb38e9a285c2caa464dc',
+    'md5' => 'a459c0145ecec023c39a152d39901c3a',
+    'size' => 55281
+  },
+  'WWW-Mechanize-0.43.tar.gz' => {
+    'mtime' => '2003-05-29',
+    'md5-ungz' => '79ea1b40493a97c1c0b5a4054b4cab56',
+    'md5' => '00d82214b3058ed37c7b34dfdd20c12b',
+    'size' => 15056
+  },
+  'MARC-Record-1.32.meta' => {
+    'mtime' => '2003-11-05',
+    'md5' => 'eb0016935d20e6098867eab9f2966c3e',
+    'size' => 454
+  },
+  'WWW-Mechanize-0.40.tar.gz' => {
+    'mtime' => '2003-04-20',
+    'md5-ungz' => 'c469b35b84dfc8f6927c181431b73496',
+    'md5' => '475b72e267169bfa17197a349a93a4ad',
+    'size' => 13230
+  },
+  'WWW-Mechanize-0.60.meta' => {
+    'mtime' => '2003-09-23',
+    'md5' => '6c1ea3e75f0f52199d3332df873212f8',
+    'size' => 842
+  },
+  'release-0.20.tar.gz' => {
+    'mtime' => '2003-03-27',
+    'md5-ungz' => '47f3bd4eb82b39fad504bbc423ebab7a',
+    'md5' => '5463346cfe7901391beba5232fb25f45',
+    'size' => 8916
+  },
+  'Carp-Assert-More-0.04.tar.gz' => {
+    'mtime' => '2002-08-22',
+    'md5-ungz' => 'aae898cbf22ecdc1f01cc734714f9ad0',
+    'md5' => '9e98020fc34c38ce17acb2c3d880a2b4',
+    'size' => 4126
+  },
+  'Test-Harness-2.36.tar.gz' => {
+    'mtime' => '2003-11-14',
+    'md5-ungz' => '5b79a2fd649c4088498932d87c1b28a6',
+    'md5' => 'e9c0312789d1719e3d00ffc6362e09d3',
+    'size' => 56973
+  },
+  'Mac-Errors-0.91.tar.gz' => {
+    'mtime' => '2003-03-20',
+    'md5-ungz' => '854af978a4530376e68a72b1d112b20c',
+    'md5' => '18f3f226cc10580e47e2ee74dac0829e',
+    'size' => 46419
+  },
+  'Test-Harness-2.37_02.tar.gz' => {
+    'mtime' => '2003-11-19',
+    'md5-ungz' => 'd495a96ccb008f30bfeef8b2540e9ec0',
+    'md5' => 'a90516d9d98b7e7ed48c353f1e045177',
+    'size' => 57950
+  },
+  'WWW-Mechanize-0.66.meta' => {
+    'mtime' => '2003-11-13',
+    'md5' => '9f7018750232303bcc6c1c6b630bfd48',
+    'size' => 884
+  },
+  'Test-Harness-2.27_03.tar.gz' => {
+    'mtime' => '2003-04-03',
+    'md5-ungz' => '3684da907578918ecf89b78d2679e0a3',
+    'md5' => '5e0fa266b0e86e88bb845cb48987d615',
+    'size' => 50788
+  },
+  'WWW-Mechanize-0.60.tar.gz' => {
+    'mtime' => '2003-09-23',
+    'md5-ungz' => 'b43685e568a4df6d83deb54b5339ed15',
+    'md5' => '26736aa802cede1c005a284a0bcef8ae',
+    'size' => 73034
+  },
+  'Test-Harness-2.28.tar.gz' => {
+    'mtime' => '2003-04-24',
+    'md5-ungz' => '599a4f6f8f6dd1117c0bb4766c4d2454',
+    'md5' => '90d027dda8c88db36acfc858554a19fa',
+    'size' => 51113
+  },
+  'WWW-Mechanize-0.63.tar.gz' => {
+    'mtime' => '2003-10-13',
+    'md5-ungz' => '223f6c88f974a98f6b0a21486b5fa047',
+    'md5' => '40d195a9070c97c9e279b98c30c857db',
+    'size' => 76569
+  },
+  'Test-Pod-1.00.meta' => {
+    'mtime' => '2003-11-10',
+    'md5' => '0dc78c9050336893ecdab7d6e968676b',
+    'size' => 446
+  },
+  'MARC-Record-1.29.tar.gz' => {
+    'mtime' => '2003-06-05',
+    'md5-ungz' => 'e329dd6fd4f206374c5a643e9af77b49',
+    'md5' => 'd65f4e5574bae7eec61cc16e4c78c98d',
+    'size' => 109187
+  },
+  'MARC-Record-1.26.tar.gz' => {
+    'mtime' => '2003-05-09',
+    'md5-ungz' => '08e230d7c64775f9f347ccfd0684104a',
+    'md5' => '7066a125e991ea274d84a546b8b36fc1',
+    'size' => 65623
+  },
+  'Test-Manifest-0.92.meta' => {
+    'mtime' => '2003-07-31',
+    'md5' => 'a56361e2e2ead0c0298fad29bd788cf4',
+    'size' => 329
+  },
+  'Apache-Lint-0.02.tar.gz' => {
+    'mtime' => '2002-05-31',
+    'md5-ungz' => 'cd121d234cfea615653691a0070e7de4',
+    'md5' => '3c4178d333db3b1ad1e5a9ee9286cc86',
+    'size' => 2131
+  },
+  'Test-Harness-2.32.meta' => {
+    'mtime' => '2003-11-07',
+    'md5' => '8b7a813cb8f7671b2aef7eda24e751a3',
+    'size' => 347
+  },
+  'WWW-Mechanize-0.59.tar.gz' => {
+    'mtime' => '2003-09-04',
+    'md5-ungz' => '7a0c23bd07ceba9d80eb6d246ac90c6d',
+    'md5' => '817bd6da487525f914c7c57554df237d',
+    'size' => 72811
+  },
+  'WWW-Mechanize-0.55.tar.gz' => {
+    'mtime' => '2003-07-22',
+    'md5-ungz' => 'db269e8ef2e2790ed5f76be0d35dc2a0',
+    'md5' => '085764e29c7ee40500a735be90ec543f',
+    'size' => 68386
+  },
+  'HTML-Lint-1.20.tar.gz' => {
+    'mtime' => '2002-08-22',
+    'md5-ungz' => '3689d45be389aa5df31e8a3306d0438a',
+    'md5' => 'dd2b79eee2f4c08f4a0bd9730839b54f',
+    'size' => 57573
+  },
+  'HTML-Lint-1.21.tar.gz' => {
+    'mtime' => '2002-10-10',
+    'md5-ungz' => 'e2dc4359c2240c590c8d266d254f255f',
+    'md5' => 'fd142176ce1f3261f56244711b557624',
+    'size' => 57862
+  },
+  'WWW-Mechanize-0.59.meta' => {
+    'mtime' => '2003-09-04',
+    'md5' => '4934a6c2abf7295aa39772f6fb89fb85',
+    'size' => 842
+  },
+  'WWW-Mechanize-0.57.meta' => {
+    'mtime' => '2003-08-01',
+    'md5' => '16b61035607aab8beda78ce896eb90cb',
+    'size' => 715
+  },
+  'WWW-Mechanize-0.53.tar.gz' => {
+    'mtime' => '2003-07-17',
+    'md5-ungz' => '0e724e4f2ac8ea63563e7e7d8b2bff2e',
+    'md5' => '51775c7e87511ac53bb0ede486a1555d',
+    'size' => 64623
+  },
+  'Apache-Pod-0.03.meta' => {
+    'mtime' => '2003-09-10',
+    'md5' => '6bf90d977a0721d9a22699f1cf58eb3c',
+    'size' => 566
+  },
+  'Apache-Pod-0.02.tar.gz' => {
+    'mtime' => '2002-09-30',
+    'md5-ungz' => '14d3494e4d9f8586cc67a66273ed1fd0',
+    'md5' => '0a6379c6d11664eda1871dd614271e84',
+    'size' => 3148
+  },
+  'MARC-Record-1.32.tar.gz' => {
+    'mtime' => '2003-11-05',
+    'md5-ungz' => '87c444f7dc868f07c0195f5fed54ba42',
+    'md5' => 'a55e2da76e72c3f29fa05e8e1f057a19',
+    'size' => 112321
+  },
+  'WWW-Mechanize-0.64.meta' => {
+    'mtime' => '2003-10-24',
+    'md5' => 'fa50c06d95103585bd8d8e9939d0680e',
+    'size' => 884
+  },
+  'Test-Pod-0.96.tar.gz' => {
+    'mtime' => '2003-10-12',
+    'md5-ungz' => '1da6590629001ace7ce83c441fdf5d99',
+    'md5' => '54ddd919a8b691d7ad039b0b5fd91b77',
+    'size' => 4446
+  },
+  'WWW-Mechanize-0.61.tar.gz' => {
+    'mtime' => '2003-10-06',
+    'md5-ungz' => 'd183d72606d3a59f2e0078708fd10943',
+    'md5' => '73a04aeb03261c0c56a292245d701396',
+    'size' => 73708
+  },
+  'Test-Data-0.93.meta' => {
+    'mtime' => '2003-11-30',
+    'md5' => 'fdd6320a31924b208afe4aa287451b64',
+    'size' => 593
+  },
+  'WWW-Mechanize-0.64.tar.gz' => {
+    'mtime' => '2003-10-24',
+    'md5-ungz' => '3236a63163d6999ed39f98d81ee9bc66',
+    'md5' => '55def1ad09bad16dda5074548dab1685',
+    'size' => 77752
+  },
+  'MARC-Record-1.21.tar.gz' => {
+    'mtime' => '2003-03-14',
+    'md5-ungz' => '7cbd8bac2efb7f4433aeae016e19f681',
+    'md5' => '8beaaee116b8d7365ceae34dbb76cc21',
+    'size' => 64581
+  },
+  'Mac-Path-Util-0.09.tar.gz' => {
+    'mtime' => '2003-05-12',
+    'md5-ungz' => '1f8032257a41a10ca104c607d6ff25ca',
+    'md5' => 'ab4b5d1d33a3e5c84deaf2d7e24a1921',
+    'size' => 4467
+  },
+  'Test-Pod-0.96.meta' => {
+    'mtime' => '2003-10-12',
+    'md5' => '9b4f90c8d15d0c67e861525feee9d7a5',
+    'size' => 409
+  },
+  'release-0.16.tar.gz' => {
+    'mtime' => '2003-03-19',
+    'md5-ungz' => '080448c3412ccb59f938e61e88cc0d89',
+    'md5' => '342dd0b4a7fed5c01d89ef947daa685d',
+    'size' => 8101
+  },
+  'release-0.15.tar.gz' => {
+    'mtime' => '2003-03-14',
+    'md5-ungz' => '54650dea3e56086e1e3790409d6ce67b',
+    'md5' => 'cd2bb86ed30df0ca4820c63f8a1d7dd5',
+    'size' => 7998
+  },
+  'Test-Harness-2.31_01.tar.gz' => {
+    'mtime' => '2003-09-24',
+    'md5-ungz' => '74bf811c175262760a8bc912759f3cd2',
+    'md5' => '63d01431463f1fbdf983be8f9ff4da7d',
+    'size' => 53210
+  },
+  'WWW-Mechanize-0.49.tar.gz' => {
+    'mtime' => '2003-06-23',
+    'md5-ungz' => '81d32f3eaaf42af7aa8d714b36ac2398',
+    'md5' => '1e461c353d1e1b43177e7dc9bcf1a51c',
+    'size' => 63067
+  },
+  'WWW-Mechanize-0.70.meta' => {
+    'mtime' => '2003-12-01',
+    'md5' => '4522b7091cba6c0431995cd4719127ea',
+    'size' => 921
+  },
+  'release-0.22.tar.gz' => {
+    'mtime' => '2003-04-10',
+    'md5-ungz' => 'c98499be5a256efe3a2007c362e99d08',
+    'md5' => '91cf1221ec5c6c038a26fc088322693b',
+    'size' => 10576
+  },
+  'WWW-Mechanize-0.46.tar.gz' => {
+    'mtime' => '2003-06-20',
+    'md5-ungz' => 'ec993f7c17da79d6308b188e798260a6',
+    'md5' => 'c3b1c45bbc4353c3d3894c5a060ee9e3',
+    'size' => 63535
+  },
+  'WWW-Mechanize-0.41.tar.gz' => {
+    'mtime' => '2003-05-23',
+    'md5-ungz' => '3f774f8bec6d124b4ff00237ede2b40b',
+    'md5' => '05acd3632f6a253081efa703e0ccaee0',
+    'size' => 14465
+  },
+  'Test-Pod-1.02.meta' => {
+    'mtime' => '2003-11-10',
+    'md5' => 'd2c9001e2e866125e343e58564c8951a',
+    'size' => 446
+  },
+  'Carp-Assert-More-0.01.tar.gz' => {
+    'mtime' => '2002-08-08',
+    'md5-ungz' => '38dcfb3ed178897da3ce746626e0ad68',
+    'md5' => '8286918b987e55c140a7e7c961b8fd74',
+    'size' => 2386
+  },
+  'MARC-Record-1.27.tar.gz' => {
+    'mtime' => '2003-05-22',
+    'md5-ungz' => 'fdfbd923d658dbd36fa4a09dc6bf610f',
+    'md5' => '259fb28f4bfb506167dc7e43dfa9651d',
+    'size' => 107814
+  },
+  'Test-Harness-2.30.tar.gz' => {
+    'mtime' => '2003-08-15',
+    'md5-ungz' => 'e57c0233090c74babc0c9546e29e4971',
+    'md5' => '8f8f9b5d29ed1f861ed07c9893c75a6c',
+    'size' => 51875
+  },
+  'WWW-Mechanize-0.50.tar.gz' => {
+    'mtime' => '2003-06-24',
+    'md5-ungz' => 'fd0f3bc75d291ef0fa1f3ad307ac6ecd',
+    'md5' => 'b711d735976eabbf5a105bf5b295078d',
+    'size' => 65033
+  },
+  'Test-Harness-2.36.meta' => {
+    'mtime' => '2003-11-14',
+    'md5' => 'b56ce0bcc3756f13c9f954f633fbb515',
+    'size' => 347
+  },
+  'Test-Harness-2.29.tar.gz' => {
+    'mtime' => '2003-07-17',
+    'md5-ungz' => 'e3ad477519f94a9f3975bd3b0624d4d7',
+    'md5' => '38d177cf846844718db69ad3d4b0d58e',
+    'size' => 51738
+  },
+  'Test-Data-0.93.tar.gz' => {
+    'mtime' => '2003-11-30',
+    'md5-ungz' => '6229b523a15f9464c135cf9fc17d8cfb',
+    'md5' => '187c892b0a0b10b5eae80665f1030788',
+    'size' => 8140
+  },
+  'Test-Harness-2.34.meta' => {
+    'mtime' => '2003-11-09',
+    'md5' => '951bbff5e39758c0570aee922ed2880b',
+    'size' => 347
+  },
+  'MARC-Record-1.28.tar.gz' => {
+    'mtime' => '2003-05-24',
+    'md5-ungz' => '17cdec4660ed901cc6c152190269390d',
+    'md5' => '5f036e1c9bde8f3cbc115d9c322a974c',
+    'size' => 108977
+  },
+  'WWW-Mechanize-0.65.tar.gz' => {
+    'mtime' => '2003-11-10',
+    'md5-ungz' => '9330106fd9e098935697f24b5a139cfb',
+    'md5' => 'c8158044952795b1c0ef73f652052c0c',
+    'size' => 76784
+  },
+  'Test-Pod-1.00.tar.gz' => {
+    'mtime' => '2003-11-10',
+    'md5-ungz' => 'b24ee6a4cd6265b3992acd80698ea1bd',
+    'md5' => '67f8b6c09fed962d45d3bb1269073966',
+    'size' => 5252
+  },
+  'WWW-Mechanize-0.62.meta' => {
+    'mtime' => '2003-10-08',
+    'md5' => '693aceaf80202e734e0cfaa65b82b347',
+    'size' => 879
+  },
+  'Acme-Device-Plot-0.01.tar.gz' => {
+    'mtime' => '2003-01-05',
+    'md5-ungz' => '2475d30102a6d33d67c75d80e8f2452b',
+    'md5' => '96a39b1a13bfaaf344000cc6a0998383',
+    'size' => 2025
+  },
+  'WWW-Mechanize-0.44.tar.gz' => {
+    'mtime' => '2003-06-05',
+    'md5-ungz' => '6d6e0082f677c4c8546761a6cc67cc5e',
+    'md5' => '27f11ed8e131815b533b184aab99b760',
+    'size' => 55492
+  },
+  'Test-Harness-2.27_05.tar.gz' => {
+    'mtime' => '2003-04-21',
+    'md5-ungz' => '2b78fdadd7e6c2806dfeb035ec429cec',
+    'md5' => '95e20d4301a2ab26c3c4210d69f9c485',
+    'size' => 51104
+  },
+  'WWW-Mechanize-0.42.tar.gz' => {
+    'mtime' => '2003-05-27',
+    'md5-ungz' => '4918c9e852f9c2c345aa7479d865062d',
+    'md5' => 'a303571af12a4423d6c080112f4b389f',
+    'size' => 14694
+  },
+  'HTML-Lint-1.22.tar.gz' => {
+    'mtime' => '2003-06-11',
+    'md5-ungz' => '34d0cfe5009799a65e53fd938e3e82fa',
+    'md5' => 'fad2e73d84448a4e40a0311afb69f4f6',
+    'size' => 58005
+  },
+  'WWW-Mechanize-0.47.tar.gz' => {
+    'mtime' => '2003-06-22',
+    'md5-ungz' => '7621ac720b6c16acd08d22dbd7e92a63',
+    'md5' => '86678e9904c47842cf0c174c27bf52ce',
+    'size' => 62572
+  },
+  'Test-Harness-2.28_91.tar.gz' => {
+    'mtime' => '2003-07-13',
+    'md5-ungz' => '7d2df63393807b4e46ae5d33923720b0',
+    'md5' => '87751bcd975a5211f07354bffc8bab85',
+    'size' => 51668
+  },
+  'Test-Manifest-0.92.tar.gz' => {
+    'mtime' => '2003-07-31',
+    'md5-ungz' => '47c9e0d5e7397543be51fd6aa8822f95',
+    'md5' => '4f3c134e0d12a62ffc9ac28cdb78507d',
+    'size' => 3453
+  },
+  'WWW-Mechanize-0.66.tar.gz' => {
+    'mtime' => '2003-11-13',
+    'md5-ungz' => 'f6074d538f15abcb1bb2360482981535',
+    'md5' => 'da73f55b891ab1a243466553608fc8da',
+    'size' => 78182
+  },
+  'MARC-Record-1.31.meta' => {
+    'mtime' => '2003-10-16',
+    'md5' => 'b124ea37be0c14efdca9d91add98bcc1',
+    'size' => 454
+  },
+  'Test-Harness-2.28_90.tar.gz' => {
+    'mtime' => '2003-07-06',
+    'md5-ungz' => '87fb4635675ccdfb1fdb24c5da77c59d',
+    'md5' => '859ec530decc66c89f976eaff1b3c3ff',
+    'size' => 51389
+  },
+  'WWW-Mechanize-0.51.tar.gz' => {
+    'mtime' => '2003-06-30',
+    'md5-ungz' => 'a5d69151e821cb00f89c6ddb0485fc09',
+    'md5' => '381ea59646ddae319f224e6b124f4324',
+    'size' => 64039
+  },
+  'WDDX-1.02.meta' => {
+    'mtime' => '2003-12-02',
+    'md5' => 'c7aa53c8b9cf0dff230cab4d57b8c272',
+    'size' => 436
+  },
+  'MARC-Record-1.33.tar.gz' => {
+    'mtime' => '2003-11-25',
+    'md5-ungz' => '2e9f3f68573364243e89977d9f072bc3',
+    'md5' => 'c7fc3b519f7f158494f6ec6e92883f8e',
+    'size' => 113750
+  },
+  'WWW-Mechanize-0.56.tar.gz' => {
+    'mtime' => '2003-07-24',
+    'md5-ungz' => 'de8536341808b55666f547af6e1898b6',
+    'md5' => '4543a2cd67983468f576b1e35e2a91ba',
+    'size' => 69363
+  },
+  'Test-Harness-2.27_04.tar.gz' => {
+    'mtime' => '2003-04-13',
+    'md5-ungz' => '2d4f4ddeed8457206393b48792910d50',
+    'md5' => 'c0bbb2c4d541c78eac1af4cbb1d93552',
+    'size' => 51014
+  },
+  'WWW-Mechanize-0.48.tar.gz' => {
+    'mtime' => '2003-06-22',
+    'md5-ungz' => '0c840a978a8c70c559e721489f8d2515',
+    'md5' => '2c937c72f5510e956b507f845ff4e60f',
+    'size' => 62964
+  },
+  'Test-Harness-2.31_03.tar.gz' => {
+    'mtime' => '2003-11-03',
+    'md5-ungz' => '029f923cf8d2e8402f45fd2cfb66a6c0',
+    'md5' => 'acf8fe321812be80a3b2c0c73f5f6240',
+    'size' => 54526
+  },
+  'Apache-Pod-0.01_01.tar.gz' => {
+    'mtime' => '2002-09-28',
+    'md5-ungz' => 'a19e6b7f1fd5a1bb117134083dd425fd',
+    'md5' => '925a0c8e71dd13fd88d1e8fa7ed56bbf',
+    'size' => 2871
+  },
+  'Test-Harness-2.32.tar.gz' => {
+    'mtime' => '2003-11-07',
+    'md5-ungz' => '804b0ebd5e859ac9e5f449b7f341f0c3',
+    'md5' => '340ac4eace22599c0bfe141ad13dd0e1',
+    'size' => 55323
+  },
+  'MARC-Record-1.20.tar.gz' => {
+    'mtime' => '2003-02-26',
+    'md5-ungz' => 'f9128cc11ffce48a85609145ff73e89b',
+    'md5' => '6ec0c777e999f0f3daebc8eb3a8a54b1',
+    'size' => 61946
+  },
+  'WWW-Mechanize-0.70.tar.gz' => {
+    'mtime' => '2003-12-01',
+    'md5-ungz' => '6730a7a05f120efd7a99aa4cfd87563f',
+    'md5' => '9693654575ede72b69136a1f07597be0',
+    'size' => 77957
+  },
+  'Test-Harness-2.31_02.tar.gz' => {
+    'mtime' => '2003-11-01',
+    'md5-ungz' => '7dfa45558e466cc87c91aa07d254363b',
+    'md5' => '2dc63fa7f9f9d8e07cb587a67da3510e',
+    'size' => 54078
+  },
+  'MARC-Record-1.33.meta' => {
+    'mtime' => '2003-11-25',
+    'md5' => '001ef1ebf4c5866d0b7ac55e4d26d023',
+    'size' => 454
+  },
+  'Apache-Pod-0.03.tar.gz' => {
+    'mtime' => '2003-09-10',
+    'md5-ungz' => 'bf015b0f1c175322ffc19e6ab454e6e1',
+    'md5' => 'b982cdc745147e1685de1320d9f177ae',
+    'size' => 4188
+  },
+  'HTML-Lint-1.24.meta' => {
+    'mtime' => '2003-09-12',
+    'md5' => '79fd8279bc9bd6a6a959784fb1528006',
+    'size' => 530
+  },
+  'WWW-Mechanize-0.63.meta' => {
+    'mtime' => '2003-10-13',
+    'md5' => 'e3a48637d5ad5acbf06a3701764fbc0d',
+    'size' => 879
+  },
+  'Apache-Lint-0.01.tar.gz' => {
+    'mtime' => '2002-05-28',
+    'md5-ungz' => 'b8a2c55396f2e10147d26c194704bd6f',
+    'md5' => '6b88b5b7e4074fee10377adc364362fb',
+    'size' => 2381
+  },
+  'WWW-Mechanize-0.52.tar.gz' => {
+    'mtime' => '2003-07-08',
+    'md5-ungz' => 'e0c0f835c4d8e3e71605d64129fc75d4',
+    'md5' => '7ad2973b7470c61a1d96548f99cc9ba5',
+    'size' => 64484
+  },
+  'Test-Harness-2.38.meta' => {
+    'mtime' => '2003-11-25',
+    'md5' => 'e2d7363443e3ccc97014ee2735ca32e4',
+    'size' => 347
+  },
+  'MARC-Record-1.25.tar.gz' => {
+    'mtime' => '2003-04-23',
+    'md5-ungz' => '9d453bfe022d63ed235865fb353610e9',
+    'md5' => 'f62b1a0a1fbe4efe46c9921243715d6c',
+    'size' => 65830
+  },
+  'WWW-Mechanize-0.58.meta' => {
+    'mtime' => '2003-08-15',
+    'md5' => '995e4ad2a63167459bfc35b91a58766f',
+    'size' => 768
+  },
+  'Test-Harness-2.31_05.tar.gz' => {
+    'mtime' => '2003-11-06',
+    'md5-ungz' => '4538279f0b5b3848dd45ebc07dd2f6ec',
+    'md5' => '7843324c6f7363cd3ff5248171438236',
+    'size' => 55494
+  },
+  'Test-Harness-2.27_02.tar.gz' => {
+    'mtime' => '2003-03-24',
+    'md5-ungz' => '332dede5d7328a60a85cd876b1a3f9dc',
+    'md5' => '7214df0d44c9b34fcad3b1325844e486',
+    'size' => 50511
+  },
+  'WWW-Mechanize-0.57.tar.gz' => {
+    'mtime' => '2003-08-01',
+    'md5-ungz' => 'bc0a66b4e59dd43e10c45264875a5648',
+    'md5' => '7c4f2b1492317e7e6ecec68785643a1c',
+    'size' => 70146
+  },
+  'WWW-Mechanize-0.61.meta' => {
+    'mtime' => '2003-10-06',
+    'md5' => '76ef65852b534df895a5bc18d8c52391',
+    'size' => 879
+  },
+  'HTML-Lint-1.23.tar.gz' => {
+    'mtime' => '2003-09-02',
+    'md5-ungz' => '0b654cc99d4873772550498678f74ac4',
+    'md5' => '41d5aeebf1bbc6e612781fd05339acf8',
+    'size' => 59449
+  },
+  'WWW-Mechanize-0.62.tar.gz' => {
+    'mtime' => '2003-10-08',
+    'md5-ungz' => 'b665bbaddc4c6d590ce3c87559e9a095',
+    'md5' => 'd0656952d3c6d0dc019d8afcbca20390',
+    'size' => 75616
+  },
+  'Test-Harness-2.38.tar.gz' => {
+    'mtime' => '2003-11-25',
+    'md5-ungz' => 'e071318dbcc8301f9332064114c5d9dc',
+    'md5' => 'f5c9097bcfdbcd7a158c351d8ae864c9',
+    'size' => 58471
+  },
+  'WWW-Mechanize-0.65.meta' => {
+    'mtime' => '2003-11-10',
+    'md5' => 'e06555af464bece5535e5fe25be5879f',
+    'size' => 884
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQE/1AGhMo2oZ0UPiewRAlZVAJ0R0EIlcegI202jepQztQ22Jg++yACfWw4X
+/8/IRnENeRIG+YkzCdpQS2I=
+=DgWP
+-----END PGP SIGNATURE-----

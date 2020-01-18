@@ -1,0 +1,2731 @@
+<HTML>
+<HEAD>
+<!-- This HTML file has been created by texi2html 1.51
+     from octave.texi on 1 May 2002 -->
+
+<TITLE>GNU Octave - Statistics</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_24.html">previous</A>, <A HREF="octave_26.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC168" HREF="octave_toc.html#TOC168">Statistics</A></H1>
+
+<P>
+I hope that someday Octave will include more statistics functions.  If
+you would like to help improve Octave in this area, please contact
+<A HREF="mailto:bug-octave@bevo.che.wisc.edu">bug-octave@bevo.che.wisc.edu</A>.
+
+</P>
+
+
+
+<H2><A NAME="SEC169" HREF="octave_toc.html#TOC169">Basic Statistical Functions</A></H2>
+
+<P>
+@anchor{doc-mean}
+<DL>
+<DT><U>Function File:</U>  <B>mean</B> <I>(<VAR>x</VAR>, <VAR>opt</VAR>)</I>
+<DD><A NAME="IDX814"></A>
+If <VAR>x</VAR> is a vector, compute the mean of the elements of <VAR>x</VAR>
+
+</P>
+
+<PRE>
+mean (x) = SUM_i x(i) / N
+</PRE>
+
+<P>
+If <VAR>x</VAR> is a matrix, compute the mean for each column and return them
+in a row vector.
+
+</P>
+<P>
+With the optional argument <VAR>opt</VAR>, the kind of mean computed can be
+selected.  The following options are recognized:
+
+</P>
+<DL COMPACT>
+
+<DT><CODE>"a"</CODE>
+<DD>
+Compute the (ordinary) arithmetic mean.  This is the default.
+
+<DT><CODE>"g"</CODE>
+<DD>
+Computer the geometric mean.
+
+<DT><CODE>"h"</CODE>
+<DD>
+Compute the harmonic mean.
+</DL>
+</DL>
+
+<P>
+@anchor{doc-median}
+<DL>
+<DT><U>Function File:</U>  <B>median</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX815"></A>
+If <VAR>x</VAR> is a vector, compute the median value of the elements of
+<VAR>x</VAR>.
+
+</P>
+
+<PRE>
+            x(ceil(N/2)),             N odd
+median(x) =
+            (x(N/2) + x((N/2)+1))/2,  N even
+</PRE>
+
+<P>
+If <VAR>x</VAR> is a matrix, compute the median value for each
+column and return them in a row vector.
+</DL>
+@seealso{std and mean}
+
+</P>
+
+<P>
+@anchor{doc-std}
+<DL>
+<DT><U>Function File:</U>  <B>std</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX816"></A>
+If <VAR>x</VAR> is a vector, compute the standard deviation of the elements
+of <VAR>x</VAR>.
+
+</P>
+
+<PRE>
+std (x) = sqrt (sumsq (x - mean (x)) / (n - 1))
+</PRE>
+
+<P>
+If <VAR>x</VAR> is a matrix, compute the standard deviation for
+each column and return them in a row vector.
+</DL>
+@seealso{mean and median}
+
+</P>
+
+<P>
+@anchor{doc-cov}
+<DL>
+<DT><U>Function File:</U>  <B>cov</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX817"></A>
+If each row of <VAR>x</VAR> and <VAR>y</VAR> is an observation and each column is
+a variable, the (<VAR>i</VAR>,<VAR>j</VAR>)-th entry of
+<CODE>cov (<VAR>x</VAR>, <VAR>y</VAR>)</CODE> is the covariance between the <VAR>i</VAR>-th
+variable in <VAR>x</VAR> and the <VAR>j</VAR>-th variable in <VAR>y</VAR>.  If called
+with one argument, compute <CODE>cov (<VAR>x</VAR>, <VAR>x</VAR>)</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-corrcoef}
+<DL>
+<DT><U>Function File:</U>  <B>corrcoef</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX818"></A>
+If each row of <VAR>x</VAR> and <VAR>y</VAR> is an observation and each column is
+a variable, the (<VAR>i</VAR>,<VAR>j</VAR>)-th entry of
+<CODE>corrcoef (<VAR>x</VAR>, <VAR>y</VAR>)</CODE> is the correlation between the
+<VAR>i</VAR>-th variable in <VAR>x</VAR> and the <VAR>j</VAR>-th variable in <VAR>y</VAR>.
+If called with one argument, compute <CODE>corrcoef (<VAR>x</VAR>, <VAR>x</VAR>)</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-kurtosis}
+<DL>
+<DT><U>Function File:</U>  <B>kurtosis</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX819"></A>
+If <VAR>x</VAR> is a vector of length @math{N}, return the kurtosis
+
+</P>
+
+<PRE>
+kurtosis (x) = N^(-1) std(x)^(-4) sum ((x - mean(x)).^4) - 3
+</PRE>
+
+<P>
+of <VAR>x</VAR>.  If <VAR>x</VAR> is a matrix, return the row vector containing
+the kurtosis of each column.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-mahalanobis}
+<DL>
+<DT><U>Function File:</U>  <B>mahalanobis</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX820"></A>
+Return the Mahalanobis' D-square distance between the multivariate
+samples <VAR>x</VAR> and <VAR>y</VAR>, which must have the same number of
+components (columns), but may have a different number of observations
+(rows).
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-skewness}
+<DL>
+<DT><U>Function File:</U>  <B>skewness</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX821"></A>
+If <VAR>x</VAR> is a vector of length @math{n}, return the skewness
+
+</P>
+
+<PRE>
+skewness (x) = N^(-1) std(x)^(-3) sum ((x - mean(x)).^3)
+</PRE>
+
+<P>
+of <VAR>x</VAR>.  If <VAR>x</VAR> is a matrix, return the row vector containing
+the skewness of each column.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-values}
+<DL>
+<DT><U>Function File:</U>  <B>values</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX822"></A>
+Return the different values in a column vector, arranged in ascending
+order.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-var}
+<DL>
+<DT><U>Function File:</U>  <B>var</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX823"></A>
+For vector arguments, return the (real) variance of the values.
+For matrix arguments, return a row vector contaning the variance for
+each column.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-table}
+<DL>
+<DT><U>Function File:</U> [<VAR>t</VAR>, <VAR>l_x</VAR>] = <B>table</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX824"></A>
+<DT><U>Function File:</U> [<VAR>t</VAR>, <VAR>l_x</VAR>, <VAR>l_y</VAR>] = <B>table</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX825"></A>
+Create a contingency table <VAR>t</VAR> from data vectors.  The <VAR>l</VAR>
+vectors are the corresponding levels.
+
+</P>
+<P>
+Currently, only 1- and 2-dimensional tables are supported.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-studentize}
+<DL>
+<DT><U>Function File:</U>  <B>studentize</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX826"></A>
+If <VAR>x</VAR> is a vector, subtract its mean and divide by its standard
+deviation.
+
+</P>
+<P>
+If <VAR>x</VAR> is a matrix, do the above for each column.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-statistics}
+<DL>
+<DT><U>Function File:</U>  <B>statistics</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX827"></A>
+If <VAR>x</VAR> is a matrix, return a matrix with the minimum, first
+quartile, median, third quartile, maximum, mean, standard deviation,
+skewness and kurtosis of the columns of <VAR>x</VAR> as its rows.
+
+</P>
+<P>
+If <VAR>x</VAR> is a vector, treat it as a column vector.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-spearman}
+<DL>
+<DT><U>Function File:</U>  <B>spearman</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX828"></A>
+Compute Spearman's rank correlation coefficient <VAR>rho</VAR> for each of
+the variables specified by the input arguments.
+
+</P>
+<P>
+For matrices, each row is an observation and each column a variable;
+vectors are always observations and may be row or column vectors.
+
+</P>
+<P>
+<CODE>spearman (<VAR>x</VAR>)</CODE> is equivalent to <CODE>spearman (<VAR>x</VAR>,
+<VAR>x</VAR>)</CODE>.
+
+</P>
+<P>
+For two data vectors <VAR>x</VAR> and <VAR>y</VAR>, Spearman's <VAR>rho</VAR> is the
+correlation of the ranks of <VAR>x</VAR> and <VAR>y</VAR>.
+
+</P>
+<P>
+If <VAR>x</VAR> and <VAR>y</VAR> are drawn from independent distributions,
+<VAR>rho</VAR> has zero mean and variance <CODE>1 / (n - 1)</CODE>, and is
+asymptotically normally distributed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-run_count}
+<DL>
+<DT><U>Function File:</U>  <B>run_count</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX829"></A>
+Count the upward runs in the columns of <VAR>x</VAR> of length 1, 2, ...,
+<VAR>n</VAR>-1 and greater than or equal to <VAR>n</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-ranks}
+<DL>
+<DT><U>Function File:</U>  <B>ranks</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX830"></A>
+If <VAR>x</VAR> is a vector, return the (column) vector of ranks of
+<VAR>x</VAR> adjusted for ties.
+
+</P>
+<P>
+If <VAR>x</VAR> is a matrix, do the above for each column of <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-range}
+<DL>
+<DT><U>Function File:</U>  <B>range</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX831"></A>
+If <VAR>x</VAR> is a vector, return the range, i.e., the difference
+between the maximum and the minimum, of the input data.
+
+</P>
+<P>
+If <VAR>x</VAR> is a matrix, do the above for each column of <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-qqplot}
+<DL>
+<DT><U>Function File:</U> [<VAR>q</VAR>, <VAR>s</VAR>] = <B>qqplot</B> <I>(<VAR>x</VAR>, <VAR>dist</VAR>, <VAR>params</VAR>)</I>
+<DD><A NAME="IDX832"></A>
+Perform a QQ-plot (quantile plot).
+
+</P>
+<P>
+If F is the CDF of the distribution <VAR>dist</VAR> with parameters
+<VAR>params</VAR> and G its inverse, and <VAR>x</VAR> a sample vector of length
+<VAR>n</VAR>, the QQ-plot graphs ordinate <VAR>s</VAR>(<VAR>i</VAR>) = <VAR>i</VAR>-th
+largest element of x versus abscissa <VAR>q</VAR>(<VAR>i</VAR>f) = G((<VAR>i</VAR> -
+0.5)/<VAR>n</VAR>).
+
+</P>
+<P>
+If the sample comes from F except for a transformation of location
+and scale, the pairs will approximately follow a straight line.
+
+</P>
+<P>
+The default for <VAR>dist</VAR> is the standard normal distribution.  The
+optional argument <VAR>params</VAR> contains a list of parameters of
+<VAR>dist</VAR>.  For example, for a quantile plot of the uniform
+distribution on [2,4] and <VAR>x</VAR>, use
+
+</P>
+
+<PRE>
+qqplot (x, "uniform", 2, 4)
+</PRE>
+
+<P>
+If no output arguments are given, the data are plotted directly.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-probit}
+<DL>
+<DT><U>Function File:</U>  <B>probit</B> <I>(<VAR>p</VAR>)</I>
+<DD><A NAME="IDX833"></A>
+For each component of <VAR>p</VAR>, return the probit (the quantile of the
+standard normal distribution) of <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-ppplot}
+<DL>
+<DT><U>Function File:</U> [<VAR>p</VAR>, <VAR>y</VAR>] = <B>ppplot</B> <I>(<VAR>x</VAR>, <VAR>dist</VAR>, <VAR>params</VAR>)</I>
+<DD><A NAME="IDX834"></A>
+Perform a PP-plot (probability plot).
+
+</P>
+<P>
+If F is the CDF of the distribution <VAR>dist</VAR> with parameters
+<VAR>params</VAR> and <VAR>x</VAR> a sample vector of length <VAR>n</VAR>, the
+PP-plot graphs ordinate <VAR>y</VAR>(<VAR>i</VAR>) = F (<VAR>i</VAR>-th largest
+element of <VAR>x</VAR>) versus abscissa <VAR>p</VAR>(<VAR>i</VAR>) = (<VAR>i</VAR> -
+0.5)/<VAR>n</VAR>.  If the sample comes from F, the pairs will
+approximately follow a straight line.
+
+</P>
+<P>
+The default for <VAR>dist</VAR> is the standard normal distribution.  The
+optional argument <VAR>params</VAR> contains a list of parameters of
+<VAR>dist</VAR>.  For example, for a probability plot of the uniform
+distribution on [2,4] and <VAR>x</VAR>, use
+
+</P>
+
+<PRE>
+ppplot (x, "uniform", 2, 4)
+</PRE>
+
+<P>
+If no output arguments are given, the data are plotted directly.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-moment}
+<DL>
+<DT><U>Function File:</U>  <B>moment</B> <I>(<VAR>x</VAR>, <VAR>p</VAR>, <VAR>opt</VAR>)</I>
+<DD><A NAME="IDX835"></A>
+If <VAR>x</VAR> is a vector, compute the <VAR>p</VAR>-th moment of <VAR>x</VAR>.
+
+</P>
+<P>
+If <VAR>x</VAR> is a matrix, return the row vector containing the
+<VAR>p</VAR>-th moment of each column.
+
+</P>
+<P>
+With the optional string opt, the kind of moment to be computed can
+be specified.  If opt contains <CODE>"c"</CODE> or <CODE>"a"</CODE>, central
+and/or absolute moments are returned.  For example,
+
+</P>
+
+<PRE>
+moment (x, 3, "ac")
+</PRE>
+
+<P>
+computes the third central absolute moment of <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-meansq}
+<DL>
+<DT><U>Function File:</U>  <B>meansq</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX836"></A>
+For vector arguments, return the mean square of the values.
+For matrix arguments, return a row vector contaning the mean square
+of each column.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-logit}
+<DL>
+<DT><U>Function File:</U>  <B>logit</B> <I>(<VAR>p</VAR>)</I>
+<DD><A NAME="IDX837"></A>
+For each component of <VAR>p</VAR>, return the logit <CODE>log (<VAR>p</VAR> /
+(1-<VAR>p</VAR>))</CODE> of <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-kendall}
+<DL>
+<DT><U>Function File:</U>  <B>kendall</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX838"></A>
+Compute Kendall's <VAR>tau</VAR> for each of the variables specified by
+the input arguments.
+
+</P>
+<P>
+For matrices, each row is an observation and each column a variable;
+vectors are always observations and may be row or column vectors.
+
+</P>
+<P>
+<CODE>kendall (<VAR>x</VAR>)</CODE> is equivalent to <CODE>kendall (<VAR>x</VAR>,
+<VAR>x</VAR>)</CODE>.
+
+</P>
+<P>
+For two data vectors <VAR>x</VAR>, <VAR>y</VAR> of common length <VAR>n</VAR>,
+Kendall's <VAR>tau</VAR> is the correlation of the signs of all rank
+differences of <VAR>x</VAR> and <VAR>y</VAR>;  i.e., if both <VAR>x</VAR> and
+<VAR>y</VAR> have distinct entries, then
+
+</P>
+
+<PRE>
+         1    
+tau = -------   SUM sign (q(i) - q(j)) * sign (r(i) - r(j))
+      n (n-1)   i,j
+</PRE>
+
+<P>
+in which the
+<VAR>q</VAR>(<VAR>i</VAR>) and <VAR>r</VAR>(<VAR>i</VAR>)
+ are the ranks of
+<VAR>x</VAR> and <VAR>y</VAR>, respectively.
+
+</P>
+<P>
+If <VAR>x</VAR> and <VAR>y</VAR> are drawn from independent distributions,
+Kendall's <VAR>tau</VAR> is asymptotically normal with mean 0 and variance
+<CODE>(2 * (2<VAR>n</VAR>+5)) / (9 * <VAR>n</VAR> * (<VAR>n</VAR>-1))</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-iqr}
+<DL>
+<DT><U>Function File:</U>  <B>iqr</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX839"></A>
+If <VAR>x</VAR> is a vector, return the interquartile range, i.e., the
+difference between the upper and lower quartile, of the input data.
+
+</P>
+<P>
+If <VAR>x</VAR> is a matrix, do the above for each column of <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cut}
+<DL>
+<DT><U>Function File:</U>  <B>cut</B> <I>(<VAR>x</VAR>, <VAR>breaks</VAR>)</I>
+<DD><A NAME="IDX840"></A>
+Create categorical data out of numerical or continuous data by
+cutting into intervals.
+
+</P>
+<P>
+If <VAR>breaks</VAR> is a scalar, the data is cut into that many
+equal-width intervals.  If <VAR>breaks</VAR> is a vector of break points,
+the category has <CODE>length (<VAR>breaks</VAR>) - 1</CODE> groups.
+
+</P>
+<P>
+The returned value is a vector of the same size as <VAR>x</VAR> telling
+which group each point in <VAR>x</VAR> belongs to.  Groups are labelled
+from 1 to the number of groups; points outside the range of
+<VAR>breaks</VAR> are labelled by <CODE>NaN</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cor}
+<DL>
+<DT><U>Function File:</U>  <B>cor</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX841"></A>
+The (<VAR>i</VAR>,<VAR>j</VAR>)-th entry of <CODE>cor (<VAR>x</VAR>, <VAR>y</VAR>)</CODE> is
+the correlation between the <VAR>i</VAR>-th variable in <VAR>x</VAR> and the
+<VAR>j</VAR>-th variable in <VAR>y</VAR>.
+
+</P>
+<P>
+For matrices, each row is an observation and each column a variable;
+vectors are always observations and may be row or column vectors.
+
+</P>
+<P>
+<CODE>cor (<VAR>x</VAR>)</CODE> is equivalent to <CODE>cor (<VAR>x</VAR>, <VAR>x</VAR>)</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cloglog}
+<DL>
+<DT><U>Function File:</U>  <B>cloglog</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX842"></A>
+Return the complementary log-log function of <VAR>x</VAR>, defined as
+
+</P>
+
+<PRE>
+- log (- log (<VAR>x</VAR>))
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-center}
+<DL>
+<DT><U>Function File:</U>  <B>center</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX843"></A>
+If <VAR>x</VAR> is a vector, subtract its mean.
+If <VAR>x</VAR> is a matrix, do the above for each column.
+</DL>
+
+</P>
+
+
+
+<H2><A NAME="SEC170" HREF="octave_toc.html#TOC170">Tests</A></H2>
+
+<P>
+@anchor{doc-anova}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>f</VAR>, <VAR>df_b</VAR>, <VAR>df_w</VAR>] = <B>anova</B> <I>(<VAR>y</VAR>, <VAR>g</VAR>)</I>
+<DD><A NAME="IDX844"></A>
+Perform a one-way analysis of variance (ANOVA).  The goal is to test
+whether the population means of data taken from <VAR>k</VAR> different
+groups are all equal.
+
+</P>
+<P>
+Data may be given in a single vector <VAR>y</VAR> with groups specified by
+a corresponding vector of group labels <VAR>g</VAR> (e.g., numbers from 1
+to <VAR>k</VAR>). This is the general form which does not impose any
+restriction on the number of data in each group or the group labels.
+
+</P>
+<P>
+If <VAR>y</VAR> is a matrix and <VAR>g</VAR> is omitted, each column of <VAR>y</VAR>
+is treated as a group.  This form is only appropriate for balanced
+ANOVA in which the numbers of samples from each group are all equal.
+
+</P>
+<P>
+Under the null of constant means, the statistic <VAR>f</VAR> follows an F
+distribution with <VAR>df_b</VAR> and <VAR>df_w</VAR> degrees of freedom.
+
+</P>
+<P>
+The p-value (1 minus the CDF of this distribution at <VAR>f</VAR>) is
+returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the standard one-way ANOVA table is
+printed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-bartlett_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>chisq</VAR>, <VAR>df</VAR>] = <B>bartlett_test</B> <I>(<VAR>x1</VAR>, ...)</I>
+<DD><A NAME="IDX845"></A>
+Perform a Bartlett test for the homogeneity of variances in the data
+vectors <VAR>x1</VAR>, <VAR>x2</VAR>, ..., <VAR>xk</VAR>, where <VAR>k</VAR> &#62; 1.
+
+</P>
+<P>
+Under the null of equal variances, the test statistic <VAR>chisq</VAR>
+approximately ollows a chi-square distribution with <VAR>df</VAR> degrees of
+freedom.
+
+</P>
+<P>
+The p-value (1 minus the CDF of this distribution at <VAR>chisq</VAR>) is
+returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-chisquare_test_homogeneity}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>chisq</VAR>, <VAR>df</VAR>] = <B>chisquare_test_homogeneity</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX846"></A>
+Given two samples <VAR>x</VAR> and <VAR>y</VAR>, perform a chisquare test for
+homogeneity of the null hypothesis that <VAR>x</VAR> and <VAR>y</VAR> come from
+the same distribution, based on the partition induced by the
+(strictly increasing) entries of <VAR>c</VAR>.
+
+</P>
+<P>
+For large samples, the test statistic <VAR>chisq</VAR> approximately follows a
+chisquare distribution with <VAR>df</VAR> = <CODE>length (<VAR>c</VAR>)</CODE>
+degrees of freedom.
+
+</P>
+<P>
+The p-value (1 minus the CDF of this distribution at <VAR>chisq</VAR>) is
+returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-chisquare_test_independence}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>chisq</VAR>, <VAR>df</VAR>] = <B>chisquare_test_independence</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX847"></A>
+Perform a chi-square test for indepence based on the contingency
+table <VAR>x</VAR>.  Under the null hypothesis of independence,
+<VAR>chisq</VAR> approximately has a chi-square distribution with
+<VAR>df</VAR> degrees of freedom.
+
+</P>
+<P>
+The p-value (1 minus the CDF of this distribution at chisq) of the
+test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cor_test}
+<DL>
+<DT><U>Function File:</U>  <B>cor_test</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>alt</VAR>, <VAR>method</VAR>)</I>
+<DD><A NAME="IDX848"></A>
+Test whether two samples <VAR>x</VAR> and <VAR>y</VAR> come from uncorrelated
+populations.
+
+</P>
+<P>
+The optional argument string <VAR>alt</VAR> describes the alternative
+hypothesis, and can be <CODE>"!="</CODE> or <CODE>"&#60;&#62;"</CODE> (non-zero),
+<CODE>"&#62;"</CODE> (greater than 0), or <CODE>"&#60;"</CODE> (less than 0).  The
+default is the two-sided case.
+
+</P>
+<P>
+The optional argument string <VAR>method</VAR> specifies on which
+correlation coefficient the test should be based.  If <VAR>method</VAR> is
+<CODE>"pearson"</CODE> (default), the (usual) Pearson's product moment
+correlation coefficient is used.  In this case, the data should come
+from a bivariate normal distribution.  Otherwise, the other two
+methods offer nonparametric alternatives. If <VAR>method</VAR> is
+<CODE>"kendall"</CODE>, then Kendall's rank correlation tau is used.  If
+<VAR>method</VAR> is <CODE>"spearman"</CODE>, then Spearman's rank correlation
+rho is used.  Only the first character is necessary.
+
+</P>
+<P>
+The output is a structure with the following elements:
+
+</P>
+<DL COMPACT>
+
+<DT><VAR>pval</VAR>
+<DD>
+The p-value of the test.
+<DT><VAR>stat</VAR>
+<DD>
+The value of the test statistic.
+<DT><VAR>dist</VAR>
+<DD>
+The distribution of the test statistic.
+<DT><VAR>params</VAR>
+<DD>
+The parameters of the null distribution of the test statistic.
+<DT><VAR>alternative</VAR>
+<DD>
+The alternative hypothesis.
+<DT><VAR>method</VAR>
+<DD>
+The method used for testing.
+</DL>
+
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-f_test_regression}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>f</VAR>, <VAR>df_num</VAR>, <VAR>df_den</VAR>] = <B>f_test_regression</B> <I>(<VAR>y</VAR>, <VAR>x</VAR>, <VAR>rr</VAR>, <VAR>r</VAR>)</I>
+<DD><A NAME="IDX849"></A>
+Perform an F test for the null hypothesis rr * b = r in a classical
+normal regression model y = X * b + e.
+
+</P>
+<P>
+Under the null, the test statistic <VAR>f</VAR> follows an F distribution
+with <VAR>df_num</VAR> and <VAR>df_den</VAR> degrees of freedom.
+
+</P>
+<P>
+The p-value (1 minus the CDF of this distribution at <VAR>f</VAR>) is
+returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If not given explicitly, <VAR>r</VAR> = 0.
+
+</P>
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hotelling_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>tsq</VAR>] = <B>hotelling_test</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>)</I>
+<DD><A NAME="IDX850"></A>
+For a sample <VAR>x</VAR> from a multivariate normal distribution with unknown
+mean and covariance matrix, test the null hypothesis that <CODE>mean
+(<VAR>x</VAR>) == <VAR>m</VAR></CODE>.
+
+</P>
+<P>
+Hotelling's T^2 is returned in <VAR>tsq</VAR>.  Under the null,
+@math{(n-p) T^2 / (p(n-1))} has an F distribution with @math{p} and
+@math{n-p} degrees of freedom, where @math{n} and @math{p} are the
+numbers of samples and variables, respectively.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hotelling_test_2}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>tsq</VAR>] = <B>hotelling_test_2</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX851"></A>
+For two samples <VAR>x</VAR> from multivariate normal distributions with
+the same number of variables (columns), unknown means and unknown
+equal covariance matrices, test the null hypothesis <CODE>mean
+(<VAR>x</VAR>) == mean (<VAR>y</VAR>)</CODE>.
+
+</P>
+<P>
+Hotelling's two-sample T^2 is returned in <VAR>tsq</VAR>.  Under the null,
+
+</P>
+
+<PRE>
+(n_x+n_y-p-1) T^2 / (p(n_x+n_y-2))
+</PRE>
+
+<P>
+has an F distribution with @math{p} and @math{n_x+n_y-p-1} degrees of
+freedom, where @math{n_x} and @math{n_y} are the sample sizes and
+@math{p} is the number of variables.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-kolmogorov_smirnov_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>ks</VAR>] = <B>kolmogorov_smirnov_test</B> <I>(<VAR>x</VAR>, <VAR>dist</VAR>, <VAR>params</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX852"></A>
+Perform a Kolmogorov-Smirnov test of the null hypothesis that the
+sample <VAR>x</VAR> comes from the (continuous) distribution dist. I.e.,
+if F and G are the CDFs corresponding to the sample and dist,
+respectively, then the null is that F == G.
+
+</P>
+<P>
+The optional argument <VAR>params</VAR> contains a list of parameters of
+<VAR>dist</VAR>.  For example, to test whether a sample <VAR>x</VAR> comes from
+a uniform distribution on [2,4], use
+
+</P>
+
+<PRE>
+kolmogorov_smirnov_test(x, "uniform", 2, 4)
+</PRE>
+
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative F
+!= G.  In this case, the test statistic <VAR>ks</VAR> follows a two-sided
+Kolmogorov-Smirnov distribution.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the
+one-sided alternative F &#62; G is considered.  Similarly for <CODE>"&#60;"</CODE>,
+the one-sided alternative F &#62; G is considered.  In this case, the
+test statistic <VAR>ks</VAR> has a one-sided Kolmogorov-Smirnov
+distribution.  The default is the two-sided case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-kolmogorov_smirnov_test_2}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>ks</VAR>, <VAR>d</VAR>] = <B>kolmogorov_smirnov_test_2</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX853"></A>
+Perform a 2-sample Kolmogorov-Smirnov test of the null hypothesis
+that the samples <VAR>x</VAR> and <VAR>y</VAR> come from the same (continuous)
+distribution.  I.e., if F and G are the CDFs corresponding to the
+<VAR>x</VAR> and <VAR>y</VAR> samples, respectively, then the null is that F ==
+G.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative F
+!= G.  In this case, the test statistic <VAR>ks</VAR> follows a two-sided
+Kolmogorov-Smirnov distribution.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the
+one-sided alternative F &#62; G is considered.  Similarly for <CODE>"&#60;"</CODE>,
+the one-sided alternative F &#60; G is considered.  In this case, the
+test statistic <VAR>ks</VAR> has a one-sided Kolmogorov-Smirnov
+distribution.  The default is the two-sided case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+The third returned value, <VAR>d</VAR>, is the test statistic, the maximum
+vertical distance between the two cumulative distribution functions.
+
+</P>
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-kruskal_wallis_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>k</VAR>, <VAR>df</VAR>] = <B>kruskal_wallis_test</B> <I>(<VAR>x1</VAR>, ...)</I>
+<DD><A NAME="IDX854"></A>
+Perform a Kruskal-Wallis one-factor "analysis of variance".
+
+</P>
+<P>
+Suppose a variable is observed for <VAR>k</VAR> &#62; 1 different groups, and
+let <VAR>x1</VAR>, ..., <VAR>xk</VAR> be the corresponding data vectors.
+
+</P>
+<P>
+Under the null hypothesis that the ranks in the pooled sample are not
+affected by the group memberships, the test statistic <VAR>k</VAR> is
+approximately chi-square with <VAR>df</VAR> = <VAR>k</VAR> - 1 degrees of
+freedom.
+
+</P>
+<P>
+The p-value (1 minus the CDF of this distribution at <VAR>k</VAR>) is
+returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-manova}
+<DL>
+<DT><U>Function File:</U>  <B>manova</B> <I>(<VAR>y</VAR>, <VAR>g</VAR>)</I>
+<DD><A NAME="IDX855"></A>
+Perform a one-way multivariate analysis of variance (MANOVA). The
+goal is to test whether the p-dimensional population means of data
+taken from <VAR>k</VAR> different groups are all equal.  All data are
+assumed drawn independently from p-dimensional normal distributions
+with the same covariance matrix.
+
+</P>
+<P>
+The data matrix is given by <VAR>y</VAR>.  As usual, rows are observations
+and columns are variables.  The vector <VAR>g</VAR> specifies the
+corresponding group labels (e.g., numbers from 1 to <VAR>k</VAR>).
+
+</P>
+<P>
+The LR test statistic (Wilks' Lambda) and approximate p-values are
+computed and displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-mcnemar_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>chisq</VAR>, <VAR>df</VAR>] = <B>mcnemar_test</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX856"></A>
+For a square contingency table <VAR>x</VAR> of data cross-classified on
+the row and column variables, McNemar's test can be used for testing
+the null hypothesis of symmetry of the classification probabilities.
+
+</P>
+<P>
+Under the null, <VAR>chisq</VAR> is approximately distributed as chisquare
+with <VAR>df</VAR> degrees of freedom.
+
+</P>
+<P>
+The p-value (1 minus the CDF of this distribution at <VAR>chisq</VAR>) is
+returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-prop_test_2}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>z</VAR>] = <B>prop_test_2</B> <I>(<VAR>x1</VAR>, <VAR>n1</VAR>, <VAR>x2</VAR>, <VAR>n2</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX857"></A>
+If <VAR>x1</VAR> and <VAR>n1</VAR> are the counts of successes and trials in
+one sample, and <VAR>x2</VAR> and <VAR>n2</VAR> those in a second one, test the
+null hypothesis that the success probabilities <VAR>p1</VAR> and <VAR>p2</VAR>
+are the same.  Under the null, the test statistic <VAR>z</VAR>
+approximately follows a standard normal distribution.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+<VAR>p1</VAR> != <VAR>p2</VAR>.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the one-sided
+alternative <VAR>p1</VAR> &#62; <VAR>p2</VAR> is used.  Similarly for <CODE>"&#60;"</CODE>,
+the one-sided alternative <VAR>p1</VAR> &#60; <VAR>p2</VAR> is used.
+The default is the two-sided case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-run_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>chisq</VAR>] = <B>run_test</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX858"></A>
+Perform a chi-square test with 6 degrees of freedom based on the
+upward runs in the columns of <VAR>x</VAR>.  Can be used to test whether
+<VAR>x</VAR> contains independent data.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-sign_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>b</VAR>, <VAR>n</VAR>] = <B>sign_test</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX859"></A>
+For two matched-pair samples <VAR>x</VAR> and <VAR>y</VAR>, perform a sign test
+of the null hypothesis PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) == PROB (<VAR>x</VAR> &#60;
+<VAR>y</VAR>) == 1/2.  Under the null, the test statistic <VAR>b</VAR> roughly
+follows a binomial distribution with parameters <CODE><VAR>n</VAR> = sum
+(<VAR>x</VAR> != <VAR>y</VAR>)</CODE> and <VAR>p</VAR> = 1/2.
+
+</P>
+<P>
+With the optional argument <CODE>alt</CODE>, the alternative of interest
+can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or <CODE>"&#60;&#62;"</CODE>, the
+null hypothesis is tested against the two-sided alternative PROB
+(<VAR>x</VAR> &#60; <VAR>y</VAR>) != 1/2.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the
+one-sided alternative PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) &#62; 1/2 ("x is
+stochastically greater than y") is considered.  Similarly for
+<CODE>"&#60;"</CODE>, the one-sided alternative PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) &#60; 1/2
+("x is stochastically less than y") is considered.  The default is
+the two-sided case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-t_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>t</VAR>, <VAR>df</VAR>] = <B>t_test</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX860"></A>
+For a sample <VAR>x</VAR> from a normal distribution with unknown mean and
+variance, perform a t-test of the null hypothesis <CODE>mean
+(<VAR>x</VAR>) == <VAR>m</VAR></CODE>.  Under the null, the test statistic <VAR>t</VAR>
+follows a Student distribution with <CODE><VAR>df</VAR> = length (<VAR>x</VAR>)
+- 1</CODE> degrees of freedom.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+<CODE>mean (<VAR>x</VAR>) != <VAR>m</VAR></CODE>.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the
+one-sided alternative <CODE>mean (<VAR>x</VAR>) &#62; <VAR>m</VAR></CODE> is considered.
+Similarly for <VAR>"&#60;"</VAR>, the one-sided alternative <CODE>mean
+(<VAR>x</VAR>) &#60; <VAR>m</VAR></CODE> is considered,  The default is the two-sided
+case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-t_test_2}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>t</VAR>, <VAR>df</VAR>] = <B>t_test_2</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX861"></A>
+For two samples x and y from normal distributions with unknown means
+and unknown equal variances, perform a two-sample t-test of the null
+hypothesis of equal means.  Under the null, the test statistic
+<VAR>t</VAR> follows a Student distribution with <VAR>df</VAR> degrees of
+freedom.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+<CODE>mean (<VAR>x</VAR>) != mean (<VAR>y</VAR>)</CODE>.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>,
+the one-sided alternative <CODE>mean (<VAR>x</VAR>) &#62; mean (<VAR>y</VAR>)</CODE> is
+used.  Similarly for <CODE>"&#60;"</CODE>, the one-sided alternative <CODE>mean
+(<VAR>x</VAR>) &#60; mean (<VAR>y</VAR>)</CODE> is used.  The default is the two-sided
+case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-t_test_regression}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>t</VAR>, <VAR>df</VAR>] = <B>t_test_regression</B> <I>(<VAR>y</VAR>, <VAR>x</VAR>, <VAR>rr</VAR>, <VAR>r</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX862"></A>
+Perform an t test for the null hypothesis <CODE><VAR>rr</VAR> * <VAR>b</VAR> =
+<VAR>r</VAR></CODE> in a classical normal regression model <CODE><VAR>y</VAR> =
+<VAR>x</VAR> * <VAR>b</VAR> + <VAR>e</VAR></CODE>.  Under the null, the test statistic <VAR>t</VAR>
+follows a <VAR>t</VAR> distribution with <VAR>df</VAR> degrees of freedom.
+
+</P>
+<P>
+If <VAR>r</VAR> is omitted, a value of 0 is assumed.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+<CODE><VAR>rr</VAR> * <VAR>b</VAR> != <VAR>r</VAR></CODE>.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the
+one-sided alternative <CODE><VAR>rr</VAR> * <VAR>b</VAR> &#62; <VAR>r</VAR></CODE> is used.
+Similarly for <VAR>"&#60;"</VAR>, the one-sided alternative <CODE><VAR>rr</VAR> *
+<VAR>b</VAR> &#60; <VAR>r</VAR></CODE> is used.  The default is the two-sided case. 
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-u_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>z</VAR>] = <B>u_test</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX863"></A>
+For two samples <VAR>x</VAR> and <VAR>y</VAR>, perform a Mann-Whitney U-test of
+the null hypothesis PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) == 1/2 == PROB (<VAR>x</VAR>
+&#60; <VAR>y</VAR>).  Under the null, the test statistic <VAR>z</VAR> approximately
+follows a standard normal distribution.  Note that this test is
+equivalent to the Wilcoxon rank-sum test.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) != 1/2.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the
+one-sided alternative PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) &#62; 1/2 is considered.
+Similarly for <CODE>"&#60;"</CODE>, the one-sided alternative PROB (<VAR>x</VAR> &#62;
+<VAR>y</VAR>) &#60; 1/2 is considered,  The default is the two-sided case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-var_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>f</VAR>, <VAR>df_num</VAR>, <VAR>df_den</VAR>] = <B>var_test</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX864"></A>
+For two samples <VAR>x</VAR> and <VAR>y</VAR> from normal distributions with
+unknown means and unknown variances, perform an F-test of the null
+hypothesis of equal variances.  Under the null, the test statistic f
+follows an F-distribution with df_num and df_den degrees of freedom.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+<CODE>var (<VAR>x</VAR>) != var (<VAR>y</VAR>)</CODE>.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>,
+the one-sided alternative <CODE>var (<VAR>x</VAR>) &#62; var (<VAR>y</VAR>)</CODE> is
+used.  Similarly for "&#60;", the one-sided alternative <CODE>var
+(<VAR>x</VAR>) &#62; var (<VAR>y</VAR>)</CODE> is used.  The default is the two-sided
+case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-welch_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>t</VAR>, <VAR>df</VAR>] = <B>welch_test</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX865"></A>
+For two samples <VAR>x</VAR> and <VAR>y</VAR> from normal distributions with
+unknown means and unknown and not necessarily equal variances,
+perform a Welch test of the null hypothesis of equal means.
+Under the null, the test statistic t approximately follows a Student
+distribution with df degrees of freedom.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+<CODE>mean (<VAR>x</VAR>) != <VAR>m</VAR></CODE>.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the
+one-sided alternative mean(x) &#62; <VAR>m</VAR> is considered.  Similarly for
+<CODE>"&#60;"</CODE>, the one-sided alternative mean(x) &#60; <VAR>m</VAR> is
+considered.  The default is the two-sided case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-wilcoxon_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>z</VAR>] = <B>wilcoxon_test</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX866"></A>
+For two matched-pair sample vectors <VAR>x</VAR> and <VAR>y</VAR>, perform a
+Wilcoxon signed-rank test of the null hypothesis PROB (<VAR>x</VAR> &#62;
+<VAR>y</VAR>) == 1/2.  Under the null, the test statistic <VAR>z</VAR>
+approximately follows a standard normal distribution.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) != 1/2.  If alt is <CODE>"&#62;"</CODE>, the one-sided
+alternative PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) &#62; 1/2 is considered.  Similarly
+for <CODE>"&#60;"</CODE>, the one-sided alternative PROB (<VAR>x</VAR> &#62; <VAR>y</VAR>) &#60;
+1/2 is considered.  The default is the two-sided case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-z_test}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>z</VAR>] = <B>z_test</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>v</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX867"></A>
+Perform a Z-test of the null hypothesis <CODE>mean (<VAR>x</VAR>) ==
+<VAR>m</VAR></CODE> for a sample <VAR>x</VAR> from a normal distribution with unknown
+mean and known variance <VAR>v</VAR>.  Under the null, the test statistic
+<VAR>z</VAR> follows a standard normal distribution.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+<CODE>mean (<VAR>x</VAR>) != <VAR>m</VAR></CODE>.  If <VAR>alt</VAR> is <CODE>"&#62;"</CODE>, the
+one-sided alternative <CODE>mean (<VAR>x</VAR>) &#62; <VAR>m</VAR></CODE> is considered.
+Similarly for <CODE>"&#60;"</CODE>, the one-sided alternative <CODE>mean
+(<VAR>x</VAR>) &#60; <VAR>m</VAR></CODE> is considered.  The default is the two-sided
+case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed
+along with some information.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-z_test_2}
+<DL>
+<DT><U>Function File:</U> [<VAR>pval</VAR>, <VAR>z</VAR>] = <B>z_test_2</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>, <VAR>v_x</VAR>, <VAR>v_y</VAR>, <VAR>alt</VAR>)</I>
+<DD><A NAME="IDX868"></A>
+For two samples <VAR>x</VAR> and <VAR>y</VAR> from normal distributions with
+unknown means and known variances <VAR>v_x</VAR> and <VAR>v_y</VAR>, perform a
+Z-test of the hypothesis of equal means.  Under the null, the test
+statistic <VAR>z</VAR> follows a standard normal distribution.
+
+</P>
+<P>
+With the optional argument string <VAR>alt</VAR>, the alternative of
+interest can be selected.  If <VAR>alt</VAR> is <CODE>"!="</CODE> or
+<CODE>"&#60;&#62;"</CODE>, the null is tested against the two-sided alternative
+<CODE>mean (<VAR>x</VAR>) != mean (<VAR>y</VAR>)</CODE>.  If alt is <CODE>"&#62;"</CODE>, the
+one-sided alternative <CODE>mean (<VAR>x</VAR>) &#62; mean (<VAR>y</VAR>)</CODE> is used.
+Similarly for <CODE>"&#60;"</CODE>, the one-sided alternative <CODE>mean
+(<VAR>x</VAR>) &#60; mean (<VAR>y</VAR>)</CODE> is used.  The default is the two-sided
+case.
+
+</P>
+<P>
+The p-value of the test is returned in <VAR>pval</VAR>.
+
+</P>
+<P>
+If no output argument is given, the p-value of the test is displayed
+along with some information.
+</DL>
+
+</P>
+
+
+
+<H2><A NAME="SEC171" HREF="octave_toc.html#TOC171">Models</A></H2>
+
+<P>
+@anchor{doc-logistic_regression}
+<DL>
+<DT><U>Functio File:</U> [<VAR>theta</VAR>, <VAR>beta</VAR>, <VAR>dev</VAR>, <VAR>dl</VAR>, <VAR>d2l</VAR>, <VAR>p</VAR>] = <B>logistic_regression</B> <I>(<VAR>y</VAR>, <VAR>x</VAR>, <VAR>print</VAR>, <VAR>theta</VAR>, <VAR>beta</VAR>)</I>
+<DD><A NAME="IDX869"></A>
+Perform ordinal logistic regression.
+
+</P>
+<P>
+Suppose <VAR>y</VAR> takes values in <VAR>k</VAR> ordered categories, and let
+<CODE>gamma_i (<VAR>x</VAR>)</CODE> be the cumulative probability that <VAR>y</VAR>
+falls in one of the first <VAR>i</VAR> categories given the covariate
+<VAR>x</VAR>.  Then
+
+</P>
+
+<PRE>
+[theta, beta] = logistic_regression (y, x)
+</PRE>
+
+<P>
+fits the model
+
+</P>
+
+<PRE>
+logit (gamma_i (x)) = theta_i - beta' * x,   i = 1, ..., k-1
+</PRE>
+
+<P>
+The number of ordinal categories, <VAR>k</VAR>, is taken to be the number
+of distinct values of <CODE>round (<VAR>y</VAR>)</CODE>.  If <VAR>k</VAR> equals 2,
+<VAR>y</VAR> is binary and the model is ordinary logistic regression.  The
+matrix <VAR>x</VAR> is assumed to have full column rank.
+
+</P>
+<P>
+Given <VAR>y</VAR> only, <CODE>theta = logistic_regression (y)</CODE>
+fits the model with baseline logit odds only.
+
+</P>
+<P>
+The full form is
+
+</P>
+
+<PRE>
+[theta, beta, dev, dl, d2l, gamma]
+   = logistic_regression (y, x, print, theta, beta)
+</PRE>
+
+<P>
+in which all output arguments and all input arguments except <VAR>y</VAR>
+are optional.
+
+</P>
+<P>
+Stting <VAR>print</VAR> to 1 requests summary information about the fitted
+model to be displayed.  Setting <VAR>print</VAR> to 2 requests information
+about convergence at each iteration.  Other values request no
+information to be displayed.  The input arguments <VAR>theta</VAR> and
+<VAR>beta</VAR> give initial estimates for <VAR>theta</VAR> and <VAR>beta</VAR>.
+
+</P>
+<P>
+The returned value <VAR>dev</VAR> holds minus twice the log-likelihood.
+
+</P>
+<P>
+The returned values <VAR>dl</VAR> and <VAR>d2l</VAR> are the vector of first
+and the matrix of second derivatives of the log-likelihood with
+respect to <VAR>theta</VAR> and <VAR>beta</VAR>.
+
+</P>
+<P>
+<VAR>p</VAR> holds estimates for the conditional distribution of <VAR>y</VAR>
+given <VAR>x</VAR>.
+</DL>
+
+</P>
+
+
+
+<H2><A NAME="SEC172" HREF="octave_toc.html#TOC172">Distributions</A></H2>
+
+<P>
+@anchor{doc-beta_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>beta_cdf</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX870"></A>
+For each element of <VAR>x</VAR>, returns the CDF at <VAR>x</VAR> of the beta
+distribution with parameters <VAR>a</VAR> and <VAR>b</VAR>, i.e.,
+PROB (beta (<VAR>a</VAR>, <VAR>b</VAR>) &#60;= <VAR>x</VAR>).
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-beta_inv}
+<DL>
+<DT><U>Function File:</U>  <B>beta_inv</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX871"></A>
+For each component of <VAR>x</VAR>, compute the quantile (the inverse of
+the CDF) at <VAR>x</VAR> of the Beta distribution with parameters <VAR>a</VAR>
+and <VAR>b</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-beta_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>beta_pdf</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX872"></A>
+For each element of <VAR>x</VAR>, returns the PDF at <VAR>x</VAR> of the beta
+distribution with parameters <VAR>a</VAR> and <VAR>b</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-beta_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>beta_rnd</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX873"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the Beta
+distribution with parameters <VAR>a</VAR> and <VAR>b</VAR>.  Both <VAR>a</VAR> and
+<VAR>b</VAR> must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>a</VAR> and <VAR>b</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-binomial_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>binomial_cdf</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX874"></A>
+For each element of <VAR>x</VAR>, compute the CDF at <VAR>x</VAR> of the
+binomial distribution with parameters <VAR>n</VAR> and <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-binomial_inv}
+<DL>
+<DT><U>Function File:</U>  <B>binomial_inv</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX875"></A>
+For each element of <VAR>x</VAR>, compute the quantile at <VAR>x</VAR> of the
+binomial distribution with parameters <VAR>n</VAR> and <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-binomial_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>binomial_pdf</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX876"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the binomial distribution with parameters <VAR>n</VAR>
+and <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-binomial_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>binomial_rnd</B> <I>(<VAR>n</VAR>, <VAR>p</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX877"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+binomial distribution with parameters <VAR>n</VAR> and <VAR>p</VAR>.  Both
+<VAR>n</VAR> and <VAR>p</VAR> must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>n</VAR> and <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cauchy_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>cauchy_cdf</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>, <VAR>sigma</VAR>)</I>
+<DD><A NAME="IDX878"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the Cauchy distribution with location
+parameter <VAR>lambda</VAR> and scale parameter <VAR>sigma</VAR>.  Default
+values are <VAR>lambda</VAR> = 0, <VAR>sigma</VAR> = 1. 
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cauchy_inv}
+<DL>
+<DT><U>Function File:</U>  <B>cauchy_inv</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>, <VAR>sigma</VAR>)</I>
+<DD><A NAME="IDX879"></A>
+For each element of <VAR>x</VAR>, compute the quantile (the inverse of the
+CDF) at <VAR>x</VAR> of the Cauchy distribution with location parameter
+<VAR>lambda</VAR> and scale parameter <VAR>sigma</VAR>.  Default values are
+<VAR>lambda</VAR> = 0, <VAR>sigma</VAR> = 1. 
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cauchy_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>cauchy_pdf</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>, <VAR>sigma</VAR>)</I>
+<DD><A NAME="IDX880"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the Cauchy distribution with location parameter
+<VAR>lambda</VAR> and scale parameter <VAR>sigma</VAR> &#62; 0.  Default values are
+<VAR>lambda</VAR> = 0, <VAR>sigma</VAR> = 1. 
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cauchy_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>cauchy_rnd</B> <I>(<VAR>lambda</VAR>, <VAR>sigma</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX881"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the Cauchy
+distribution with parameters <VAR>lambda</VAR> and <VAR>sigma</VAR> which must
+both be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>lambda</VAR> and <VAR>sigma</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-chisquare_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>chisquare_cdf</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX882"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the chisquare distribution with <VAR>n</VAR>
+degrees of freedom.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-chisquare_inv}
+<DL>
+<DT><U>Function File:</U>  <B>chisquare_inv</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX883"></A>
+For each element of <VAR>x</VAR>, compute the quantile (the inverse of the
+CDF) at <VAR>x</VAR> of the chisquare distribution with <VAR>n</VAR> degrees of
+freedom.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-chisquare_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>chisquare_pdf</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX884"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the chisquare distribution with <VAR>k</VAR> degrees
+of freedom.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-chisquare_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>chisquare_rnd</B> <I>(<VAR>n</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX885"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+chisquare distribution with <VAR>n</VAR> degrees of freedom.  <VAR>n</VAR> must
+be a scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the size of <VAR>n</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-discrete_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>discrete_cdf</B> <I>(<VAR>x</VAR>, <VAR>v</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX886"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of a univariate discrete distribution which
+assumes the values in v with probabilities <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-discrete_inv}
+<DL>
+<DT><U>Function File:</U>  <B>discrete_inv</B> <I>(<VAR>x</VAR>, <VAR>v</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX887"></A>
+For each component of <VAR>x</VAR>, compute the quantile (the inverse of
+the CDF) at <VAR>x</VAR> of the univariate distribution which assumes the
+values in <VAR>v</VAR> with probabilities <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-discrete_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>discrete_pdf</B> <I>(<VAR>x</VAR>, <VAR>v</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX888"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(pDF) at <VAR>x</VAR> of a univariate discrete distribution which assumes
+the values in <VAR>v</VAR> with probabilities <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-discrete_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>discrete_rnd</B> <I>(<VAR>n</VAR>, <VAR>v</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX889"></A>
+Generate a row vector containing a random sample of size <VAR>n</VAR> from
+the univariate distribution which assumes the values in <VAR>v</VAR> with
+probabilities <VAR>p</VAR>.
+
+</P>
+<P>
+Currently, <VAR>n</VAR> must be a scalar.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-empirical_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>empirical_cdf</B> <I>(<VAR>x</VAR>, <VAR>data</VAR>)</I>
+<DD><A NAME="IDX890"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the empirical distribution obtained from
+the univariate sample <VAR>data</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-empirical_inv}
+<DL>
+<DT><U>Function File:</U>  <B>empirical_inv</B> <I>(<VAR>x</VAR>, <VAR>data</VAR>)</I>
+<DD><A NAME="IDX891"></A>
+For each element of <VAR>x</VAR>, compute the quantile (the inverse of the
+CDF) at <VAR>x</VAR> of the empirical distribution obtained from the
+univariate sample <VAR>data</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-empirical_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>empirical_pdf</B> <I>(<VAR>x</VAR>, <VAR>data</VAR>)</I>
+<DD><A NAME="IDX892"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the empirical distribution obtained from the
+univariate sample <VAR>data</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-empirical_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>empirical_rnd</B> <I>(<VAR>n</VAR>, <VAR>data</VAR>)</I>
+<DD><A NAME="IDX893"></A>
+Generate a bootstrap sample of size <VAR>n</VAR> from the empirical
+distribution obtained from the univariate sample <VAR>data</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-exponential_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>exponential_cdf</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>)</I>
+<DD><A NAME="IDX894"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the exponential distribution with
+parameter <VAR>lambda</VAR>.
+
+</P>
+<P>
+The arguments can be of common size or scalar.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-exponential_inv}
+<DL>
+<DT><U>Function File:</U>  <B>exponential_inv</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>)</I>
+<DD><A NAME="IDX895"></A>
+For each element of <VAR>x</VAR>, compute the quantile (the inverse of the
+CDF) at <VAR>x</VAR> of the exponential distribution with parameter
+<VAR>lambda</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-exponential_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>exponential_pdf</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>)</I>
+<DD><A NAME="IDX896"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) of the exponential distribution with parameter <VAR>lambda</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-exponential_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>exponential_rnd</B> <I>(<VAR>lambda</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX897"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+exponential distribution with parameter <VAR>lambda</VAR>, which must be a
+scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the size of <VAR>lambda</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-f_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>f_cdf</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX898"></A>
+For each element of <VAR>x</VAR>, compute the CDF at <VAR>x</VAR> of the F
+distribution with <VAR>m</VAR> and <VAR>n</VAR> degrees of freedom, i.e.,
+PROB (F (<VAR>m</VAR>, <VAR>n</VAR>) &#60;= <VAR>x</VAR>). 
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-f_inv}
+<DL>
+<DT><U>Function File:</U>  <B>f_inv</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX899"></A>
+For each component of <VAR>x</VAR>, compute the quantile (the inverse of
+the CDF) at <VAR>x</VAR> of the F distribution with parameters <VAR>m</VAR> and
+<VAR>n</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-f_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>f_pdf</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX900"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the F distribution with <VAR>m</VAR> and <VAR>n</VAR>
+degrees of freedom.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-f_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>f_rnd</B> <I>(<VAR>m</VAR>, <VAR>n</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX901"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the F
+distribution with <VAR>m</VAR> and <VAR>n</VAR> degrees of freedom.  Both
+<VAR>m</VAR> and <VAR>n</VAR> must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>m</VAR> and <VAR>n</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-gamma_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>gamma_cdf</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX902"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the Gamma distribution with parameters
+<VAR>a</VAR> and <VAR>b</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-gamma_inv}
+<DL>
+<DT><U>Function File:</U>  <B>gamma_inv</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX903"></A>
+For each component of <VAR>x</VAR>, compute the quantile (the inverse of
+the CDF) at <VAR>x</VAR> of the Gamma distribution with parameters <VAR>a</VAR>
+and <VAR>b</VAR>. 
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-gamma_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>gamma_pdf</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX904"></A>
+For each element of <VAR>x</VAR>, return the probability density function
+(PDF) at <VAR>x</VAR> of the Gamma distribution with parameters <VAR>a</VAR>
+and <VAR>b</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-gamma_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>gamma_rnd</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX905"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the Gamma
+distribution with parameters <VAR>a</VAR> and <VAR>b</VAR>.  Both <VAR>a</VAR> and
+<VAR>b</VAR> must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>a</VAR> and <VAR>b</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-geometric_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>geometric_cdf</B> <I>(<VAR>x</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX906"></A>
+For each element of <VAR>x</VAR>, compute the CDF at <VAR>x</VAR> of the
+geometric distribution with parameter <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-geometric_inv}
+<DL>
+<DT><U>Function File:</U>  <B>geometric_inv</B> <I>(<VAR>x</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX907"></A>
+For each element of <VAR>x</VAR>, compute the quantile at <VAR>x</VAR> of the
+geometric distribution with parameter <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-geometric_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>geometric_pdf</B> <I>(<VAR>x</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX908"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the geometric distribution with parameter <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-geometric_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>geometric_rnd</B> <I>(<VAR>p</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX909"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+geometric distribution with parameter <VAR>p</VAR>, which must be a scalar
+or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the size of <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hypergeometric_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>hypergeometric_cdf</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>t</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX910"></A>
+Compute the cumulative distribution function (CDF) at <VAR>x</VAR> of the
+hypergeometric distribution with parameters <VAR>m</VAR>, <VAR>t</VAR>, and
+<VAR>n</VAR>.  This is the probability of obtaining not more than <VAR>x</VAR>
+marked items when randomly drawing a sample of size <VAR>n</VAR> without
+replacement from a population of total size <VAR>t</VAR> containing
+<VAR>m</VAR> marked items.
+
+</P>
+<P>
+The parameters <VAR>m</VAR>, <VAR>t</VAR>, and <VAR>n</VAR> must positive integers
+with <VAR>m</VAR> and <VAR>n</VAR> not greater than <VAR>t</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hypergeometric_inv}
+<DL>
+<DT><U>Function File:</U>  <B>hypergeometric_inv</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>t</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX911"></A>
+For each element of <VAR>x</VAR>, compute the quantile at <VAR>x</VAR> of the
+hypergeometric distribution with parameters <VAR>m</VAR>, <VAR>t</VAR>, and
+<VAR>n</VAR>.
+
+</P>
+<P>
+The parameters <VAR>m</VAR>, <VAR>t</VAR>, and <VAR>n</VAR> must positive integers
+with <VAR>m</VAR> and <VAR>n</VAR> not greater than <VAR>t</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hypergeometric_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>hypergeometric_pdf</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>t</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX912"></A>
+Compute the probability density function (PDF) at <VAR>x</VAR> of the
+hypergeometric distribution with parameters <VAR>m</VAR>, <VAR>t</VAR>, and
+<VAR>n</VAR>. This is the probability of obtaining <VAR>x</VAR> marked items
+when randomly drawing a sample of size <VAR>n</VAR> without replacement
+from a population of total size <VAR>t</VAR> containing <VAR>m</VAR> marked items.
+
+</P>
+<P>
+The arguments must be of common size or scalar.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-hypergeometric_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>hypergeometric_rnd</B> <I>(<VAR>n_size</VAR>, <VAR>m</VAR>, <VAR>t</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX913"></A>
+Generate a row vector containing a random sample of size <VAR>n_size</VAR> from
+the hypergeometric distribution with parameters <VAR>m</VAR>, <VAR>t</VAR>, and
+<VAR>n</VAR>.
+
+</P>
+<P>
+The parameters <VAR>m</VAR>, <VAR>t</VAR>, and <VAR>n</VAR> must positive integers
+with <VAR>m</VAR> and <VAR>n</VAR> not greater than <VAR>t</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-kolmogorov_smirnov_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>kolmogorov_smirnov_cdf</B> <I>(<VAR>x</VAR>, <VAR>tol</VAR>)</I>
+<DD><A NAME="IDX914"></A>
+Return the CDF at <VAR>x</VAR> of the Kolmogorov-Smirnov distribution,
+
+<PRE>
+         Inf
+Q(x) =   SUM    (-1)^k exp(-2 k^2 x^2)
+       k = -Inf
+</PRE>
+
+<P>
+for <VAR>x</VAR> &#62; 0.
+
+</P>
+<P>
+The optional parameter <VAR>tol</VAR> specifies the precision up to which
+the series should be evaluated;  the default is <VAR>tol</VAR> = <CODE>eps</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-laplace_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>laplace_cdf</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX915"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the Laplace distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-laplace_inv}
+<DL>
+<DT><U>Function File:</U>  <B>laplace_inv</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX916"></A>
+For each element of <VAR>x</VAR>, compute the quantile (the inverse of the
+CDF) at <VAR>x</VAR> of the Laplace distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-laplace_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>laplace_pdf</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX917"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the Laplace distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-laplace_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>laplace_rnd</B> <I>(<VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX918"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random numbers from the
+Laplace distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-logistic_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>logistic_cdf</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX919"></A>
+For each component of <VAR>x</VAR>, compute the CDF at <VAR>x</VAR> of the
+logistic distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-logistic_inv}
+<DL>
+<DT><U>Function File:</U>  <B>logistic_inv</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX920"></A>
+For each component of <VAR>x</VAR>, compute the quantile (the inverse of
+the CDF) at <VAR>x</VAR> of the logistic distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-logistic_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>logistic_pdf</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX921"></A>
+For each component of <VAR>x</VAR>, compute the PDF at <VAR>x</VAR> of the
+logistic distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-logistic_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>logistic_rnd</B> <I>(<VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX922"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random numbers from the
+logistic distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-lognormal_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>lognormal_cdf</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>v</VAR>)</I>
+<DD><A NAME="IDX923"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the lognormal distribution with
+parameters <VAR>a</VAR> and <VAR>v</VAR>.  If a random variable follows this
+distribution, its logarithm is normally distributed with mean
+<CODE>log (<VAR>a</VAR>)</CODE> and variance <VAR>v</VAR>.
+
+</P>
+<P>
+Default values are <VAR>a</VAR> = 1, <VAR>v</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-lognormal_inv}
+<DL>
+<DT><U>Function File:</U>  <B>lognormal_inv</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>v</VAR>)</I>
+<DD><A NAME="IDX924"></A>
+For each element of <VAR>x</VAR>, compute the quantile (the inverse of the
+CDF) at <VAR>x</VAR> of the lognormal distribution with parameters <VAR>a</VAR>
+and <VAR>v</VAR>.  If a random variable follows this distribution, its
+logarithm is normally distributed with mean <CODE>log (<VAR>a</VAR>)</CODE> and
+variance <VAR>v</VAR>.
+
+</P>
+<P>
+Default values are <VAR>a</VAR> = 1, <VAR>v</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-lognormal_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>lognormal_pdf</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>v</VAR>)</I>
+<DD><A NAME="IDX925"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the lognormal distribution with parameters
+<VAR>a</VAR> and <VAR>v</VAR>.  If a random variable follows this distribution,
+its logarithm is normally distributed with mean <CODE>log (<VAR>a</VAR>)</CODE>
+and variance <VAR>v</VAR>.
+
+</P>
+<P>
+Default values are <VAR>a</VAR> = 1, <VAR>v</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-lognormal_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>lognormal_rnd</B> <I>(<VAR>a</VAR>, <VAR>v</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX926"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+lognormal distribution with parameters <VAR>a</VAR> and <VAR>v</VAR>. Both
+<VAR>a</VAR> and <VAR>v</VAR> must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>a</VAR> and <VAR>v</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-normal_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>normal_cdf</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>v</VAR>)</I>
+<DD><A NAME="IDX927"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the normal distribution with mean
+<VAR>m</VAR> and variance <VAR>v</VAR>.
+
+</P>
+<P>
+Default values are <VAR>m</VAR> = 0, <VAR>v</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-normal_inv}
+<DL>
+<DT><U>Function File:</U>  <B>normal_inv</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>v</VAR>)</I>
+<DD><A NAME="IDX928"></A>
+For each element of <VAR>x</VAR>, compute the quantile (the inverse of the
+CDF) at <VAR>x</VAR> of the normal distribution with mean <VAR>m</VAR> and
+variance <VAR>v</VAR>.
+
+</P>
+<P>
+Default values are <VAR>m</VAR> = 0, <VAR>v</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-normal_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>normal_pdf</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>v</VAR>)</I>
+<DD><A NAME="IDX929"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the normal distribution with mean <VAR>m</VAR> and
+variance <VAR>v</VAR>.
+
+</P>
+<P>
+Default values are <VAR>m</VAR> = 0, <VAR>v</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-normal_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>normal_rnd</B> <I>(<VAR>m</VAR>, <VAR>v</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX930"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+normal distribution with parameters <VAR>m</VAR> and <VAR>v</VAR>.  Both
+<VAR>m</VAR> and <VAR>v</VAR> must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>m</VAR> and <VAR>v</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-pascal_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>pascal_cdf</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX931"></A>
+For each element of <VAR>x</VAR>, compute the CDF at x of the Pascal
+(negative binomial) distribution with parameters <VAR>n</VAR> and <VAR>p</VAR>.
+
+</P>
+<P>
+The number of failures in a Bernoulli experiment with success
+probability <VAR>p</VAR> before the <VAR>n</VAR>-th success follows this
+distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-pascal_inv}
+<DL>
+<DT><U>Function File:</U>  <B>pascal_inv</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX932"></A>
+For each element of <VAR>x</VAR>, compute the quantile at <VAR>x</VAR> of the
+Pascal (negative binomial) distribution with parameters <VAR>n</VAR> and
+<VAR>p</VAR>.
+
+</P>
+<P>
+The number of failures in a Bernoulli experiment with success
+probability <VAR>p</VAR> before the <VAR>n</VAR>-th success follows this
+distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-pascal_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>pascal_pdf</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX933"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the Pascal (negative binomial) distribution with
+parameters <VAR>n</VAR> and <VAR>p</VAR>.
+
+</P>
+<P>
+The number of failures in a Bernoulli experiment with success
+probability <VAR>p</VAR> before the <VAR>n</VAR>-th success follows this
+distribution. 
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-pascal_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>pascal_rnd</B> <I>(<VAR>n</VAR>, <VAR>p</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX934"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the Pascal
+(negative binomial) distribution with parameters <VAR>n</VAR> and <VAR>p</VAR>.
+Both <VAR>n</VAR> and <VAR>p</VAR> must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>. 
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>n</VAR> and <VAR>p</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-poisson_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>poisson_cdf</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>)</I>
+<DD><A NAME="IDX935"></A>
+For each element of <VAR>x</VAR>, compute the cumulative distribution
+function (CDF) at <VAR>x</VAR> of the Poisson distribution with parameter
+lambda.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-poisson_inv}
+<DL>
+<DT><U>Function File:</U>  <B>poisson_inv</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>)</I>
+<DD><A NAME="IDX936"></A>
+For each component of <VAR>x</VAR>, compute the quantile (the inverse of
+the CDF) at <VAR>x</VAR> of the Poisson distribution with parameter
+<VAR>lambda</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-poisson_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>poisson_pdf</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>)</I>
+<DD><A NAME="IDX937"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the poisson distribution with parameter <VAR>lambda</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-poisson_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>poisson_rnd</B> <I>(<VAR>lambda</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX938"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+Poisson distribution with parameter <VAR>lambda</VAR>, which must be a 
+scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the size of <VAR>lambda</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-stdnormal_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>stdnormal_cdf</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX939"></A>
+For each component of <VAR>x</VAR>, compute the CDF of the standard normal
+distribution at <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-stdnormal_inv}
+<DL>
+<DT><U>Function File:</U>  <B>stdnormal_inv</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX940"></A>
+For each component of <VAR>x</VAR>, compute compute the quantile (the
+inverse of the CDF) at <VAR>x</VAR> of the standard normal distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-stdnormal_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>stdnormal_pdf</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX941"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) of the standard normal distribution at <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-stdnormal_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>stdnormal_rnd</B> <I>(<VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX942"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random numbers from the
+standard normal distribution.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-t_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>t_cdf</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX943"></A>
+For each element of <VAR>x</VAR>, compute the CDF at <VAR>x</VAR> of the
+t (Student) distribution with <VAR>n</VAR> degrees of freedom, i.e.,
+PROB (t(<VAR>n</VAR>) &#60;= <VAR>x</VAR>).
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-t_inv}
+<DL>
+<DT><U>Function File:</U>  <B>t_inv</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX944"></A>
+For each component of <VAR>x</VAR>, compute the quantile (the inverse of
+the CDF) at <VAR>x</VAR> of the t (Student) distribution with parameter
+<VAR>n</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-t_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>t_pdf</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX945"></A>
+For each element of <VAR>x</VAR>, compute the probability density function
+(PDF) at <VAR>x</VAR> of the <VAR>t</VAR> (Student) distribution with <VAR>n</VAR>
+degrees of freedom. 
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-t_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>t_rnd</B> <I>(<VAR>n</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX946"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the t
+(Student) distribution with <VAR>n</VAR> degrees of freedom.  <VAR>n</VAR> must
+be a scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the size of <VAR>n</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-uniform_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>uniform_cdf</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX947"></A>
+Return the CDF at <VAR>x</VAR> of the uniform distribution on [<VAR>a</VAR>,
+<VAR>b</VAR>], i.e., PROB (uniform (<VAR>a</VAR>, <VAR>b</VAR>) &#60;= x).
+
+</P>
+<P>
+Default values are <VAR>a</VAR> = 0, <VAR>b</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-uniform_inv}
+<DL>
+<DT><U>Function File:</U>  <B>uniform_inv</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX948"></A>
+For each element of <VAR>x</VAR>, compute the quantile (the inverse of the
+CDF) at <VAR>x</VAR> of the uniform distribution on [<VAR>a</VAR>, <VAR>b</VAR>].
+
+</P>
+<P>
+Default values are <VAR>a</VAR> = 0, <VAR>b</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-uniform_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>uniform_pdf</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX949"></A>
+For each element of <VAR>x</VAR>, compute the PDF at <VAR>x</VAR> of the uniform
+distribution on [<VAR>a</VAR>, <VAR>b</VAR>].
+
+</P>
+<P>
+Default values are <VAR>a</VAR> = 0, <VAR>b</VAR> = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-uniform_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>uniform_rnd</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX950"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+uniform distribution on [<VAR>a</VAR>, <VAR>b</VAR>].  Both <VAR>a</VAR> and <VAR>b</VAR>
+must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>a</VAR> and <VAR>b</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-weibull_cdf}
+<DL>
+<DT><U>Function File:</U>  <B>weibull_cdf</B> <I>(<VAR>x</VAR>, <VAR>alpha</VAR>, <VAR>sigma</VAR>)</I>
+<DD><A NAME="IDX951"></A>
+Compute the cumulative distribution function (CDF) at <VAR>x</VAR> of the
+Weibull distribution with shape parameter <VAR>alpha</VAR> and scale
+parameter <VAR>sigma</VAR>, which is
+
+</P>
+
+<PRE>
+1 - exp(-(x/sigma)^alpha)
+</PRE>
+
+<P>
+for <VAR>x</VAR> &#62;= 0.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-weibull_inv}
+<DL>
+<DT><U>Function File:</U>  <B>weibull_inv</B> <I>(<VAR>x</VAR>, <VAR>lambda</VAR>, <VAR>alpha</VAR>)</I>
+<DD><A NAME="IDX952"></A>
+Compute the quantile (the inverse of the CDF) at <VAR>x</VAR> of the
+Weibull distribution with shape parameter <VAR>alpha</VAR> and scale
+parameter <VAR>sigma</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-weibull_pdf}
+<DL>
+<DT><U>Function File:</U>  <B>weibull_pdf</B> <I>(<VAR>x</VAR>, <VAR>alpha</VAR>, <VAR>sigma</VAR>)</I>
+<DD><A NAME="IDX953"></A>
+Compute the probability density function (PDF) at <VAR>x</VAR> of the
+Weibull distribution with shape parameter <VAR>alpha</VAR> and scale
+parameter <VAR>sigma</VAR> which is given by
+
+</P>
+
+<PRE>
+   alpha * sigma^(-alpha) * x^(alpha-1) * exp(-(x/sigma)^alpha)
+</PRE>
+
+<P>
+for <VAR>x</VAR> &#62; 0.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-weibull_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>weibull_rnd</B> <I>(<VAR>alpha</VAR>, <VAR>sigma</VAR>, <VAR>r</VAR>, <VAR>c</VAR>)</I>
+<DD><A NAME="IDX954"></A>
+Return an <VAR>r</VAR> by <VAR>c</VAR> matrix of random samples from the
+Weibull distribution with parameters <VAR>alpha</VAR> and <VAR>sigma</VAR>
+which must be scalar or of size <VAR>r</VAR> by <VAR>c</VAR>.
+
+</P>
+<P>
+If <VAR>r</VAR> and <VAR>c</VAR> are omitted, the size of the result matrix is
+the common size of <VAR>alpha</VAR> and <VAR>sigma</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-wiener_rnd}
+<DL>
+<DT><U>Function File:</U>  <B>wiener_rnd</B> <I>(<VAR>t</VAR>, <VAR>d</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX955"></A>
+Return a simulated realization of the <VAR>d</VAR>-dimensional Wiener Process
+on the interval [0,<VAR>t</VAR>].  If <VAR>d</VAR> is omitted, <VAR>d</VAR> = 1 is
+used. The first column of the return matrix contains time, the
+remaining columns contain the Wiener process.
+
+</P>
+<P>
+The optional parameter <VAR>n</VAR> gives the number of summands used for
+simulating the process over an interval of length 1.  If <VAR>n</VAR> is
+omitted, <VAR>n</VAR> = 1000 is used.
+</DL>
+
+</P>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_24.html">previous</A>, <A HREF="octave_26.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

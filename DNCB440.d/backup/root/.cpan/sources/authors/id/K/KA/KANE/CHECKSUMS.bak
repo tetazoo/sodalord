@@ -1,0 +1,252 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Fri Oct 17 12:41:57 2003 by CPAN::Checksums (v1.016)
+$cksum = {
+  'Pod-Template-0.01.tar.gz' => {
+    'mtime' => '2003-09-07',
+    'md5-ungz' => '9260fb448bb8b916e079efdf11849f2d',
+    'md5' => '5cc71dfc819958fecbe4f7a33a62a840',
+    'size' => 7739
+  },
+  'CPANPLUS-0.041.tar.gz' => {
+    'mtime' => '2003-01-04',
+    'md5-ungz' => 'ee849ab5a0744f0b92269dd13a77569c',
+    'md5' => '0bae0df6b269e56a03f4d7f2228abed6',
+    'size' => 294591
+  },
+  'Acme-Test-0.03.tar.gz' => {
+    'mtime' => '2003-10-10',
+    'md5-ungz' => '884ecd21abf9d241f833a85304c7c685',
+    'md5' => '8730f4ac1e44233d53ef9dc718993f93',
+    'size' => 3048
+  },
+  'Archive-Tar-1.04.tar.gz' => {
+    'mtime' => '2003-07-27',
+    'md5-ungz' => '671450c7be74b04b96b1750abf06743e',
+    'md5' => '4a608141b674f2c854581157ad50be8a',
+    'size' => 21085
+  },
+  'Acme-POE-Knee-1.10.zip' => {
+    'mtime' => '2001-08-23',
+    'md5' => '6314eb799a0f2d7b22595bc7ad3df369',
+    'size' => 6625
+  },
+  'Archive-Tar-0.23.tgz' => {
+    'mtime' => '2003-01-21',
+    'md5' => 'e8b73ec9e7925ab84461fc9ecb23bd9b',
+    'size' => 17614
+  },
+  'Pod-Template-0.02.tar.gz' => {
+    'mtime' => '2003-09-09',
+    'md5-ungz' => 'e85f0fff1b47a6d0038379161e1ffdf0',
+    'md5' => 'eedd09c60500ac485820417ec802a811',
+    'size' => 7823
+  },
+  'Archive-Tar-1.02.tar.gz' => {
+    'mtime' => '2003-06-12',
+    'md5-ungz' => '61f1d5e12ddf297349fb45820e95901f',
+    'md5' => '25f86cc5f4eaf81f66823b31d19f6d45',
+    'size' => 20559
+  },
+  'Acme-Comment-1.01.zip' => {
+    'mtime' => '2002-08-13',
+    'md5' => '6c1a7d782ac9343d84ad8936f27b368b',
+    'size' => 8171
+  },
+  'Config-Auto-0.04.tar.gz' => {
+    'mtime' => '2003-09-07',
+    'md5-ungz' => '1fbfbcefea999fe830f6c6ee4bb9b473',
+    'md5' => '8070d1954ff43c6af4b3d7820e2e390d',
+    'size' => 6182
+  },
+  'Acme-Test-0.02.tar.gz' => {
+    'mtime' => '2003-10-05',
+    'md5-ungz' => '2efce0c6f67f96cd68cb215f6c1225aa',
+    'md5' => 'c9a405f81b781e54c301af8b42e079b5',
+    'size' => 3058
+  },
+  'Term-UI-0.02.tar.gz' => {
+    'mtime' => '2003-05-10',
+    'md5-ungz' => '2bd31a6e196e6fcb82be672ff3e02d05',
+    'md5' => '20e6399cbf4f2de3a991cb848b3553c7',
+    'size' => 4944
+  },
+  'Archive-Tar-1.01.tar.gz' => {
+    'mtime' => '2003-06-08',
+    'md5-ungz' => '7a2bfc4f1ea7bdc49c052399724513fe',
+    'md5' => 'e8b178b94ccde709d792eb729eec14c5',
+    'size' => 20304
+  },
+  'Tools-0.04.tar.gz' => {
+    'mtime' => '2002-12-23',
+    'md5-ungz' => 'b844b31d3d50f6c478cf20235085ab4d',
+    'md5' => '7e1dde82a8b606e96de44c8c88588e55',
+    'size' => 29820
+  },
+  'Archive-Tar-1.05.tar.gz' => {
+    'mtime' => '2003-08-25',
+    'md5-ungz' => 'fa754eb6d3a3822e9fa58952bc9f5f63',
+    'md5' => '27e5132b087731ee96b008c4ef5a207c',
+    'size' => 21355
+  },
+  'Acme-Comment-1.02.tar.gz' => {
+    'mtime' => '2002-09-04',
+    'md5-ungz' => '394a489ff5925ef40b3ca574a03e87f7',
+    'md5' => 'ff89fa9ae4346027732ff68a0c7dc2d0',
+    'size' => 7110
+  },
+  'Carp-Trace-0.01.tar.gz' => {
+    'mtime' => '2003-04-17',
+    'md5-ungz' => '6da892aed933decc10ea9237240e52c3',
+    'md5' => 'b8ddc63a70a476d82f9e907a2e03c3c8',
+    'size' => 2302
+  },
+  'Archive-Tar-1.00.tar.gz' => {
+    'mtime' => '2003-05-31',
+    'md5-ungz' => '8a29c56fab35a9abcefdba3af8f50447',
+    'md5' => '5cc40ab6ef13a95e5f7eedd4db8ea4c4',
+    'size' => 19688
+  },
+  'Module-Load-Conditional-0.04.tar.gz' => {
+    'mtime' => '2003-10-05',
+    'md5-ungz' => '8b96eba33671e8c6d19be03741ce846e',
+    'md5' => 'f10b8a992ec0aa9ccd92570ee47a61e1',
+    'size' => 6345
+  },
+  'Params-Check-0.02.tar.gz' => {
+    'mtime' => '2003-05-10',
+    'md5-ungz' => '2f1a23e64ea553fcd1c8e35be85c5d7c',
+    'md5' => 'bd32b3c7e3cf9310a3260e58c31f2371',
+    'size' => 7590
+  },
+  'Module-Load-Conditional-0.03.tar.gz' => {
+    'mtime' => '2003-05-31',
+    'md5-ungz' => '232f396a68d331109a793ed1aada6562',
+    'md5' => '6f93673c3edbf2fe0d176e9641852211',
+    'size' => 6307
+  },
+  'CPANPLUS-0.042.tar.gz' => {
+    'mtime' => '2003-01-12',
+    'md5-ungz' => '40c37b63dfea13a3a65265c449155b24',
+    'md5' => 'd9d9330fb13a9e5ab68593fdf419b7a1',
+    'size' => 261888
+  },
+  'No-Die-0.01.tar.gz' => {
+    'mtime' => '2003-05-10',
+    'md5-ungz' => '8ba7eafccb8cd5af136d52e63f0cb669',
+    'md5' => 'd3844eee97bfb478abb8e15586e14a05',
+    'size' => 3118
+  },
+  'Module-Load-0.05.tar.gz' => {
+    'mtime' => '2003-05-05',
+    'md5-ungz' => '1c0bfeac44511afa31bf39172351761b',
+    'md5' => 'd56af750129b8a492c2d4aa7577a0eb2',
+    'size' => 3108
+  },
+  'IPC-Cmd-0.02.tar.gz' => {
+    'mtime' => '2003-05-10',
+    'md5-ungz' => 'aaeacbbceb6573f9ca0f28e7edc5a619',
+    'md5' => '18ae5f2265d19aa0ba6908357cdfad62',
+    'size' => 5777
+  },
+  'Module-Load-Conditional-0.02.tar.gz' => {
+    'mtime' => '2003-05-10',
+    'md5-ungz' => '69f22e13b5189553626cbba974d75a73',
+    'md5' => 'b5eff136faeb7ce9d43c92671a047afa',
+    'size' => 6223
+  },
+  'IPC-Cmd-0.03.tar.gz' => {
+    'mtime' => '2003-05-11',
+    'md5-ungz' => '240286391959a559cd65364a53874330',
+    'md5' => '5b3d8f5560ed052e0498af70723a21c0',
+    'size' => 5774
+  },
+  'Params-Check-0.04.tar.gz' => {
+    'mtime' => '2003-09-18',
+    'md5-ungz' => '77476ee209e87e5a83b78befbe25f643',
+    'md5' => 'ae1df2bf790600dfb3d3fce9c137fd12',
+    'size' => 8787
+  },
+  'CPANPLUS-0.036.tar.gz' => {
+    'mtime' => '2002-07-26',
+    'md5-ungz' => 'd38f9673390456e37500d49cfbfcf8fc',
+    'md5' => '099798dffb18337d9848039323934eac',
+    'size' => 195629
+  },
+  'Archive-Tar-1.06.tar.gz' => {
+    'mtime' => '2003-10-15',
+    'md5-ungz' => 'a2a6210bc7d893ba2b6bbec4e8b50c83',
+    'md5' => '57bacd4d36e95f8e0da67e38a93abbf9',
+    'size' => 22060
+  },
+  'Archive-Tar-1.03.tar.gz' => {
+    'mtime' => '2003-06-26',
+    'md5-ungz' => '86245a7460c7457de2df37b0475f8e7f',
+    'md5' => '0ca42d658ae28d6c7df371d07b0b83ea',
+    'size' => 20993
+  },
+  'Term-UI-0.03.tar.gz' => {
+    'mtime' => '2003-10-05',
+    'md5-ungz' => '3fff888f982b41609578e8cfdd233dc5',
+    'md5' => 'f126d572aaccceb3c0fe4d6cefccdaab',
+    'size' => 5026
+  },
+  'Log-Message-0.01.tar.gz' => {
+    'mtime' => '2003-05-10',
+    'md5-ungz' => '6f5362151069d52b406301657c04161f',
+    'md5' => 'f04298e81488a5a39930fd417d47656e',
+    'size' => 10879
+  },
+  'Acme-Comment-1.00.tar.gz' => {
+    'mtime' => '2002-05-12',
+    'md5-ungz' => '166b8df707a22180a46c9042bd0deef8',
+    'md5' => 'dec0c064ba3055042fecffc5e0add648',
+    'size' => 6272
+  },
+  'No-Die-0.02.tar.gz' => {
+    'mtime' => '2003-05-11',
+    'md5-ungz' => 'fcdb95c39855e6944df0a35a7be3697f',
+    'md5' => '7be285c1f4c02361123cf42179cf44b2',
+    'size' => 3134
+  },
+  'IPC-Cmd-0.04.tar.gz' => {
+    'mtime' => '2003-09-25',
+    'md5-ungz' => 'aaac8cb4323a49f8ef41783fdd339cf0',
+    'md5' => '489d15eeb6d693f259312d4173da19bb',
+    'size' => 5853
+  },
+  'CPANPLUS-0.040.tar.gz' => {
+    'mtime' => '2002-11-04',
+    'md5-ungz' => 'c3c535d89a17010f56ee30b6c53140e8',
+    'md5' => 'f92c95e69433cc3cad9d06da3ca3e05d',
+    'size' => 263954
+  },
+  'Params-Check-0.03.tar.gz' => {
+    'mtime' => '2003-05-14',
+    'md5-ungz' => 'b54583e6728a6a8b649fc6fe5de61689',
+    'md5' => '284eb0fcbeec05bb258d63d223317f8c',
+    'size' => 8096
+  },
+  'Acme-Intraweb-1.01.tar.gz' => {
+    'mtime' => '2002-09-08',
+    'md5-ungz' => '795b67d56dd5a7a0bbebd80576912817',
+    'md5' => '846cc55a0c595f142b80c7dff7e4bbf2',
+    'size' => 7571
+  },
+  'Archive-Tar-1.07.tar.gz' => {
+    'mtime' => '2003-10-17',
+    'md5-ungz' => '31ed20035d3af9705d15f8acf0342a7e',
+    'md5' => '1fa34d7dc4ee663007043717254e0671',
+    'size' => 22961
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQE/j+OVMo2oZ0UPiewRAvtqAJ0aKld/MlxeYfrbNpbU2P4qXz+YagCfW+qE
+s6I+ghoL8hfNzbqlyMrw0A8=
+=3HmJ
+-----END PGP SIGNATURE-----

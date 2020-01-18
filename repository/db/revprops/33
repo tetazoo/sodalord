@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-10-18T00:21:05.607698Z
+K 7
+svn:log
+V 191
+updated sodawebflavor.py to have links with flavor name to the page with the stats for that flavor. also added cash sales stats (which should really just be the same as the cash user's stats)
+END

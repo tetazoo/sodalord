@@ -1,0 +1,7 @@
+AuthName "Comics"
+AuthType Basic
+AuthUserFile /etc/httpd/conf/passwd
+
+<Limit GET POST PUT>
+require valid-user
+</Limit>

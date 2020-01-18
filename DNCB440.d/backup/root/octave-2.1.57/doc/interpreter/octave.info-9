@@ -1,0 +1,1362 @@
+This is octave.info, produced by makeinfo version 4.5 from octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: Tests,  Next: Models,  Prev: Basic Statistical Functions,  Up: Statistics
+
+Tests
+=====
+
+ - Function File: [PVAL, F, DF_B, DF_W] = anova (Y, G)
+     Perform a one-way analysis of variance (ANOVA).  The goal is to
+     test whether the population means of data taken from K different
+     groups are all equal.
+
+     Data may be given in a single vector Y with groups specified by a
+     corresponding vector of group labels G (e.g., numbers from 1 to
+     K). This is the general form which does not impose any restriction
+     on the number of data in each group or the group labels.
+
+     If Y is a matrix and G is omitted, each column of Y is treated as
+     a group.  This form is only appropriate for balanced ANOVA in
+     which the numbers of samples from each group are all equal.
+
+     Under the null of constant means, the statistic F follows an F
+     distribution with DF_B and DF_W degrees of freedom.
+
+     The p-value (1 minus the CDF of this distribution at F) is
+     returned in PVAL.
+
+     If no output argument is given, the standard one-way ANOVA table is
+     printed.
+
+ - Function File: [PVAL, CHISQ, DF] = bartlett_test (X1, ...)
+     Perform a Bartlett test for the homogeneity of variances in the
+     data vectors X1, X2, ..., XK, where K > 1.
+
+     Under the null of equal variances, the test statistic CHISQ
+     approximately ollows a chi-square distribution with DF degrees of
+     freedom.
+
+     The p-value (1 minus the CDF of this distribution at CHISQ) is
+     returned in PVAL.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File: [PVAL, CHISQ, DF] = chisquare_test_homogeneity (X, Y,
+          C)
+     Given two samples X and Y, perform a chisquare test for
+     homogeneity of the null hypothesis that X and Y come from the same
+     distribution, based on the partition induced by the (strictly
+     increasing) entries of C.
+
+     For large samples, the test statistic CHISQ approximately follows a
+     chisquare distribution with DF = `length (C)' degrees of freedom.
+
+     The p-value (1 minus the CDF of this distribution at CHISQ) is
+     returned in PVAL.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File: [PVAL, CHISQ, DF] = chisquare_test_independence (X)
+     Perform a chi-square test for indepence based on the contingency
+     table X.  Under the null hypothesis of independence, CHISQ
+     approximately has a chi-square distribution with DF degrees of
+     freedom.
+
+     The p-value (1 minus the CDF of this distribution at chisq) of the
+     test is returned in PVAL.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File:  cor_test (X, Y, ALT, METHOD)
+     Test whether two samples X and Y come from uncorrelated
+     populations.
+
+     The optional argument string ALT describes the alternative
+     hypothesis, and can be `"!="' or `"<>"' (non-zero), `">"' (greater
+     than 0), or `"<"' (less than 0).  The default is the two-sided
+     case.
+
+     The optional argument string METHOD specifies on which correlation
+     coefficient the test should be based.  If METHOD is `"pearson"'
+     (default), the (usual) Pearson's product moment correlation
+     coefficient is used.  In this case, the data should come from a
+     bivariate normal distribution.  Otherwise, the other two methods
+     offer nonparametric alternatives. If METHOD is `"kendall"', then
+     Kendall's rank correlation tau is used.  If METHOD is
+     `"spearman"', then Spearman's rank correlation rho is used.  Only
+     the first character is necessary.
+
+     The output is a structure with the following elements:
+
+    PVAL
+          The p-value of the test.
+
+    STAT
+          The value of the test statistic.
+
+    DIST
+          The distribution of the test statistic.
+
+    PARAMS
+          The parameters of the null distribution of the test statistic.
+
+    ALTERNATIVE
+          The alternative hypothesis.
+
+    METHOD
+          The method used for testing.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File: [PVAL, F, DF_NUM, DF_DEN] = f_test_regression (Y, X,
+          RR, R)
+     Perform an F test for the null hypothesis rr * b = r in a classical
+     normal regression model y = X * b + e.
+
+     Under the null, the test statistic F follows an F distribution
+     with DF_NUM and DF_DEN degrees of freedom.
+
+     The p-value (1 minus the CDF of this distribution at F) is
+     returned in PVAL.
+
+     If not given explicitly, R = 0.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File: [PVAL, TSQ] = hotelling_test (X, M)
+     For a sample X from a multivariate normal distribution with unknown
+     mean and covariance matrix, test the null hypothesis that `mean
+     (X) == M'.
+
+     Hotelling's T^2 is returned in TSQ.  Under the null, (n-p) T^2 /
+     (p(n-1)) has an F distribution with p and n-p degrees of freedom,
+     where n and p are the numbers of samples and variables,
+     respectively.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, TSQ] = hotelling_test_2 (X, Y)
+     For two samples X from multivariate normal distributions with the
+     same number of variables (columns), unknown means and unknown
+     equal covariance matrices, test the null hypothesis `mean (X) ==
+     mean (Y)'.
+
+     Hotelling's two-sample T^2 is returned in TSQ.  Under the null,
+
+          (n_x+n_y-p-1) T^2 / (p(n_x+n_y-2))
+
+     has an F distribution with p and n_x+n_y-p-1 degrees of freedom,
+     where n_x and n_y are the sample sizes and p is the number of
+     variables.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, KS] = kolmogorov_smirnov_test (X, DIST,
+          PARAMS, ALT)
+     Perform a Kolmogorov-Smirnov test of the null hypothesis that the
+     sample X comes from the (continuous) distribution dist. I.e., if F
+     and G are the CDFs corresponding to the sample and dist,
+     respectively, then the null is that F == G.
+
+     The optional argument PARAMS contains a list of parameters of
+     DIST.  For example, to test whether a sample X comes from a
+     uniform distribution on [2,4], use
+
+          kolmogorov_smirnov_test(x, "uniform", 2, 4)
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative F != G.  In this case, the test
+     statistic KS follows a two-sided Kolmogorov-Smirnov distribution.
+     If ALT is `">"', the one-sided alternative F > G is considered.
+     Similarly for `"<"', the one-sided alternative F > G is
+     considered.  In this case, the test statistic KS has a one-sided
+     Kolmogorov-Smirnov distribution.  The default is the two-sided
+     case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File: [PVAL, KS, D] = kolmogorov_smirnov_test_2 (X, Y, ALT)
+     Perform a 2-sample Kolmogorov-Smirnov test of the null hypothesis
+     that the samples X and Y come from the same (continuous)
+     distribution.  I.e., if F and G are the CDFs corresponding to the
+     X and Y samples, respectively, then the null is that F == G.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative F != G.  In this case, the test
+     statistic KS follows a two-sided Kolmogorov-Smirnov distribution.
+     If ALT is `">"', the one-sided alternative F > G is considered.
+     Similarly for `"<"', the one-sided alternative F < G is
+     considered.  In this case, the test statistic KS has a one-sided
+     Kolmogorov-Smirnov distribution.  The default is the two-sided
+     case.
+
+     The p-value of the test is returned in PVAL.
+
+     The third returned value, D, is the test statistic, the maximum
+     vertical distance between the two cumulative distribution
+     functions.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File: [PVAL, K, DF] = kruskal_wallis_test (X1, ...)
+     Perform a Kruskal-Wallis one-factor "analysis of variance".
+
+     Suppose a variable is observed for K > 1 different groups, and let
+     X1, ..., XK be the corresponding data vectors.
+
+     Under the null hypothesis that the ranks in the pooled sample are
+     not affected by the group memberships, the test statistic K is
+     approximately chi-square with DF = K - 1 degrees of freedom.
+
+     The p-value (1 minus the CDF of this distribution at K) is
+     returned in PVAL.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File:  manova (Y, G)
+     Perform a one-way multivariate analysis of variance (MANOVA). The
+     goal is to test whether the p-dimensional population means of data
+     taken from K different groups are all equal.  All data are assumed
+     drawn independently from p-dimensional normal distributions with
+     the same covariance matrix.
+
+     The data matrix is given by Y.  As usual, rows are observations
+     and columns are variables.  The vector G specifies the
+     corresponding group labels (e.g., numbers from 1 to K).
+
+     The LR test statistic (Wilks' Lambda) and approximate p-values are
+     computed and displayed.
+
+ - Function File: [PVAL, CHISQ, DF] = mcnemar_test (X)
+     For a square contingency table X of data cross-classified on the
+     row and column variables, McNemar's test can be used for testing
+     the null hypothesis of symmetry of the classification
+     probabilities.
+
+     Under the null, CHISQ is approximately distributed as chisquare
+     with DF degrees of freedom.
+
+     The p-value (1 minus the CDF of this distribution at CHISQ) is
+     returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, Z] = prop_test_2 (X1, N1, X2, N2, ALT)
+     If X1 and N1 are the counts of successes and trials in one sample,
+     and X2 and N2 those in a second one, test the null hypothesis that
+     the success probabilities P1 and P2 are the same.  Under the null,
+     the test statistic Z approximately follows a standard normal
+     distribution.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative P1 != P2.  If ALT is `">"', the
+     one-sided alternative P1 > P2 is used.  Similarly for `"<"', the
+     one-sided alternative P1 < P2 is used.  The default is the
+     two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, CHISQ] = run_test (X)
+     Perform a chi-square test with 6 degrees of freedom based on the
+     upward runs in the columns of X.  Can be used to test whether X
+     contains independent data.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value is displayed.
+
+ - Function File: [PVAL, B, N] = sign_test (X, Y, ALT)
+     For two matched-pair samples X and Y, perform a sign test of the
+     null hypothesis PROB (X > Y) == PROB (X < Y) == 1/2.  Under the
+     null, the test statistic B roughly follows a binomial distribution
+     with parameters `N = sum (X != Y)' and P = 1/2.
+
+     With the optional argument `alt', the alternative of interest can
+     be selected.  If ALT is `"!="' or `"<>"', the null hypothesis is
+     tested against the two-sided alternative PROB (X < Y) != 1/2.  If
+     ALT is `">"', the one-sided alternative PROB (X > Y) > 1/2 ("x is
+     stochastically greater than y") is considered.  Similarly for
+     `"<"', the one-sided alternative PROB (X > Y) < 1/2 ("x is
+     stochastically less than y") is considered.  The default is the
+     two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, T, DF] = t_test (X, M, ALT)
+     For a sample X from a normal distribution with unknown mean and
+     variance, perform a t-test of the null hypothesis `mean (X) == M'.
+     Under the null, the test statistic T follows a Student
+     distribution with `DF = length (X) - 1' degrees of freedom.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative `mean (X) != M'.  If ALT is
+     `">"', the one-sided alternative `mean (X) > M' is considered.
+     Similarly for "<", the one-sided alternative `mean (X) < M' is
+     considered,  The default is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, T, DF] = t_test_2 (X, Y, ALT)
+     For two samples x and y from normal distributions with unknown
+     means and unknown equal variances, perform a two-sample t-test of
+     the null hypothesis of equal means.  Under the null, the test
+     statistic T follows a Student distribution with DF degrees of
+     freedom.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative `mean (X) != mean (Y)'.  If ALT
+     is `">"', the one-sided alternative `mean (X) > mean (Y)' is used.
+     Similarly for `"<"', the one-sided alternative `mean (X) < mean
+     (Y)' is used.  The default is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, T, DF] = t_test_regression (Y, X, RR, R, ALT)
+     Perform an t test for the null hypothesis `RR * B = R' in a
+     classical normal regression model `Y = X * B + E'.  Under the
+     null, the test statistic T follows a T distribution with DF
+     degrees of freedom.
+
+     If R is omitted, a value of 0 is assumed.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative `RR * B != R'.  If ALT is `">"',
+     the one-sided alternative `RR * B > R' is used.  Similarly for
+     "<", the one-sided alternative `RR * B < R' is used.  The default
+     is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, Z] = u_test (X, Y, ALT)
+     For two samples X and Y, perform a Mann-Whitney U-test of the null
+     hypothesis PROB (X > Y) == 1/2 == PROB (X < Y).  Under the null,
+     the test statistic Z approximately follows a standard normal
+     distribution.  Note that this test is equivalent to the Wilcoxon
+     rank-sum test.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative PROB (X > Y) != 1/2.  If ALT is
+     `">"', the one-sided alternative PROB (X > Y) > 1/2 is considered.
+     Similarly for `"<"', the one-sided alternative PROB (X > Y) < 1/2
+     is considered,  The default is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, F, DF_NUM, DF_DEN] = var_test (X, Y, ALT)
+     For two samples X and Y from normal distributions with unknown
+     means and unknown variances, perform an F-test of the null
+     hypothesis of equal variances.  Under the null, the test statistic
+     f follows an F-distribution with df_num and df_den degrees of
+     freedom.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative `var (X) != var (Y)'.  If ALT is
+     `">"', the one-sided alternative `var (X) > var (Y)' is used.
+     Similarly for "<", the one-sided alternative `var (X) > var (Y)'
+     is used.  The default is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, T, DF] = welch_test (X, Y, ALT)
+     For two samples X and Y from normal distributions with unknown
+     means and unknown and not necessarily equal variances, perform a
+     Welch test of the null hypothesis of equal means.  Under the null,
+     the test statistic t approximately follows a Student distribution
+     with df degrees of freedom.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative `mean (X) != M'.  If ALT is
+     `">"', the one-sided alternative mean(x) > M is considered.
+     Similarly for `"<"', the one-sided alternative mean(x) < M is
+     considered.  The default is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, Z] = wilcoxon_test (X, Y, ALT)
+     For two matched-pair sample vectors X and Y, perform a Wilcoxon
+     signed-rank test of the null hypothesis PROB (X > Y) == 1/2.
+     Under the null, the test statistic Z approximately follows a
+     standard normal distribution.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative PROB (X > Y) != 1/2.  If alt is
+     `">"', the one-sided alternative PROB (X > Y) > 1/2 is considered.
+     Similarly for `"<"', the one-sided alternative PROB (X > Y) < 1/2
+     is considered.  The default is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed.
+
+ - Function File: [PVAL, Z] = z_test (X, M, V, ALT)
+     Perform a Z-test of the null hypothesis `mean (X) == M' for a
+     sample X from a normal distribution with unknown mean and known
+     variance V.  Under the null, the test statistic Z follows a
+     standard normal distribution.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative `mean (X) != M'.  If ALT is
+     `">"', the one-sided alternative `mean (X) > M' is considered.
+     Similarly for `"<"', the one-sided alternative `mean (X) < M' is
+     considered.  The default is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed along with some information.
+
+ - Function File: [PVAL, Z] = z_test_2 (X, Y, V_X, V_Y, ALT)
+     For two samples X and Y from normal distributions with unknown
+     means and known variances V_X and V_Y, perform a Z-test of the
+     hypothesis of equal means.  Under the null, the test statistic Z
+     follows a standard normal distribution.
+
+     With the optional argument string ALT, the alternative of interest
+     can be selected.  If ALT is `"!="' or `"<>"', the null is tested
+     against the two-sided alternative `mean (X) != mean (Y)'.  If alt
+     is `">"', the one-sided alternative `mean (X) > mean (Y)' is used.
+     Similarly for `"<"', the one-sided alternative `mean (X) < mean
+     (Y)' is used.  The default is the two-sided case.
+
+     The p-value of the test is returned in PVAL.
+
+     If no output argument is given, the p-value of the test is
+     displayed along with some information.
+
+
+File: octave.info,  Node: Models,  Next: Distributions,  Prev: Tests,  Up: Statistics
+
+Models
+======
+
+ - Functio File: [THETA, BETA, DEV, DL, D2L, P] = logistic_regression
+          (Y, X, PRINT, THETA, BETA)
+     Perform ordinal logistic regression.
+
+     Suppose Y takes values in K ordered categories, and let `gamma_i
+     (X)' be the cumulative probability that Y falls in one of the
+     first I categories given the covariate X.  Then
+
+          [theta, beta] = logistic_regression (y, x)
+
+     fits the model
+
+          logit (gamma_i (x)) = theta_i - beta' * x,   i = 1, ..., k-1
+
+     The number of ordinal categories, K, is taken to be the number of
+     distinct values of `round (Y)'.  If K equals 2, Y is binary and
+     the model is ordinary logistic regression.  The matrix X is
+     assumed to have full column rank.
+
+     Given Y only, `theta = logistic_regression (y)' fits the model
+     with baseline logit odds only.
+
+     The full form is
+
+          [theta, beta, dev, dl, d2l, gamma]
+             = logistic_regression (y, x, print, theta, beta)
+
+     in which all output arguments and all input arguments except Y are
+     optional.
+
+     Stting PRINT to 1 requests summary information about the fitted
+     model to be displayed.  Setting PRINT to 2 requests information
+     about convergence at each iteration.  Other values request no
+     information to be displayed.  The input arguments THETA and BETA
+     give initial estimates for THETA and BETA.
+
+     The returned value DEV holds minus twice the log-likelihood.
+
+     The returned values DL and D2L are the vector of first and the
+     matrix of second derivatives of the log-likelihood with respect to
+     THETA and BETA.
+
+     P holds estimates for the conditional distribution of Y given X.
+
+
+File: octave.info,  Node: Distributions,  Prev: Models,  Up: Statistics
+
+Distributions
+=============
+
+ - Function File:  beta_cdf (X, A, B)
+     For each element of X, returns the CDF at X of the beta
+     distribution with parameters A and B, i.e., PROB (beta (A, B) <=
+     X).
+
+ - Function File:  beta_inv (X, A, B)
+     For each component of X, compute the quantile (the inverse of the
+     CDF) at X of the Beta distribution with parameters A and B.
+
+ - Function File:  beta_pdf (X, A, B)
+     For each element of X, returns the PDF at X of the beta
+     distribution with parameters A and B.
+
+ - Function File:  beta_rnd (A, B, R, C)
+     Return an R by C matrix of random samples from the Beta
+     distribution with parameters A and B.  Both A and B must be scalar
+     or of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of A and B.
+
+ - Function File:  binomial_cdf (X, N, P)
+     For each element of X, compute the CDF at X of the binomial
+     distribution with parameters N and P.
+
+ - Function File:  binomial_inv (X, N, P)
+     For each element of X, compute the quantile at X of the binomial
+     distribution with parameters N and P.
+
+ - Function File:  binomial_pdf (X, N, P)
+     For each element of X, compute the probability density function
+     (PDF) at X of the binomial distribution with parameters N and P.
+
+ - Function File:  binomial_rnd (N, P, R, C)
+     Return an R by C matrix of random samples from the binomial
+     distribution with parameters N and P.  Both N and P must be scalar
+     or of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of N and P.
+
+ - Function File:  cauchy_cdf (X, LAMBDA, SIGMA)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the Cauchy distribution with location
+     parameter LAMBDA and scale parameter SIGMA.  Default values are
+     LAMBDA = 0, SIGMA = 1.
+
+ - Function File:  cauchy_inv (X, LAMBDA, SIGMA)
+     For each element of X, compute the quantile (the inverse of the
+     CDF) at X of the Cauchy distribution with location parameter
+     LAMBDA and scale parameter SIGMA.  Default values are LAMBDA = 0,
+     SIGMA = 1.
+
+ - Function File:  cauchy_pdf (X, LAMBDA, SIGMA)
+     For each element of X, compute the probability density function
+     (PDF) at X of the Cauchy distribution with location parameter
+     LAMBDA and scale parameter SIGMA > 0.  Default values are LAMBDA =
+     0, SIGMA = 1.
+
+ - Function File:  cauchy_rnd (LAMBDA, SIGMA, R, C)
+     Return an R by C matrix of random samples from the Cauchy
+     distribution with parameters LAMBDA and SIGMA which must both be
+     scalar or of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of LAMBDA and SIGMA.
+
+ - Function File:  chisquare_cdf (X, N)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the chisquare distribution with N degrees
+     of freedom.
+
+ - Function File:  chisquare_inv (X, N)
+     For each element of X, compute the quantile (the inverse of the
+     CDF) at X of the chisquare distribution with N degrees of freedom.
+
+ - Function File:  chisquare_pdf (X, N)
+     For each element of X, compute the probability density function
+     (PDF) at X of the chisquare distribution with K degrees of freedom.
+
+ - Function File:  chisquare_rnd (N, R, C)
+     Return an R by C matrix of random samples from the chisquare
+     distribution with N degrees of freedom.  N must be a scalar or of
+     size R by C.
+
+     If R and C are omitted, the size of the result matrix is the size
+     of N.
+
+ - Function File:  discrete_cdf (X, V, P)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of a univariate discrete distribution which
+     assumes the values in v with probabilities P.
+
+ - Function File:  discrete_inv (X, V, P)
+     For each component of X, compute the quantile (the inverse of the
+     CDF) at X of the univariate distribution which assumes the values
+     in V with probabilities P.
+
+ - Function File:  discrete_pdf (X, V, P)
+     For each element of X, compute the probability density function
+     (pDF) at X of a univariate discrete distribution which assumes the
+     values in V with probabilities P.
+
+ - Function File:  discrete_rnd (N, V, P)
+     Generate a row vector containing a random sample of size N from
+     the univariate distribution which assumes the values in V with
+     probabilities P.
+
+     Currently, N must be a scalar.
+
+ - Function File:  empirical_cdf (X, DATA)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the empirical distribution obtained from
+     the univariate sample DATA.
+
+ - Function File:  empirical_inv (X, DATA)
+     For each element of X, compute the quantile (the inverse of the
+     CDF) at X of the empirical distribution obtained from the
+     univariate sample DATA.
+
+ - Function File:  empirical_pdf (X, DATA)
+     For each element of X, compute the probability density function
+     (PDF) at X of the empirical distribution obtained from the
+     univariate sample DATA.
+
+ - Function File:  empirical_rnd (N, DATA)
+     Generate a bootstrap sample of size N from the empirical
+     distribution obtained from the univariate sample DATA.
+
+ - Function File:  exponential_cdf (X, LAMBDA)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the exponential distribution with parameter
+     LAMBDA.
+
+     The arguments can be of common size or scalar.
+
+ - Function File:  exponential_inv (X, LAMBDA)
+     For each element of X, compute the quantile (the inverse of the
+     CDF) at X of the exponential distribution with parameter LAMBDA.
+
+ - Function File:  exponential_pdf (X, LAMBDA)
+     For each element of X, compute the probability density function
+     (PDF) of the exponential distribution with parameter LAMBDA.
+
+ - Function File:  exponential_rnd (LAMBDA, R, C)
+     Return an R by C matrix of random samples from the exponential
+     distribution with parameter LAMBDA, which must be a scalar or of
+     size R by C.
+
+     If R and C are omitted, the size of the result matrix is the size
+     of LAMBDA.
+
+ - Function File:  f_cdf (X, M, N)
+     For each element of X, compute the CDF at X of the F distribution
+     with M and N degrees of freedom, i.e., PROB (F (M, N) <= X).
+
+ - Function File:  f_inv (X, M, N)
+     For each component of X, compute the quantile (the inverse of the
+     CDF) at X of the F distribution with parameters M and N.
+
+ - Function File:  f_pdf (X, M, N)
+     For each element of X, compute the probability density function
+     (PDF) at X of the F distribution with M and N degrees of freedom.
+
+ - Function File:  f_rnd (M, N, R, C)
+     Return an R by C matrix of random samples from the F distribution
+     with M and N degrees of freedom.  Both M and N must be scalar or
+     of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of M and N.
+
+ - Function File:  gamma_cdf (X, A, B)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the Gamma distribution with parameters A
+     and B.
+
+ - Function File:  gamma_inv (X, A, B)
+     For each component of X, compute the quantile (the inverse of the
+     CDF) at X of the Gamma distribution with parameters A and B.
+
+ - Function File:  gamma_pdf (X, A, B)
+     For each element of X, return the probability density function
+     (PDF) at X of the Gamma distribution with parameters A and B.
+
+ - Function File:  gamma_rnd (A, B, R, C)
+     Return an R by C matrix of random samples from the Gamma
+     distribution with parameters A and B.  Both A and B must be scalar
+     or of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of A and B.
+
+ - Function File:  geometric_cdf (X, P)
+     For each element of X, compute the CDF at X of the geometric
+     distribution with parameter P.
+
+ - Function File:  geometric_inv (X, P)
+     For each element of X, compute the quantile at X of the geometric
+     distribution with parameter P.
+
+ - Function File:  geometric_pdf (X, P)
+     For each element of X, compute the probability density function
+     (PDF) at X of the geometric distribution with parameter P.
+
+ - Function File:  geometric_rnd (P, R, C)
+     Return an R by C matrix of random samples from the geometric
+     distribution with parameter P, which must be a scalar or of size R
+     by C.
+
+     If R and C are omitted, the size of the result matrix is the size
+     of P.
+
+ - Function File:  hypergeometric_cdf (X, M, T, N)
+     Compute the cumulative distribution function (CDF) at X of the
+     hypergeometric distribution with parameters M, T, and N.  This is
+     the probability of obtaining not more than X marked items when
+     randomly drawing a sample of size N without replacement from a
+     population of total size T containing M marked items.
+
+     The parameters M, T, and N must positive integers with M and N not
+     greater than T.
+
+ - Function File:  hypergeometric_inv (X, M, T, N)
+     For each element of X, compute the quantile at X of the
+     hypergeometric distribution with parameters M, T, and N.
+
+     The parameters M, T, and N must positive integers with M and N not
+     greater than T.
+
+ - Function File:  hypergeometric_pdf (X, M, T, N)
+     Compute the probability density function (PDF) at X of the
+     hypergeometric distribution with parameters M, T, and N. This is
+     the probability of obtaining X marked items when randomly drawing
+     a sample of size N without replacement from a population of total
+     size T containing M marked items.
+
+     The arguments must be of common size or scalar.
+
+ - Function File:  hypergeometric_rnd (N_SIZE, M, T, N)
+     Generate a row vector containing a random sample of size N_SIZE
+     from the hypergeometric distribution with parameters M, T, and N.
+
+     The parameters M, T, and N must positive integers with M and N not
+     greater than T.
+
+ - Function File:  kolmogorov_smirnov_cdf (X, TOL)
+     Return the CDF at X of the Kolmogorov-Smirnov distribution,
+                   Inf
+          Q(x) =   SUM    (-1)^k exp(-2 k^2 x^2)
+                 k = -Inf
+
+     for X > 0.
+
+     The optional parameter TOL specifies the precision up to which the
+     series should be evaluated;  the default is TOL = `eps'.
+
+ - Function File:  laplace_cdf (X)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the Laplace distribution.
+
+ - Function File:  laplace_inv (X)
+     For each element of X, compute the quantile (the inverse of the
+     CDF) at X of the Laplace distribution.
+
+ - Function File:  laplace_pdf (X)
+     For each element of X, compute the probability density function
+     (PDF) at X of the Laplace distribution.
+
+ - Function File:  laplace_rnd (R, C)
+     Return an R by C matrix of random numbers from the Laplace
+     distribution.
+
+ - Function File:  logistic_cdf (X)
+     For each component of X, compute the CDF at X of the logistic
+     distribution.
+
+ - Function File:  logistic_inv (X)
+     For each component of X, compute the quantile (the inverse of the
+     CDF) at X of the logistic distribution.
+
+ - Function File:  logistic_pdf (X)
+     For each component of X, compute the PDF at X of the logistic
+     distribution.
+
+ - Function File:  logistic_rnd (R, C)
+     Return an R by C matrix of random numbers from the logistic
+     distribution.
+
+ - Function File:  lognormal_cdf (X, A, V)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the lognormal distribution with parameters
+     A and V.  If a random variable follows this distribution, its
+     logarithm is normally distributed with mean `log (A)' and variance
+     V.
+
+     Default values are A = 1, V = 1.
+
+ - Function File:  lognormal_inv (X, A, V)
+     For each element of X, compute the quantile (the inverse of the
+     CDF) at X of the lognormal distribution with parameters A and V.
+     If a random variable follows this distribution, its logarithm is
+     normally distributed with mean `log (A)' and variance V.
+
+     Default values are A = 1, V = 1.
+
+ - Function File:  lognormal_pdf (X, A, V)
+     For each element of X, compute the probability density function
+     (PDF) at X of the lognormal distribution with parameters A and V.
+     If a random variable follows this distribution, its logarithm is
+     normally distributed with mean `log (A)' and variance V.
+
+     Default values are A = 1, V = 1.
+
+ - Function File:  lognormal_rnd (A, V, R, C)
+     Return an R by C matrix of random samples from the lognormal
+     distribution with parameters A and V. Both A and V must be scalar
+     or of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of A and V.
+
+ - Function File:  normal_cdf (X, M, V)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the normal distribution with mean M and
+     variance V.
+
+     Default values are M = 0, V = 1.
+
+ - Function File:  normal_inv (X, M, V)
+     For each element of X, compute the quantile (the inverse of the
+     CDF) at X of the normal distribution with mean M and variance V.
+
+     Default values are M = 0, V = 1.
+
+ - Function File:  normal_pdf (X, M, V)
+     For each element of X, compute the probability density function
+     (PDF) at X of the normal distribution with mean M and variance V.
+
+     Default values are M = 0, V = 1.
+
+ - Function File:  normal_rnd (M, V, R, C)
+     Return an R by C matrix of random samples from the normal
+     distribution with parameters M and V.  Both M and V must be scalar
+     or of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of M and V.
+
+ - Function File:  pascal_cdf (X, N, P)
+     For each element of X, compute the CDF at x of the Pascal
+     (negative binomial) distribution with parameters N and P.
+
+     The number of failures in a Bernoulli experiment with success
+     probability P before the N-th success follows this distribution.
+
+ - Function File:  pascal_inv (X, N, P)
+     For each element of X, compute the quantile at X of the Pascal
+     (negative binomial) distribution with parameters N and P.
+
+     The number of failures in a Bernoulli experiment with success
+     probability P before the N-th success follows this distribution.
+
+ - Function File:  pascal_pdf (X, N, P)
+     For each element of X, compute the probability density function
+     (PDF) at X of the Pascal (negative binomial) distribution with
+     parameters N and P.
+
+     The number of failures in a Bernoulli experiment with success
+     probability P before the N-th success follows this distribution.
+
+ - Function File:  pascal_rnd (N, P, R, C)
+     Return an R by C matrix of random samples from the Pascal
+     (negative binomial) distribution with parameters N and P.  Both N
+     and P must be scalar or of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of N and P.
+
+ - Function File:  poisson_cdf (X, LAMBDA)
+     For each element of X, compute the cumulative distribution
+     function (CDF) at X of the Poisson distribution with parameter
+     lambda.
+
+ - Function File:  poisson_inv (X, LAMBDA)
+     For each component of X, compute the quantile (the inverse of the
+     CDF) at X of the Poisson distribution with parameter LAMBDA.
+
+ - Function File:  poisson_pdf (X, LAMBDA)
+     For each element of X, compute the probability density function
+     (PDF) at X of the poisson distribution with parameter LAMBDA.
+
+ - Function File:  poisson_rnd (LAMBDA, R, C)
+     Return an R by C matrix of random samples from the Poisson
+     distribution with parameter LAMBDA, which must be a scalar or of
+     size R by C.
+
+     If R and C are omitted, the size of the result matrix is the size
+     of LAMBDA.
+
+ - Function File:  stdnormal_cdf (X)
+     For each component of X, compute the CDF of the standard normal
+     distribution at X.
+
+ - Function File:  stdnormal_inv (X)
+     For each component of X, compute compute the quantile (the inverse
+     of the CDF) at X of the standard normal distribution.
+
+ - Function File:  stdnormal_pdf (X)
+     For each element of X, compute the probability density function
+     (PDF) of the standard normal distribution at X.
+
+ - Function File:  stdnormal_rnd (R, C)
+     Return an R by C matrix of random numbers from the standard normal
+     distribution.
+
+ - Function File:  t_cdf (X, N)
+     For each element of X, compute the CDF at X of the t (Student)
+     distribution with N degrees of freedom, i.e., PROB (t(N) <= X).
+
+ - Function File:  t_inv (X, N)
+     For each component of X, compute the quantile (the inverse of the
+     CDF) at X of the t (Student) distribution with parameter N.
+
+ - Function File:  t_pdf (X, N)
+     For each element of X, compute the probability density function
+     (PDF) at X of the T (Student) distribution with N degrees of
+     freedom.
+
+ - Function File:  t_rnd (N, R, C)
+     Return an R by C matrix of random samples from the t (Student)
+     distribution with N degrees of freedom.  N must be a scalar or of
+     size R by C.
+
+     If R and C are omitted, the size of the result matrix is the size
+     of N.
+
+ - Function File:  uniform_cdf (X, A, B)
+     Return the CDF at X of the uniform distribution on [A, B], i.e.,
+     PROB (uniform (A, B) <= x).
+
+     Default values are A = 0, B = 1.
+
+ - Function File:  uniform_inv (X, A, B)
+     For each element of X, compute the quantile (the inverse of the
+     CDF) at X of the uniform distribution on [A, B].
+
+     Default values are A = 0, B = 1.
+
+ - Function File:  uniform_pdf (X, A, B)
+     For each element of X, compute the PDF at X of the uniform
+     distribution on [A, B].
+
+     Default values are A = 0, B = 1.
+
+ - Function File:  uniform_rnd (A, B, R, C)
+     Return an R by C matrix of random samples from the uniform
+     distribution on [A, B].  Both A and B must be scalar or of size R
+     by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of A and B.
+
+ - Function File:  weibull_cdf (X, ALPHA, SIGMA)
+     Compute the cumulative distribution function (CDF) at X of the
+     Weibull distribution with shape parameter ALPHA and scale
+     parameter SIGMA, which is
+
+          1 - exp(-(x/sigma)^alpha)
+
+     for X >= 0.
+
+ - Function File:  weibull_inv (X, LAMBDA, ALPHA)
+     Compute the quantile (the inverse of the CDF) at X of the Weibull
+     distribution with shape parameter ALPHA and scale parameter SIGMA.
+
+ - Function File:  weibull_pdf (X, ALPHA, SIGMA)
+     Compute the probability density function (PDF) at X of the Weibull
+     distribution with shape parameter ALPHA and scale parameter SIGMA
+     which is given by
+
+             alpha * sigma^(-alpha) * x^(alpha-1) * exp(-(x/sigma)^alpha)
+
+     for X > 0.
+
+ - Function File:  weibull_rnd (ALPHA, SIGMA, R, C)
+     Return an R by C matrix of random samples from the Weibull
+     distribution with parameters ALPHA and SIGMA which must be scalar
+     or of size R by C.
+
+     If R and C are omitted, the size of the result matrix is the
+     common size of ALPHA and SIGMA.
+
+ - Function File:  wiener_rnd (T, D, N)
+     Return a simulated realization of the D-dimensional Wiener Process
+     on the interval [0,T].  If D is omitted, D = 1 is used. The first
+     column of the return matrix contains time, the remaining columns
+     contain the Wiener process.
+
+     The optional parameter N gives the number of summands used for
+     simulating the process over an interval of length 1.  If N is
+     omitted, N = 1000 is used.
+
+
+File: octave.info,  Node: Financial Functions,  Next: Sets,  Prev: Statistics,  Up: Top
+
+Financial Functions
+*******************
+
+ - Function File:  fv (R, N, P, L, METHOD)
+     Return the future value at the end of period N of an investment
+     which consists of N payments of P in each period, assuming an
+     interest rate R.
+
+     The optional argument L may be used to specify an additional
+     lump-sum payment.
+
+     The optional argument METHOD may be used ot specify whether the
+     payments are made at the end (`"e"', default) or at the beginning
+     (`"b"') of each period.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  fvl (R, N, L)
+     Return the future value at the end of N periods of an initial lump
+     sum investment L, given a per-period interest rate R.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  irr (P, I)
+     Return the internal rate of return of a series of payments P from
+     an initial investment I (i.e., the solution of `npv (r, p) = i'.
+     If the second argument is omitted, a value of 0 is used.
+
+ - Function File:  nper (R, P, A, L, METHOD)
+     Return the number of regular payments of P necessary to amortize A
+     loan of amount A and interest R.
+
+     The optional argument L may be used to specify an additional
+     lump-sum payment of L made at the end of the amortization time.
+
+     The optional argument METHOD may be used to specify whether
+     payments are made at the end ("E", default) or at the beginning
+     ("B") of each period.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  npv (R, P, I)
+     Returns the net present value of a series of irregular (i.e., not
+     necessarily identical) payments P which occur at the ends of N
+     consecutive periods.  R specifies the one-period interest rates and
+     can either be a scalar (constant rates) or a vector of the same
+     length as P.
+
+     The optional argument I may be used to specify an initial
+     investment.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  pmt (R, N, A, L, METHOD)
+     Return the amount of periodic payment necessary to amortize a loan
+     of amount a with interest rate R in N periods.
+
+     The optional argument L may be used to specify a terminal lump-sum
+     payment.
+
+     The optional argument METHOD may be used to specify whether
+     payments are made at the end ("E", default) or at the beginning
+     ("B") of each period.
+
+ - Function File:  pv (R, N, P, L, METHOD)
+     Returns the present value of an investment that will pay off P for
+     N consecutive periods, assuming an interest R.
+
+     The optional argument L may be used to specify an additional
+     lump-sum payment made at the end of N periods.
+
+     The optional argument METHOD may be used to specify whether
+     payments are made at the end (`"e"', default) or at the beginning
+     (`"b"') of each period.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  pvl (R, N, P)
+     Return the present value of an investment that will pay off P in
+     one lump sum at the end of N periods, given the interest rate R.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  rate (N, P, V, L, METHOD)
+     Return the rate of return on an investment of present value V which
+     pays P in N consecutive periods.
+
+     The optional argument L may be used to specify an additional
+     lump-sum payment made at the end of N periods.
+
+     The optional string argument METHOD may be used to specify whether
+     payments are made at the end (`"e"', default) or at the beginning
+     (`"b"') of each period.
+
+ - Function File:  vol (X, M, N)
+     Return the volatility of each column of the input matrix X.  The
+     number of data sets per period is given by M (e.g. the number of
+     data per year if you want to compute the volatility per year).
+     The optional parameter N gives the number of past periods used for
+     computation, if it is omitted, a value of 1 is used.  If T is the
+     number of rows of X, `vol' returns the volatility from `n*m' to T.
+
+
+File: octave.info,  Node: Sets,  Next: Polynomial Manipulations,  Prev: Financial Functions,  Up: Top
+
+Sets
+****
+
+   Octave has a limited set of functions for managing sets of data,
+where a set is defined as a collection unique elements.
+
+ - Function File:  create_set (X)
+     Return a row vector containing the unique values in X, sorted in
+     ascending order.  For example,
+
+          create_set ([ 1, 2; 3, 4; 4, 2 ])
+          => [ 1, 2, 3, 4 ]
+
+ - Function File:  union (X, Y)
+     Return the set of elements that are in either of the sets X and Y.
+     For example,
+
+          union ([ 1, 2, 4 ], [ 2, 3, 5 ])
+          => [ 1, 2, 3, 4, 5 ]
+
+ - Function File:  intersection (X, Y)
+     Return the set of elements that are in both sets X and Y.  For
+     example,
+
+          intersection ([ 1, 2, 3 ], [ 2, 3, 5 ])
+          => [ 2, 3 ]
+
+ - Function File:  complement (X, Y)
+     Return the elements of set Y that are not in set X.  For example,
+
+          complement ([ 1, 2, 3 ], [ 2, 3, 5 ])
+          => 5
+
+
+File: octave.info,  Node: Polynomial Manipulations,  Next: Control Theory,  Prev: Sets,  Up: Top
+
+Polynomial Manipulations
+************************
+
+   In Octave, a polynomial is represented by its coefficients (arranged
+in descending order).  For example, a vector  $c$ of length  N
+
+     p(x) = C(1) x^N + ... + C(N) x + C(N+1).
+
+ - Function File:  compan (C)
+     Compute the companion matrix corresponding to polynomial
+     coefficient vector C.
+
+     The companion matrix is
+
+               _                                                        _
+              |  -c(2)/c(1)   -c(3)/c(1)  ...  -c(N)/c(1)  -c(N+1)/c(1)  |
+              |       1            0      ...       0             0      |
+              |       0            1      ...       0             0      |
+          A = |       .            .   .            .             .      |
+              |       .            .       .        .             .      |
+              |       .            .           .    .             .      |
+              |_      0            0      ...       1             0     _|
+
+     The eigenvalues of the companion matrix are equal to the roots of
+     the polynomial.
+
+ - Function File:  conv (A, B)
+     Convolve two vectors.
+
+     `y = conv (a, b)' returns a vector of length equal to `length (a)
+     + length (b) - 1'.  If A and B are polynomial coefficient vectors,
+     `conv' returns the coefficients of the product polynomial.
+
+ - Function File:  deconv (Y, A)
+     Deconvolve two vectors.
+
+     `[b, r] = deconv (y, a)' solves for B and R such that `y = conv
+     (a, b) + r'.
+
+     If Y and A are polynomial coefficient vectors, B will contain the
+     coefficients of the polynomial quotient and R will be a remander
+     polynomial of lowest order.
+
+ - Function File:  poly (A)
+     If A is a square N-by-N matrix, `poly (A)' is the row vector of
+     the coefficients of `det (z * eye (N) - a)', the characteristic
+     polynomial of A.  If X is a vector, `poly (X)' is a vector of
+     coefficients of the polynomial whose roots are the elements of X.
+
+ - Function File:  polyderiv (C)
+     Return the coefficients of the derivative of the polynomial whose
+     coefficients are given by vector C.
+
+ - Function File: [P, S] = polyfit (X, Y, N)
+     Return the coefficients of a polynomial P(X) of degree N that
+     minimizes `sumsq (p(x(i)) - y(i))',  to best fit the data in the
+     least squares sense.
+
+     The polynomial coefficients are returned in a row vector.
+
+     If two output arguments are requested, the second is a structure
+     containing the following fields:
+
+    `R'
+          The Cholesky factor of the Vandermonde matrix used to compute
+          the polynomial coefficients.
+
+    `X'
+          The Vandermonde matrix used to compute the polynomial
+          coefficients.
+
+    `df'
+          The degrees of freedom.
+
+    `normr'
+          The norm of the residuals.
+
+    `yf'
+          The values of the polynomial for each value of X.
+
+ - Function File:  polyinteg (C)
+     Return the coefficients of the integral of the polynomial whose
+     coefficients are represented by the vector C.
+
+     The constant of integration is set to zero.
+
+ - Function File:  polyreduce (C)
+     Reduces a polynomial coefficient vector to a minimum number of
+     terms by stripping off any leading zeros.
+
+ - Function File:  polyval (C, X)
+     Evaluate a polynomial.
+
+     `polyval (C, X)' will evaluate the polynomial at the specified
+     value of X.
+
+     If X is a vector or matrix, the polynomial is evaluated at each of
+     the elements of X.
+
+ - Function File:  polyvalm (C, X)
+     Evaluate a polynomial in the matrix sense.
+
+     `polyvalm (C, X)' will evaluate the polynomial in the matrix
+     sense, i.e. matrix multiplication is used instead of element by
+     element multiplication as is used in polyval.
+
+     The argument X must be a square matrix.
+
+ - Function File:  residue (B, A, TOL)
+     If B and A are vectors of polynomial coefficients, then residue
+     calculates the partial fraction expansion corresponding to the
+     ratio of the two polynomials.
+
+     The function `residue' returns R, P, K, and E, where the vector R
+     contains the residue terms, P contains the pole values, K contains
+     the coefficients of a direct polynomial term (if it exists) and E
+     is a vector containing the powers of the denominators in the
+     partial fraction terms.
+
+     Assuming B and A represent polynomials  P (s) and Q(s)  we have:
+
+           P(s)    M       r(m)         N
+           ---- = SUM -------------  + SUM k(i)*s^(N-i)
+           Q(s)   m=1 (s-p(m))^e(m)    i=1
+
+     where M is the number of poles (the length of the R, P, and E
+     vectors) and N is the length of the K vector.
+
+     The argument TOL is optional, and if not specified, a default
+     value of 0.001 is assumed.  The tolerance value is used to
+     determine whether poles with small imaginary components are
+     declared real.  It is also used to determine if two poles are
+     distinct.  If the ratio of the imaginary part of a pole to the
+     real part is less than TOL, the imaginary part is discarded.  If
+     two poles are farther apart than TOL they are distinct.  For
+     example,
+
+           b = [1, 1, 1];
+           a = [1, -5, 8, -4];
+           [r, p, k, e] = residue (b, a);
+          => r = [-2, 7, 3]
+          => p = [2, 2, 1]
+          => k = [](0x0)
+          => e = [1, 2, 1]
+
+     which implies the following partial fraction expansion
+
+                  s^2 + s + 1       -2        7        3
+             ------------------- = ----- + ------- + -----
+             s^3 - 5s^2 + 8s - 4   (s-2)   (s-2)^2   (s-1)
+
+ - Function File:  roots (V)
+     For a vector V with N components, return the roots of the
+     polynomial
+
+          v(1) * z^(N-1) + ... + v(N-1) * z + v(N).
+
+ - Function File: polyout (C, X)
+     Write formatted polynomial
+             c(x) = c(1) * x^n + ... + c(n) x + c(n+1)
+      and return it as a string or write it to the screen (if NARGOUT
+     is zero).  X defaults to the string `"s"'
+

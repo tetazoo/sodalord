@@ -1,0 +1,23 @@
+K 10
+svn:author
+V 6
+mitchb
+K 8
+svn:date
+V 27
+2008-10-27T07:47:21.348775Z
+K 7
+svn:log
+V 347
+Support for per-user trust and hardlimit values, as well as gift credits.
+
+admin.py: changes to 'pay' to support unposted credits
+          new command 'trust' to adjust trust flags
+	  new command 'gift' to give out gifts
+
+sodalordschema.txt: renamed deposit.recipient_userid to verifier_userid
+
+sodalord.py: per-user hardlimit and trust changes
+
+
+END

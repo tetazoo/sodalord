@@ -1,0 +1,1 @@
+ XDEFUN_DLD_INTERNAL (chol, args, nargout, 0, "-*- texinfo -*-\n@deftypefn {Loadable Function} {} chol (@var{a})\n@cindex Cholesky factorization\nCompute the Cholesky factor, @var{r}, of the symmetric positive definite\nmatrix @var{a}, where\n@iftex\n@tex\n$ R^T R = A $.\n@end tex\n@end iftex\n@ifinfo\n\n@example\nr' * r = a.\n@end example\n@end ifinfo\n@end deftypefn") 

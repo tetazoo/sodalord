@@ -1,0 +1,171 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2008.08.12.04.52.54;	author rhysh;	state Exp;
+branches;
+next	;
+
+
+desc
+@generates web pages with user stats
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/usr/bin/python
+
+import pg
+import os
+import popen2
+import sys
+import time
+from decimal import Decimal
+import Gnuplot
+
+def prologue():
+    print 'Content-type: text/html\n\n'
+    print '<HTML>\n<HEAD>\n<TITLE>ThiRD EAst Sodalord</TITLE>\n</HEAD>\n'
+    print '<BODY BGCOLOR="003FFF">\n'
+
+def epilogue():
+    print '<FORM ACTION="/cgi-bin/index.cgi" METHOD=GET>\n<BR>\n'
+    print 'Username to query: <INPUT TYPE="text" NAME="user">\n'
+    print '<INPUT VALUE="SUBNIT TO ANARCHY" TYPE="submit">\n</FORM>'
+    print '</BODY>\n</HTML>\n'
+    sys.exit(0)
+
+def div10(x):
+    return Decimal(x) / Decimal(10)
+
+def strip(x):
+    return x.strip()
+
+prologue()
+
+if os.environ.has_key('QUERY_STRING'):
+    query = os.environ['QUERY_STRING']
+    pos = query.find('=')
+    if not pos == -1:
+        query = query[pos+1:]
+    legalchars  = 'abcdefghijklmnopqrstuvwxyz'
+    legalchars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    legalchars += '0123456789 -+_,.$@@&'
+    for a in query:
+        if not a in legalchars:
+            print "Use alphanumerics only!\n"
+            epilogue()
+else:
+    query = 'tetazoo'
+if query.strip() == '':
+    query = 'tetazoo'
+
+db = pg.connect('soda', user='soda')
+alias = db.query("SELECT user_id FROM alias WHERE aliasname = '%s'" % query).getresult()
+if not alias.__len__() == 1:
+    print "%s doesn't have a sodalord account\n" % query
+    db.close()
+    epilogue()
+userid = alias[0][0]
+sodauser = db.query("SELECT * FROM sodauser WHERE id = %s" % userid).dictresult()[0]
+query = sodauser['username']
+user_stats = db.query("SELECT * FROM user_stats WHERE user_id = %s" % userid).dictresult()[0]
+acctage = db.query("SELECT CURRENT_DATE - create_date FROM sodauser WHERE id = %s" % userid).getresult()[0][0]
+deathdate = '2007-07-23'
+deaddays = 384
+deadage = db.query("SELECT CURRENT_DATE - '%s'" % deathdate).getresult()[0][0]
+if acctage > deadage:     # This account predates the death of sodalord
+    acctage -= deaddays   # Don't diminish their average for it
+db.close()
+
+xdata = map(str, map(div10, range(0,240)))
+yindex = 0
+ydata = []
+sodadata = []
+totalsodas = 0
+for index in range(0, 24):
+    if index < 10:
+        hourstr = 'h0%s' % index
+    else:
+        hourstr = 'h%s' % index
+    sodas = user_stats[hourstr]
+    totalsodas += sodas
+    sodadata.append(sodas)
+    ydata.append(0)
+    for a in range(0, 8):
+        ydata.append(sodas)
+    ydata.append(0)
+
+mfilename = '/soda/octave/%s.m' % query
+mfile = file(mfilename, 'w')
+mfile.write('\ny = [\n' + ' '.join(map(str, sodadata)) + '\n]\';\n')
+mfile.write('t = [0:23]\';\n')
+mfile.write('X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];\n')
+mfile.write('a = X\\y;\n')
+mfile.write('T = [0:.1:23.9]\';\n')
+mfile.write('Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a\n')
+mfile.write('Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;\n')
+mfile.write('r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)\n')
+mfile.write('alpha = a(1)\n')
+mfile.write('beta = sqrt(a(2)^2 + a(3)^2)\n')
+mfile.write('omega = pi/12;\n')
+mfile.write('phi = atan(-a(3)/a(2)) / omega;\n')
+mfile.write('if sign(a(2)) < 0\n')
+mfile.write('phi = phi + 12;\n')
+mfile.write('endif\n')
+mfile.write('if phi < 0\n')
+mfile.write('phi = phi + 24\n')
+mfile.write('else\n')
+mfile.write('phi = phi\n')
+mfile.write('endif\n')
+mfile.close()
+
+octaveout, octavein = popen2.popen2('/usr/bin/octave')
+mfile = file(mfilename, 'r')
+octavein.write(mfile.read())
+mfile.close()
+octavein.close()
+octavedata = octaveout.readlines()
+octaveout.close()
+octaveheader = octavedata[0:16]
+octaveregression = map(strip, octavedata[16:17+239])
+octaver = octavedata[17+239+1].split('=')[1].strip()
+octavealpha = octavedata[17+239+2].split('=')[1].strip()
+octavebeta = octavedata[17+239+3].split('=')[1].strip()
+octavephi = octavedata[17+239+4].split('=')[1].strip()
+
+gpfilename = '/soda/gnuplot/%s.png' % query
+g = Gnuplot.Gnuplot()
+g('set term png x003fff x000000 x000000 x9f0000 x00ff00')
+g('set output \'%s\'' % gpfilename)
+g.title('Soda Consumption of %s' % query)
+g.xlabel('Time of Day')
+g.ylabel('Sodas Purchased')
+g('set boxwidth .1')
+g('set xrange [0:24]')
+g('set yrange [0:%s]' % (max(ydata) + 5))
+g('set y2range [0:%s]' % (max(ydata) + 5))
+g('set xtics 1')
+g('set y2tics')
+bargraph = Gnuplot.Data(xdata, ydata, with='boxes fs solid')
+regressioncurve = Gnuplot.Data(xdata, octaveregression, with='lines linewidth 5')
+g.plot(bargraph, regressioncurve)
+
+time.sleep(2)  # Or the graph won't show on the page.
+print '%s has a soda tally of %s.\n<BR/><P/>\n' % (query, totalsodas)
+print 'On average, %s has purchased %s sodas per day.\n<BR/><P/>\n' % (query, 1.0 * totalsodas / acctage)
+print '<IMG SRC="/graphs/%s.png"/>\n' % query
+print '<P/><P/>The sinusoidal best-fit curve for this data is defined as \n'
+print 'y = %s + %s * sin ( (t - %s) * &#960; / 12 )\n' % (octavealpha, octavebeta, octavephi)
+print '<BR/>This fit has a correlation coefficient of %s.\n' % octaver
+epilogue()
+
+@

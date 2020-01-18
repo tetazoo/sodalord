@@ -1,0 +1,9 @@
+#!/usr/athena/bin/perl
+
+open(DUMP, "<mar10");
+
+while ($nextline = <DUMP>) {
+    @data = split(/,/, $nextline);
+    $data[2] = int(($data[2] * -0.5) * 100 + 0.5) / 100;
+    print join(",", @data);
+}

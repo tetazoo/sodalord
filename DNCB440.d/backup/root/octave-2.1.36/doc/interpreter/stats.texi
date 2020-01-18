@@ -1,0 +1,1880 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Statistics, Financial Functions, Optimization, Top
+@chapter Statistics
+
+I hope that someday Octave will include more statistics functions.  If
+you would like to help improve Octave in this area, please contact
+@email{bug-octave@@bevo.che.wisc.edu}.
+
+@menu
+* Basic Statistical Functions::  
+* Tests::                       
+* Models::                      
+* Distributions::               
+@end menu
+
+@node Basic Statistical Functions, Tests, Statistics, Statistics
+@section Basic Statistical Functions
+
+@anchor{doc-mean}
+@deftypefn {Function File} {} mean (@var{x}, @var{opt})
+If @var{x} is a vector, compute the mean of the elements of @var{x}
+@iftex
+@tex
+$$ {\rm mean}(x) = \bar{x} = {1\over N} \sum_{i=1}^N x_i $$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+mean (x) = SUM_i x(i) / N
+@end example
+@end ifinfo
+If @var{x} is a matrix, compute the mean for each column and return them
+in a row vector.
+
+With the optional argument @var{opt}, the kind of mean computed can be
+selected.  The following options are recognized:
+
+@table @code
+@item "a"
+Compute the (ordinary) arithmetic mean.  This is the default.
+
+@item "g"
+Computer the geometric mean.
+
+@item "h"
+Compute the harmonic mean.
+@end table
+@end deftypefn
+
+
+@anchor{doc-median}
+@deftypefn {Function File} {} median (@var{x})
+If @var{x} is a vector, compute the median value of the elements of
+@var{x}.
+@iftex
+@tex
+$$
+{\rm median} (x) =
+  \cases{x(\lceil N/2\rceil), & $N$ odd;\cr
+          (x(N/2)+x(N/2+1))/2, & $N$ even.}
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+@group
+            x(ceil(N/2)),             N odd
+median(x) =
+            (x(N/2) + x((N/2)+1))/2,  N even
+@end group
+@end example
+@end ifinfo
+If @var{x} is a matrix, compute the median value for each
+column and return them in a row vector.
+@end deftypefn
+@seealso{std and mean}
+
+
+@anchor{doc-std}
+@deftypefn {Function File} {} std (@var{x})
+If @var{x} is a vector, compute the standard deviation of the elements
+of @var{x}.
+@iftex
+@tex
+$$
+{\rm std} (x) = \sigma (x) = \sqrt{{\sum_{i=1}^N (x_i - \bar{x}) \over N - 1}}
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+@group
+std (x) = sqrt (sumsq (x - mean (x)) / (n - 1))
+@end group
+@end example
+@end ifinfo
+If @var{x} is a matrix, compute the standard deviation for
+each column and return them in a row vector.
+@end deftypefn
+@seealso{mean and median}
+
+
+@anchor{doc-cov}
+@deftypefn {Function File} {} cov (@var{x}, @var{y})
+If each row of @var{x} and @var{y} is an observation and each column is
+a variable, the (@var{i},@var{j})-th entry of
+@code{cov (@var{x}, @var{y})} is the covariance between the @var{i}-th
+variable in @var{x} and the @var{j}-th variable in @var{y}.  If called
+with one argument, compute @code{cov (@var{x}, @var{x})}.
+@end deftypefn
+
+
+@anchor{doc-corrcoef}
+@deftypefn {Function File} {} corrcoef (@var{x}, @var{y})
+If each row of @var{x} and @var{y} is an observation and each column is
+a variable, the (@var{i},@var{j})-th entry of
+@code{corrcoef (@var{x}, @var{y})} is the correlation between the
+@var{i}-th variable in @var{x} and the @var{j}-th variable in @var{y}.
+If called with one argument, compute @code{corrcoef (@var{x}, @var{x})}.
+@end deftypefn
+
+
+@anchor{doc-kurtosis}
+@deftypefn {Function File} {} kurtosis (@var{x})
+If @var{x} is a vector of length @math{N}, return the kurtosis
+@iftex
+@tex
+$$
+ {\rm kurtosis} (x) = {1\over N \sigma(x)^4} \sum_{i=1}^N (x_i-\bar{x})^4 - 3
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+kurtosis (x) = N^(-1) std(x)^(-4) sum ((x - mean(x)).^4) - 3
+@end example
+@end ifinfo
+
+@noindent
+of @var{x}.  If @var{x} is a matrix, return the row vector containing
+the kurtosis of each column.
+@end deftypefn
+
+
+@anchor{doc-mahalanobis}
+@deftypefn {Function File} {} mahalanobis (@var{x}, @var{y})
+Return the Mahalanobis' D-square distance between the multivariate
+samples @var{x} and @var{y}, which must have the same number of
+components (columns), but may have a different number of observations
+(rows).
+@end deftypefn
+
+
+@anchor{doc-skewness}
+@deftypefn {Function File} {} skewness (@var{x})
+If @var{x} is a vector of length @math{n}, return the skewness
+@iftex
+@tex
+$$
+{\rm skewness} (x) = {1\over N \sigma(x)^3} \sum_{i=1}^N (x_i-\bar{x})^3
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+skewness (x) = N^(-1) std(x)^(-3) sum ((x - mean(x)).^3)
+@end example
+@end ifinfo
+
+@noindent
+of @var{x}.  If @var{x} is a matrix, return the row vector containing
+the skewness of each column.
+@end deftypefn
+
+
+@c XXX FIXME XXX -- these need to be organized.
+
+@anchor{doc-values}
+@deftypefn {Function File} {} values (@var{x})
+Return the different values in a column vector, arranged in ascending
+order.
+@end deftypefn
+
+
+@anchor{doc-var}
+@deftypefn {Function File} {} var (@var{x})
+For vector arguments, return the (real) variance of the values.
+For matrix arguments, return a row vector contaning the variance for
+each column.
+@end deftypefn
+
+
+@anchor{doc-table}
+@deftypefn {Function File} {[@var{t}, @var{l_x}] =} table (@var{x})
+@deftypefnx {Function File} {[@var{t}, @var{l_x}, @var{l_y}] =} table (@var{x}, @var{y})
+Create a contingency table @var{t} from data vectors.  The @var{l}
+vectors are the corresponding levels.
+
+Currently, only 1- and 2-dimensional tables are supported.
+@end deftypefn
+
+
+@anchor{doc-studentize}
+@deftypefn {Function File} {} studentize (@var{x})
+If @var{x} is a vector, subtract its mean and divide by its standard
+deviation.
+
+If @var{x} is a matrix, do the above for each column.
+@end deftypefn
+
+
+@anchor{doc-statistics}
+@deftypefn {Function File} {} statistics (@var{x})
+If @var{x} is a matrix, return a matrix with the minimum, first
+quartile, median, third quartile, maximum, mean, standard deviation,
+skewness and kurtosis of the columns of @var{x} as its rows.
+
+If @var{x} is a vector, treat it as a column vector.
+@end deftypefn
+
+
+@anchor{doc-spearman}
+@deftypefn {Function File} {} spearman (@var{x}, @var{y})
+Compute Spearman's rank correlation coefficient @var{rho} for each of
+the variables specified by the input arguments.
+
+For matrices, each row is an observation and each column a variable;
+vectors are always observations and may be row or column vectors.
+
+@code{spearman (@var{x})} is equivalent to @code{spearman (@var{x},
+@var{x})}.
+
+For two data vectors @var{x} and @var{y}, Spearman's @var{rho} is the
+correlation of the ranks of @var{x} and @var{y}.
+
+If @var{x} and @var{y} are drawn from independent distributions,
+@var{rho} has zero mean and variance @code{1 / (n - 1)}, and is
+asymptotically normally distributed.
+@end deftypefn
+
+
+@anchor{doc-run_count}
+@deftypefn {Function File} {} run_count (@var{x}, @var{n})
+Count the upward runs in the columns of @var{x} of length 1, 2, ...,
+@var{n}-1 and greater than or equal to @var{n}.
+@end deftypefn
+
+
+@anchor{doc-ranks}
+@deftypefn {Function File} {} ranks (@var{x})
+If @var{x} is a vector, return the (column) vector of ranks of
+@var{x} adjusted for ties.
+
+If @var{x} is a matrix, do the above for each column of @var{x}.
+@end deftypefn
+
+
+@anchor{doc-range}
+@deftypefn {Function File} {} range (@var{x})
+If @var{x} is a vector, return the range, i.e., the difference
+between the maximum and the minimum, of the input data.
+
+If @var{x} is a matrix, do the above for each column of @var{x}.
+@end deftypefn
+
+
+@anchor{doc-qqplot}
+@deftypefn {Function File} {[@var{q}, @var{s}] =} qqplot (@var{x}, @var{dist}, @var{params})
+Perform a QQ-plot (quantile plot).
+
+If F is the CDF of the distribution @var{dist} with parameters
+@var{params} and G its inverse, and @var{x} a sample vector of length
+@var{n}, the QQ-plot graphs ordinate @var{s}(@var{i}) = @var{i}-th
+largest element of x versus abscissa @var{q}(@var{i}f) = G((@var{i} -
+0.5)/@var{n}).
+
+If the sample comes from F except for a transformation of location
+and scale, the pairs will approximately follow a straight line.
+
+The default for @var{dist} is the standard normal distribution.  The
+optional argument @var{params} contains a list of parameters of
+@var{dist}.  For example, for a quantile plot of the uniform
+distribution on [2,4] and @var{x}, use
+
+@example
+qqplot (x, "uniform", 2, 4)
+@end example
+
+If no output arguments are given, the data are plotted directly.
+@end deftypefn
+
+
+@anchor{doc-probit}
+@deftypefn {Function File} {} probit (@var{p})
+For each component of @var{p}, return the probit (the quantile of the
+standard normal distribution) of @var{p}.
+@end deftypefn
+
+
+@anchor{doc-ppplot}
+@deftypefn {Function File} {[@var{p}, @var{y}] =} ppplot (@var{x}, @var{dist}, @var{params})
+Perform a PP-plot (probability plot).
+
+If F is the CDF of the distribution @var{dist} with parameters
+@var{params} and @var{x} a sample vector of length @var{n}, the
+PP-plot graphs ordinate @var{y}(@var{i}) = F (@var{i}-th largest
+element of @var{x}) versus abscissa @var{p}(@var{i}) = (@var{i} -
+0.5)/@var{n}.  If the sample comes from F, the pairs will
+approximately follow a straight line.
+
+The default for @var{dist} is the standard normal distribution.  The
+optional argument @var{params} contains a list of parameters of
+@var{dist}.  For example, for a probability plot of the uniform
+distribution on [2,4] and @var{x}, use
+
+@example
+ppplot (x, "uniform", 2, 4)
+@end example
+
+If no output arguments are given, the data are plotted directly.
+@end deftypefn
+
+
+@anchor{doc-moment}
+@deftypefn {Function File} {} moment (@var{x}, @var{p}, @var{opt})
+If @var{x} is a vector, compute the @var{p}-th moment of @var{x}.
+
+If @var{x} is a matrix, return the row vector containing the
+@var{p}-th moment of each column.
+
+With the optional string opt, the kind of moment to be computed can
+be specified.  If opt contains @code{"c"} or @code{"a"}, central
+and/or absolute moments are returned.  For example,
+
+@example
+moment (x, 3, "ac")
+@end example
+
+@noindent
+computes the third central absolute moment of @var{x}.
+@end deftypefn
+
+
+@anchor{doc-meansq}
+@deftypefn {Function File} {} meansq (@var{x})
+For vector arguments, return the mean square of the values.
+For matrix arguments, return a row vector contaning the mean square
+of each column.
+@end deftypefn
+
+
+@anchor{doc-logit}
+@deftypefn {Function File} {} logit (@var{p})
+For each component of @var{p}, return the logit @code{log (@var{p} /
+(1-@var{p}))} of @var{p}.
+@end deftypefn
+
+
+@anchor{doc-kendall}
+@deftypefn {Function File} {} kendall (@var{x}, @var{y})
+Compute Kendall's @var{tau} for each of the variables specified by
+the input arguments.
+
+For matrices, each row is an observation and each column a variable;
+vectors are always observations and may be row or column vectors.
+
+@code{kendall (@var{x})} is equivalent to @code{kendall (@var{x},
+@var{x})}.
+
+For two data vectors @var{x}, @var{y} of common length @var{n},
+Kendall's @var{tau} is the correlation of the signs of all rank
+differences of @var{x} and @var{y};  i.e., if both @var{x} and
+@var{y} have distinct entries, then
+
+@iftex
+@tex
+$$ \tau = {1 \over n(n-1)} \sum_{i,j} {\rm sign}(q_i-q_j) {\rm sign}(r_i-r_j) $$
+@end tex
+@end iftex
+@ifinfo
+@example
+         1    
+tau = -------   SUM sign (q(i) - q(j)) * sign (r(i) - r(j))
+      n (n-1)   i,j
+@end example
+@end ifinfo
+
+@noindent
+in which the
+@iftex
+@tex
+$q_i$ and $r_i$
+@end tex
+@end iftex
+@ifinfo
+@var{q}(@var{i}) and @var{r}(@var{i})
+@end ifinfo
+ are the ranks of
+@var{x} and @var{y}, respectively.
+
+If @var{x} and @var{y} are drawn from independent distributions,
+Kendall's @var{tau} is asymptotically normal with mean 0 and variance
+@code{(2 * (2@var{n}+5)) / (9 * @var{n} * (@var{n}-1))}.
+@end deftypefn
+
+
+@anchor{doc-iqr}
+@deftypefn {Function File} {} iqr (@var{x})
+If @var{x} is a vector, return the interquartile range, i.e., the
+difference between the upper and lower quartile, of the input data.
+
+If @var{x} is a matrix, do the above for each column of @var{x}.
+@end deftypefn
+
+
+@anchor{doc-cut}
+@deftypefn {Function File} {} cut (@var{x}, @var{breaks})
+Create categorical data out of numerical or continuous data by
+cutting into intervals.
+
+If @var{breaks} is a scalar, the data is cut into that many
+equal-width intervals.  If @var{breaks} is a vector of break points,
+the category has @code{length (@var{breaks}) - 1} groups.
+
+The returned value is a vector of the same size as @var{x} telling
+which group each point in @var{x} belongs to.  Groups are labelled
+from 1 to the number of groups; points outside the range of
+@var{breaks} are labelled by @code{NaN}.
+@end deftypefn
+
+
+@anchor{doc-cor}
+@deftypefn {Function File} {} cor (@var{x}, @var{y})
+The (@var{i},@var{j})-th entry of @code{cor (@var{x}, @var{y})} is
+the correlation between the @var{i}-th variable in @var{x} and the
+@var{j}-th variable in @var{y}.
+
+For matrices, each row is an observation and each column a variable;
+vectors are always observations and may be row or column vectors.
+
+@code{cor (@var{x})} is equivalent to @code{cor (@var{x}, @var{x})}.
+@end deftypefn
+
+
+@anchor{doc-cloglog}
+@deftypefn {Function File} {} cloglog (@var{x})
+Return the complementary log-log function of @var{x}, defined as
+
+@example
+- log (- log (@var{x}))
+@end example
+@end deftypefn
+
+
+@anchor{doc-center}
+@deftypefn {Function File} {} center (@var{x})
+If @var{x} is a vector, subtract its mean.
+If @var{x} is a matrix, do the above for each column.
+@end deftypefn
+
+
+@node Tests, Models, Basic Statistical Functions, Statistics
+@section Tests
+
+@anchor{doc-anova}
+@deftypefn {Function File} {[@var{pval}, @var{f}, @var{df_b}, @var{df_w}] =} anova (@var{y}, @var{g})
+Perform a one-way analysis of variance (ANOVA).  The goal is to test
+whether the population means of data taken from @var{k} different
+groups are all equal.
+
+Data may be given in a single vector @var{y} with groups specified by
+a corresponding vector of group labels @var{g} (e.g., numbers from 1
+to @var{k}). This is the general form which does not impose any
+restriction on the number of data in each group or the group labels.
+
+If @var{y} is a matrix and @var{g} is omitted, each column of @var{y}
+is treated as a group.  This form is only appropriate for balanced
+ANOVA in which the numbers of samples from each group are all equal.
+
+Under the null of constant means, the statistic @var{f} follows an F
+distribution with @var{df_b} and @var{df_w} degrees of freedom.
+
+The p-value (1 minus the CDF of this distribution at @var{f}) is
+returned in @var{pval}.
+
+If no output argument is given, the standard one-way ANOVA table is
+printed.
+@end deftypefn
+
+
+@anchor{doc-bartlett_test}
+@deftypefn {Function File} {[@var{pval}, @var{chisq}, @var{df}] =} bartlett_test (@var{x1}, @dots{}) 
+Perform a Bartlett test for the homogeneity of variances in the data
+vectors @var{x1}, @var{x2}, @dots{}, @var{xk}, where @var{k} > 1.
+
+Under the null of equal variances, the test statistic @var{chisq}
+approximately ollows a chi-square distribution with @var{df} degrees of
+freedom.
+
+The p-value (1 minus the CDF of this distribution at @var{chisq}) is
+returned in @var{pval}.
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-chisquare_test_homogeneity}
+@deftypefn {Function File} {[@var{pval}, @var{chisq}, @var{df}] =} chisquare_test_homogeneity (@var{x}, @var{y}, @var{c})
+Given two samples @var{x} and @var{y}, perform a chisquare test for
+homogeneity of the null hypothesis that @var{x} and @var{y} come from
+the same distribution, based on the partition induced by the
+(strictly increasing) entries of @var{c}.
+
+For large samples, the test statistic @var{chisq} approximately follows a
+chisquare distribution with @var{df} = @code{length (@var{c})}
+degrees of freedom.
+
+The p-value (1 minus the CDF of this distribution at @var{chisq}) is
+returned in @var{pval}.
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-chisquare_test_independence}
+@deftypefn {Function File} {[@var{pval}, @var{chisq}, @var{df}] =} chisquare_test_independence (@var{x})
+Perform a chi-square test for indepence based on the contingency
+table @var{x}.  Under the null hypothesis of independence,
+@var{chisq} approximately has a chi-square distribution with
+@var{df} degrees of freedom.
+
+The p-value (1 minus the CDF of this distribution at chisq) of the
+test is returned in @var{pval}.
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-cor_test}
+@deftypefn {Function File} {} cor_test (@var{x}, @var{y}, @var{alt}, @var{method})
+Test whether two samples @var{x} and @var{y} come from uncorrelated
+populations.
+
+The optional argument string @var{alt} describes the alternative
+hypothesis, and can be @code{"!="} or @code{"<>"} (non-zero),
+@code{">"} (greater than 0), or @code{"<"} (less than 0).  The
+default is the two-sided case.
+
+The optional argument string @var{method} specifies on which
+correlation coefficient the test should be based.  If @var{method} is
+@code{"pearson"} (default), the (usual) Pearson's product moment
+correlation coefficient is used.  In this case, the data should come
+from a bivariate normal distribution.  Otherwise, the other two
+methods offer nonparametric alternatives. If @var{method} is
+@code{"kendall"}, then Kendall's rank correlation tau is used.  If
+@var{method} is @code{"spearman"}, then Spearman's rank correlation
+rho is used.  Only the first character is necessary.
+
+The output is a structure with the following elements:
+
+@table @var
+@item pval
+The p-value of the test.
+@item stat
+The value of the test statistic.
+@item dist
+The distribution of the test statistic.
+@item params
+The parameters of the null distribution of the test statistic.
+@item alternative
+The alternative hypothesis.
+@item method
+The method used for testing.
+@end table
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-f_test_regression}
+@deftypefn {Function File} {[@var{pval}, @var{f}, @var{df_num}, @var{df_den}] =} f_test_regression (@var{y}, @var{x}, @var{rr}, @var{r})
+Perform an F test for the null hypothesis rr * b = r in a classical
+normal regression model y = X * b + e.
+
+Under the null, the test statistic @var{f} follows an F distribution
+with @var{df_num} and @var{df_den} degrees of freedom.
+
+The p-value (1 minus the CDF of this distribution at @var{f}) is
+returned in @var{pval}.
+
+If not given explicitly, @var{r} = 0.
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-hotelling_test}
+@deftypefn {Function File} {[@var{pval}, @var{tsq}] =} hotelling_test (@var{x}, @var{m})
+For a sample @var{x} from a multivariate normal distribution with unknown
+mean and covariance matrix, test the null hypothesis that @code{mean
+(@var{x}) == @var{m}}.
+
+Hotelling's T^2 is returned in @var{tsq}.  Under the null,
+@math{(n-p) T^2 / (p(n-1))} has an F distribution with @math{p} and
+@math{n-p} degrees of freedom, where @math{n} and @math{p} are the
+numbers of samples and variables, respectively.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-hotelling_test_2}
+@deftypefn {Function File} {[@var{pval}, @var{tsq}] =} hotelling_test_2 (@var{x}, @var{y})
+For two samples @var{x} from multivariate normal distributions with
+the same number of variables (columns), unknown means and unknown
+equal covariance matrices, test the null hypothesis @code{mean
+(@var{x}) == mean (@var{y})}.
+
+Hotelling's two-sample T^2 is returned in @var{tsq}.  Under the null,
+
+@example
+(n_x+n_y-p-1) T^2 / (p(n_x+n_y-2))
+@end example
+
+@noindent
+has an F distribution with @math{p} and @math{n_x+n_y-p-1} degrees of
+freedom, where @math{n_x} and @math{n_y} are the sample sizes and
+@math{p} is the number of variables.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-kolmogorov_smirnov_test}
+@deftypefn {Function File} {[@var{pval}, @var{ks}] =} kolmogorov_smirnov_test (@var{x}, @var{dist}, @var{params}, @var{alt})
+Perform a Kolmogorov-Smirnov test of the null hypothesis that the
+sample @var{x} comes from the (continuous) distribution dist. I.e.,
+if F and G are the CDFs corresponding to the sample and dist,
+respectively, then the null is that F == G.
+
+The optional argument @var{params} contains a list of parameters of
+@var{dist}.  For example, to test whether a sample @var{x} comes from
+a uniform distribution on [2,4], use
+
+@example
+kolmogorov_smirnov_test(x, "uniform", 2, 4)
+@end example
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative F
+!= G.  In this case, the test statistic @var{ks} follows a two-sided
+Kolmogorov-Smirnov distribution.  If @var{alt} is @code{">"}, the
+one-sided alternative F > G is considered.  Similarly for @code{"<"},
+the one-sided alternative F > G is considered.  In this case, the
+test statistic @var{ks} has a one-sided Kolmogorov-Smirnov
+distribution.  The default is the two-sided case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-kolmogorov_smirnov_test_2}
+@deftypefn {Function File} {[@var{pval}, @var{ks}, @var{d}] =} kolmogorov_smirnov_test_2 (@var{x}, @var{y}, @var{alt})
+Perform a 2-sample Kolmogorov-Smirnov test of the null hypothesis
+that the samples @var{x} and @var{y} come from the same (continuous)
+distribution.  I.e., if F and G are the CDFs corresponding to the
+@var{x} and @var{y} samples, respectively, then the null is that F ==
+G.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative F
+!= G.  In this case, the test statistic @var{ks} follows a two-sided
+Kolmogorov-Smirnov distribution.  If @var{alt} is @code{">"}, the
+one-sided alternative F > G is considered.  Similarly for @code{"<"},
+the one-sided alternative F < G is considered.  In this case, the
+test statistic @var{ks} has a one-sided Kolmogorov-Smirnov
+distribution.  The default is the two-sided case.
+
+The p-value of the test is returned in @var{pval}.
+
+The third returned value, @var{d}, is the test statistic, the maximum
+vertical distance between the two cumulative distribution functions.
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-kruskal_wallis_test}
+@deftypefn {Function File} {[@var{pval}, @var{k}, @var{df}] =} kruskal_wallis_test (@var{x1}, @dots{})
+Perform a Kruskal-Wallis one-factor "analysis of variance".
+
+Suppose a variable is observed for @var{k} > 1 different groups, and
+let @var{x1}, @dots{}, @var{xk} be the corresponding data vectors.
+
+Under the null hypothesis that the ranks in the pooled sample are not
+affected by the group memberships, the test statistic @var{k} is
+approximately chi-square with @var{df} = @var{k} - 1 degrees of
+freedom.
+
+The p-value (1 minus the CDF of this distribution at @var{k}) is
+returned in @var{pval}.
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-manova}
+@deftypefn {Function File} {} manova (@var{y}, @var{g})
+Perform a one-way multivariate analysis of variance (MANOVA). The
+goal is to test whether the p-dimensional population means of data
+taken from @var{k} different groups are all equal.  All data are
+assumed drawn independently from p-dimensional normal distributions
+with the same covariance matrix.
+
+The data matrix is given by @var{y}.  As usual, rows are observations
+and columns are variables.  The vector @var{g} specifies the
+corresponding group labels (e.g., numbers from 1 to @var{k}).
+
+The LR test statistic (Wilks' Lambda) and approximate p-values are
+computed and displayed.
+@end deftypefn
+
+
+@anchor{doc-mcnemar_test}
+@deftypefn {Function File} {[@var{pval}, @var{chisq}, @var{df}] =} mcnemar_test (@var{x})
+For a square contingency table @var{x} of data cross-classified on
+the row and column variables, McNemar's test can be used for testing
+the null hypothesis of symmetry of the classification probabilities.
+
+Under the null, @var{chisq} is approximately distributed as chisquare
+with @var{df} degrees of freedom.
+
+The p-value (1 minus the CDF of this distribution at @var{chisq}) is
+returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-prop_test_2}
+@deftypefn {Function File} {[@var{pval}, @var{z}] =} prop_test_2 (@var{x1}, @var{n1}, @var{x2}, @var{n2}, @var{alt})
+If @var{x1} and @var{n1} are the counts of successes and trials in
+one sample, and @var{x2} and @var{n2} those in a second one, test the
+null hypothesis that the success probabilities @var{p1} and @var{p2}
+are the same.  Under the null, the test statistic @var{z}
+approximately follows a standard normal distribution.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+@var{p1} != @var{p2}.  If @var{alt} is @code{">"}, the one-sided
+alternative @var{p1} > @var{p2} is used.  Similarly for @code{"<"},
+the one-sided alternative @var{p1} < @var{p2} is used.
+The default is the two-sided case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-run_test}
+@deftypefn {Function File} {[@var{pval}, @var{chisq}] =} run_test (@var{x})
+Perform a chi-square test with 6 degrees of freedom based on the
+upward runs in the columns of @var{x}.  Can be used to test whether
+@var{x} contains independent data.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value is displayed.
+@end deftypefn
+
+
+@anchor{doc-sign_test}
+@deftypefn {Function File} {[@var{pval}, @var{b}, @var{n}] =} sign_test (@var{x}, @var{y}, @var{alt})
+For two matched-pair samples @var{x} and @var{y}, perform a sign test
+of the null hypothesis PROB (@var{x} > @var{y}) == PROB (@var{x} <
+@var{y}) == 1/2.  Under the null, the test statistic @var{b} roughly
+follows a binomial distribution with parameters @code{@var{n} = sum
+(@var{x} != @var{y})} and @var{p} = 1/2.
+
+With the optional argument @code{alt}, the alternative of interest
+can be selected.  If @var{alt} is @code{"!="} or @code{"<>"}, the
+null hypothesis is tested against the two-sided alternative PROB
+(@var{x} < @var{y}) != 1/2.  If @var{alt} is @code{">"}, the
+one-sided alternative PROB (@var{x} > @var{y}) > 1/2 ("x is
+stochastically greater than y") is considered.  Similarly for
+@code{"<"}, the one-sided alternative PROB (@var{x} > @var{y}) < 1/2
+("x is stochastically less than y") is considered.  The default is
+the two-sided case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-t_test}
+@deftypefn {Function File} {[@var{pval}, @var{t}, @var{df}] =} t_test (@var{x}, @var{m}, @var{alt})
+For a sample @var{x} from a normal distribution with unknown mean and
+variance, perform a t-test of the null hypothesis @code{mean
+(@var{x}) == @var{m}}.  Under the null, the test statistic @var{t}
+follows a Student distribution with @code{@var{df} = length (@var{x})
+- 1} degrees of freedom.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+@code{mean (@var{x}) != @var{m}}.  If @var{alt} is @code{">"}, the
+one-sided alternative @code{mean (@var{x}) > @var{m}} is considered.
+Similarly for @var{"<"}, the one-sided alternative @code{mean
+(@var{x}) < @var{m}} is considered,  The default is the two-sided
+case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-t_test_2}
+@deftypefn {Function File} {[@var{pval}, @var{t}, @var{df}] =} t_test_2 (@var{x}, @var{y}, @var{alt})
+For two samples x and y from normal distributions with unknown means
+and unknown equal variances, perform a two-sample t-test of the null
+hypothesis of equal means.  Under the null, the test statistic
+@var{t} follows a Student distribution with @var{df} degrees of
+freedom.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+@code{mean (@var{x}) != mean (@var{y})}.  If @var{alt} is @code{">"},
+the one-sided alternative @code{mean (@var{x}) > mean (@var{y})} is
+used.  Similarly for @code{"<"}, the one-sided alternative @code{mean
+(@var{x}) < mean (@var{y})} is used.  The default is the two-sided
+case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-t_test_regression}
+@deftypefn {Function File} {[@var{pval}, @var{t}, @var{df}] =} t_test_regression (@var{y}, @var{x}, @var{rr}, @var{r}, @var{alt})
+Perform an t test for the null hypothesis @code{@var{rr} * @var{b} =
+@var{r}} in a classical normal regression model @code{@var{y} =
+@var{x} * @var{b} + @var{e}}.  Under the null, the test statistic @var{t}
+follows a @var{t} distribution with @var{df} degrees of freedom.
+
+If @var{r} is omitted, a value of 0 is assumed.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+@code{@var{rr} * @var{b} != @var{r}}.  If @var{alt} is @code{">"}, the
+one-sided alternative @code{@var{rr} * @var{b} > @var{r}} is used.
+Similarly for @var{"<"}, the one-sided alternative @code{@var{rr} *
+@var{b} < @var{r}} is used.  The default is the two-sided case. 
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-u_test}
+@deftypefn {Function File} {[@var{pval}, @var{z}] =} u_test (@var{x}, @var{y}, @var{alt})
+For two samples @var{x} and @var{y}, perform a Mann-Whitney U-test of
+the null hypothesis PROB (@var{x} > @var{y}) == 1/2 == PROB (@var{x}
+< @var{y}).  Under the null, the test statistic @var{z} approximately
+follows a standard normal distribution.  Note that this test is
+equivalent to the Wilcoxon rank-sum test.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+PROB (@var{x} > @var{y}) != 1/2.  If @var{alt} is @code{">"}, the
+one-sided alternative PROB (@var{x} > @var{y}) > 1/2 is considered.
+Similarly for @code{"<"}, the one-sided alternative PROB (@var{x} >
+@var{y}) < 1/2 is considered,  The default is the two-sided case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-var_test}
+@deftypefn {Function File} {[@var{pval}, @var{f}, @var{df_num}, @var{df_den}] =} var_test (@var{x}, @var{y}, @var{alt})
+For two samples @var{x} and @var{y} from normal distributions with
+unknown means and unknown variances, perform an F-test of the null
+hypothesis of equal variances.  Under the null, the test statistic f
+follows an F-distribution with df_num and df_den degrees of freedom.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+@code{var (@var{x}) != var (@var{y})}.  If @var{alt} is @code{">"},
+the one-sided alternative @code{var (@var{x}) > var (@var{y})} is
+used.  Similarly for "<", the one-sided alternative @code{var
+(@var{x}) > var (@var{y})} is used.  The default is the two-sided
+case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-welch_test}
+@deftypefn {Function File} {[@var{pval}, @var{t}, @var{df}] =} welch_test (@var{x}, @var{y}, @var{alt})
+For two samples @var{x} and @var{y} from normal distributions with
+unknown means and unknown and not necessarily equal variances,
+perform a Welch test of the null hypothesis of equal means.
+Under the null, the test statistic t approximately follows a Student
+distribution with df degrees of freedom.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+@code{mean (@var{x}) != @var{m}}.  If @var{alt} is @code{">"}, the
+one-sided alternative mean(x) > @var{m} is considered.  Similarly for
+@code{"<"}, the one-sided alternative mean(x) < @var{m} is
+considered.  The default is the two-sided case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-wilcoxon_test}
+@deftypefn {Function File} {[@var{pval}, @var{z}] =} wilcoxon_test (@var{x}, @var{y}, @var{alt})
+For two matched-pair sample vectors @var{x} and @var{y}, perform a
+Wilcoxon signed-rank test of the null hypothesis PROB (@var{x} >
+@var{y}) == 1/2.  Under the null, the test statistic @var{z}
+approximately follows a standard normal distribution.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+PROB (@var{x} > @var{y}) != 1/2.  If alt is @code{">"}, the one-sided
+alternative PROB (@var{x} > @var{y}) > 1/2 is considered.  Similarly
+for @code{"<"}, the one-sided alternative PROB (@var{x} > @var{y}) <
+1/2 is considered.  The default is the two-sided case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed.
+@end deftypefn
+
+
+@anchor{doc-z_test}
+@deftypefn {Function File} {[@var{pval}, @var{z}] =} z_test (@var{x}, @var{m}, @var{v}, @var{alt})
+Perform a Z-test of the null hypothesis @code{mean (@var{x}) ==
+@var{m}} for a sample @var{x} from a normal distribution with unknown
+mean and known variance @var{v}.  Under the null, the test statistic
+@var{z} follows a standard normal distribution.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+@code{mean (@var{x}) != @var{m}}.  If @var{alt} is @code{">"}, the
+one-sided alternative @code{mean (@var{x}) > @var{m}} is considered.
+Similarly for @code{"<"}, the one-sided alternative @code{mean
+(@var{x}) < @var{m}} is considered.  The default is the two-sided
+case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed
+along with some information.
+@end deftypefn
+
+
+@anchor{doc-z_test_2}
+@deftypefn {Function File} {[@var{pval}, @var{z}] =} z_test_2 (@var{x}, @var{y}, @var{v_x}, @var{v_y}, @var{alt})
+For two samples @var{x} and @var{y} from normal distributions with
+unknown means and known variances @var{v_x} and @var{v_y}, perform a
+Z-test of the hypothesis of equal means.  Under the null, the test
+statistic @var{z} follows a standard normal distribution.
+
+With the optional argument string @var{alt}, the alternative of
+interest can be selected.  If @var{alt} is @code{"!="} or
+@code{"<>"}, the null is tested against the two-sided alternative
+@code{mean (@var{x}) != mean (@var{y})}.  If alt is @code{">"}, the
+one-sided alternative @code{mean (@var{x}) > mean (@var{y})} is used.
+Similarly for @code{"<"}, the one-sided alternative @code{mean
+(@var{x}) < mean (@var{y})} is used.  The default is the two-sided
+case.
+
+The p-value of the test is returned in @var{pval}.
+
+If no output argument is given, the p-value of the test is displayed
+along with some information.
+@end deftypefn
+
+
+@node Models, Distributions, Tests, Statistics
+@section Models
+
+@anchor{doc-logistic_regression}
+@deftypefn {Functio File} {[@var{theta}, @var{beta}, @var{dev}, @var{dl}, @var{d2l}, @var{p}] =} logistic_regression (@var{y}, @var{x}, @var{print}, @var{theta}, @var{beta})
+Perform ordinal logistic regression.
+
+Suppose @var{y} takes values in @var{k} ordered categories, and let
+@code{gamma_i (@var{x})} be the cumulative probability that @var{y}
+falls in one of the first @var{i} categories given the covariate
+@var{x}.  Then
+
+@example
+[theta, beta] = logistic_regression (y, x)
+@end example
+
+@noindent
+fits the model
+
+@example
+logit (gamma_i (x)) = theta_i - beta' * x,   i = 1, ..., k-1
+@end example
+
+The number of ordinal categories, @var{k}, is taken to be the number
+of distinct values of @code{round (@var{y})}.  If @var{k} equals 2,
+@var{y} is binary and the model is ordinary logistic regression.  The
+matrix @var{x} is assumed to have full column rank.
+
+Given @var{y} only, @code{theta = logistic_regression (y)}
+fits the model with baseline logit odds only.
+
+The full form is
+
+@example
+[theta, beta, dev, dl, d2l, gamma]
+   = logistic_regression (y, x, print, theta, beta)
+@end example
+
+@noindent
+in which all output arguments and all input arguments except @var{y}
+are optional.
+
+Stting @var{print} to 1 requests summary information about the fitted
+model to be displayed.  Setting @var{print} to 2 requests information
+about convergence at each iteration.  Other values request no
+information to be displayed.  The input arguments @var{theta} and
+@var{beta} give initial estimates for @var{theta} and @var{beta}.
+
+The returned value @var{dev} holds minus twice the log-likelihood.
+
+The returned values @var{dl} and @var{d2l} are the vector of first
+and the matrix of second derivatives of the log-likelihood with
+respect to @var{theta} and @var{beta}.
+
+@var{p} holds estimates for the conditional distribution of @var{y}
+given @var{x}.
+@end deftypefn
+
+
+@node Distributions,  , Models, Statistics
+@section Distributions
+
+@anchor{doc-beta_cdf}
+@deftypefn {Function File} {} beta_cdf (@var{x}, @var{a}, @var{b})
+For each element of @var{x}, returns the CDF at @var{x} of the beta
+distribution with parameters @var{a} and @var{b}, i.e.,
+PROB (beta (@var{a}, @var{b}) <= @var{x}).
+@end deftypefn
+
+
+@anchor{doc-beta_inv}
+@deftypefn {Function File} {} beta_inv (@var{x}, @var{a}, @var{b})
+For each component of @var{x}, compute the quantile (the inverse of
+the CDF) at @var{x} of the Beta distribution with parameters @var{a}
+and @var{b}.
+@end deftypefn
+
+
+@anchor{doc-beta_pdf}
+@deftypefn {Function File} {} beta_pdf (@var{x}, @var{a}, @var{b})
+For each element of @var{x}, returns the PDF at @var{x} of the beta
+distribution with parameters @var{a} and @var{b}.
+@end deftypefn
+
+
+@anchor{doc-beta_rnd}
+@deftypefn {Function File} {} beta_rnd (@var{a}, @var{b}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the Beta
+distribution with parameters @var{a} and @var{b}.  Both @var{a} and
+@var{b} must be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{a} and @var{b}.
+@end deftypefn
+
+
+@anchor{doc-binomial_cdf}
+@deftypefn {Function File} {} binomial_cdf (@var{x}, @var{n}, @var{p})
+For each element of @var{x}, compute the CDF at @var{x} of the
+binomial distribution with parameters @var{n} and @var{p}.
+@end deftypefn
+
+
+@anchor{doc-binomial_inv}
+@deftypefn {Function File} {} binomial_inv (@var{x}, @var{n}, @var{p})
+For each element of @var{x}, compute the quantile at @var{x} of the
+binomial distribution with parameters @var{n} and @var{p}.
+@end deftypefn
+
+
+@anchor{doc-binomial_pdf}
+@deftypefn {Function File} {} binomial_pdf (@var{x}, @var{n}, @var{p})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the binomial distribution with parameters @var{n}
+and @var{p}.
+@end deftypefn
+
+
+@anchor{doc-binomial_rnd}
+@deftypefn {Function File} {} binomial_rnd (@var{n}, @var{p}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+binomial distribution with parameters @var{n} and @var{p}.  Both
+@var{n} and @var{p} must be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{n} and @var{p}.
+@end deftypefn
+
+
+@anchor{doc-cauchy_cdf}
+@deftypefn {Function File} {} cauchy_cdf (@var{x}, @var{lambda}, @var{sigma})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the Cauchy distribution with location
+parameter @var{lambda} and scale parameter @var{sigma}.  Default
+values are @var{lambda} = 0, @var{sigma} = 1. 
+@end deftypefn
+
+
+@anchor{doc-cauchy_inv}
+@deftypefn {Function File} {} cauchy_inv (@var{x}, @var{lambda}, @var{sigma})
+For each element of @var{x}, compute the quantile (the inverse of the
+CDF) at @var{x} of the Cauchy distribution with location parameter
+@var{lambda} and scale parameter @var{sigma}.  Default values are
+@var{lambda} = 0, @var{sigma} = 1. 
+@end deftypefn
+
+
+@anchor{doc-cauchy_pdf}
+@deftypefn {Function File} {} cauchy_pdf (@var{x}, @var{lambda}, @var{sigma})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the Cauchy distribution with location parameter
+@var{lambda} and scale parameter @var{sigma} > 0.  Default values are
+@var{lambda} = 0, @var{sigma} = 1. 
+@end deftypefn
+
+
+@anchor{doc-cauchy_rnd}
+@deftypefn {Function File} {} cauchy_rnd (@var{lambda}, @var{sigma}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the Cauchy
+distribution with parameters @var{lambda} and @var{sigma} which must
+both be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{lambda} and @var{sigma}.
+@end deftypefn
+
+
+@anchor{doc-chisquare_cdf}
+@deftypefn {Function File} {} chisquare_cdf (@var{x}, @var{n})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the chisquare distribution with @var{n}
+degrees of freedom.
+@end deftypefn
+
+
+@anchor{doc-chisquare_inv}
+@deftypefn {Function File} {} chisquare_inv (@var{x}, @var{n})
+For each element of @var{x}, compute the quantile (the inverse of the
+CDF) at @var{x} of the chisquare distribution with @var{n} degrees of
+freedom.
+@end deftypefn
+
+
+@anchor{doc-chisquare_pdf}
+@deftypefn {Function File} {} chisquare_pdf (@var{x}, @var{n})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the chisquare distribution with @var{k} degrees
+of freedom.
+@end deftypefn
+
+
+@anchor{doc-chisquare_rnd}
+@deftypefn {Function File} {} chisquare_rnd (@var{n}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+chisquare distribution with @var{n} degrees of freedom.  @var{n} must
+be a scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the size of @var{n}.
+@end deftypefn
+
+
+@anchor{doc-discrete_cdf}
+@deftypefn {Function File} {} discrete_cdf (@var{x}, @var{v}, @var{p})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of a univariate discrete distribution which
+assumes the values in v with probabilities @var{p}.
+@end deftypefn
+
+
+@anchor{doc-discrete_inv}
+@deftypefn {Function File} {} discrete_inv (@var{x}, @var{v}, @var{p})
+For each component of @var{x}, compute the quantile (the inverse of
+the CDF) at @var{x} of the univariate distribution which assumes the
+values in @var{v} with probabilities @var{p}.
+@end deftypefn
+
+
+@anchor{doc-discrete_pdf}
+@deftypefn {Function File} {} discrete_pdf (@var{x}, @var{v}, @var{p})
+For each element of @var{x}, compute the probability density function
+(pDF) at @var{x} of a univariate discrete distribution which assumes
+the values in @var{v} with probabilities @var{p}.
+@end deftypefn
+
+
+@anchor{doc-discrete_rnd}
+@deftypefn {Function File} {} discrete_rnd (@var{n}, @var{v}, @var{p})
+Generate a row vector containing a random sample of size @var{n} from
+the univariate distribution which assumes the values in @var{v} with
+probabilities @var{p}.
+
+Currently, @var{n} must be a scalar.
+@end deftypefn
+
+
+@anchor{doc-empirical_cdf}
+@deftypefn {Function File} {} empirical_cdf (@var{x}, @var{data})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the empirical distribution obtained from
+the univariate sample @var{data}.
+@end deftypefn
+
+
+@anchor{doc-empirical_inv}
+@deftypefn {Function File} {} empirical_inv (@var{x}, @var{data})
+For each element of @var{x}, compute the quantile (the inverse of the
+CDF) at @var{x} of the empirical distribution obtained from the
+univariate sample @var{data}.
+@end deftypefn
+
+
+@anchor{doc-empirical_pdf}
+@deftypefn {Function File} {} empirical_pdf (@var{x}, @var{data})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the empirical distribution obtained from the
+univariate sample @var{data}.
+@end deftypefn
+
+
+@anchor{doc-empirical_rnd}
+@deftypefn {Function File} {} empirical_rnd (@var{n}, @var{data})
+Generate a bootstrap sample of size @var{n} from the empirical
+distribution obtained from the univariate sample @var{data}.
+@end deftypefn
+
+
+@anchor{doc-exponential_cdf}
+@deftypefn {Function File} {} exponential_cdf (@var{x}, @var{lambda})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the exponential distribution with
+parameter @var{lambda}.
+
+The arguments can be of common size or scalar.
+@end deftypefn
+
+
+@anchor{doc-exponential_inv}
+@deftypefn {Function File} {} exponential_inv (@var{x}, @var{lambda})
+For each element of @var{x}, compute the quantile (the inverse of the
+CDF) at @var{x} of the exponential distribution with parameter
+@var{lambda}.
+@end deftypefn
+
+
+@anchor{doc-exponential_pdf}
+@deftypefn {Function File} {} exponential_pdf (@var{x}, @var{lambda})
+For each element of @var{x}, compute the probability density function
+(PDF) of the exponential distribution with parameter @var{lambda}.
+@end deftypefn
+
+
+@anchor{doc-exponential_rnd}
+@deftypefn {Function File} {} exponential_rnd (@var{lambda}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+exponential distribution with parameter @var{lambda}, which must be a
+scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the size of @var{lambda}.
+@end deftypefn
+
+
+@anchor{doc-f_cdf}
+@deftypefn {Function File} {} f_cdf (@var{x}, @var{m}, @var{n})
+For each element of @var{x}, compute the CDF at @var{x} of the F
+distribution with @var{m} and @var{n} degrees of freedom, i.e.,
+PROB (F (@var{m}, @var{n}) <= @var{x}). 
+@end deftypefn
+
+
+@anchor{doc-f_inv}
+@deftypefn {Function File} {} f_inv (@var{x}, @var{m}, @var{n})
+For each component of @var{x}, compute the quantile (the inverse of
+the CDF) at @var{x} of the F distribution with parameters @var{m} and
+@var{n}.
+@end deftypefn
+
+
+@anchor{doc-f_pdf}
+@deftypefn {Function File} {} f_pdf (@var{x}, @var{m}, @var{n})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the F distribution with @var{m} and @var{n}
+degrees of freedom.
+@end deftypefn
+
+
+@anchor{doc-f_rnd}
+@deftypefn {Function File} {} f_rnd (@var{m}, @var{n}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the F
+distribution with @var{m} and @var{n} degrees of freedom.  Both
+@var{m} and @var{n} must be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{m} and @var{n}.
+@end deftypefn
+
+
+@anchor{doc-gamma_cdf}
+@deftypefn {Function File} {} gamma_cdf (@var{x}, @var{a}, @var{b})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the Gamma distribution with parameters
+@var{a} and @var{b}.
+@end deftypefn
+
+
+@anchor{doc-gamma_inv}
+@deftypefn {Function File} {} gamma_inv (@var{x}, @var{a}, @var{b})
+For each component of @var{x}, compute the quantile (the inverse of
+the CDF) at @var{x} of the Gamma distribution with parameters @var{a}
+and @var{b}. 
+@end deftypefn
+
+
+@anchor{doc-gamma_pdf}
+@deftypefn {Function File} {} gamma_pdf (@var{x}, @var{a}, @var{b})
+For each element of @var{x}, return the probability density function
+(PDF) at @var{x} of the Gamma distribution with parameters @var{a}
+and @var{b}.
+@end deftypefn
+
+
+@anchor{doc-gamma_rnd}
+@deftypefn {Function File} {} gamma_rnd (@var{a}, @var{b}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the Gamma
+distribution with parameters @var{a} and @var{b}.  Both @var{a} and
+@var{b} must be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{a} and @var{b}.
+@end deftypefn
+
+
+@anchor{doc-geometric_cdf}
+@deftypefn {Function File} {} geometric_cdf (@var{x}, @var{p})
+For each element of @var{x}, compute the CDF at @var{x} of the
+geometric distribution with parameter @var{p}.
+@end deftypefn
+
+
+@anchor{doc-geometric_inv}
+@deftypefn {Function File} {} geometric_inv (@var{x}, @var{p})
+For each element of @var{x}, compute the quantile at @var{x} of the
+geometric distribution with parameter @var{p}.
+@end deftypefn
+
+
+@anchor{doc-geometric_pdf}
+@deftypefn {Function File} {} geometric_pdf (@var{x}, @var{p})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the geometric distribution with parameter @var{p}.
+@end deftypefn
+
+
+@anchor{doc-geometric_rnd}
+@deftypefn {Function File} {} geometric_rnd (@var{p}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+geometric distribution with parameter @var{p}, which must be a scalar
+or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the size of @var{p}.
+@end deftypefn
+
+
+@anchor{doc-hypergeometric_cdf}
+@deftypefn {Function File} {} hypergeometric_cdf (@var{x}, @var{m}, @var{t}, @var{n})
+Compute the cumulative distribution function (CDF) at @var{x} of the
+hypergeometric distribution with parameters @var{m}, @var{t}, and
+@var{n}.  This is the probability of obtaining not more than @var{x}
+marked items when randomly drawing a sample of size @var{n} without
+replacement from a population of total size @var{t} containing
+@var{m} marked items.
+
+The parameters @var{m}, @var{t}, and @var{n} must positive integers
+with @var{m} and @var{n} not greater than @var{t}.
+@end deftypefn
+
+
+@anchor{doc-hypergeometric_inv}
+@deftypefn {Function File} {} hypergeometric_inv (@var{x}, @var{m}, @var{t}, @var{n})
+For each element of @var{x}, compute the quantile at @var{x} of the
+hypergeometric distribution with parameters @var{m}, @var{t}, and
+@var{n}.
+
+The parameters @var{m}, @var{t}, and @var{n} must positive integers
+with @var{m} and @var{n} not greater than @var{t}.
+@end deftypefn
+
+
+@anchor{doc-hypergeometric_pdf}
+@deftypefn {Function File} {} hypergeometric_pdf (@var{x}, @var{m}, @var{t}, @var{n})
+Compute the probability density function (PDF) at @var{x} of the
+hypergeometric distribution with parameters @var{m}, @var{t}, and
+@var{n}. This is the probability of obtaining @var{x} marked items
+when randomly drawing a sample of size @var{n} without replacement
+from a population of total size @var{t} containing @var{m} marked items.
+
+The arguments must be of common size or scalar.
+@end deftypefn
+
+
+@anchor{doc-hypergeometric_rnd}
+@deftypefn {Function File} {} hypergeometric_rnd (@var{n_size}, @var{m}, @var{t}, @var{n})
+Generate a row vector containing a random sample of size @var{n_size} from
+the hypergeometric distribution with parameters @var{m}, @var{t}, and
+@var{n}.
+
+The parameters @var{m}, @var{t}, and @var{n} must positive integers
+with @var{m} and @var{n} not greater than @var{t}.
+@end deftypefn
+
+
+@anchor{doc-kolmogorov_smirnov_cdf}
+@deftypefn {Function File} {} kolmogorov_smirnov_cdf (@var{x}, @var{tol})
+Return the CDF at @var{x} of the Kolmogorov-Smirnov distribution,
+@iftex
+@tex
+$$ Q(x) = sum_{k=-\infty}^\infty (-1)^k exp(-2 k^2 x^2) $$
+@end tex
+@end iftex
+@ifinfo
+@example
+         Inf
+Q(x) =   SUM    (-1)^k exp(-2 k^2 x^2)
+       k = -Inf
+@end example
+@end ifinfo
+
+@noindent
+for @var{x} > 0.
+
+The optional parameter @var{tol} specifies the precision up to which
+the series should be evaluated;  the default is @var{tol} = @code{eps}.
+@end deftypefn
+
+
+@anchor{doc-laplace_cdf}
+@deftypefn {Function File} {} laplace_cdf (@var{x})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the Laplace distribution.
+@end deftypefn
+
+
+@anchor{doc-laplace_inv}
+@deftypefn {Function File} {} laplace_inv (@var{x})
+For each element of @var{x}, compute the quantile (the inverse of the
+CDF) at @var{x} of the Laplace distribution.
+@end deftypefn
+
+
+@anchor{doc-laplace_pdf}
+@deftypefn {Function File} {} laplace_pdf (@var{x})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the Laplace distribution.
+@end deftypefn
+
+
+@anchor{doc-laplace_rnd}
+@deftypefn {Function File} {} laplace_rnd (@var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random numbers from the
+Laplace distribution.
+@end deftypefn
+
+
+@anchor{doc-logistic_cdf}
+@deftypefn {Function File} {} logistic_cdf (@var{x})
+For each component of @var{x}, compute the CDF at @var{x} of the
+logistic distribution.
+@end deftypefn
+
+
+@anchor{doc-logistic_inv}
+@deftypefn {Function File} {} logistic_inv (@var{x})
+For each component of @var{x}, compute the quantile (the inverse of
+the CDF) at @var{x} of the logistic distribution.
+@end deftypefn
+
+
+@anchor{doc-logistic_pdf}
+@deftypefn {Function File} {} logistic_pdf (@var{x})
+For each component of @var{x}, compute the PDF at @var{x} of the
+logistic distribution.
+@end deftypefn
+
+
+@anchor{doc-logistic_rnd}
+@deftypefn {Function File} {} logistic_rnd (@var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random numbers from the
+logistic distribution.
+@end deftypefn
+
+
+@anchor{doc-lognormal_cdf}
+@deftypefn {Function File} {} lognormal_cdf (@var{x}, @var{a}, @var{v})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the lognormal distribution with
+parameters @var{a} and @var{v}.  If a random variable follows this
+distribution, its logarithm is normally distributed with mean
+@code{log (@var{a})} and variance @var{v}.
+
+Default values are @var{a} = 1, @var{v} = 1.
+@end deftypefn
+
+
+@anchor{doc-lognormal_inv}
+@deftypefn {Function File} {} lognormal_inv (@var{x}, @var{a}, @var{v})
+For each element of @var{x}, compute the quantile (the inverse of the
+CDF) at @var{x} of the lognormal distribution with parameters @var{a}
+and @var{v}.  If a random variable follows this distribution, its
+logarithm is normally distributed with mean @code{log (@var{a})} and
+variance @var{v}.
+
+Default values are @var{a} = 1, @var{v} = 1.
+@end deftypefn
+
+
+@anchor{doc-lognormal_pdf}
+@deftypefn {Function File} {} lognormal_pdf (@var{x}, @var{a}, @var{v})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the lognormal distribution with parameters
+@var{a} and @var{v}.  If a random variable follows this distribution,
+its logarithm is normally distributed with mean @code{log (@var{a})}
+and variance @var{v}.
+
+Default values are @var{a} = 1, @var{v} = 1.
+@end deftypefn
+
+
+@anchor{doc-lognormal_rnd}
+@deftypefn {Function File} {} lognormal_rnd (@var{a}, @var{v}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+lognormal distribution with parameters @var{a} and @var{v}. Both
+@var{a} and @var{v} must be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{a} and @var{v}.
+@end deftypefn
+
+
+@anchor{doc-normal_cdf}
+@deftypefn {Function File} {} normal_cdf (@var{x}, @var{m}, @var{v})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the normal distribution with mean
+@var{m} and variance @var{v}.
+
+Default values are @var{m} = 0, @var{v} = 1.
+@end deftypefn
+
+
+@anchor{doc-normal_inv}
+@deftypefn {Function File} {} normal_inv (@var{x}, @var{m}, @var{v})
+For each element of @var{x}, compute the quantile (the inverse of the
+CDF) at @var{x} of the normal distribution with mean @var{m} and
+variance @var{v}.
+
+Default values are @var{m} = 0, @var{v} = 1.
+@end deftypefn
+
+
+@anchor{doc-normal_pdf}
+@deftypefn {Function File} {} normal_pdf (@var{x}, @var{m}, @var{v})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the normal distribution with mean @var{m} and
+variance @var{v}.
+
+Default values are @var{m} = 0, @var{v} = 1.
+@end deftypefn
+
+
+@anchor{doc-normal_rnd}
+@deftypefn {Function File} {} normal_rnd (@var{m}, @var{v}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+normal distribution with parameters @var{m} and @var{v}.  Both
+@var{m} and @var{v} must be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{m} and @var{v}.
+@end deftypefn
+
+
+@anchor{doc-pascal_cdf}
+@deftypefn {Function File} {} pascal_cdf (@var{x}, @var{n}, @var{p})
+For each element of @var{x}, compute the CDF at x of the Pascal
+(negative binomial) distribution with parameters @var{n} and @var{p}.
+
+The number of failures in a Bernoulli experiment with success
+probability @var{p} before the @var{n}-th success follows this
+distribution.
+@end deftypefn
+
+
+@anchor{doc-pascal_inv}
+@deftypefn {Function File} {} pascal_inv (@var{x}, @var{n}, @var{p})
+For each element of @var{x}, compute the quantile at @var{x} of the
+Pascal (negative binomial) distribution with parameters @var{n} and
+@var{p}.
+
+The number of failures in a Bernoulli experiment with success
+probability @var{p} before the @var{n}-th success follows this
+distribution.
+@end deftypefn
+
+
+@anchor{doc-pascal_pdf}
+@deftypefn {Function File} {} pascal_pdf (@var{x}, @var{n}, @var{p})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the Pascal (negative binomial) distribution with
+parameters @var{n} and @var{p}.
+
+The number of failures in a Bernoulli experiment with success
+probability @var{p} before the @var{n}-th success follows this
+distribution. 
+@end deftypefn
+
+
+@anchor{doc-pascal_rnd}
+@deftypefn {Function File} {} pascal_rnd (@var{n}, @var{p}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the Pascal
+(negative binomial) distribution with parameters @var{n} and @var{p}.
+Both @var{n} and @var{p} must be scalar or of size @var{r} by @var{c}. 
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{n} and @var{p}.
+@end deftypefn
+
+
+@anchor{doc-poisson_cdf}
+@deftypefn {Function File} {} poisson_cdf (@var{x}, @var{lambda})
+For each element of @var{x}, compute the cumulative distribution
+function (CDF) at @var{x} of the Poisson distribution with parameter
+lambda.
+@end deftypefn
+
+
+@anchor{doc-poisson_inv}
+@deftypefn {Function File} {} poisson_inv (@var{x}, @var{lambda})
+For each component of @var{x}, compute the quantile (the inverse of
+the CDF) at @var{x} of the Poisson distribution with parameter
+@var{lambda}.
+@end deftypefn
+
+
+@anchor{doc-poisson_pdf}
+@deftypefn {Function File} {} poisson_pdf (@var{x}, @var{lambda})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the poisson distribution with parameter @var{lambda}.
+@end deftypefn
+
+
+@anchor{doc-poisson_rnd}
+@deftypefn {Function File} {} poisson_rnd (@var{lambda}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+Poisson distribution with parameter @var{lambda}, which must be a 
+scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the size of @var{lambda}.
+@end deftypefn
+
+
+@anchor{doc-stdnormal_cdf}
+@deftypefn {Function File} {} stdnormal_cdf (@var{x})
+For each component of @var{x}, compute the CDF of the standard normal
+distribution at @var{x}.
+@end deftypefn
+
+
+@anchor{doc-stdnormal_inv}
+@deftypefn {Function File} {} stdnormal_inv (@var{x})
+For each component of @var{x}, compute compute the quantile (the
+inverse of the CDF) at @var{x} of the standard normal distribution.
+@end deftypefn
+
+
+@anchor{doc-stdnormal_pdf}
+@deftypefn {Function File} {} stdnormal_pdf (@var{x})
+For each element of @var{x}, compute the probability density function
+(PDF) of the standard normal distribution at @var{x}.
+@end deftypefn
+
+
+@anchor{doc-stdnormal_rnd}
+@deftypefn {Function File} {} stdnormal_rnd (@var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random numbers from the
+standard normal distribution.
+@end deftypefn
+
+
+@anchor{doc-t_cdf}
+@deftypefn {Function File} {} t_cdf (@var{x}, @var{n})
+For each element of @var{x}, compute the CDF at @var{x} of the
+t (Student) distribution with @var{n} degrees of freedom, i.e.,
+PROB (t(@var{n}) <= @var{x}).
+@end deftypefn
+
+
+@anchor{doc-t_inv}
+@deftypefn {Function File} {} t_inv (@var{x}, @var{n})
+For each component of @var{x}, compute the quantile (the inverse of
+the CDF) at @var{x} of the t (Student) distribution with parameter
+@var{n}.
+@end deftypefn
+
+
+@anchor{doc-t_pdf}
+@deftypefn {Function File} {} t_pdf (@var{x}, @var{n})
+For each element of @var{x}, compute the probability density function
+(PDF) at @var{x} of the @var{t} (Student) distribution with @var{n}
+degrees of freedom. 
+@end deftypefn
+
+
+@anchor{doc-t_rnd}
+@deftypefn {Function File} {} t_rnd (@var{n}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the t
+(Student) distribution with @var{n} degrees of freedom.  @var{n} must
+be a scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the size of @var{n}.
+@end deftypefn
+
+
+@anchor{doc-uniform_cdf}
+@deftypefn {Function File} {} uniform_cdf (@var{x}, @var{a}, @var{b})
+Return the CDF at @var{x} of the uniform distribution on [@var{a},
+@var{b}], i.e., PROB (uniform (@var{a}, @var{b}) <= x).
+
+Default values are @var{a} = 0, @var{b} = 1.
+@end deftypefn
+
+
+@anchor{doc-uniform_inv}
+@deftypefn {Function File} {} uniform_inv (@var{x}, @var{a}, @var{b})
+For each element of @var{x}, compute the quantile (the inverse of the
+CDF) at @var{x} of the uniform distribution on [@var{a}, @var{b}].
+
+Default values are @var{a} = 0, @var{b} = 1.
+@end deftypefn
+
+
+@anchor{doc-uniform_pdf}
+@deftypefn {Function File} {} uniform_pdf (@var{x}, @var{a}, @var{b})
+For each element of @var{x}, compute the PDF at @var{x} of the uniform
+distribution on [@var{a}, @var{b}].
+
+Default values are @var{a} = 0, @var{b} = 1.
+@end deftypefn
+
+
+@anchor{doc-uniform_rnd}
+@deftypefn {Function File} {} uniform_rnd (@var{a}, @var{b}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+uniform distribution on [@var{a}, @var{b}].  Both @var{a} and @var{b}
+must be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{a} and @var{b}.
+@end deftypefn
+
+
+@anchor{doc-weibull_cdf}
+@deftypefn {Function File} {} weibull_cdf (@var{x}, @var{alpha}, @var{sigma})
+Compute the cumulative distribution function (CDF) at @var{x} of the
+Weibull distribution with shape parameter @var{alpha} and scale
+parameter @var{sigma}, which is
+
+@example
+1 - exp(-(x/sigma)^alpha)
+@end example
+
+@noindent
+for @var{x} >= 0.
+@end deftypefn
+
+
+@anchor{doc-weibull_inv}
+@deftypefn {Function File} {} weibull_inv (@var{x}, @var{lambda}, @var{alpha})
+Compute the quantile (the inverse of the CDF) at @var{x} of the
+Weibull distribution with shape parameter @var{alpha} and scale
+parameter @var{sigma}.
+@end deftypefn
+
+
+@anchor{doc-weibull_pdf}
+@deftypefn {Function File} {} weibull_pdf (@var{x}, @var{alpha}, @var{sigma})
+Compute the probability density function (PDF) at @var{x} of the
+Weibull distribution with shape parameter @var{alpha} and scale
+parameter @var{sigma} which is given by
+
+@example
+   alpha * sigma^(-alpha) * x^(alpha-1) * exp(-(x/sigma)^alpha)
+@end example
+
+@noindent
+for @var{x} > 0.
+@end deftypefn
+
+
+@anchor{doc-weibull_rnd}
+@deftypefn {Function File} {} weibull_rnd (@var{alpha}, @var{sigma}, @var{r}, @var{c})
+Return an @var{r} by @var{c} matrix of random samples from the
+Weibull distribution with parameters @var{alpha} and @var{sigma}
+which must be scalar or of size @var{r} by @var{c}.
+
+If @var{r} and @var{c} are omitted, the size of the result matrix is
+the common size of @var{alpha} and @var{sigma}.
+@end deftypefn
+
+
+@anchor{doc-wiener_rnd}
+@deftypefn {Function File} {} wiener_rnd (@var{t}, @var{d}, @var{n})
+Return a simulated realization of the @var{d}-dimensional Wiener Process
+on the interval [0,@var{t}].  If @var{d} is omitted, @var{d} = 1 is
+used. The first column of the return matrix contains time, the
+remaining columns contain the Wiener process.
+
+The optional parameter @var{n} gives the number of summands used for
+simulating the process over an interval of length 1.  If @var{n} is
+omitted, @var{n} = 1000 is used.
+@end deftypefn
+

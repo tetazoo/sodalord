@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Audio Processing</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_32.html">previous</A>, <A HREF="octave_34.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC203" HREF="octave_toc.html#TOC203">Audio Processing</A></H1>
+
+<P>
+Octave provides a few functions for dealing with audio data.  An audio
+`sample' is a single output value from an A/D converter, i.e., a small
+integer number (usually 8 or 16 bits), and audio data is just a series
+of such samples.  It can be characterized by three parameters:  the
+sampling rate (measured in samples per second or Hz, e.g. 8000 or
+44100), the number of bits per sample (e.g. 8 or 16), and the number of
+channels (1 for mono, 2 for stereo, etc.).
+
+
+<P>
+There are many different formats for representing such data.  Currently,
+only the two most popular, <EM>linear encoding</EM> and <EM>mu-law
+encoding</EM>, are supported by Octave.  There is an excellent FAQ on audio
+formats by Guido van Rossum &#60;guido@cwi.nl&#62; which can be found at any
+FAQ ftp site, in particular in the directory
+<TT>`/pub/usenet/news.answers/audio-fmts'</TT> of the archive site
+<CODE>rtfm.mit.edu</CODE>.
+
+
+<P>
+Octave simply treats audio data as vectors of samples (non-mono data are
+not supported yet).  It is assumed that audio files using linear
+encoding have one of the extensions <TT>`lin'</TT> or <TT>`raw'</TT>, and that
+files holding data in mu-law encoding end in <TT>`au'</TT>, <TT>`mu'</TT>, or
+<TT>`snd'</TT>.
+
+
+<P>
+@anchor{doc-lin2mu}
+<DL>
+<DT><U>Function File:</U>  <B>lin2mu</B> <I>(<VAR>x</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX1241"></A>
+Converts audio data from linear to mu-law.  Mu-law values use 8-bit
+unsigned integers.  Linear values use <VAR>n</VAR>-bit signed integers or 
+floating point values in the range -1&#60;=<VAR>x</VAR>&#60;=1 if <VAR>n</VAR> is 0.  
+If <VAR>n</VAR> is not specified it defaults to 0, 8 or 16 depending on 
+the range values in <VAR>x</VAR>.
+</DL>
+@seealso{mu2lin, loadaudio, saveaudio, playaudio, setaudio, and record}
+
+
+<P>
+@anchor{doc-mu2lin}
+<DL>
+<DT><U>Function File:</U>  <B>mu2lin</B> <I>(<VAR>x</VAR>, <VAR>bps</VAR>)</I>
+<DD><A NAME="IDX1242"></A>
+Converts audio data from linear to mu-law.  Mu-law values are 8-bit
+unsigned integers.  Linear values use <VAR>n</VAR>-bit signed integers
+or floating point values in the range -1&#60;=y&#60;=1 if <VAR>n</VAR> is 0.  If
+<VAR>n</VAR> is not specified it defaults to 8.
+</DL>
+@seealso{lin2mu, loadaudio, saveaudio, playaudio, setaudio, and record}
+
+
+<P>
+@anchor{doc-loadaudio}
+<DL>
+<DT><U>Function File:</U>  <B>loadaudio</B> <I>(<VAR>name</VAR>, <VAR>ext</VAR>, <VAR>bps</VAR>)</I>
+<DD><A NAME="IDX1243"></A>
+Loads audio data from the file <TT>`<VAR>name</VAR>.<VAR>ext</VAR>'</TT> into the
+vector <VAR>x</VAR>.
+
+
+<P>
+The extension <VAR>ext</VAR> determines how the data in the audio file is
+interpreted;  the extensions <TT>`lin'</TT> (default) and <TT>`raw'</TT>
+correspond to linear, the extensions <TT>`au'</TT>, <TT>`mu'</TT>, or <TT>`snd'</TT>
+to mu-law encoding.
+
+
+<P>
+The argument <VAR>bps</VAR> can be either 8 (default) or 16, and specifies
+the number of bits per sample used in the audio file.
+</DL>
+@seealso{lin2mu, mu2lin, saveaudio, playaudio, setaudio, and record}
+
+
+<P>
+@anchor{doc-saveaudio}
+<DL>
+<DT><U>Function File:</U>  <B>saveaudio</B> <I>(<VAR>name</VAR>, <VAR>x</VAR>, <VAR>ext</VAR>, <VAR>bps</VAR>)</I>
+<DD><A NAME="IDX1244"></A>
+Saves a vector <VAR>x</VAR> of audio data to the file
+<TT>`<VAR>name</VAR>.<VAR>ext</VAR>'</TT>.  The optional parameters <VAR>ext</VAR> and
+<VAR>bps</VAR> determine the encoding and the number of bits per sample used
+in the audio file (see <CODE>loadaudio</CODE>);  defaults are <TT>`lin'</TT> and
+8, respectively.
+</DL>
+@seealso{lin2mu, mu2lin, loadaudio, playaudio, setaudio, and record}
+
+
+<P>
+The following functions for audio I/O require special A/D hardware and
+operating system support.  It is assumed that audio data in linear
+encoding can be played and recorded by reading from and writing to
+<TT>`/dev/dsp'</TT>, and that similarly <TT>`/dev/audio'</TT> is used for mu-law
+encoding.  These file names are system-dependent.  Improvements so that
+these functions will work without modification on a wide variety of
+hardware are welcome.
+
+
+<P>
+@anchor{doc-playaudio}
+<DL>
+<DT><U>Function File:</U>  <B>playaudio</B> <I>(<VAR>name</VAR>, <VAR>ext</VAR>)</I>
+<DD><A NAME="IDX1245"></A>
+<DT><U>Function File:</U>  <B>playaudio</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX1246"></A>
+Plays the audio file <TT>`<VAR>name</VAR>.<VAR>ext</VAR>'</TT> or the audio data
+stored in the vector <VAR>x</VAR>.
+</DL>
+@seealso{lin2mu, mu2lin, loadaudio, saveaudio, setaudio, and record}
+
+
+<P>
+@anchor{doc-record}
+<DL>
+<DT><U>Function File:</U>  <B>record</B> <I>(<VAR>sec</VAR>, <VAR>sampling_rate</VAR>)</I>
+<DD><A NAME="IDX1247"></A>
+Records <VAR>sec</VAR> seconds of audio input into the vector <VAR>x</VAR>.  The
+default value for <VAR>sampling_rate</VAR> is 8000 samples per second, or
+8kHz.  The program waits until the user types <KBD>RET</KBD> and then
+immediately starts to record.
+</DL>
+@seealso{lin2mu, mu2lin, loadaudio, saveaudio, playaudio, and setaudio}
+
+
+<P>
+@anchor{doc-setaudio}
+<DL>
+<DT><U>@deftypefn{Function File}:</U> setaudio <B>([<VAR>w_type</VAR></B> <I>[, <VAR>value</VAR>]])</I>
+<DD><A NAME="IDX1248"></A>
+
+
+<P>
+executes the shell command `mixer [<VAR>w_type</VAR> [, <VAR>value</VAR>]]'
+</DL>
+
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_32.html">previous</A>, <A HREF="octave_34.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

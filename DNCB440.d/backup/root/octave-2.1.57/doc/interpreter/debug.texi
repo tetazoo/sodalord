@@ -1,0 +1,95 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Debugging
+@chapter Debugging
+
+@anchor{doc-dbstop}
+@deftypefn {Loadable Function} {rline =} dbstop (func, line)
+Set a breakpoint in a function
+@table @code
+@item func
+String representing the function name.  When already in debug
+mode this should be left out and only the line should be given.
+@item line
+Line you would like the breakpoint to be set on
+@end table
+
+The rline returned is the real line that the breakpoint was set at.
+
+@end deftypefn
+@seealso{dbclear, dbstatus, dbnext}
+
+
+@anchor{doc-dbclear}
+@deftypefn {Loadable Function} {} dbclear (func, line)
+Delete a breakpoint in a function
+@table @code
+@item func
+String representing the function name.  When already in debug
+mode this should be left out and only the line should be given.
+@item line
+Line where you would like to remove the the breakpoint
+@end table
+No checking is done to make sure that the line you requested is really
+a breakpoint.   If you get the wrong line nothing will happen.
+@end deftypefn
+@seealso{dbstop, dbstatus, dbwhere}
+
+
+@anchor{doc-dbstatus}
+@deftypefn {Loadable Function} {lst =} dbstatus ([func])
+Return a vector containing the lines on which a function has 
+breakpoints set.
+@table @code
+@item func
+String representing the function name.  When already in debug
+mode this should be left out.
+@end table
+@end deftypefn
+@seealso{dbclear, dbwhere}
+
+
+@anchor{doc-dbwhere}
+@deftypefn {Loadable Function} {} dbwhere ()
+Show where we are in the code
+@end deftypefn
+@seealso{dbclear, dbstatus, dbstop}
+
+
+@anchor{doc-dbtype}
+@deftypefn {Loadable Function} {} dbtype ()
+List script file with line numbers.
+@end deftypefn
+@seealso{dbclear, dbstatus, dbstop}
+
+
+@anchor{doc-debug_on_interrupt}
+@defvr {Built-in Variable} debug_on_interrupt
+If @code{debug_on_interrupt} is nonzero, Octave will try to enter
+debugging mode when it receives an interrupt signal (typically
+generated with @kbd{C-c}).  If a second interrupt signal is received
+before reaching the debugging mode, a normal interrupt will occur.
+The default value is 0.
+@end defvr
+
+
+@anchor{doc-debug_on_warning}
+@defvr {Built-in Variable} debug_on_warning
+If the value of @code{debug_on_warning} is nonzero, Octave will try
+to enter the debugger when a warning is encountered.  The default
+value is 0.
+@end defvr
+
+
+@anchor{doc-debug_on_error}
+@defvr {Built-in Variable} debug_on_error
+If the value of @code{debug_on_error} is nonzero, Octave will try
+to enter the debugger when an error is encountered.  This will also
+inhibit printing of the normal traceback message (you will only see
+the top-level error message).  The default value is 0.
+@end defvr
+

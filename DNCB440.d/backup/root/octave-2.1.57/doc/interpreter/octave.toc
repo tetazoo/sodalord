@@ -1,0 +1,245 @@
+\unnumbchapentry{Preface}{1}
+\unnumbsecentry{Acknowledgements}{1}
+\unnumbsecentry{How You Can Contribute to Octave}{4}
+\unnumbsecentry{Distribution}{4}
+\chapentry{A Brief Introduction to Octave}{1}{5}
+\secentry{Running Octave}{1}{1}{5}
+\secentry{Simple Examples}{1}{2}{5}
+\unnumbsubsecentry{Creating a Matrix}{5}
+\unnumbsubsecentry{Matrix Arithmetic}{6}
+\unnumbsubsecentry{Solving Linear Equations}{6}
+\unnumbsubsecentry{Integrating Differential Equations}{6}
+\unnumbsubsecentry{Producing Graphical Output}{7}
+\unnumbsubsecentry{Editing What You Have Typed}{7}
+\unnumbsubsecentry{Help and Documentation}{8}
+\secentry{Conventions}{1}{3}{8}
+\subsecentry{Fonts}{1}{3}{1}{8}
+\subsecentry{Evaluation Notation}{1}{3}{2}{8}
+\subsecentry{Printing Notation}{1}{3}{3}{9}
+\subsecentry{Error Messages}{1}{3}{4}{9}
+\subsecentry{Format of Descriptions}{1}{3}{5}{9}
+\subsubsecentry{A Sample Function Description}{1}{3}{5}{1}{9}
+\subsubsecentry{A Sample Command Description}{1}{3}{5}{2}{10}
+\subsubsecentry{A Sample Variable Description}{1}{3}{5}{3}{11}
+\chapentry{Getting Started}{2}{13}
+\secentry{Invoking Octave}{2}{1}{13}
+\subsecentry{Command Line Options}{2}{1}{1}{13}
+\subsecentry{Startup Files}{2}{1}{2}{15}
+\secentry{Quitting Octave}{2}{2}{16}
+\secentry{Commands for Getting Help}{2}{3}{16}
+\secentry{Command Line Editing}{2}{4}{18}
+\subsecentry{Cursor Motion}{2}{4}{1}{18}
+\subsecentry{Killing and Yanking}{2}{4}{2}{19}
+\subsecentry{Commands For Changing Text}{2}{4}{3}{19}
+\subsecentry{Letting Readline Type For You}{2}{4}{4}{20}
+\subsecentry{Commands For Manipulating The History}{2}{4}{5}{20}
+\subsecentry{Customizing \code {readline}}{2}{4}{6}{22}
+\subsecentry{Customizing the Prompt}{2}{4}{7}{22}
+\subsecentry{Diary and Echo Commands}{2}{4}{8}{23}
+\secentry{How Octave Reports Errors}{2}{5}{24}
+\secentry{Executable Octave Programs}{2}{6}{25}
+\secentry{Comments in Octave Programs}{2}{7}{26}
+\chapentry{Data Types}{3}{29}
+\secentry{Built-in Data Types}{3}{1}{29}
+\subsecentry{Numeric Objects}{3}{1}{1}{29}
+\subsecentry{Missing Data}{3}{1}{2}{29}
+\subsecentry{String Objects}{3}{1}{3}{30}
+\subsecentry{Data Structure Objects}{3}{1}{4}{30}
+\secentry{User-defined Data Types}{3}{2}{30}
+\secentry{Object Sizes}{3}{3}{30}
+\chapentry{Numeric Data Types}{4}{33}
+\secentry{Matrices}{4}{1}{33}
+\subsecentry{Empty Matrices}{4}{1}{1}{36}
+\secentry{Ranges}{4}{2}{37}
+\secentry{Logical Values}{4}{3}{37}
+\secentry{Predicates for Numeric Objects}{4}{4}{38}
+\chapentry{Strings}{5}{39}
+\secentry{Creating Strings}{5}{1}{40}
+\secentry{Searching and Replacing}{5}{2}{41}
+\secentry{String Conversions}{5}{3}{43}
+\secentry{Character Class Functions}{5}{4}{46}
+\chapentry{Data Structures}{6}{47}
+\chapentry{Containers}{7}{51}
+\secentry{Lists}{7}{1}{51}
+\secentry{Cell Arrays}{7}{2}{51}
+\chapentry{I/O Streams}{8}{53}
+\chapentry{Variables}{9}{55}
+\secentry{Global Variables}{9}{1}{55}
+\secentry{Persistent Variables}{9}{2}{56}
+\secentry{Status of Variables}{9}{3}{57}
+\secentry{Summary of Built-in Variables}{9}{4}{59}
+\secentry{Defaults from the Environment}{9}{5}{63}
+\chapentry{Expressions}{10}{65}
+\secentry{Index Expressions}{10}{1}{65}
+\secentry{Calling Functions}{10}{2}{67}
+\subsecentry{Call by Value}{10}{2}{1}{68}
+\subsecentry{Recursion}{10}{2}{2}{69}
+\secentry{Arithmetic Operators}{10}{3}{69}
+\secentry{Comparison Operators}{10}{4}{71}
+\secentry{Boolean Expressions}{10}{5}{71}
+\subsecentry{Element-by-element Boolean Operators}{10}{5}{1}{71}
+\subsecentry{Short-circuit Boolean Operators}{10}{5}{2}{72}
+\secentry{Assignment Expressions}{10}{6}{73}
+\secentry{Increment Operators}{10}{7}{75}
+\secentry{Operator Precedence}{10}{8}{76}
+\chapentry{Evaluation}{11}{77}
+\chapentry{Statements}{12}{79}
+\secentry{The \code {if} Statement}{12}{1}{79}
+\secentry{The \code {switch} Statement}{12}{2}{81}
+\secentry{The \code {while} Statement}{12}{3}{82}
+\secentry{The \code {do-until} Statement}{12}{4}{83}
+\secentry{The \code {for} Statement}{12}{5}{84}
+\subsecentry{Looping Over Structure Elements}{12}{5}{1}{84}
+\secentry{The \code {break} Statement}{12}{6}{85}
+\secentry{The \code {continue} Statement}{12}{7}{86}
+\secentry{The \code {unwind_protect} Statement}{12}{8}{87}
+\secentry{The \code {try} Statement}{12}{9}{88}
+\secentry{Continuation Lines}{12}{10}{88}
+\chapentry{Functions and Script Files}{13}{91}
+\secentry{Defining Functions}{13}{1}{91}
+\secentry{Multiple Return Values}{13}{2}{93}
+\secentry{Variable-length Argument Lists}{13}{3}{95}
+\secentry{Variable-length Return Lists}{13}{4}{95}
+\secentry{Returning From a Function}{13}{5}{95}
+\secentry{Function Files}{13}{6}{96}
+\secentry{Script Files}{13}{7}{98}
+\secentry{Dynamically Linked Functions}{13}{8}{100}
+\secentry{Organization of Functions Distributed with Octave}{13}{9}{103}
+\chapentry{Error Handling}{14}{105}
+\chapentry{Debugging}{15}{107}
+\chapentry{Input and Output}{16}{109}
+\secentry{Basic Input and Output}{16}{1}{110}
+\subsecentry{Terminal Output}{16}{1}{1}{110}
+\subsecentry{Terminal Input}{16}{1}{2}{113}
+\subsecentry{Simple File I/O}{16}{1}{3}{114}
+\secentry{C-Style I/O Functions}{16}{2}{117}
+\subsecentry{Opening and Closing Files}{16}{2}{1}{118}
+\subsecentry{Simple Output}{16}{2}{2}{119}
+\subsecentry{Line-Oriented Input}{16}{2}{3}{119}
+\subsecentry{Formatted Output}{16}{2}{4}{119}
+\subsecentry{Output Conversion for Matrices}{16}{2}{5}{120}
+\subsecentry{Output Conversion Syntax}{16}{2}{6}{121}
+\subsecentry{Table of Output Conversions}{16}{2}{7}{122}
+\subsecentry{Integer Conversions}{16}{2}{8}{123}
+\subsecentry{Floating-Point Conversions}{16}{2}{9}{123}
+\subsecentry{Other Output Conversions}{16}{2}{10}{124}
+\subsecentry{Formatted Input}{16}{2}{11}{124}
+\subsecentry{Input Conversion Syntax}{16}{2}{12}{125}
+\subsecentry{Table of Input Conversions}{16}{2}{13}{126}
+\subsecentry{Numeric Input Conversions}{16}{2}{14}{127}
+\subsecentry{String Input Conversions}{16}{2}{15}{127}
+\subsecentry{Binary I/O}{16}{2}{16}{128}
+\subsecentry{Temporary Files}{16}{2}{17}{130}
+\subsecentry{End of File and Errors}{16}{2}{18}{130}
+\subsecentry{File Positioning}{16}{2}{19}{131}
+\chapentry{Plotting}{17}{133}
+\secentry{Two-Dimensional Plotting}{17}{1}{133}
+\secentry{Specialized Two-Dimensional Plots}{17}{2}{138}
+\secentry{Three-Dimensional Plotting}{17}{3}{141}
+\secentry{Plot Annotations}{17}{4}{142}
+\secentry{Multiple Plots on One Page}{17}{5}{143}
+\secentry{Multiple Plot Windows}{17}{6}{144}
+\secentry{Interaction with \code {gnuplot}}{17}{7}{145}
+\chapentry{Matrix Manipulation}{18}{147}
+\secentry{Finding Elements and Checking Conditions}{18}{1}{147}
+\secentry{Rearranging Matrices}{18}{2}{149}
+\secentry{Special Utility Matrices}{18}{3}{152}
+\secentry{Famous Matrices}{18}{4}{155}
+\chapentry{Arithmetic}{19}{157}
+\secentry{Utility Functions}{19}{1}{157}
+\secentry{Complex Arithmetic}{19}{2}{160}
+\secentry{Trigonometry}{19}{3}{160}
+\secentry{Sums and Products}{19}{4}{163}
+\secentry{Special Functions}{19}{5}{163}
+\secentry{Coordinate Transformations}{19}{6}{166}
+\secentry{Mathematical Constants}{19}{7}{167}
+\chapentry{Linear Algebra}{20}{169}
+\secentry{Basic Matrix Functions}{20}{1}{169}
+\secentry{Matrix Factorizations}{20}{2}{171}
+\secentry{Functions of a Matrix}{20}{3}{176}
+\chapentry{Nonlinear Equations}{21}{179}
+\chapentry{Quadrature}{22}{181}
+\secentry{Functions of One Variable}{22}{1}{181}
+\secentry{Orthogonal Collocation}{22}{2}{182}
+\chapentry{Differential Equations}{23}{183}
+\secentry{Ordinary Differential Equations}{23}{1}{183}
+\secentry{Differential-Algebraic Equations}{23}{2}{187}
+\chapentry{Optimization}{24}{195}
+\secentry{Linear Programming}{24}{1}{195}
+\secentry{Quadratic Programming}{24}{2}{195}
+\secentry{Nonlinear Programming}{24}{3}{195}
+\secentry{Linear Least Squares}{24}{4}{195}
+\chapentry{Statistics}{25}{197}
+\secentry{Basic Statistical Functions}{25}{1}{197}
+\secentry{Tests}{25}{2}{201}
+\secentry{Models}{25}{3}{208}
+\secentry{Distributions}{25}{4}{209}
+\chapentry{Financial Functions}{26}{219}
+\chapentry{Sets}{27}{221}
+\chapentry{Polynomial Manipulations}{28}{223}
+\chapentry{Control Theory}{29}{227}
+\secentry{System Data Structure}{29}{1}{227}
+\subsecentry{Variables common to all OCST system formats}{29}{1}{1}{228}
+\subsecentry{\code {tf} format variables}{29}{1}{2}{228}
+\subsecentry{\code {zp} format variables}{29}{1}{3}{229}
+\subsecentry{\code {ss} format variables}{29}{1}{4}{229}
+\secentry{System Construction and Interface Functions}{29}{2}{229}
+\subsecentry{Finite impulse response system interface functions}{29}{2}{1}{229}
+\subsecentry{State space system interface functions}{29}{2}{2}{230}
+\subsecentry{Transfer function system interface functions}{29}{2}{3}{233}
+\subsecentry{Zero-pole system interface functions}{29}{2}{4}{234}
+\subsecentry{Data structure access functions}{29}{2}{5}{235}
+\subsecentry{Data structure internal functions}{29}{2}{6}{239}
+\secentry{System display functions}{29}{3}{239}
+\secentry{Block Diagram Manipulations}{29}{4}{240}
+\secentry{Numerical Functions}{29}{5}{247}
+\secentry{System Analysis-Properties}{29}{6}{251}
+\secentry{System Analysis-Time Domain}{29}{7}{256}
+\secentry{System Analysis-Frequency Domain}{29}{8}{259}
+\secentry{Controller Design}{29}{9}{262}
+\secentry{Miscellaneous Functions (Not yet properly filed/documented)}{29}{10}{270}
+\chapentry{Signal Processing}{30}{275}
+\chapentry{Image Processing}{31}{283}
+\chapentry{Audio Processing}{32}{287}
+\chapentry{Quaternions}{33}{289}
+\chapentry{System Utilities}{34}{291}
+\secentry{Timing Utilities}{34}{1}{291}
+\secentry{Filesystem Utilities}{34}{2}{296}
+\secentry{Controlling Subprocesses}{34}{3}{299}
+\secentry{Process, Group, and User IDs}{34}{4}{303}
+\secentry{Environment Variables}{34}{5}{304}
+\secentry{Current Working Directory}{34}{6}{304}
+\secentry{Password Database Functions}{34}{7}{305}
+\secentry{Group Database Functions}{34}{8}{306}
+\secentry{System Information}{34}{9}{306}
+\chapentry{Tips and Standards}{Appendix{} A}{309}
+\secentry{Writing Clean Octave Programs}{A}{1}{309}
+\secentry{Tips for Making Code Run Faster.}{A}{2}{309}
+\secentry{Tips for Documentation Strings}{A}{3}{310}
+\secentry{Tips on Writing Comments}{A}{4}{311}
+\secentry{Conventional Headers for Octave Functions}{A}{5}{311}
+\chapentry{Known Causes of Trouble}{Appendix{} B}{315}
+\secentry{Actual Bugs We Haven't Fixed Yet}{B}{1}{315}
+\secentry{Reporting Bugs}{B}{2}{316}
+\secentry{Have You Found a Bug?}{B}{3}{316}
+\secentry{Where to Report Bugs}{B}{4}{317}
+\secentry{How to Report Bugs}{B}{5}{317}
+\secentry{Sending Patches for Octave}{B}{6}{319}
+\secentry{How To Get Help with Octave}{B}{7}{319}
+\chapentry{Installing Octave}{Appendix{} C}{321}
+\secentry{Installation Problems}{C}{1}{323}
+\chapentry{Emacs Octave Support}{Appendix{} D}{327}
+\secentry{Installing EOS}{D}{1}{327}
+\secentry{Using Octave Mode}{D}{2}{327}
+\secentry{Running Octave From Within Emacs}{D}{3}{331}
+\secentry{Using the Emacs Info Reader for Octave}{D}{4}{332}
+\chapentry{Grammar}{Appendix{} E}{335}
+\secentry{Keywords}{E}{1}{335}
+\chapentry{GNU GENERAL PUBLIC LICENSE}{Appendix{} F}{337}
+\secentry{Preamble}{F}{1}{337}
+\secentry{TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION}{F}{2}{338}
+\secentry{Appendix: How to Apply These Terms to Your New Programs}{F}{3}{342}
+\unnumbchapentry{Concept Index}{345}
+\unnumbchapentry{Variable Index}{349}
+\unnumbchapentry{Function Index}{351}
+\unnumbchapentry{Operator Index}{361}

@@ -1,0 +1,201 @@
+#
+# Makefile for octave's doc/interpreter directory
+#
+# John W. Eaton
+# jwe@bevo.che.wisc.edu
+# University of Wisconsin-Madison
+# Department of Chemical Engineering
+
+TOPDIR = ../..
+
+srcdir = .
+top_srcdir = ../..
+
+
+include $(TOPDIR)/Makeconf
+
+INSTALL = /usr/bin/install -c
+INSTALL_PROGRAM = ${INSTALL}
+INSTALL_DATA = ${INSTALL} -m 644
+
+SUB_SOURCE := arith.txi audio.txi basics.txi bugs.txi \
+	container.txi control.txi cp-idx.txi data.txi diffeq.txi \
+	emacs.txi errors.txi eval.txi expr.txi finance.txi \
+	fn-idx.txi func.txi gpl.txi grammar.txi image.txi \
+	install.txi intro.txi io.txi linalg.txi matrix.txi \
+	nonlin.txi numbers.txi op-idx.txi optim.txi plot.txi \
+	poly.txi preface.txi quad.txi quaternion.txi set.txi \
+	signal.txi stats.txi stmt.txi stream.txi strings.txi \
+	struct.txi system.txi tips.txi var.txi vr-idx.txi
+
+SOURCES := $(SUB_SOURCE)
+
+MAIN_TEXINFO := $(srcdir)/octave.texi
+
+SUB_TEXINFO := $(SUB_SOURCE:.txi=.texi)
+
+TEXINFO := $(MAIN_TEXINFO) $(SUB_TEXINFO)
+
+FORMATTED = octave.dvi octave.ps octave.info octave.info-[0-9]* octave_*.html
+
+DISTFILES = Makefile.in dir munge-texi.cc Map-s.cc octave.1 octave-bug.1 \
+  $(SOURCES) $(TEXINFO) $(FORMATTED)
+
+ifeq ($(wildcard octave.info), )
+  BINDISTFILES = $(addprefix $(srcdir)/, octave.1 octave-bug.1 $(FORMATTED))
+else
+  BINDISTFILES = $(srcdir)/octave.1 $(srcdir)/octave-bug.1 $(FORMATTED)
+endif
+
+# Look for version.h to get version information.
+xfiles := $(TOPDIR)/src/version.h $(srcdir)/$(TOPDIR)/src/version.h
+
+version_file := $(firstword $(foreach file, $(xfiles), $(wildcard $(file))))
+
+SPELL = $(patsubst %.texi, %.spell, $(TEXINFO))
+
+%.spell : %.texi
+	rm -f $@
+	sed -e 's/@@/ at /g' -e 's/@[a-zA-Z]*//g' $< | spell > $@.tmp
+	mv $@.tmp $@
+
+all: octave.info octave.dvi octave.ps octave_toc.html
+.PHONY: all
+
+DOCSTRINGS = $(TOPDIR)/src/DOCSTRINGS $(TOPDIR)/scripts/DOCSTRINGS
+
+$(TEXINFO): $(DOCSTRINGS) munge-texi
+
+munge-texi: munge-texi.o Map-s.o
+	$(CXX) $(CPPFLAGS) $(ALL_CXXFLAGS) $(ALL_LDFLAGS) -o $@ $^
+
+# Kluge: if the DOCSTRING files are present, assume they are current.
+$(DOCSTRINGS):
+	$(MAKE) -C $(dir $@) $(notdir $@)
+
+%.texi : %.txi
+	@echo making $@ from $<
+	@./munge-texi \
+	  -d $(TOPDIR)/src/DOCSTRINGS \
+	  -d $(TOPDIR)/scripts/DOCSTRINGS < $< > $@.t
+	@mv $@.t $@
+
+octave.info: $(MAIN_TEXINFO) $(SUB_TEXINFO) ../conf.texi
+	-makeinfo -I$(srcdir) -I$(srcdir)/.. $<
+
+octave.dvi: $(MAIN_TEXINFO) $(SUB_TEXINFO) ../conf.texi
+	-TEXINPUTS="$(srcdir):$(srcdir)/..:$(TEXINPUTS):"; \
+	  export TEXINPUTS; \
+	  $(TEXI2DVI) $<
+
+octave.ps: octave.dvi
+	-dvips -o octave.ps octave.dvi
+
+../../INSTALL.OCTAVE: install.texi
+	rm -f INSTALL
+	-makeinfo -D INSTALLONLY \
+	  --no-validate --no-headers --no-split --output INSTALL \
+	  -I$(srcdir) -I$(srcdir)/.. $<
+	mv INSTALL ../../INSTALL.OCTAVE
+
+../../BUGS: bugs.texi
+	rm -f BUGS
+	-makeinfo -D BUGSONLY \
+	  --no-validate --no-headers --no-split --output BUGS \
+	  -I$(srcdir) -I$(srcdir)/.. $<
+	mv BUGS ../../BUGS
+
+# These option forms are supported by texi2html 1.65 and probably also
+# more recent versions.
+octave_toc.html: $(MAIN_TEXINFO) $(SUB_TEXINFO)
+	-texi2html -expand info -split chapter -I $(srcdir)/.. $<
+
+check: all
+.PHONY: check
+
+install install-strip: all
+	$(top_srcdir)/mkinstalldirs $(man1dir) $(infodir)
+	@if test -d $(man1dir); then \
+	  rm -f $(man1dir)/octave$(man1ext); \
+	  echo "installing $(srcdir)/octave.1 in $(man1dir)"; \
+	  $(INSTALL_DATA) $(srcdir)/octave.1 $(man1dir)/octave$(man1ext); \
+	  rm -f $(man1dir)/octave-bug$(man1ext); \
+	  echo "installing $(srcdir)/octave-bug.1 in $(man1dir)"; \
+	  $(INSTALL_DATA) $(srcdir)/octave-bug.1 $(man1dir)/octave-bug$(man1ext); \
+	fi
+	@if test -d $(infodir); then \
+	  rm -f $(infodir)/octave.info*; \
+	  echo "installing info files in $(infodir)"; \
+	  if test -f octave.info; then \
+	    for f in octave.info*; do \
+	      $(INSTALL_DATA) $$f $(infodir)/$$f; \
+	    done; \
+	  else \
+	    for f in $(srcdir)/octave.info*; do \
+	      $(INSTALL_DATA) $$f $(infodir)/`basename $$f`; \
+	    done; \
+	  fi; \
+	  if test -f $(infodir)/dir; then \
+	    if grep "^\* Octave: (octave)." $(infodir)/dir > /dev/null; then \
+	      true; \
+	    else \
+	      echo ""; \
+	      echo "You should add the following entry"; \
+	      echo ""; \
+	      echo "* Octave: (octave)."; \
+	      echo "	Interactive language for numerical computations."; \
+	      echo ""; \
+	      echo "to $(infodir)/dir."; \
+	      echo ""; \
+	    fi; \
+	  else \
+	    echo "installing $(srcdir)/dir in $(infodir)"; \
+	    $(INSTALL_DATA) $(srcdir)/dir $(infodir)/dir; \
+	  fi; \
+	fi
+.PHONY: install install-strip
+
+uninstall:
+	rm -f $(infodir)/octave.info* $(man1dir)/octave$(man1ext)
+.PHONY: uninstall
+
+tags: $(SOURCES)
+	ctags $(SOURCES)
+
+TAGS: $(SOURCES)
+	etags $(SOURCES)
+
+spell: $(SPELL)
+.PHONY: spell
+
+mostlyclean clean:
+	rm -f octave.cp octave.fn octave.in \
+	octave.ky octave.op octave.pg octave.rd octave.tp octave.vr \
+	octave.cps octave.fns octave.ins octave.kys octave.ops \
+	octave.pgs octave.rds octave.tps octave.vrs octave.aux \
+	octave.log octave.toc \
+	munge-texi munge-texi.o Map-s.o
+.PHONY: mostlyclean clean
+
+distclean: clean
+	rm -f Makefile 
+.PHONY: distclean
+
+maintainer-clean: distclean
+	rm -f tags TAGS octave.info octave.info-* octave.dvi octave.ps
+	rm -f octave_*.html $(TEXINFO)
+.PHONY: maintainer-clean
+
+clean-texi:
+	rm -f $(SUB_TEXINFO)
+.PHONY: clean-texi
+
+dist: clean-texi all
+	ln $(DISTFILES) ../../`cat ../../.fname`/doc/interpreter
+.PHONY: dist
+
+bin-dist:
+	if [ -n "$(BINDISTFILES)" ]; then \
+	  ln $(BINDISTFILES) ../../`cat ../../.fname`/doc/interpreter; \
+	fi
+.PHONY: bin-dist

@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-10-19T07:06:07.213279Z
+K 7
+svn:log
+V 111
+changed cmd_credit to use \dollar{}%(credit).2f instead of credit_str='\dollar{}%.2f'%credit and %(credit_str)s
+END

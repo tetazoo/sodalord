@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html40/loose.dtd">
+<HTML>
+<!-- Created on March, 12 2004 by texi2html 1.66 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people <dev@texi2html.cvshome.org>
+Send bugs and suggestions to <users@texi2html.cvshome.org>
+
+-->
+<HEAD>
+<TITLE>GNU Octave: Footnotes</TITLE>
+
+<META NAME="description" CONTENT="GNU Octave: Footnotes">
+<META NAME="keywords" CONTENT="GNU Octave: Footnotes">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.66">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="octave_fot.html"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="octave.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="octave_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="octave_42.html#SEC241">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="octave_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1>Footnotes</H1>
+<H3><A NAME="FOOT1" HREF="octave_3.html#DOCF1">(1)</A></H3>
+<P>The `<SAMP>#!</SAMP>'
+mechanism works on Unix systems derived from Berkeley Unix, System V
+Release 4, and some System V Release 3 systems.
+<H3><A NAME="FOOT2" HREF="octave_11.html#DOCF2">(2)</A></H3>
+<P>Some of Octave's function are
+implemented in terms of functions that cannot be called recursively.
+For example, the ODE solver <CODE>lsode</CODE> is ultimately implemented in a
+Fortran subroutine that cannot be called recursively, so <CODE>lsode</CODE>
+should not be called either directly or indirectly from within the
+user-supplied function that <CODE>lsode</CODE> requires.  Doing so will result
+in undefined behavior.
+<H3><A NAME="FOOT3" HREF="octave_11.html#DOCF3">(3)</A></H3>
+<P>It would be
+much better to use <CODE>prod (1:n)</CODE>, or <CODE>gamma (n+1)</CODE> instead,
+after first checking to ensure that the value <CODE>n</CODE> is actually a
+positive integer.
+<H3><A NAME="FOOT4" HREF="octave_14.html#DOCF4">(4)</A></H3>
+<P>The `<SAMP>.m</SAMP>' suffix was
+chosen for compatibility with MATLAB.
+<H3><A NAME="FOOT5" HREF="octave_19.html#DOCF5">(5)</A></H3>
+<P>For example, to first sort
+based on the values in column 1, and then, for any values that are
+repeated in column 1, sort based on the values found in column 2, etc.
+<HR SIZE=1>
+<BR>
+<FONT SIZE="-1">
+This document was generated
+by <I>John W. Eaton</I> on <I>March, 12 2004</I>
+using <A HREF="http://texi2html.cvshome.org"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

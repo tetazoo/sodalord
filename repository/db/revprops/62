@@ -1,0 +1,15 @@
+K 10
+svn:author
+V 6
+mitchb
+K 8
+svn:date
+V 27
+2009-10-15T05:55:01.493721Z
+K 7
+svn:log
+V 132
+Don't expose card data if there was leftover junk at the beginning
+of the commandline.  Remind me again why we allow frosh on hall?
+
+END

@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 4
+soda
+K 8
+svn:date
+V 27
+2008-08-16T02:56:26.592927Z
+K 7
+svn:log
+V 156
+made balance more consistent in cmd_buy by separating its values in dollars with its values in cents. the hard limit is now at himBH1, instead of himBH0.01.
+END

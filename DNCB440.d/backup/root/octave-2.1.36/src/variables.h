@@ -1,0 +1,125 @@
+/*
+
+Copyright (C) 1996, 1997 John W. Eaton
+
+This file is part of Octave.
+
+Octave is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2, or (at your option) any
+later version.
+
+Octave is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License
+along with Octave; see the file COPYING.  If not, write to the Free
+Software Foundation, 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+*/
+
+#if !defined (octave_variables_h)
+#define octave_variables_h 1
+
+class octave_function;
+class symbol_record;
+class symbol_table;
+
+class tree_identifier;
+class tree_indirect_ref;
+class octave_value;
+class octave_value_list;
+class octave_builtin;
+class octave_mapper;
+class string_vector;
+
+#include <string>
+
+#include "ov.h"
+#include "ov-builtin.h"
+#include "symtab.h"
+
+extern void initialize_symbol_tables (void);
+
+extern bool is_builtin_variable (const std::string&);
+extern bool is_text_function_name (const std::string&);
+extern bool is_mapper_function_name (const std::string&);
+extern bool is_builtin_function_name (const std::string&);
+extern bool is_globally_visible (const std::string&);
+
+extern octave_function *
+is_valid_function (const octave_value&, const std::string& = std::string (),
+		   bool warn = false); 
+
+extern octave_function *
+is_valid_function (const std::string&, const std::string& = std::string (),
+		   bool warn = false); 
+
+extern octave_function *
+extract_function (const octave_value& arg, const std::string& warn_for,
+		  const std::string& fname, const std::string& header,
+		  const std::string& trailer);
+
+extern string_vector
+get_struct_elts (const std::string& text);
+
+extern string_vector
+generate_struct_completions (const std::string& text, std::string& prefix,
+			     std::string& hint);
+
+extern bool
+looks_like_struct (const std::string& text);
+
+extern bool lookup (symbol_record *s, bool exec_script = true);
+
+extern symbol_record *
+lookup_by_name (const std::string& nm, bool exec_script = true);
+
+extern octave_value get_global_value (const std::string& nm);
+
+extern void set_global_value (const std::string& nm, const octave_value& val);
+
+extern std::string builtin_string_variable (const std::string&);
+extern int builtin_real_scalar_variable (const std::string&, double&);
+extern octave_value builtin_any_variable (const std::string&);
+
+extern void link_to_global_variable (symbol_record *sr);
+extern void link_to_builtin_or_function (symbol_record *sr);
+
+extern void force_link_to_function (const std::string&);
+
+extern void bind_ans (const octave_value& val, bool print);
+
+extern void bind_global_error_variable (void);
+
+extern void clear_global_error_variable (void *);
+
+extern void
+bind_builtin_constant (const std::string&, const octave_value&,
+		       bool protect = false, bool eternal = false,
+		       const std::string& help = std::string ());
+
+extern void
+bind_builtin_variable (const std::string&, const octave_value&,
+		       bool protect = false, bool eternal = false,
+		       symbol_record::change_function f = 0,
+		       const std::string& help = std::string ());
+
+// Symbol table for symbols at the top level.
+extern symbol_table *top_level_sym_tab;
+
+// Symbol table for the current scope.
+extern symbol_table *curr_sym_tab;
+
+// Symbol table for global symbols.
+extern symbol_table *global_sym_tab;
+
+#endif
+
+/*
+;;; Local Variables: ***
+;;; mode: C++ ***
+;;; End: ***
+*/

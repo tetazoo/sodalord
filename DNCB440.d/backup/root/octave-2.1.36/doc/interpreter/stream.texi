@@ -1,0 +1,14 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node I/O Streams, Variables, Containers, Top
+@chapter I/O Streams
+
+@anchor{doc-is_stream}
+@deftypefn {Built-in Function} {} is_stream (@var{x})
+Return true if @var{x} is a stream object.  Otherwise, return false.
+@end deftypefn
+

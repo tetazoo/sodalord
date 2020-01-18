@@ -1,0 +1,2 @@
+ XDEFUN_INTERNAL (typeinfo, args, , false, "-*- texinfo -*-\n@deftypefn {Built-in Function} {} typeinfo (@var{expr})\n\nReturn the type of the expression @var{expr}, as a string.  If\n@var{EXPR}  is omitted, return an array of strings containing all the\ncurrently installed data types.\n@end deftypefn") 
+ XDEFUN_INTERNAL (class, args, , false, "-*- texinfo -*-\n@deftypefn {Built-in Function} {} class (@var{expr})\n\nReturn the class of the expression @var{expr}, as a string.\n@end deftypefn") 

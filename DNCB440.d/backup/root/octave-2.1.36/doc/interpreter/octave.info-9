@@ -1,0 +1,1625 @@
+This is octave.info, produced by makeinfo version 4.0f from octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: Financial Functions,  Next: Sets,  Prev: Statistics,  Up: Top
+
+Financial Functions
+*******************
+
+ - Function File:  fv (R, N, P, L, METHOD)
+     Return the future value at the end of period N of an investment
+     which consists of N payments of P in each period, assuming an
+     interest rate R.
+
+     The optional argument L may be used to specify an additional
+     lump-sum payment.
+
+     The optional argument METHOD may be used ot specify whether the
+     payments are made at the end (`"e"', default) or at the beginning
+     (`"b"') of each period.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  fvl (R, N, L)
+     Return the future value at the end of N periods of an initial lump
+     sum investment L, given a per-period interest rate R.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  irr (P, I)
+     Return the internal rate of return of a series of payments P from
+     an initial investment I (i.e., the solution of `npv (r, p) = i'.
+     If the second argument is omitted, a value of 0 is used.
+
+ - Function File:  nper (R, P, A, L, METHOD)
+     Return the number of regular payments of P necessary to amortize A
+     loan of amount A and interest R.
+
+     The optional argument L may be used to specify an additional
+     lump-sum payment of L made at the end of the amortization time.
+
+     The optional argument METHOD may be used to specify whether
+     payments are made at the end ("E", default) or at the beginning
+     ("B") of each period.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  npv (R, P, I)
+     Returns the net present value of a series of irregular (i.e., not
+     necessarily identical) payments P which occur at the ends of N
+     consecutive periods.  R specifies the one-period interest rates and
+     can either be a scalar (constant rates) or a vector of the same
+     length as P.
+
+     The optional argument I may be used to specify an initial
+     investment.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  pmt (R, N, A, L, METHOD)
+     Return the amount of periodic payment necessary to amortize a loan
+     of amount a with interest rate R in N periods.
+
+     The optional argument L may be used to specify an initial lump-sum
+     payment.
+
+     The optional argument METHOD may be used to specify whether
+     payments are made at the end ("E", default) or at the beginning
+     ("B") of each period.
+
+ - Function File:  pv (R, N, P, L, METHOD)
+     Returns the present value of an investment that will pay off P for
+     N consecutive periods, assuming an interest R.
+
+     The optional argument L may be used to specify an additional
+     lump-sum payment made at the end of N periods.
+
+     The optional argument METHOD may be used to specify whether
+     payments are made at the end (`"e"', default) or at the beginning
+     (`"b"') of each period.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  pvl (R, N, P)
+     Return the present value of an investment that will pay off P in
+     one lump sum at the end of N periods, given the interest rate R.
+
+     Note that the rate R is specified as a fraction (i.e., 0.05, not 5
+     percent).
+
+ - Function File:  rate (N, P, V, L, METHOD)
+     Return the rate of return on an investment of present value V which
+     pays P in N consecutive periods.
+
+     The optional argument L may be used to specify an additional
+     lump-sum payment made at the end of N periods.
+
+     The optional string argument METHOD may be used to specify whether
+     payments are made at the end (`"e"', default) or at the beginning
+     (`"b"') of each period.
+
+ - Function File:  vol (X, M, N)
+     Return the volatility of each column of the input matrix X.  The
+     number of data sets per period is given by M (e.g. the number of
+     data per year if you want to compute the volatility per year).
+     The optional parameter N gives the number of past periods used for
+     computation, if it is omitted, a value of 1 is used.  If T is the
+     number of rows of X, `vol' returns the volatility from `n*m' to T.
+
+
+File: octave.info,  Node: Sets,  Next: Polynomial Manipulations,  Prev: Financial Functions,  Up: Top
+
+Sets
+****
+
+   Octave has a limited set of functions for managing sets of data,
+where a set is defined as a collection unique elements.
+
+ - Function File:  create_set (X)
+     Return a row vector containing the unique values in X, sorted in
+     ascending order.  For example,
+
+          create_set ([ 1, 2; 3, 4; 4, 2 ])
+          => [ 1, 2, 3, 4 ]
+
+ - Function File:  union (X, Y)
+     Return the set of elements that are in either of the sets X and Y.
+     For example,
+
+          union ([ 1, 2, 4 ], [ 2, 3, 5 ])
+          => [ 1, 2, 3, 4, 5 ]
+
+ - Function File:  intersection (X, Y)
+     Return the set of elements that are in both sets X and Y.  For
+     example,
+
+          intersection ([ 1, 2, 3 ], [ 2, 3, 5 ])
+          => [ 2, 3 ]
+
+ - Function File:  complement (X, Y)
+     Return the elements of set Y that are not in set X.  For example,
+
+          complement ([ 1, 2, 3 ], [ 2, 3, 5 ])
+          => 5
+
+
+File: octave.info,  Node: Polynomial Manipulations,  Next: Control Theory,  Prev: Sets,  Up: Top
+
+Polynomial Manipulations
+************************
+
+   In Octave, a polynomial is represented by its coefficients (arranged
+in descending order).  For example, a vector  $c$ of length  N
+
+     p(x) = C(1) x^N + ... + C(N) x + C(N+1).
+
+ - Function File:  compan (C)
+     Compute the companion matrix corresponding to polynomial
+     coefficient vector C.
+
+     The companion matrix is
+
+               _                                                        _
+              |  -c(2)/c(1)   -c(3)/c(1)  ...  -c(N)/c(1)  -c(N+1)/c(1)  |
+              |       1            0      ...       0             0      |
+              |       0            1      ...       0             0      |
+          A = |       .            .   .            .             .      |
+              |       .            .       .        .             .      |
+              |       .            .           .    .             .      |
+              |_      0            0      ...       1             0     _|
+
+     The eigenvalues of the companion matrix are equal to the roots of
+     the polynomial.
+
+ - Function File:  conv (A, B)
+     Convolve two vectors.
+
+     `y = conv (a, b)' returns a vector of length equal to `length (a)
+     + length (b) - 1'.  If A and B are polynomial coefficient vectors,
+     `conv' returns the coefficients of the product polynomial.
+
+ - Function File:  deconv (Y, A)
+     Deconvolve two vectors.
+
+     `[b, r] = deconv (y, a)' solves for B and R such that `y = conv
+     (a, b) + r'.
+
+     If Y and A are polynomial coefficient vectors, B will contain the
+     coefficients of the polynomial quotient and R will be a remander
+     polynomial of lowest order.
+
+ - Function File:  poly (A)
+     If A is a square N-by-N matrix, `poly (A)' is the row vector of
+     the coefficients of `det (z * eye (N) - a)', the characteristic
+     polynomial of A.  If X is a vector, `poly (X)' is a vector of
+     coefficients of the polynomial whose roots are the elements of X.
+
+ - Function File:  polyderiv (C)
+     Return the coefficients of the derivative of the polynomial whose
+     coefficients are given by vector C.
+
+ - Function File: [P, YF] = polyfit (X, Y, N)
+     Return the coefficients of a polynomial P(X) of degree N that
+     minimizes `sumsq (p(x(i)) - y(i))',  to best fit the data in the
+     least squares sense.
+
+     The polynomial coefficients are returned in a row vector if X and
+     Y are both row vectors; otherwise, they are returned in a column
+     vector.
+
+     If two output arguments are requested, the second contains the
+     values of the polynomial for each value of X.
+
+ - Function File:  polyinteg (C)
+     Return the coefficients of the integral of the polynomial whose
+     coefficients are represented by the vector C.
+
+     The constant of integration is set to zero.
+
+ - Function File:  polyreduce (C)
+     Reduces a polynomial coefficient vector to a minimum number of
+     terms by stripping off any leading zeros.
+
+ - Function File:  polyval (C, X)
+     Evaluate a polynomial.
+
+     `polyval (C, X)' will evaluate the polynomial at the specified
+     value of X.
+
+     If X is a vector or matrix, the polynomial is evaluated at each of
+     the elements of X.
+
+ - Function File:  polyvalm (C, X)
+     Evaluate a polynomial in the matrix sense.
+
+     `polyvalm (C, X)' will evaluate the polynomial in the matrix
+     sense, i.e. matrix multiplication is used instead of element by
+     element multiplication as is used in polyval.
+
+     The argument X must be a square matrix.
+
+ - Function File:  residue (B, A, TOL)
+     If B and A are vectors of polynomial coefficients, then residue
+     calculates the partial fraction expansion corresponding to the
+     ratio of the two polynomials.
+
+     The function `residue' returns R, P, K, and E, where the vector R
+     contains the residue terms, P contains the pole values, K contains
+     the coefficients of a direct polynomial term (if it exists) and E
+     is a vector containing the powers of the denominators in the
+     partial fraction terms.
+
+     Assuming B and A represent polynomials  P (s) and Q(s)  we have:
+
+           P(s)    M       r(m)         N
+           ---- = SUM -------------  + SUM k(i)*s^(N-i)
+           Q(s)   m=1 (s-p(m))^e(m)    i=1
+
+     where M is the number of poles (the length of the R, P, and E
+     vectors) and N is the length of the K vector.
+
+     The argument TOL is optional, and if not specified, a default
+     value of 0.001 is assumed.  The tolerance value is used to
+     determine whether poles with small imaginary components are
+     declared real.  It is also used to determine if two poles are
+     distinct.  If the ratio of the imaginary part of a pole to the
+     real part is less than TOL, the imaginary part is discarded.  If
+     two poles are farther apart than TOL they are distinct.  For
+     example,
+
+           b = [1, 1, 1];
+           a = [1, -5, 8, -4];
+           [r, p, k, e] = residue (b, a);
+          => r = [-2, 7, 3]
+          => p = [2, 2, 1]
+          => k = [](0x0)
+          => e = [1, 2, 1]
+
+     which implies the following partial fraction expansion
+
+                  s^2 + s + 1       -2        7        3
+             ------------------- = ----- + ------- + -----
+             s^3 - 5s^2 + 8s - 4   (s-2)   (s-2)^2   (s-1)
+
+ - Function File:  roots (V)
+     For a vector V with N components, return the roots of the
+     polynomial
+
+          v(1) * z^(N-1) + ... + v(N-1) * z + v(N).
+
+ - Function File: polyout (C, X)
+     Write formatted polynomial
+             c(x) = c(1) * x^n + ... + c(n) x + c(n+1)
+      and return it as a string or write it to the screen (if NARGOUT
+     is zero).  X defaults to the string `"s"'
+
+
+File: octave.info,  Node: Control Theory,  Next: Signal Processing,  Prev: Polynomial Manipulations,  Up: Top
+
+Control Theory
+**************
+
+   The Octave Control Systems Toolbox (OCST) was initially developed by
+Dr. A. Scottedward Hodel <a.s.hodel@eng.auburn.edu> with the assistance
+of his students
+   * R. Bruce Tenison <btenison@dibbs.net>,
+
+   * David C. Clem,
+
+   * John E. Ingram <John.Ingram@sea.siemans.com>, and
+
+   * Kristi McGowan.
+   This development was supported in part by NASA's Marshall Space
+Flight Center as part of an in-house CACSD environment.  Additional
+important contributions were made by Dr. Kai Mueller
+<mueller@ifr.ing.tu-bs.de> and Jose Daniel Munoz Frias (`place.m').
+
+   An on-line menu-driven tutorial is available via `DEMOcontrol';
+beginning OCST users should start with this program.
+
+ - Function File:  DEMOcontrol
+     Octave Control Systems Toolbox demo/tutorial program.  The demo
+     allows the user to select among several categories of OCST
+     function:
+          octave:1> DEMOcontrol
+          O C T A V E    C O N T R O L   S Y S T E M S   T O O L B O X
+          Octave Controls System Toolbox Demo
+          
+            [ 1] System representation
+            [ 2] Block diagram manipulations
+            [ 3] Frequency response functions
+            [ 4] State space analysis functions
+            [ 5] Root locus functions
+            [ 6] LQG/H2/Hinfinity functions
+            [ 7] End
+     Command examples are interactively run for users to observe
+     the use of OCST functions.
+
+* Menu:
+
+* sysstruct::
+* sysinterface::
+* sysdisp::
+* blockdiag::
+* numerical::
+* sysprop::
+* systime::
+* sysfreq::
+* cacsd::
+* misc::
+
+
+File: octave.info,  Node: sysstruct,  Next: sysinterface,  Prev: Control Theory,  Up: Control Theory
+
+System Data Structure
+=====================
+
+* Menu:
+
+* sysstructvars::
+* sysstructtf::
+* sysstructzp::
+* sysstructss::
+
+   The OCST stores all dynamic systems in a single data structure
+format that can represent continuous systems, discrete-systems, and
+mixed (hybrid) systems in state-space form, and can also represent
+purely continuous/discrete systems in either transfer function or
+pole-zero form. In order to provide more flexibility in treatment of
+discrete/hybrid systems, the OCST also keeps a record of which system
+outputs are sampled.
+
+   Octave structures are accessed with a syntax much like that used by
+the C programming language.  For consistency in use of the data
+structure used in the OCST, it is recommended that the system structure
+access m-files be used (*note sysinterface::).  Some elements of the
+data structure are absent depending on the internal system
+representation(s) used.  More than one system representation can be
+used for SISO systems; the OCST m-files ensure that all representations
+used are consistent with one another.
+
+ - Function File:  sysrepdemo
+     Tutorial for the use of the system data structure functions.
+
+
+File: octave.info,  Node: sysstructvars,  Next: sysstructtf,  Prev: sysstruct,  Up: sysstruct
+
+Variables common to all OCST system formats
+-------------------------------------------
+
+   The data structure elements (and variable types) common to all
+system representations are listed below; examples of the initialization
+and use of the system data structures are given in subsequent sections
+and in the online demo `DEMOcontrol'.
+N
+NZ
+     The respective number of continuous and discrete states in the
+     system (scalar)
+
+INNAME
+OUTNAME
+     list of name(s) of the system input, output signal(s). (list of
+     strings)
+
+SYS
+     System status vector.  (vector)
+
+     This vector indicates both what representation was used to
+     initialize the system data structure (called the primary system
+     type) and which other representations are currently up-to-date
+     with the primary system type (*note structaccess::).
+
+     The value of the first element of the vector indicates the primary
+     system type.
+
+    0
+          for tf form (initialized with `tf2sys' or `fir2sys')
+
+    1
+          for zp form (initialized with `zp2sys')
+
+    2
+          for ss form (initialized with `ss2sys')
+
+     The next three elements are boolean flags that indicate whether
+     tf, zp, or ss, respectively, are "up to date" (whether it is safe
+     to use the variables associated with these representations).
+     These flags are changed when calls are made to the `sysupdate'
+     command.
+
+TSAM
+     Discrete time sampling period  (nonnegative scalar).   TSAM is set
+     to 0 for continuous time systems.
+
+YD
+     Discrete-time output list (vector)
+
+     indicates which outputs are discrete time (i.e.,     produced by
+     D/A converters) and which are continuous time.      yd(ii) = 0 if
+     output ii is continuous, = 1 if discrete.
+
+   The remaining variables of the  system data structure are only
+present if the corresponding entry of the `sys' vector is true (=1).
+
+
+File: octave.info,  Node: sysstructtf,  Next: sysstructzp,  Prev: sysstructvars,  Up: sysstruct
+
+`tf' format variables
+---------------------
+
+NUM
+     numerator coefficients   (vector)
+
+DEN
+     denominator coefficients   (vector)
+
+
+File: octave.info,  Node: sysstructzp,  Next: sysstructss,  Prev: sysstructtf,  Up: sysstruct
+
+`zp' format variables
+---------------------
+
+ZER
+     system zeros   (vector)
+
+POL
+     system poles    (vector)
+
+K
+     leading coefficient   (scalar)
+
+
+File: octave.info,  Node: sysstructss,  Prev: sysstructzp,  Up: sysstruct
+
+`ss' format variables
+---------------------
+
+A
+B
+C
+D
+     The usual state-space matrices. If a system has both
+     continuous and discrete states, they are sorted so that
+     continuous states come first, then discrete states
+
+     *Note* some functions (e.g., `bode', `hinfsyn') will not accept
+     systems with both discrete and continuous states/outputs
+
+STNAME
+     names of system states   (list of strings)
+
+
+File: octave.info,  Node: sysinterface,  Next: sysdisp,  Prev: sysstruct,  Up: Control Theory
+
+System Construction and Interface Functions
+===========================================
+
+   Construction and manipulations of the OCST system data structure
+(*note sysstruct::) requires attention to many details in order to
+ensure that data structure contents remain consistent.  Users are
+strongly encouraged to use the system interface functions in this
+section.  Functions for the formatted display in of system data
+structures are given in *Note sysdisp::.
+
+* Menu:
+
+* fir2sys::
+* ss2sys::
+* tf2sys::
+* zp2sys::
+* structaccess::
+* structintern::
+
+
+File: octave.info,  Node: fir2sys,  Next: ss2sys,  Prev: sysinterface,  Up: sysinterface
+
+Finite impulse response system interface functions
+--------------------------------------------------
+
+ - Function File:  fir2sys (NUM, TSAM, INNAME, OUTNAME)
+     construct a system data structure from FIR description
+
+     *Inputs:*
+    NUM
+          vector of coefficients [c_0 c_1 ... c_n] of the SISO FIR
+          transfer function
+
+          C(z) = c0 + c1*z^{-1} + c2*z^{-2} + ... + znz^{-n}
+
+    TSAM
+          sampling time (default: 1)
+
+    INNAME
+          name of input signal;  may be a string or a list with a
+          single entry.
+
+    OUTNAME
+          name of output signal; may be a string or a list with a
+          single entry.
+
+     *Outputs* SYS (system data structure)
+
+     *Example*
+          octave:1> sys = fir2sys([1 -1 2 4],0.342,"A/D input","filter output");
+          octave:2> sysout(sys)
+          Input(s)
+                  1: A/D input
+          
+          Output(s):
+                  1: filter output (discrete)
+          
+          Sampling interval: 0.342
+          transfer function form:
+          1*z^3 - 1*z^2 + 2*z^1 + 4
+          -------------------------
+          1*z^3 + 0*z^2 + 0*z^1 + 0
+
+ - Function File: [C, TSAM, INPUT, OUTPUT] = sys2fir (SYS)
+     Extract FIR data from system data structure; see fir2sys for
+     parameter descriptions.
+
+
+File: octave.info,  Node: ss2sys,  Next: tf2sys,  Prev: fir2sys,  Up: sysinterface
+
+State space system interface functions
+--------------------------------------
+
+ - Function File:  ss2sys (A, B, C, D, TSAM, N, NZ, STNAME, INNAME,
+          OUTNAME, OUTLIST)
+     Create system structure from state-space data.   May be continous,
+     discrete, or mixed (sampeled-data)
+
+     *Inputs*
+    A
+    B
+    C
+    D
+          usual state space matrices.
+
+          default: D = zero matrix
+
+    TSAM
+          sampling rate.  Default: tsam = 0 (continuous system)
+
+    N
+    NZ
+          number of continuous, discrete states in the system
+
+          If TSAM is 0, n = `rows'(A), nz = 0.
+
+          If TSAM is greater than zero, n = 0, nz = `rows'(A)
+
+          see below for system partitioning
+
+    STNAME
+          list of strings of state signal names
+
+          default (STNAME=[] on input): `x_n' for continuous states,
+          `xd_n' for discrete states
+
+    INNAME
+          list of strings of input signal names
+
+          default (INNAME = [] on input): `u_n'
+
+    OUTNAME
+          list of strings of input signal names
+
+          default (OUTNAME = [] on input): `y_n'
+
+    OUTLIST
+          list of indices of outputs y that are sampled
+
+          If TSAM is 0, outlist = [].
+
+          If TSAM is greater than 0, outlist = 1:`rows'(C).
+
+     Unlike states, discrete/continous outputs may appear in any order.
+
+     *Note* `sys2ss' returns a vector YD where YD(OUTLIST) = 1; all
+     other entries of YD are 0.
+
+     *Outputs* OUTSYS = system data structure
+
+     *System partitioning*
+
+     Suppose for simplicity that outlist specified that the first
+     several outputs were continuous and the remaining outputs were
+     discrete.  Then the system is partitioned as
+          x = [ xc ]  (n x 1)
+              [ xd ]  (nz x 1 discrete states)
+          a = [ acc acd ]  b = [ bc ]
+              [ adc add ]      [ bd ]
+          c = [ ccc ccd ]  d = [ dc ]
+              [ cdc cdd ]      [ dd ]
+          
+              (cdc = c(outlist,1:n), etc.)
+     with dynamic equations: d/dt xc(t)     = acc*xc(t)      +
+     acd*xd(k*tsam) + bc*u(t)
+
+     xd((k+1)*tsam) = adc*xc(k*tsam) + add*xd(k*tsam) + bd*u(k*tsam)
+
+     yc(t)      = ccc*xc(t)      + ccd*xd(k*tsam) + dc*u(t)
+
+     yd(k*tsam) = cdc*xc(k*tsam) + cdd*xd(k*tsam) + dd*u(k*tsam)
+
+     *Signal partitions*
+                  | continuous      | discrete               |
+          ----------------------------------------------------
+          states  | stname(1:n,:)   | stname((n+1):(n+nz),:) |
+          ----------------------------------------------------
+          outputs | outname(cout,:) | outname(outlist,:)     |
+          ----------------------------------------------------
+     where cout is the list of in 1:`rows'(P) that are not
+     contained in outlist. (Discrete/continuous outputs may be entered
+     in any order desired by the user.)
+
+     *Example*
+          octave:1> a = [1 2 3; 4 5 6; 7 8 10];
+          octave:2> b = [0 0 ; 0 1 ; 1 0];
+          octave:3> c = eye(3);
+          octave:4> sys = ss2sys(a,b,c,[],0,3,0,list("volts","amps","joules"));
+          octave:5> sysout(sys);
+          Input(s)
+                  1: u_1
+                  2: u_2
+          
+          Output(s):
+                  1: y_1
+                  2: y_2
+                  3: y_3
+          
+          state-space form:
+          3 continuous states, 0 discrete states
+          State(s):
+                  1: volts
+                  2: amps
+                  3: joules
+          
+          A matrix: 3 x 3
+             1   2   3
+             4   5   6
+             7   8  10
+          B matrix: 3 x 2
+            0  0
+            0  1
+            1  0
+          C matrix: 3 x 3
+            1  0  0
+            0  1  0
+            0  0  1
+          D matrix: 3 x 3
+            0  0
+            0  0
+            0  0
+     Notice that the D matrix is constructed  by default to the correct
+     dimensions.  Default input and output signals names were assigned
+     since none were given.
+
+ - Function File: [A, B, C, D, TSAM, N, NZ, STNAME, INNAME, OUTNAME,
+YD] = sys2ss (SYS)
+     Extract state space representation from system data structure.
+
+     *Inputs* SYS system data structure
+
+     *Outputs*
+    A
+    B
+    C
+    D
+          state space matrices for sys
+
+    TSAM
+          sampling time of sys (0 if continuous)
+
+    N
+    NZ
+          number of continuous, discrete states (discrete states come
+          last in state vector X)
+
+    STNAME
+    INNAME
+    OUTNAME
+          signal names (lists of strings);  names of states, inputs,
+          and outputs, respectively
+
+    YD
+          binary vector; YD(II) is 1 if output Y(II)$ is discrete
+          (sampled); otherwise  YD(II) 0.
+
+     A warning massage is printed if the system is a mixed continuous
+     and discrete system
+
+     *Example*
+          octave:1> sys=tf2sys([1 2],[3 4 5]);
+          octave:2> [a,b,c,d] = sys2ss(sys)
+          a =
+             0.00000   1.00000
+            -1.66667  -1.33333
+          b =
+            0
+            1
+          c = 0.66667  0.33333
+          d = 0
+
+
+File: octave.info,  Node: tf2sys,  Next: zp2sys,  Prev: ss2sys,  Up: sysinterface
+
+Transfer function system interface functions
+--------------------------------------------
+
+ - Function File:  tf2sys (NUM, DEN, TSAM, INNAME, OUTNAME)
+     build system data structure from transfer function format data
+
+     *Inputs*
+    NUM
+    DEN
+          coefficients of numerator/denominator polynomials
+
+    TSAM
+          sampling interval. default: 0 (continuous time)
+
+    INNAME
+    OUTNAME
+          input/output signal names; may be a string or list with a
+          single string entry.
+
+     *Outputs* SYS = system data structure
+
+     *Example*
+          octave:1> sys=tf2sys([2 1],[1 2 1],0.1);
+          octave:2> sysout(sys)
+          Input(s)
+                  1: u_1
+          Output(s):
+                  1: y_1 (discrete)
+          Sampling interval: 0.1
+          transfer function form:
+          2*z^1 + 1
+          -----------------
+          1*z^2 + 2*z^1 + 1
+
+ - Function File: [NUM, DEN, TSAM, INNAME, OUTNAME] = sys2tf (SYS)
+     Extract transfer function data from a system data structure
+
+     See tf2sys for parameter descriptions.
+
+     *Example*
+          octave:1> sys=ss2sys([1 -2; -1.1,-2.1],[0;1],[1 1]);
+          octave:2> [num,den] = sys2tf(sys)
+          num = 1.0000  -3.0000
+          den = 1.0000   1.1000  -4.3000
+
+
+File: octave.info,  Node: zp2sys,  Next: structaccess,  Prev: tf2sys,  Up: sysinterface
+
+Zero-pole system interface functions
+------------------------------------
+
+ - Function File:  zp2sys (ZER, POL, K, TSAM, INNAME, OUTNAME)
+     Create system data structure from zero-pole data.
+
+     *Inputs*
+    ZER
+          vector of system zeros
+
+    POL
+          vector of system poles
+
+    K
+          scalar leading coefficient
+
+    TSAM
+          sampling period. default: 0 (continuous system)
+
+    INNAME
+    OUTNAME
+          input/output signal names (lists of strings)
+
+     *Outputs* sys: system data structure
+
+     *Example*
+          octave:1> sys=zp2sys([1 -1],[-2 -2 0],1);
+          octave:2> sysout(sys)
+          Input(s)
+                  1: u_1
+          Output(s):
+                  1: y_1
+          zero-pole form:
+          1 (s - 1) (s + 1)
+          -----------------
+          s (s + 2) (s + 2)
+
+ - Function File: [ZER, POL, K, TSAM, INNAME, OUTNAME] = sys2zp (SYS)
+     Extract zero/pole/leading coefficient information from a system
+     data structure
+
+     See zp2sys for parameter descriptions.
+
+     *Example*
+          octave:1> sys=ss2sys([1 -2; -1.1,-2.1],[0;1],[1 1]);
+          octave:2> [zer,pol,k] = sys2zp(sys)
+          zer = 3.0000
+          pol =
+            -2.6953
+             1.5953
+          k = 1
+
+
+File: octave.info,  Node: structaccess,  Next: structintern,  Prev: zp2sys,  Up: sysinterface
+
+Data structure access functions
+-------------------------------
+
+ - Function File:  syschnames (SYS, OPT, LIST, NAMES)
+     Superseded by `syssetsignals'
+
+ - Function File:  syschtsam (SYS, TSAM)
+     This function changes the sampling time (tsam) of the system.
+     Exits with an error if sys is purely continuous time.
+
+ - Function File: [N, NZ, M, P, YD] = sysdimensions (SYS, OPT)
+     return the number of states, inputs, and/or outputs in the system
+     SYS.
+
+     *Inputs*
+    SYS
+          system data structure
+
+    OPT
+          String indicating which dimensions are desired.  Values:
+         `"all"'
+               (default) return all parameters as specified under
+               Outputs below.
+
+         `"cst"'
+               return N= number of continuous states
+
+         `"dst"'
+               return N= number of discrete states
+
+         `"in"'
+               return N= number of inputs
+
+         `"out"'
+               return N= number of outputs
+
+     *Outputs*
+    N
+          number of continuous states (or individual requested
+          dimension as specified by OPT).
+
+    NZ
+          number of discrete states
+
+    M
+          number of system inputs
+
+    P
+          number of system outputs
+
+    YD
+          binary vector; YD(II) is nonzero if output II is discrete.
+          yd(ii) = 0 if output II is continous
+
+ - Function File: [STNAME, INNAME, OUTNAME, YD] = sysgetsignals (SYS)
+ - Function File: SIGLIST = sysgetsignals (SYS, SIGID)
+ - Function File: SIGNAME = sysgetsignals (SYS, SIGID, SIGNUM, STRFLG)
+     Get signal names from a system
+
+     *Inputs*
+    SYS
+          system data structure for the state space system
+
+    SIGID
+          signal id.  String.  Must be one of
+         `"in"'
+               input signals
+
+         `"out"'
+               output signals
+
+         `"st"'
+               stage signals
+
+         `"yd"'
+               value of logical vector YD
+
+    SIGNUM
+          index(indices) or name(s) or signals; see `sysidx'
+
+    STRFLG
+          flag to return a string instead of a list;  Values:
+         `0'
+               (default) return a list (even if signum specifies an
+               individual signal)
+
+         `1'
+               return a string.  Exits with an error if signum does not
+               specify an individual signal.
+
+     *Outputs*
+    *If SIGID is not specified
+
+         STNAME
+         INNAME
+         OUTNAME
+               signal names (lists of strings);  names of states,
+               inputs, and outputs, respectively
+
+         YD
+               binary vector; YD(II) is nonzero if output II is
+               discrete.
+
+    *If SIGID is specified but SIGNUM is not specified, then
+
+         `sigid="in"'
+               SIGLIST is set to the list of input names
+
+         `sigid="out"'
+               SIGLIST is set to the list of output names
+
+         `sigid="st"'
+               SIGLIST is set to the list of state names
+
+               stage signals
+
+         `sigid="yd"'
+               SIGLIST is set to logical vector indicating discrete
+               outputs; SIGLIST(II) = 0 indicates that output II is
+               continuous (unsampled), otherwise it is discrete.
+
+    *if the first three input arguments are specified, then SIGNAME is
+          a list of the specified signal names (SIGID is `"in"',
+          `"out"', or `"st"'), or else the logical flag indicating
+          whether output(s) SIGNUM is(are) discrete (SIGVAL=1) or
+          continuous (SIGVAL=0).
+
+     *Examples* (From `sysrepdemo')
+          octave> sys=ss2sys(rand(4),rand(4,2),rand(3,4));
+          octave> [Ast,Ain,Aout,Ayd] = sysgetsignals(sys) i  # get all signal names
+          Ast =
+          (
+            [1] = x_1
+            [2] = x_2
+            [3] = x_3
+            [4] = x_4
+          )
+          Ain =
+          (
+            [1] = u_1
+            [2] = u_2
+          )
+          Aout =
+          (
+            [1] = y_1
+            [2] = y_2
+            [3] = y_3
+          )
+          Ayd =
+          
+            0  0  0
+          octave> Ain = sysgetsignals(sys,"in")   # get only input signal names
+          Ain =
+          (
+            [1] = u_1
+            [2] = u_2
+          )
+          octave> Aout = sysgetsignals(sys,"out",2)   # get name of output 2 (in list)
+          Aout =
+          (
+            [1] = y_2
+          )
+          octave> Aout = sysgetsignals(sys,"out",2,1)  # get name of output 2 (as string)
+          Aout = y_2
+
+ - Function File:  sysgettype (SYS)
+     return the initial system type of the system
+
+     *Inputs* SYS: system data structure
+
+     *Outputs* SYSTYPE: string indicating how the structure was
+     initially constructed: values: `"ss"', `"zp"', or `"tf"'
+
+     *Note* FIR initialized systems return `systype="tf"'.
+
+ - Function File:  syssetsignals (SYS, OPT, NAMES, SIG_IDX)
+     change the names of selected inputs, outputs and states.  *Inputs*
+    SYS
+          system data structure
+
+    OPT
+          change default name (output)
+
+         `"out"'
+               change selected output names
+
+         `"in"'
+               change selected input names
+
+         `"st"'
+               change selected state names
+
+         `"yd"'
+               change selected outputs from discrete to continuous or
+               from continuous to discrete.
+
+    NAMES
+
+         `opt = "out", "in", or "st"'
+               string or string array containing desired signal names
+               or values.
+
+         `opt = "yd"'
+               To desired output continuous/discrete flag.  Set name to
+               0 for continuous, or 1 for discrete.
+
+    SIG_IDX
+          indices or names of outputs, yd, inputs, or states whose
+          respective names/values should be changed.
+
+          Default: replace entire list of names/entire yd vector.
+     *Outputs* RETSYS=SYS with appropriate signal names changed (or yd
+     values, where appropriate)
+
+     *Example*
+          octave:1> sys=ss2sys([1 2; 3 4],[5;6],[7 8]);
+          octave:2> sys = syssetsignals(sys,"st",str2mat("Posx","Velx"));
+          octave:3> sysout(sys)
+          Input(s)
+                  1: u_1
+          Output(s):
+                  1: y_1
+          state-space form:
+          2 continuous states, 0 discrete states
+          State(s):
+                  1: Posx
+                  2: Velx
+          A matrix: 2 x 2
+            1  2
+            3  4
+          B matrix: 2 x 1
+            5
+            6
+          C matrix: 1 x 2
+            7  8
+          D matrix: 1 x 1
+          0
+
+ - Function File:  sysupdate (SYS, OPT)
+     Update the internal representation of a system.
+
+     *Inputs*
+    SYS:
+          system data structure
+
+    OPT
+          string:
+         `"tf"'
+               update transfer function form
+
+         `"zp"'
+               update zero-pole form
+
+         `"ss"'
+               update state space form
+
+         `"all"'
+               all of the above
+
+     *Outputs* RETSYS: contains union of data in sys and requested data.
+     If requested data in sys is already up to date then retsys=sys.
+
+     Conversion to `tf' or `zp' exits with an error if the system is
+     mixed continuous/digital.
+
+   function [systype, nout, nin, ncstates, ndstates] = minfo(inmat)
+
+   MINFO:  Determines the type of system matrix.  INMAT can be
+a varying(*), system, constant, and empty matrix.
+
+   Returns:      systype can be one of:            varying, system,
+constant, and empty      nout is the number of outputs of the system
+ nin is the number of inputs of the system      ncstates is the number
+of continuous states of the system       ndstates is the number of
+discrete states of the system
+
+ - Function File:  sysgettsam (SYS)
+     Return the sampling time of the system SYS.
+
+
+File: octave.info,  Node: structintern,  Prev: structaccess,  Up: sysinterface
+
+Data structure internal functions
+---------------------------------
+
+
+File: octave.info,  Node: sysdisp,  Next: blockdiag,  Prev: sysinterface,  Up: Control Theory
+
+System display functions
+========================
+
+ - Function File:  sysout (SYS, OPT)
+     print out a system data structure in desired format
+    SYS
+          system data structure
+
+    OPT
+          Display option
+         `[]'
+               primary system form (default)
+
+         `"ss"'
+               state space form
+
+         `"tf"'
+               transfer function form
+
+         `"zp"'
+               zero-pole form
+
+         `"all"'
+               all of the above
+
+ - Function File:  tfout (NUM, DENOM, X)
+     Print formatted transfer function n(s)/d(s) to the screen.  X
+     defaults to the string `"s"'
+
+ - Function File:  zpout (ZER, POL, K, X)
+     print formatted zero-pole form to the screen.  X defaults to the
+     string `"s"'
+
+
+File: octave.info,  Node: blockdiag,  Next: numerical,  Prev: sysdisp,  Up: Control Theory
+
+Block Diagram Manipulations
+===========================
+
+   *Note systime::.
+
+   Unless otherwise noted, all parameters (input,output) are system
+data structures.
+
+ - Function File:  bddemo (INPUTS)
+     Octave Controls toolbox demo: Block Diagram Manipulations demo
+
+ - Function File:  buildssic (CLST, ULST, OLST, ILST, S1, S2, S3, S4,
+          S5, S6, S7, S8)
+     Form an arbitrary complex (open or closed loop) system in
+     state-space form from several systems. "`buildssic'" can easily
+     (despite it's cryptic syntax) integrate transfer functions from a
+     complex block diagram into a single system with one call.  This
+     function is especially useful for building open loop
+     interconnections for H_infinity and H2 designs or for closing
+     loops with these controllers.
+
+     Although this function is general purpose, the use of "`sysgroup'"
+     "`sysmult'", "`sysconnect'" and the like is recommended for
+     standard operations since they can handle mixed discrete and
+     continuous systems and also the names of inputs, outputs, and
+     states.
+
+     The parameters consist of 4 lists that describe the connections
+     outputs and inputs and up to 8 systems s1-s8.  Format of the lists:
+    CLST
+          connection list, describes the input signal of each system.
+          The maximum number of rows of Clst is equal to the sum of all
+          inputs of s1-s8.
+
+          Example: `[1 2 -1; 2 1 0]' ==> new input 1 is old inpout 1 +
+          output 2 - output 1, new input 2 is old input 2 + output 1.
+          The order of rows is arbitrary.
+
+    ULST
+          if not empty the old inputs in vector Ulst will be appended
+          to the outputs. You need this if you want to "pull out" the
+          input of a system. Elements are input numbers of s1-s8.
+
+    OLST
+          output list, specifiy the outputs of the resulting systems.
+          Elements are output numbers of s1-s8.  The numbers are alowed
+          to be negative and may appear in any order. An empty matrix
+          means all outputs.
+
+    ILST
+          input list, specifiy the inputs of the resulting systems.
+          Elements are input numbers of s1-s8.  The numbers are alowed
+          to be negative and may appear in any order. An empty matrix
+          means all inputs.
+
+     Example:  Very simple closed loop system.
+          w        e  +-----+   u  +-----+
+           --->o--*-->|  K  |--*-->|  G  |--*---> y
+               ^  |   +-----+  |   +-----+  |
+             - |  |            |            |
+               |  |            +----------------> u
+               |  |                         |
+               |  +-------------------------|---> e
+               |                            |
+               +----------------------------+
+
+     The closed loop system GW can be optained by
+          GW = buildssic([1 2; 2 -1], 2, [1 2 3], 2, G, K);
+
+    CLST
+          (1. row) connect input 1 (G) with output 2 (K).  (2. row)
+          connect input 2 (K) with neg. output 1 (G).
+
+    ULST
+          append input of (2) K to the number of outputs.
+
+    OLST
+          Outputs are output of 1 (G), 2 (K) and appended output 3
+          (from Ulst).
+
+    ILST
+          the only input is 2 (K).
+
+     Here is a real example:
+                                   +----+
+              -------------------->| W1 |---> v1
+          z   |                    +----+
+          ----|-------------+                   || GW   ||     => min.
+              |             |                        vz   infty
+              |    +---+    v      +----+
+              *--->| G |--->O--*-->| W2 |---> v2
+              |    +---+       |   +----+
+              |                |
+              |                v
+             u                  y
+
+     The closed loop system GW from [z; u]' to [v1; v2; y]' can be
+     obtained by (all SISO systems):
+          GW = buildssic([1, 4; 2, 4; 3, 1], 3, [2, 3, 5],
+                         [3, 4], G, W1, W2, One);
+     where "One" is a unity gain (auxillary) function with order 0.
+     (e.g. `One = ugain(1);')
+
+ - Function File:  jet707 ()
+     Creates linearized state space model of a Boeing 707-321 aircraft
+     at v=80m/s. (M = 0.26, Ga0 = -3 deg, alpha0 = 4 deg, kappa = 50
+     deg) System inputs:   (1) thrust   and (2) elevator angle System
+     outputs:  (1) airspeed and (2) pitch angle Ref: R. Brockhaus:
+     Flugregelung (Flight Control), Springer, 1994
+
+ - Function File:  ord2 (NFREQ, DAMP, GAIN)
+     Creates a continuous 2nd order system with parameters: *Inputs*
+    NFREQ
+          natural frequency [Hz]. (not in rad/s)
+
+    DAMP
+          damping coefficient
+
+    GAIN
+          dc-gain This is steady state value only for damp > 0.  gain
+          is assumed to be 1.0 if ommitted.  *Outputs* OUTSYS system
+     data structure has representation with w = 2 * pi * nfreq:
+              /                                        \
+              | / -2w*damp -w \  / w \                 |
+          G = | |             |, |   |, [ 0  gain ], 0 |
+              | \   w       0 /  \ 0 /                 |
+              \                                        /
+     *See also* `jet707' (MIMO example, Boeing 707-321 aircraft model)
+
+ - Function File:  sysadd (GSYS, HSYS)
+     returns SYS = GSYS + HSYS.
+        * Exits with an error if GSYS and HSYS are not compatibly
+          dimensioned.
+
+        * Prints a warning message is system states have identical
+          names; duplicate names are given a suffix to make them unique.
+
+        * SYS input/output names are taken from GSYS.
+
+                    ________
+               ----|  gsys  |---
+          u   |    ----------  +|
+          -----                (_)----> y
+              |     ________   +|
+               ----|  hsys  |---
+                    --------
+
+ - Function File:  sysappend (SYS, B, C, D, OUTNAME, INNAME, YD)
+     appends new inputs and/or outputs to a system
+
+     *Inputs*
+    SYS
+          system data structure
+
+    B
+          matrix to be appended to sys "B" matrix (empty if none)
+
+    C
+          matrix to be appended to sys "C" matrix (empty if none)
+
+    D
+          revised sys d matrix (can be passed as [] if the revised d is
+          all zeros)
+
+    OUTNAME
+          list of names for new outputs
+
+    INNAME
+          list of names for new inputs
+
+    YD
+          binary vector; yd(ii)=0 indicates a continuous output;
+          yd(ii)=1 indicates a discrete output.
+
+     *Outputs* SYS
+             sys.b := [sys.b , b]
+             sys.c := [sys.c  ]
+                      [ c     ]
+             sys.d := [sys.d | D12 ]
+                      [D21   | D22 ]
+     where D12, D21, and D22 are the appropriate dimensioned
+     blocks of the input parameter D.
+        * The leading block D11 of D is ignored.
+
+        * If INNAME and OUTNAME are not given as arguments,      the
+          new inputs and outputs are be assigned default names.
+
+        * YD is a binary vector of length rows(c) that indicates
+          continuous/sampled outputs.  Default value for YD is:
+
+        * SYS = continuous or mixed YD = `zeros(1,rows(c))'
+
+        * SYS = discrete YD = `ones(1,rows(c))'
+
+ - Function File:  sysconnect (SYS, OUT_IDX, IN_IDX, ORDER, TOL)
+     Close the loop from specified outputs to respective specified
+     inputs
+
+     *Inputs*
+    SYS
+          system data structure
+
+    OUT_IDX
+    IN_IDX
+          names or indices of signals to connect (see `sysidx').  The
+          output specified by out_idx(ii) is connected to the input
+          specified by in_idx(ii).
+
+    ORDER
+          logical flag (default = 0)
+         `0'
+               leave inputs and outputs in their original order
+
+         `1'
+               permute inputs and outputs to the order shown in the
+               diagram below
+
+    TOL
+          tolerance for singularities in algebraic loops default: 200EPS
+
+     *Outputs* SYS: resulting closed loop system.
+
+     *Method* `sysconnect' internally permutes selected inputs, outputs
+     as shown below, closes the loop, and then permutes inputs and
+     outputs back to their original order
+                           ____________________
+           u_1       ----->|                  |----> y_1
+                           |        sys       |
+                   old u_2 |                  |
+          u_2* ---->(+)--->|                  |----->y_2
+          (in_idx)   ^     -------------------|    | (out_idx)
+                     |                             |
+                     -------------------------------
+     The input that has the summing junction added to it has an *
+     added to the end  of the input name.
+
+ - Function File: [CSYS, ACD, CCD] = syscont (SYS)
+     Extract the purely continuous subsystem of an input system.
+
+     *Inputs* SYS is a system data structure
+
+     *Outputs*
+    CSYS
+          is the purely continuous input/output connections of SYS
+
+    ACD
+    CCD
+          connections from discrete states to continuous states,
+          discrete states to continuous outputs, respectively.
+
+          returns CSYS empty if no continuous/continous path exists
+
+ - Function File: [DSYS, ADC, CDC] = sysdisc (SYS)
+     *Inputs* SYS = system data structure
+
+     *Outputs*
+    DSYS
+          purely discrete portion of sys (returned empty if there is no
+          purely discrete path from inputs to outputs)
+
+    ADC
+    CDC
+          connections from continuous states to discrete states and
+          discrete outputs, respectively.
+
+ - Function File:  sysdup (ASYS, OUT_IDX, IN_IDX)
+     Duplicate specified input/output connections of a system
+
+     *Inputs*
+    ASYS
+          system data structure
+
+    OUT_IDX
+    IN_IDX
+          indices or names of desired signals (see `sigidx').
+          duplicates are made of `y(out_idx(ii))' and `u(in_idx(ii))'.
+
+     *Outputs* RETSYS: resulting closed loop system: duplicated i/o
+     names are appended with a `"+"' suffix.
+
+     *Method* `sysdup' creates copies of selected inputs and outputs as
+     shown below.  u1/y1 is the set of original inputs/outputs, and
+     u2,y2 is the set of duplicated inputs/outputs in the order
+     specified in IN_IDX, OUT_IDX, respectively
+                    ____________________
+          u1  ----->|                  |----> y1
+                    |       asys       |
+          u2 ------>|                  |----->y2
+          (in_idx)  -------------------| (out_idx)
+
+ - Function File:  sysgroup (ASYS, BSYS)
+     Combines two systems into a single system
+
+     *Inputs* ASYS, BSYS: system data structures
+
+     *Outputs* sys = block diag(asys,bsys)
+                   __________________
+                   |    ________    |
+          u1 ----->|--> | asys |--->|----> y1
+                   |    --------    |
+                   |    ________    |
+          u2 ----->|--> | bsys |--->|----> y2
+                   |    --------    |
+                   ------------------
+                        Ksys
+     The function also rearranges the internal state-space
+     realization of SYS so that the continuous states come first and
+     the discrete states come last.  If there are duplicate names, the
+     second name has a unique suffix appended on to the end of the name.
+
+ - Function File:  sysmult (ASYS, BSYS)
+     Compute sys = Asys*Bsys (series connection):
+          u   ----------     ----------
+          --->|  bsys  |---->|  asys  |--->
+              ----------     ----------
+     A warning occurs if there is direct feed-through from an
+     input of Bsys or a continuous state of BSYS through a discrete
+     output of Bsys to a continuous state or output in ASYS (system
+     data structure does not recognize discrete inputs).
+
+ - Function File:  sysprune (ASYS, OUT_IDX, IN_IDX)
+     Extract specified inputs/outputs from a system
+
+     *Inputs*
+    ASYS
+          system data structure
+
+    OUT_IDX
+    IN_IDX
+          Indices or signal names of the outputs and inputs to be kept
+          in the returned system; remaining connections are "pruned"
+          off.  May select as [] (empty matrix) to specify all
+          outputs/inputs.
+
+               retsys = sysprune(Asys,[1:3,4],"u_1");
+               retsys = sysprune(Asys,list("tx","ty","tz"), 4);
+
+     *Outputs* RETSYS: resulting system
+                     ____________________
+          u1 ------->|                  |----> y1
+           (in_idx)  |       Asys       | (out_idx)
+          u2 ------->|                  |----| y2
+            (deleted)-------------------- (deleted)
+
+ - Function File:  sysreorder (VLEN, LIST)
+     *Inputs* VLEN=vector length, LIST= a subset of `[1:vlen]',
+
+     *Outputs* PV: a permutation vector to order elements of `[1:vlen]'
+     in `list' to the end of a vector.
+
+     Used internally by `sysconnect' to permute vector elements to their
+     desired locations.
+
+ - Function File:  sysscale (SYS, OUTSCALE, INSCALE, OUTNAME, INNAME)
+     scale inputs/outputs of a system.
+
+     *Inputs* sys: structured system outscale, inscale: constant
+     matrices of appropriate dimension
+
+     *Outputs* SYS: resulting open loop system:
+                -----------    -------    -----------
+          u --->| inscale |--->| sys |--->| outscale |---> y
+                -----------    -------    -----------
+     If the input names and output names (each a list of strings) are
+     not given and the scaling matrices are not square, then default
+     names will be given to the inputs and/or outputs.
+
+     A warning message is printed if outscale attempts to add continuous
+     system outputs to discrete system outputs; otherwise YD is set
+     appropriately in the returned value of SYS.
+
+ - Function File:  syssub (GSYS, HSYS)
+     Return sys = Gsys - Hsys.
+
+     Method: GSYS and HSYS are connected in parallel The input vector
+     is connected to both systems; the outputs are subtracted.
+     Returned system names are those of GSYS.
+                   +--------+
+              +--->|  gsys  |---+
+              |    +--------+   |
+              |                +|
+          u --+                (_)--> y
+              |                -|
+              |    +--------+   |
+              +--->|  hsys  |---+
+                   +--------+
+
+ - Function File:  ugain (N)
+     Creates a system with unity gain, no states.  This trivial system
+     is sometimes needed to create arbitrary complex systems from
+     simple systems with buildssic.  Watch out if you are forming
+     sampled systems since "ugain" does not contain a sampling period.
+
+ - Function File:  wgt1o (VL, VH, FC)
+     State space description of a first order weighting function.
+
+     Weighting function are needed by the H2/H_infinity design
+     procedure.  These function are part of thye augmented plant P (see
+     hinfdemo for an applicattion example).
+
+     vl = Gain at low frequencies
+
+     vh = Gain at high frequencies
+
+     fc = Corner frequency (in Hz, *not* in rad/sec)
+
+ - Function File:  parallel (ASYS, BSYS)
+     Forms the parallel connection of two systems.
+
+     ____________________              |      ________    |     u
+     ---->|---> | asys |-->|---> y1         |    |      -------    |
+         |    |      ________    |         |-->|---> | bsys |-->|--->
+     y2              |      -------    |
+     -------------------                   ksys
+
+ - Function File: [RETSYS, NC, NO] = sysmin (SYS, FLG)
+     return a minimal (or reduced order) system inputs:   sys: system
+     data structure   flg: 0 [default] return minimal system; state
+     names lost      : 1           return system with physical states
+     removed that                    are either uncontrollable or
+     unobservable                    (cannot reduce further without
+     discarding physical                    meaning of states) outputs:
+      retsys: returned system   nc: number of controllable states in
+     the returned system   no: number of observable states in the
+     returned system   cflg: is_controllable(retsys)   oflg:
+     is_observable(retsys)
+

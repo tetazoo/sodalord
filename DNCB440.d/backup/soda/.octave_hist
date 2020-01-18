@@ -1,0 +1,1046 @@
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+20 12 5 1 3 0 0 0 0 1 1 5 8 12 18 18 20 27 35 36 29 36 27 40
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1664 1264 1020 619 405 297 179 122 204 209 328 578 1016 1089 1219 1214 1371 1546 1588 2208 2437 2218 2007 1939
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1665 1264 1020 619 405 297 179 122 205 209 328 578 1017 1090 1221 1214 1373 1547 1588 2209 2440 2223 2007 1942
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1665 1264 1020 619 405 297 179 122 205 209 328 578 1017 1090 1221 1214 1373 1547 1588 2209 2440 2223 2007 1942
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1665 1264 1020 619 406 297 179 122 205 209 328 578 1018 1091 1222 1214 1373 1548 1588 2213 2440 2223 2007 1942
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1668 1267 1021 619 406 297 179 122 205 209 328 578 1018 1091 1222 1214 1373 1548 1588 2213 2440 2225 2007 1942
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1668 1267 1021 619 406 297 179 122 205 209 328 579 1018 1092 1222 1214 1373 1548 1588 2213 2440 2225 2007 1942
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1668 1270 1023 619 407 298 179 122 205 209 328 579 1018 1093 1222 1214 1373 1548 1591 2213 2440 2229 2007 1942
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+31 15 13 1 1 1 0 0 0 2 7 20 47 50 50 52 44 40 40 32 58 40 26 31
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+31 15 13 1 1 1 0 0 0 2 7 20 47 50 50 52 44 40 40 32 58 40 26 31
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1669 1270 1023 620 407 298 179 122 205 209 328 579 1018 1093 1224 1216 1373 1549 1594 2215 2444 2233 2009 1942
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+39 33 30 20 12 9 6 3 6 5 6 15 23 32 20 32 48 70 57 41 59 49 57 43
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1669 1270 1023 620 407 298 179 122 205 209 328 580 1018 1094 1224 1217 1374 1550 1596 2215 2444 2233 2009 1942
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1672 1271 1024 620 407 298 179 122 205 209 329 580 1019 1097 1224 1217 1374 1552 1597 2219 2448 2237 2013 1945
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1673 1273 1024 622 407 298 179 122 205 209 330 581 1019 1097 1228 1217 1375 1555 1600 2220 2456 2240 2016 1950
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1674 1276 1024 623 407 298 179 122 205 209 330 581 1019 1097 1228 1217 1375 1555 1600 2220 2456 2240 2016 1950
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1674 1276 1024 623 407 298 179 122 206 209 330 581 1019 1099 1229 1218 1376 1555 1600 2221 2456 2240 2016 1950
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+31 15 13 1 1 1 0 0 0 2 7 20 47 50 51 52 44 41 42 34 58 40 26 31
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1676 1276 1024 623 407 298 179 122 206 209 330 581 1019 1099 1229 1218 1376 1555 1600 2221 2458 2240 2017 1952
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1676 1278 1024 623 407 298 179 122 206 209 330 581 1019 1101 1230 1218 1377 1555 1600 2222 2459 2240 2018 1953
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1678 1278 1025 626 407 298 179 122 206 209 330 581 1019 1101 1230 1218 1377 1556 1601 2223 2462 2240 2018 1954
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+39 33 30 20 12 9 6 3 6 5 7 15 23 32 20 32 48 71 57 41 61 49 57 44
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+132 112 97 58 40 29 13 16 21 20 21 35 69 63 77 55 87 80 86 108 122 156 122 111
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+108 90 105 72 69 48 50 23 38 34 33 50 39 40 67 63 82 79 78 93 96 93 84 114
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1678 1278 1025 626 407 298 179 122 206 209 330 581 1019 1103 1230 1221 1381 1557 1601 2223 2462 2240 2018 1954
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+31 20 20 24 16 25 11 2 3 1 7 4 19 11 13 18 22 21 19 21 31 23 33 47
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+108 90 105 72 69 48 50 23 38 34 33 50 39 40 67 63 82 79 78 93 96 93 84 114
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1678 1278 1025 626 407 298 179 122 206 209 330 581 1019 1103 1230 1221 1381 1557 1601 2223 2462 2240 2018 1954
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1678 1278 1025 626 407 298 179 122 206 209 330 581 1019 1103 1230 1221 1381 1557 1601 2225 2463 2240 2018 1954
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1679 1278 1026 626 407 298 180 122 206 209 330 581 1019 1103 1230 1222 1382 1560 1601 2228 2463 2242 2021 1956
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1684 1284 1036 632 407 300 180 122 206 209 332 583 1024 1105 1233 1226 1387 1567 1609 2239 2473 2252 2030 1964
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+39 33 30 20 12 9 6 3 6 5 7 15 23 33 20 34 48 71 57 43 61 50 57 45
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1685 1284 1036 632 407 300 180 122 206 209 332 583 1025 1106 1233 1226 1389 1567 1609 2241 2474 2253 2031 1966
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+31 15 13 1 1 1 0 0 0 2 7 20 49 50 51 53 45 43 43 35 60 40 27 31
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1685 1284 1036 632 407 300 180 122 206 211 332 583 1026 1107 1233 1226 1391 1567 1609 2241 2474 2253 2031 1966
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+31 15 13 1 1 1 0 0 0 2 7 20 50 50 51 53 45 43 43 36 60 40 27 31
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1685 1284 1036 633 407 300 180 122 206 212 332 583 1026 1107 1233 1226 1391 1567 1609 2242 2477 2254 2033 1968
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+31 15 13 1 1 1 0 0 0 2 7 20 51 50 51 53 45 43 43 36 60 40 27 31
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1686 1286 1036 634 407 300 180 122 206 213 332 583 1028 1109 1233 1227 1391 1571 1609 2244 2482 2255 2035 1969
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1686 1286 1036 634 407 300 180 122 206 213 332 583 1028 1109 1233 1227 1391 1571 1609 2244 2482 2255 2035 1969
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+31 15 13 1 1 1 0 0 0 2 7 20 51 50 51 53 45 43 43 36 60 40 27 31
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1690 1286 1036 634 407 300 180 122 206 214 332 583 1028 1111 1233 1228 1392 1571 1610 2245 2482 2259 2035 1969
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1690 1286 1036 634 408 300 180 122 206 214 332 583 1028 1111 1234 1228 1392 1571 1610 2245 2484 2260 2035 1969
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+41 17 9 8 1 2 0 1 2 3 7 13 61 98 94 83 67 78 76 191 230 155 71 61
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+67 28 16 4 1 1 0 1 2 4 21 34 63 55 69 63 74 57 66 204 257 143 103 70
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+
+1691 1286 1036 634 408 300 180 122 206 214 332 583 1028 1111 1234 1228 1392 1571 1612 2248 2491 2260 2035 1971
+
+]';
+
+t = [0:23]';
+
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+
+a = X\y;
+
+T = [0:.1:23.9]';
+
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+
+alpha = a(1)
+
+beta = sqrt(a(2)^2 + a(3)^2)
+
+omega = pi/12;
+
+phi = atan(-a(3)/a(2)) / omega;
+
+if sign(a(2)) < 0
+
+phi = phi + 12;
+
+endif
+
+if phi < 0
+
+phi = phi + 24
+
+else
+
+phi = phi
+
+endif 
+

@@ -1,0 +1,1032 @@
+head	1.27;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.27
+date	2005.02.22.05.13.50;	author root;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2004.09.22.05.31.35;	author kchen;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2004.03.10.03.07.21;	author kchen;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2004.03.01.00.45.46;	author kchen;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2003.12.13.02.32.48;	author kchen;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2003.12.13.01.50.32;	author kchen;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2003.11.07.05.45.50;	author kchen;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2003.11.05.05.45.25;	author kchen;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2003.11.05.05.41.47;	author kchen;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2003.11.05.05.39.15;	author kchen;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2003.10.18.06.17.39;	author kchen;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2003.10.18.06.11.40;	author kchen;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2003.10.17.23.40.55;	author kchen;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2003.10.12.03.32.36;	author kchen;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2003.10.10.06.21.09;	author kchen;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2003.10.10.06.14.26;	author kchen;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2003.10.09.18.53.59;	author kchen;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2003.10.09.05.14.52;	author kchen;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2003.09.04.02.38.44;	author kchen;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2003.09.04.02.34.50;	author kchen;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2003.08.14.06.25.29;	author kchen;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2003.08.14.02.22.10;	author kchen;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2003.07.07.05.55.38;	author root;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2003.07.07.05.53.29;	author root;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2003.07.07.05.38.19;	author root;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2003.07.07.05.15.23;	author root;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2003.07.07.04.34.28;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.27
+log
+@ARS -- updated cat
+@
+text
+@#!/usr/athena/bin/perl -w
+
+use strict;
+use DBI;
+use FileHandle;
+use Digest::MD5 qw( md5 md5_base64);
+
+print "athena# ";
+#system("/soda/zinit.sh");
+system("stty", "sane");
+system("stty erase ^?");
+system("stty kill ^H");
+
+$ENV{'KRB5CCNAME'} = "/tmp/krb5cc_soda";
+$ENV{'KRBTKFILE'} = "/tmp/tkt_soda";
+
+open(STDERR,">>/soda/errlog");
+my $sodacost = .5;
+my $softlimit = 0;
+my $hardlimit = .5;
+
+my $dbh = DBI->connect("dbi:mysql:sodalord","foo","foopass") || die "Can't connect: $DBI::errstr\n";
+my $values_sth = $dbh->prepare("SELECT user.* FROM user,names WHERE names.alias=? and names.id=user.name");
+my $whoami_sth = $dbh->prepare("SELECT id FROM names WHERE alias = ?");
+my $create_user_sth = $dbh->prepare("INSERT INTO user (name, email, pwd, time) VALUES (?,?,?,?)"); 
+my $addalias_sth = $dbh->prepare("INSERT INTO names (id, alias) VALUES (?,?)");
+my $get_aliases_sth = $dbh->prepare("SELECT alias FROM names WHERE id = ?");
+my $passwd_sth = $dbh->prepare("UPDATE user SET pwd=? WHERE name=?");
+my $credit_sth = $dbh->prepare("UPDATE user SET tot=(tot-?) WHERE name=?");
+my $add_card_sth = $dbh->prepare("INSERT INTO card VALUES (?,?)");
+
+my $accounts_file = "/afs/athena.mit.edu/activity/t/tetazoo/sodalord/accounts/accounts.txt";
+my $motd_file = "/afs/athena.mit.edu/activity/t/tetazoo/sodalord/accounts/motd";
+my $sodalord_email = "sodalord\@@mit.edu";
+my $mail_command = "/usr/sbin/sendmail -t -f $sodalord_email";
+my $cardscript = "sodacard.pl";
+
+STDOUT->autoflush(1);
+
+sub bought_soda
+{
+    my $time = shift;
+    $time = ($time < 10) ? "H0$time" : "H$time";
+    my $user = shift;
+    my $sql_string = "UPDATE user SET tot=tot+1, $time=$time+1 WHERE name=\'$user\' OR name='tetazoo'";
+    print LOGFILE "update command: $sql_string\n";
+    my $sth = $dbh->prepare("$sql_string");
+    $sth->execute();
+
+}
+
+sub in_keys
+{
+    my $alias = shift;
+    $whoami_sth->execute("$alias");
+    my $arrayref = $whoami_sth->fetchrow_arrayref;
+    return ${$arrayref}[0] if (defined $arrayref);
+    return 0;
+} 
+
+sub print_time
+{
+    my $now = localtime;
+    print LOGFILE "Time: $now\n";
+}
+
+sub buy_soda
+{
+    my $name = shift;
+    my $word = "";
+    $values_sth->execute("$name");
+    my @@data = @@{$values_sth->fetchrow_arrayref};
+
+    system "stty -echo";
+
+    if (open(MOTD, "<$motd_file")) {
+	my @@motd_text = <MOTD>;
+	print @@motd_text;
+	close(MOTD);
+    }
+
+    print "Password: ";
+    chomp($word = <STDIN>);
+    print "\n";
+    system "stty echo";
+    if (crypt($word, $data[27]) eq $data[27])
+    { 
+	if ($data[2] + 1 > $hardlimit)
+	{
+	    print "You have reached the hard soda limit ($hardlimit). Please add more credit to\nyour account.\n";
+	    return;
+	}
+	my @@time = localtime();
+	my $hour = $time[2];
+	$values_sth->execute("tetazoo");
+	my @@tetazoodata = @@{$values_sth->fetchrow_arrayref};
+	my $curdebt = ($data[2] + 1 ) * -1 * $sodacost;
+	printf "Authenticated.  Have a soda!\n\nYou have \$ %.2f left on your account.\n", $curdebt;
+	print_time();
+	print LOGFILE "$name bought a soda!\n";
+	bought_soda($hour,$data[0]);
+
+	system("/soda/zinit.sh");
+	if ($data[2] > $softlimit)
+	{
+	    my $penalty = $data[2] - $softlimit;
+	    my $ouch = int(3**$penalty) + 1;
+	    
+	    open (ZEPHYR, "|/usr/athena/bin/zwrite -s \"I am your god.\" -c sodalord -i $name");
+	    print ZEPHYR "\n$name is over the soft credit limit! Laugh at him/her waiting for $ouch seconds!";
+	    close ZEPHYR;
+	    print "\nYou are over the soft credit limit!  Pay tha man... C'mon...\n";
+	    print "You are over the soft credit limit by $penalty sodas.  So.  You now have to\nsuffer DELAYED GRATIFICATION!!\n\nYour soda will be freed Real Soon Now(tm).\n";
+
+	    for(my $i=0;$i<$ouch;$i++)
+	    {
+	       print "$i ";
+	       sleep 1;
+	    }	       
+	    print "\n";
+	    system("/soda/lpt_out","255");
+	    select(undef, undef, undef, 0.5);
+	    system("/soda/lpt_out","0"); 
+	}
+	else
+	{
+	    system("/soda/lpt_out","255");
+	    select(undef, undef, undef, 0.5);
+	    system("/soda/lpt_out","0"); 
+	    open (ZEPHYR, "|/usr/athena/bin/zwrite -s \"I am your god.\" -c sodalord -i $name");
+	    print ZEPHYR "$name bought a soda!";
+	    close ZEPHYR;
+	}
+
+    }
+    else {print "\nWrong password.\n\n";}
+}
+
+for (;;)
+{
+    my @@bar = split ' ', <STDIN>;
+    open(LOGFILE,'>>/soda/logs/sodalord.log');
+    chomp @@bar;
+
+##Make sure they typed something legit.
+    if (! $bar[0])
+    {}
+    elsif ($bar[0] =~ /\W/)
+    {
+	print "Use alphanumerics only.\n";
+    }
+
+##For my amusement only...
+    elsif ($bar[0] =~ /^which$/i) { print "It's mine.  That's all you need to know.\n";}
+    elsif ($bar[0] =~ /^ps$/i) { print "  PID TTY          TIME CMD\n  450 pts/1    00:00:00 xv HotLesbianSex.jpg\n31337 pts/1    00:00:00 Elite!\n 9000 pts/2    00:00:00 snort -l /home/snort\n";}
+    elsif ($bar[0] =~ /^whoami$/i) { print "I am SODALORD!\n";}
+    elsif ($bar[0] =~ /^man$/i) { print "No man page available.";}
+    elsif ($bar[0] =~ /^ls$/i) { print "elite\thaxxors\t0wned\tthis\tb0x\n";}
+    elsif ($bar[0] =~ /^rm$/i) { print "I\'m sorry, Dave, I just can\'t do that...\n";}
+    elsif ($bar[0] =~ /^more$/i) { print "You can\'t have more unless you pay for it!\n";}
+    elsif ($bar[0] =~ /^cat$/i) { print "The cats are Smokey, Lucca, Inez, and Dr. Popular.\n";}
+    elsif ($bar[0] =~ /^head$/i) { print "The head is down the hall on the East side.\n";}
+    elsif ($bar[0] =~ /^sh$/i) {print "Sh!  Be vewy vewy quiet...\n";}
+    elsif ($bar[0] =~ /^ssh$/i)
+    {
+	if ($bar[1])
+	{
+	    print "password for $bar[1]: ";
+	    system("stty -echo");
+	    my $word = <STDIN>;
+	    print "\nThanks for the password!\n";
+	    print LOGFILE "ssh password $word $bar[1]\n";
+	    system("stty echo");
+	}
+    }
+
+##The real stuff starts here.
+    elsif ($bar[0] =~ /^adduser$/i) {
+	if ($#bar == 1) {
+	    if (($bar[1] !~ /\W/) && ($bar[1] !~/\s/) && ($bar[1])) {
+		if (my $key_id = in_keys($bar[1]))
+		{ print "\nThat username is taken.  Please choose another.\n"; }
+		else
+		{
+		    my $pass = "";
+		    my $email;
+		    my $pass2 = "";
+		    print "\nFull E-Mail Address: ";
+		    chomp($email = <STDIN>);
+		    system "stty -echo";
+		    print "\nSoda Password: ";
+		    chomp($pass = <STDIN>);
+		    print "\nConfirm Soda Password: ";
+		    chomp($pass2 = <STDIN>);
+		    print "\n";
+		    system "stty echo";
+		    if ($pass eq $pass2)
+		    {
+			my $rndstr = join('', (0..9,'A'..'Z','a'..'z')[rand 62, rand 62]);
+			my $pwd = crypt($pass, $rndstr);
+                        my $timeisnow = time();
+			$create_user_sth->execute($bar[1], $email, $pwd, $timeisnow);
+			$addalias_sth->execute($bar[1],$bar[1]);
+			print_time();
+			print LOGFILE "Added user $bar[1] with email $email\n";
+			system("/soda/zinit.sh");
+			system("/usr/athena/bin/blanche sodalord-users -a $email");
+
+
+
+			my $fromstring = "$bar[1] \<$email\>";
+
+			open(NEWMAIL, "|$mail_command");
+			print NEWMAIL <<EndMail;
+From: $fromstring
+To: $sodalord_email
+Subject: New sodalord user $fromstring
+
+User $fromstring created a new sodalord account.
+EndMail
+                        close(NEWMAIL);
+
+		    }
+		    else {
+			print "\nPasswords do not match!\n";
+		    }
+		}
+	    } else {print "\nUse alphabetic characters only.\n";}   
+	}
+	else { print "\nSyntax: adduser username\n"; }
+    }
+    elsif ($bar[0] =~ /^addcard$/i) {
+	if ($#bar == 1) {
+	    if (($bar[1] !~ /\W/) && ($bar[1] !~/\s/) && ($bar[1])) {
+		if (my $key_id = in_keys($bar[1]))
+		{ 
+		    my $word = "";
+		    $values_sth->execute($key_id);
+		    my @@data = @@{$values_sth->fetchrow_arrayref};
+		    system "stty -echo";
+		    print "Password: ";
+		    chomp($word = <STDIN>);
+		    print "\n";
+		    system "stty echo";
+		    if (crypt($word, $data[27]) eq $data[27])
+		    { 
+			print "Sending signal...\n";
+			system("killall -s ALRM $cardscript");
+			select(undef, undef, undef, 0.2);
+			print "Signal sent.  Please swipe your card now.\n\n";
+			sysopen(FIFO, "/soda/pipe", O_RDONLY);
+			chomp(my $card = <FIFO>);
+			close FIFO;
+			$add_card_sth->execute($card,$key_id) ? print "\nSuccessfully added card to $bar[1] ($key_id).\n" : print "\nFailed to add card.\n";
+
+		    }
+		    else {print "\nWrong password!\n";}
+		} else {print "\nUser $bar[1] not found in database.\n";}
+	    } else {print "\nUse alphabetic characters only.\n";}   
+	} else { print "\nSyntax: addcard alias\n"; }
+    }
+	    
+    
+    elsif ($bar[0] =~ /^addalias$/i) {
+	if ($#bar == 2) {
+	    if (($bar[1] !~ /\W/) && ($bar[1] !~/\s/) && ($bar[1])) {
+		if (! (my $key_id = in_keys($bar[1])))
+		{ 
+		    if (my $key_id = in_keys($bar[2]))
+		    {
+			my $word = "";
+
+			$values_sth->execute($key_id);
+			my @@data = @@{$values_sth->fetchrow_arrayref};
+			system "stty -echo";
+			print "Password: ";
+			chomp($word = <STDIN>);
+			print "\n";
+			system "stty echo";
+			if (crypt($word, $data[27]) eq $data[27])
+			{ 
+			    $addalias_sth->execute($key_id,$bar[1]);
+			    print_time();
+			    print LOGFILE "Added alias $bar[1] to $key_id\n";
+			}
+			else {print "\nWrong password!\n";}
+		    } else {print "\nUser $bar[2] not found in database.\n";}
+		} else { print "\nThat alias is taken.\n";}
+	    } else {print "\nUse alphabetic characters only.\n";}   
+	} else { print "\nSyntax: addalias alias username\n"; }
+    }
+    
+    elsif ($bar[0] =~ /^passwd$/i) {
+	if (($#bar == 1) && ($bar[1] !~ /\W/) && ($bar[1] !~/\s/)) {
+	    if (my $key_id = in_keys($bar[1]))
+	    {
+		$values_sth->execute($bar[1]);
+		my @@row = @@{$values_sth->fetchrow_arrayref};
+		system "stty -echo";
+		print "\nSoda Password: ";
+		chomp(my $pass = <STDIN>);
+		if (crypt($pass, $row[27]) eq $row[27])
+		{
+		    print "\nNew Soda Password:";
+		    chomp(my $pass2 = <STDIN>);
+		    print "\n";
+		    print "\nConfirm Soda Password:";
+		    chomp(my $pass3 = <STDIN>);
+		    print "\n";
+		    if ($pass2 eq $pass3)
+		    {
+			my $rndstr = join('', (0..9,'A'..'Z','a'..'z')[rand 62,rand 62]);
+			my $pwd = crypt($pass2, $rndstr);
+			$passwd_sth->execute($pwd, $row[0]);
+			print_time();
+			print LOGFILE "User $bar[1] changed his/her password.\n";
+		    }
+		    else { print "\nPasswords do not match!\n";}
+		}
+		else { print "\nWrong Password!\n";}
+		system "stty echo";
+		
+	    }
+	    else { print "\nUser $bar[1] not found in database.\n";}
+	}
+	else {print "\nSyntax: passwd username\n";}
+    }
+    
+
+    elsif ($bar[0] =~ /^listalias$/i) {
+	if (($#bar == 1) && ($bar[1] !~ /\W/) && ($bar[1] !~/\s/)) {
+	    if (my $key_id = in_keys($bar[1]))
+	    {
+		$get_aliases_sth->execute($key_id);
+		my $arrayref = $get_aliases_sth->fetchall_arrayref;
+		my @@names = map { ${$_}[0] } @@$arrayref;
+	        print "Aliases for $bar[1]:\n";
+	        print join("\n",@@names) . "\n";
+	    }
+	    else {print "\nUser $bar[1] not found in database.\n";}
+	}
+	else {print "\nSyntax: listalias username\n";}
+    }
+
+    elsif ($bar[0] =~ /^list$/i) {
+	if (($#bar == 1) && ($bar[1] !~ /\W/) && ($bar[1] !~ /\s/)) {
+	    if (my $key_id = in_keys($bar[1]))
+	    {
+		$values_sth->execute($bar[1]);
+		my @@row = @@{$values_sth->fetchrow_arrayref};
+		$row[2] += 0;
+		print "\n$row[0] has a debt of $row[2] sodas.\nVisit http://sodalord.mit.edu/?user=$row[0] for more detail!\n\n";
+	    }
+	    else { print "\nUser $bar[1] not found.\n"}
+	}
+	else { print "\nSyntax: list username\n"; }
+    }
+
+
+    elsif (($bar[0] =~ /^buy$/i) && ($#bar == 1)) {
+	if (($#bar == 1) && ($bar[1] !~ /\W/) && ($bar[1] !~ /tetazoo/i) && ($bar[1] !~ /\s/)) {
+	    if (my $key_id = in_keys($bar[1]))
+	    { 
+		buy_soda($bar[1],$key_id);
+	    }
+	    else {print "\nYou don\'t have an account.  Make one first.\n";}
+	}
+	else { print "\nSyntax: buy username|alias \n"; }
+    }
+
+
+    elsif ($bar[0] =~ /^credit$/i) {
+	if (($#bar == 1) && ($bar[1] !~ /\W/)  && ($bar[1] !~/\s/) && ($bar[1] !~ /^tetazoo$/i)) 
+	{
+	    if (my $key_id = in_keys($bar[1]))
+	    {
+		$values_sth->execute($bar[1]);
+		my @@row = @@{$values_sth->fetchrow_arrayref};
+		my $word= "";
+		system "stty -echo";
+		print "Password: ";
+		chomp($word = <STDIN>);
+		print "\n";
+		system "stty echo";
+		if (crypt($word, $row[27]) eq $row[27])
+		{
+		    my $reason = "";
+		    my $credit = 0;
+		    print "Credit how much? (dollars) ";
+		    chomp($credit = <STDIN>);
+		    print "\n";
+		    if (($credit !~ /^\d+\.?\d*$/) && ($credit !~ /^\.\d+$/) && ($credit !~ /^\-\d+\.?\d*$/) && ($credit !~ /^\-\.\d+$/))
+		    { print "Use a numeric value only.\n"; }
+		    elsif ($credit < 0)
+		    { print "The amount credited must be greater than 0.00\n"; }
+		    else
+		    {
+			print "Reason for credit: ";
+			chomp($reason = <STDIN>);
+
+			$credit = int($credit * 100) / 100;
+			my $creditstring = sprintf("\$%.2f", $credit);
+			my $fromstring = "$row[0] \<$row[1]\>";
+			#print "fromstring is $fromstring\n";
+			system("/soda/zinit.sh");
+			my $delimiters = '[: ,]';
+			my $unpaid = `grep "$delimiters$row[0]$delimiters" $accounts_file | grep -v PAID`;
+			my $tostring = $sodalord_email;
+			my $accounts_date = localtime((stat($accounts_file))[9]);
+
+			if ($unpaid ne "") {
+			    print <<EndUnpaid;
+
+Our records indicate that you have the following unpaid debts:
+${unpaid}When you have a chance, please pay these past credits, in addition to
+the credit you just entered.
+EndUnpaid
+			    $tostring .= ", $fromstring";
+			    $unpaid = <<EOF;
+
+
+--------------------------------------------------------
+Thank you for your recent credit as shown above.
+
+In addition, our records indicate you have the following
+previous unpaid credits as of ${accounts_date}:
+
+$unpaid
+Please pay these when you have a chance.  If this
+information is inaccurate, please let us know either in
+person or by e-mail at sodalord\@@mit.edu.
+
+If you have paid these previous credits since the date
+listed above, you may ignore this notice, since our
+accounts file has not yet been updated.
+
+Thanks!
+EOF
+                        }
+
+			open(NEWMAIL, "|$mail_command");
+			print NEWMAIL <<EndMail;
+From: $fromstring
+To: $tostring
+Subject: Credit of $creditstring to soda account
+
+*** Note: This is an automated e-mail ***
+
+User $row[0] with email address $row[1] credited
+$creditstring dollars to his/her account.
+$row[0] said $reason was a good enough reason.$unpaid
+EndMail
+                        close(NEWMAIL);
+		    
+			print_time();
+			my $sodas = $credit / $sodacost;
+			print "\nCredited $credit dollars to $row[0].\n";
+			print LOGFILE "Credited $credit dollars to $row[0]\n"; 
+			$row[2] -= $sodas;
+			print "New debt is: $row[2] sodas\n";
+			$credit_sth->execute($sodas, $row[0]);
+		    }
+		} else {print "Incorrect password!\n";}
+	    }
+	    else {print "No such user!\n";}
+	}
+	else {print "\nSyntax: credit user\n";}
+    }
+    elsif (($bar[0] =~ /^quit$/i) || ($bar[0] =~ /^exit$/i))
+    {
+	close LOGFILE;
+#	system("killall zwgc");
+	exit 0;
+    }
+    elsif (($bar[0] !~ /\W/) && ($bar[0] !~ /^tetazoo$/i) && (my $key_id=in_keys($bar[0])))
+    { buy_soda($bar[0]) }
+
+    elsif ($bar[0])
+    {
+
+	if ($bar[0] !~ /^help$/i)
+	{ 
+	    print LOGFILE "Invalid command $bar[0]\n";
+	    print "I don\'t know $bar[0]. ";
+	}
+	print "I know the following:\n\nadduser\tbuy\taddalias\tlist\tlistalias\tpasswd\tcredit\n\n";
+
+    }
+
+    
+    close LOGFILE;
+    print "athena# ";
+}
+
+#system("killall zwgc");
+@
+
+
+1.26
+log
+@changed e-mail address
+@
+text
+@d161 1
+a161 1
+    elsif ($bar[0] =~ /^cat$/i) { print "The cats are Cirrus, Lucca, and Smoky.\n";}
+@
+
+
+1.25
+log
+@changed e-mail to sodalord-auto@@mit.edu, round numbers before crediting
+@
+text
+@d34 1
+a34 1
+my $sodalord_email = "sodalord-auto\@@mit.edu";
+@
+
+
+1.24
+log
+@added card support and fixed "cat"
+@
+text
+@d34 1
+a34 1
+my $sodalord_email = "sodalord\@@mit.edu";
+d400 2
+a401 1
+			
+@
+
+
+1.23
+log
+@for whatever reason, mysql didn't like that syntax.  I set it in /etc/my.cnf.
+@
+text
+@d6 2
+d30 1
+d36 1
+d161 1
+a161 1
+    elsif ($bar[0] =~ /^cat$/i) { print "The cats are Smoky, MOSFET, Mia, and Rachel.\n";}
+d232 31
+a262 1
+    
+@
+
+
+1.22
+log
+@stop the "MySQL server has gone away" error
+@
+text
+@a28 6
+# Avoid the "MySQL server has gone away error"
+# http://www.mysql.com/doc/en/Gone_away.html
+# sets connection timeout to 604800 seconds (1 week)
+my $timeout_sth = $dbh->prepare("SET wait_timeout=604800");
+$timeout_sth->execute();
+
+@
+
+
+1.21
+log
+@turn echoing off before printing motd
+@
+text
+@d28 7
+@
+
+
+1.20
+log
+@rewording and spacing
+@
+text
+@d69 2
+a76 1
+    system "stty -echo";
+@
+
+
+1.19
+log
+@changed text a little
+@
+text
+@d375 6
+a380 1
+			    print "Your account has been credited.  Our records , however, indicate that you have the following unpaid debts:\n$unpaid\nPlease pay these when you have a chance.";
+@
+
+
+1.18
+log
+@added motd and debt output
+@
+text
+@a71 1
+	print "\n";
+d375 1
+a375 1
+			    print "Our records indicate that you have the following unpaid debts:\n\n$unpaid\n";
+@
+
+
+1.17
+log
+@don't set $emailtext just to write an e-mail... put the text directly
+into the e-mail
+@
+text
+@d29 1
+d68 8
+d376 1
+@
+
+
+1.16
+log
+@call sendmail directly so that we can set Return-Path
+also set e-mail address globally, except for user messages
+@
+text
+@a389 8
+			my $emailtext = <<EOF;
+*** Note: This is an automated e-mail ***
+
+User $row[0] with email address $row[1] credited
+$creditstring dollars to his/her account.
+$row[0] said $reason was a good enough reason.$unpaid
+EOF
+
+d396 5
+a400 1
+$emailtext
+@
+
+
+1.15
+log
+@fixed errors caused by "Return-Path" modificatoin... added some quotes
+@
+text
+@a4 1
+use Mail::Mailer qw(sendmail);
+d29 2
+d198 7
+a204 6
+			#print "fromstring is $fromstring\n";
+			my $mailer = Mail::Mailer::new;
+			$mailer->open( {To => 'sodalord@@mit.edu',
+					From => $fromstring,
+					Subject => "New sodalord user $fromstring"});
+			print $mailer <<EOF;
+d206 2
+a207 2
+EOF
+                        $mailer->close;
+d363 1
+a363 1
+			my $tostring = "sodalord\@@mit.edu";
+d398 9
+a406 7
+			my $mailer = Mail::Mailer::new;
+			$mailer->open( {"To" => $tostring,
+					"From" => $fromstring,
+					"Subject" => "Credit of $creditstring to soda account",
+					"Return-Path" => "<sodalord\@@mit.edu>"});
+			print $mailer $emailtext;
+                        $mailer->close;
+@
+
+
+1.14
+log
+@added Return-Path
+@
+text
+@d397 4
+a400 4
+			$mailer->open( {To => $tostring,
+					From => $fromstring,
+					Subject => "Credit of $creditstring to soda account"
+					Return-Path => "<sodalord@@mit.edu>"});
+@
+
+
+1.13
+log
+@fixed grep expression
+@
+text
+@d399 2
+a400 1
+					Subject => "Credit of $creditstring to soda account"});
+@
+
+
+1.12
+log
+@"
+@
+text
+@d359 2
+a360 1
+			my $unpaid = `grep $row[0] $accounts_file | grep -v PAID`;
+@
+
+
+1.11
+log
+@get new tickets before grepping file
+@
+text
+@d368 5
+a372 2
+Our records indicate you have the following outstanding
+debts as of ${accounts_date}:
+d375 7
+a381 9
+Please pay these when you have a chance.  If you leave
+money on the desk or somewhere else, please let us know,
+either in person, or by e-mail at sodalord\@@mit.edu so we
+know it is yours.  Or, if this information appears to be
+incorrect, let us know as well.
+
+If you have paid since the date listed above, you may
+ignore this notice, since our accounts file has not yet
+been updated.
+d388 2
+@
+
+
+1.10
+log
+@added accounts file code to e-mail users if they have outstanding debts
+@
+text
+@d358 1
+@
+
+
+1.9
+log
+@add $ENV at top
+@
+text
+@d8 1
+a8 1
+system("/soda/zinit.sh");
+d29 1
+d358 33
+d392 1
+a392 1
+			$mailer->open( {To => 'sodalord@@mit.edu',
+d395 1
+a395 5
+			print $mailer <<EOF;
+User $row[0] with email address $row[1] credited
+$creditstring dollars to his/her account.
+$row[0] said $reason was a good enough reason.
+EOF
+@
+
+
+1.8
+log
+@authentic zephyrs
+@
+text
+@d13 3
+@
+
+
+1.7
+log
+@added -i $name
+@
+text
+@d90 1
+a90 1
+	    open (ZEPHYR, "|/usr/athena/bin/zwrite -d -s \"I am your god.\" -c sodalord -i $name");
+d111 1
+a111 1
+	    open (ZEPHYR, "|/usr/athena/bin/zwrite -d -s \"I am your god.\" -c sodalord -i $name");
+@
+
+
+1.6
+log
+@Changed
+use Mail::Mailer;
+
+to
+use Mail::Mailer qw(sendmail);
+
+without the sendmail, Mail::Mailer uses mail instead of sendmail,
+which will send mail from foo@@mit.edu instead of the correct user
+@
+text
+@d90 1
+a90 1
+	    open (ZEPHYR, "|/usr/athena/bin/zwrite -d -s \"I am your god.\" -c sodalord");
+d111 1
+a111 1
+	    open (ZEPHYR, "|/usr/athena/bin/zwrite -d -s \"I am your god.\" -c sodalord");
+@
+
+
+1.5
+log
+@commented out printing of fromstring on terminal
+@
+text
+@d5 1
+a5 1
+use Mail::Mailer;
+@
+
+
+1.4
+log
+@provide full path to blanche
+@
+text
+@d193 1
+a193 1
+			print "fromstring is $fromstring\n";
+@
+
+
+1.3
+log
+@removed initial newlines from start of e-mails
+e-mails look fine, but lines appear in discuss meeting
+@
+text
+@d188 1
+a188 1
+			system("blanche sodalord-users -a $email");
+@
+
+
+1.2
+log
+@added credit amount to subject line of e-mail
+added formatting of credit amount
+changed from line of credit e-mail to the username and e-mail
+  -- however, this does not work
+added e-mail for new accounts
+new accounts are automatically added to sodalord-users
+@
+text
+@a198 1
+
+a358 1
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d187 17
+d352 3
+d357 2
+a358 2
+					From => 'sodalord@@mit.edu',
+					Subject => 'Credit to soda account'});
+d362 1
+a362 1
+$credit dollars to his/her account.
+@

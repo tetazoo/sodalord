@@ -1,0 +1,202 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Error Handling</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_14.html">previous</A>, <A HREF="octave_16.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC108" HREF="octave_toc.html#TOC108">Error Handling</A></H1>
+
+<P>
+Octave includes several functions for printing error and warning
+messages.  When you write functions that need to take special action
+when they encounter abnormal conditions, you should print the error
+messages using the functions described in this chapter.
+
+
+<P>
+@anchor{doc-error}
+<DL>
+<DT><U>Built-in Function:</U>  <B>error</B> <I>(<VAR>template</VAR>, ...)</I>
+<DD><A NAME="IDX492"></A>
+The <CODE>error</CODE> function formats the optional arguments under the
+control of the template string <VAR>template</VAR> using the same rules as
+the <CODE>printf</CODE> family of functions (see section <A HREF="octave_17.html#SEC119">Formatted Output</A>).
+The resulting message is prefixed by the string <SAMP>`error: '</SAMP> and
+printed on the <CODE>stderr</CODE> stream.
+
+
+<P>
+Calling <CODE>error</CODE> also sets Octave's internal error state such that
+control will return to the top level without evaluating any more
+commands.  This is useful for aborting from functions or scripts.
+
+
+<P>
+If the error message does not end with a new line character, Octave will
+print a traceback of all the function calls leading to the error.  For
+example, given the following function definitions:
+
+
+
+<PRE>
+function f () g () end
+function g () h () end
+function h () nargin == 1 || error ("nargin != 1"); end
+</PRE>
+
+<P>
+calling the function <CODE>f</CODE> will result in a list of messages that
+can help you to quickly locate the exact location of the error:
+
+
+
+<PRE>
+f ()
+error: nargin != 1
+error: evaluating index expression near line 1, column 30
+error: evaluating binary operator `||' near line 1, column 27
+error: called from `h'
+error: called from `g'
+error: called from `f'
+</PRE>
+
+<P>
+If the error message ends in a new line character, Octave will print the
+message but will not display any traceback messages as it returns
+control to the top level.  For example, modifying the error message
+in the previous example to end in a new line causes Octave to only print
+a single message:
+
+
+
+<PRE>
+function h () nargin == 1 || error ("nargin != 1\n"); end
+f ()
+error: nargin != 1
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-beep_on_error}
+<DL>
+<DT><U>Built-in Variable:</U> <B>beep_on_error</B>
+<DD><A NAME="IDX493"></A>
+If the value of <CODE>beep_on_error</CODE> is nonzero, Octave will try
+to ring your terminal's bell before printing an error message.  The
+default value is 0.
+</DL>
+
+
+<P>
+@anchor{doc-warning}
+<DL>
+<DT><U>Built-in Function:</U>  <B>warning</B> <I>(<VAR>msg</VAR>)</I>
+<DD><A NAME="IDX494"></A>
+Print a warning message <VAR>msg</VAR> prefixed by the string <SAMP>`warning: '</SAMP>.  
+After printing the warning message, Octave will continue to execute
+commands.  You should use this function when you want to notify the user
+of an unusual condition, but only when it makes sense for your program
+to go on.
+</DL>
+
+
+<P>
+@anchor{doc-usage}
+<DL>
+<DT><U>Built-in Function:</U>  <B>usage</B> <I>(<VAR>msg</VAR>)</I>
+<DD><A NAME="IDX495"></A>
+Print the message <VAR>msg</VAR>, prefixed by the string <SAMP>`usage: '</SAMP>, and
+set Octave's internal error state such that control will return to the
+top level without evaluating any more commands.  This is useful for
+aborting from functions.
+
+
+<P>
+After <CODE>usage</CODE> is evaluated, Octave will print a traceback of all
+the function calls leading to the usage message.
+
+
+<P>
+You should use this function for reporting problems errors that result
+from an improper call to a function, such as calling a function with an
+incorrect number of arguments, or with arguments of the wrong type.  For
+example, most functions distributed with Octave begin with code like
+this
+
+
+
+<PRE>
+if (nargin != 2)
+  usage ("foo (a, b)");
+endif
+</PRE>
+
+<P>
+to check for the proper number of arguments.
+</DL>
+
+
+<P>
+@anchor{doc-lasterr}
+<DL>
+<DT><U>Built-in Function:</U>  <B>lasterr</B> <I>()</I>
+<DD><A NAME="IDX496"></A>
+<DT><U>Built-in Function:</U>  <B>lasterr</B> <I>(<VAR>msg</VAR>)</I>
+<DD><A NAME="IDX497"></A>
+Without any arguments, return the last error message.  With one
+argument, set the last warning message to <VAR>msg</VAR>.
+</DL>
+
+
+<P>
+@anchor{doc-lastwarn}
+<DL>
+<DT><U>Built-in Function:</U>  <B>lastwarn</B> <I>()</I>
+<DD><A NAME="IDX498"></A>
+<DT><U>Built-in Function:</U>  <B>lastwarn</B> <I>(<VAR>msg</VAR>)</I>
+<DD><A NAME="IDX499"></A>
+Without any arguments, return the last warning message.  With one
+argument, set the last error message to <VAR>msg</VAR>.
+</DL>
+
+
+<P>
+The following pair of functions are of limited usefulness, and may be
+removed from future versions of Octave.
+
+
+<P>
+@anchor{doc-perror}
+<DL>
+<DT><U>Function File:</U>  <B>perror</B> <I>(<VAR>name</VAR>, <VAR>num</VAR>)</I>
+<DD><A NAME="IDX500"></A>
+Print the error message for function <VAR>name</VAR> corresponding to the
+error number <VAR>num</VAR>.  This function is intended to be used to print
+useful error messages for those functions that return numeric error
+codes.
+</DL>
+@seealso{strerror}
+
+
+<P>
+@anchor{doc-strerror}
+<DL>
+<DT><U>Function File:</U>  <B>strerror</B> <I>(<VAR>name</VAR>, <VAR>num</VAR>)</I>
+<DD><A NAME="IDX501"></A>
+Return the text of an error message for function <VAR>name</VAR>
+corresponding to the error number <VAR>num</VAR>.  This function is intended
+to be used to print useful error messages for those functions that
+return numeric error codes.
+</DL>
+
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_14.html">previous</A>, <A HREF="octave_16.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

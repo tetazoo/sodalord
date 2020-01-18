@@ -1,0 +1,15 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-08-17T03:16:38.372590Z
+K 7
+svn:log
+V 169
+fixed parsing on sodabot, readded admin's pay function. 
+changed timing on cash purchase detection so it probably works with 
+transactions that involve giving change now
+END

@@ -1,0 +1,13 @@
+SESSION STARTED at:  Sat Feb  8 23:16:04 2003
+   Program Version:  NcFTP 3.1.3/985 Mar 27 2002, 05:07 AM
+   Library Version:  LibNcFTP 3.1.3 (March 4, 2002)
+        Process ID:  1163
+          Platform:  linux-x86
+          Hostname:  sodalord.mit.edu  (rc=2)
+          Terminal:  linux
+23:16:04  Fw: firewall.mit.edu  Type: 0  User: root  Pass: ********  Port: 21
+23:16:04  FwExceptions: .mit.edu,localhost,localdomain
+23:16:04  Resolving ftp.mysql.com...
+23:16:08  > exit
+
+SESSION ENDED at:    Sat Feb  8 23:16:08 2003

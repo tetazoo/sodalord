@@ -1,0 +1,801 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Sun Nov 30 17:44:36 2003 by CPAN::Checksums (v1.016)
+$cksum = {
+  'Filter-1.13.tar.gz' => {
+    'mtime' => '1997-12-29',
+    'md5-ungz' => '28b1ac18123a1a79a7659206dcf8f22d',
+    'md5' => '3e05dc6048735eb491484f29e42dce16',
+    'size' => 22886
+  },
+  'BerkeleyDB-0.25.tar.gz' => {
+    'mtime' => '2003-11-01',
+    'md5-ungz' => 'ba51b46c2f784af3c8f0e16d9502a5bb',
+    'md5' => 'fcef06232d1ccd6c2a9cd114e388ea3d',
+    'size' => 126076
+  },
+  'XSUB-2.002.tar.gz' => {
+    'mtime' => '1997-09-08',
+    'md5-ungz' => '720b947847f77107f8d6c047a6e50e49',
+    'md5' => '8339d119a9875c716ec112e338c5df06',
+    'size' => 35386
+  },
+  'warn.patch-970911.gz' => {
+    'mtime' => '1997-09-11',
+    'md5-ungz' => 'd38a86d4f64a48ce6298297cfc1f7f79',
+    'md5' => 'c3be95b12ce28d7d0a88a72c63af438a',
+    'size' => 32387
+  },
+  'Compress-Zlib-1.21.tar.gz' => {
+    'mtime' => '2003-04-28',
+    'md5-ungz' => 'be71a5e192ffe42a7fd4ee9b5178e2c3',
+    'md5' => '8fed2f05ff915f24041ec1b2739cdaae',
+    'size' => 35670
+  },
+  'DB_File-1.59.tar.gz' => {
+    'mtime' => '1998-05-14',
+    'md5-ungz' => '612046d77204febf5fd646a9de47f55a',
+    'md5' => '971df616d3ff8c9838a7ff4492d20d85',
+    'size' => 37668
+  },
+  'Compress-Zlib-1.01.tar.gz' => {
+    'mtime' => '1997-11-30',
+    'md5-ungz' => '30eaf79e8b446ef52464b5422da328a8',
+    'md5' => 'd5a1da526e4f0a5cb7188a29cadba35a',
+    'size' => 19783
+  },
+  'BerkeleyDB-0.09.tar.gz' => {
+    'mtime' => '1999-11-29',
+    'md5-ungz' => 'ec4d9a315bdb8f63cb9d80f56768f5df',
+    'md5' => '56e2e2f61a6f2c8a62c8134b0bf54084',
+    'size' => 76687
+  },
+  'Compress-Zlib-1.17.tar.gz' => {
+    'mtime' => '2002-10-22',
+    'md5-ungz' => '056f3f0fb03f78f6f48d0f0ec8ef8269',
+    'md5' => 'b03df9b060ff37e9cd979963624b2797',
+    'size' => 33558
+  },
+  'DB_File-1.65.tar.gz' => {
+    'mtime' => '1999-03-14',
+    'md5-ungz' => '2ec375405330600919af9d906c2bf0c0',
+    'md5' => '8a349c6d4cfa177745472e875cba0ade',
+    'size' => 40026
+  },
+  'Compress-Zlib-1.22.tar.gz' => {
+    'mtime' => '2003-06-20',
+    'md5-ungz' => '554d06641f2cb91c0965654a1d9a2817',
+    'md5' => '5ec5fcc19a854c80fc706417807fb6db',
+    'size' => 36781
+  },
+  'BerkeleyDB-0.22.tar.gz' => {
+    'mtime' => '2003-05-17',
+    'md5-ungz' => '39c14a3acb12abffde24c3580f1690a6',
+    'md5' => 'be246088cb3dc9ca4fba503903329ff9',
+    'size' => 123207
+  },
+  'Filter-1.30.tar.gz' => {
+    'mtime' => '2003-08-16',
+    'md5-ungz' => '82129aa3de8fc232889c7eb3ca41eb17',
+    'md5' => '01fcae66fd088c01d829200d6fdb1dac',
+    'size' => 39956
+  },
+  'Compress-Zlib-1.09.tar.gz' => {
+    'mtime' => '2001-01-15',
+    'md5-ungz' => '6b90a956f36a09d579b94874c9895e8a',
+    'md5' => '3a684f9ed2d12157c5013134531e6e1f',
+    'size' => 24075
+  },
+  'BerkeleyDB-0.21.tar.gz' => {
+    'mtime' => '2003-05-12',
+    'md5-ungz' => '794a38df410733e6e9447ab9c50f6e3d',
+    'md5' => '78e1d639ba5bac203918ff02c53df0e7',
+    'size' => 123487
+  },
+  'warn.patch-5.004_04.gz' => {
+    'mtime' => '1997-10-20',
+    'md5-ungz' => 'da5e436a48989fb124df2f3ad32c02a2',
+    'md5' => '1edaeb264a1bfe767ca337e5b2f619bd',
+    'size' => 33273
+  },
+  'Compress-Zlib-1.04.tar.gz' => {
+    'mtime' => '1999-05-27',
+    'md5-ungz' => '6ecaf2d0346978f4bedc9c0bfbfb5768',
+    'md5' => '9b08cf3d31fca4ccc5e6038f13e69056',
+    'size' => 19970
+  },
+  'Compress-Zlib-1.32.tar.gz' => {
+    'mtime' => '2003-11-30',
+    'md5-ungz' => 'b6d85b713720d0f0de667abd7fd72e34',
+    'md5' => 'ad5f9ef1e334e65815ebabdb8061911b',
+    'size' => 112926
+  },
+  'Filter-1.10.tar.gz' => {
+    'mtime' => '1996-06-25',
+    'md5-ungz' => 'e6ce1a3fbb9761642dc8a0ec222cb83e',
+    'md5' => 'dd8f653eef6d863fd81c2019de335c49',
+    'size' => 20884
+  },
+  'Compress-Zlib-0.3.tar.gz' => {
+    'mtime' => '1995-12-28',
+    'md5-ungz' => '2a4aec31e3fb5a3117a2661546b2e039',
+    'md5' => '90d3f696417351c028777c59c8b71153',
+    'size' => 13458
+  },
+  'Compress-Zlib-1.07.tar.gz' => {
+    'mtime' => '1999-11-27',
+    'md5-ungz' => 'c3ff35594fb536da0f500f1dd95ac45c',
+    'md5' => '0667f19d2ff9b9e12b0caaa0f72df86d',
+    'size' => 22447
+  },
+  'BerkeleyDB-0.07.tar.gz' => {
+    'mtime' => '1999-09-21',
+    'md5-ungz' => '60e6efdfe1ae8c1063824b653d3f55b7',
+    'md5' => '61b05112b7db1948772d0af26d352b47',
+    'size' => 71106
+  },
+  'Compress-Zlib-1.16.tar.gz' => {
+    'mtime' => '2001-12-15',
+    'md5-ungz' => '0f0440c2be6870a768c1cc760d0be529',
+    'md5' => '0435b22d44d8e7237d3de5efe806872a',
+    'size' => 28448
+  },
+  'DB_File-1.61.tar.gz' => {
+    'mtime' => '1998-11-20',
+    'md5-ungz' => '1705f1e9e9be83b93f64dab13abf8b93',
+    'md5' => '2246227a40dc3a802cba27a5062b7615',
+    'size' => 38359
+  },
+  'Compress-Zlib-1.32.meta' => {
+    'mtime' => '2003-11-30',
+    'md5' => '4986dd0bb8b20cae4ef0f23d83203625',
+    'size' => 244
+  },
+  'Filter-1.29.tar.gz' => {
+    'mtime' => '2002-10-27',
+    'md5-ungz' => '5d048206425b096d3ed185c7690c8cd5',
+    'md5' => 'a0f17f25dbd4b44424c8798db0a6720e',
+    'size' => 39697
+  },
+  'Compress-Zlib-1.18.tar.gz' => {
+    'mtime' => '2002-10-27',
+    'md5-ungz' => '0734e9424c725c68509398d972258d82',
+    'md5' => '01b6cdf11d0a06c20c183efa098e1641',
+    'size' => 34335
+  },
+  'DB_File-1.78.tar.gz' => {
+    'mtime' => '2001-07-30',
+    'md5-ungz' => '27e1440a5aecc9b4726d6caf30754adb',
+    'md5' => 'fcba70a310b6e4f7bdeedc0e65e0e049',
+    'size' => 67547
+  },
+  'BerkeleyDB-0.24.meta' => {
+    'mtime' => '2003-09-28',
+    'md5' => '48c87cc845bb0a7d240df1f85c2cb039',
+    'size' => 300
+  },
+  'DB_File-1.73.tar.gz' => {
+    'mtime' => '2000-04-27',
+    'md5-ungz' => 'f3a0e104f29222d19b27d4118e58d825',
+    'md5' => 'fe1da9a068ff79c6e9c4cdc51b5a0b54',
+    'size' => 52501
+  },
+  'BerkeleyDB-0.06.tar.gz' => {
+    'mtime' => '1998-12-29',
+    'md5-ungz' => '339720c58b8f0df15e69fe0e3ab24494',
+    'md5' => 'ca89b92851fd6f5b35a746acb0910000',
+    'size' => 34921
+  },
+  'Compress-Zlib-1.30.tar.gz' => {
+    'mtime' => '2003-10-28',
+    'md5-ungz' => '12033348aeae762262e8db24e82af4d3',
+    'md5' => 'ee318e5f31c9ce9ea47ac6753515916a',
+    'size' => 112309
+  },
+  'warn.patch-5.004_54.gz' => {
+    'mtime' => '1997-11-17',
+    'md5-ungz' => '4168485d9e6b9f4361e22e5bddd85e6b',
+    'md5' => '20f1af28a8ebe63040cb0bf8db80d057',
+    'size' => 33059
+  },
+  'BerkeleyDB-0.10.tar.gz' => {
+    'mtime' => '1999-12-09',
+    'md5-ungz' => '8d02b172b9623263e35e352f7d8a9fa7',
+    'md5' => 'a6bb3552ba646e4b484cf4ac194f96e6',
+    'size' => 78622
+  },
+  'Filter-1.22.tar.gz' => {
+    'mtime' => '2001-02-21',
+    'md5-ungz' => 'e35b36ec54d4bce3dd713fb33c7d157d',
+    'md5' => 'd1665e8ce0031c84874e6816d46b5af3',
+    'size' => 34537
+  },
+  'DB_File-1.804.tar.gz' => {
+    'mtime' => '2002-06-03',
+    'md5-ungz' => 'ccddb02bb85c0f67d3cf35257545767c',
+    'md5' => '21216f0c518dc8b3033dfed837e2dde6',
+    'size' => 75829
+  },
+  'Filter-1.21.tar.gz' => {
+    'mtime' => '2001-02-19',
+    'md5-ungz' => 'bc518bfd6836f2d6b3b5867c19ab0eeb',
+    'md5' => '3efd08e680472d260b7b2322b43af504',
+    'size' => 33446
+  },
+  'Compress-Zlib-1.02.tar.gz' => {
+    'mtime' => '1999-01-31',
+    'md5-ungz' => 'ca35f94f99d43be9753a1171dcc0cefd',
+    'md5' => 'ab16e793bfb4a05a07babe96a895b274',
+    'size' => 19656
+  },
+  'Compress-Zlib-1.13.tar.gz' => {
+    'mtime' => '2001-05-31',
+    'md5-ungz' => '21468426be3e5d816b703787676492c3',
+    'md5' => '9df41cf513d6a1c94d3473462ea6ecb6',
+    'size' => 24950
+  },
+  'Compress-Zlib-1.11.tar.gz' => {
+    'mtime' => '2001-02-18',
+    'md5-ungz' => '85e612570b92388e03a1681c8d9fcf70',
+    'md5' => '8f254786c1c03335869e4b7d875cbbff',
+    'size' => 24838
+  },
+  'DB_File-1.75.tar.gz' => {
+    'mtime' => '2000-12-18',
+    'md5-ungz' => '6b36049c8c764d17e08421a9fe6bf21a',
+    'md5' => '1a19c6d1179c695aa5f71851a049fa1b',
+    'size' => 60629
+  },
+  'BerkeleyDB-0.11.tar.gz' => {
+    'mtime' => '2000-06-04',
+    'md5-ungz' => '3aac17a05c743d0cb4b79c4b1550d75c',
+    'md5' => '8a03d3c944c8cdc98fb8ed5cf1bd6847',
+    'size' => 78684
+  },
+  'DB_File-1.63.tar.gz' => {
+    'mtime' => '1998-12-29',
+    'md5-ungz' => '3acb5ede707515e745b9e19dfc1b8acb',
+    'md5' => '32543465afdc8d7ab9d1661ddacaa8ac',
+    'size' => 39048
+  },
+  'DB_File-1.52Beta.tar.gz' => {
+    'mtime' => '1997-07-22',
+    'md5-ungz' => 'a1d02466511b087e90d527f191148232',
+    'md5' => 'c14c1d9940b88fe0e3c5f8a9861564dd',
+    'size' => 34792
+  },
+  'Compress-Zlib-1.12.tar.gz' => {
+    'mtime' => '2001-04-28',
+    'md5-ungz' => '8bc77c399682d17f85c338e2f9c23e69',
+    'md5' => 'ab07f5f4b92db8173f39dc5af93ca1fd',
+    'size' => 24924
+  },
+  'Filter-1.25.tar.gz' => {
+    'mtime' => '2001-09-25',
+    'md5-ungz' => 'a2e225157d781ef59d12671447a93667',
+    'md5' => '085175907c9a050b69e99fae48e86d19',
+    'size' => 36199
+  },
+  'DB_File-1.16.tar.gz' => {
+    'mtime' => '1997-11-20',
+    'md5-ungz' => 'a16462b8f22d4cfe56d022143dbcc6a5',
+    'md5' => '1a93cd0c866bcccfdbd0364789442848',
+    'size' => 31563
+  },
+  'Compress-Zlib-1.22.meta' => {
+    'mtime' => '2003-04-28',
+    'md5' => '26331763d136c581f0d5e1dbe7a5303a',
+    'size' => 247
+  },
+  'Filter-1.12.tar.gz' => {
+    'mtime' => '1997-03-25',
+    'md5-ungz' => 'a0429cde89a57da4ea4345ed2a0d3d33',
+    'md5' => 'faa793a08511527d32abd1b9f7d23f78',
+    'size' => 21421
+  },
+  'DB_File-1.805.tar.gz' => {
+    'mtime' => '2002-09-02',
+    'md5-ungz' => '90625e6da3332fde1b860107ae85515b',
+    'md5' => '952ced5c02805403f5062e7ad90ab444',
+    'size' => 79917
+  },
+  'DB_File-1.72.tar.gz' => {
+    'mtime' => '2000-01-22',
+    'md5-ungz' => 'bbc1f8cd8bdae1b3536cf8bab90dd08f',
+    'md5' => '454fbe93f78335ebbd98f5a70ab755bf',
+    'size' => 51327
+  },
+  'BerkeleyDB-0.24.tar.gz' => {
+    'mtime' => '2003-09-28',
+    'md5-ungz' => 'c15fb63d8f4c3423596f0e34b5804cc9',
+    'md5' => 'a9387d78812aba6727b18b2a4f261fa1',
+    'size' => 126007
+  },
+  'Filter-1.14.tar.gz' => {
+    'mtime' => '1998-01-01',
+    'md5-ungz' => 'd2e9b16caa5b98860722f82649b664cb',
+    'md5' => 'c4c2c5126e17b0a786d4ff16137bd954',
+    'size' => 23162
+  },
+  'BerkeleyDB-0.03.tar.gz' => {
+    'mtime' => '1998-05-18',
+    'md5-ungz' => '7859723a7b0340b88e1524ad13234b14',
+    'md5' => 'daa7f5ed4dee3106fb7feb0fccd50f00',
+    'size' => 32966
+  },
+  'DB_File-1.53.tar.gz' => {
+    'mtime' => '1997-09-09',
+    'md5-ungz' => '9f6d8be4c016c11b24e53453b4c0487c',
+    'md5' => 'b8b8a7b6d0f62209260d40b96f32ed7a',
+    'size' => 34955
+  },
+  'DB_File-1.806.tar.gz' => {
+    'mtime' => '2002-10-22',
+    'md5-ungz' => '982eb804ce1421bbce8671e8136ba998',
+    'md5' => '306033319ec016cbec2ff4f3238f3566',
+    'size' => 80078
+  },
+  'Compress-Zlib-1.14.tar.gz' => {
+    'mtime' => '2001-08-27',
+    'md5-ungz' => '5cf80917d980bed65bd55f5911f93403',
+    'md5' => '3653dd2d1e00d09b59367bfb7f954c92',
+    'size' => 25022
+  },
+  'warn.patch-5.004_55.gz' => {
+    'mtime' => '1997-12-08',
+    'md5-ungz' => 'a5c872cd2b8f0f879312cc675c064f68',
+    'md5' => 'd98b6b0d7cc31400729b09bcea37b0c0',
+    'size' => 33526
+  },
+  'BerkeleyDB-0.25.meta' => {
+    'mtime' => '2003-11-01',
+    'md5' => '55aa40bd3a05e83af0c3d8e2ac0e23db',
+    'size' => 300
+  },
+  'DB_File-1.60.tar.gz' => {
+    'mtime' => '1998-05-21',
+    'md5-ungz' => '480845eff7c7114ac7552a9c6fc80115',
+    'md5' => 'a911e88efe55c94c72b890ecb47bd5cb',
+    'size' => 37754
+  },
+  'DB_File-1.14.tar.gz' => {
+    'mtime' => '1997-05-07',
+    'md5-ungz' => 'ec2a0142a4c8ec27315c444392b018ea',
+    'md5' => 'd3885eb37840bddb1033d4e0f8a97ab8',
+    'size' => 30168
+  },
+  'Filter-1.11.tar.gz' => {
+    'mtime' => '1996-10-31',
+    'md5-ungz' => '6c4a45f8cc8a5f301408c4c9e4ab6e3b',
+    'md5' => 'b0a931274a2d9f95670c199d994ca775',
+    'size' => 21290
+  },
+  'DB_File-1.79.tar.gz' => {
+    'mtime' => '2001-10-25',
+    'md5-ungz' => 'deaf3720a661252bb55be6b2762a9365',
+    'md5' => '0dc3aa963e342c9e6ef44bd4a0497cc6',
+    'size' => 67491
+  },
+  'BerkeleyDB-0.20.tar.gz' => {
+    'mtime' => '2002-09-04',
+    'md5-ungz' => '478f1ac03db86517309052455b690d70',
+    'md5' => 'a9d68147127cadfa790dc7fcd2ad89bf',
+    'size' => 117928
+  },
+  'BerkeleyDB-0.04.tar.gz' => {
+    'mtime' => '1998-05-21',
+    'md5-ungz' => 'd9226b54d4d7d9c185f035f34f783a6b',
+    'md5' => 'ab7b52479bd61278e8f844cc3afae3e1',
+    'size' => 33416
+  },
+  'DB_File-1.74.tar.gz' => {
+    'mtime' => '2000-12-11',
+    'md5-ungz' => '4df23249c7b1bd746632ffc5009ff7f4',
+    'md5' => '42c1a92b1cd82ab6df97aedb44a6026a',
+    'size' => 60351
+  },
+  'Filter-1.20.tar.gz' => {
+    'mtime' => '2001-01-15',
+    'md5-ungz' => '4b8665352c8a2bccc39a6e617f958656',
+    'md5' => '4d7c6afc3178f0724834622d3da864b2',
+    'size' => 32896
+  },
+  'Filter-1.28.tar.gz' => {
+    'mtime' => '2002-01-11',
+    'md5-ungz' => 'f21c24593f3a15b5653d91fbb3c6789b',
+    'md5' => '6b70d7158e01e9a9ba02f9b1e7c548cf',
+    'size' => 38079
+  },
+  'warn.patch-5.004_65.gz' => {
+    'mtime' => '1998-05-18',
+    'md5-ungz' => '6fb807f49f160c5b66999c9c446cb225',
+    'md5' => '8e559933d5ce6ae7963090f6211f2e56',
+    'size' => 35170
+  },
+  'DB_File-1.64.tar.gz' => {
+    'mtime' => '1999-02-22',
+    'md5-ungz' => '23e7bb32ad2692aa7f9336be0a34f447',
+    'md5' => '55a940311c37e44628acba05382945a0',
+    'size' => 39807
+  },
+  'DB_File-1.51Beta.tar.gz' => {
+    'mtime' => '1997-05-13',
+    'md5-ungz' => '70af4326b01579872e07876e68ea06d7',
+    'md5' => 'c697e050199d16252bdb38b383f6745b',
+    'size' => 33286
+  },
+  'DB_File-1.15.tar.gz' => {
+    'mtime' => '1997-07-22',
+    'md5-ungz' => 'f27016928c2678bc5a7835941b16c6b2',
+    'md5' => 'a02d40b00067b47e2a00da8f1e8ecd34',
+    'size' => 31360
+  },
+  'Compress-Zlib-1.19.tar.gz' => {
+    'mtime' => '2002-10-31',
+    'md5-ungz' => '4b9f875fc44edcc881808a178bfe9752',
+    'md5' => '6f07b84219e43499d3f9872d970a7ba2',
+    'size' => 34220
+  },
+  'DB_File-1.803.tar.gz' => {
+    'mtime' => '2002-03-02',
+    'md5-ungz' => 'f0e5b866203496c1170071258aa3eeb6',
+    'md5' => '5b98c9470d318909257acb4720888b6c',
+    'size' => 74646
+  },
+  'Filter-1.26.tar.gz' => {
+    'mtime' => '2001-11-11',
+    'md5-ungz' => '2335ffa33656c473b2c43dc0bc75d514',
+    'md5' => 'c3939fb54b90ea7ecb9d1ebca9410257',
+    'size' => 37752
+  },
+  'DB_File-1.800.tar.gz' => {
+    'mtime' => '2001-11-24',
+    'md5-ungz' => '4f291c4ff184655bab7d11bebec75bae',
+    'md5' => '8fff150cfe3427110d725404c2463a67',
+    'size' => 74419
+  },
+  'warn.patch-970227.gz' => {
+    'mtime' => '1997-02-27',
+    'md5-ungz' => '35e37242a0ed2c4563a22764e6741638',
+    'md5' => 'c084d94227b126818be48e7c593ae591',
+    'size' => 29802
+  },
+  'BerkeleyDB-0.17.tar.gz' => {
+    'mtime' => '2001-10-25',
+    'md5-ungz' => '99f3a6106f6516ad5973180bbd667a3c',
+    'md5' => 'b50bf3b1051eb0a1ab202f2896816758',
+    'size' => 107012
+  },
+  'DB_File-1.801.tar.gz' => {
+    'mtime' => '2001-11-26',
+    'md5-ungz' => 'b7d27d96eef4143dfc2a6e7179282ac9',
+    'md5' => 'aa0e629f73cc2f39823457198f765561',
+    'size' => 72878
+  },
+  'DB_File-1.807.tar.gz' => {
+    'mtime' => '2003-11-01',
+    'md5-ungz' => '22d12dc3bd890adecc07beb03f788419',
+    'md5' => 'a60bbc5372e5d80517451ba5ac217066',
+    'size' => 81445
+  },
+  'Filter-1.16.tar.gz' => {
+    'mtime' => '1999-03-17',
+    'md5-ungz' => '2a90fec1e62e80e0ccfe5ecda4fbd6b9',
+    'md5' => 'c9309d8c25900ff05b159dff9795a4b9',
+    'size' => 24119
+  },
+  'BerkeleyDB-0.14.tar.gz' => {
+    'mtime' => '2001-01-24',
+    'md5-ungz' => '85ffa6affb34110e1ddb60b1d73ceefb',
+    'md5' => '2ff6aaa98f76234ddabf24cd45d14eee',
+    'size' => 94171
+  },
+  'Compress-Zlib-1.10.tar.gz' => {
+    'mtime' => '2001-02-05',
+    'md5-ungz' => '277da6c5a57a670dc7dd795138e3d9b3',
+    'md5' => 'a3147bf7e48e6c57ac5f942b1934336a',
+    'size' => 24163
+  },
+  'DB_File-1.802.tar.gz' => {
+    'mtime' => '2002-01-06',
+    'md5-ungz' => 'a910ca0995a7e2aac5e5d2e93f24601a',
+    'md5' => '144af55bd70646020219dbda20d55da8',
+    'size' => 72971
+  },
+  'BerkeleyDB-0.23.tar.gz' => {
+    'mtime' => '2003-06-15',
+    'md5-ungz' => 'f527060b78c7e88efaf47cd7f2c47a22',
+    'md5' => 'd97b85ea5b61bde7de4a998c91ef29c7',
+    'size' => 123886
+  },
+  'BerkeleyDB-0.12.tar.gz' => {
+    'mtime' => '2000-08-06',
+    'md5-ungz' => 'f35b86d40072ed28f50a17d467b74d21',
+    'md5' => '0c1ff9467cc69aa4f0a30aaed7ab50ff',
+    'size' => 80032
+  },
+  'Compress-Zlib-1.20.tar.gz' => {
+    'mtime' => '2003-04-04',
+    'md5-ungz' => '7771bd56b7e813ad73f3543e2664ed80',
+    'md5' => '540edd0f83affefaa8c099c389c7e729',
+    'size' => 34554
+  },
+  'DB_File-1.69.tar.gz' => {
+    'mtime' => '1999-08-03',
+    'md5-ungz' => 'a3626524ef285a87b2d20a20f2588bce',
+    'md5' => '5365ab563a09b45462363c6fe7b78b55',
+    'size' => 48820
+  },
+  'Compress-Zlib-1.06.tar.gz' => {
+    'mtime' => '1999-09-20',
+    'md5-ungz' => '14d4d079eb249630712ffbea00b4a6e7',
+    'md5' => '6202f31f9a140e1e0d3c486e8f5ce71c',
+    'size' => 22432
+  },
+  'Compress-Zlib-0.4.tar.gz' => {
+    'mtime' => '1996-06-25',
+    'md5-ungz' => 'f81a5b5e17518d4f3b1059c8b50766a4',
+    'md5' => '1edaacdcec972532e6ee7a122789beb7',
+    'size' => 15646
+  },
+  'DB_File-1.62.tar.gz' => {
+    'mtime' => '1998-12-02',
+    'md5-ungz' => '87437772b2c56d443ff088553ed76103',
+    'md5' => 'a257322a9ccff34b920fd9ddeaf8576e',
+    'size' => 38548
+  },
+  'Filter-1.23.tar.gz' => {
+    'mtime' => '2001-04-24',
+    'md5-ungz' => '3369a59d9dc3a6a6be5ece2f41962e9b',
+    'md5' => '79823eabfd63c60343f0f048edd4a90e',
+    'size' => 34545
+  },
+  'Filter-1.24.tar.gz' => {
+    'mtime' => '2001-09-22',
+    'md5-ungz' => 'f92efb7b4a7e4ee0611884932e136f5d',
+    'md5' => 'bf5c1af289c38845bc7672f6c8f0eb3b',
+    'size' => 36186
+  },
+  'Filter-1.17.tar.gz' => {
+    'mtime' => '1999-12-10',
+    'md5-ungz' => '0d496224675876b11a80cd11b22fb6f2',
+    'md5' => '8dc5328bfa4a01409d8c0ea30b39fa35',
+    'size' => 31702
+  },
+  'DB_File-1.55.tar.gz' => {
+    'mtime' => '1997-11-20',
+    'md5-ungz' => '1a2768dd502d6f7549780e9f7bd2d364',
+    'md5' => '8ecaa1d785581436a566317a3db1f460',
+    'size' => 35555
+  },
+  'DB_File-1.70.tar.gz' => {
+    'mtime' => '1999-08-04',
+    'md5-ungz' => '8a80f665cdef80b13e4d570e6c293cee',
+    'md5' => 'd04ebc16154539f5508a22609c3b1b2f',
+    'size' => 49110
+  },
+  'Compress-Zlib-1.03.tar.gz' => {
+    'mtime' => '1999-03-17',
+    'md5-ungz' => 'abfa6d7a27a72b8b77b9648279879317',
+    'md5' => '46478c296ec408fda7e4c5cd013a2bc2',
+    'size' => 19837
+  },
+  'Filter-1.09.tar.gz' => {
+    'mtime' => '1996-04-22',
+    'md5-ungz' => '50acd3958e6c22e043cc7e5bcfbc970e',
+    'md5' => '4f6f2a0c352a683fe69bff7b5086e652',
+    'size' => 20899
+  },
+  'DB_File-1.77.tar.gz' => {
+    'mtime' => '2001-04-26',
+    'md5-ungz' => '61c2d0c1c2c9cdbf6996e1be8c67aa6d',
+    'md5' => 'a649937b6abb325b4049d8fc63081add',
+    'size' => 65458
+  },
+  'BerkeleyDB-0.16.tar.gz' => {
+    'mtime' => '2001-08-01',
+    'md5-ungz' => 'fe4d0d294087a77b486178024532670e',
+    'md5' => 'd2b88f5d6938cdbbff615daac6b53eb9',
+    'size' => 93732
+  },
+  'BerkeleyDB-0.15.tar.gz' => {
+    'mtime' => '2001-04-07',
+    'md5-ungz' => 'ec3395c9c58e92199105e2140338821f',
+    'md5' => 'd6a0511bd12559652f0a83820714e64a',
+    'size' => 94400
+  },
+  'Compress-Zlib-1.08.tar.gz' => {
+    'mtime' => '2000-01-09',
+    'md5-ungz' => 'b1a59cc0eea1d4f3100a315fe6608b94',
+    'md5' => 'd4a0303209084d329f0c29301d57e031',
+    'size' => 23936
+  },
+  'Filter-1.19.tar.gz' => {
+    'mtime' => '2000-07-23',
+    'md5-ungz' => '3c29bbdb087c26c060a96762245cecaf',
+    'md5' => 'f956c64c0fce62a5229ac70c4736b078',
+    'size' => 32766
+  },
+  'DB_File-1.68.tar.gz' => {
+    'mtime' => '1999-07-31',
+    'md5-ungz' => '8530deda461c8fcc9ac4da3edde63582',
+    'md5' => '50db9127c918a90bb51d3e7f32ca30ea',
+    'size' => 48434
+  },
+  'Compress-Zlib-1.00.tar.gz' => {
+    'mtime' => '1997-11-14',
+    'md5-ungz' => 'a8cdf0c0072131ce7b45f201ffd9e2cd',
+    'md5' => '621913fd6d6b9f6126e805d733f643ad',
+    'size' => 19548
+  },
+  'Compress-Zlib-0.50.tar.gz' => {
+    'mtime' => '1997-02-19',
+    'md5-ungz' => '059bc44fea99fb7573b3e0b2e538ae5d',
+    'md5' => 'd52b2eaa816d2df8d6034e85e5a4b44d',
+    'size' => 17146
+  },
+  'DB_File-1.807.meta' => {
+    'mtime' => '2003-11-01',
+    'md5' => '6044149d49fd3c253826590b78826158',
+    'size' => 295
+  },
+  'BerkeleyDB-0.19.tar.gz' => {
+    'mtime' => '2002-06-14',
+    'md5-ungz' => '0955be69c441ebf2c9eaaf02191a5711',
+    'md5' => '09db64e8c9a4c2af0c3580c41b1ac455',
+    'size' => 117477
+  },
+  'Filter-1.15.tar.gz' => {
+    'mtime' => '1998-10-27',
+    'md5-ungz' => '67128196eba96bf8b3e92d5b025a4d2c',
+    'md5' => 'b4f71c3a346d64e208f41925779d0046',
+    'size' => 23505
+  },
+  'BerkeleyDB-0.05.tar.gz' => {
+    'mtime' => '1998-11-20',
+    'md5-ungz' => '023c02d694a2be83e6c86803fe2a13a8',
+    'md5' => '3540547ae42e40e437405ea4ebd754c7',
+    'size' => 34791
+  },
+  'DB_File-1.76.tar.gz' => {
+    'mtime' => '2001-01-15',
+    'md5-ungz' => 'abfea19018614aa49d828cc4aa1272f8',
+    'md5' => 'c732ad2888f7e6b51c596d6ed21050a0',
+    'size' => 61359
+  },
+  'Compress-Zlib-1.21.meta' => {
+    'mtime' => '2003-04-28',
+    'md5' => '26331763d136c581f0d5e1dbe7a5303a',
+    'size' => 247
+  },
+  'DB_File-1.50Beta.tar.gz' => {
+    'mtime' => '1997-05-07',
+    'md5-ungz' => '8c26315fc20ce01299fe401865cf98f8',
+    'md5' => '5e1d2c941122b55407ab25fc8deafe90',
+    'size' => 33205
+  },
+  'DB_File-1.54.tar.gz' => {
+    'mtime' => '1997-10-01',
+    'md5-ungz' => 'aafa58783d48998d12347abc2fd37fc5',
+    'md5' => '07aef4939899b901f48fea3f7ce5041e',
+    'size' => 34911
+  },
+  'Compress-Zlib-1.05.tar.gz' => {
+    'mtime' => '1999-06-03',
+    'md5-ungz' => '221d660982723bcc81a63d797758693c',
+    'md5' => '6093c5f793f759f814ceedcf35915805',
+    'size' => 20289
+  },
+  'BerkeleyDB-0.08.tar.gz' => {
+    'mtime' => '1999-11-28',
+    'md5-ungz' => 'c2ae8b9c092ecb3a3f664accb1100160',
+    'md5' => '3b0c8c2e6733bf5d403d77842881e3ff',
+    'size' => 78305
+  },
+  'Filter-1.07.tar.gz' => {
+    'mtime' => '1995-12-11',
+    'md5-ungz' => '9b8edae2ffe363e2d1d332d4ad394c24',
+    'md5' => '1bfa412986aa71408cda25961832b1c6',
+    'size' => 19813
+  },
+  'warn.patch-5.004_56.gz' => {
+    'mtime' => '1998-01-06',
+    'md5-ungz' => '202943ea72d981ddfa21ce7c30833c70',
+    'md5' => '1901f916813d44d143a0c6e83af08183',
+    'size' => 33541
+  },
+  'BerkDB-0.01.tar.gz' => {
+    'mtime' => '1997-10-23',
+    'md5-ungz' => '227f4a017cb600f64bab92da110f37cf',
+    'md5' => 'b65a7422d08a662883f16f729c1ac0b4',
+    'size' => 22535
+  },
+  'Filter-1.18.tar.gz' => {
+    'mtime' => '2000-04-04',
+    'md5-ungz' => '00b51e5d5436d70bf4e86543200042f2',
+    'md5' => '379c505c227f81e0a20554bf243372c3',
+    'size' => 32138
+  },
+  'Compress-Zlib-1.15.tar.gz' => {
+    'mtime' => '2001-12-08',
+    'md5-ungz' => 'f31ad0a4dae944f8e61d0fec062ab67f',
+    'md5' => 'efdb239b68f1998e8e19970cc8710576',
+    'size' => 28386
+  },
+  'Filter-1.08.tar.gz' => {
+    'mtime' => '1995-12-15',
+    'md5-ungz' => '5319259d9517f222defb181136cc8931',
+    'md5' => '3f0f898d909b912b4f226bf3f0750a21',
+    'size' => 20456
+  },
+  'warn.patch-5.005_50.gz' => {
+    'mtime' => '1998-07-29',
+    'md5-ungz' => '7c816d93af597f0d82fb0a716e5c6ad3',
+    'md5' => '52fcc8f6082b842e733b939e69ee58e0',
+    'size' => 36154
+  },
+  'DB_File-1.67.tar.gz' => {
+    'mtime' => '1999-06-08',
+    'md5-ungz' => 'f442f129d50d9e357f9067ba22f3ae54',
+    'md5' => 'be504fb3a1f191a6d7cf790cfeb23d64',
+    'size' => 44527
+  },
+  'warn.patch-5.004_53.gz' => {
+    'mtime' => '1997-10-20',
+    'md5-ungz' => '0165a2cdb06414d9b4d6b6c27fa473bc',
+    'md5' => 'f47a50485d4c664068f18a067e5d02b6',
+    'size' => 33072
+  },
+  'BerkeleyDB-0.02.tar.gz' => {
+    'mtime' => '1997-11-12',
+    'md5-ungz' => 'affebb1ceba4b2de220cb8a55756e140',
+    'md5' => '48b3e83cccc21885d8ad9a0d13ebb497',
+    'size' => 24692
+  },
+  'DB_File-1.71.tar.gz' => {
+    'mtime' => '1999-09-09',
+    'md5-ungz' => '4d36bef87fe0fbe02d6e69e34c890c50',
+    'md5' => 'f82762c13271da7e164b758dbb870bd1',
+    'size' => 50052
+  },
+  'BerkeleyDB-0.18.tar.gz' => {
+    'mtime' => '2002-01-07',
+    'md5-ungz' => 'fd1d64948e80f85301b1447843c117d7',
+    'md5' => 'd563547e82f978585c6926dea28e378a',
+    'size' => 109358
+  },
+  'DB_File-1.58.tar.gz' => {
+    'mtime' => '1998-02-10',
+    'md5-ungz' => '38471312a9c1e2af896c22381e37b413',
+    'md5' => 'e3cfcb4dcd1b277e49a48ef76db3fb46',
+    'size' => 36891
+  },
+  'BerkeleyDB-0.13.tar.gz' => {
+    'mtime' => '2001-01-17',
+    'md5-ungz' => '4a9b944dd2244e128f0c439f1ceaebf2',
+    'md5' => 'aad71c6a8687913896484a43e8989a23',
+    'size' => 93813
+  },
+  'Compress-Zlib-1.31.tar.gz' => {
+    'mtime' => '2003-10-29',
+    'md5-ungz' => 'e2be87ee4eb8a69393757026518824d1',
+    'md5' => '519296e08117092fdc24fc27a2ba30b4',
+    'size' => 112958
+  },
+  'DB_File-1.57.tar.gz' => {
+    'mtime' => '1998-01-01',
+    'md5-ungz' => 'd02d211e616ca3cb36f95c4312ecf7c4',
+    'md5' => '00c8869e5e01e535c787bcfd9c5e0d17',
+    'size' => 36201
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQE/yiyEMo2oZ0UPiewRAjZhAKCajSLB690v3Ez6TL4SOE8OAxJzPACfYz31
+Us60FgJSZO9ry0t3ZjPicBM=
+=WxFp
+-----END PGP SIGNATURE-----

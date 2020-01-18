@@ -1,0 +1,1562 @@
+This is octave.info, produced by makeinfo version 4.5 from octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: Character Class Functions,  Prev: String Conversions,  Up: Strings
+
+Character Class Functions
+=========================
+
+   Octave also provides the following character class test functions
+patterned after the functions in the standard C library.  They all
+operate on string arrays and return matrices of zeros and ones.
+Elements that are nonzero indicate that the condition was true for the
+corresponding character in the string array.  For example,
+
+     isalpha ("!Q@WERT^Y&")
+          => [ 0, 1, 0, 1, 1, 1, 1, 0, 1, 0 ]
+
+ - Mapping Function:  isalnum (S)
+     Return 1 for characters that are letters or digits (`isalpha (S)'
+     or `isdigit (S)' is true).
+
+ - Mapping Function:  isalpha (S)
+ - Mapping Function:  isletter (S)
+     Return true for characters that are letters (`isupper (S)' or
+     `islower (S)' is true).
+
+ - Mapping Function:  isascii (S)
+     Return 1 for characters that are ASCII (in the range 0 to 127
+     decimal).
+
+ - Mapping Function:  iscntrl (S)
+     Return 1 for control characters.
+
+ - Mapping Function:  isdigit (S)
+     Return 1 for characters that are decimal digits.
+
+ - Mapping Function:  isgraph (S)
+     Return 1 for printable characters (but not the space character).
+
+ - Mapping Function:  islower (S)
+     Return 1 for characters that are lower case letters.
+
+ - Mapping Function:  isprint (S)
+     Return 1 for printable characters (including the space character).
+
+ - Mapping Function:  ispunct (S)
+     Return 1 for punctuation characters.
+
+ - Mapping Function:  isspace (S)
+     Return 1 for whitespace characters (space, formfeed, newline,
+     carriage return, tab, and vertical tab).
+
+ - Mapping Function:  isupper (S)
+     Return 1 for upper case letters.
+
+ - Mapping Function:  isxdigit (S)
+     Return 1 for characters that are hexadecimal digits.
+
+
+File: octave.info,  Node: Data Structures,  Next: Containers,  Prev: Strings,  Up: Top
+
+Data Structures
+***************
+
+   Octave includes support for organizing data in structures.  The
+current implementation uses an associative array with indices limited to
+strings, but the syntax is more like C-style structures.  Here are some
+examples of using data structures in Octave.
+
+   Elements of structures can be of any value type.  For example, the
+three expressions
+
+     x.a = 1
+     x.b = [1, 2; 3, 4]
+     x.c = "string"
+
+create a structure with three elements.  To print the value of the
+structure, you can type its name, just as for any other variable:
+
+     octave:2> x
+     x =
+     {
+       a = 1
+       b =
+     
+         1  2
+         3  4
+     
+       c = string
+     }
+
+Note that Octave may print the elements in any order.
+
+   Structures may be copied.
+
+     octave:1> y = x
+     y =
+     {
+       a = 1
+       b =
+     
+         1  2
+         3  4
+     
+       c = string
+     }
+
+   Since structures are themselves values, structure elements may
+reference other structures.  The following statements change the value
+of the element `b' of the structure `x' to be a data structure
+containing the single element `d', which has a value of 3.
+
+     octave:1> x.b.d = 3
+     x.b.d = 3
+     octave:2> x.b
+     ans =
+     {
+       d = 3
+     }
+     octave:3> x
+     x =
+     {
+       a = 1
+       b =
+       {
+         d = 3
+       }
+     
+       c = string
+     }
+
+   Note that when Octave prints the value of a structure that contains
+other structures, only a few levels are displayed.  For example,
+
+     octave:1> a.b.c.d.e = 1;
+     octave:2> a
+     a =
+     {
+       b =
+       {
+         c = <structure>
+       }
+     }
+
+This prevents long and confusing output from large deeply nested
+structures.
+
+ - Built-in Variable: struct_levels_to_print
+     You can tell Octave how many structure levels to display by
+     setting the built-in variable `struct_levels_to_print'.  The
+     default value is 2.
+
+   Functions can return structures.  For example, the following function
+separates the real and complex parts of a matrix and stores them in two
+elements of the same structure variable.
+
+     octave:1> function y = f (x)
+     > y.re = real (x);
+     > y.im = imag (x);
+     > endfunction
+
+   When called with a complex-valued argument, `f' returns the data
+structure containing the real and imaginary parts of the original
+function argument.
+
+     octave:2> f (rand (2) + rand (2) * I);
+     ans =
+     {
+       im =
+     
+         0.26475  0.14828
+         0.18436  0.83669
+     
+       re =
+     
+         0.040239  0.242160
+         0.238081  0.402523
+     }
+
+   Function return lists can include structure elements, and they may be
+indexed like any other variable.  For example,
+
+     octave:1> [ x.u, x.s(2:3,2:3), x.v ] = svd ([1, 2; 3, 4])
+     x.u =
+     
+       -0.40455  -0.91451
+       -0.91451   0.40455
+     
+     x.s =
+     
+       0.00000  0.00000  0.00000
+       0.00000  5.46499  0.00000
+       0.00000  0.00000  0.36597
+     
+     x.v =
+     
+       -0.57605   0.81742
+       -0.81742  -0.57605
+
+   It is also possible to cycle through all the elements of a structure
+in a loop, using a special form of the `for' statement (*note The for
+Statement::)
+
+   The following functions are available to give you information about
+structures.
+
+ - Built-in Function:  isstruct (EXPR)
+     Return 1 if the value of the expression EXPR is a structure.
+
+ - Built-in Function:  fieldnames (STRUCT)
+     Return a cell array of strings naming the elements of the structure
+     STRUCT.  It is an error to call `fieldnames' with an argument that
+     is not a structure.
+
+ - Built-in Function:  isfield (EXPR, NAME)
+     Return true if the expression EXPR is a structure and it includes
+     an element named NAME.  The first argument must be a structure and
+     the second must be a string.
+
+
+File: octave.info,  Node: Containers,  Next: I/O Streams,  Prev: Data Structures,  Up: Top
+
+Containers
+**********
+
+* Menu:
+
+* Lists::
+* Cell Arrays::
+
+
+File: octave.info,  Node: Lists,  Next: Cell Arrays,  Up: Containers
+
+Lists
+=====
+
+ - Built-in Function:  list (A1, A2, ...)
+     Create a new list with elements given by the arguments A1, A2, ....
+
+ - Built-in Function:  nth (LIST, N)
+     Return the N-th element of LIST.
+
+ - Built-in Function:  append (LIST, A1, A2, ...)
+     Return a new list created by appending A1, A1, ..., to LIST.  If
+     any of the arguments to be appended is a list, its elements are
+     appended individually.  For example,
+
+          x = list (1, 2);
+          y = list (3, 4);
+          append (x, y);
+
+     results in the list containing the four elements `(1 2 3 4)', not
+     a list containing the three elements `(1 2 (3 4))'.
+
+ - Built-in Function:  reverse (LIST)
+     Return a new list created by reversing the elements of LIST.
+
+ - Built-in Function:  splice (LIST_1, OFFSET, LENGTH, LIST_2)
+     Replace LENGTH elements of LIST_1 beginning at OFFSET with the
+     contents of LIST_2 (if any).  If LENGTH is omitted, all elements
+     from OFFSET to the end of LIST_1 are replaced.  As a special case,
+     if OFFSET is one greater than the length of LIST_1 and LENGTH is
+     0, splice is equivalent to `append (LIST_1, LIST_2)'.
+
+ - Built-in Function:  islist (X)
+     Return nonzero if X is a list.
+
+
+File: octave.info,  Node: Cell Arrays,  Prev: Lists,  Up: Containers
+
+Cell Arrays
+===========
+
+ - Built-in Function:  cell (X)
+ - Built-in Function:  cell (N, M)
+     Create a new cell array object.  If invoked with a single scalar
+     argument, `cell' returns a square cell array with the dimension
+     specified.  If you supply two scalar arguments, `cell' takes them
+     to be the number of rows and columns.  If given a vector with two
+     elements, `cell' uses the values of the elements as the number of
+     rows and columns, respectively.
+
+ - Built-in Function:  cellstr (STRING)
+     Create a new cell array object from the elements of the string
+     array STRING.
+
+ - Built-in Function:  iscell (X)
+     Return true if X is a cell array object.  Otherwise, return false.
+
+
+File: octave.info,  Node: I/O Streams,  Next: Variables,  Prev: Containers,  Up: Top
+
+I/O Streams
+***********
+
+ - Built-in Function:  isstream (X)
+     Return true if X is a stream object.  Otherwise, return false.
+
+
+File: octave.info,  Node: Variables,  Next: Expressions,  Prev: I/O Streams,  Up: Top
+
+Variables
+*********
+
+   Variables let you give names to values and refer to them later.  You
+have already seen variables in many of the examples.  The name of a
+variable must be a sequence of letters, digits and underscores, but it
+may not begin with a digit.  Octave does not enforce a limit on the
+length of variable names, but it is seldom useful to have variables
+with names longer than about 30 characters.  The following are all
+valid variable names
+
+     x
+     x15
+     __foo_bar_baz__
+     fucnrdthsucngtagdjb
+
+However, names like `__foo_bar_baz__' that begin and end with two
+underscores are understood to be reserved for internal use by Octave.
+You should not use them in code you write, except to access Octave's
+documented internal variables and built-in symbolic constants.
+
+   Case is significant in variable names.  The symbols `a' and `A' are
+distinct variables.
+
+   A variable name is a valid expression by itself.  It represents the
+variable's current value.  Variables are given new values with
+"assignment operators" and "increment operators".  *Note Assignment
+Expressions: Assignment Ops.
+
+   A number of variables have special built-in meanings.  For example,
+`ans' holds the current working directory, and `pi' names the ratio of
+the circumference of a circle to its diameter. *Note Summary of
+Built-in Variables::, for a list of all the predefined variables.  Some
+of these built-in symbols are constants and may not be changed.  Others
+can be used and assigned just like all other variables, but their values
+are also used or changed automatically by Octave.
+
+   Variables in Octave do not have fixed types, so it is possible to
+first store a numeric value in a variable and then to later use the
+same name to hold a string value in the same program.  Variables may
+not be used before they have been given a value.  Doing so results in
+an error.
+
+* Menu:
+
+* Global Variables::
+* Persistent Variables::
+* Status of Variables::
+* Summary of Built-in Variables::
+* Defaults from the Environment::
+
+
+File: octave.info,  Node: Global Variables,  Next: Persistent Variables,  Up: Variables
+
+Global Variables
+================
+
+   A variable that has been declared "global" may be accessed from
+within a function body without having to pass it as a formal parameter.
+
+   A variable may be declared global using a `global' declaration
+statement.  The following statements are all global declarations.
+
+     global a
+     global a b
+     global c = 2
+     global d = 3 e f = 5
+
+   A global variable may only be initialized once in a `global'
+statement.  For example, after executing the following code
+
+     global gvar = 1
+     global gvar = 2
+
+the value of the global variable `gvar' is 1, not 2.
+
+   It is necessary declare a variable as global within a function body
+in order to access it.  For example,
+
+     global x
+     function f ()
+       x = 1;
+     endfunction
+     f ()
+
+does _not_ set the value of the global variable `x' to 1.  In order to
+change the value of the global variable `x', you must also declare it
+to be global within the function body, like this
+
+     function f ()
+       global x;
+       x = 1;
+     endfunction
+
+   Passing a global variable in a function parameter list will make a
+local copy and not modify the global value.  For example, given the
+function
+
+     function f (x)
+       x = 0
+     endfunction
+
+and the definition of `x' as a global variable at the top level,
+
+     global x = 13
+
+the expression
+
+     f (x)
+
+will display the value of `x' from inside the function as 0, but the
+value of `x' at the top level remains unchanged, because the function
+works with a _copy_ of its argument.
+
+ - Built-in Function:  isglobal (NAME)
+     Return 1 if NAME is globally visible.  Otherwise, return 0.  For
+     example,
+
+          global x
+          isglobal ("x")
+               => 1
+
+
+File: octave.info,  Node: Persistent Variables,  Next: Status of Variables,  Prev: Global Variables,  Up: Variables
+
+Persistent Variables
+====================
+
+   A variable that has been declared "persistent" within a function
+will retain its contents in memory between subsequent calls to the same
+function. The difference between persistent variables and global
+variables is that persistent variables are local in scope to a
+particular function and are not visible elsewhere.
+
+   A variable may be declared persistent using a `persistent'
+declaration statement.  The following statements are all persistent
+declarations.
+
+     persistent a
+     persistent a b
+     persistent c = 2
+     persistent d = 3 e f = 5
+
+   The behavior of persistent variables is equivalent to the behavior of
+static variables in C. The command `static' in octave is also
+recognized and is equivalent to `persistent'. Unlike global variables,
+every initialization statement will re-initialize the variable. For
+example, after executing the following code
+
+     persistent pvar = 1
+     persistent pvar = 2
+
+the value of the persistent variable `pvar' is 2.
+
+
+File: octave.info,  Node: Status of Variables,  Next: Summary of Built-in Variables,  Prev: Persistent Variables,  Up: Variables
+
+Status of Variables
+===================
+
+ - Command: clear [-x] pattern ...
+     Delete the names matching the given patterns from the symbol
+     table.  The pattern may contain the following special characters:
+
+    `?'
+          Match any single character.
+
+    `*'
+          Match zero or more characters.
+
+    `[ LIST ]'
+          Match the list of characters specified by LIST.  If the first
+          character is `!' or `^', match all characters except those
+          specified by LIST.  For example, the pattern `[a-zA-Z]' will
+          match all lower and upper case alphabetic characters.
+
+     For example, the command
+
+          clear foo b*r
+
+     clears the name `foo' and all names that begin with the letter `b'
+     and end with the letter `r'.
+
+     If `clear' is called without any arguments, all user-defined
+     variables (local and global) are cleared from the symbol table.  If
+     `clear' is called with at least one argument, only the visible
+     names matching the arguments are cleared.  For example, suppose
+     you have defined a function `foo', and then hidden it by
+     performing the assignment `foo = 2'.  Executing the command `clear
+     foo' once will clear the variable definition and restore the
+     definition of `foo' as a function.  Executing `clear foo' a second
+     time will clear the function definition.
+
+     With -x, clear the variables that don't match the patterns.
+
+     This command may not be used within a function body.
+
+ - Command: who options pattern ...
+ - Command: whos options pattern ...
+     List currently defined symbols matching the given patterns.  The
+     following are valid options.  They may be shortened to one
+     character but may not be combined.
+
+    `-all'
+          List all currently defined symbols.
+
+    `-builtins'
+          List built-in variables and functions.  This includes all
+          currently compiled function files, but does not include all
+          function files that are in the `LOADPATH'.
+
+    `-functions'
+          List user-defined functions.
+
+    `-long'
+          Print a long listing including the type and dimensions of any
+          symbols.  The symbols in the first column of output indicate
+          whether it is possible to redefine the symbol, and whether it
+          is possible for it to be cleared.
+
+    `-variables'
+          List user-defined variables.
+
+     Valid patterns are the same as described for the `clear' command
+     above.  If no patterns are supplied, all symbols from the given
+     category are listed.  By default, only user defined functions and
+     variables visible in the local scope are displayed.
+
+     The command `whos' is equivalent to `who -long'.
+
+ - Built-in Function:  exist (NAME, TYPE)
+     Return 1 if the name exists as a variable, 2 if the name (after
+     appending `.m') is a function file in Octave's LOADPATH, 3 if the
+     name is a `.oct' file in Octave's LOADPATH, 5 if the name is a
+     built-in function, 7 if the name is a directory, 101 if the name is
+     a built-in variable, 102 if the name is a built-in constant, or 103
+     if the name is a function not associated with a file (entered on
+     the command line).
+
+     Otherwise, return 0.
+
+     This function also returns 2 if a regular file called NAME exists
+     in Octave's `LOADPATH'.  If you want information about other types
+     of files, you should use some combination of the functions
+     `file_in_path' and `stat' instead.
+
+     If the optional argument TYPE is supplied, check only for symbols
+     of the specified type.  Valid types are
+
+    `"var"'
+          Check only for variables.
+
+    `"builtin"'
+          Check only for built-in functions.
+
+    `"file"'
+          Check only for files.
+
+    `"dir"'
+          Check only for directories.
+
+ - Built-in Function:  document (SYMBOL, TEXT)
+     Set the documentation string for SYMBOL to TEXT.
+
+ - Command: type options name ...
+     Display the definition of each NAME that refers to a function.
+
+     Normally also displays if each NAME is user-defined or builtin;
+     the `-q' option suppresses this behaviour.
+
+     Currently, Octave can only display functions that can be compiled
+     cleanly, because it uses its internal representation of the
+     function to recreate the program text.
+
+     Comments are not displayed because Octave's parser currently
+     discards them as it converts the text of a function file to its
+     internal representation.  This problem may be fixed in a future
+     release.
+
+ - Command: which name ...
+     Display the type of each NAME.  If NAME is defined from a function
+     file, the full name of the file is also displayed.
+
+
+File: octave.info,  Node: Summary of Built-in Variables,  Next: Defaults from the Environment,  Prev: Status of Variables,  Up: Variables
+
+Summary of Built-in Variables
+=============================
+
+   Here is a summary of all of Octave's built-in variables along with
+cross references to additional information and their default values.  In
+the following table OCTAVE-HOME stands for the root directory where all
+of Octave is installed (the default is `/usr/local', VERSION stands for
+the Octave version number (for example, 2.1.x) and ARCH stands for the
+type of system for which Octave was compiled (for example,
+`i586-pc-linux-gnu').
+
+`DEFAULT_LOADPATH'
+     *Note Function Files::.
+
+     Default value: `".:OCTAVE-HOME/lib/VERSION"'.
+
+`EDITOR'
+     *Note Commands For History::.
+
+     Default value: `"emacs"'.
+
+`EXEC_PATH'
+     *Note Controlling Subprocesses::.
+
+     Default value: `":$PATH"'.
+
+`INFO_FILE'
+     *Note Getting Help::.
+
+     Default value: `"OCTAVE-HOME/info/octave.info"'.
+
+`INFO_PROGRAM'
+     *Note Getting Help::.
+
+     Default value:
+     `"OCTAVE-HOME/libexec/octave/VERSION/exec/ARCH/info"'.
+
+`LOADPATH'
+     *Note Function Files::.
+
+     Default value: `":"', which tells Octave to use the directories
+     specified by the built-in variable `DEFAULT_LOADPATH'.
+
+`OCTAVE_HOME'
+     Default value: `"/usr/local"'.
+
+`PAGER'
+     *Note Input and Output::.
+
+     Default value: `"less", or "more"'.
+
+`PS1'
+     *Note Customizing the Prompt::.
+
+     Default value: `"\s:\#> "'.
+
+`PS2'
+     *Note Customizing the Prompt::.
+
+     Default value: `"> "'.
+
+`PS4'
+     *Note Customizing the Prompt::.
+
+     Default value: `"+ "'.
+
+`automatic_replot'
+     *Note Two-Dimensional Plotting::.
+
+     Default value: 0.
+
+`beep_on_error'
+     *Note Error Handling::.
+
+     Default value: 0.
+
+`completion_append_char'
+     *Note Commands For Completion::.
+
+     Default value: `" "'.
+
+`default_save_format'
+     *Note Simple File I/O::.
+
+     Default value: `"ascii"'.
+
+`crash_dumps_octave_core'
+     *Note Simple File I/O::.
+
+     Default value: 1.
+
+`fixed_point_format'
+     *Note Matrices::.
+
+     Default value: 0.
+
+`gnuplot_binary'
+     *Note Three-Dimensional Plotting::.
+
+     Default value: `"gnuplot"'.
+
+`history_file'
+     *Note Commands For History::.
+
+     Default value: `"~/.octave_hist"'.
+
+`history_size'
+     *Note Commands For History::.
+
+     Default value: 1024.
+
+`ignore_function_time_stamp'
+     *Note Function Files::.
+
+     Default value: `"system"'.
+
+`max_recursion_depth'
+     *Note Recursion::.
+
+     Default value: 256.
+
+`output_max_field_width'
+     *Note Matrices::.
+
+     Default value: 10.
+
+`output_precision'
+     *Note Matrices::.
+
+     Default value: 5.
+
+`page_screen_output'
+     *Note Input and Output::.
+
+     Default value: 1.
+
+`print_answer_id_name'
+     *Note Terminal Output::.
+
+     Default value: 1.
+
+`print_empty_dimensions'
+     *Note Empty Matrices::.
+
+     Default value: 1.
+
+`return_last_computed_value'
+     *Note Returning From a Function::.
+
+     Default value: 0.
+
+`save_precision'
+     *Note Simple File I/O::.
+
+     Default value: 17.
+
+`saving_history'
+     *Note Commands For History::.
+
+     Default value: 1.
+
+`sighup_dumps_octave_core'
+     *Note Simple File I/O::.
+
+     Default value: 1.
+
+`sigterm_dumps_octave_core'
+     *Note Simple File I/O::.
+
+     Default value: 1.
+
+`silent_functions'
+     *Note Defining Functions::.
+
+     Default value: 0.
+
+`split_long_rows'
+     *Note Matrices::.
+
+     Default value: 1.
+
+`struct_levels_to_print'
+     *Note Data Structures::.
+
+     Default value: 2.
+
+`suppress_verbose_help_message'
+     *Note Getting Help::.
+
+     Default value: 1.
+
+`warn_assign_as_truth_value'
+     *Note The if Statement::.
+
+     Default value: 1.
+
+`warn_comma_in_global_decl'
+     *Note Global Variables::.
+
+     Default value: 1.
+
+`warn_divide_by_zero'
+     *Note Arithmetic Ops::.
+
+     Default value: 1.
+
+`warn_empty_list_elements'
+     *Note Empty Matrices::.
+
+     Default value: 0.
+
+`warn_fortran_indexing'
+     *Note Index Expressions::.
+
+     Default value: 0.
+
+`warn_function_name_clash'
+     *Note Function Files::.
+
+     Default value: 1.
+
+`warn_imag_to_real'
+     *Note Special Utility Matrices::.
+
+     Default value: 0.
+
+`warn_missing_semicolon'
+     *Note Defining Functions::.
+
+     Default value: 0.
+
+`warn_neg_dim_as_zero'
+     *Note Special Utility Matrices::.
+
+     Default value: 0.
+
+`warn_num_to_str'
+     *Note String Conversions::.
+
+     Default value: 1.
+
+`warn_reload_forces_clear'
+     *Note Dynamically Linked Functions::.
+
+     Default value: 1.
+
+`warn_resize_on_range_error'
+     *Note Index Expressions::.
+
+     Default value: 0.
+
+`warn_separator_insert'
+     *Note Matrices::.
+
+     Default value: 0.
+
+`warn_single_quote_string'
+     *Note String Conversions::.
+
+     Default value: 0.
+
+`warn_str_to_num'
+     *Note String Conversions::.
+
+     Default value: 0.
+
+`warn_undefined_return_values'
+     *Note Multiple Return Values::.
+
+     Default value: 0.
+
+`warn_variable_switch_label'
+     *Note The switch Statement::.
+
+     Default value: 0.
+
+
+File: octave.info,  Node: Defaults from the Environment,  Prev: Summary of Built-in Variables,  Up: Variables
+
+Defaults from the Environment
+=============================
+
+   Octave uses the values of the following environment variables to set
+the default values for the corresponding built-in variables.  In
+addition, the values from the environment may be overridden by
+command-line arguments.  *Note Command Line Options::.
+
+`EDITOR'
+     *Note Commands For History::.
+
+     Built-in variable: `EDITOR'.
+
+`OCTAVE_EXEC_PATH'
+     *Note Controlling Subprocesses::.
+
+     Built-in variable: `EXEC_PATH'.  Command-line argument:
+     `--exec-path'.
+
+`OCTAVE_PATH'
+     *Note Function Files::.
+
+     Built-in variable: `LOADPATH'.  Command-line argument: `--path'.
+
+`OCTAVE_INFO_FILE'
+     *Note Getting Help::.
+
+     Built-in variable: `INFO_FILE'.  Command-line argument:
+     `--info-file'.
+
+`OCTAVE_INFO_PROGRAM'
+     *Note Getting Help::.
+
+     Built-in variable: `INFO_PROGRAM'.  Command-line argument:
+     `--info-program'.
+
+`OCTAVE_HISTSIZE'
+     *Note Commands For History::.
+
+     Built-in variable: `history_size'.
+
+`OCTAVE_HISTFILE'
+     *Note Commands For History::.
+
+     Built-in variable: `history_file'.
+
+
+File: octave.info,  Node: Expressions,  Next: Evaluation,  Prev: Variables,  Up: Top
+
+Expressions
+***********
+
+   Expressions are the basic building block of statements in Octave.  An
+expression evaluates to a value, which you can print, test, store in a
+variable, pass to a function, or assign a new value to a variable with
+an assignment operator.
+
+   An expression can serve as a statement on its own.  Most other kinds
+of statements contain one or more expressions which specify data to be
+operated on.  As in other languages, expressions in Octave include
+variables, array references, constants, and function calls, as well as
+combinations of these with various operators.
+
+* Menu:
+
+* Index Expressions::
+* Calling Functions::
+* Arithmetic Ops::
+* Comparison Ops::
+* Boolean Expressions::
+* Assignment Ops::
+* Increment Ops::
+* Operator Precedence::
+
+
+File: octave.info,  Node: Index Expressions,  Next: Calling Functions,  Up: Expressions
+
+Index Expressions
+=================
+
+   An "index expression" allows you to reference or extract selected
+elements of a matrix or vector.
+
+   Indices may be scalars, vectors, ranges, or the special operator
+`:', which may be used to select entire rows or columns.
+
+   Vectors are indexed using a single expression.  Matrices may be
+indexed using one or two indices (a warning is issued if a single index
+is used unless the value of the built-in variable
+`warn_fortran_indexing' is zero).
+
+ - Built-in Variable: warn_fortran_indexing
+     If the value of `warn_fortran_indexing' is nonzero, a warning is
+     printed for expressions which select elements of a two-dimensional
+     matrix using a single index.  The default value is 0.
+
+   Given the matrix
+
+     a = [1, 2; 3, 4]
+
+all of the following expressions are equivalent
+
+     a (1, [1, 2])
+     a (1, 1:2)
+     a (1, :)
+
+and select the first row of the matrix.
+
+   A special form of indexing may be used to select elements of a
+matrix or vector.  If the indices are vectors made up of only ones and
+zeros, the result is a new matrix whose elements correspond to the
+elements of the index vector that are equal to one.  For example,
+
+     a = [1, 2; 3, 4];
+     a ([1, 0], :)
+
+selects the first row of the matrix `a'.
+
+   This operation can be useful for selecting elements of a matrix
+based on some condition, since the comparison operators return matrices
+of ones and zeros.
+
+   This special zero-one form of indexing leads to a conflict with the
+standard indexing operation.  For example, should the following
+statements
+
+     a = [1, 2; 3, 4];
+     a ([1, 1], :)
+
+return the original matrix, or the matrix formed by selecting the first
+row twice?  Although this conflict is not likely to arise very often in
+practice, you may select the behavior you prefer by setting the built-in
+variable `prefer_zero_one_indexing'.
+
+ - Built-in Variable: prefer_zero_one_indexing
+     If the value of `prefer_zero_one_indexing' is nonzero, Octave will
+     perform zero-one style indexing when there is a conflict with the
+     normal indexing rules.  *Note Index Expressions::.  For example,
+     given a matrix
+
+          a = [1, 2, 3, 4]
+
+     with `prefer_zero_one_indexing' is set to nonzero, the expression
+
+          a ([1, 1, 1, 1])
+
+     results in the matrix `[ 1, 2, 3, 4 ]'.  If the value of
+     `prefer_zero_one_indexing' set to 0, the result would be the
+     matrix `[ 1, 1, 1, 1 ]'.
+
+     In the first case, Octave is selecting each element corresponding
+     to a `1' in the index vector.  In the second, Octave is selecting
+     the first element multiple times.
+
+     The default value for `prefer_zero_one_indexing' is 0.
+
+   Finally, indexing a scalar with a vector of ones can be used to
+create a vector the same size as the index vector, with each element
+equal to the value of the original scalar.  For example, the following
+statements
+
+     a = 13;
+     a ([1, 1, 1, 1])
+
+produce a vector whose four elements are all equal to 13.
+
+   Similarly, indexing a scalar with two vectors of ones can be used to
+create a matrix.  For example the following statements
+
+     a = 13;
+     a ([1, 1], [1, 1, 1])
+
+create a 2 by 3 matrix with all elements equal to 13.
+
+   This is an obscure notation and should be avoided.  It is better to
+use the function `ones' to generate a matrix of the appropriate size
+whose elements are all one, and then to scale it to produce the desired
+result.  *Note Special Utility Matrices::.
+
+ - Built-in Variable: warn_resize_on_range_error
+     If the value of `warn_resize_on_range_error' is nonzero, print a
+     warning when a matrix is resized by an indexed assignment with
+     indices outside the current bounds.  The default value is 0.
+
+   Note that it is quite inefficient to create a vector using a loop
+like the one shown in the example above.  In this particular case, it
+would have been much more efficient to use the expression
+
+     a = sqrt (1:10);
+
+thus avoiding the loop entirely.  In cases where a loop is still
+required, or a number of values must be combined to form a larger
+matrix, it is generally much faster to set the size of the matrix first,
+and then insert elements using indexing commands.  For example, given a
+matrix `a',
+
+     [nr, nc] = size (a);
+     x = zeros (nr, n * nc);
+     for i = 1:n
+       x(:,(i-1)*nc+1:i*nc) = a;
+     endfor
+
+is considerably faster than
+
+     x = a;
+     for i = 1:n-1
+       x = [x, a];
+     endfor
+
+particularly for large matrices because Octave does not have to
+repeatedly resize the result.
+
+
+File: octave.info,  Node: Calling Functions,  Next: Arithmetic Ops,  Prev: Index Expressions,  Up: Expressions
+
+Calling Functions
+=================
+
+   A "function" is a name for a particular calculation.  Because it has
+a name, you can ask for it by name at any point in the program.  For
+example, the function `sqrt' computes the square root of a number.
+
+   A fixed set of functions are "built-in", which means they are
+available in every Octave program.  The `sqrt' function is one of
+these.  In addition, you can define your own functions.  *Note
+Functions and Scripts::, for information about how to do this.
+
+   The way to use a function is with a "function call" expression,
+which consists of the function name followed by a list of "arguments"
+in parentheses. The arguments are expressions which give the raw
+materials for the calculation that the function will do.  When there is
+more than one argument, they are separated by commas.  If there are no
+arguments, you can omit the parentheses, but it is a good idea to
+include them anyway, to clearly indicate that a function call was
+intended.  Here are some examples:
+
+     sqrt (x^2 + y^2)      # One argument
+     ones (n, m)           # Two arguments
+     rand ()               # No arguments
+
+   Each function expects a particular number of arguments.  For
+example, the `sqrt' function must be called with a single argument, the
+number to take the square root of:
+
+     sqrt (ARGUMENT)
+
+   Some of the built-in functions take a variable number of arguments,
+depending on the particular usage, and their behavior is different
+depending on the number of arguments supplied.
+
+   Like every other expression, the function call has a value, which is
+computed by the function based on the arguments you give it.  In this
+example, the value of `sqrt (ARGUMENT)' is the square root of the
+argument.  A function can also have side effects, such as assigning the
+values of certain variables or doing input or output operations.
+
+   Unlike most languages, functions in Octave may return multiple
+values.  For example, the following statement
+
+     [u, s, v] = svd (a)
+
+computes the singular value decomposition of the matrix `a' and assigns
+the three result matrices to `u', `s', and `v'.
+
+   The left side of a multiple assignment expression is itself a list of
+expressions, and is allowed to be a list of variable names or index
+expressions.  See also *Note Index Expressions::, and *Note Assignment
+Ops::.
+
+* Menu:
+
+* Call by Value::
+* Recursion::
+
+
+File: octave.info,  Node: Call by Value,  Next: Recursion,  Up: Calling Functions
+
+Call by Value
+-------------
+
+   In Octave, unlike Fortran, function arguments are passed by value,
+which means that each argument in a function call is evaluated and
+assigned to a temporary location in memory before being passed to the
+function.  There is currently no way to specify that a function
+parameter should be passed by reference instead of by value.  This
+means that it is impossible to directly alter the value of function
+parameter in the calling function.  It can only change the local copy
+within the function body.  For example, the function
+
+     function f (x, n)
+       while (n-- > 0)
+         disp (x);
+       endwhile
+     endfunction
+
+displays the value of the first argument N times.  In this function,
+the variable N is used as a temporary variable without having to worry
+that its value might also change in the calling function.  Call by
+value is also useful because it is always possible to pass constants
+for any function parameter without first having to determine that the
+function will not attempt to modify the parameter.
+
+   The caller may use a variable as the expression for the argument, but
+the called function does not know this: it only knows what value the
+argument had.  For example, given a function called as
+
+     foo = "bar";
+     fcn (foo)
+
+you should not think of the argument as being "the variable `foo'."
+Instead, think of the argument as the string value, `"bar"'.
+
+   Even though Octave uses pass-by-value semantics for function
+arguments, values are not copied unnecessarily.  For example,
+
+     x = rand (1000);
+     f (x);
+
+does not actually force two 1000 by 1000 element matrices to exist
+_unless_ the function `f' modifies the value of its argument.  Then
+Octave must create a copy to avoid changing the value outside the scope
+of the function `f', or attempting (and probably failing!) to modify
+the value of a constant or the value of a temporary result.
+
+
+File: octave.info,  Node: Recursion,  Prev: Call by Value,  Up: Calling Functions
+
+Recursion
+---------
+
+   With some restrictions(1), recursive function calls are allowed.  A
+"recursive function" is one which calls itself, either directly or
+indirectly.  For example, here is an inefficient(2) way to compute the
+factorial of a given integer:
+
+     function retval = fact (n)
+       if (n > 0)
+         retval = n * fact (n-1);
+       else
+         retval = 1;
+       endif
+     endfunction
+
+   This function is recursive because it calls itself directly.  It
+eventually terminates because each time it calls itself, it uses an
+argument that is one less than was used for the previous call.  Once the
+argument is no longer greater than zero, it does not call itself, and
+the recursion ends.
+
+   The built-in variable `max_recursion_depth' specifies a limit to the
+recursion depth and prevents Octave from recursing infinitely.
+
+ - Built-in Variable: max_recursion_depth
+     Limit the number of times a function may be called recursively.
+     If the limit is exceeded, an error message is printed and control
+     returns to the top level.
+
+     The default value is 256.
+
+   ---------- Footnotes ----------
+
+   (1) Some of Octave's function are implemented in terms of functions
+that cannot be called recursively.  For example, the ODE solver `lsode'
+is ultimately implemented in a Fortran subroutine that cannot be called
+recursively, so `lsode' should not be called either directly or
+indirectly from within the user-supplied function that `lsode'
+requires.  Doing so will result in undefined behavior.
+
+   (2) It would be much better to use `prod (1:n)', or `gamma (n+1)'
+instead, after first checking to ensure that the value `n' is actually a
+positive integer.
+
+
+File: octave.info,  Node: Arithmetic Ops,  Next: Comparison Ops,  Prev: Calling Functions,  Up: Expressions
+
+Arithmetic Operators
+====================
+
+   The following arithmetic operators are available, and work on scalars
+and matrices.
+
+`X + Y'
+     Addition.  If both operands are matrices, the number of rows and
+     columns must both agree.  If one operand is a scalar, its value is
+     added to all the elements of the other operand.
+
+`X .+ Y'
+     Element by element addition.  This operator is equivalent to `+'.
+
+`X - Y'
+     Subtraction.  If both operands are matrices, the number of rows and
+     columns of both must agree.
+
+`X .- Y'
+     Element by element subtraction.  This operator is equivalent to
+     `-'.
+
+`X * Y'
+     Matrix multiplication.  The number of columns of X must agree with
+     the number of rows of Y.
+
+`X .* Y'
+     Element by element multiplication.  If both operands are matrices,
+     the number of rows and columns must both agree.
+
+`X / Y'
+     Right division.  This is conceptually equivalent to the expression
+
+          (inverse (y') * x')'
+
+     but it is computed without forming the inverse of Y'.
+
+     If the system is not square, or if the coefficient matrix is
+     singular, a minimum norm solution is computed.
+
+`X ./ Y'
+     Element by element right division.
+
+`X \ Y'
+     Left division.  This is conceptually equivalent to the expression
+
+          inverse (x) * y
+
+     but it is computed without forming the inverse of X.
+
+     If the system is not square, or if the coefficient matrix is
+     singular, a minimum norm solution is computed.
+
+`X .\ Y'
+     Element by element left division.  Each element of Y is divided by
+     each corresponding element of X.
+
+`X ^ Y'
+`X ** Y'
+     Power operator.  If X and Y are both scalars, this operator
+     returns X raised to the power Y.  If X is a scalar and Y is a
+     square matrix, the result is computed using an eigenvalue
+     expansion.  If X is a square matrix. the result is computed by
+     repeated multiplication if Y is an integer, and by an eigenvalue
+     expansion if Y is not an integer.  An error results if both X and
+     Y are matrices.
+
+     The implementation of this operator needs to be improved.
+
+`X .^ Y'
+
+`X .** Y'
+     Element by element power operator.  If both operands are matrices,
+     the number of rows and columns must both agree.
+
+`-X'
+     Negation.
+
+`+X'
+     Unary plus.  This operator has no effect on the operand.
+
+`X''
+     Complex conjugate transpose.  For real arguments, this operator is
+     the same as the transpose operator.  For complex arguments, this
+     operator is equivalent to the expression
+
+          conj (x.')
+
+`X.''
+     Transpose.
+
+   Note that because Octave's element by element operators begin with a
+`.', there is a possible ambiguity for statements like
+
+     1./m
+
+because the period could be interpreted either as part of the constant
+or as part of the operator.  To resolve this conflict, Octave treats the
+expression as if you had typed
+
+     (1) ./ m
+
+and not
+
+     (1.) / m
+
+Although this is inconsistent with the normal behavior of Octave's
+lexer, which usually prefers to break the input into tokens by
+preferring the longest possible match at any given point, it is more
+useful in this case.
+
+ - Built-in Variable: warn_divide_by_zero
+     If the value of `warn_divide_by_zero' is nonzero, a warning is
+     issued when Octave encounters a division by zero.  If the value is
+     0, the warning is omitted.  The default value is 1.
+
+
+File: octave.info,  Node: Comparison Ops,  Next: Boolean Expressions,  Prev: Arithmetic Ops,  Up: Expressions
+
+Comparison Operators
+====================
+
+   "Comparison operators" compare numeric values for relationships such
+as equality.  They are written using _relational operators_.
+
+   All of Octave's comparison operators return a value of 1 if the
+comparison is true, or 0 if it is false.  For matrix values, they all
+work on an element-by-element basis.  For example,
+
+     [1, 2; 3, 4] == [1, 3; 2, 4]
+          =>  1  0
+              0  1
+
+   If one operand is a scalar and the other is a matrix, the scalar is
+compared to each element of the matrix in turn, and the result is the
+same size as the matrix.
+
+`X < Y'
+     True if X is less than Y.
+
+`X <= Y'
+     True if X is less than or equal to Y.
+
+`X == Y'
+     True if X is equal to Y.
+
+`X >= Y'
+     True if X is greater than or equal to Y.
+
+`X > Y'
+     True if X is greater than Y.
+
+`X != Y'
+`X ~= Y'
+`X <> Y'
+     True if X is not equal to Y.
+
+   String comparisons may also be performed with the `strcmp' function,
+not with the comparison operators listed above.  *Note Strings::.
+
+
+File: octave.info,  Node: Boolean Expressions,  Next: Assignment Ops,  Prev: Comparison Ops,  Up: Expressions
+
+Boolean Expressions
+===================
+
+* Menu:
+
+* Element-by-element Boolean Operators::
+* Short-circuit Boolean Operators::
+
+
+File: octave.info,  Node: Element-by-element Boolean Operators,  Next: Short-circuit Boolean Operators,  Up: Boolean Expressions
+
+Element-by-element Boolean Operators
+------------------------------------
+
+   An "element-by-element boolean expression" is a combination of
+comparison expressions using the boolean operators "or" (`|'), "and"
+(`&'), and "not" (`!'), along with parentheses to control nesting.  The
+truth of the boolean expression is computed by combining the truth
+values of the corresponding elements of the component expressions.  A
+value is considered to be false if it is zero, and true otherwise.
+
+   Element-by-element boolean expressions can be used wherever
+comparison expressions can be used.  They can be used in `if' and
+`while' statements.  However, if a matrix value used as the condition
+in an `if' or `while' statement is only true if _all_ of its elements
+are nonzero.
+
+   Like comparison operations, each element of an element-by-element
+boolean expression also has a numeric value (1 if true, 0 if false) that
+comes into play if the result of the boolean expression is stored in a
+variable, or used in arithmetic.
+
+   Here are descriptions of the three element-by-element boolean
+operators.
+
+`BOOLEAN1 & BOOLEAN2'
+     Elements of the result are true if both corresponding elements of
+     BOOLEAN1 and BOOLEAN2 are true.
+
+`BOOLEAN1 | BOOLEAN2'
+     Elements of the result are true if either of the corresponding
+     elements of BOOLEAN1 or BOOLEAN2 is true.
+
+`! BOOLEAN'
+`~ BOOLEAN'
+     Each element of the result is true if the corresponding element of
+     BOOLEAN is false.
+
+   For matrix operands, these operators work on an element-by-element
+basis.  For example, the expression
+
+     [1, 0; 0, 1] & [1, 0; 2, 3]
+
+returns a two by two identity matrix.
+
+   For the binary operators, the dimensions of the operands must
+conform if both are matrices.  If one of the operands is a scalar and
+the other a matrix, the operator is applied to the scalar and each
+element of the matrix.
+
+   For the binary element-by-element boolean operators, both
+subexpressions BOOLEAN1 and BOOLEAN2 are evaluated before computing the
+result.  This can make a difference when the expressions have side
+effects.  For example, in the expression
+
+     a & b++
+
+the value of the variable B is incremented even if the variable A is
+zero.
+
+   This behavior is necessary for the boolean operators to work as
+described for matrix-valued operands.
+
+
+File: octave.info,  Node: Short-circuit Boolean Operators,  Prev: Element-by-element Boolean Operators,  Up: Boolean Expressions
+
+Short-circuit Boolean Operators
+-------------------------------
+
+   Combined with the implicit conversion to scalar values in `if' and
+`while' conditions, Octave's element-by-element boolean operators are
+often sufficient for performing most logical operations.  However, it
+is sometimes desirable to stop evaluating a boolean expression as soon
+as the overall truth value can be determined.  Octave's "short-circuit"
+boolean operators work this way.
+
+`BOOLEAN1 && BOOLEAN2'
+     The expression BOOLEAN1 is evaluated and converted to a scalar
+     using the equivalent of the operation `all (all (BOOLEAN1))'.  If
+     it is false, the result of the overall expression is 0.  If it is
+     true, the expression BOOLEAN2 is evaluated and converted to a
+     scalar using the equivalent of the operation `all (all
+     (BOOLEAN1))'.  If it is true, the result of the overall expression
+     is 1.  Otherwise, the result of the overall expression is 0.
+
+`BOOLEAN1 || BOOLEAN2'
+     The expression BOOLEAN1 is evaluated and converted to a scalar
+     using the equivalent of the operation `all (all (BOOLEAN1))'.  If
+     it is true, the result of the overall expression is 1.  If it is
+     false, the expression BOOLEAN2 is evaluated and converted to a
+     scalar using the equivalent of the operation `all (all
+     (BOOLEAN1))'.  If it is true, the result of the overall expression
+     is 1.  Otherwise, the result of the overall expression is 0.
+
+   The fact that both operands may not be evaluated before determining
+the overall truth value of the expression can be important.  For
+example, in the expression
+
+     a && b++
+
+the value of the variable B is only incremented if the variable A is
+nonzero.
+
+   This can be used to write somewhat more concise code.  For example,
+it is possible write
+
+     function f (a, b, c)
+       if (nargin > 2 && isstr (c))
+         ...
+
+instead of having to use two `if' statements to avoid attempting to
+evaluate an argument that doesn't exist.  For example, without the
+short-circuit feature, it would be necessary to write
+
+     function f (a, b, c)
+       if (nargin > 2)
+         if (isstr (c))
+           ...
+
+   Writing
+
+     function f (a, b, c)
+       if (nargin > 2 & isstr (c))
+         ...
+
+would result in an error if `f' were called with one or two arguments
+because Octave would be forced to try to evaluate both of the operands
+for the operator `&'.
+

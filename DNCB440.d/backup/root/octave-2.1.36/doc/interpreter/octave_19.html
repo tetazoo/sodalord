@@ -1,0 +1,1311 @@
+<HTML>
+<HEAD>
+<!-- This HTML file has been created by texi2html 1.51
+     from octave.texi on 1 May 2002 -->
+
+<TITLE>GNU Octave - Arithmetic</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_18.html">previous</A>, <A HREF="octave_20.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC145" HREF="octave_toc.html#TOC145">Arithmetic</A></H1>
+
+<P>
+Unless otherwise noted, all of the functions described in this chapter
+will work for real and complex scalar or matrix arguments.
+
+</P>
+
+
+
+<H2><A NAME="SEC146" HREF="octave_toc.html#TOC146">Utility Functions</A></H2>
+
+<P>
+The following functions are available for working with complex numbers.
+Each expects a single argument.  They are called <STRONG>mapping functions</STRONG>
+because when given a matrix argument, they apply the given function to
+each element of the matrix.
+
+</P>
+<P>
+@anchor{doc-ceil}
+<DL>
+<DT><U>Mapping Function:</U>  <B>ceil</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX661"></A>
+Return the smallest integer not less than <VAR>x</VAR>.  If <VAR>x</VAR> is
+complex, return <CODE>ceil (real (<VAR>x</VAR>)) + ceil (imag (<VAR>x</VAR>)) * I</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-exp}
+<DL>
+<DT><U>Mapping Function:</U>  <B>exp</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX662"></A>
+Compute the exponential of <VAR>x</VAR>.  To compute the matrix exponential,
+see section <A HREF="octave_20.html#SEC153">Linear Algebra</A>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-fix}
+<DL>
+<DT><U>Mapping Function:</U>  <B>fix</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX663"></A>
+Truncate <VAR>x</VAR> toward zero.  If <VAR>x</VAR> is complex, return
+<CODE>fix (real (<VAR>x</VAR>)) + fix (imag (<VAR>x</VAR>)) * I</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-floor}
+<DL>
+<DT><U>Mapping Function:</U>  <B>floor</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX664"></A>
+Return the largest integer not greater than <VAR>x</VAR>.  If <VAR>x</VAR> is
+complex, return <CODE>floor (real (<VAR>x</VAR>)) + floor (imag (<VAR>x</VAR>)) * I</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-gcd}
+<DL>
+<DT><U>Mapping Function:</U>  <B>gcd</B> <I>(<VAR>x</VAR>, <CODE>...</CODE>)</I>
+<DD><A NAME="IDX665"></A>
+Compute the greatest common divisor of the elements of <VAR>x</VAR>, or the
+list of all the arguments.  For example,
+
+</P>
+
+<PRE>
+gcd (a1, ..., ak)
+</PRE>
+
+<P>
+is the same as
+
+</P>
+
+<PRE>
+gcd ([a1, ..., ak])
+</PRE>
+
+<P>
+An optional second return value, <VAR>v</VAR>
+contains an integer vector such that
+
+</P>
+
+<PRE>
+g = v(1) * a(k) + ... + v(k) * a(k)
+</PRE>
+
+</DL>
+<P>
+@seealso{lcm, min, max, ceil, and floor}
+
+</P>
+
+<P>
+@anchor{doc-lcm}
+<DL>
+<DT><U>Mapping Function:</U>  <B>lcm</B> <I>(<VAR>x</VAR>, <CODE>...</CODE>)</I>
+<DD><A NAME="IDX666"></A>
+Compute the least common multiple of the elements elements of <VAR>x</VAR>, or
+the list of all the arguments.  For example,
+
+</P>
+
+<PRE>
+lcm (a1, ..., ak)
+</PRE>
+
+<P>
+is the same as
+
+</P>
+
+<PRE>
+lcm ([a1, ..., ak]).
+</PRE>
+
+</DL>
+<P>
+@seealso{gcd, min, max, ceil, and floor}
+
+</P>
+
+<P>
+@anchor{doc-log}
+<DL>
+<DT><U>Mapping Function:</U>  <B>log</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX667"></A>
+Compute the natural logarithm for each element of <VAR>x</VAR>.  To compute the
+matrix logarithm, see section <A HREF="octave_20.html#SEC153">Linear Algebra</A>.
+</DL>
+@seealso{log2, log10, logspace, and exp}
+
+</P>
+
+<P>
+@anchor{doc-log10}
+<DL>
+<DT><U>Mapping Function:</U>  <B>log10</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX668"></A>
+Compute the base-10 logarithm for each element of <VAR>x</VAR>.
+</DL>
+@seealso{log, log2, logspace, and exp}
+
+</P>
+
+<P>
+@anchor{doc-log2}
+<DL>
+<DT><U>Mapping Function:</U>  <B>log2</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX669"></A>
+<DT><U>Mapping Function:</U> [<VAR>f</VAR>, <VAR>e</VAR>] <B>log2</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX670"></A>
+Compute the base-2 logarithm of <VAR>x</VAR>.  With two outputs, returns
+<VAR>f</VAR> and <VAR>e</VAR> such that
+ 1/2 &#60;= abs(f) &#60; 1 and x = f * 2^e.
+</DL>
+@seealso{log, log10, logspace, and exp}
+
+</P>
+
+<P>
+@anchor{doc-max}
+For a vector argument, return the maximum value.  For a matrix
+argument, return the maximum value from each column, as a row
+vector.  Thus,
+
+</P>
+
+<PRE>
+max (max (<VAR>x</VAR>))
+</PRE>
+
+<P>
+returns the largest element of <VAR>x</VAR>.
+
+</P>
+<P>
+For complex arguments, the magnitude of the elements are used for
+comparison.
+
+</P>
+<P>
+If called with two output arguments, also returns the index of the
+maximum value(s). Thus,
+
+<PRE>
+
+[x, ix] = max([1, 3, 5, 2, 5])
+</PRE>
+
+<P>
+returns <VAR>x</VAR> = 5 and <VAR>ix</VAR> = 3.
+
+</P>
+
+<P>
+@anchor{doc-min}
+For a vector argument, return the minimum value.  For a matrix
+argument, return the minimum value from each column, as a row
+vector.  Thus,
+
+</P>
+
+<PRE>
+min (min (<VAR>x</VAR>))
+</PRE>
+
+<P>
+returns the smallest element of <VAR>x</VAR>.
+
+</P>
+<P>
+For complex arguments, the magnitude of the elements are used for
+comparison.
+
+</P>
+<P>
+If called with two output arguments, also returns the index of the
+minimum value(s). Thus,
+
+<PRE>
+
+[x, ix] = min ([1, 3, 0, 2, 5])
+</PRE>
+
+<P>
+returns <VAR>x</VAR> = 0 and <VAR>ix</VAR> = 3.
+
+</P>
+
+<P>
+@anchor{doc-nextpow2}
+<DL>
+<DT><U>Function File:</U>  <B>nextpow2</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX671"></A>
+If <VAR>x</VAR> is a scalar, returns the first integer <VAR>n</VAR> such that
+ 2^n &#62;= abs (x).
+
+</P>
+<P>
+If <VAR>x</VAR> is a vector, return <CODE>nextpow2 (length (<VAR>x</VAR>))</CODE>.
+</DL>
+@seealso{pow2}
+
+</P>
+
+<P>
+@anchor{doc-pow2}
+<DL>
+<DT><U>Mapping Function:</U>  <B>pow2</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX672"></A>
+<DT><U>Mapping Function:</U>  <B>pow2</B> <I>(<VAR>f</VAR>, <VAR>e</VAR>)</I>
+<DD><A NAME="IDX673"></A>
+With one argument, computes
+ 2 .^ x
+for each element of <VAR>x</VAR>.  With two arguments, returns
+ f .* (2 .^ e).
+</DL>
+@seealso{nextpow2}
+
+</P>
+
+<P>
+@anchor{doc-rem}
+<DL>
+<DT><U>Mapping Function:</U>  <B>rem</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX674"></A>
+Return the remainder of <CODE><VAR>x</VAR> / <VAR>y</VAR></CODE>, computed using the
+expression
+
+</P>
+
+<PRE>
+x - y .* fix (x ./ y)
+</PRE>
+
+<P>
+An error message is printed if the dimensions of the arguments do not
+agree, or if either of the arguments is complex.
+</DL>
+@seealso{round}
+
+</P>
+
+<P>
+@anchor{doc-round}
+<DL>
+<DT><U>Mapping Function:</U>  <B>round</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX675"></A>
+Return the integer nearest to <VAR>x</VAR>.  If <VAR>x</VAR> is complex, return
+<CODE>round (real (<VAR>x</VAR>)) + round (imag (<VAR>x</VAR>)) * I</CODE>.
+</DL>
+@seealso{rem}
+
+</P>
+
+<P>
+@anchor{doc-sign}
+<DL>
+<DT><U>Mapping Function:</U>  <B>sign</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX676"></A>
+Compute the <STRONG>signum</STRONG> function, which is defined as
+
+</P>
+
+<PRE>
+           -1, x &#60; 0;
+sign (x) =  0, x = 0;
+            1, x &#62; 0.
+</PRE>
+
+<P>
+For complex arguments, <CODE>sign</CODE> returns <CODE>x ./ abs (<VAR>x</VAR>)</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-sqrt}
+<DL>
+<DT><U>Mapping Function:</U>  <B>sqrt</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX677"></A>
+Compute the square root of <VAR>x</VAR>.  If <VAR>x</VAR> is negative, a complex
+result is returned.  To compute the matrix square root, see
+section <A HREF="octave_20.html#SEC153">Linear Algebra</A>.
+</DL>
+
+</P>
+
+
+
+<H2><A NAME="SEC147" HREF="octave_toc.html#TOC147">Complex Arithmetic</A></H2>
+
+<P>
+The following functions are available for working with complex
+numbers.  Each expects a single argument.  Given a matrix they work on
+an element by element basis.  In the descriptions of the following
+functions,
+<VAR>z</VAR> is the complex number <VAR>x</VAR> + <VAR>i</VAR><VAR>y</VAR>, where <VAR>i</VAR> is
+defined as <CODE>sqrt (-1)</CODE>.
+
+</P>
+<P>
+@anchor{doc-abs}
+<DL>
+<DT><U>Mapping Function:</U>  <B>abs</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX678"></A>
+Compute the magnitude of <VAR>z</VAR>, defined as
+|<VAR>z</VAR>| = <CODE>sqrt (x^2 + y^2)</CODE>.
+
+</P>
+<P>
+For example,
+
+</P>
+
+<PRE>
+abs (3 + 4i)
+     => 5
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-arg}
+<DL>
+<DT><U>Mapping Function:</U>  <B>arg</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX679"></A>
+<DT><U>Mapping Function:</U>  <B>angle</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX680"></A>
+Compute the argument of <VAR>z</VAR>, defined as
+<VAR>theta</VAR> = <CODE>atan (<VAR>y</VAR>/<VAR>x</VAR>)</CODE>.
+
+</P>
+<P>
+in radians. 
+
+</P>
+<P>
+For example,
+
+</P>
+
+<PRE>
+arg (3 + 4i)
+     => 0.92730
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-conj}
+<DL>
+<DT><U>Mapping Function:</U>  <B>conj</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX681"></A>
+Return the complex conjugate of <VAR>z</VAR>, defined as
+<CODE>conj (<VAR>z</VAR>)</CODE> = <VAR>x</VAR> - <VAR>i</VAR><VAR>y</VAR>.
+</DL>
+@seealso{real and imag}
+
+</P>
+
+<P>
+@anchor{doc-imag}
+<DL>
+<DT><U>Mapping Function:</U>  <B>imag</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX682"></A>
+Return the imaginary part of <VAR>z</VAR> as a real number.
+</DL>
+
+</P>
+<P>
+@seealso{real and conj}
+
+</P>
+
+<P>
+@anchor{doc-real}
+<DL>
+<DT><U>Mapping Function:</U>  <B>real</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX683"></A>
+Return the real part of <VAR>z</VAR>.
+</DL>
+@seealso{imag and conj}
+
+</P>
+
+
+
+<H2><A NAME="SEC148" HREF="octave_toc.html#TOC148">Trigonometry</A></H2>
+
+<P>
+Octave provides the following trigonometric functions.  Angles are
+specified in radians.  To convert from degrees to radians multipy by
+<CODE>pi/180</CODE>
+ (e.g. <CODE>sin (30 * pi/180)</CODE> returns the sine of 30 degrees).
+
+</P>
+<P>
+@anchor{doc-sin}
+<DL>
+<DT><U>Mapping Function:</U>  <B>sin</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX684"></A>
+Compute the sin of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-cos}
+<DL>
+<DT><U>Mapping Function:</U>  <B>cos</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX685"></A>
+Compute the cosine of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-tan}
+<DL>
+<DT><U>Mapping Function:</U>  <B>tan</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX686"></A>
+Compute tanget of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-sec}
+<DL>
+<DT><U>Mapping Function:</U>  <B>sec</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX687"></A>
+Compute the secant of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-csc}
+<DL>
+<DT><U>Mapping Function:</U>  <B>csc</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX688"></A>
+Compute the cosecant of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-cot}
+<DL>
+<DT><U>Mapping Function:</U>  <B>cot</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX689"></A>
+Compute the cotangent of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-asin}
+<DL>
+<DT><U>Mapping Function:</U>  <B>asin</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX690"></A>
+Compute the inverse sine of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-acos}
+<DL>
+<DT><U>Mapping Function:</U>  <B>acos</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX691"></A>
+Compute the inverse cosine of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-atan}
+<DL>
+<DT><U>Mapping Function:</U>  <B>atan</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX692"></A>
+Compute the inverse tangent of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-asec}
+<DL>
+<DT><U>Mapping Function:</U>  <B>asec</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX693"></A>
+Compute the inverse secant of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-acsc}
+<DL>
+<DT><U>Mapping Function:</U>  <B>acsc</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX694"></A>
+Compute the inverse cosecant of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-acot}
+<DL>
+<DT><U>Mapping Function:</U>  <B>acot</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX695"></A>
+Compute the inverse cotangent of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-sinh}
+<DL>
+<DT><U>Mapping Function:</U>  <B>sinh</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX696"></A>
+Compute the inverse hyperbolic sin of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-cosh}
+<DL>
+<DT><U>Mapping Function:</U>  <B>cosh</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX697"></A>
+Compute the hyperbolic cosine of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-tanh}
+<DL>
+<DT><U>Mapping Function:</U>  <B>tanh</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX698"></A>
+Compute hyperbolic tangent of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-sech}
+<DL>
+<DT><U>Mapping Function:</U>  <B>sech</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX699"></A>
+Compute the hyperbolic secant of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-csch}
+<DL>
+<DT><U>Mapping Function:</U>  <B>csch</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX700"></A>
+Compute the hyperbolic cosecant of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-coth}
+<DL>
+<DT><U>Mapping Function:</U>  <B>coth</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX701"></A>
+Compute the hyperbolic cotangent of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-asinh}
+<DL>
+<DT><U>Mapping Function:</U>  <B>asinh</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX702"></A>
+Ompute the inverse hyperbolic sine of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-acosh}
+<DL>
+<DT><U>Mapping Function:</U>  <B>acosh</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX703"></A>
+Compute the inverse hyperbolic cosine of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-atanh}
+<DL>
+<DT><U>Mapping Function:</U>  <B>atanh</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX704"></A>
+Compute the inverse hyperbolic tanget of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-asech}
+<DL>
+<DT><U>Mapping Function:</U>  <B>asech</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX705"></A>
+Compute the inverse hyperbolic secant of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-acsch}
+<DL>
+<DT><U>Mapping Function:</U>  <B>acsch</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX706"></A>
+Compute the inverse hyperbolic cosecant of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+<P>
+@anchor{doc-acoth}
+<DL>
+<DT><U>Mapping Function:</U> acoth <B>(<VAR>x</VAR>)</B>
+<DD><A NAME="IDX707"></A>
+Compute the inverse hyperbolic cotangent of each element of <VAR>x</VAR>.
+</DL>
+
+</P>
+
+<P>
+Each of these functions expect a single argument.  For matrix arguments,
+they work on an element by element basis.  For example,
+
+</P>
+
+<PRE>
+sin ([1, 2; 3, 4])
+     =>  0.84147   0.90930
+         0.14112  -0.75680
+</PRE>
+
+<P>
+@anchor{doc-atan2}
+<DL>
+<DT><U>Mapping Function:</U>  <B>atan2</B> <I>(<VAR>y</VAR>, <VAR>x</VAR>)</I>
+<DD><A NAME="IDX708"></A>
+Compute atan (<VAR>y</VAR> / <VAR>x</VAR>) for corresponding elements of <VAR>y</VAR>
+and <VAR>x</VAR>.  The result is in range -pi to pi.
+</DL>
+
+</P>
+
+
+
+<H2><A NAME="SEC149" HREF="octave_toc.html#TOC149">Sums and Products</A></H2>
+
+<P>
+@anchor{doc-sum}
+<DL>
+<DT><U>Built-in Function:</U>  <B>sum</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX709"></A>
+Sum of elements.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-prod}
+<DL>
+<DT><U>Built-in Function:</U>  <B>prod</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX710"></A>
+Products.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cumsum}
+<DL>
+<DT><U>Built-in Function:</U>  <B>cumsum</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX711"></A>
+Cumulative sums.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-cumprod}
+<DL>
+<DT><U>Built-in Function:</U>  <B>cumprod</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX712"></A>
+Cumulative products.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-sumsq}
+<DL>
+<DT><U>Built-in Function:</U>  <B>sumsq</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX713"></A>
+Sum of squares of elements.
+
+</P>
+<P>
+This function is equivalent to computing
+
+</P>
+<P>
+  sum (X .* conj (X))
+
+</P>
+<P>
+but it uses less memory and avoids calling conj if X is real.
+</DL>
+
+</P>
+
+
+
+<H2><A NAME="SEC150" HREF="octave_toc.html#TOC150">Special Functions</A></H2>
+
+<P>
+@anchor{doc-besselj}
+<DL>
+<DT><U>Loadable Function:</U> [<VAR>j</VAR>, <VAR>ierr</VAR>] = <B>besselj</B> <I>(<VAR>alpha</VAR>, <VAR>x</VAR>, <VAR>opt</VAR>)</I>
+<DD><A NAME="IDX714"></A>
+<DT><U>Loadable Function:</U> [<VAR>y</VAR>, <VAR>ierr</VAR>] = <B>bessely</B> <I>(<VAR>alpha</VAR>, <VAR>x</VAR>, <VAR>opt</VAR>)</I>
+<DD><A NAME="IDX715"></A>
+<DT><U>Loadable Function:</U> [<VAR>i</VAR>, <VAR>ierr</VAR>] = <B>besseli</B> <I>(<VAR>alpha</VAR>, <VAR>x</VAR>, <VAR>opt</VAR>)</I>
+<DD><A NAME="IDX716"></A>
+<DT><U>Loadable Function:</U> [<VAR>k</VAR>, <VAR>ierr</VAR>] = <B>besselk</B> <I>(<VAR>alpha</VAR>, <VAR>x</VAR>, <VAR>opt</VAR>)</I>
+<DD><A NAME="IDX717"></A>
+<DT><U>Loadable Function:</U> [<VAR>h</VAR>, <VAR>ierr</VAR>] = <B>besselh</B> <I>(<VAR>alpha</VAR>, <VAR>k</VAR>, <VAR>x</VAR>, <VAR>opt</VAR>)</I>
+<DD><A NAME="IDX718"></A>
+Compute Bessel or Hankel functions of various kinds:
+
+</P>
+<DL COMPACT>
+
+<DT><CODE>besselj</CODE>
+<DD>
+Bessel functions of the first kind.
+<DT><CODE>bessely</CODE>
+<DD>
+Bessel functions of the second kind.
+<DT><CODE>besseli</CODE>
+<DD>
+Modified Bessel functions of the first kind.
+<DT><CODE>besselk</CODE>
+<DD>
+Modified Bessel functions of the second kind.
+<DT><CODE>besselh</CODE>
+<DD>
+Compute Hankel functions of the first (<VAR>k</VAR> = 1) or second (<VAR>k</VAR>
+ = 2) kind.
+</DL>
+
+<P>
+If the argument <VAR>opt</VAR> is supplied, the result is scaled by the
+<CODE>exp (-I*<VAR>x</VAR>)</CODE> for <VAR>k</VAR> = 1 or <CODE>exp (I*<VAR>x</VAR>)</CODE> for
+ <VAR>k</VAR> = 2.
+
+</P>
+<P>
+If <VAR>alpha</VAR> is a scalar, the result is the same size as <VAR>x</VAR>.
+If <VAR>x</VAR> is a scalar, the result is the same size as <VAR>alpha</VAR>.
+If <VAR>alpha</VAR> is a row vector and <VAR>x</VAR> is a column vector, the
+result is a matrix with <CODE>length (<VAR>x</VAR>)</CODE> rows and
+<CODE>length (<VAR>alpha</VAR>)</CODE> columns.  Otherwise, <VAR>alpha</VAR> and
+<VAR>x</VAR> must conform and the result will be the same size.
+
+</P>
+<P>
+The value of <VAR>alpha</VAR> must be real.  The value of <VAR>x</VAR> may be
+complex.
+
+</P>
+<P>
+If requested, <VAR>ierr</VAR> contains the following status information
+and is the same size as the result.
+
+</P>
+
+<OL>
+<LI>
+
+Normal return.
+<LI>
+
+Input error, return <CODE>NaN</CODE>.
+<LI>
+
+Overflow, return <CODE>Inf</CODE>.
+<LI>
+
+Loss of significance by argument reduction results in less than
+half of machine accuracy.
+<LI>
+
+Complete loss of significance by argument reduction, return <CODE>NaN</CODE>.
+<LI>
+
+Error--no computation, algorithm termination condition not met,
+return <CODE>NaN</CODE>.
+</OL>
+
+</DL>
+
+<P>
+@anchor{doc-airy}
+<DL>
+<DT><U>Loadable Function:</U> [<VAR>a</VAR>, <VAR>ierr</VAR>] = <B>airy</B> <I>(<VAR>k</VAR>, <VAR>z</VAR>, <VAR>opt</VAR>)</I>
+<DD><A NAME="IDX719"></A>
+Compute Airy functions of the first and second kind, and their
+derivatives.
+
+</P>
+
+<PRE>
+  K   Function   Scale factor (if a third argument is supplied)
+ --  --------   ----------------------------------------------
+  0   Ai (Z)     exp ((2/3) * Z * sqrt (Z))
+  1   dAi(Z)/dZ  exp ((2/3) * Z * sqrt (Z))
+  2   Bi (Z)     exp (-abs (real ((2/3) * Z *sqrt (Z))))
+  3   dBi(Z)/dZ  exp (-abs (real ((2/3) * Z *sqrt (Z))))
+</PRE>
+
+<P>
+The function call <CODE>airy (<VAR>z</VAR>)</CODE> is equivalent to
+<CODE>airy (0, <VAR>z</VAR>)</CODE>.
+
+</P>
+<P>
+The result is the same size as <VAR>z</VAR>.
+
+</P>
+<P>
+If requested, <VAR>ierr</VAR> contains the following status information and
+is the same size as the result.
+
+</P>
+
+<OL>
+<LI>
+
+Normal return.
+<LI>
+
+Input error, return <CODE>NaN</CODE>.
+<LI>
+
+Overflow, return <CODE>Inf</CODE>.
+<LI>
+
+Loss of significance by argument reduction results in less than half
+ of machine accuracy.
+<LI>
+
+Complete loss of significance by argument reduction, return <CODE>NaN</CODE>.
+<LI>
+
+Error--no computation, algorithm termination condition not met,
+return <CODE>NaN</CODE>
+</OL>
+
+</DL>
+
+<P>
+@anchor{doc-beta}
+<DL>
+<DT><U>Mapping Function:</U>  <B>beta</B> <I>(<VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX720"></A>
+Return the Beta function,
+
+</P>
+
+<PRE>
+beta (a, b) = gamma (a) * gamma (b) / gamma (a + b).
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-betainc}
+<DL>
+<DT><U>Mapping Function:</U>  <B>betainc</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX721"></A>
+Return the incomplete Beta function,
+
+</P>
+
+<PRE>
+                                    x
+                                   /
+betai (a, b, x) = beta (a, b)^(-1) | t^(a-1) (1-t)^(b-1) dt.
+                                   /
+                                t=0
+</PRE>
+
+<P>
+If x has more than one component, both <VAR>a</VAR> and <VAR>b</VAR> must be
+scalars.  If <VAR>x</VAR> is a scalar, <VAR>a</VAR> and <VAR>b</VAR> must be of
+compatible dimensions.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-bincoeff}
+<DL>
+<DT><U>Mapping Function:</U>  <B>bincoeff</B> <I>(<VAR>n</VAR>, <VAR>k</VAR>)</I>
+<DD><A NAME="IDX722"></A>
+Return the binomial coefficient of <VAR>n</VAR> and <VAR>k</VAR>, defined as
+
+</P>
+
+<PRE>
+ /   \
+ | n |    n (n-1) (n-2) ... (n-k+1)
+ |   |  = -------------------------
+ | k |               k!
+ \   /
+</PRE>
+
+<P>
+For example,
+
+</P>
+
+<PRE>
+bincoeff (5, 2)
+=> 10
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-erf}
+<DL>
+<DT><U>Mapping Function:</U>  <B>erf</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX723"></A>
+Computes the error function,
+
+</P>
+
+<PRE>
+                         z
+                        /
+erf (z) = (2/sqrt (pi)) | e^(-t^2) dt
+                        /
+                     t=0
+</PRE>
+
+</DL>
+<P>
+@seealso{erfc and erfinv}
+
+</P>
+
+<P>
+@anchor{doc-erfc}
+<DL>
+<DT><U>Mapping Function:</U>  <B>erfc</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX724"></A>
+Computes the complementary error function,
+<CODE>1 - erf (<VAR>z</VAR>)</CODE>.
+</DL>
+
+</P>
+<P>
+@seealso{erf and erfinv}
+
+</P>
+
+<P>
+@anchor{doc-erfinv}
+<DL>
+<DT><U>Mapping Function:</U>  <B>erfinv</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX725"></A>
+Computes the inverse of the error function.
+</DL>
+@seealso{erf and erfc}
+
+</P>
+
+<P>
+@anchor{doc-gamma}
+<DL>
+<DT><U>Mapping Function:</U>  <B>gamma</B> <I>(<VAR>z</VAR>)</I>
+<DD><A NAME="IDX726"></A>
+Computes the Gamma function,
+
+</P>
+
+<PRE>
+            infinity
+            /
+gamma (z) = | t^(z-1) exp (-t) dt.
+            /
+         t=0
+</PRE>
+
+</DL>
+
+<P>
+@seealso{gammai and lgamma}
+
+</P>
+
+<P>
+@anchor{doc-gammainc}
+<DL>
+<DT><U>Mapping Function:</U>  <B>gammainc</B> <I>(<VAR>x</VAR>, <VAR>a</VAR>)</I>
+<DD><A NAME="IDX727"></A>
+Computes the incomplete gamma function,
+
+</P>
+
+<PRE>
+                                x
+                      1        /
+gammainc (x, a) = ---------    | exp (-t) t^(a-1) dt
+                  gamma (a)    /
+                            t=0
+</PRE>
+
+<P>
+If <VAR>a</VAR> is scalar, then <CODE>gammainc (<VAR>x</VAR>, <VAR>a</VAR>)</CODE> is returned
+for each element of <VAR>x</VAR> and vice versa.
+
+</P>
+<P>
+If neither <VAR>x</VAR> nor <VAR>a</VAR> is scalar, the sizes of <VAR>x</VAR> and
+<VAR>a</VAR> must agree, and <VAR>gammainc</VAR> is applied element-by-element.
+</DL>
+@seealso{gamma and lgamma}
+
+</P>
+
+<P>
+@anchor{doc-lgamma}
+<DL>
+<DT><U>Mapping Function:</U>  <B>lgamma</B> <I>(<VAR>a</VAR>, <VAR>x</VAR>)</I>
+<DD><A NAME="IDX728"></A>
+<DT><U>Mapping Function:</U>  <B>gammaln</B> <I>(<VAR>a</VAR>, <VAR>x</VAR>)</I>
+<DD><A NAME="IDX729"></A>
+Return the natural logarithm of the gamma function.
+</DL>
+@seealso{gamma and gammai}
+
+</P>
+
+<P>
+@anchor{doc-cross}
+<DL>
+<DT><U>Function File:</U>  <B>cross</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX730"></A>
+Computes the vector cross product of the two 3-dimensional vectors
+<VAR>x</VAR> and <VAR>y</VAR>.
+
+</P>
+<P>
+A row vector is returned if <VAR>x</VAR> and <VAR>y</VAR> are both row vectors;
+otherwise, a column vector is returned.
+
+</P>
+
+<PRE>
+cross ([1,1,0], [0,1,1])
+=> [ 1; -1; 1 ]
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-commutation_matrix}
+<DL>
+<DT><U>Function File:</U>  <B>commutation_matrix</B> <I>(<VAR>m</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX731"></A>
+Return the commutation matrix
+ K(m,n)
+ which is the unique
+<VAR>m</VAR>*<VAR>n</VAR> by <VAR>m</VAR>*<VAR>n</VAR>
+ matrix such that
+@math{K(m,n) * vec(A) = vec(A')}
+ for all
+@math{m} by @math{n}
+ matrices
+@math{A}.
+
+</P>
+<P>
+If only one argument <VAR>m</VAR> is given,
+@math{K(m,m)}
+ is returned.
+
+</P>
+<P>
+See Magnus and Neudecker (1988), Matrix differential calculus with
+applications in statistics and econometrics.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-duplication_matrix}
+<DL>
+<DT><U>Function File:</U>  <B>duplication_matrix</B> <I>(<VAR>n</VAR>)</I>
+<DD><A NAME="IDX732"></A>
+Return the duplication matrix
+@math{Dn}
+ which is the unique
+@math{n^2} by @math{n*(n+1)/2}
+ matrix such that
+@math{Dn vech (A) = vec (A)}
+ for all symmetric
+@math{n} by @math{n}
+ matrices
+@math{A}.
+
+</P>
+<P>
+See Magnus and Neudecker (1988), Matrix differential calculus with
+applications in statistics and econometrics.
+</DL>
+
+</P>
+
+
+
+<H2><A NAME="SEC151" HREF="octave_toc.html#TOC151">Coordinate Transformations</A></H2>
+
+
+
+<H2><A NAME="SEC152" HREF="octave_toc.html#TOC152">Mathematical Constants</A></H2>
+
+<P>
+@anchor{doc-I}
+<DL>
+<DT><U>Built-in Variable:</U> <B>I</B>
+<DD><A NAME="IDX733"></A>
+<DT><U>Built-in Variable:</U> <B>J</B>
+<DD><A NAME="IDX734"></A>
+<DT><U>Built-in Variable:</U> <B>i</B>
+<DD><A NAME="IDX735"></A>
+<DT><U>Built-in Variable:</U> <B>j</B>
+<DD><A NAME="IDX736"></A>
+A pure imaginary number, defined as
+  <CODE>sqrt (-1)</CODE>.
+The <CODE>I</CODE> and <CODE>J</CODE> forms are true constants, and cannot be
+modified.  The <CODE>i</CODE> and <CODE>j</CODE> forms are like ordinary variables,
+and may be used for other purposes.  However, unlike other variables,
+they once again assume their special predefined values if they are
+cleared See section <A HREF="octave_10.html#SEC67">Status of Variables</A>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-Inf}
+<DL>
+<DT><U>Built-in Variable:</U> <B>Inf</B>
+<DD><A NAME="IDX737"></A>
+<DT><U>Built-in Variable:</U> <B>inf</B>
+<DD><A NAME="IDX738"></A>
+Infinity.  This is the result of an operation like 1/0, or an operation
+that results in a floating point overflow.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-NaN}
+<DL>
+<DT><U>Built-in Variable:</U> <B>NaN</B>
+<DD><A NAME="IDX739"></A>
+<DT><U>Built-in Variable:</U> <B>nan</B>
+<DD><A NAME="IDX740"></A>
+Not a number.  This is the result of an operation like
+0/0, or <SAMP>`Inf - Inf'</SAMP>,
+or any operation with a NaN.
+
+</P>
+<P>
+Note that NaN always compares not equal to NaN.  This behavior is
+specified by the IEEE standard for floating point arithmetic.  To
+find NaN values, you must use the <CODE>isnan</CODE> function.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-pi}
+<DL>
+<DT><U>Built-in Variable:</U> <B>pi</B>
+<DD><A NAME="IDX741"></A>
+The ratio of the circumference of a circle to its diameter.
+Internally, <CODE>pi</CODE> is computed as <SAMP>`4.0 * atan (1.0)'</SAMP>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-e}
+<DL>
+<DT><U>Built-in Variable:</U> <B>e</B>
+<DD><A NAME="IDX742"></A>
+The base of natural logarithms.  The constant
+ <VAR>e</VAR>
+ satisfies the equation
+ <CODE>log</CODE> (<VAR>e</VAR>) = 1.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-eps}
+<DL>
+<DT><U>Built-in Variable:</U> <B>eps</B>
+<DD><A NAME="IDX743"></A>
+The machine precision.  More precisely, <CODE>eps</CODE> is the largest
+relative spacing between any two adjacent numbers in the machine's
+floating point system.  This number is obviously system-dependent.  On
+machines that support 64 bit IEEE floating point arithmetic, <CODE>eps</CODE>
+is approximately
+ 2.2204e-16.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-realmax}
+<DL>
+<DT><U>Built-in Variable:</U> <B>realmax</B>
+<DD><A NAME="IDX744"></A>
+The largest floating point number that is representable.  The actual
+value is system-dependent.  On machines that support 64 bit IEEE
+floating point arithmetic, <CODE>realmax</CODE> is approximately
+ 1.7977e+308
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-realmin}
+<DL>
+<DT><U>Built-in Variable:</U> <B>realmin</B>
+<DD><A NAME="IDX745"></A>
+The smallest floating point number that is representable.  The actual
+value is system-dependent.  On machines that support 64 bit IEEE
+floating point arithmetic, <CODE>realmin</CODE> is approximately
+ 2.2251e-308
+</DL>
+
+</P>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_18.html">previous</A>, <A HREF="octave_20.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

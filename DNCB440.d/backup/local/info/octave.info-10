@@ -1,0 +1,1646 @@
+This is octave.info, produced by makeinfo version 4.0f from octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: numerical,  Next: sysprop,  Prev: blockdiag,  Up: Control Theory
+
+Numerical Functions
+===================
+
+ - Function File:  are (A, B, C, OPT)
+     Solve the algebraic Riccati equation
+          a' * x + x * a - x * b * x + c = 0
+
+     *Inputs*
+
+     for identically dimensioned square matrices
+    A
+          NxN matrix.
+
+    B
+          NxN matrix or NxM matrix; in the latter case B is replaced by
+          b:=b*b'.
+
+    C
+          NxN matrix or PxM matrix; in the latter case C is replaced by
+          c:=c'*c.
+
+    OPT
+          (optional argument; default = `"B"'): String option passed to
+          `balance' prior to ordered Schur decomposition.
+
+     *Outputs* X: solution of the ARE.
+
+     *Method* Laub's Schur method (IEEE Transactions on Automatic
+     Control, 1979) is applied to the appropriate Hamiltonian matrix.
+
+
+ - Function File:  dare (A, B, C, R, OPT)
+     Return the solution, X of the discrete-time algebraic Riccati
+     equation
+          a' x a - x + a' x b (r + b' x b)^(-1) b' x a + c = 0
+
+     *Inputs*
+    A
+          N by N.
+
+    B
+          N by M.
+
+    C
+          N by N, symmetric positive semidefinite, or P by N.  In the
+          latter case c:=c'*c is used.
+
+    R
+          M by M, symmetric positive definite (invertible).
+
+    OPT
+          (optional argument; default = `"B"'): String option passed to
+          `balance' prior to ordered QZ decomposition.
+
+     *Outputs* X solution of DARE.
+
+     *Method* Generalized eigenvalue approach (Van Dooren; SIAM J.
+     Sci. Stat. Comput., Vol 2) applied  to the appropriate symplectic
+     pencil.
+
+     See also: Ran and Rodman, "Stable Hermitian Solutions of Discrete
+     Algebraic Riccati Equations," Mathematics of Control, Signals and
+     Systems, Vol 5, no 2 (1992)  pp 165-194.
+
+
+ - Function File: [TVALS, PLIST] = dre (SYS, Q, R, QF, T0, TF, PTOL,
+          MAXITS);
+     Solve the differential Riccati equation
+            -d P/dt = A'P + P A - P B inv(R) B' P + Q
+            P(tf) = Qf
+     for the LTI system sys.  Solution of standard LTI state feedback
+     optimization
+            min \int_{t_0}^{t_f} x' Q x + u' R u dt + x(t_f)' Qf x(t_f)
+     optimal input is
+            u = - inv(R) B' P(t) x
+     *Inputs*
+    SYS
+          continuous time system data structure
+
+    Q
+          state integral penalty
+
+    R
+          input integral penalty
+
+    QF
+          state terminal penalty
+
+    T0
+    TF
+          limits on the integral
+
+    PTOL
+          tolerance (used to select time samples; see below); default =
+          0.1
+
+    MAXITS
+          number of refinement iterations (default=10) *Outputs*
+    TVALS
+          time values at which P(T) is computed
+
+    PLIST
+          list values of P(T); nth (PLIST, II) is P(TVALS(II)).
+
+    TVALS
+               is selected so that || nth(Plist,ii) - nth(Plist,ii-1) || < Ptol
+               for ii=2:length(tvals)
+
+ - Function File:  dgram (A, B)
+     Return controllability grammian of discrete time system
+            x(k+1) = a x(k) + b u(k)
+
+     *Inputs*
+    A
+          N by N matrix
+
+    B
+          N by M matrix
+
+     *Outputs* M (N by N) satisfies
+           a m a' - m + b*b' = 0
+
+ - Function File:  dlyap (A, B)
+     Solve the discrete-time Lyapunov equation
+
+     *Inputs*
+    A
+          N by N matrix
+
+    B
+          Matrix: N by N, N by M, or P by N.
+
+     *Outputs* X: matrix satisfying appropriate discrete time Lyapunov
+     equation.  Options:
+        * B is square: solve `a x a' - x + b = 0'
+
+        * B is not square: X satisfies either
+               a x a' - x + b b' = 0
+
+          or
+               a' x a - x + b' b = 0,
+
+          whichever is appropriate.
+
+     *Method* Uses Schur decomposition method as in Kitagawa, `An
+     Algorithm for Solving the Matrix Equation X = F X F' + S',
+     International Journal of Control, Volume 25, Number 5, pages
+     745-753 (1977).
+
+     Column-by-column solution method as suggested in Hammarling,
+     `Numerical Solution of the Stable, Non-Negative Definite Lyapunov
+     Equation', IMA Journal of Numerical Analysis, Volume 2, pages
+     303-323 (1982).
+
+ - Function File:  gram (A, B)
+     Return controllability grammian M of the continuous time system
+     dx/dt = a x + b u.
+
+     M satisfies a m + m a' + b b' = 0.
+
+ - Function File:  lyap (A, B, C)
+ - Function File:  lyap (A, B)
+     Solve the Lyapunov (or Sylvester) equation via the Bartels-Stewart
+     algorithm (Communications of the ACM, 1972).
+
+     If A, B, and C are specified, then `lyap' returns the solution of
+     the  Sylvester equation
+              a x + x b + c = 0
+     If only `(a, b)' are specified, then `lyap' returns the solution
+     of the Lyapunov equation
+              a' x + x a + b = 0
+     If B is not square, then `lyap' returns the solution of either
+              a' x + x a + b' b = 0
+
+     or
+              a x + x a' + b b' = 0
+
+     whichever is appropriate.
+
+     Solves by using the Bartels-Stewart algorithm (1972).
+
+ - Function File:  qzval (A, B)
+     Compute generalized eigenvalues of the matrix pencil
+          (A - lambda B).
+
+     A and B must be real matrices.
+
+     *Note* `qzval' is obsolete; use `qz' instead.
+
+ - Function File:  zgfmul (A, B, C, D, X)
+     Compute product of zgep incidence matrix F with vector X.  Used by
+     zgepbal (in zgscal) as part of generalized conjugate gradient
+     iteration.
+
+ - Function File:  zgfslv (N, M, P, B)
+     Solve system of equations for dense zgep problem.
+
+ - Function File:  zginit (A, B, C, D)
+     Construct right hand side vector zz for the zero-computation
+     generalized eigenvalue problem balancing procedure.  Called by
+     zgepbal.
+
+ - Function File:  zgreduce (SYS, MEPS)
+     Implementation of procedure REDUCE in (Emami-Naeini and Van Dooren,
+     Automatica, # 1982).
+
+ - Function File: [NONZ, ZER] = zgrownorm (MAT, MEPS)
+     Return NONZ = number of rows of MAT whose two norm exceeds MEPS,
+     and ZER = number of rows of mat whose two norm is less than MEPS.
+
+ - Function File:  zgscal (F, Z, N, M, P)
+     Generalized conjugate gradient iteration to solve zero-computation
+     generalized eigenvalue problem balancing equation fx=z; called by
+     `zgepbal'
+
+ - Function File: [a, b] = zgsgiv (C, S, A, B)
+     Apply givens rotation c,s to row vectors A, B.  No longer used in
+     zero-balancing (__zgpbal__); kept for backward compatibility.
+
+ - Function File:  zgshsr (Y)
+     apply householder vector based on e^(m) to (column vector) y.
+     Called by zgfslv
+
+   References:
+*ZGEP*
+     Hodel, "Computation of Zeros with Balancing," 1992, Linear Algebra
+     and its Applications
+
+**Generalized CG**
+     Golub and Van Loan, "Matrix Computations, 2nd ed" 1989
+
+
+File: octave.info,  Node: sysprop,  Next: systime,  Prev: numerical,  Up: Control Theory
+
+System Analysis-Properties
+==========================
+
+ - Function File:  analdemo ()
+     Octave Controls toolbox demo: State Space analysis demo
+
+ - Function File: [N, M, P] = abcddim (A, B, C, D)
+     Check for compatibility of the dimensions of the matrices defining
+     the linear system [A, B, C, D] corresponding to
+
+          dx/dt = a x + b u
+          y = c x + d u
+
+     or a similar discrete-time system.
+
+     If the matrices are compatibly dimensioned, then `abcddim' returns
+
+    N
+          The number of system states.
+
+    M
+          The number of system inputs.
+
+    P
+          The number of system outputs.
+
+     Otherwise `abcddim' returns N = M = P = -1.
+
+     Note: n = 0 (pure gain block) is returned without warning.
+
+
+ - Function File:  ctrb (SYS, B)
+ - Function File:  ctrb (A, B)
+     Build controllability matrix
+                       2       n-1
+          Qs = [ B AB A B ... A   B ]
+
+     of a system data structure or the pair (A, B).
+
+     *Note* `ctrb' forms the controllability matrix.  The numerical
+     properties of `is_controllable' are much better for
+     controllability tests.
+
+ - Function Fil:  h2norm (SYS)
+     Computes the H2 norm of a system data structure (continuous time
+     only)
+
+     Reference: Doyle, Glover, Khargonekar, Francis, "State Space
+     Solutions to Standard H2 and Hinf Control Problems", IEEE TAC
+     August 1989
+
+ - Function File: [G, GMIN, GMAX] = hinfnorm (SYS, TOL, GMIN, GMAX,
+          PTOL)
+     Computes the H infinity norm of a system data structure.
+
+     *Inputs*
+    SYS
+          system data structure
+
+    TOL
+          H infinity norm search tolerance (default: 0.001)
+
+    GMIN
+          minimum value for norm search (default: 1e-9)
+
+    GMAX
+          maximum value for norm search (default: 1e+9)
+
+    PTOL
+          pole tolerance:
+             * if sys is continuous, poles with |real(pole)| <
+               ptol*||H|| (H is appropriate Hamiltonian) are considered
+               to be on the imaginary axis.
+
+             * if sys is discrete, poles with |abs(pole)-1| <
+               ptol*||[s1,s2]|| (appropriate symplectic pencil) are
+               considered to be on the unit circle
+
+             * Default: 1e-9
+
+     *Outputs*
+    G
+          Computed gain, within TOL of actual gain.  G is returned as
+          Inf if the system is unstable.
+
+    GMIN
+    GMAX
+          Actual system gain lies in the interval [GMIN, GMAX]
+
+     References: Doyle, Glover, Khargonekar, Francis, "State space
+     solutions to standard H2 and Hinf control problems", IEEE TAC
+     August 1989 Iglesias and Glover, "State-Space approach to
+     discrete-time Hinf control," Int. J. Control, vol 54, #5, 1991
+     Zhou, Doyle, Glover, "Robust and Optimal Control," Prentice-Hall,
+     1996
+
+ - Function File:  obsv (SYS, C)
+     Build observability matrix
+               | C        |
+               | CA       |
+          Qb = | CA^2     |
+               | ...      |
+               | CA^(n-1) |
+     of a system data structure or the pair (A, C).
+
+     Note: `obsv()' forms the observability matrix.
+
+     The numerical properties of is_observable() are much better for
+     observability tests.
+
+ - Function File: [ZER, POL]= pzmap (SYS)
+     Plots the zeros and poles of a system in the complex plane.
+     *Inputs* SYS system data structure
+
+     *Outputs* if omitted, the poles and zeros are plotted on the
+     screen.  otherwise, pol, zer are returned as the system poles and
+     zeros.  (see sys2zp for a preferable function call)
+
+ - Function File:  is_abcd (A, B, C, D)
+     Returns RETVAL = 1 if the dimensions of A, B, C, D are compatible,
+     otherwise RETVAL = 0 with an  appropriate diagnostic message
+     printed to the screen.  The matrices  b, c, or d may be omitted.
+
+ - Function File: [RETVAL, U] = is_controllable (SYS, TOL)
+ - Function File: [RETVAL, U] = is_controllable (A, B, TOL)
+     Logical check for system controllability.
+
+     *Inputs*
+    SYS
+          system data structure
+
+    A
+    B
+          N by N, N by M matrices, respectively
+
+    TOL
+          optional roundoff paramter.  default value: `10*eps'
+
+     *Outputs*
+    RETVAL
+          Logical flag; returns true (1) if the system SYS or the pair
+          (A,B) is controllable, whichever was passed as input
+          arguments.
+
+    U
+          U is an orthogonal basis of the controllable subspace.
+
+     *Method* Controllability is determined by applying Arnoldi
+     iteration with complete re-orthogonalization to obtain an
+     orthogonal basis of the Krylov subspace
+          span ([b,a*b,...,a^{n-1}*b]).
+     The Arnoldi iteration is executed with `krylov' if the system has
+     a single input; otherwise a block Arnoldi iteration is performed
+     with `krylovb'.
+
+ - Function File: [RETVAL, U] = is_detectable (A, C, TOL)
+ - Function File: [RETVAL, U] = is_detectable (SYS, TOL)
+     Test for detactability (observability of unstable modes) of (A,C).
+
+     Returns 1 if the system A or the pair (A,C)is detectable, 0 if not.
+
+     *See* `is_stabilizable' for detailed description of arguments and
+     computational method.
+
+     Default: tol = 10*norm(a,'fro')*eps
+
+
+ - Function File: [RETVAL, DGKF_STRUCT ] = is_dgkf (ASYS, NU, NY, TOL )
+     Determine whether a continuous time state space system meets
+     assumptions of DGKF algorithm.  Partitions system into:
+          [dx/dt] = [A  | Bw  Bu  ][w]
+          [ z   ]   [Cz | Dzw Dzu ][u]
+          [ y   ]   [Cy | Dyw Dyu ]
+     or similar discrete-time system.  If necessary, orthogonal
+     transformations QW, QZ and nonsingular transformations RU, RY are
+     applied to respective vectors W, Z, U, Y in order to satisfy DGKF
+     assumptions.  Loop shifting is used if DYU block is nonzero.
+
+     *Inputs*
+    ASYS
+          system data structure
+
+    NU
+          number of controlled inputs
+
+    NY
+          number of measured outputs
+
+    TOL
+          threshhold for 0.  Default: 200EPS *Outputs*
+    RETVAL
+          true(1) if system passes check, false(0) otherwise
+
+    DGKF_STRUCT
+          data structure of `is_dgkf' results.  Entries:
+         NW
+         NZ
+               dimensions of W, Z
+
+         A
+               system A matrix
+
+         BW
+               (N x NW) QW-transformed disturbance input matrix
+
+         BU
+               (N x NU) RU-transformed controlled input matrix;
+
+               *Note* B = [Bw Bu]
+
+         CZ
+               (NZ x N) Qz-transformed error output matrix
+
+         CY
+               (NY x N) RY-transformed measured output matrix
+
+               *Note* C = [Cz; Cy]
+
+         DZU
+
+         DYW
+               off-diagonal blocks of transformed system D matrix that
+               enter Z, Y from U, W respectively
+
+         RU
+               controlled input transformation matrix
+
+         RY
+               observed output transformation matrix
+
+         DYU_NZ
+               nonzero if the DYU block is nonzero.
+
+         DYU
+               untransformed DYU block
+
+         DFLG
+               nonzero if the system is discrete-time `is_dgkf' exits
+     with an error if the system is mixed discrete/continuous
+
+     *References*
+    *[1]*
+          Doyle, Glover, Khargonekar, Francis, "State Space Solutions
+          to Standard H2 and Hinf Control Problems," IEEE TAC August
+          1989
+
+    *[2]*
+          Maciejowksi, J.M.: "Multivariable feedback design,"
+
+ - Function File:  is_digital (SYS)
+     Return nonzero if system is digital; inputs: sys: system data
+     structure eflg: 0 [default] exit with an error if system is mixed
+     (continuous and discrete components)     : 1 print a warning if
+     system is mixed (continuous and discrete)     : 2 silent operation
+     outputs: DIGITAL:  0: system is purely continuous        :  1:
+     system is purely discrete        : -1: system is mixed continuous
+     and discrete Exits with an error of sys is a mixed (continuous and
+     discrete) system
+
+ - Function File: [RETVAL, U] = is_observable (A, C, TOL)
+ - Function File: [RETVAL, U] = is_observable (SYS, TOL)
+     Logical check for system observability.
+
+     Default: tol = 10*norm(a,'fro')*eps
+
+     Returns 1 if the system SYS or the pair (A,C) is observable, 0 if
+     not.
+
+     *See* `is_controllable' for detailed description of arguments and
+     default values.
+
+ - Function File:  is_sample (TS)
+     Return true if TS is a valid sampling time (real,scalar, > 0)
+
+ - Function File:  is_siso (SYS)
+     return nonzero if the system data structure SYS is single-input,
+     single-output.
+
+ - Function File: [RETVAL, U] = is_stabilizable (SYS, TOL)
+ - Function File: [RETVAL, U] = is_stabilizable (A, B, TOL)
+     Logical check for system stabilizability (i.e., all unstable modes
+     are controllable).
+
+     Test for stabilizability is performed via an ordered Schur
+     decomposition that reveals the unstable subspace of the system A
+     matrix.
+
+     Returns `retval' = 1 if the system, A, is stabilizable, if the
+     pair  (A, B) is stabilizable, or 0 if not.  U = orthogonal basis
+     of controllable subspace.
+
+     Controllable subspace is determined by applying Arnoldi iteration
+     with complete re-orthogonalization to obtain an orthogonal basis
+     of the Krylov subspace.
+            span ([b,a*b,...,a^   b]).
+     tol is a roundoff paramter, set to 200*eps if omitted.
+
+ - Function File:  is_signal_list (MYLIST)
+     Return true if MYLIST is a list of individual strings.
+
+ - Function File:  is_stable (A, TOL, DFLG)
+ - Function File:  is_stable (SYS, TOL)
+     Returns 1 if the matrix A or the system SYS is stable, or 0 if not.
+
+     *Inputs*
+    TOL
+          is a roundoff paramter, set to 200*EPS if omitted.
+
+    DFLG
+          Digital system flag (not required for system data structure):
+         `DFLG != 0'
+               stable if eig(a) in unit circle
+
+         `DFLG == 0'
+               stable if eig(a) in open LHP (default)
+
+
+File: octave.info,  Node: systime,  Next: sysfreq,  Prev: sysprop,  Up: Control Theory
+
+System Analysis-Time Domain
+===========================
+
+ - Function File:  c2d (SYS, OPT, T)
+ - Function File:  c2d (SYS, T)
+     *Inputs*
+    SYS
+          system data structure (may have both continuous time and
+          discrete time subsystems)
+
+    OPT
+          string argument; conversion option (optional argument; may be
+          omitted as shown above)
+         `"ex"'
+               use the matrix exponential (default)
+
+         `"bi"'
+               use the bilinear transformation
+                   2(z-1)
+               s = -----
+                   T(z+1)
+          FIXME: This option exits with an error if SYS is not purely
+          continuous. (The `ex' option can handle mixed systems.)
+
+    T
+          sampling time; required if sys is purely continuous.
+
+          *Note* If the 2nd argument is not a string, `c2d' assumes that
+          the 2nd argument is T and performs appropriate argument
+          checks.
+
+     *Outputs* DSYS discrete time equivalent via zero-order hold,
+     sample each T sec.
+
+     converts the system data structure describing
+          .
+          x = Ac x + Bc u
+     into a discrete time equivalent model
+          x[n+1] = Ad x[n] + Bd u[n]
+     via the matrix exponential or bilinear transform
+
+     *Note* This function adds the suffix  `_d' to the names of the new
+     discrete states.
+
+ - Function File:  d2c (SYS, TOL)
+ - Function File:  d2c (SYS, OPT)
+     Convert discrete (sub)system to a purely continuous system.
+     Sampling time used is `sysgettsam(SYS)'
+
+     *Inputs*
+    SYS
+          system data structure with discrete components
+
+    TOL
+          Scalar value.  tolerance for convergence of default `"log"'
+          option (see below)
+
+    OPT
+          conversion option.  Choose from:
+         `"log"'
+               (default) Conversion is performed via a matrix logarithm.
+               Due to some problems with this computation, it is
+               followed by a steepest descent algorithm to identify
+               continuous time A, B, to get a better fit to the
+               original data.
+
+               If called as `d2c (SYS, TOL)', with TOL positive scalar,
+               the `"log"' option is used.  The default value for TOL
+               is `1e-8'.
+
+         `"bi"'
+               Conversion is performed via bilinear transform z = (1 +
+               s T / 2)/(1 - s T / 2) where T is the system sampling
+               time (see `sysgettsam').
+
+               FIXME: bilinear option exits with an error if SYS is not
+               purely discrete *Outputs* CSYS continuous time system
+     (same dimensions and signal names as in SYS).
+
+ - Function File: [DSYS, FIDX] = dmr2d (SYS, IDX, SPREFIX, TS2, CUFLG)
+     convert a multirate digital system to a single rate digital system
+     states specified by IDX, SPREFIX are sampled at TS2, all others
+     are assumed sampled at TS1 = `sysgettsam (SYS)'.
+
+     *Inputs*
+    SYS
+          discrete time system; `dmr2d' exits with an error if SYS is
+          not discrete
+
+    IDX
+          indices or names of states with sampling time
+          `sysgettsam(SYS)' (may be empty); see `listidx'
+
+    SPREFIX
+          list of string prefixes of states with sampling time
+          `sysgettsam(SYS)' (may be empty)
+
+    TS2
+          sampling time of states not specified by IDX, SPREFIX must be
+          an integer multiple of `sysgettsam(SYS)'
+
+    CUFLG
+          "constant u flag" if CUFLG is nonzero then the system inputs
+          are assumed to be constant over the revised sampling interval
+          TS2.  Otherwise, since the inputs can change during the
+          interval T in [k ts2, (k+1) ts2], an additional set of inputs
+          is included in the revised B matrix so that these intersample
+          inputs may be included in the single-rate system.  default
+          CUFLG = 1.
+
+     *Outputs*
+    DSYS
+          equivalent discrete time system with sampling time TS2.
+
+          The sampling time of sys is updated to TS2.
+
+          if CUFLG=0 then a set of additional inputs is added to the
+          system with suffixes _d1, ..., _dn to indicate their delay
+          from the starting time k TS2, i.e.  u = [u_1; u_1_d1; ...,
+          u_1_dn] where u_1_dk is the input k*ts1 units of time after
+          u_1 is sampled. (TS1 is the original sampling time of the
+          discrete time system and TS2 = (n+1)*ts1)
+
+    FIDX
+          indices of "formerly fast" states specified by IDX and
+          SPREFIX; these states are updated to the new (slower)
+          sampling interval TS2.
+
+     *WARNING* Not thoroughly tested yet; especially when CUFLG == 0.
+
+ - Function File:  damp (P, TSAM)
+     Displays eigenvalues, natural frequencies and damping ratios of
+     the eigenvalues of a matrix P or the A-matrix of a system P,
+     respectively.  If P is a system, TSAM must not be specified.  If P
+     is a matrix and TSAM is specified, eigenvalues of P are assumed to
+     be in Z-domain.
+
+ - Function File:  dcgain (SYS, TOL)
+     Returns dc-gain matrix. If dc-gain is infinite an empty matrix is
+     returned.  The argument TOL is an optional tolerance for the
+     condition number of the A-Matrix in SYS (default TOL = 1.0e-10)
+
+ - Function File: [Y, T] = impulse (SYS, INP, TSTOP, N)
+     Impulse response for a linear system.  The system can be discrete
+     or multivariable (or both).  If no output arguments are specified,
+     `impulse' produces a plot or the impulse response data for system
+     SYS.
+
+     *Inputs*
+    SYS
+          System data structure.
+
+    INP
+          Index of input being excited
+
+    TSTOP
+          The argument TSTOP (scalar value) denotes the time when the
+          simulation should end.
+
+    N
+          the number of data values.
+
+          Both parameters TSTOP and N can be omitted and will be
+          computed from the eigenvalues of the A-Matrix.  *Outputs* Y,
+     T: impulse response
+
+ - Function File: [Y, T] = step (SYS, INP, TSTOP, N)
+     Step response for a linear system.  The system can be discrete or
+     multivariable (or both).  If no output arguments are specified,
+     `step' produces a plot or the step response data for system SYS.
+
+     *Inputs*
+    SYS
+          System data structure.
+
+    INP
+          Index of input being excited
+
+    TSTOP
+          The argument TSTOP (scalar value) denotes the time when the
+          simulation should end.
+
+    N
+          the number of data values.
+
+          Both parameters TSTOP and N can be omitted and will be
+          computed from the eigenvalues of the A-Matrix.  *Outputs* Y,
+     T: impulse response
+
+     When invoked with the output paramter y the plot is not displayed.
+
+
+File: octave.info,  Node: sysfreq,  Next: cacsd,  Prev: systime,  Up: Control Theory
+
+System Analysis-Frequency Domain
+================================
+
+   *Demonstration/tutorial script*
+
+ - Function File:  frdemo ()
+     Octave Controls toolbox demo: Frequency Response demo
+
+ - Function File: [MAG, PHASE, W] = bode (SYS, W, OUT_IDX, IN_IDX)
+     If no output arguments are given: produce Bode plots of a system;
+     otherwise, compute the frequency response of a system data
+     structure
+
+     *Inputs*
+    SYS
+          a system data structure (must be either purely continuous or
+          discrete; see is_digital)
+
+    W
+          frequency values for evaluation.
+
+          if SYS is continuous, then bode evaluates G(jw) where G(s) is
+          the system transfer function.
+
+          if SYS is discrete, then bode evaluates G(`exp'(jwT)), where
+             * T is the system sampling time
+
+             * G(z) is the system transfer function.
+
+          *Default* the default frequency range is selected as follows:
+          (These steps are NOT performed if W is specified)
+            1. via routine __bodquist__, isolate all poles and zeros
+               away from W=0 (JW=0 or `exp'(jwT)=1) and select the
+               frequency range based on the breakpoint locations of the
+               frequencies.
+
+            2. if SYS is discrete time, the frequency range is limited
+                           to jwT in [0,2 pi /T]
+
+            3. A "smoothing" routine is used to ensure that the plot
+               phase does not change excessively from point to point
+               and that singular points (e.g., crossovers from +/- 180)
+               are accurately shown.
+
+
+    OUT_IDX
+    IN_IDX
+          The names or indices of outputs and inputs to be used in the
+          frequency response.  See `sysprune'.
+
+          *Example*
+               bode(sys,[],"y_3",list("u_1","u_4");
+          *Outputs*
+    MAG
+    PHASE
+          the magnitude and phase of the frequency response G(jw) or
+          G(`exp'(jwT)) at the selected frequency values.
+
+    W
+          the vector of frequency values used
+
+     *Notes*
+       1. If no output arguments are given, e.g.,
+               bode(sys);
+          bode plots the results to the screen.  Descriptive labels are
+          automatically placed.
+
+          Failure to include a concluding semicolon will yield some
+          garbage being printed to the screen (`ans = []').
+
+       2. If the requested plot is for an MIMO system, mag is set to
+          ||G(jw)|| or ||G(`exp'(jwT))|| and phase information is not
+          computed.
+
+ - Function File: [WMIN, WMAX] = bode_bounds (ZER, POL, DFLG, TSAM)
+     Get default range of frequencies based on cutoff frequencies of
+     system poles and zeros.  Frequency range is the interval
+     [10^wmin,10^wmax]
+
+     Used internally in __freqresp__ (`bode', `nyquist')
+
+ - Function File:  freqchkw (W)
+     Used by `__freqresp__' to check that input frequency vector W is
+     valid.  Returns boolean value.
+
+ - Function File:  ltifr (A, B, W)
+ - Function File:  ltifr (SYS, W)
+     Linear time invariant frequency response of single input systems
+     *Inputs*
+    A
+    B
+          coefficient matrices of dx/dt = A x + B u
+
+    SYS
+          system data structure
+
+    W
+          vector of frequencies *Outputs* OUT
+                                     -1
+                      G(s) = (jw I-A) B
+     for complex frequencies s = jw.
+
+ - Function File: [REALP, IMAGP, W] = nyquist (SYS, W, OUT_IDX, IN_IDX,
+          ATOL)
+ - Function File:  nyquist (SYS, W, OUT_IDX, IN_IDX, ATOL)
+     Produce Nyquist plots of a system; if no output arguments are
+     given, Nyquist plot is printed to the screen.
+
+     Compute the frequency response of a system.  *Inputs* (pass as
+     empty to get default values)
+    SYS
+          system data structure (must be either purely continuous or
+          discrete; see is_digital)
+
+    W
+          frequency values for evaluation.  if sys is continuous, then
+          bode evaluates G(jw) if sys is discrete, then bode evaluates
+          G(exp(jwT)), where T is the system sampling time.
+
+    DEFAULT
+          the default frequency range is selected as follows: (These
+          steps are NOT performed if W is specified)
+       1. via routine __bodquist__, isolate all poles and zeros away
+          from W=0 (JW=0 or exp(JWT)=1) and select the frequency range
+          based on the breakpoint locations of the frequencies.
+
+       2. if SYS is discrete time, the frequency range is limited to
+          JWT in [0,2p*pi]
+
+       3. A "smoothing" routine is used to ensure that the plot phase
+          does not change excessively from point to point and that
+          singular points (e.g., crossovers from +/- 180) are
+          accurately shown.
+          outputs, inputs: names or indices of the output(s) and
+     input(s) to be used in the frequency response; see sysprune.
+
+     *Inputs* (pass as empty to get default values)
+    ATOL
+          for interactive nyquist plots: atol is a change-in-slope
+          tolerance for the of asymptotes (default = 0; 1e-2 is a good
+          choice).  This allows the user to "zoom in" on portions of
+          the Nyquist plot too small to be seen with large asymptotes.
+     *Outputs*
+    REALP
+    IMAGP
+          the real and imaginary parts of the frequency response G(jw)
+          or G(exp(jwT)) at the selected frequency values.
+
+    W
+          the vector of frequency values used
+
+     If no output arguments are given, nyquist plots the results to the
+     screen.  If ATOL != 0 and asymptotes are detected then the user is
+     asked interactively if they wish to zoom in (remove asymptotes)
+     Descriptive labels are automatically placed.
+
+     Note: if the requested plot is for an MIMO system, a warning
+     message is presented; the returned information is of the magnitude
+     ||G(jw)|| or ||G(exp(jwT))|| only; phase information is not
+     computed.
+
+ - Function File:  tzero (A, B, C, D, OPT)
+ - Function File:  tzero (SYS, OPT)
+     Compute transmission zeros of a continuous
+          .
+          x = Ax + Bu
+          y = Cx + Du
+     or discrete
+          x(k+1) = A x(k) + B u(k)
+          y(k)   = C x(k) + D u(k)
+     system.  *Outputs*
+    ZER
+          transmission zeros of the system
+
+    GAIN
+          leading coefficient (pole-zero form) of SISO transfer function
+          returns gain=0 if system is multivariable *References*
+       1. Emami-Naeini and Van Dooren, Automatica, 1982.
+
+       2. Hodel, "Computation of Zeros with Balancing," 1992 Lin. Alg.
+          Appl.
+
+ - Function File:  tzero2 (A, B, C, D, BAL)
+     Compute the transmission zeros of a, b, c, d.
+
+     bal = balancing option (see balance); default is "B".
+
+     Needs to incorporate `mvzero' algorithm to isolate finite zeros;
+     use `tzero' instead.
+
+
+File: octave.info,  Node: cacsd,  Next: misc,  Prev: sysfreq,  Up: Control Theory
+
+Controller Design
+=================
+
+ - Function File:  dgkfdemo ()
+     Octave Controls toolbox demo: H2/Hinfinity options demos
+
+ - Function File:  hinfdemo ()
+     H_infinity design demos for continuous SISO and MIMO systems and a
+     discrete system.  The SISO system is difficult to control because
+     it is non minimum phase and unstable.  The second design example
+     controls the "jet707" plant, the linearized state space model of a
+     Boeing 707-321 aircraft at v=80m/s (M = 0.26, Ga0 = -3 deg, alpha0
+     = 4 deg, kappa = 50 deg).  Inputs: (1) thrust and (2) elevator
+     angle outputs: (1) airspeed and (2) pitch angle. The discrete
+     system is a stable and second order.
+
+    SISO plant
+                               s - 2
+                    G(s) = --------------
+                           (s + 2)(s - 1)
+               
+                                             +----+
+                        -------------------->| W1 |---> v1
+                    z   |                    +----+
+                    ----|-------------+                   || T   ||     => min.
+                        |             |                       vz   infty
+                        |    +---+    v   y  +----+
+                      u *--->| G |--->O--*-->| W2 |---> v2
+                        |    +---+       |   +----+
+                        |                |
+                        |    +---+       |
+                        -----| K |<-------
+                             +---+
+          W1 und W2 are the robustness and performance weighting
+          functions
+
+    MIMO plant
+          The optimal controller minimizes the H_infinity norm of the
+          augmented plant P (mixed-sensitivity problem):
+                    w
+                     1 -----------+
+                                  |                   +----+
+                              +---------------------->| W1 |----> z1
+                    w         |   |                   +----+
+                     2 ------------------------+
+                              |   |            |
+                              |   v   +----+   v      +----+
+                           +--*-->o-->| G  |-->o--*-->| W2 |---> z2
+                           |          +----+      |   +----+
+                           |                      |
+                           ^                      v
+                            u (from                 y (to K)
+                              controller
+                              K)
+               
+               
+                                 +    +           +    +
+                                 | z  |           | w  |
+                                 |  1 |           |  1 |
+                                 | z  | = [ P ] * | w  |
+                                 |  2 |           |  2 |
+                                 | y  |           | u  |
+                                 +    +           +    +
+
+    DISCRETE SYSTEM
+          This is not a true discrete design. The design is carried out
+          in continuous time while the effect of sampling is described
+          by a bilinear transformation of the sampled system.  This
+          method works quite well if the sampling period is "small"
+          compared to the plant time constants.
+
+    The continuous plant
+                                  1
+                    G (s) = --------------
+                     k      (s + 2)(s + 1)
+          is discretised with a ZOH (Sampling period = Ts = 1
+          second):
+
+                              0.199788z + 0.073498
+                    G(s) = --------------------------
+                           (z - 0.36788)(z - 0.13534)
+               
+                                             +----+
+                        -------------------->| W1 |---> v1
+                    z   |                    +----+
+                    ----|-------------+                   || T   ||     => min.
+                        |             |                       vz   infty
+                        |    +---+    v      +----+
+                        *--->| G |--->O--*-->| W2 |---> v2
+                        |    +---+       |   +----+
+                        |                |
+                        |    +---+       |
+                        -----| K |<-------
+                             +---+
+          W1 and W2 are the robustness and performancs weighting
+          functions
+
+ - Function File: [L, M, P, E] = dlqe (A, G, C, SIGW, SIGV, Z)
+     Construct the linear quadratic estimator (Kalman filter) for the
+     discrete time system
+
+          x[k+1] = A x[k] + B u[k] + G w[k]
+            y[k] = C x[k] + D u[k] + v[k]
+
+     where W, V are zero-mean gaussian noise processes with respective
+     intensities `SIGW = cov (W, W)' and `SIGV = cov (V, V)'.
+
+     If specified, Z is `cov (W, V)'.  Otherwise `cov (W, V) = 0'.
+
+     The observer structure is
+
+          z[k|k] = z[k|k-1] + L (y[k] - C z[k|k-1] - D u[k])
+          z[k+1|k] = A z[k|k] + B u[k]
+
+     The following values are returned:
+
+    L
+          The observer gain, (A - ALC).  is stable.
+
+    M
+          The Riccati equation solution.
+
+    P
+          The estimate error covariance after the measurement update.
+
+    E
+          The closed loop poles of (A - ALC).
+
+ - Function File: [K, P, E] = dlqr (A, B, Q, R, Z)
+     Construct the linear quadratic regulator for the discrete time
+     system
+
+          x[k+1] = A x[k] + B u[k]
+
+     to minimize the cost functional
+
+          J = Sum (x' Q x + u' R u)
+
+     Z omitted or
+
+          J = Sum (x' Q x + u' R u + 2 x' Z u)
+
+     Z included.
+
+     The following values are returned:
+
+    K
+          The state feedback gain, (A - BK) is stable.
+
+    P
+          The solution of algebraic Riccati equation.
+
+    E
+          The closed loop poles of (A - BK).
+
+ - Function File: [LP, LF, P, Z] = dkalman (A, G, C, QW, RV, S)
+     Construct the linear quadratic estimator (Kalman predictor) for the
+     discrete time system
+
+          x[k+1] = A x[k] + B u[k] + G w[k]
+            y[k] = C x[k] + D u[k] + v[k]
+
+     where W, V are zero-mean gaussian noise processes with respective
+     intensities `QW = cov (W, W)' and `RV = cov (V, V)'.
+
+     If specified, S is `cov (W, V)'.  Otherwise `cov (W, V) = 0'.
+
+     The observer structure is
+
+          x[k+1|k] = A x[k|k-1] + B u[k] + LP (y[k] - C x[k|k-1] - D u[k])
+          x[k|k] = x[k|k-1] + LF (y[k] - C x[k|k-1] - D u[k])
+
+     The following values are returned:
+
+    LP
+          The predictor gain, (A - LP C) is stable.
+
+    LF
+          The filter gain.
+
+    P
+          The Riccati solution.
+
+          P = E [(x - x[n|n-1])(x - x[n|n-1])']
+
+    Z
+          The updated error covariance matrix.
+
+          Z = E [(x - x[n|n])(x - x[n|n])']
+
+ - Function File: [K , GAIN, KC, KF, PC, PF] = h2syn (ASYS, NU, NY, TOL)
+     Design H2 optimal controller per procedure in Doyle, Glover,
+     Khargonekar, Francis, "State Space Solutions to Standard H2 and
+     Hinf Control Problems", IEEE TAC August 1989
+
+     Discrete time control per Zhou, Doyle, and Glover, ROBUST AND
+     OPTIMAL CONTROL, Prentice-Hall, 1996
+
+     *Inputs* input system is passed as either
+    ASYS
+          system data structure (see ss2sys, sys2ss)
+             * controller is implemented for continuous time systems
+
+             * controller is NOT implemented for discrete time systems
+
+    NU
+          number of controlled inputs
+
+    NY
+          number of measured outputs
+
+    TOL
+          threshhold for 0.  Default: 200*eps
+
+     *Outputs*
+    K
+          system controller
+
+    GAIN
+          optimal closed loop gain
+
+    KC
+          full information control (packed)
+
+    KF
+          state estimator (packed)
+
+    PC
+          ARE solution matrix for regulator subproblem
+
+    PF
+          ARE solution matrix for filter subproblem
+
+ - Function File:  hinf_ctr (DGS, F, H, Z, G)
+     Called by `hinfsyn' to compute the H_inf optimal controller.
+
+     *Inputs*
+    DGS
+          data structure returned by `is_dgkf'
+
+    F
+    H
+          feedback and filter gain (not partitioned)
+
+    G
+          final gamma value *Outputs* controller (system data structure)
+
+     Do not attempt to use this at home; no argument checking performed.
+
+ - Function File: [K, G, GW, XINF, YINF] = hinfsyn (ASYS, NU, NY, GMIN,
+          GMAX, GTOL, PTOL, TOL)
+     *Inputs* input system is passed as either
+    ASYS
+          system data structure (see ss2sys, sys2ss)
+             * controller is implemented for continuous time systems
+
+             * controller is NOT implemented for discrete time systems
+               (see bilinear transforms in `c2d', `d2c')
+
+    NU
+          number of controlled inputs
+
+    NY
+          number of measured outputs
+
+    GMIN
+          initial lower bound on H-infinity optimal gain
+
+    GMAX
+          initial upper bound on H-infinity optimal gain
+
+    GTOL
+          gain threshhold.  Routine quits when gmax/gmin < 1+tol
+
+    PTOL
+          poles with abs(real(pole)) < ptol*||H|| (H is appropriate
+          Hamiltonian) are considered to be on the imaginary axis.
+          Default: 1e-9
+
+    TOL
+          threshhold for 0.  Default: 200*eps
+
+          GMAX, MIN, TOL, and TOL must all be postive scalars.
+     *Outputs*
+    K
+          system controller
+
+    G
+          designed gain value
+
+    GW
+          closed loop system
+
+    XINF
+          ARE solution matrix for regulator subproblem
+
+    YINF
+          ARE solution matrix for filter subproblem
+
+       1. Doyle, Glover, Khargonekar, Francis, "State Space Solutions
+          to Standard H2 and Hinf Control Problems," IEEE TAC August
+          1989
+
+       2. Maciejowksi, J.M., "Multivariable feedback design,"
+          Addison-Wesley, 1989, ISBN 0-201-18243-2
+
+       3. Keith Glover and John C. Doyle, "State-space formulae for all
+          stabilizing controllers that satisfy and h-infinity-norm bound
+          and relations to risk sensitivity," Systems & Control Letters
+          11, Oct. 1988, pp 167-172.
+
+ - Function File: [RETVAL, PC, PF] = hinfsyn_chk (A, B1, B2, C1, C2,
+          D12, D21, G, PTOL)
+     Called by `hinfsyn' to see if gain G satisfies conditions in
+     Theorem 3 of Doyle, Glover, Khargonekar, Francis, "State Space
+     Solutions to Standard H2 and Hinf Control Problems", IEEE TAC
+     August 1989
+
+     *Warning* Do not attempt to use this at home; no argument checking
+     performed.
+
+     *Inputs* as returned by `is_dgkf', except for:
+    G
+          candidate gain level
+
+    PTOL
+          as in `hinfsyn'
+
+     *Outputs*
+    RETVAL
+          1 if g exceeds optimal Hinf closed loop gain, else 0
+
+    PC
+          solution of "regulator" H-inf ARE
+
+    PF
+          solution of "filter" H-inf ARE Do not attempt to use this at
+     home; no argument checking performed.
+
+ - Function File: [XINF, X_HA_ERR] = hinfsyn_ric (A, BB, C1, D1DOT, R,
+          PTOL)
+     Forms
+          xx = ([BB; -C1'*d1dot]/R) * [d1dot'*C1 BB'];
+          Ha = [A 0*A; -C1'*C1 -A'] - xx;
+     and solves associated Riccati equation.  The error code X_HA_ERR
+     indicates one of the following conditions:
+    0
+          successful
+
+    1
+          XINF has imaginary eigenvalues
+
+    2
+          HX not Hamiltonian
+
+    3
+          XINF has infinite eigenvalues (numerical overflow)
+
+    4
+          XINF not symmetric
+
+    5
+          XINF not positive definite
+
+    6
+          R is singular
+
+ - Function File: [K, P, E] = lqe (A, G, C, SIGW, SIGV, Z)
+     Construct the linear quadratic estimator (Kalman filter) for the
+     continuous time system
+
+          dx
+          -- = a x + b u
+          dt
+          
+          y = c x + d u
+
+     where W and V are zero-mean gaussian noise processes with
+     respective intensities
+
+          sigw = cov (w, w)
+          sigv = cov (v, v)
+
+     The optional argument Z is the cross-covariance `cov (W, V)'.  If
+     it is omitted, `cov (W, V) = 0' is assumed.
+
+     Observer structure is `dz/dt = A z + B u + k (y - C z - D u)'
+
+     The following values are returned:
+
+    K
+          The observer gain, (A - KC) is stable.
+
+    P
+          The solution of algebraic Riccati equation.
+
+    E
+          The vector of closed loop poles of (A - KC).
+
+ - Function File: [K, Q1, P1, EE, ER] = lqg (SYS, SIGW, SIGV, Q, R,
+          IN_IDX)
+     Design a linear-quadratic-gaussian optimal controller for the
+     system
+          dx/dt = A x + B u + G w       [w]=N(0,[Sigw 0    ])
+              y = C x + v               [v]  (    0   Sigv ])
+     or
+          x(k+1) = A x(k) + B u(k) + G w(k)       [w]=N(0,[Sigw 0    ])
+            y(k) = C x(k) + v(k)                  [v]  (    0   Sigv ])
+
+     *Inputs*
+    SYS
+          system data structure
+
+    SIGW
+    SIGV
+          intensities of independent Gaussian noise processes (as above)
+
+    Q
+    R
+          state, control weighting respectively.  Control ARE is
+
+    IN_IDX
+          names or indices of controlled inputs (see `sysidx',
+          `listidx')
+
+          default: last dim(R) inputs are assumed to be controlled
+          inputs, all others are assumed to be noise inputs.  *Outputs*
+    K
+          system data structure format LQG optimal controller (Obtain
+          A,B,C matrices with `sys2ss', `sys2tf', or `sys2zp' as
+          appropriate)
+
+    P1
+          Solution of control (state feedback) algebraic Riccati
+          equation
+
+    Q1
+          Solution of estimation algebraic Riccati equation
+
+    EE
+          estimator poles
+
+    ES
+          controller poles
+
+ - Function File: [K, P, E] = lqr (A, B, Q, R, Z)
+     construct the linear quadratic regulator for the continuous time
+     system
+
+          dx
+          -- = A x + B u
+          dt
+
+     to minimize the cost functional
+
+                infinity
+                /
+            J = |  x' Q x + u' R u
+               /
+              t=0
+
+     Z omitted or
+
+                infinity
+                /
+            J = |  x' Q x + u' R u + 2 x' Z u
+               /
+              t=0
+
+     Z included.
+
+     The following values are returned:
+
+    K
+          The state feedback gain, (A - BK) is stable and minimizes the
+          cost functional
+
+    P
+          The stabilizing solution of appropriate algebraic Riccati
+          equation.
+
+    E
+          The vector of the closed loop poles of (A - BK).
+
+     *Reference* Anderson and Moore, OPTIMAL CONTROL: LINEAR QUADRATIC
+     METHODS, Prentice-Hall, 1990, pp. 56-58
+
+ - Function File:  lsim (SYS, U, T, X0)
+     Produce output for a linear simulation of a system
+
+     Produces a plot for the output of the system, sys.
+
+     U is an array that contains the system's inputs.  Each column in u
+     corresponds to a different time step.  Each row in u corresponds
+     to a different input.  T is an array that contains the time index
+     of the system.  T should be regularly spaced.  If initial
+     conditions are required on the system, the x0 vector should be
+     added to the argument list.
+
+     When the lsim function is invoked with output parameters: [y,x] =
+     lsim(sys,u,t,[x0]) a plot is not displayed, however, the data is
+     returned in y = system output and x = system states.
+
+ - Function File:  place (SYS, P)
+     Computes the matrix  K such that if the state is feedback with
+     gain K, then the eigenvalues  of the closed loop system (i.e.
+     A-BK) are those specified in the vector P.
+
+     Version: Beta (May-1997): If you have any comments, please let me
+     know.  (see the file place.m for my address)
+
+
+File: octave.info,  Node: misc,  Prev: cacsd,  Up: Control Theory
+
+Miscellaneous Functions (Not yet properly filed/documented)
+===========================================================
+
+ - Function File:  axis2dlim (AXDATA)
+     determine axis limits for 2-d data(column vectors); leaves a 10%
+     margin around the plots.  puts in margins of +/- 0.1 if data is
+     one dimensional (or a single point)
+
+     *Inputs* AXDATA nx2 matrix of data [x,y]
+
+     *Outputs* AXVEC vector of axis limits appropriate for call to
+     axis() function
+
+ - Function File:  moddemo (INPUTS)
+     Octave Controls toolbox demo: Model Manipulations demo
+
+ - Function File:  prompt (INPUTS)
+     function prompt([str])
+     Prompt user to continue
+     str: input string. Default value: "\n ---- Press a key to continue ---"
+
+ - Function File:  rldemo (INPUTS)
+     Octave Controls toolbox demo: Root Locus demo
+
+ - Function File:  rlocus (INPUTS)
+     [rldata, k] = rlocus(sys[,increment,min_k,max_k])
+     Displays root locus plot of the specified SISO system.
+     
+            -----   ---     --------
+        --->| + |---|k|---->| SISO |----------->
+            -----   ---     --------        |
+            - ^                             |
+              |_____________________________|
+     
+     inputs: sys = system data structure
+     min_k, max_k,increment: minimum, maximum values of k and
+     the increment used in computing gain values
+     Outputs: plots the root locus to the screen.
+     rldata: Data points plotted column 1: real values, column 2: imaginary
+     values)
+     k: gains for real axis break points.
+
+ - Function File:  sortcom (INPUTS)
+     [yy,idx] = sortcom(xx[,opt]): sort a complex vector
+     xx: complex vector
+     opt: sorting option:
+      "re": real part (default)
+      "mag": by magnitude
+      "im": by imaginary part
+     
+     if opt != "im" then complex conjugate pairs are grouped together,
+     a - jb followed by a + jb.
+     yy: sorted values
+     idx: permutation vector: yy = xx(idx)
+
+ - Function File:  ss2tf (INPUTS)
+     [num,den] = ss2tf(a,b,c,d)
+     Conversion from tranfer function to state-space.
+     The state space system
+           .
+           x = Ax + Bu
+           y = Cx + Du
+     
+     is converted to a transfer function
+     
+                     num(s)
+               G(s)=-------
+                     den(s)
+     
+     used internally in system data structure format manipulations
+
+ - Function File:  ss2zp (INPUTS)
+     Converts a state space representation to a set of poles and zeros.
+     
+     [pol,zer,k] = ss2zp(a,b,c,d) returns the poles and zeros of the state space
+     system (a,b,c,d).  K is a gain associated with the zeros.
+     
+     used internally in system data structure format manipulations
+
+ - Function File:  starp (INPUTS)
+
+     sys = starp(P, K, ny, nu)
+     
+     Redheffer star product or upper/lower LFT, respectively.
+     
+     
+                    +-------+
+          --------->|       |--------->
+                    |   P   |
+               +--->|       |---+  ny
+               |    +-------+   |
+               +-------------------+
+                                |  |
+               +----------------+  |
+               |                   |
+               |    +-------+      |
+               +--->|       |------+ nu
+                    |   K   |
+          --------->|       |--------->
+                    +-------+
+     
+     If ny and nu "consume" all inputs and outputs of K then the result
+     is a lower fractional transformation. If ny and nu "consume" all
+     inputs and outputs of P then the result is an upper fractional
+     transformation.
+     
+     ny and/or nu may be negative (= negative feedback)
+
+ - Function File:  tf2ss (INPUTS)
+     Conversion from tranfer function to state-space.
+     The state space system
+           .
+           x = Ax + Bu
+           y = Cx + Du
+     
+     is obtained from a transfer function
+     
+                     num(s)
+               G(s)=-------
+                     den(s)
+     
+     via the function call [a,b,c,d] = tf2ss(num,den).
+     The vector 'den' must contain only one row, whereas the vector 'num'
+     may contain as many rows as there are outputs of the system 'y'.
+     The state space system matrices obtained from this function will be
+     in controllable canonical form as described in "Modern Control Theory",
+     [Brogan, 1991].
+
+ - Function File:  tf2zp (INPUTS)
+     Converts transfer functions to poles / zeros.
+
+     [zer,pol,k] = tf2zp(num,den) returns the zeros and poles of the
+     SISO system defined by num/den.  K is a gain associated with the
+     system zeros.
+
+ - Function File: [A, B, C, D] = zp2ss (ZER, POL, K)
+     Conversion from zero / pole to state space.  *Inputs*
+    ZER
+    POL
+          vectors of (possibly) complex poles and zeros of a transfer
+          function.  Complex values must come in conjugate pairs (i.e.,
+          x+jy in zer means that x-jy is also in zer)
+
+    K
+          real scalar (leading coefficient) *Outputs* A, B, C, D The
+     state space system
+          .
+          x = Ax + Bu
+          y = Cx + Du
+     is obtained from a vector of zeros and a vector of poles via the
+     function call `[a,b,c,d] = zp2ss(zer,pol,k)'.  The vectors `zer'
+     and `pol' may either be row or column vectors.  Each zero and pole
+     that has an imaginary part must have a conjugate in the list.  The
+     number of zeros must not exceed the number of poles.  `k' is
+     `zp'-form leading coefficient.
+
+ - Function File: [NUM, DEN] = zp2tf (ZER, POL, K)
+     Converts zeros / poles to a transfer function.  *Inputs*
+    ZER
+    POL
+          vectors of (possibly complex) poles and zeros of a transfer
+          function.  Complex values should appear in conjugate pairs
+
+    K
+          real scalar (leading coefficient) `[num,den] =
+     zp2tf(zer,pol,k)' forms the transfer function `num/den' from the
+     vectors of poles and zeros.
+

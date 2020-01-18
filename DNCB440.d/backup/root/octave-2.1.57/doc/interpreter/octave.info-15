@@ -1,0 +1,524 @@
+This is octave.info, produced by makeinfo version 4.5 from octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: Concept Index,  Next: Variable Index,  Prev: Copying,  Up: Top
+
+Concept Index
+*************
+
+* Menu:
+
+* #:                                     Comments.
+* #!:                                    Executable Octave Programs.
+* %:                                     Comments.
+* --braindead:                           Command Line Options.
+* --debug:                               Command Line Options.
+* --echo-commands:                       Command Line Options.
+* --exec-path PATH:                      Command Line Options.
+* --help:                                Command Line Options.
+* --info-file FILENAME:                  Command Line Options.
+* --info-program PROGRAM:                Command Line Options.
+* --interactive:                         Command Line Options.
+* --no-init-file:                        Command Line Options.
+* --no-line-editing:                     Command Line Options.
+* --no-site-file:                        Command Line Options.
+* --norc:                                Command Line Options.
+* --path PATH:                           Command Line Options.
+* --quiet:                               Command Line Options.
+* --silent:                              Command Line Options.
+* --traditional:                         Command Line Options.
+* --verbose:                             Command Line Options.
+* --version:                             Command Line Options.
+* -?:                                    Command Line Options.
+* -d:                                    Command Line Options.
+* -f:                                    Command Line Options.
+* -h:                                    Command Line Options.
+* -i:                                    Command Line Options.
+* -p PATH:                               Command Line Options.
+* -q:                                    Command Line Options.
+* -v:                                    Command Line Options.
+* -V:                                    Command Line Options.
+* -x:                                    Command Line Options.
+* ... <1>:                               Variable-length Return Lists.
+* ...:                                   Variable-length Argument Lists.
+* ... continuation marker:               The try Statement.
+* .octaverc:                             Startup Files.
+* \ continuation marker:                 The try Statement.
+* acknowledgements:                      Acknowledgements.
+* addition:                              Arithmetic Ops.
+* and operator:                          Boolean Expressions.
+* answers, incorrect <1>:                Bug Reporting.
+* answers, incorrect:                    Bug Criteria.
+* any key:                               Fonts.
+* arguments in function call:            Calling Functions.
+* arithmetic operators:                  Arithmetic Ops.
+* assignment expressions:                Assignment Ops.
+* assignment operators:                  Assignment Ops.
+* body of a loop:                        The while Statement.
+* boolean expressions:                   Boolean Expressions.
+* boolean operators:                     Boolean Expressions.
+* break statement:                       The break Statement.
+* bug criteria:                          Bug Criteria.
+* bug report mailing lists:              Bug Lists.
+* bugs:                                  Reporting Bugs.
+* bugs, investigating:                   Bug Reporting.
+* bugs, known:                           Trouble.
+* bugs, reporting <1>:                   Bug Reporting.
+* bugs, reporting:                       Bug Lists.
+* built-in data types:                   Built-in Data Types.
+* built-in function:                     A Sample Function Description.
+* case statement:                        The switch Statement.
+* catch:                                 The try Statement.
+* cell arrays:                           Cell Arrays.
+* character strings <1>:                 Strings.
+* character strings:                     String Objects.
+* Cholesky factorization:                Matrix Factorizations.
+* clearing the screen:                   Cursor Motion.
+* coding standards:                      Tips.
+* command and ouput logs:                Diary and Echo Commands.
+* command completion:                    Commands For Completion.
+* command descriptions:                  A Sample Command Description.
+* command echoing:                       Diary and Echo Commands.
+* command history:                       Commands For History.
+* command options:                       Command Line Options.
+* command-line editing:                  Command Line Editing.
+* comments:                              Comments.
+* comparison expressions:                Comparison Ops.
+* complex-conjugate transpose:           Arithmetic Ops.
+* compounding, value of:                 Financial Functions.
+* containers:                            Containers.
+* continuation lines:                    The try Statement.
+* continue statement:                    The continue Statement.
+* contributing to Octave:                How You Can Contribute to Octave.
+* contributors:                          Preface.
+* conversion specifications (printf):    Formatted Output.
+* conversion specifications (scanf):     Formatted Input.
+* copyright:                             Keywords.
+* core dump:                             Bug Criteria.
+* customizing the prompt:                Customizing the Prompt.
+* DAE:                                   Differential Equations.
+* data structures <1>:                   Data Structures.
+* data structures:                       Data Structure Objects.
+* data types:                            Data Types.
+* data types, built-in:                  Built-in Data Types.
+* data types, user-defined:              User-defined Data Types.
+* decrement operator:                    Assignment Ops.
+* defining functions:                    Functions and Scripts.
+* description format:                    Format of Descriptions.
+* diary of commands and output:          Diary and Echo Commands.
+* Differential Equations:                Differential Equations.
+* diffs, submitting:                     Sending Patches.
+* distribution of Octave:                Distribution.
+* division:                              Arithmetic Ops.
+* do-until statement:                    The do-until Statement.
+* documentation notation:                Evaluation Notation.
+* documenting Octave programs:           Comments.
+* dynamic linking:                       Dynamically Linked Functions.
+* echoing executing commands:            Diary and Echo Commands.
+* editing the command line:              Command Line Editing.
+* element-by-element evaluation:         Element-by-element Boolean Operators.
+* else statement:                        The if Statement.
+* elseif statement:                      The if Statement.
+* Emacs TAGS files:                      Using Octave Mode.
+* end statement:                         Statements.
+* end_try_catch:                         The try Statement.
+* end_unwind_protect:                    The unwind_protect Statement.
+* endfor statement:                      The for Statement.
+* endfunction statement:                 Defining Functions.
+* endif statement:                       The if Statement.
+* endswitch statement:                   The switch Statement.
+* endwhile statement:                    The while Statement.
+* equality operator:                     Comparison Ops.
+* equality, tests for:                   Comparison Ops.
+* equations, nonlinear:                  Nonlinear Equations.
+* erroneous messages:                    Bug Criteria.
+* erroneous results <1>:                 Bug Reporting.
+* erroneous results:                     Bug Criteria.
+* error message notation:                Error Messages.
+* error messages:                        Errors.
+* error messages, incorrect:             Bug Criteria.
+* escape sequence notation:              Strings.
+* evaluation notation:                   Evaluation Notation.
+* executable scripts:                    Executable Octave Programs.
+* execution speed:                       Coding Tips.
+* exiting octave <1>:                    Quitting Octave.
+* exiting octave:                        Running Octave.
+* exponentiation:                        Arithmetic Ops.
+* expression, range:                     Ranges.
+* expressions:                           Expressions.
+* expressions, assignment:               Assignment Ops.
+* expressions, boolean:                  Boolean Expressions.
+* expressions, comparison:               Comparison Ops.
+* expressions, logical:                  Boolean Expressions.
+* factorial function:                    Recursion.
+* fatal signal:                          Bug Criteria.
+* financial functions:                   Financial Functions.
+* flag character (printf):               Output Conversion Syntax.
+* flag character (scanf):                Input Conversion Syntax.
+* flying high and fast:                  Variables.
+* fonts:                                 Fonts.
+* for statement:                         The for Statement.
+* Fordyce, A. P.:                        Evaluation.
+* Frobenius norm:                        Basic Matrix Functions.
+* function descriptions:                 A Sample Function Description.
+* function file <1>:                     Function Files.
+* function file:                         A Sample Function Description.
+* function statement:                    Defining Functions.
+* functions, user-defined:               Functions and Scripts.
+* funding Octave development:            How You Can Contribute to Octave.
+* getting a good job:                    Variables.
+* global statement:                      Global Variables.
+* global variables:                      Global Variables.
+* grammar rules:                         Grammar.
+* graphics:                              Two-Dimensional Plotting.
+* greater than operator:                 Comparison Ops.
+* header comments:                       Function Headers.
+* help, on-line:                         Getting Help.
+* help, where to find:                   Service.
+* Hermitian operator:                    Arithmetic Ops.
+* Hessenberg decomposition:              Matrix Factorizations.
+* history:                               Preface.
+* history of commands:                   Commands For History.
+* if statement:                          The if Statement.
+* improving Octave <1>:                  Sending Patches.
+* improving Octave:                      Bug Criteria.
+* incorrect error messages:              Bug Criteria.
+* incorrect output <1>:                  Bug Reporting.
+* incorrect output:                      Bug Criteria.
+* incorrect results <1>:                 Bug Reporting.
+* incorrect results:                     Bug Criteria.
+* increment operator:                    Assignment Ops.
+* infinity norm:                         Basic Matrix Functions.
+* initialization:                        Startup Files.
+* input conversions, for scanf:          Table of Input Conversions.
+* input history:                         Commands For History.
+* installation trouble:                  Trouble.
+* installing Octave:                     Installation.
+* introduction:                          Introduction.
+* invalid input:                         Bug Criteria.
+* job hunting:                           Variables.
+* keywords:                              Keywords.
+* known causes of trouble:               Trouble.
+* language definition:                   Grammar.
+* less than operator:                    Comparison Ops.
+* lists:                                 Lists.
+* loadable function:                     A Sample Function Description.
+* logging commands and output:           Diary and Echo Commands.
+* logical expressions:                   Boolean Expressions.
+* logical operators:                     Boolean Expressions.
+* loop:                                  The while Statement.
+* looping over structure elements:       Looping Over Structure Elements.
+* LP:                                    Optimization.
+* LU decomposition:                      Matrix Factorizations.
+* lvalue:                                Assignment Ops.
+* mapping function:                      A Sample Function Description.
+* matching failure, in scanf:            Formatted Input.
+* matrices:                              Matrices.
+* matrix multiplication:                 Arithmetic Ops.
+* maximum field width (scanf):           Input Conversion Syntax.
+* messages, error:                       Errors.
+* minimum field width (printf):          Output Conversion Syntax.
+* missing data:                          Missing Data.
+* money:                                 Financial Functions.
+* multiplication:                        Arithmetic Ops.
+* negation:                              Arithmetic Ops.
+* NLP:                                   Optimization.
+* nonlinear equations:                   Nonlinear Equations.
+* nonlinear programming:                 Optimization.
+* not operator:                          Boolean Expressions.
+* numeric constant <1>:                  Numeric Data Types.
+* numeric constant:                      Numeric Objects.
+* numeric value <1>:                     Numeric Data Types.
+* numeric value:                         Numeric Objects.
+* Octave command options:                Command Line Options.
+* ODE:                                   Differential Equations.
+* on-line help:                          Getting Help.
+* operator precedence:                   Operator Precedence.
+* operators, arithmetic:                 Arithmetic Ops.
+* operators, assignment:                 Assignment Ops.
+* operators, boolean:                    Boolean Expressions.
+* operators, decrement:                  Assignment Ops.
+* operators, increment:                  Assignment Ops.
+* operators, logical:                    Boolean Expressions.
+* operators, relational:                 Comparison Ops.
+* optimization:                          Optimization.
+* options, Octave command:               Command Line Options.
+* or operator:                           Boolean Expressions.
+* oregonator:                            Ordinary Differential Equations.
+* otags:                                 Using Octave Mode.
+* otherwise statement:                   The switch Statement.
+* output conversions, for printf:        Table of Output Conversions.
+* partial fraction expansion:            Polynomial Manipulations.
+* patches, submitting:                   Sending Patches.
+* persistent statement:                  Persistent Variables.
+* persistent variables:                  Persistent Variables.
+* plotting:                              Two-Dimensional Plotting.
+* precision (printf):                    Output Conversion Syntax.
+* printing notation:                     Printing Notation.
+* program, self contained:               Executable Octave Programs.
+* programs:                              Comments.
+* prompt customization:                  Customizing the Prompt.
+* QP:                                    Optimization.
+* QR factorization:                      Matrix Factorizations.
+* quadratic programming:                 Optimization.
+* quitting octave <1>:                   Quitting Octave.
+* quitting octave:                       Running Octave.
+* quotient:                              Arithmetic Ops.
+* range expressions:                     Ranges.
+* relational operators:                  Comparison Ops.
+* reporting bugs <1>:                    Bug Lists.
+* reporting bugs:                        Reporting Bugs.
+* results, incorrect <1>:                Bug Reporting.
+* results, incorrect:                    Bug Criteria.
+* Schur decomposition:                   Matrix Factorizations.
+* script files:                          Functions and Scripts.
+* scripts:                               Executable Octave Programs.
+* self contained programs:               Executable Octave Programs.
+* short-circuit evaluation:              Short-circuit Boolean Operators.
+* side effect:                           Assignment Ops.
+* singular value decomposition:          Matrix Factorizations.
+* speedups:                              Coding Tips.
+* standards of coding style:             Tips.
+* startup:                               Startup Files.
+* startup files:                         Startup Files.
+* statements:                            Statements.
+* strings <1>:                           Strings.
+* strings:                               String Objects.
+* structure elements, looping over:      Looping Over Structure Elements.
+* structures <1>:                        Data Structures.
+* structures:                            Data Structure Objects.
+* submitting diffs:                      Sending Patches.
+* submitting patches:                    Sending Patches.
+* subtraction:                           Arithmetic Ops.
+* suggestions:                           Bug Criteria.
+* switch statement:                      The switch Statement.
+* TAGS:                                  Using Octave Mode.
+* tests for equality:                    Comparison Ops.
+* tips:                                  Tips.
+* transpose:                             Arithmetic Ops.
+* transpose, complex-conjugate:          Arithmetic Ops.
+* troubleshooting:                       Trouble.
+* try statement:                         The try Statement.
+* unary minus:                           Arithmetic Ops.
+* undefined behavior:                    Bug Criteria.
+* undefined function value:              Bug Criteria.
+* unwind_protect statement:              The unwind_protect Statement.
+* unwind_protect_cleanup:                The unwind_protect Statement.
+* use of comments:                       Comments.
+* user-defined data types:               User-defined Data Types.
+* user-defined functions:                Functions and Scripts.
+* user-defined variables:                Variables.
+* Utility Functions:                     Utility Functions.
+* variable descriptions:                 A Sample Variable Description.
+* Variable-length argument lists:        Variable-length Argument Lists.
+* Variable-length return lists:          Variable-length Return Lists.
+* variables, global:                     Global Variables.
+* variables, persistent:                 Persistent Variables.
+* variables, user-defined:               Variables.
+* warranty:                              Keywords.
+* while statement:                       The while Statement.
+* wrong answers <1>:                     Bug Reporting.
+* wrong answers:                         Bug Criteria.
+* ~/.octaverc:                           Startup Files.
+
+
+File: octave.info,  Node: Variable Index,  Next: Function Index,  Prev: Concept Index,  Up: Top
+
+Variable Index
+**************
+
+* Menu:
+
+*  <1>:                                  Dynamically Linked Functions.
+* :                                      Assignment Ops.
+* ans:                                   Terminal Output.
+* argv:                                  Command Line Options.
+* automatic_replot <1>:                  Two-Dimensional Plotting.
+* automatic_replot:                      Summary of Built-in Variables.
+* beep_on_error <1>:                     Error Handling.
+* beep_on_error:                         Summary of Built-in Variables.
+* completion_append_char <1>:            Summary of Built-in Variables.
+* completion_append_char:                Commands For Completion.
+* crash_dumps_octave_core <1>:           Simple File I/O.
+* crash_dumps_octave_core:               Summary of Built-in Variables.
+* debug_on_error:                        Debugging.
+* debug_on_interrupt:                    Debugging.
+* debug_on_warning:                      Debugging.
+* DEFAULT_LOADPATH <1>:                  Function Files.
+* DEFAULT_LOADPATH:                      Summary of Built-in Variables.
+* default_save_format <1>:               Simple File I/O.
+* default_save_format:                   Summary of Built-in Variables.
+* do_what_i_mean_not_what_i_say:         A Sample Variable Description.
+* e:                                     Mathematical Constants.
+* echo_executing_commands:               Diary and Echo Commands.
+* EDITOR <1>:                            Defaults from the Environment.
+* EDITOR <2>:                            Summary of Built-in Variables.
+* EDITOR:                                Commands For History.
+* eps:                                   Mathematical Constants.
+* EXEC_PATH <1>:                         Controlling Subprocesses.
+* EXEC_PATH:                             Summary of Built-in Variables.
+* F_DUPFD:                               Controlling Subprocesses.
+* F_GETFD:                               Controlling Subprocesses.
+* F_GETFL:                               Controlling Subprocesses.
+* F_SETFD:                               Controlling Subprocesses.
+* F_SETFL:                               Controlling Subprocesses.
+* false:                                 Logical Values.
+* fixed_point_format <1>:                Summary of Built-in Variables.
+* fixed_point_format:                    Matrices.
+* gnuplot_binary <1>:                    Interaction with gnuplot.
+* gnuplot_binary:                        Summary of Built-in Variables.
+* gnuplot_command_axes:                  Interaction with gnuplot.
+* gnuplot_command_end:                   Interaction with gnuplot.
+* gnuplot_command_plot:                  Interaction with gnuplot.
+* gnuplot_command_replot:                Interaction with gnuplot.
+* gnuplot_command_splot:                 Interaction with gnuplot.
+* gnuplot_command_title:                 Interaction with gnuplot.
+* gnuplot_command_using:                 Interaction with gnuplot.
+* gnuplot_command_with:                  Interaction with gnuplot.
+* gnuplot_has_frames:                    Interaction with gnuplot.
+* history_file <1>:                      Summary of Built-in Variables.
+* history_file:                          Commands For History.
+* history_size <1>:                      Summary of Built-in Variables.
+* history_size:                          Commands For History.
+* i:                                     Mathematical Constants.
+* I:                                     Mathematical Constants.
+* ignore_function_time_stamp <1>:        Function Files.
+* ignore_function_time_stamp:            Summary of Built-in Variables.
+* IMAGEPATH:                             Image Processing.
+* inf:                                   Mathematical Constants.
+* Inf:                                   Mathematical Constants.
+* INFO_FILE <1>:                         Summary of Built-in Variables.
+* INFO_FILE:                             Getting Help.
+* INFO_PROGRAM <1>:                      Summary of Built-in Variables.
+* INFO_PROGRAM:                          Getting Help.
+* j:                                     Mathematical Constants.
+* J:                                     Mathematical Constants.
+* LOADPATH <1>:                          Function Files.
+* LOADPATH:                              Summary of Built-in Variables.
+* MAKEINFO_PROGRAM:                      Getting Help.
+* max_recursion_depth <1>:               Recursion.
+* max_recursion_depth:                   Summary of Built-in Variables.
+* NA:                                    Missing Data.
+* nan:                                   Mathematical Constants.
+* NaN:                                   Mathematical Constants.
+* O_APPEND:                              Controlling Subprocesses.
+* O_ASYNC:                               Controlling Subprocesses.
+* O_NONBLOCK:                            Controlling Subprocesses.
+* O_RDONLY:                              Controlling Subprocesses.
+* O_RDWR:                                Controlling Subprocesses.
+* O_SYNC:                                Controlling Subprocesses.
+* O_WRONLY:                              Controlling Subprocesses.
+* OCTAVE_EXEC_PATH:                      Defaults from the Environment.
+* OCTAVE_HISTFILE:                       Defaults from the Environment.
+* OCTAVE_HISTSIZE:                       Defaults from the Environment.
+* OCTAVE_HOME:                           Summary of Built-in Variables.
+* OCTAVE_INFO_FILE:                      Defaults from the Environment.
+* OCTAVE_INFO_PROGRAM:                   Defaults from the Environment.
+* OCTAVE_PATH:                           Defaults from the Environment.
+* OCTAVE_VERSION:                        System Information.
+* output_max_field_width <1>:            Summary of Built-in Variables.
+* output_max_field_width:                Matrices.
+* output_precision <1>:                  Summary of Built-in Variables.
+* output_precision:                      Matrices.
+* page_output_immediately:               Input and Output.
+* page_screen_output <1>:                Input and Output.
+* page_screen_output:                    Summary of Built-in Variables.
+* PAGER <1>:                             Input and Output.
+* PAGER:                                 Summary of Built-in Variables.
+* pi:                                    Mathematical Constants.
+* prefer_zero_one_indexing:              Index Expressions.
+* print_answer_id_name <1>:              Terminal Output.
+* print_answer_id_name:                  Summary of Built-in Variables.
+* print_empty_dimensions <1>:            Summary of Built-in Variables.
+* print_empty_dimensions:                Empty Matrices.
+* program_invocation_name:               Command Line Options.
+* program_name:                          Command Line Options.
+* PS1 <1>:                               Summary of Built-in Variables.
+* PS1:                                   Customizing the Prompt.
+* PS2 <1>:                               Summary of Built-in Variables.
+* PS2:                                   Customizing the Prompt.
+* PS4 <1>:                               Summary of Built-in Variables.
+* PS4:                                   Customizing the Prompt.
+* realmax:                               Mathematical Constants.
+* realmin:                               Mathematical Constants.
+* return:                                Returning From a Function.
+* return_last_computed_value:            Summary of Built-in Variables.
+* save_header_format_string:             Simple File I/O.
+* save_precision <1>:                    Simple File I/O.
+* save_precision:                        Summary of Built-in Variables.
+* saving_history <1>:                    Summary of Built-in Variables.
+* saving_history:                        Commands For History.
+* SEEK_CUR:                              File Positioning.
+* SEEK_END:                              File Positioning.
+* SEEK_SET:                              File Positioning.
+* sighup_dumps_octave_core <1>:          Simple File I/O.
+* sighup_dumps_octave_core:              Summary of Built-in Variables.
+* sigterm_dumps_octave_core <1>:         Simple File I/O.
+* sigterm_dumps_octave_core:             Summary of Built-in Variables.
+* silent_functions <1>:                  Defining Functions.
+* silent_functions:                      Summary of Built-in Variables.
+* split_long_rows <1>:                   Summary of Built-in Variables.
+* split_long_rows:                       Matrices.
+* stderr:                                C-Style I/O Functions.
+* stdin:                                 C-Style I/O Functions.
+* stdout:                                C-Style I/O Functions.
+* string_fill_char:                      Creating Strings.
+* struct_levels_to_print <1>:            Summary of Built-in Variables.
+* struct_levels_to_print:                Data Structures.
+* suppress_verbose_help_message <1>:     Summary of Built-in Variables.
+* suppress_verbose_help_message:         Getting Help.
+* true:                                  Logical Values.
+* warn_assign_as_truth_value <1>:        The if Statement.
+* warn_assign_as_truth_value:            Summary of Built-in Variables.
+* warn_comma_in_global_decl:             Summary of Built-in Variables.
+* warn_divide_by_zero <1>:               Arithmetic Ops.
+* warn_divide_by_zero:                   Summary of Built-in Variables.
+* warn_empty_list_elements <1>:          Summary of Built-in Variables.
+* warn_empty_list_elements:              Empty Matrices.
+* warn_fortran_indexing <1>:             Index Expressions.
+* warn_fortran_indexing:                 Summary of Built-in Variables.
+* warn_function_name_clash <1>:          Function Files.
+* warn_function_name_clash:              Summary of Built-in Variables.
+* warn_future_time_stamp:                Function Files.
+* warn_imag_to_real <1>:                 Special Utility Matrices.
+* warn_imag_to_real:                     Summary of Built-in Variables.
+* warn_missing_semicolon <1>:            Defining Functions.
+* warn_missing_semicolon:                Summary of Built-in Variables.
+* warn_neg_dim_as_zero <1>:              Special Utility Matrices.
+* warn_neg_dim_as_zero:                  Summary of Built-in Variables.
+* warn_num_to_str <1>:                   Summary of Built-in Variables.
+* warn_num_to_str:                       String Conversions.
+* warn_reload_forces_clear <1>:          Dynamically Linked Functions.
+* warn_reload_forces_clear:              Summary of Built-in Variables.
+* warn_resize_on_range_error <1>:        Index Expressions.
+* warn_resize_on_range_error:            Summary of Built-in Variables.
+* warn_separator_insert <1>:             Summary of Built-in Variables.
+* warn_separator_insert:                 Matrices.
+* warn_single_quote_string <1>:          Summary of Built-in Variables.
+* warn_single_quote_string:              String Conversions.
+* warn_str_to_num <1>:                   Summary of Built-in Variables.
+* warn_str_to_num:                       String Conversions.
+* warn_undefined_return_values <1>:      Multiple Return Values.
+* warn_undefined_return_values:          Summary of Built-in Variables.
+* warn_variable_switch_label <1>:        The switch Statement.
+* warn_variable_switch_label:            Summary of Built-in Variables.
+

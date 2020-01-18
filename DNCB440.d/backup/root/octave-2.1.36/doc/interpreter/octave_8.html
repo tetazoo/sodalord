@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+<!-- This HTML file has been created by texi2html 1.51
+     from octave.texi on 1 May 2002 -->
+
+<TITLE>GNU Octave - Containers</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_7.html">previous</A>, <A HREF="octave_9.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC61" HREF="octave_toc.html#TOC61">Containers</A></H1>
+<P>
+<A NAME="IDX226"></A>
+
+</P>
+
+
+
+<H2><A NAME="SEC62" HREF="octave_toc.html#TOC62">Lists</A></H2>
+<P>
+<A NAME="IDX227"></A>
+
+</P>
+<P>
+@anchor{doc-list}
+<DL>
+<DT><U>Built-in Function:</U>  <B>list</B> <I>(<VAR>a1</VAR>, <VAR>a2</VAR>, ...)</I>
+<DD><A NAME="IDX228"></A>
+Create a new list with elements given by the arguments <VAR>a1</VAR>,
+<VAR>a2</VAR>, ....
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-nth}
+<DL>
+<DT><U>Built-in Function:</U>  <B>nth</B> <I>(<VAR>list</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX229"></A>
+Return the <VAR>n</VAR>-th element of <VAR>list</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-append}
+<DL>
+<DT><U>Built-in Function:</U>  <B>append</B> <I>(<VAR>list</VAR>, <VAR>a1</VAR>, <VAR>a2</VAR>, ...)</I>
+<DD><A NAME="IDX230"></A>
+Return a new list created by appending <VAR>a1</VAR>, <VAR>a1</VAR>, ..., to
+<VAR>list</VAR>.  If any of the arguments to be appended is a list, its
+elements are appended individually.  For example,
+
+</P>
+
+<PRE>
+x = list (1, 2);
+y = list (3, 4);
+append (x, y);
+</PRE>
+
+<P>
+results in the list containing the four elements <SAMP>`(1 2 3 4)'</SAMP>, not
+a list containing the three elements <SAMP>`(1 2 (3 4))'</SAMP>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-reverse}
+<DL>
+<DT><U>Built-in Function:</U>  <B>reverse</B> <I>(<VAR>list</VAR>)</I>
+<DD><A NAME="IDX231"></A>
+Return a new list created by reversing the elements of <VAR>list</VAR>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-splice}
+<DL>
+<DT><U>Built-in Function:</U>  <B>splice</B> <I>(<VAR>list_1</VAR>, <VAR>offset</VAR>, <VAR>length</VAR>, <VAR>list_2</VAR>)</I>
+<DD><A NAME="IDX232"></A>
+Replace <VAR>length</VAR> elements of <VAR>list_1</VAR> beginning at
+<VAR>offset</VAR> with the contents of <VAR>list_2</VAR> (if any).  If
+<VAR>length</VAR> is omitted, all elements from <VAR>offset</VAR> to the end of
+<VAR>list_1</VAR> are replaced.  As a special case, if <VAR>offset</VAR> is one
+greater than the length of <VAR>list_1</VAR> and <VAR>length</VAR> is 0, splice
+is equivalent to <CODE>append (<VAR>list_1</VAR>, <VAR>list_2</VAR>)</CODE>.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-is_list}
+<DL>
+<DT><U>Built-in Function:</U>  <B>is_list</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX233"></A>
+Return nonzero if <VAR>x</VAR> is a list.
+</DL>
+
+</P>
+
+
+
+<H2><A NAME="SEC63" HREF="octave_toc.html#TOC63">Cell Arrays</A></H2>
+<P>
+<A NAME="IDX234"></A>
+
+</P>
+<P>
+@anchor{doc-cell}
+<DL>
+<DT><U>Built-in Function:</U>  <B>cell</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX235"></A>
+<DT><U>Built-in Function:</U>  <B>cell</B> <I>(<VAR>n</VAR>, <VAR>m</VAR>)</I>
+<DD><A NAME="IDX236"></A>
+Create a new cell array object.  If invoked with a single scalar
+argument, <CODE>cell</CODE> returns a square cell array with the dimension
+specified.  If you supply two scalar arguments, <CODE>cell</CODE> takes
+them to be the number of rows and columns.  If given a vector with two
+elements, <CODE>cell</CODE> uses the values of the elements as the number of
+rows and columns, respectively.
+</DL>
+
+</P>
+
+<P>
+@anchor{doc-iscell}
+<DL>
+<DT><U>Built-in Function:</U>  <B>iscell</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX237"></A>
+Return true if <VAR>x</VAR> is a cell array object.  Otherwise, return
+false.
+</DL>
+
+</P>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_7.html">previous</A>, <A HREF="octave_9.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

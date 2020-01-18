@@ -1,0 +1,10 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Concept Index, Variable Index, Copying, Top
+@unnumbered Concept Index
+
+@printindex cp

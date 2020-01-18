@@ -1,0 +1,13 @@
+4.78 [en] (X11; U; Linux 2.4.18-5 i686)
+/var/athena/infoagents/arch/i386_linux24/MIT-only/netscape/plugins/libnullplugin.so 993475993 *: .*:All types;
+pluginName=Netscape Default Plugin
+pluginDescription=The default plugin handles plugin data for mimetypes and extensions that are not specified and facilitates downloading of new plugins.
+/var/athena/infoagents/arch/i386_linux24/MIT-only/netscape/plugins/libflashplayer.so 982294744 application/x-shockwave-flash: swf:Shockwave Flash; application/futuresplash: spl:FutureSplash Player;
+pluginName=Shockwave Flash
+pluginDescription=Shockwave Flash 5.0 r47
+/var/athena/infoagents/arch/i386_linux24/MIT-only/netscape/plugins/rpnp.so 965850840 audio/x-pn-realaudio-plugin: rpm:RealPlayer Plugin Metafile;
+pluginName=RealPlayer(tm) 7.0 Plug-In
+pluginDescription=RealPlayer(tm) 7.0 LiveConnect-Enabled Plug-In
+/var/athena/infoagents/arch/i386_linux24/te/PlugIn/nptchexp.so 981148878 application/x-tex: .tex,.bbl:IBM techexplorer TeX files; application/x-latex: .latex,.ltx:IBM techexplorer LaTeX files; application/x-techexplorer: .tcx:IBM techexplorer files; text/mathml: .mml:Mathematical Markup Language Files; text/mathml-techexplorer: .mml:Mathematical Markup Language Files for IBM techexplorer; text/x-tex: .tex,.bbl:TeX files; text/x-latex: .latex,.ltx:LaTeX files;
+pluginName=IBM techexplorer Hypermedia Browser, Introductory Edition
+pluginDescription=IBM techexplorer Hypermedia Browser, Introductory Edition, 3.0 Build 00.1015

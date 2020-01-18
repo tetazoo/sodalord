@@ -1,0 +1,69 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Wed Jan 14 15:40:48 2004 by CPAN::Checksums (v1.016)
+$cksum = {
+  'Chart-2.0.tar.gz' => {
+    'mtime' => '2003-01-14',
+    'md5-ungz' => '3ee06313ff23e9b52e90a13fd7ee5f8d',
+    'md5' => '04c2178a73c7431b4e978ed026fffbf3',
+    'size' => 4560590
+  },
+  'Chart-1.2.tar.gz' => {
+    'mtime' => '2002-06-06',
+    'md5-ungz' => 'b83855136ac6c6a04c6656ee48e285b4',
+    'md5' => '6c712a9d1c977cec6b14637be14ddd52',
+    'size' => 137199
+  },
+  'Chart-1.0.1.tar.gz' => {
+    'mtime' => '2001-11-28',
+    'md5-ungz' => '28cb59bec665c35ea6686305b79eb92f',
+    'md5' => '97a9e4db4de5fb277745bb2437d65fc8',
+    'size' => 43709
+  },
+  'Chart-1.0.tar.gz' => {
+    'mtime' => '2001-10-22',
+    'md5-ungz' => '75524078f4d987379aefa192390ce6aa',
+    'md5' => 'ec21b4e61e90313bd23bf98c8066b62e',
+    'size' => 43648
+  },
+  'Chart-1.3.tar.gz' => {
+    'mtime' => '2002-06-19',
+    'md5-ungz' => '2ece3fcb7f7962965ac76e5939dd1d49',
+    'md5' => 'fb1eb7898e0df932a798aa9f831e7144',
+    'size' => 142023
+  },
+  'Chart-2.3.tar.gz' => {
+    'mtime' => '2004-01-14',
+    'md5-ungz' => '00b214055c17f6026b6bc8ee97a1d74b',
+    'md5' => '809540667dd703353af30147ef27b67d',
+    'size' => 516041
+  },
+  'Chart-2.2.tar.gz' => {
+    'mtime' => '2003-02-18',
+    'md5-ungz' => '021594c3df920e40a347444640372e05',
+    'md5' => '7d3831e2a6be0245b1c94f9847cf75cd',
+    'size' => 4405514
+  },
+  'Chart-1.1.tar.gz' => {
+    'mtime' => '2002-05-31',
+    'md5-ungz' => 'f2434e8c96140908c43a86a285e683eb',
+    'md5' => '139f5f69cf0b6cfac7f742346b1c2c61',
+    'size' => 130724
+  },
+  'Chart-2.1.tar.gz' => {
+    'mtime' => '2003-01-30',
+    'md5-ungz' => '763ab603c354d5000d316a19b894086a',
+    'md5' => 'a4e6657639c1afa4b45c1a58435a463d',
+    'size' => 4649605
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQFABWMBMo2oZ0UPiewRAo5HAJ997z3+z1oStsHRPDDbVFGWp6BahACdEDUv
+sRReSPSn4PregMPapQiWQ48=
+=HNKK
+-----END PGP SIGNATURE-----

@@ -1,0 +1,3 @@
+ XDEFUN_INTERNAL (functions, args, , false, "-*- texinfo -*-\n@deftypefn {Built-in Function} {} functions (@var{fcn_handle})\nReturn a struct containing information about the function handle\n@var{fcn_handle}.\n@end deftypefn") 
+ XDEFUN_INTERNAL (func2str, args, , false, "-*- texinfo -*-\n@deftypefn {Built-in Function} {} func2str (@var{fcn_handle})\nReturn a string containing the name of the function referenced by\nthe function handle @var{fcn_handle}.\n@end deftypefn") 
+ XDEFUN_INTERNAL (str2func, args, , false, "-*- texinfo -*-\n@deftypefn {Built-in Function} {} str2func (@var{fcn_name})\nReturn a function handle constructed from the string @var{fcn_name}.\n@end deftypefn") 

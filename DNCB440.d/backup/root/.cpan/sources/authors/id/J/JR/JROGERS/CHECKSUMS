@@ -1,0 +1,39 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Fri Feb  7 18:00:00 2003 by CPAN::Checksums (v1.016)
+$cksum = {
+  'Net-Telnet-3.02.tar.gz' => {
+    'md5-ungz' => '5aa4ceca7387075a07eed36898ed6440',
+    'mtime' => '2000-05-27',
+    'md5' => '7078ce36366e5bae7ad9c1ef13c1113a',
+    'size' => '30946'
+  },
+  'Net-Telnet-3.01.tar.gz' => {
+    'md5-ungz' => '2a1e171d95679352a36e3104bcc7a232',
+    'mtime' => '1997-12-30',
+    'md5' => '60168f232b8da397ff16f3cfe820510a',
+    'size' => '30400'
+  },
+  'Net-Telnet-3.03.tar.gz' => {
+    'md5-ungz' => '392ea40dc9a656fc6dfddf17081966ec',
+    'mtime' => '2002-07-17',
+    'md5' => '2f7d34b09d6117baefe89d44cff9d5fc',
+    'size' => '35641'
+  },
+  'perldb+.el-1.03.gz' => {
+    'md5-ungz' => '560b6969bf23468ac722d7daa6376afe',
+    'mtime' => '2000-05-27',
+    'md5' => '25d4a5a9cdf4fa194154232adbfc3721',
+    'size' => '9252'
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.1 (GNU/Linux)
+
+iD8DBQE+Q/QgMo2oZ0UPiewRAkRHAJkBli0yOGGH6F4Q3uvj6bQocTypbACdHucy
+g/9i7Y6AneLYeWtP00RfSbg=
+=IFXh
+-----END PGP SIGNATURE-----

@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html40/loose.dtd">
+<HTML>
+<!-- Created on January, 20 2004 by texi2html 1.66 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people <dev@texi2html.cvshome.org>
+Send bugs and suggestions to <users@texi2html.cvshome.org>
+
+-->
+<HEAD>
+<TITLE>Frequently asked questions about Octave (with answers): MATLAB compatibility</TITLE>
+
+<META NAME="description" CONTENT="Frequently asked questions about Octave (with answers): MATLAB compatibility">
+<META NAME="keywords" CONTENT="Frequently asked questions about Octave (with answers): MATLAB compatibility">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.66">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC25"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_10.html#SEC24"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_12.html#SEC26"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_10.html#SEC24"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_12.html#SEC26"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 10. Porting programs from MATLAB to Octave </H1>
+<!--docid::SEC25::-->
+<P>
+
+<A NAME="IDX53"></A>
+<A NAME="IDX54"></A>
+</P>
+<P>
+
+&quot;I wrote some code for MATLAB, and I want to get it running under
+Octave.  Is there anything I should watch out for?&quot;
+</P>
+<P>
+
+The differences between Octave and MATLAB typically fall into one of
+three categories:
+</P>
+<P>
+
+<OL>
+<LI>
+Irrelevant.
+<P>
+
+</P>
+<LI>
+Known differences, perhaps configurable with a user preference variable.
+<P>
+
+</P>
+<LI>
+Unknown differences.
+</OL>
+<P>
+
+The first category, irrelevant differences, do not affect computations
+and most likely do not affect the execution of function files.
+</P>
+<P>
+
+The differences of the second category are usually because the authors
+of Octave decided on a better (subjective) implementation that the way
+MATLAB does it, and so introduced &quot;user preference variables&quot; so that
+you can customize Octave's behavior to be either MATLAB-compatible or
+to use Octave's new features.  To make Octave more MATLAB-compatible,
+put the following statements in your `<TT>~/.octaverc</TT>' file, or use the
+command line option `<SAMP>--traditional</SAMP>', which implies all of these
+settings.  Note that this list may not be complete, because some new
+variables may have been introduced since this document was last updated.
+</P>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>  PS1                           = &quot;&gt;&gt; &quot;
+  PS2                           = &quot;&quot;
+  beep_on_error                 = true
+  crash_dumps_octave_core       = false
+  default_save_format           = &quot;mat-binary&quot;
+  fixed_point_format            = true
+  page_screen_output            = false
+  print_empty_dimensions        = false
+  warn_function_name_clash      = false
+</pre></td></tr></table><P>
+
+Some other known differences are:
+</P>
+<P>
+
+<UL>
+<LI>
+The Octave plotting functions are mostly compatible with the ones from
+MATLAB 3.x, but not from MATLAB 4.x.
+</UL>
+<P>
+
+The third category of differences is (hopefully) shrinking.  If you find
+a difference between Octave behavior and MATLAB, then you should send a
+description of this difference (with code illustrating the difference,
+if possible) to bug-octave@bevo.che.wisc.edu.
+</P>
+<P>
+
+An archive of old postings to the Octave mailing lists is maintained
+on ftp.che.wisc.edu in the directory `<TT>/pub/octave/MAILING-LISTS</TT>'.
+</P>
+<P>
+
+<A NAME="Index"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_10.html#SEC24"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_12.html#SEC26"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="Octave-FAQ_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>
+<FONT SIZE="-1">
+This document was generated
+by <I>John W. Eaton</I> on <I>January, 20 2004</I>
+using <A HREF="http://texi2html.cvshome.org"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

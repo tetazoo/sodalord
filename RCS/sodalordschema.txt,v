@@ -1,0 +1,167 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2008.08.12.04.58.34;	author rhysh;	state Exp;
+branches;
+next	;
+
+
+desc
+@setup of sodalord's database
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@CREATE TABLE selection (
+    selection_num              smallint,
+    columns                    smallint,
+    actual_price               numeric,
+    current_level_upper_bound  smallint,
+    current_level_lower_bound  smallint,
+    product_id          smallint );
+
+CREATE TABLE package (
+    id                         smallint PRIMARY KEY DEFAULT NEXTVAL('pkgid'),
+    name                       text,
+    column_capacity            smallint );
+
+CREATE SEQUENCE pkgid;
+
+CREATE TABLE flavor (
+    id                         smallint PRIMARY KEY DEFAULT NEXTVAL('flavorid'),
+    name                       text,
+    nickname                   text );
+
+CREATE SEQUENCE flavorid;
+
+CREATE TABLE product (
+    id                         smallint PRIMARY KEY DEFAULT NEXTVAL('productid'),
+    flavor_id                  smallint,
+    package_id                 smallint );
+
+CREATE SEQUENCE productid;
+
+CREATE TABLE run (
+    id                         smallint PRIMARY KEY DEFAULT NEXTVAL('runid'),
+    run_date                   date,
+    supplier                   text );
+
+CREATE SEQUENCE runid;
+
+CREATE TABLE run_item (
+    run_id                     smallint,
+    product_id                 smallint,
+    wholesale_price            numeric,
+    deposit                    numeric,
+    tax                        numeric,
+    quantity_included          smallint,
+    payer_userid               integer );
+
+CREATE TABLE run_extra_cost (
+    run_id                     smallint,
+    amount                     numeric,
+    description                text,
+    payer_userid               integer );
+
+CREATE TABLE stocking (
+    id                         integer PRIMARY KEY DEFAULT NEXTVAL('stockid'),
+    stocking_time              timestamp );
+
+CREATE SEQUENCE stockid;
+
+CREATE TABLE stocking_flavor (
+    stocking_id                integer,
+    product_id                 smallint,
+    number_added               smallint );
+
+CREATE TABLE sodauser (
+    id                         integer PRIMARY KEY DEFAULT NEXTVAL('userid'),
+    username                   text,
+    email                      text,
+    create_date                date,
+    balance                    numeric,
+    passwd                     text );
+
+CREATE SEQUENCE userid;
+
+CREATE TABLE alias (
+    user_id                    integer,
+    aliasname                  text );
+
+CREATE TABLE card (
+    user_id                    integer,
+    cardhash                   text );
+
+CREATE TABLE user_stats (
+    user_id                    integer,
+    h00                        integer,
+    h01                        integer,
+    h02                        integer,
+    h03                        integer,
+    h04                        integer,
+    h05                        integer,
+    h06                        integer,
+    h07                        integer,
+    h08                        integer,
+    h09                        integer,
+    h10                        integer,
+    h11                        integer,
+    h12                        integer,
+    h13                        integer,
+    h14                        integer,
+    h15                        integer,
+    h16                        integer,
+    h17                        integer,
+    h18                        integer,
+    h19                        integer,
+    h20                        integer,
+    h21                        integer,
+    h22                        integer,
+    h23                        integer,
+    sun                        integer,
+    mon                        integer,
+    tue                        integer,
+    wed                        integer,
+    thu                        integer,
+    fri                        integer,
+    sat                        integer );
+
+CREATE TABLE purchase (
+    purchase_time              timestamp,
+    user_id                    integer,
+    product_id                 smallint,
+    price                      numeric );
+
+CREATE TABLE deposit (
+    user_id                    integer,
+    deposit_time               timestamp,
+    amount                     numeric,
+    user_comment               text,
+    admin_comment              text,
+    recipient_userid           integer );
+
+CREATE TABLE money_removal (
+    removal_time               timestamp,
+    amount                     numeric,
+    recipient_userid           integer );
+
+CREATE TABLE current_cash (
+    tube_nickels               smallint,
+    tube_dimes                 smallint,
+    tube_quarters              smallint,
+    cashbox_nickels            smallint,
+    cashbox_dimes              smallint,
+    cashbox_quarters           smallint,
+    cashbox_dollars            smallint,
+    bill_dollars               smallint );
+
+@

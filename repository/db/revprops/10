@@ -1,0 +1,15 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-08-18T01:47:38.617316Z
+K 7
+svn:log
+V 131
+converted all password entry to unechoed_prompt() and all password
+checking to password_prompt(). fixed credit==0 fencepost issue.
+
+END

@@ -1,0 +1,140 @@
+# CHECKSUMS file written on Sun Aug  4 13:45:17 2002 by CPAN::Checksums (v1.008)
+$cksum = {
+  'Devel-Symdump-2.03.tar.gz' => {
+    'md5-ungz' => '2a8add1a2baad8956ad25e9bd0e1dc34',
+    'mtime' => '2002-04-18',
+    'md5' => 'ea5230185f1188b70ad9c3e431d981c5',
+    'shortname' => 'devel203.tgz',
+    'size' => '9834'
+  },
+  'DB_File-SV18x-kit-0.06.tar.gz' => {
+    'md5-ungz' => '2466cb8c20448ef417e77120d854412f',
+    'mtime' => '2000-03-06',
+    'md5' => 'f4e861703bc4f397751a14944f614110',
+    'shortname' => 'dbfil006.tgz',
+    'size' => '8315'
+  },
+  'geek_cruise-alaska2000-1.00.tar.gz' => {
+    'md5-ungz' => 'd4890b85b7803e00c4dbcb7a3de018de',
+    'mtime' => '2000-06-14',
+    'md5' => 'f3cdbf1be2ee696203f25a8474a01a10',
+    'shortname' => 'geek2000.tgz',
+    'size' => '16177'
+  },
+  'PerlConf-3.0-Talk-I18N-19990826.tar.gz' => {
+    'md5-ungz' => '5d8ea499d70d3a89cb7528a4506a2abb',
+    'mtime' => '1999-08-26',
+    'md5' => '32b0a3aea683c9513bbebc865f2bdbaf',
+    'shortname' => 'perlco18.tgz',
+    'size' => '11316'
+  },
+  'test-20020618115854.test' => {
+    'mtime' => '2002-06-18',
+    'md5' => 'e1154c5441d08179ef44911405e93118',
+    'shortname' => 'test2002.tes',
+    'size' => '25'
+  },
+  'CPAN-patchaperlup-0.020.tar.gz' => {
+    'md5-ungz' => 'a556e1434e66c6987a344de5e47434fe',
+    'mtime' => '2001-11-08',
+    'md5' => '2ddca3332c250f1ddeb35e0b669ca4fd',
+    'shortname' => 'cpan0020.tgz',
+    'size' => '5496'
+  },
+  'CPAN-Checksums-1.008.tar.gz' => {
+    'md5-ungz' => '2e97fe912cd75db00d7a9d8bcf4e63be',
+    'mtime' => '2000-12-13',
+    'md5' => '4a3ca3972d1a4d0e569884fd7445e4c0',
+    'shortname' => 'cpan1008.tgz',
+    'size' => '4632'
+  },
+  'Apache-Stage-1.18.tar.gz' => {
+    'md5-ungz' => '4d5ba7dc427d66a7603fda3e95d23d41',
+    'mtime' => '1997-10-16',
+    'md5' => 'da0d2b273219388a8dac19a3a122269e',
+    'shortname' => 'apach118.tgz',
+    'size' => '3402'
+  },
+  'patch.GD-1.32.work-with-perlio.txt' => {
+    'mtime' => '2001-01-28',
+    'md5' => '9870bcbd4ac5f00a487f67b9c79fe55e',
+    'shortname' => 'patch132.txt',
+    'size' => '6125'
+  },
+  'CPAN-1.61.tar.gz' => {
+    'md5-ungz' => '0d226a4fff592183146671be7748ecaf',
+    'mtime' => '2002-05-07',
+    'md5' => 'd942f521ee86996256752578c27f8d08',
+    'shortname' => 'cpan161.tgz',
+    'size' => '118210'
+  },
+  'Apache-Session-Counted-1.118.tar.gz' => {
+    'md5-ungz' => '277c655abd940bc27f35705e6b018195',
+    'mtime' => '2002-04-15',
+    'md5' => 'c102eee6eac93f441bc3069b9d206783',
+    'shortname' => 'apac1118.tgz',
+    'size' => '8366'
+  },
+  'Memo-bindist-any-bin-2-archname-compiler.tar.gz' => {
+    'md5-ungz' => '0f318dc060f137ed9cf96b8312fc4b1f',
+    'mtime' => '1998-02-17',
+    'md5' => '43138eee71f575f08a5b2b8ed1712fcc',
+    'shortname' => 'memobin0.tgz',
+    'size' => '1076'
+  },
+  'CPAN-Checksums-1.009.tar.gz' => {
+    'md5-ungz' => 'a6cd4a51d1dc5a2a13e02f8ee07728b6',
+    'mtime' => '2002-03-31',
+    'md5' => 'f9e8b7e42df9535fd341bd0d2c979a72',
+    'shortname' => 'cpan1009.tgz',
+    'size' => '4713'
+  },
+  'Apache-HeavyCGI-0.0133.tar.gz' => {
+    'md5-ungz' => 'a259cf868a2ee8fd0f903efa0d377fe7',
+    'mtime' => '2001-04-15',
+    'md5' => 'b071d04957eebe028beb285c4248fcbb',
+    'shortname' => 'apac001.tgz',
+    'size' => '25970'
+  },
+  'CPAN-1.62.tar.gz' => {
+    'md5-ungz' => '6d20ca9368f189bd87c4dc4085cd4e2f',
+    'mtime' => '2002-07-28',
+    'md5' => 'de35dd82c7ed767e85dfb6c37fa691af',
+    'shortname' => 'cpan162.tgz',
+    'size' => '120009'
+  },
+  'Apache-GzipChain-0.06.tar.gz' => {
+    'md5-ungz' => '2e581588704254e4aeb725253b207489',
+    'mtime' => '1997-12-05',
+    'md5' => 'c73a2e83966ef221eb3877f804ab4a7d',
+    'shortname' => 'apach006.tgz',
+    'size' => '3717'
+  },
+  'Convert-UU-0.40.tar.gz' => {
+    'md5-ungz' => 'd535787b6dd6408f0c054cff2ff7abd6',
+    'mtime' => '1999-03-12',
+    'md5' => 'f5a144d874e74441594af779fb82b3c1',
+    'shortname' => 'conve040.tgz',
+    'size' => '5247'
+  },
+  'Apache-correct_headers.readme.html' => {
+    'mtime' => '2000-05-07',
+    'md5' => 'e46958c569219251e5dc187a9ac879ce',
+    'shortname' => 'apachec0.htm',
+    'size' => '605'
+  },
+  'Apache-UploadSvr-1.024.tar.gz' => {
+    'md5-ungz' => '51cf171a99a08fec9211b8ee900f77bd',
+    'mtime' => '1998-09-09',
+    'md5' => 'e1f512bf64ad951d99d94505932c0813',
+    'shortname' => 'apac1024.tgz',
+    'size' => '18988'
+  },
+  'Devel-SawAmpersand-0.20.tar.gz' => {
+    'md5-ungz' => 'f831bfcf420585a93d6305f63ccd56cb',
+    'mtime' => '1999-01-13',
+    'md5' => '2d2af759c66fed71cacdac51f631fefc',
+    'shortname' => 'devel020.tgz',
+    'size' => '4073'
+  }
+};

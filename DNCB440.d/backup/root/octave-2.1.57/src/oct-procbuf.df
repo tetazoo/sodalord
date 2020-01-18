@@ -1,0 +1,1 @@
+   XDEFVAR_INTERNAL("__kluge_procbuf_delay__", SBV___kluge_procbuf_delay__, Vkluge_procbuf_delay, false, kluge_procbuf_delay, "-*- texinfo -*-\n@defvr __kluge_procbuf_delay__\nNumber of microseconds to delay in the parent after forking.\n@end defvr") ;

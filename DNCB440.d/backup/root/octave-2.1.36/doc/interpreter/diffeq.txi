@@ -1,0 +1,121 @@
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Differential Equations, Optimization, Quadrature, Top
+@chapter Differential Equations
+
+Octave has two built-in functions for solving differential equations.
+Both are based on reliable ODE solvers written in Fortran.
+
+@menu
+* Ordinary Differential Equations::  
+* Differential-Algebraic Equations::  
+@end menu
+
+@cindex Differential Equations
+@cindex ODE
+@cindex DAE
+
+@node Ordinary Differential Equations, Differential-Algebraic Equations, Differential Equations, Differential Equations
+@section Ordinary Differential Equations
+
+The function @code{lsode} can be used to solve ODEs of the form
+@iftex
+@tex
+$$
+ {dx\over dt} = f (x, t)
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+dx
+-- = f (x, t)
+dt
+@end example
+@end ifinfo
+
+@noindent
+using Hindmarsh's ODE solver @sc{Lsode}.
+
+@DOCSTRING(lsode)
+
+Here is an example of solving a set of three differential equations using
+@code{lsode}.  Given the function
+
+@cindex oregonator
+
+@example
+@group
+function xdot = f (x, t)
+
+  xdot = zeros (3,1);
+
+  xdot(1) = 77.27 * (x(2) - x(1)*x(2) + x(1) \
+            - 8.375e-06*x(1)^2);
+  xdot(2) = (x(3) - x(1)*x(2) - x(2)) / 77.27;
+  xdot(3) = 0.161*(x(1) - x(3));
+
+endfunction
+@end group
+@end example
+
+@noindent
+and the initial condition @code{x0 = [ 4; 1.1; 4 ]}, the set of
+equations can be integrated using the command
+
+@example
+@group
+t = linspace (0, 500, 1000);
+
+y = lsode ("f", x0, t);
+@end group
+@end example
+
+If you try this, you will see that the value of the result changes
+dramatically between @var{t} = 0 and 5, and again around @var{t} = 305.
+A more efficient set of output points might be
+
+@example
+@group
+t = [0, logspace (-1, log10(303), 150), \
+        logspace (log10(304), log10(500), 150)];
+@end group
+@end example
+
+@DOCSTRING(lsode_options)
+
+See Alan C. Hindmarsh, @cite{ODEPACK, A Systematized Collection of ODE
+Solvers}, in Scientific Computing, R. S. Stepleman, editor, (1983) for
+more information about the inner workings of @code{lsode}.
+
+@node Differential-Algebraic Equations,  , Ordinary Differential Equations, Differential Equations
+@section Differential-Algebraic Equations
+
+The function @code{dassl} can be used to solve DAEs of the form
+@iftex
+@tex
+$$
+ 0 = f (\dot{x}, x, t), \qquad x(t=0) = x_0, \dot{x}(t=0) = \dot{x}_0
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+0 = f (x-dot, x, t),    x(t=0) = x_0, x-dot(t=0) = x-dot_0
+@end example
+@end ifinfo
+
+@noindent
+using Petzold's DAE solver @sc{Dassl}.
+
+@DOCSTRING(dassl)
+
+@DOCSTRING(dassl_options)
+
+See K. E. Brenan, et al., @cite{Numerical Solution of Initial-Value
+Problems in Differential-Algebraic Equations}, North-Holland (1989) for
+more information about the implementation of @sc{Dassl}.

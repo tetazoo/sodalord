@@ -1,0 +1,207 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Quadrature</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_22.html">previous</A>, <A HREF="octave_24.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC161" HREF="octave_toc.html#TOC161">Quadrature</A></H1>
+
+
+
+<H2><A NAME="SEC162" HREF="octave_toc.html#TOC162">Functions of One Variable</A></H2>
+
+<P>
+@anchor{doc-quad}
+<DL>
+<DT><U>Loadable Function:</U> [<VAR>v</VAR>, <VAR>ier</VAR>, <VAR>nfun</VAR>, <VAR>err</VAR>] = <B>quad</B> <I>(<VAR>f</VAR>, <VAR>a</VAR>, <VAR>b</VAR>, <VAR>tol</VAR>, <VAR>sing</VAR>)</I>
+<DD><A NAME="IDX841"></A>
+Integrate a nonlinear function of one variable using Quadpack.
+The first argument is the name of the  function to call to compute the
+value of the integrand.  It must have the form
+
+
+
+<PRE>
+y = f (x)
+</PRE>
+
+<P>
+where <VAR>y</VAR> and <VAR>x</VAR> are scalars.
+
+
+<P>
+The second and third arguments are limits of integration.  Either or
+both may be infinite.
+
+
+<P>
+The optional argument <VAR>tol</VAR> is a vector that specifies the desired
+accuracy of the result.  The first element of the vector is the desired
+absolute tolerance, and the second element is the desired relative
+tolerance.  To choose a relative test only, set the absolute
+tolerance to zero.  To choose an absolute test only, set the relative
+tolerance to zero. 
+
+
+<P>
+The optional argument <VAR>sing</VAR> is a vector of values at which the
+integrand is known to be singular.
+
+
+<P>
+The result of the integration is returned in <VAR>v</VAR> and <VAR>ier</VAR>
+contains an integer error code (0 indicates a successful integration).
+The value of <VAR>nfun</VAR> indicates how many function evaluations were
+required, and <VAR>err</VAR> contains an estimate of the error in the
+solution.
+
+
+<P>
+You can use the function <CODE>quad_options</CODE> to set optional
+parameters for <CODE>quad</CODE>.
+</DL>
+
+
+<P>
+@anchor{doc-quad_options}
+<DL>
+<DT><U>Loadable Function:</U>  <B>quad_options</B> <I>(<VAR>opt</VAR>, <VAR>val</VAR>)</I>
+<DD><A NAME="IDX842"></A>
+When called with two arguments, this function
+allows you set options parameters for the function <CODE>quad</CODE>.
+Given one argument, <CODE>quad_options</CODE> returns the value of the
+corresponding option.  If no arguments are supplied, the names of all
+the available options and their current values are displayed.
+
+
+<P>
+Options include
+
+
+<DL COMPACT>
+
+<DT><CODE>"absolute tolerance"</CODE>
+<DD>
+Absolute tolerance; may be zero for pure relative error test.
+<DT><CODE>"relative tolerance"</CODE>
+<DD>
+Nonnegative relative tolerance.  If the absolute tolerance is zero,
+the relative tolerance must be greater than or equal to 
+<CODE>max (50*eps, 0.5e-28)</CODE>.
+</DL>
+</DL>
+
+<P>
+Here is an example of using <CODE>quad</CODE> to integrate the function
+
+
+
+<PRE>
+  <VAR>f</VAR>(<VAR>x</VAR>) = <VAR>x</VAR> * sin (1/<VAR>x</VAR>) * sqrt (abs (1 - <VAR>x</VAR>))
+</PRE>
+
+<P>
+from <VAR>x</VAR> = 0 to <VAR>x</VAR> = 3.
+
+
+<P>
+This is a fairly difficult integration (plot the function over the range
+of integration to see why).
+
+
+<P>
+The first step is to define the function:
+
+
+
+<PRE>
+function y = f (x)
+  y = x .* sin (1 ./ x) .* sqrt (abs (1 - x));
+endfunction
+</PRE>
+
+<P>
+Note the use of the `dot' forms of the operators.  This is not necessary
+for the call to <CODE>quad</CODE>, but it makes it much easier to generate a
+set of points for plotting (because it makes it possible to call the
+function with a vector argument to produce a vector result).
+
+
+<P>
+Then we simply call quad:
+
+
+
+<PRE>
+[v, ier, nfun, err] = quad ("f", 0, 3)
+     => 1.9819
+     => 1
+     => 5061
+     => 1.1522e-07
+</PRE>
+
+<P>
+Although <CODE>quad</CODE> returns a nonzero value for <VAR>ier</VAR>, the result
+is reasonably accurate (to see why, examine what happens to the result
+if you move the lower bound to 0.1, then 0.01, then 0.001, etc.).
+
+
+
+
+<H2><A NAME="SEC163" HREF="octave_toc.html#TOC163">Orthogonal Collocation</A></H2>
+
+<P>
+@anchor{doc-colloc}
+<DL>
+<DT><U>Loadable Function:</U> [<VAR>r</VAR>, <VAR>amat</VAR>, <VAR>bmat</VAR>, <VAR>q</VAR>] = <B>colloc</B> <I>(<VAR>n</VAR>, "left", "right")</I>
+<DD><A NAME="IDX843"></A>
+Compute derivative and integral weight matrices for orthogonal
+collocation using the subroutines given in J. Villadsen and
+M. L. Michelsen, <CITE>Solution of Differential Equation Models by
+Polynomial Approximation</CITE>.
+</DL>
+
+
+<P>
+Here is an example of using <CODE>colloc</CODE> to generate weight matrices
+for solving the second order differential equation
+<VAR>u</VAR>' - <VAR>alpha</VAR> * <VAR>u</VAR>" = 0 with the boundary conditions
+<VAR>u</VAR>(0) = 0 and <VAR>u</VAR>(1) = 1.
+
+
+<P>
+First, we can generate the weight matrices for <VAR>n</VAR> points (including
+the endpoints of the interval), and incorporate the boundary conditions
+in the right hand side (for a specific value of
+<VAR>alpha</VAR>).
+
+
+
+<PRE>
+n = 7;
+alpha = 0.1;
+[r, a, b] = colloc (n-2, "left", "right");
+at = a(2:n-1,2:n-1);
+bt = b(2:n-1,2:n-1);
+rhs = alpha * b(2:n-1,n) - a(2:n-1,n);
+</PRE>
+
+<P>
+Then the solution at the roots <VAR>r</VAR> is
+
+
+
+<PRE>
+u = [ 0; (at - alpha * bt) \ rhs; 1]
+     => [ 0.00; 0.004; 0.01 0.00; 0.12; 0.62; 1.00 ]
+</PRE>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_22.html">previous</A>, <A HREF="octave_24.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

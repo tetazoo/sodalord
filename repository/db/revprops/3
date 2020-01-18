@@ -1,0 +1,16 @@
+K 10
+svn:author
+V 6
+mitchb
+K 8
+svn:date
+V 27
+2008-08-15T23:38:03.774700Z
+K 7
+svn:log
+V 161
+y scaling now goes to 1.05 * max rather than max + 5.
+There are now 24 bars instead of 240, each with .9 relative width,
+and patterned (centered at hour + 0.5).
+
+END

@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/local/mysql/bin/mysqldump -u foo --password=foopass sodalord | sed -e 's/),/),\n/g' | mail -s "weekly sodalord mysql dump" sodalord-internal@mit.edu

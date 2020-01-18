@@ -1,0 +1,2 @@
+gdtables.lo gdtables.o : gdtables.c
+gdtables.c :

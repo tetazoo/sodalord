@@ -1,0 +1,75 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Mon Nov 24 04:45:16 2003 by CPAN::Checksums (v1.016)
+$cksum = {
+  'DBD-mysql-2.9003.tar.gz' => {
+    'mtime' => '2003-10-27',
+    'md5-ungz' => '136754d66a5583824d9528cc2185f330',
+    'md5' => '5506f687ff764013cacd7947b1169010',
+    'size' => 113433
+  },
+  'DBD-Pg-1.31_8.tar.gz' => {
+    'mtime' => '2003-11-10',
+    'md5-ungz' => 'f02410a2238ebda1ff64a7da4b41ab42',
+    'md5' => '2f3b7029c80ff9f9f550d02fc65b5ca5',
+    'size' => 85994
+  },
+  'Palm-Ztxt-0.36.tar.gz' => {
+    'mtime' => '2003-11-24',
+    'md5-ungz' => 'c03b3772efb44393a8df863b19f77dcd',
+    'md5' => 'f02fefe257d57cfe3f46b2ee03afd469',
+    'size' => 10803
+  },
+  'DBD-mysql-2.9002.tar.gz' => {
+    'mtime' => '2003-06-27',
+    'md5-ungz' => 'ba769b194e57c738fd5fd1b18e0f9b22',
+    'md5' => 'fd2c09b43b641f9f3fd2a840f00c0ac3',
+    'size' => 112563
+  },
+  'DBD-Pg-1.31_5.tar.gz' => {
+    'mtime' => '2003-09-10',
+    'md5-ungz' => '0c50df7186208a39ce24698a44c10bc0',
+    'md5' => 'ce0e659139322441eb2d04428f405701',
+    'size' => 86084
+  },
+  'DBD-Pg-1.31.tar.gz' => {
+    'mtime' => '2003-11-18',
+    'md5-ungz' => '095a2824fd870b6768e0b15aed2eb8dd',
+    'md5' => '325b0d88b86d5e0fd0eb97c0b3b8f303',
+    'size' => 86096
+  },
+  'DBD-mysql-2.9003_1.tar.gz' => {
+    'mtime' => '2003-09-12',
+    'md5-ungz' => '519e1d1193b541b287607137a383988e',
+    'md5' => 'abd7fcae153def55df92a5a6a0d1a096',
+    'size' => 113595
+  },
+  'Palm-Ztxt-0.35.tar.gz' => {
+    'mtime' => '2003-11-19',
+    'md5-ungz' => '18491442cdfe1674efad7a64a5ae7a9d',
+    'md5' => '28b450fdc57e0ca45affd1a12472fa2d',
+    'size' => 10681
+  },
+  'DBD-Pg-1.31_9.tar.gz' => {
+    'mtime' => '2003-11-14',
+    'md5-ungz' => '3f4d0d558026ab1de11f3dd802601213',
+    'md5' => '556058d07832c17132f26777defa1d33',
+    'size' => 86102
+  },
+  'DBD-Pg-1.31_7.tar.gz' => {
+    'mtime' => '2003-10-29',
+    'md5-ungz' => '425891f5fcddec2f7378fccf6ef27626',
+    'md5' => '407caa9b9588297fa0b396751db17fe8',
+    'size' => 85978
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQE/wYzdMo2oZ0UPiewRAuF5AJ0XSeuVhIA1OGhlgtUSFPL8V12lOwCfadpu
+zym6c66PnqryJHxhq7blgdI=
+=HDQx
+-----END PGP SIGNATURE-----

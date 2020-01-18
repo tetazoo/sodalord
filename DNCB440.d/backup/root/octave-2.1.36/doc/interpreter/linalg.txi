@@ -1,0 +1,86 @@
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Linear Algebra, Nonlinear Equations, Arithmetic, Top
+@chapter Linear Algebra
+
+This chapter documents the linear algebra functions of Octave.
+Reference material for many of these functions may be found in
+Golub and Van Loan, @cite{Matrix Computations, 2nd Ed.}, Johns Hopkins,
+1989, and in @cite{@sc{Lapack} Users' Guide}, SIAM, 1992.
+
+@menu
+* Basic Matrix Functions::      
+* Matrix Factorizations::       
+* Functions of a Matrix::       
+@end menu
+
+@node Basic Matrix Functions, Matrix Factorizations, Linear Algebra, Linear Algebra
+@section Basic Matrix Functions
+
+@DOCSTRING(balance)
+
+@DOCSTRING(cond)
+
+@DOCSTRING(det)
+
+@DOCSTRING(dmult)
+
+@DOCSTRING(dot)
+
+@DOCSTRING(eig)
+
+@DOCSTRING(givens)
+
+@DOCSTRING(inv)
+
+@DOCSTRING(norm)
+
+@DOCSTRING(null)
+
+@DOCSTRING(orth)
+
+@DOCSTRING(pinv)
+
+@DOCSTRING(rank)
+
+@DOCSTRING(trace)
+
+@node Matrix Factorizations, Functions of a Matrix, Basic Matrix Functions, Linear Algebra
+@section Matrix Factorizations
+
+@DOCSTRING(chol)
+
+@DOCSTRING(hess)
+
+@DOCSTRING(lu)
+
+@DOCSTRING(qr)
+
+@DOCSTRING(qz)
+
+@DOCSTRING(qzhess)
+
+@DOCSTRING(schur)
+
+@DOCSTRING(svd)
+
+@c XXX FIXME XXX -- should there be a new section here?
+
+@DOCSTRING(housh)
+
+@DOCSTRING(krylov)
+
+@node Functions of a Matrix,  , Matrix Factorizations, Linear Algebra
+@section Functions of a Matrix
+
+@DOCSTRING(expm)
+
+@DOCSTRING(logm)
+
+@DOCSTRING(sqrtm)
+
+@DOCSTRING(kron)
+
+@DOCSTRING(syl)

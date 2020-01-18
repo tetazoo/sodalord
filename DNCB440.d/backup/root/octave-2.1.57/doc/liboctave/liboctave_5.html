@@ -1,0 +1,2187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html40/loose.dtd">
+<HTML>
+<!-- Created on January, 20 2004 by texi2html 1.66 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people <dev@texi2html.cvshome.org>
+Send bugs and suggestions to <users@texi2html.cvshome.org>
+
+-->
+<HEAD>
+<TITLE>Octave C++ Classes: Matrix and Vector Operations</TITLE>
+
+<META NAME="description" CONTENT="Octave C++ Classes: Matrix and Vector Operations">
+<META NAME="keywords" CONTENT="Octave C++ Classes: Matrix and Vector Operations">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.66">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC9"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_4.html#SEC8"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_6.html#SEC10"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_4.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_6.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_17.html#SEC28">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 4. Matrix and Vector Operations </H1>
+<!--docid::SEC9::-->
+<P>
+
+<A NAME="IDX81"></A>
+</P>
+<DL>
+<DT><U>:</U> {}Matrix <B>(void)</B>
+<DD><A NAME="IDX82"></A>
+<DT><U>:</U> {}Matrix <B>(int</B> <I><VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX83"></A>
+<DT><U>:</U> {}Matrix <B>(int</B> <I><VAR>r</VAR>, int <VAR>c</VAR>, double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX84"></A>
+<DT><U>:</U> {}Matrix <B>(const</B> <I>Array2&lt;double&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX85"></A>
+<DT><U>:</U> {}Matrix <B>(const</B> <I>Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX86"></A>
+<DT><U>:</U> {}Matrix <B>(const</B> <I>DiagArray&lt;double&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX87"></A>
+<DT><U>:</U> {}Matrix <B>(const</B> <I>DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX88"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix&amp; <B>operator =</B> <I>(const Matrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX89"></A>
+</P>
+<DL>
+<DT><U>:</U> int <B>operator ==</B> <I>(const Matrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX90"></A>
+<DT><U>:</U> int <B>operator !=</B> <I>(const Matrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX91"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix&amp; <B>insert</B> <I>(const Matrix &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX92"></A>
+<DT><U>:</U> Matrix&amp; <B>insert</B> <I>(const RowVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX93"></A>
+<DT><U>:</U> Matrix&amp; <B>insert</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX94"></A>
+<DT><U>:</U> Matrix&amp; <B>insert</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX95"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix&amp; <B>fill</B> <I>(double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX96"></A>
+<DT><U>:</U> Matrix&amp; <B>fill</B> <I>(double <VAR>val</VAR>, int r1, int c1, int r2, int c2)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX97"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>append</B> <I>(const Matrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX98"></A>
+<DT><U>:</U> Matrix <B>append</B> <I>(const RowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX99"></A>
+<DT><U>:</U> Matrix <B>append</B> <I>(const ColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX100"></A>
+<DT><U>:</U> Matrix <B>append</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX101"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>stack</B> <I>(const Matrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX102"></A>
+<DT><U>:</U> Matrix <B>stack</B> <I>(const RowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX103"></A>
+<DT><U>:</U> Matrix <B>stack</B> <I>(const ColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX104"></A>
+<DT><U>:</U> Matrix <B>stack</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX105"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>transpose</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX106"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>extract</B> <I>(int r1, int c1, int r2, int c2) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX107"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>row</B> <I>(int <VAR>i</VAR>) const</I>
+<DD><A NAME="IDX108"></A>
+<DT><U>:</U> RowVector <B>row</B> <I>(char *s) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX109"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>column</B> <I>(int <VAR>i</VAR>) const</I>
+<DD><A NAME="IDX110"></A>
+<DT><U>:</U> ColumnVector <B>column</B> <I>(char *s) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX111"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>inverse</B> <I>(void) const</I>
+<DD><A NAME="IDX112"></A>
+<DT><U>:</U> Matrix <B>inverse</B> <I>(int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX113"></A>
+<DT><U>:</U> Matrix <B>inverse</B> <I>(int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX114"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>fourier</B> <I>(void) const</I>
+<DD><A NAME="IDX115"></A>
+<DT><U>:</U> ComplexMatrix <B>ifourier</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX116"></A>
+</P>
+<DL>
+<DT><U>:</U> DET <B>determinant</B> <I>(void) const</I>
+<DD><A NAME="IDX117"></A>
+<DT><U>:</U> DET <B>determinant</B> <I>(int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX118"></A>
+<DT><U>:</U> DET <B>determinant</B> <I>(int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX119"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>solve</B> <I>(const Matrix &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX120"></A>
+<DT><U>:</U> Matrix <B>solve</B> <I>(const Matrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX121"></A>
+<DT><U>:</U> Matrix <B>solve</B> <I>(const Matrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX122"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX123"></A>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX124"></A>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX125"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>solve</B> <I>(const ColumnVector &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX126"></A>
+<DT><U>:</U> ColumnVector <B>solve</B> <I>(const ColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX127"></A>
+<DT><U>:</U> ColumnVector <B>solve</B> <I>(const ColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX128"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>solve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX129"></A>
+<DT><U>:</U> ComplexColumnVector <B>solve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX130"></A>
+<DT><U>:</U> ComplexColumnVector <B>solve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX131"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>lssolve</B> <I>(const Matrix &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX132"></A>
+<DT><U>:</U> Matrix <B>lssolve</B> <I>(const Matrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX133"></A>
+<DT><U>:</U> Matrix <B>lssolve</B> <I>(const Matrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, int &amp;<VAR>rank</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX134"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>lssolve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX135"></A>
+<DT><U>:</U> ComplexMatrix <B>lssolve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX136"></A>
+<DT><U>:</U> ComplexMatrix <B>lssolve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, int &amp;<VAR>rank</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX137"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>lssolve</B> <I>(const ColumnVector &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX138"></A>
+<DT><U>:</U> ColumnVector <B>lssolve</B> <I>(const ColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX139"></A>
+<DT><U>:</U> ColumnVector <B>lssolve</B> <I>(const ColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, int &amp;<VAR>rank</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX140"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>lssolve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX141"></A>
+<DT><U>:</U> ComplexColumnVector <B>lssolve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX142"></A>
+<DT><U>:</U> ComplexColumnVector <B>lssolve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, int &amp;<VAR>rank</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX143"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix&amp; <B>operator +=</B> <I>(const Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX144"></A>
+<DT><U>:</U> Matrix&amp; <B>operator -=</B> <I>(const Matrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX145"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix&amp; <B>operator +=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX146"></A>
+<DT><U>:</U> Matrix&amp; <B>operator -=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX147"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>operator !</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX148"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const Matrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX149"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const Matrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX150"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const Matrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX151"></A>
+<DT><U>:</U> ComplexMatrix <B>operator /</B> <I>(const Matrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX152"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const Complex &amp;<VAR>s</VAR>, const Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX153"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const Complex &amp;<VAR>s</VAR>, const Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX154"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const Complex &amp;<VAR>s</VAR>, const Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX155"></A>
+<DT><U>:</U> ComplexMatrix <B>operator /</B> <I>(const Complex &amp;<VAR>s</VAR>, const Matrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX156"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>operator *</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX157"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX158"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>operator +</B> <I>(const Matrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX159"></A>
+<DT><U>:</U> Matrix <B>operator -</B> <I>(const Matrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX160"></A>
+<DT><U>:</U> Matrix <B>operator *</B> <I>(const Matrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX161"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX162"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX163"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX164"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>operator *</B> <I>(const Matrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX165"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX166"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX167"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX168"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>product</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX169"></A>
+<DT><U>:</U> ComplexMatrix <B>quotient</B> <I>(const Matrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX170"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>map</B> <I>(d_d_Mapper <VAR>f</VAR>, const Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX171"></A>
+<DT><U>:</U> void <B>map</B> <I>(d_d_Mapper <VAR>f</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX172"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>all</B> <I>(void) const</I>
+<DD><A NAME="IDX173"></A>
+<DT><U>:</U> Matrix <B>any</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX174"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>cumprod</B> <I>(void) const</I>
+<DD><A NAME="IDX175"></A>
+<DT><U>:</U> Matrix <B>cumsum</B> <I>(void) const</I>
+<DD><A NAME="IDX176"></A>
+<DT><U>:</U> Matrix <B>prod</B> <I>(void) const</I>
+<DD><A NAME="IDX177"></A>
+<DT><U>:</U> Matrix <B>sum</B> <I>(void) const</I>
+<DD><A NAME="IDX178"></A>
+<DT><U>:</U> Matrix <B>sumsq</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX179"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>diag</B> <I>(void) const</I>
+<DD><A NAME="IDX180"></A>
+<DT><U>:</U> ColumnVector <B>diag</B> <I>(int <VAR>k</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX181"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>row_min</B> <I>(void) const</I>
+<DD><A NAME="IDX182"></A>
+<DT><U>:</U> ColumnVector <B>row_min_loc</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX183"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>row_max</B> <I>(void) const</I>
+<DD><A NAME="IDX184"></A>
+<DT><U>:</U> ColumnVector <B>row_max_loc</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX185"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>column_min</B> <I>(void) const</I>
+<DD><A NAME="IDX186"></A>
+<DT><U>:</U> RowVector <B>column_min_loc</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX187"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>column_max</B> <I>(void) const</I>
+<DD><A NAME="IDX188"></A>
+<DT><U>:</U> RowVector <B>column_max_loc</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX189"></A>
+</P>
+<DL>
+<DT><U>:</U> ostream&amp; <B>operator &lt;&lt;</B> <I>(ostream &amp;<VAR>os</VAR>, const Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX190"></A>
+<DT><U>:</U> istream&amp; <B>operator &gt;&gt;</B> <I>(istream &amp;<VAR>is</VAR>, Matrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX191"></A>
+</P>
+<DL>
+<DT><U>:</U> {}ColumnVector <B>(void)</B>
+<DD><A NAME="IDX192"></A>
+<DT><U>:</U> {}ColumnVector <B>(int</B> <I><VAR>n</VAR>)</I>
+<DD><A NAME="IDX193"></A>
+<DT><U>:</U> {}ColumnVector <B>(int</B> <I><VAR>n</VAR>, double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX194"></A>
+<DT><U>:</U> {}ColumnVector <B>(const</B> <I>Array&lt;double&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX195"></A>
+<DT><U>:</U> {}ColumnVector <B>(const</B> <I>ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX196"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector&amp; <B>operator =</B> <I>(const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX197"></A>
+</P>
+<DL>
+<DT><U>:</U> int <B>operator ==</B> <I>(const ColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX198"></A>
+<DT><U>:</U> int <B>operator !=</B> <I>(const ColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX199"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector&amp; <B>insert</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX200"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector&amp; <B>fill</B> <I>(double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX201"></A>
+<DT><U>:</U> ColumnVector&amp; <B>fill</B> <I>(double <VAR>val</VAR>, int r1, int r2)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX202"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>stack</B> <I>(const ColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX203"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>transpose</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX204"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>extract</B> <I>(int r1, int r2) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX205"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector&amp; <B>operator +=</B> <I>(const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX206"></A>
+<DT><U>:</U> ColumnVector&amp; <B>operator -=</B> <I>(const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX207"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator +</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX208"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator -</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX209"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX210"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator /</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX211"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator +</B> <I>(const Complex &amp;<VAR>s</VAR>, const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX212"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator -</B> <I>(const Complex &amp;<VAR>s</VAR>, const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX213"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const Complex &amp;<VAR>s</VAR>, const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX214"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator /</B> <I>(const Complex &amp;<VAR>s</VAR>, const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX215"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>operator *</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, const RowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX216"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, const ComplexRowVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX217"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator +</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX218"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator -</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX219"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>product</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX220"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>quotient</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX221"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>map</B> <I>(d_d_Mapper <VAR>f</VAR>, const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX222"></A>
+<DT><U>:</U> void <B>map</B> <I>(d_d_Mapper <VAR>f</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX223"></A>
+</P>
+<DL>
+<DT><U>:</U> double <B>min</B> <I>(void) const</I>
+<DD><A NAME="IDX224"></A>
+<DT><U>:</U> double <B>max</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX225"></A>
+</P>
+<DL>
+<DT><U>:</U> ostream&amp; <B>operator &lt;&lt;</B> <I>(ostream &amp;<VAR>os</VAR>, const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX226"></A>
+</P>
+<DL>
+<DT><U>:</U> {}RowVector <B>(void)</B>
+<DD><A NAME="IDX227"></A>
+<DT><U>:</U> {}RowVector <B>(int</B> <I><VAR>n</VAR>)</I>
+<DD><A NAME="IDX228"></A>
+<DT><U>:</U> {}RowVector <B>(int</B> <I><VAR>n</VAR>, double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX229"></A>
+<DT><U>:</U> {}RowVector <B>(const</B> <I>Array&lt;double&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX230"></A>
+<DT><U>:</U> {}RowVector <B>(const</B> <I>RowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX231"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector&amp; <B>operator =</B> <I>(const RowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX232"></A>
+</P>
+<DL>
+<DT><U>:</U> int <B>operator ==</B> <I>(const RowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX233"></A>
+<DT><U>:</U> int <B>operator !=</B> <I>(const RowVector &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX234"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector&amp; <B>insert</B> <I>(const RowVector &amp;<VAR>a</VAR>, int <VAR>c</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX235"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector&amp; <B>fill</B> <I>(double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX236"></A>
+<DT><U>:</U> RowVector&amp; <B>fill</B> <I>(double <VAR>val</VAR>, int c1, int c2)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX237"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>append</B> <I>(const RowVector &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX238"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>transpose</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX239"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>extract</B> <I>(int c1, int c2) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX240"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector&amp; <B>operator +=</B> <I>(const RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX241"></A>
+<DT><U>:</U> RowVector&amp; <B>operator -=</B> <I>(const RowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX242"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>operator +</B> <I>(const RowVector &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX243"></A>
+<DT><U>:</U> ComplexRowVector <B>operator -</B> <I>(const RowVector &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX244"></A>
+<DT><U>:</U> ComplexRowVector <B>operator *</B> <I>(const RowVector &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX245"></A>
+<DT><U>:</U> ComplexRowVector <B>operator /</B> <I>(const RowVector &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX246"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>operator +</B> <I>(const Complex &amp;<VAR>s</VAR>, const RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX247"></A>
+<DT><U>:</U> ComplexRowVector <B>operator -</B> <I>(const Complex &amp;<VAR>s</VAR>, const RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX248"></A>
+<DT><U>:</U> ComplexRowVector <B>operator *</B> <I>(const Complex &amp;<VAR>s</VAR>, const RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX249"></A>
+<DT><U>:</U> ComplexRowVector <B>operator /</B> <I>(const Complex &amp;<VAR>s</VAR>, const RowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX250"></A>
+</P>
+<DL>
+<DT><U>:</U> double <B>operator *</B> <I>(const RowVector &amp;<VAR>a</VAR>, ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX251"></A>
+</P>
+<DL>
+<DT><U>:</U> Complex <B>operator *</B> <I>(const RowVector &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX252"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>operator *</B> <I>(const RowVector &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX253"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>operator *</B> <I>(const RowVector &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX254"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>operator +</B> <I>(const RowVector &amp;<VAR>a</VAR>, const ComplexRowVector &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX255"></A>
+<DT><U>:</U> ComplexRowVector <B>operator -</B> <I>(const RowVector &amp;<VAR>a</VAR>, const ComplexRowVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX256"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>product</B> <I>(const RowVector &amp;<VAR>a</VAR>, const ComplexRowVector &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX257"></A>
+<DT><U>:</U> ComplexRowVector <B>quotient</B> <I>(const RowVector &amp;<VAR>a</VAR>, const ComplexRowVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX258"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>map</B> <I>(d_d_Mapper <VAR>f</VAR>, const RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX259"></A>
+<DT><U>:</U> void <B>map</B> <I>(d_d_Mapper <VAR>f</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX260"></A>
+</P>
+<DL>
+<DT><U>:</U> double <B>min</B> <I>(void) const</I>
+<DD><A NAME="IDX261"></A>
+<DT><U>:</U> double <B>max</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX262"></A>
+</P>
+<DL>
+<DT><U>:</U> ostream&amp; <B>operator &lt;&lt;</B> <I>(ostream &amp;<VAR>os</VAR>, const RowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX263"></A>
+</P>
+<DL>
+<DT><U>:</U> {}DiagMatrix <B>(void)</B>
+<DD><A NAME="IDX264"></A>
+<DT><U>:</U> {}DiagMatrix <B>(int</B> <I><VAR>n</VAR>)</I>
+<DD><A NAME="IDX265"></A>
+<DT><U>:</U> {}DiagMatrix <B>(int</B> <I><VAR>n</VAR>, double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX266"></A>
+<DT><U>:</U> {}DiagMatrix <B>(int</B> <I><VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX267"></A>
+<DT><U>:</U> {}DiagMatrix <B>(int</B> <I><VAR>r</VAR>, int <VAR>c</VAR>, double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX268"></A>
+<DT><U>:</U> {}DiagMatrix <B>(const</B> <I>RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX269"></A>
+<DT><U>:</U> {}DiagMatrix <B>(const</B> <I>ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX270"></A>
+<DT><U>:</U> {}DiagMatrix <B>(const</B> <I>DiagArray&lt;double&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX271"></A>
+<DT><U>:</U> {}DiagMatrix <B>(const</B> <I>DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX272"></A>
+</P>
+<DL>
+<DT><U>:</U> DiagMatrix&amp; <B>operator =</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX273"></A>
+</P>
+<DL>
+<DT><U>:</U> int <B>operator ==</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX274"></A>
+<DT><U>:</U> int <B>operator !=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX275"></A>
+</P>
+<DL>
+<DT><U>:</U> DiagMatrix&amp; <B>fill</B> <I>(double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX276"></A>
+<DT><U>:</U> DiagMatrix&amp; <B>fill</B> <I>(double <VAR>val</VAR>, int <VAR>beg</VAR>, int <VAR>end</VAR>)</I>
+<DD><A NAME="IDX277"></A>
+<DT><U>:</U> DiagMatrix&amp; <B>fill</B> <I>(const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX278"></A>
+<DT><U>:</U> DiagMatrix&amp; <B>fill</B> <I>(const RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX279"></A>
+<DT><U>:</U> DiagMatrix&amp; <B>fill</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, int <VAR>beg</VAR>)</I>
+<DD><A NAME="IDX280"></A>
+<DT><U>:</U> DiagMatrix&amp; <B>fill</B> <I>(const RowVector &amp;<VAR>a</VAR>, int <VAR>beg</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX281"></A>
+</P>
+<DL>
+<DT><U>:</U> DiagMatrix <B>transpose</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX282"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>extract</B> <I>(int r1, int c1, int r2, int c2) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX283"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>row</B> <I>(int <VAR>i</VAR>) const</I>
+<DD><A NAME="IDX284"></A>
+<DT><U>:</U> RowVector <B>row</B> <I>(char *s) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX285"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>column</B> <I>(int <VAR>i</VAR>) const</I>
+<DD><A NAME="IDX286"></A>
+<DT><U>:</U> ColumnVector <B>column</B> <I>(char *s) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX287"></A>
+</P>
+<DL>
+<DT><U>:</U> DiagMatrix <B>inverse</B> <I>(void) const</I>
+<DD><A NAME="IDX288"></A>
+<DT><U>:</U> DiagMatrix <B>inverse</B> <I>(int &amp;<VAR>info</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX289"></A>
+</P>
+<DL>
+<DT><U>:</U> DiagMatrix&amp; <B>operator +=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX290"></A>
+<DT><U>:</U> DiagMatrix&amp; <B>operator -=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX291"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>operator +</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX292"></A>
+<DT><U>:</U> Matrix <B>operator -</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX293"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX294"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX295"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>operator *</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX296"></A>
+<DT><U>:</U> ComplexDiagMatrix <B>operator /</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX297"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>operator +</B> <I>(double <VAR>s</VAR>, const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX298"></A>
+<DT><U>:</U> Matrix <B>operator -</B> <I>(double <VAR>s</VAR>, const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX299"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const Complex &amp;<VAR>s</VAR>, const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX300"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const Complex &amp;<VAR>s</VAR>, const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX301"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>operator *</B> <I>(const Complex &amp;<VAR>s</VAR>, const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX302"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>operator *</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX303"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX304"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>operator +</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX305"></A>
+<DT><U>:</U> ComplexDiagMatrix <B>operator -</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX306"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>product</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX307"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>operator +</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX308"></A>
+<DT><U>:</U> Matrix <B>operator -</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX309"></A>
+<DT><U>:</U> Matrix <B>operator *</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX310"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX311"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX312"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX313"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>diag</B> <I>(void) const</I>
+<DD><A NAME="IDX314"></A>
+<DT><U>:</U> ColumnVector <B>diag</B> <I>(int <VAR>k</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX315"></A>
+</P>
+<DL>
+<DT><U>:</U> ostream&amp; <B>operator &lt;&lt;</B> <I>(ostream &amp;<VAR>os</VAR>, const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX316"></A>
+</P>
+<DL>
+<DT><U>:</U> {}ComplexMatrix <B>(void)</B>
+<DD><A NAME="IDX317"></A>
+<DT><U>:</U> {}ComplexMatrix <B>(int</B> <I><VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX318"></A>
+<DT><U>:</U> {}ComplexMatrix <B>(int</B> <I><VAR>r</VAR>, int <VAR>c</VAR>, const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX319"></A>
+<DT><U>:</U> {}ComplexMatrix <B>(const</B> <I>Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX320"></A>
+<DT><U>:</U> {}ComplexMatrix <B>(const</B> <I>Array2&lt;Complex&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX321"></A>
+<DT><U>:</U> {}ComplexMatrix <B>(const</B> <I>ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX322"></A>
+<DT><U>:</U> {}ComplexMatrix <B>(const</B> <I>DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX323"></A>
+<DT><U>:</U> {}ComplexMatrix <B>(const</B> <I>DiagArray&lt;Complex&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX324"></A>
+<DT><U>:</U> {}ComplexMatrix <B>(const</B> <I>ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX325"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator =</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX326"></A>
+</P>
+<DL>
+<DT><U>:</U> int <B>operator ==</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX327"></A>
+<DT><U>:</U> int <B>operator !=</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX328"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix&amp; <B>insert</B> <I>(const Matrix &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX329"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>insert</B> <I>(const RowVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX330"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>insert</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX331"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>insert</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX332"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix&amp; <B>insert</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX333"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>insert</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX334"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>insert</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX335"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>insert</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, int <VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX336"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix&amp; <B>fill</B> <I>(double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX337"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>fill</B> <I>(const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX338"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>fill</B> <I>(double <VAR>val</VAR>, int r1, int c1, int r2, int c2)</I>
+<DD><A NAME="IDX339"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>fill</B> <I>(const Complex &amp;<VAR>val</VAR>, int r1, int c1, int r2, int c2)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX340"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>append</B> <I>(const Matrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX341"></A>
+<DT><U>:</U> ComplexMatrix <B>append</B> <I>(const RowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX342"></A>
+<DT><U>:</U> ComplexMatrix <B>append</B> <I>(const ColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX343"></A>
+<DT><U>:</U> ComplexMatrix <B>append</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX344"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>append</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX345"></A>
+<DT><U>:</U> ComplexMatrix <B>append</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX346"></A>
+<DT><U>:</U> ComplexMatrix <B>append</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX347"></A>
+<DT><U>:</U> ComplexMatrix <B>append</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX348"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>stack</B> <I>(const Matrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX349"></A>
+<DT><U>:</U> ComplexMatrix <B>stack</B> <I>(const RowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX350"></A>
+<DT><U>:</U> ComplexMatrix <B>stack</B> <I>(const ColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX351"></A>
+<DT><U>:</U> ComplexMatrix <B>stack</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX352"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>stack</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX353"></A>
+<DT><U>:</U> ComplexMatrix <B>stack</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX354"></A>
+<DT><U>:</U> ComplexMatrix <B>stack</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX355"></A>
+<DT><U>:</U> ComplexMatrix <B>stack</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX356"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>transpose</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX357"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>real</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX358"></A>
+<DT><U>:</U> Matrix <B>imag</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX359"></A>
+<DT><U>:</U> ComplexMatrix <B>conj</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX360"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>extract</B> <I>(int r1, int c1, int r2, int c2) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX361"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>row</B> <I>(int <VAR>i</VAR>) const</I>
+<DD><A NAME="IDX362"></A>
+<DT><U>:</U> ComplexRowVector <B>row</B> <I>(char *s) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX363"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>column</B> <I>(int <VAR>i</VAR>) const</I>
+<DD><A NAME="IDX364"></A>
+<DT><U>:</U> ComplexColumnVector <B>column</B> <I>(char *s) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX365"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>inverse</B> <I>(void) const</I>
+<DD><A NAME="IDX366"></A>
+<DT><U>:</U> ComplexMatrix <B>inverse</B> <I>(int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX367"></A>
+<DT><U>:</U> ComplexMatrix <B>inverse</B> <I>(int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX368"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>fourier</B> <I>(void) const</I>
+<DD><A NAME="IDX369"></A>
+<DT><U>:</U> ComplexMatrix <B>ifourier</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX370"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDET <B>determinant</B> <I>(void) const</I>
+<DD><A NAME="IDX371"></A>
+<DT><U>:</U> ComplexDET <B>determinant</B> <I>(int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX372"></A>
+<DT><U>:</U> ComplexDET <B>determinant</B> <I>(int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX373"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const Matrix &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX374"></A>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const Matrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX375"></A>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const Matrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX376"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX377"></A>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX378"></A>
+<DT><U>:</U> ComplexMatrix <B>solve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX379"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>solve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX380"></A>
+<DT><U>:</U> ComplexColumnVector <B>solve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX381"></A>
+<DT><U>:</U> ComplexColumnVector <B>solve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, double &amp;<VAR>rcond</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX382"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>lssolve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX383"></A>
+<DT><U>:</U> ComplexMatrix <B>lssolve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX384"></A>
+<DT><U>:</U> ComplexMatrix <B>lssolve</B> <I>(const ComplexMatrix &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, int &amp;<VAR>rank</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX385"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>lssolve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>) const</I>
+<DD><A NAME="IDX386"></A>
+<DT><U>:</U> ComplexColumnVector <B>lssolve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX387"></A>
+<DT><U>:</U> ComplexColumnVector <B>lssolve</B> <I>(const ComplexColumnVector &amp;<VAR>b</VAR>, int &amp;<VAR>info</VAR>, int &amp;<VAR>rank</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX388"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator +=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX389"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator -=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX390"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator +=</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX391"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator -=</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX392"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator +=</B> <I>(const Matrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX393"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator -=</B> <I>(const Matrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX394"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator +=</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX395"></A>
+<DT><U>:</U> ComplexMatrix&amp; <B>operator -=</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX396"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>operator !</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX397"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX398"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX399"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX400"></A>
+<DT><U>:</U> ComplexMatrix <B>operator /</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX401"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(double <VAR>s</VAR>, const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX402"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(double <VAR>s</VAR>, const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX403"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(double <VAR>s</VAR>, const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX404"></A>
+<DT><U>:</U> ComplexMatrix <B>operator /</B> <I>(double <VAR>s</VAR>, const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX405"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX406"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX407"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX408"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX409"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX410"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX411"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX412"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const ComplexDiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX413"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX414"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX415"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX416"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX417"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>product</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX418"></A>
+<DT><U>:</U> ComplexMatrix <B>quotient</B> <I>(const ComplexMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX419"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>map</B> <I>(c_c_Mapper <VAR>f</VAR>, const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX420"></A>
+<DT><U>:</U> Matrix <B>map</B> <I>(d_c_Mapper <VAR>f</VAR>, const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX421"></A>
+<DT><U>:</U> void <B>map</B> <I>(c_c_Mapper <VAR>f</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX422"></A>
+</P>
+<DL>
+<DT><U>:</U> Matrix <B>all</B> <I>(void) const</I>
+<DD><A NAME="IDX423"></A>
+<DT><U>:</U> Matrix <B>any</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX424"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>cumprod</B> <I>(void) const</I>
+<DD><A NAME="IDX425"></A>
+<DT><U>:</U> ComplexMatrix <B>cumsum</B> <I>(void) const</I>
+<DD><A NAME="IDX426"></A>
+<DT><U>:</U> ComplexMatrix <B>prod</B> <I>(void) const</I>
+<DD><A NAME="IDX427"></A>
+<DT><U>:</U> ComplexMatrix <B>sum</B> <I>(void) const</I>
+<DD><A NAME="IDX428"></A>
+<DT><U>:</U> ComplexMatrix <B>sumsq</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX429"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>diag</B> <I>(void) const</I>
+<DD><A NAME="IDX430"></A>
+<DT><U>:</U> ComplexColumnVector <B>diag</B> <I>(int <VAR>k</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX431"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>row_min</B> <I>(void) const</I>
+<DD><A NAME="IDX432"></A>
+<DT><U>:</U> ComplexColumnVector <B>row_min_loc</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX433"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>row_max</B> <I>(void) const</I>
+<DD><A NAME="IDX434"></A>
+<DT><U>:</U> ComplexColumnVector <B>row_max_loc</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX435"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>column_min</B> <I>(void) const</I>
+<DD><A NAME="IDX436"></A>
+<DT><U>:</U> ComplexRowVector <B>column_min_loc</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX437"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>column_max</B> <I>(void) const</I>
+<DD><A NAME="IDX438"></A>
+<DT><U>:</U> ComplexRowVector <B>column_max_loc</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX439"></A>
+</P>
+<DL>
+<DT><U>:</U> ostream&amp; <B>operator &lt;&lt;</B> <I>(ostream &amp;<VAR>os</VAR>, const ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX440"></A>
+<DT><U>:</U> istream&amp; <B>operator &gt;&gt;</B> <I>(istream &amp;<VAR>is</VAR>, ComplexMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX441"></A>
+</P>
+<DL>
+<DT><U>:</U> {}ComplexColumnVector <B>(void)</B>
+<DD><A NAME="IDX442"></A>
+<DT><U>:</U> {}ComplexColumnVector <B>(int</B> <I><VAR>n</VAR>)</I>
+<DD><A NAME="IDX443"></A>
+<DT><U>:</U> {}ComplexColumnVector <B>(int</B> <I><VAR>n</VAR>, const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX444"></A>
+<DT><U>:</U> {}ComplexColumnVector <B>(const</B> <I>ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX445"></A>
+<DT><U>:</U> {}ComplexColumnVector <B>(const</B> <I>Array&lt;Complex&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX446"></A>
+<DT><U>:</U> {}ComplexColumnVector <B>(const</B> <I>ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX447"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector&amp; <B>operator =</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX448"></A>
+</P>
+<DL>
+<DT><U>:</U> int <B>operator ==</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX449"></A>
+<DT><U>:</U> int <B>operator !=</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX450"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector&amp; <B>insert</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>)</I>
+<DD><A NAME="IDX451"></A>
+<DT><U>:</U> ComplexColumnVector&amp; <B>insert</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, int <VAR>r</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX452"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector&amp; <B>fill</B> <I>(double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX453"></A>
+<DT><U>:</U> ComplexColumnVector&amp; <B>fill</B> <I>(const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX454"></A>
+<DT><U>:</U> ComplexColumnVector&amp; <B>fill</B> <I>(double <VAR>val</VAR>, int r1, int r2)</I>
+<DD><A NAME="IDX455"></A>
+<DT><U>:</U> ComplexColumnVector&amp; <B>fill</B> <I>(const Complex &amp;<VAR>val</VAR>, int r1, int r2)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX456"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>stack</B> <I>(const ColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX457"></A>
+<DT><U>:</U> ComplexColumnVector <B>stack</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX458"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>transpose</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX459"></A>
+</P>
+<DL>
+<DT><U>:</U> ColumnVector <B>real</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX460"></A>
+<DT><U>:</U> ColumnVector <B>imag</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX461"></A>
+<DT><U>:</U> ComplexColumnVector <B>conj</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX462"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>extract</B> <I>(int r1, int r2) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX463"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector&amp; <B>operator +=</B> <I>(const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX464"></A>
+<DT><U>:</U> ComplexColumnVector&amp; <B>operator -=</B> <I>(const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX465"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector&amp; <B>operator +=</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX466"></A>
+<DT><U>:</U> ComplexColumnVector&amp; <B>operator -=</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX467"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator +</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX468"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator -</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX469"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX470"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator /</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX471"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator +</B> <I>(double <VAR>s</VAR>, const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX472"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator -</B> <I>(double <VAR>s</VAR>, const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX473"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(double <VAR>s</VAR>, const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX474"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator /</B> <I>(double <VAR>s</VAR>, const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX475"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ComplexRowVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX476"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator +</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX477"></A>
+<DT><U>:</U> ComplexColumnVector <B>operator -</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX478"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>product</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX479"></A>
+<DT><U>:</U> ComplexColumnVector <B>quotient</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX480"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>map</B> <I>(c_c_Mapper <VAR>f</VAR>, const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX481"></A>
+<DT><U>:</U> ColumnVector <B>map</B> <I>(d_c_Mapper <VAR>f</VAR>, const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX482"></A>
+<DT><U>:</U> void <B>map</B> <I>(c_c_Mapper <VAR>f</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX483"></A>
+</P>
+<DL>
+<DT><U>:</U> Complex <B>min</B> <I>(void) const</I>
+<DD><A NAME="IDX484"></A>
+<DT><U>:</U> Complex <B>max</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX485"></A>
+</P>
+<DL>
+<DT><U>:</U> ostream&amp; <B>operator &lt;&lt;</B> <I>(ostream &amp;<VAR>os</VAR>, const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX486"></A>
+</P>
+<DL>
+<DT><U>:</U> {}ComplexRowVector <B>(void)</B>
+<DD><A NAME="IDX487"></A>
+<DT><U>:</U> {}ComplexRowVector <B>(int</B> <I><VAR>n</VAR>)</I>
+<DD><A NAME="IDX488"></A>
+<DT><U>:</U> {}ComplexRowVector <B>(int</B> <I><VAR>n</VAR>, const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX489"></A>
+<DT><U>:</U> {}ComplexRowVector <B>(const</B> <I>RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX490"></A>
+<DT><U>:</U> {}ComplexRowVector <B>(const</B> <I>Array&lt;Complex&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX491"></A>
+<DT><U>:</U> {}ComplexRowVector <B>(const</B> <I>ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX492"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector&amp; <B>operator =</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX493"></A>
+</P>
+<DL>
+<DT><U>:</U> int <B>operator ==</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX494"></A>
+<DT><U>:</U> int <B>operator !=</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX495"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector&amp; <B>insert</B> <I>(const RowVector &amp;<VAR>a</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX496"></A>
+<DT><U>:</U> ComplexRowVector&amp; <B>insert</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, int <VAR>c</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX497"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector&amp; <B>fill</B> <I>(double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX498"></A>
+<DT><U>:</U> ComplexRowVector&amp; <B>fill</B> <I>(const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX499"></A>
+<DT><U>:</U> ComplexRowVector&amp; <B>fill</B> <I>(double <VAR>val</VAR>, int c1, int c2)</I>
+<DD><A NAME="IDX500"></A>
+<DT><U>:</U> ComplexRowVector&amp; <B>fill</B> <I>(const Complex &amp;<VAR>val</VAR>, int c1, int c2)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX501"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>append</B> <I>(const RowVector &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX502"></A>
+<DT><U>:</U> ComplexRowVector <B>append</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX503"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>transpose</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX504"></A>
+</P>
+<DL>
+<DT><U>:</U> RowVector <B>real</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX505"></A>
+<DT><U>:</U> RowVector <B>imag</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX506"></A>
+<DT><U>:</U> ComplexRowVector <B>conj</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX507"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>extract</B> <I>(int c1, int c2) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX508"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector&amp; <B>operator +=</B> <I>(const RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX509"></A>
+<DT><U>:</U> ComplexRowVector&amp; <B>operator -=</B> <I>(const RowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX510"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector&amp; <B>operator +=</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX511"></A>
+<DT><U>:</U> ComplexRowVector&amp; <B>operator -=</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX512"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>operator +</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX513"></A>
+<DT><U>:</U> ComplexRowVector <B>operator -</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX514"></A>
+<DT><U>:</U> ComplexRowVector <B>operator *</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX515"></A>
+<DT><U>:</U> ComplexRowVector <B>operator /</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX516"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>operator +</B> <I>(double <VAR>s</VAR>, const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX517"></A>
+<DT><U>:</U> ComplexRowVector <B>operator -</B> <I>(double <VAR>s</VAR>, const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX518"></A>
+<DT><U>:</U> ComplexRowVector <B>operator *</B> <I>(double <VAR>s</VAR>, const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX519"></A>
+<DT><U>:</U> ComplexRowVector <B>operator /</B> <I>(double <VAR>s</VAR>, const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX520"></A>
+</P>
+<DL>
+<DT><U>:</U> Complex <B>operator *</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX521"></A>
+</P>
+<DL>
+<DT><U>:</U> Complex <B>operator *</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX522"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>operator *</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX523"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>operator +</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, const RowVector &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX524"></A>
+<DT><U>:</U> ComplexRowVector <B>operator -</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, const RowVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX525"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>product</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, const RowVector &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX526"></A>
+<DT><U>:</U> ComplexRowVector <B>quotient</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, const RowVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX527"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>map</B> <I>(c_c_Mapper <VAR>f</VAR>, const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX528"></A>
+<DT><U>:</U> RowVector <B>map</B> <I>(d_c_Mapper <VAR>f</VAR>, const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX529"></A>
+<DT><U>:</U> void <B>map</B> <I>(c_c_Mapper <VAR>f</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX530"></A>
+</P>
+<DL>
+<DT><U>:</U> Complex <B>min</B> <I>(void) const</I>
+<DD><A NAME="IDX531"></A>
+<DT><U>:</U> Complex <B>max</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX532"></A>
+</P>
+<DL>
+<DT><U>:</U> ostream&amp; <B>operator &lt;&lt;</B> <I>(ostream &amp;<VAR>os</VAR>, const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX533"></A>
+</P>
+<DL>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(void)</B>
+<DD><A NAME="IDX534"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(int</B> <I><VAR>n</VAR>)</I>
+<DD><A NAME="IDX535"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(int</B> <I><VAR>n</VAR>, const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX536"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(int</B> <I><VAR>r</VAR>, int <VAR>c</VAR>)</I>
+<DD><A NAME="IDX537"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(int</B> <I><VAR>r</VAR>, int <VAR>c</VAR>, const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX538"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(const</B> <I>RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX539"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(const</B> <I>ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX540"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(const</B> <I>ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX541"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(const</B> <I>ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX542"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(const</B> <I>DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX543"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(const</B> <I>DiagArray&lt;Complex&gt; &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX544"></A>
+<DT><U>:</U> {}ComplexDiagMatrix <B>(const</B> <I>ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX545"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>operator =</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX546"></A>
+</P>
+<DL>
+<DT><U>:</U> int <B>operator ==</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD><A NAME="IDX547"></A>
+<DT><U>:</U> int <B>operator !=</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX548"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(double <VAR>val</VAR>)</I>
+<DD><A NAME="IDX549"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const Complex &amp;<VAR>val</VAR>)</I>
+<DD><A NAME="IDX550"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(double <VAR>val</VAR>, int <VAR>beg</VAR>, int <VAR>end</VAR>)</I>
+<DD><A NAME="IDX551"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const Complex &amp;<VAR>val</VAR>, int <VAR>beg</VAR>, int <VAR>end</VAR>)</I>
+<DD><A NAME="IDX552"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const ColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX553"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX554"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const RowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX555"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX556"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const ColumnVector &amp;<VAR>a</VAR>, int <VAR>beg</VAR>)</I>
+<DD><A NAME="IDX557"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const ComplexColumnVector &amp;<VAR>a</VAR>, int <VAR>beg</VAR>)</I>
+<DD><A NAME="IDX558"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const RowVector &amp;<VAR>a</VAR>, int <VAR>beg</VAR>)</I>
+<DD><A NAME="IDX559"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>fill</B> <I>(const ComplexRowVector &amp;<VAR>a</VAR>, int <VAR>beg</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX560"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>transpose</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX561"></A>
+</P>
+<DL>
+<DT><U>:</U> DiagMatrix <B>real</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX562"></A>
+<DT><U>:</U> DiagMatrix <B>imag</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX563"></A>
+<DT><U>:</U> ComplexDiagMatrix <B>conj</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX564"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>extract</B> <I>(int r1, int c1, int r2, int c2) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX565"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexRowVector <B>row</B> <I>(int <VAR>i</VAR>) const</I>
+<DD><A NAME="IDX566"></A>
+<DT><U>:</U> ComplexRowVector <B>row</B> <I>(char *s) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX567"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>column</B> <I>(int <VAR>i</VAR>) const</I>
+<DD><A NAME="IDX568"></A>
+<DT><U>:</U> ComplexColumnVector <B>column</B> <I>(char *s) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX569"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>inverse</B> <I>(int &amp;<VAR>info</VAR>) const</I>
+<DD><A NAME="IDX570"></A>
+<DT><U>:</U> ComplexDiagMatrix <B>inverse</B> <I>(void) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX571"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>operator +=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX572"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>operator -=</B> <I>(const DiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX573"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>operator +=</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX574"></A>
+<DT><U>:</U> ComplexDiagMatrix&amp; <B>operator -=</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX575"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX576"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX577"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD><A NAME="IDX578"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const Complex &amp;<VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX579"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>operator *</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD><A NAME="IDX580"></A>
+<DT><U>:</U> ComplexDiagMatrix <B>operator /</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, double <VAR>s</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX581"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(double <VAR>s</VAR>, const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX582"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(double <VAR>s</VAR>, const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX583"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const Complex &amp;<VAR>s</VAR>, const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD><A NAME="IDX584"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const Complex &amp;<VAR>s</VAR>, const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX585"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>operator *</B> <I>(double <VAR>s</VAR>, const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX586"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const ColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX587"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>operator *</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const ComplexColumnVector &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX588"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>operator +</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX589"></A>
+<DT><U>:</U> ComplexDiagMatrix <B>operator -</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX590"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexDiagMatrix <B>product</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const DiagMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX591"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX592"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX593"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const Matrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX594"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexMatrix <B>operator +</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX595"></A>
+<DT><U>:</U> ComplexMatrix <B>operator -</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD><A NAME="IDX596"></A>
+<DT><U>:</U> ComplexMatrix <B>operator *</B> <I>(const ComplexDiagMatrix &amp;<VAR>a</VAR>, const ComplexMatrix &amp;<VAR>b</VAR>)</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX597"></A>
+</P>
+<DL>
+<DT><U>:</U> ComplexColumnVector <B>diag</B> <I>(void) const</I>
+<DD><A NAME="IDX598"></A>
+<DT><U>:</U> ComplexColumnVector <B>diag</B> <I>(int <VAR>k</VAR>) const</I>
+<DD></DL>
+<P>
+
+<A NAME="IDX599"></A>
+</P>
+<DL>
+<DT><U>:</U> ostream&amp; <B>operator &lt;&lt;</B> <I>(ostream &amp;<VAR>os</VAR>, const ComplexDiagMatrix &amp;<VAR>a</VAR>)</I>
+<DD></DL>
+<A NAME="Matrix Factorizations"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_4.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_6.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_17.html#SEC28">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="liboctave_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>
+<FONT SIZE="-1">
+This document was generated
+by <I>John W. Eaton</I> on <I>January, 20 2004</I>
+using <A HREF="http://texi2html.cvshome.org"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

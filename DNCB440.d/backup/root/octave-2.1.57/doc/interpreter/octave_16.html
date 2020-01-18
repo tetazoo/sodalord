@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Debugging</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_15.html">previous</A>, <A HREF="octave_17.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC109" HREF="octave_toc.html#TOC109">Debugging</A></H1>
+
+<P>
+@anchor{doc-dbstop}
+<DL>
+<DT><U>Loadable Function:</U> rline = <B>dbstop</B> <I>(func, line)</I>
+<DD><A NAME="IDX502"></A>
+Set a breakpoint in a function
+<DL COMPACT>
+
+<DT><CODE>func</CODE>
+<DD>
+String representing the function name.  When already in debug
+mode this should be left out and only the line should be given.
+<DT><CODE>line</CODE>
+<DD>
+Line you would like the breakpoint to be set on
+</DL>
+
+<P>
+The rline returned is the real line that the breakpoint was set at.
+
+
+</DL>
+<P>
+@seealso{dbclear, dbstatus, dbnext}
+
+
+<P>
+@anchor{doc-dbclear}
+<DL>
+<DT><U>Loadable Function:</U>  <B>dbclear</B> <I>(func, line)</I>
+<DD><A NAME="IDX503"></A>
+Delete a breakpoint in a function
+<DL COMPACT>
+
+<DT><CODE>func</CODE>
+<DD>
+String representing the function name.  When already in debug
+mode this should be left out and only the line should be given.
+<DT><CODE>line</CODE>
+<DD>
+Line where you would like to remove the the breakpoint
+</DL>
+<P>
+No checking is done to make sure that the line you requested is really
+a breakpoint.   If you get the wrong line nothing will happen.
+</DL>
+@seealso{dbstop, dbstatus, dbwhere}
+
+
+<P>
+@anchor{doc-dbstatus}
+<DL>
+<DT><U>Loadable Function:</U> lst = <B>dbstatus</B> <I>([func])</I>
+<DD><A NAME="IDX504"></A>
+Return a vector containing the lines on which a function has 
+breakpoints set.
+<DL COMPACT>
+
+<DT><CODE>func</CODE>
+<DD>
+String representing the function name.  When already in debug
+mode this should be left out.
+</DL>
+</DL>
+<P>
+@seealso{dbclear, dbwhere}
+
+
+<P>
+@anchor{doc-dbwhere}
+<DL>
+<DT><U>Loadable Function:</U>  <B>dbwhere</B> <I>()</I>
+<DD><A NAME="IDX505"></A>
+Show where we are in the code
+</DL>
+@seealso{dbclear, dbstatus, dbstop}
+
+
+<P>
+@anchor{doc-dbtype}
+<DL>
+<DT><U>Loadable Function:</U>  <B>dbtype</B> <I>()</I>
+<DD><A NAME="IDX506"></A>
+List script file with line numbers.
+</DL>
+@seealso{dbclear, dbstatus, dbstop}
+
+
+<P>
+@anchor{doc-debug_on_interrupt}
+<DL>
+<DT><U>Built-in Variable:</U> <B>debug_on_interrupt</B>
+<DD><A NAME="IDX507"></A>
+If <CODE>debug_on_interrupt</CODE> is nonzero, Octave will try to enter
+debugging mode when it receives an interrupt signal (typically
+generated with <KBD>C-c</KBD>).  If a second interrupt signal is received
+before reaching the debugging mode, a normal interrupt will occur.
+The default value is 0.
+</DL>
+
+
+<P>
+@anchor{doc-debug_on_warning}
+<DL>
+<DT><U>Built-in Variable:</U> <B>debug_on_warning</B>
+<DD><A NAME="IDX508"></A>
+If the value of <CODE>debug_on_warning</CODE> is nonzero, Octave will try
+to enter the debugger when a warning is encountered.  The default
+value is 0.
+</DL>
+
+
+<P>
+@anchor{doc-debug_on_error}
+<DL>
+<DT><U>Built-in Variable:</U> <B>debug_on_error</B>
+<DD><A NAME="IDX509"></A>
+If the value of <CODE>debug_on_error</CODE> is nonzero, Octave will try
+to enter the debugger when an error is encountered.  This will also
+inhibit printing of the normal traceback message (you will only see
+the top-level error message).  The default value is 0.
+</DL>
+
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_15.html">previous</A>, <A HREF="octave_17.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

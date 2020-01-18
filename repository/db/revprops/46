@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-11-26T23:22:39.342412Z
+K 7
+svn:log
+V 156
+added cash balance tracking to prevent cash sale detection when the machine is used to exchange coins, and to zephyr about the cash price of the item bought
+END

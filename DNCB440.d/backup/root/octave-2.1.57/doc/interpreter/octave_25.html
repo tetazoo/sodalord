@@ -1,0 +1,129 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Optimization</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_24.html">previous</A>, <A HREF="octave_26.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC167" HREF="octave_toc.html#TOC167">Optimization</A></H1>
+
+<P>
+<A NAME="IDX856"></A>
+<A NAME="IDX857"></A>
+<A NAME="IDX858"></A>
+<A NAME="IDX859"></A>
+<A NAME="IDX860"></A>
+<A NAME="IDX861"></A>
+
+
+
+
+<H2><A NAME="SEC168" HREF="octave_toc.html#TOC168">Linear Programming</A></H2>
+
+
+
+<H2><A NAME="SEC169" HREF="octave_toc.html#TOC169">Quadratic Programming</A></H2>
+
+
+
+<H2><A NAME="SEC170" HREF="octave_toc.html#TOC170">Nonlinear Programming</A></H2>
+
+
+
+<H2><A NAME="SEC171" HREF="octave_toc.html#TOC171">Linear Least Squares</A></H2>
+
+<P>
+@anchor{doc-gls}
+<DL>
+<DT><U>Function File:</U> [<VAR>beta</VAR>, <VAR>v</VAR>, <VAR>r</VAR>] = <B>gls</B> <I>(<VAR>y</VAR>, <VAR>x</VAR>, <VAR>o</VAR>)</I>
+<DD><A NAME="IDX862"></A>
+Generalized least squares estimation for the multivariate model
+<EM>y = x b + e</EM> with <EM>mean (e) = 0</EM> and
+<EM>cov (vec (e)) = (s^2) o</EM>,
+ where
+<EM>y</EM> is a <EM>t</EM> by <EM>p</EM> matrix, <EM>x</EM> is a <EM>t</EM> by
+<EM>k</EM> matrix, <EM>b</EM> is a <EM>k</EM> by <EM>p</EM> matrix, <EM>e</EM>
+is a <EM>t</EM> by <EM>p</EM> matrix, and <EM>o</EM> is a <EM>t p</EM> by
+<EM>t p</EM> matrix.
+
+
+<P>
+Each row of <VAR>y</VAR> and <VAR>x</VAR> is an observation and each column a
+variable.  The return values <VAR>beta</VAR>, <VAR>v</VAR>, and <VAR>r</VAR> are
+defined as follows.
+
+
+<DL COMPACT>
+
+<DT><VAR>beta</VAR>
+<DD>
+The GLS estimator for <EM>b</EM>.
+
+<DT><VAR>v</VAR>
+<DD>
+The GLS estimator for <EM>s^2</EM>.
+
+<DT><VAR>r</VAR>
+<DD>
+The matrix of GLS residuals, <EM>r = y - x beta</EM>.
+</DL>
+</DL>
+
+<P>
+@anchor{doc-ols}
+<DL>
+<DT><U>Function File:</U> [<VAR>beta</VAR>, <VAR>sigma</VAR>, <VAR>r</VAR>] = <B>ols</B> <I>(<VAR>y</VAR>, <VAR>x</VAR>)</I>
+<DD><A NAME="IDX863"></A>
+Ordinary least squares estimation for the multivariate model
+<EM>y = x b + e</EM> with
+<EM>mean (e) = 0</EM> and <EM>cov (vec (e)) = kron (s, I)</EM>.
+ where
+<EM>y</EM> is a <EM>t</EM> by <EM>p</EM> matrix, <EM>x</EM> is a <EM>t</EM> by
+<EM>k</EM> matrix, <EM>b</EM> is a <EM>k</EM> by <EM>p</EM> matrix, and
+<EM>e</EM> is a <EM>t</EM> by <EM>p</EM> matrix.
+
+
+<P>
+Each row of <VAR>y</VAR> and <VAR>x</VAR> is an observation and each column a
+variable.
+
+
+<P>
+The return values <VAR>beta</VAR>, <VAR>sigma</VAR>, and <VAR>r</VAR> are defined as
+follows.
+
+
+<DL COMPACT>
+
+<DT><VAR>beta</VAR>
+<DD>
+The OLS estimator for <VAR>b</VAR>, <CODE><VAR>beta</VAR> = pinv (<VAR>x</VAR>) *
+<VAR>y</VAR></CODE>, where <CODE>pinv (<VAR>x</VAR>)</CODE> denotes the pseudoinverse of
+<VAR>x</VAR>.
+
+<DT><VAR>sigma</VAR>
+<DD>
+The OLS estimator for the matrix <VAR>s</VAR>,
+
+
+<PRE>
+<VAR>sigma</VAR> = (<VAR>y</VAR>-<VAR>x</VAR>*<VAR>beta</VAR>)'
+  * (<VAR>y</VAR>-<VAR>x</VAR>*<VAR>beta</VAR>)
+  / (<VAR>t</VAR>-rank(<VAR>x</VAR>))
+</PRE>
+
+<DT><VAR>r</VAR>
+<DD>
+The matrix of OLS residuals, <CODE><VAR>r</VAR> = <VAR>y</VAR> - <VAR>x</VAR> *
+<VAR>beta</VAR></CODE>.
+</DL>
+</DL>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_24.html">previous</A>, <A HREF="octave_26.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

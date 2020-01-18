@@ -1,0 +1,374 @@
+# CHECKSUMS file written on Wed May 22 10:53:10 2002 by CPAN::Checksums (v1.008)
+$cksum = {
+  'Text-German-0.02.tar.gz' => {
+    'md5-ungz' => 'ce048fdf0535b5715024b2492d7cfa63',
+    'mtime' => '1996-03-05',
+    'md5' => '0c154ae41151b1f1c19ebfeb57635fbc',
+    'shortname' => 'textg002.tgz',
+    'size' => '11317'
+  },
+  'WAIT-1.620.tar.gz' => {
+    'md5-ungz' => '40727b15a82e74c83cb114fa67718bdd',
+    'mtime' => '1998-11-22',
+    'md5' => '0a68c587c4e7564d14d688ebd3ef1d77',
+    'shortname' => 'wait1620.tgz',
+    'size' => '84327'
+  },
+  'Pconvert-1.04.tar.gz' => {
+    'md5-ungz' => 'b273e5629b7a07aef757d21c2f2c5262',
+    'mtime' => '1996-06-13',
+    'md5' => '6f8304f198ecaa700801b6904015cea6',
+    'shortname' => 'pconv104.tgz',
+    'size' => '11091'
+  },
+  'Wais-2.311.tar.gz' => {
+    'md5-ungz' => '58a9822ffd811874e083d0e6a4a0b128',
+    'mtime' => '1998-08-04',
+    'md5' => '839b7c5a97769d4718127d4fdf3fb8a0',
+    'shortname' => 'wais2311.tgz',
+    'size' => '54722'
+  },
+  'WAIT-1.800.tar.gz' => {
+    'md5-ungz' => 'df917653e4d2664698b30f1412d86be5',
+    'mtime' => '2000-05-09',
+    'md5' => '00787f9686741c08e5e298ca1936867b',
+    'shortname' => 'wait1800.tgz',
+    'size' => '97889'
+  },
+  'CPAN-WAIT-0.23.tar.gz' => {
+    'md5-ungz' => '53eb21b5eabde0e2b0394b32e909ca00',
+    'mtime' => '1997-08-11',
+    'md5' => '080e8abb59094b915c160794f1c5d19a',
+    'shortname' => 'cpanw023.tgz',
+    'size' => '7418'
+  },
+  'perlindex-1.200.tar.gz' => {
+    'md5-ungz' => 'ab77c9b1e8f892040f162da8c596625d',
+    'mtime' => '1997-05-27',
+    'md5' => 'b843a7b92cb93e4be982bfdde27ac676',
+    'shortname' => 'perl1200.tgz',
+    'size' => '9885'
+  },
+  'Text-German-0.03.tar.gz' => {
+    'md5-ungz' => '567ea23905f3ca7c74436cca55f3cb9f',
+    'mtime' => '1996-07-02',
+    'md5' => '120f14768ecb254f090fcfa0f7e57850',
+    'shortname' => 'textg003.tgz',
+    'size' => '13081'
+  },
+  'Wais-2.200.tar.gz' => {
+    'md5-ungz' => '4afb83f076dc12b6f73379d41a79aec3',
+    'mtime' => '1996-11-05',
+    'md5' => '12d0887a5baf29af9210dc2eee4b806f',
+    'shortname' => 'wais2200.tgz',
+    'size' => '41175'
+  },
+  'NNML-1.12.tar.gz' => {
+    'md5-ungz' => '932db062d9e7f2109471401fa78e8188',
+    'mtime' => '1997-03-24',
+    'md5' => 'd44ebb239f9b655ce4ae32d65ce0f49f',
+    'shortname' => 'nnml112.tgz',
+    'size' => '23668'
+  },
+  'Math-Approx-0.1.tar.gz' => {
+    'md5-ungz' => 'b160c70a273662169adbe7c7463cc710',
+    'mtime' => '1995-10-27',
+    'md5' => 'ff5b9471519ebbab0d66f42d1dc6a05c',
+    'shortname' => 'mathap01.tgz',
+    'size' => '2384'
+  },
+  'CGI-Screen-0.119.tar.gz' => {
+    'md5-ungz' => 'cabaecf6c75b94ec3f1a79d6b811f586',
+    'mtime' => '2000-06-09',
+    'md5' => '0bdf6903a76d3794119afcc627a4545c',
+    'shortname' => 'cgis0119.tgz',
+    'size' => '13376'
+  },
+  'CGI-Screen-0.120.tar.gz' => {
+    'md5-ungz' => '34442c8a73d32b00359d7a880e0363fc',
+    'mtime' => '1998-07-12',
+    'md5' => '4dc0bd6abafdf17555689c31188736eb',
+    'shortname' => 'cgis0120.tgz',
+    'size' => '11712'
+  },
+  'Wais-2.201.tar.gz' => {
+    'md5-ungz' => 'f9b6b982ea5fe8ec62416de8a5425141',
+    'mtime' => '1996-12-13',
+    'md5' => 'd2ae9fd26af704627ffdc2317a26c334',
+    'shortname' => 'wais2201.tgz',
+    'size' => '41407'
+  },
+  'Pconvert-1.06.tar.gz' => {
+    'md5-ungz' => '0e69f306ab77a236bad283118521ba28',
+    'mtime' => '1997-02-06',
+    'md5' => '236fd3bb57df3ea03651547bd3cfe370',
+    'shortname' => 'pconv106.tgz',
+    'size' => '11274'
+  },
+  'sfio-oct5-linux.patch.gz' => {
+    'md5-ungz' => '5a31226bd9f132d8b22f38e2edb11412',
+    'mtime' => '1997-03-03',
+    'md5' => 'deb2f3fbf77329f3455e4bc64762cf53',
+    'shortname' => 'sfiooct0.gz',
+    'size' => '1065'
+  },
+  'Wais-2.304.tar.gz' => {
+    'md5-ungz' => 'd7197376a325f5b33211a8e93e565014',
+    'mtime' => '1997-05-13',
+    'md5' => '4ba673922490de134c16c395eeb056d4',
+    'shortname' => 'wais2304.tgz',
+    'size' => '48640'
+  },
+  'InfoBrief-0.14.tar.gz' => {
+    'md5-ungz' => '7bd5d6cf5f7883972a0212a724a8eb39',
+    'mtime' => '1997-01-16',
+    'md5' => '00b05da2fa448ba93111684c22bd549d',
+    'shortname' => 'infob014.tgz',
+    'size' => '12471'
+  },
+  'perlindex-1.107.tar.gz' => {
+    'md5-ungz' => 'b6f95fb0a4aa4cd25a0c7c29854e2f8b',
+    'mtime' => '1996-03-10',
+    'md5' => '2bd0d4de0a66fa9c57a0e43a1454177a',
+    'shortname' => 'perl1107.tgz',
+    'size' => '10923'
+  },
+  'NNML-1.13.tar.gz' => {
+    'md5-ungz' => 'c67d23b39ea662e6179821c07ef7c179',
+    'mtime' => '1997-04-01',
+    'md5' => '5e7256f908e81ec7071f72ebbe2994d3',
+    'shortname' => 'nnml113.tgz',
+    'size' => '24194'
+  },
+  'CPAN-WAIT-0.25.tar.gz' => {
+    'md5-ungz' => 'e21b7a94e307fb0fcd1e09ee2eab6f80',
+    'mtime' => '2000-03-21',
+    'md5' => '7a319dacce2f3686a71e8d4da4306938',
+    'shortname' => 'cpanw025.tgz',
+    'size' => '7639'
+  },
+  'Logfile-0.300.tar.gz' => {
+    'md5-ungz' => '31f5f41349e2693135ea35b5a98f763e',
+    'mtime' => '2002-02-10',
+    'md5' => 'ff219095e59bf57148559f2ee41616bd',
+    'shortname' => 'logf0300.tgz',
+    'size' => '31040'
+  },
+  'Wais-2.116.tar.gz' => {
+    'md5-ungz' => '0d4160a1960ac1a77db62d2ecef92259',
+    'mtime' => '1996-08-19',
+    'md5' => 'dc6d5380e557f75d48f4e45fce674275',
+    'shortname' => 'wais2116.tgz',
+    'size' => '46008'
+  },
+  'CGI-Screen-0.121.tar.gz' => {
+    'md5-ungz' => '8331440db0bd3269d65780e3cf066d0e',
+    'mtime' => '1998-07-26',
+    'md5' => 'af4e9da023ef798f0d222a817c25f92f',
+    'shortname' => 'cgis0121.tgz',
+    'size' => '11852'
+  },
+  'Math-Matrix-0.1.tar.gz' => {
+    'md5-ungz' => 'aaa5c78481e5860a013f5c24d2b619f6',
+    'mtime' => '1995-10-27',
+    'md5' => '48fa636aa12cc85a664453446ca58b3f',
+    'shortname' => 'mathma01.tgz',
+    'size' => '2442'
+  },
+  'Wais-2.202.tar.gz' => {
+    'md5-ungz' => '9f153229d15f362f89ca596a10b32dbb',
+    'mtime' => '1997-02-03',
+    'md5' => 'aa98a9177608029d4fdecc8789afc4ad',
+    'shortname' => 'wais2202.tgz',
+    'size' => '41372'
+  },
+  'Pconvert-1.07.tar.gz' => {
+    'md5-ungz' => 'd751cb07bfb44dd1da9dad778fe016a1',
+    'mtime' => '2002-05-22',
+    'md5' => 'b86a8129707096255ddf13d225dafa19',
+    'shortname' => 'pconv107.tgz',
+    'size' => '11942'
+  },
+  'CPAN-WAIT-0.26.tar.gz' => {
+    'md5-ungz' => '75ec8919bdd1e691979f5faa208a1257',
+    'mtime' => '2000-03-23',
+    'md5' => '3b9baf1b07f7ccf96e58ed9a446f928a',
+    'shortname' => 'cpanw026.tgz',
+    'size' => '7892'
+  },
+  'Wais-2.117.tar.gz' => {
+    'md5-ungz' => 'd2ae9b6a701d80876516a40971fb33f5',
+    'mtime' => '1996-10-01',
+    'md5' => '3e84bcddfe4869975882e9dd36a59b98',
+    'shortname' => 'wais2117.tgz',
+    'size' => '45996'
+  },
+  'CGI-Screen-0.122.tar.gz' => {
+    'md5-ungz' => '22621f59f640f1b971c85efe7ee68ebe',
+    'mtime' => '1999-02-05',
+    'md5' => '3bcbb56df1852bd20183cd9eda3ea6e9',
+    'shortname' => 'cgis0122.tgz',
+    'size' => '11902'
+  },
+  'CPAN-Site-0.013.tar.gz' => {
+    'md5-ungz' => '532199662b50cbbbde6ece9e01130775',
+    'mtime' => '1998-05-06',
+    'md5' => '979c4fd09720a1334d7e0ca5d27cb4fd',
+    'shortname' => 'cpan0013.tgz',
+    'size' => '4679'
+  },
+  'Math-Matrix-0.2.tar.gz' => {
+    'md5-ungz' => 'a32fa873f566c4bde35f4a972483d57b',
+    'mtime' => '1996-07-10',
+    'md5' => '291dcbcec153e441a8299b3f32327fff',
+    'shortname' => 'mathma02.tgz',
+    'size' => '3446'
+  },
+  'Wais-2.203.tar.gz' => {
+    'md5-ungz' => '5ba939e9b2baf96f95d6f566ad0c2a24',
+    'mtime' => '1997-02-13',
+    'md5' => '953a7bc3b997c6af8d8a11f59628cb2d',
+    'shortname' => 'wais2203.tgz',
+    'size' => '42944'
+  },
+  'Math-Approx-0.200.tar.gz' => {
+    'md5-ungz' => '02e4312dd0f5b12248ecdbc629363f5d',
+    'mtime' => '1998-03-03',
+    'md5' => 'b6d4832c9b0c4976240f2f630d08a4c6',
+    'shortname' => 'math0200.tgz',
+    'size' => '2781'
+  },
+  'CPAN-WAIT-0.27.tar.gz' => {
+    'md5-ungz' => '726284064d28aad158b9031c858b5696',
+    'mtime' => '2000-03-23',
+    'md5' => '15e7a703f2c8d0e08f934f3be3e7e841',
+    'shortname' => 'cpanw027.tgz',
+    'size' => '8071'
+  },
+  'Math-Matrix-0.3.tar.gz' => {
+    'md5-ungz' => 'a268003fb49e74b5eff519866c4cd170',
+    'mtime' => '2001-04-17',
+    'md5' => 'eef6187e6a995b9718d79d321357b0ff',
+    'shortname' => 'mathma03.tgz',
+    'size' => '4987'
+  },
+  'Wais-2.118.tar.gz' => {
+    'md5-ungz' => '3de194bcb280dd655975bfe8e44546dc',
+    'mtime' => '1997-01-20',
+    'md5' => 'fbe1c96fcb7d8a6e40e88bfe100dcdcd',
+    'shortname' => 'wais2118.tgz',
+    'size' => '46019'
+  },
+  'CPAN-Site-0.014.tar.gz' => {
+    'md5-ungz' => 'd4af6323b6d8c7cf922ecccc0ea111ea',
+    'mtime' => '1999-07-26',
+    'md5' => '31ae4ac508fac11b0aa75b56803ebd00',
+    'shortname' => 'cpan0014.tgz',
+    'size' => '4769'
+  },
+  'Math-ematica-1.106.tar.gz' => {
+    'md5-ungz' => '4f85b4dbe3c3f648cbd22a6050d6d990',
+    'mtime' => '1998-02-16',
+    'md5' => '09e586249870b45709c836774ca1dc22',
+    'shortname' => 'math1106.tgz',
+    'size' => '18838'
+  },
+  'Wais-2.307.tar.gz' => {
+    'md5-ungz' => '18ccced60d71d54c63b327ef896dc664',
+    'mtime' => '1998-04-08',
+    'md5' => '37731edb3746cd8ebd02de5deec9a482',
+    'shortname' => 'wais2307.tgz',
+    'size' => '49016'
+  },
+  'CGI-Screen-0.115.tar.gz' => {
+    'md5-ungz' => '36cf0869296ebcc1d052e5e9e344d6a7',
+    'mtime' => '1998-06-28',
+    'md5' => 'db85d9ee9aed26a35084e4bd8556e68f',
+    'shortname' => 'cgis0115.tgz',
+    'size' => '10256'
+  },
+  'Math-Matrix-0.4.tar.gz' => {
+    'md5-ungz' => 'fec07867d15ebab9c8a2eb329119d184',
+    'mtime' => '2001-09-24',
+    'md5' => 'fad8f822e5e417ff12ccc2205eda206a',
+    'shortname' => 'mathma04.tgz',
+    'size' => '5676'
+  },
+  'Math-ematica-1.107.tar.gz' => {
+    'md5-ungz' => 'e32910265473b3197a9cd9a8a3b888d8',
+    'mtime' => '2000-12-10',
+    'md5' => '9ce4e39b9b15671547e08c26796f3ec9',
+    'shortname' => 'math1107.tgz',
+    'size' => '19599'
+  },
+  'Wais-2.300.tar.gz' => {
+    'md5-ungz' => 'c1e597f335df4d1fe0f95d5e9c1142a3',
+    'mtime' => '1997-02-14',
+    'md5' => 'b4f3b94ff06efa6a1ed99e1cdda12b41',
+    'shortname' => 'wais2300.tgz',
+    'size' => '46303'
+  },
+  'Net-Country-0.1.tar.gz' => {
+    'md5-ungz' => 'b5bf9b022dacdb3953b188ab9767d3f4',
+    'mtime' => '1996-03-28',
+    'md5' => '773872bd3ed31f9ac4e44d5a97c597c3',
+    'shortname' => 'netcou01.tgz',
+    'size' => '3354'
+  },
+  'Logfile-0.115.tar.gz' => {
+    'md5-ungz' => '0da38713896522e169fb2d843df717f2',
+    'mtime' => '1997-01-20',
+    'md5' => 'dda93ed167eaeffec0e66963d9af6ffc',
+    'shortname' => 'logf0115.tgz',
+    'size' => '31880'
+  },
+  'Math-ematica-1.108.tar.gz' => {
+    'md5-ungz' => 'fe4899296ff0259848652e1a33e9d02f',
+    'mtime' => '2000-12-19',
+    'md5' => 'abe617d6ef4c0f59173e5b15d4bd957a',
+    'shortname' => 'math1108.tgz',
+    'size' => '19806'
+  },
+  'Math-ematica-1.100.tar.gz' => {
+    'md5-ungz' => 'b4f958c8572b9d2b23688b1eca10fbb8',
+    'mtime' => '1997-12-29',
+    'md5' => '80da21a5d89600dec65764e4d9a5317f',
+    'shortname' => 'math1100.tgz',
+    'size' => '17830'
+  },
+  'Wais-2.301.tar.gz' => {
+    'md5-ungz' => '7e7a8b2d41f33abf531b586d2526c5bb',
+    'mtime' => '1997-05-01',
+    'md5' => '6502771890952c1379e946ad31f05ea7',
+    'shortname' => 'wais2301.tgz',
+    'size' => '48999'
+  },
+  'CPAN-WAIT-0.27-2.tar.gz' => {
+    'md5-ungz' => '21ca6fdc3b3a7e3e5360fa7c76b3259c',
+    'mtime' => '2001-04-23',
+    'md5' => 'c0f4f49f5bae31675af28c5c5c4e880a',
+    'shortname' => 'cpanwai2.tgz',
+    'size' => '8151'
+  },
+  'Logfile-0.202.tar.gz' => {
+    'md5-ungz' => '3195b873e7802c7c1a8b718675eaaf26',
+    'mtime' => '1998-06-15',
+    'md5' => '531aa36fc5f36c3788686f1c3c7fbdb5',
+    'shortname' => 'logf0202.tgz',
+    'size' => '31091'
+  },
+  'WAIT-1.7100.tar.gz' => {
+    'md5-ungz' => '79559fe6461ac376178c509b02ebb37c',
+    'mtime' => '1999-05-31',
+    'md5' => '593f608816bbcc1b5984423182f7897b',
+    'shortname' => 'wait171.tgz',
+    'size' => '91794'
+  },
+  'Math-ematica-1.006.tar.gz' => {
+    'md5-ungz' => '9f5417acbc6edc8acbeabc15d0827602',
+    'mtime' => '1996-03-25',
+    'md5' => '9a54330947c3effa94c8423dcf033d6b',
+    'shortname' => 'math1006.tgz',
+    'size' => '12398'
+  }
+};

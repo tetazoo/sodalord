@@ -1,0 +1,834 @@
+This is octave.info, produced by makeinfo version 4.0f from octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: Function Index,  Next: Operator Index,  Prev: Variable Index,  Up: Top
+
+Function Index
+**************
+
+* Menu:
+
+* ( <1>:                                 Audio Processing.
+* ( <2>:                                 Polynomial Manipulations.
+* (:                                     Trigonometry.
+* ,:                                     cacsd.
+* =:                                     Signal Processing.
+* [PVAL, LM] =:                          Signal Processing.
+* abcddim:                               sysprop.
+* abs:                                   Complex Arithmetic.
+* acos:                                  Trigonometry.
+* acosh:                                 Trigonometry.
+* acot:                                  Trigonometry.
+* acsc:                                  Trigonometry.
+* acsch:                                 Trigonometry.
+* airy:                                  Special Functions.
+* all:                                   Finding Elements and Checking Conditions.
+* analdemo:                              sysprop.
+* angle:                                 Complex Arithmetic.
+* anova:                                 Tests.
+* any:                                   Finding Elements and Checking Conditions.
+* append:                                Lists.
+* arch_fit:                              Signal Processing.
+* arch_rnd:                              Signal Processing.
+* are:                                   numerical.
+* arg:                                   Complex Arithmetic.
+* arma_rnd:                              Signal Processing.
+* asctime:                               Timing Utilities.
+* asec:                                  Trigonometry.
+* asech:                                 Trigonometry.
+* asin:                                  Trigonometry.
+* asinh:                                 Trigonometry.
+* atan:                                  Trigonometry.
+* atan2:                                 Trigonometry.
+* atanh:                                 Trigonometry.
+* atexit:                                Quitting Octave.
+* autocor:                               Signal Processing.
+* autocov:                               Signal Processing.
+* autoreg_matrix:                        Signal Processing.
+* axis:                                  Two-Dimensional Plotting.
+* axis2dlim:                             misc.
+* balance:                               Basic Matrix Functions.
+* bar:                                   Specialized Two-Dimensional Plots.
+* bartlett:                              Signal Processing.
+* bartlett_test:                         Tests.
+* bddemo:                                blockdiag.
+* besselh:                               Special Functions.
+* besseli:                               Special Functions.
+* besselj:                               Special Functions.
+* besselk:                               Special Functions.
+* bessely:                               Special Functions.
+* beta:                                  Special Functions.
+* beta_cdf:                              Distributions.
+* beta_inv:                              Distributions.
+* beta_pdf:                              Distributions.
+* beta_rnd:                              Distributions.
+* betainc:                               Special Functions.
+* bin2dec:                               String Conversions.
+* bincoeff:                              Special Functions.
+* binomial_cdf:                          Distributions.
+* binomial_inv:                          Distributions.
+* binomial_pdf:                          Distributions.
+* binomial_rnd:                          Distributions.
+* blackman:                              Signal Processing.
+* blanks:                                Creating Strings.
+* bode:                                  sysfreq.
+* bode_bounds:                           sysfreq.
+* bottom_title <1>:                      Multiple Plots on One Page.
+* bottom_title:                          Plot Annotations.
+* bug_report <1>:                        Bug Lists.
+* bug_report:                            Reporting Bugs.
+* buildssic:                             blockdiag.
+* c2d:                                   systime.
+* cauchy_cdf:                            Distributions.
+* cauchy_inv:                            Distributions.
+* cauchy_pdf:                            Distributions.
+* cauchy_rnd:                            Distributions.
+* cd <1>:                                Current Working Directory.
+* cd:                                    A Sample Command Description.
+* ceil:                                  Utility Functions.
+* cell:                                  Cell Arrays.
+* center:                                Basic Statistical Functions.
+* chdir <1>:                             Current Working Directory.
+* chdir:                                 A Sample Command Description.
+* chisquare_cdf:                         Distributions.
+* chisquare_inv:                         Distributions.
+* chisquare_pdf:                         Distributions.
+* chisquare_rnd:                         Distributions.
+* chisquare_test_homogeneity:            Tests.
+* chisquare_test_independence:           Tests.
+* chol:                                  Matrix Factorizations.
+* clc:                                   Cursor Motion.
+* clear:                                 Status of Variables.
+* clearplot:                             Two-Dimensional Plotting.
+* clg:                                   Two-Dimensional Plotting.
+* clock:                                 Timing Utilities.
+* cloglog:                               Basic Statistical Functions.
+* closeplot:                             Two-Dimensional Plotting.
+* colloc:                                Orthogonal Collocation.
+* colormap:                              Image Processing.
+* columns:                               Object Sizes.
+* com2str:                               Creating Strings.
+* common_size:                           Finding Elements and Checking Conditions.
+* commutation_matrix:                    Special Functions.
+* compan:                                Polynomial Manipulations.
+* complement:                            Sets.
+* completion_matches:                    Commands For Completion.
+* computer:                              System Information.
+* cond:                                  Basic Matrix Functions.
+* conj:                                  Complex Arithmetic.
+* contour:                               Specialized Two-Dimensional Plots.
+* conv:                                  Polynomial Manipulations.
+* cor:                                   Basic Statistical Functions.
+* cor_test:                              Tests.
+* corrcoef:                              Basic Statistical Functions.
+* cos:                                   Trigonometry.
+* cosh:                                  Trigonometry.
+* cot:                                   Trigonometry.
+* coth:                                  Trigonometry.
+* cov:                                   Basic Statistical Functions.
+* cputime:                               Timing Utilities.
+* create_set:                            Sets.
+* cross:                                 Special Functions.
+* csc:                                   Trigonometry.
+* csch:                                  Trigonometry.
+* ctime:                                 Timing Utilities.
+* ctrb:                                  sysprop.
+* cumprod:                               Sums and Products.
+* cumsum:                                Sums and Products.
+* cut:                                   Basic Statistical Functions.
+* d2c:                                   systime.
+* damp:                                  systime.
+* dare:                                  numerical.
+* dassl:                                 Differential-Algebraic Equations.
+* dassl_options:                         Differential-Algebraic Equations.
+* date:                                  Timing Utilities.
+* dcgain:                                systime.
+* deblank:                               Searching and Replacing.
+* dec2bin:                               String Conversions.
+* dec2hex:                               String Conversions.
+* deconv:                                Polynomial Manipulations.
+* DEMOcontrol:                           Control Theory.
+* det:                                   Basic Matrix Functions.
+* detrend:                               Signal Processing.
+* dgkfdemo:                              cacsd.
+* dgram:                                 numerical.
+* diag:                                  Special Utility Matrices.
+* diary:                                 Diary and Echo Commands.
+* diff:                                  Finding Elements and Checking Conditions.
+* dir:                                   Current Working Directory.
+* discrete_cdf:                          Distributions.
+* discrete_inv:                          Distributions.
+* discrete_pdf:                          Distributions.
+* discrete_rnd:                          Distributions.
+* disp:                                  Terminal Output.
+* dkalman:                               cacsd.
+* dlqe:                                  cacsd.
+* dlqr:                                  cacsd.
+* dlyap:                                 numerical.
+* dmr2d:                                 systime.
+* dmult:                                 Basic Matrix Functions.
+* do_string_escapes:                     String Conversions.
+* document:                              Status of Variables.
+* dot:                                   Basic Matrix Functions.
+* dre:                                   numerical.
+* dup2:                                  Controlling Subprocesses.
+* duplication_matrix:                    Special Functions.
+* durbinlevinson:                        Signal Processing.
+* echo:                                  Diary and Echo Commands.
+* edit_history:                          Commands For History.
+* eig:                                   Basic Matrix Functions.
+* empirical_cdf:                         Distributions.
+* empirical_inv:                         Distributions.
+* empirical_pdf:                         Distributions.
+* empirical_rnd:                         Distributions.
+* endgrent:                              Group Database Functions.
+* endpwent:                              Password Database Functions.
+* erf:                                   Special Functions.
+* erfc:                                  Special Functions.
+* erfinv:                                Special Functions.
+* error:                                 Error Handling.
+* etime:                                 Timing Utilities.
+* eval:                                  Evaluation.
+* exec:                                  Controlling Subprocesses.
+* exist:                                 Status of Variables.
+* exit:                                  Quitting Octave.
+* exp:                                   Utility Functions.
+* expm:                                  Functions of a Matrix.
+* exponential_cdf:                       Distributions.
+* exponential_inv:                       Distributions.
+* exponential_pdf:                       Distributions.
+* exponential_rnd:                       Distributions.
+* eye:                                   Special Utility Matrices.
+* f_cdf:                                 Distributions.
+* f_inv:                                 Distributions.
+* f_pdf:                                 Distributions.
+* f_rnd:                                 Distributions.
+* f_test_regression:                     Tests.
+* fclose:                                Opening and Closing Files.
+* fcntl:                                 Controlling Subprocesses.
+* fdisp:                                 Terminal Output.
+* feof:                                  EOF and Errors.
+* ferror:                                EOF and Errors.
+* feval:                                 Evaluation.
+* fflush:                                Input and Output.
+* fft:                                   Signal Processing.
+* fft2:                                  Signal Processing.
+* fftconv:                               Signal Processing.
+* fftfilt:                               Signal Processing.
+* fftshift:                              Signal Processing.
+* fgetl:                                 Line-Oriented Input.
+* fgets:                                 Line-Oriented Input.
+* figure:                                Multiple Plot Windows.
+* file_in_loadpath:                      Function Files.
+* file_in_path:                          Filesystem Utilities.
+* filter:                                Signal Processing.
+* find:                                  Finding Elements and Checking Conditions.
+* findstr:                               Searching and Replacing.
+* finite:                                Finding Elements and Checking Conditions.
+* fir2sys:                               fir2sys.
+* fix:                                   Utility Functions.
+* fliplr:                                Rearranging Matrices.
+* flipud:                                Rearranging Matrices.
+* floor:                                 Utility Functions.
+* fnmatch:                               Filesystem Utilities.
+* foo:                                   A Sample Function Description.
+* fopen:                                 Opening and Closing Files.
+* fork:                                  Controlling Subprocesses.
+* format:                                Terminal Output.
+* fprintf:                               Formatted Output.
+* fputs:                                 Simple Output.
+* fractdiff:                             Signal Processing.
+* frdemo:                                sysfreq.
+* fread:                                 Binary I/O.
+* freport:                               EOF and Errors.
+* freqchkw:                              sysfreq.
+* freqz:                                 Signal Processing.
+* frewind:                               File Positioning.
+* fscanf:                                Formatted Input.
+* fseek:                                 File Positioning.
+* fsolve:                                Nonlinear Equations.
+* fsolve_options:                        Nonlinear Equations.
+* ftell:                                 File Positioning.
+* fv:                                    Financial Functions.
+* fvl:                                   Financial Functions.
+* fwrite:                                Binary I/O.
+* gamma:                                 Special Functions.
+* gamma_cdf:                             Distributions.
+* gamma_inv:                             Distributions.
+* gamma_pdf:                             Distributions.
+* gamma_rnd:                             Distributions.
+* gammainc:                              Special Functions.
+* gammaln:                               Special Functions.
+* gcd:                                   Utility Functions.
+* geometric_cdf:                         Distributions.
+* geometric_inv:                         Distributions.
+* geometric_pdf:                         Distributions.
+* geometric_rnd:                         Distributions.
+* getegid:                               Process ID Information.
+* getenv:                                Environment Variables.
+* geteuid:                               Process ID Information.
+* getgid:                                Process ID Information.
+* getgrent:                              Group Database Functions.
+* getgrgid:                              Group Database Functions.
+* getgrnam:                              Group Database Functions.
+* getpgrp:                               Process ID Information.
+* getpid:                                Process ID Information.
+* getppid:                               Process ID Information.
+* getpwent:                              Password Database Functions.
+* getpwnam:                              Password Database Functions.
+* getpwuid:                              Password Database Functions.
+* getrusage:                             System Information.
+* getuid:                                Process ID Information.
+* givens:                                Basic Matrix Functions.
+* glob:                                  Filesystem Utilities.
+* gls:                                   Linear Least Squares.
+* gmtime:                                Timing Utilities.
+* gplot:                                 Two-Dimensional Plotting.
+* gram:                                  numerical.
+* graw:                                  Interaction with gnuplot.
+* gray:                                  Image Processing.
+* gray2ind:                              Image Processing.
+* grid:                                  Plot Annotations.
+* gset:                                  Two-Dimensional Plotting.
+* gshow:                                 Two-Dimensional Plotting.
+* gsplot:                                Three-Dimensional Plotting.
+* h2norm:                                sysprop.
+* hamming:                               Signal Processing.
+* hankel:                                Famous Matrices.
+* hanning:                               Signal Processing.
+* help:                                  Getting Help.
+* hess:                                  Matrix Factorizations.
+* hex2dec:                               String Conversions.
+* hilb:                                  Famous Matrices.
+* hinf_ctr:                              cacsd.
+* hinfdemo:                              cacsd.
+* hinfnorm:                              sysprop.
+* hinfsyn:                               cacsd.
+* hinfsyn_chk:                           cacsd.
+* hinfsyn_ric:                           cacsd.
+* hist:                                  Specialized Two-Dimensional Plots.
+* history:                               Commands For History.
+* hold:                                  Two-Dimensional Plotting.
+* home:                                  Cursor Motion.
+* hotelling_test:                        Tests.
+* hotelling_test_2:                      Tests.
+* housh:                                 Matrix Factorizations.
+* hurst:                                 Signal Processing.
+* hypergeometric_cdf:                    Distributions.
+* hypergeometric_inv:                    Distributions.
+* hypergeometric_pdf:                    Distributions.
+* hypergeometric_rnd:                    Distributions.
+* ifft:                                  Signal Processing.
+* ifft2:                                 Signal Processing.
+* imag:                                  Complex Arithmetic.
+* image:                                 Image Processing.
+* imagesc:                               Image Processing.
+* impulse:                               systime.
+* imshow:                                Image Processing.
+* ind2gray:                              Image Processing.
+* ind2rgb:                               Image Processing.
+* index:                                 Searching and Replacing.
+* input:                                 Terminal Input.
+* int2str:                               Creating Strings.
+* intersection:                          Sets.
+* inv:                                   Basic Matrix Functions.
+* inverse:                               Basic Matrix Functions.
+* invhilb:                               Famous Matrices.
+* iqr:                                   Basic Statistical Functions.
+* irr:                                   Financial Functions.
+* is_abcd:                               sysprop.
+* is_bool:                               Predicates for Numeric Objects.
+* is_complex:                            Predicates for Numeric Objects.
+* is_controllable:                       sysprop.
+* is_detectable:                         sysprop.
+* is_dgkf:                               sysprop.
+* is_digital:                            sysprop.
+* is_duplicate_entry:                    Finding Elements and Checking Conditions.
+* is_global:                             Global Variables.
+* is_leap_year:                          Timing Utilities.
+* is_list:                               Lists.
+* is_matrix:                             Predicates for Numeric Objects.
+* is_observable:                         sysprop.
+* is_sample:                             sysprop.
+* is_scalar:                             Predicates for Numeric Objects.
+* is_signal_list:                        sysprop.
+* is_siso:                               sysprop.
+* is_square:                             Predicates for Numeric Objects.
+* is_stabilizable:                       sysprop.
+* is_stable:                             sysprop.
+* is_stream:                             I/O Streams.
+* is_struct:                             Data Structures.
+* is_symmetric:                          Predicates for Numeric Objects.
+* is_vector:                             Predicates for Numeric Objects.
+* isalnum:                               Character Class Functions.
+* isalpha:                               Character Class Functions.
+* isascii:                               Character Class Functions.
+* iscell:                                Cell Arrays.
+* iscntrl:                               Character Class Functions.
+* isdigit:                               Character Class Functions.
+* isempty:                               Object Sizes.
+* isgraph:                               Character Class Functions.
+* ishold:                                Two-Dimensional Plotting.
+* isieee:                                System Information.
+* isinf:                                 Finding Elements and Checking Conditions.
+* islower:                               Character Class Functions.
+* isnan:                                 Finding Elements and Checking Conditions.
+* isnumeric:                             Predicates for Numeric Objects.
+* isprint:                               Character Class Functions.
+* ispunct:                               Character Class Functions.
+* isreal:                                Predicates for Numeric Objects.
+* isspace:                               Character Class Functions.
+* isstr:                                 Creating Strings.
+* isupper:                               Character Class Functions.
+* isxdigit:                              Character Class Functions.
+* jet707:                                blockdiag.
+* kbhit:                                 Terminal Input.
+* kendall:                               Basic Statistical Functions.
+* keyboard:                              Terminal Input.
+* kolmogorov_smirnov_cdf:                Distributions.
+* kolmogorov_smirnov_test:               Tests.
+* kolmogorov_smirnov_test_2:             Tests.
+* kron:                                  Functions of a Matrix.
+* kruskal_wallis_test:                   Tests.
+* krylov:                                Matrix Factorizations.
+* kurtosis:                              Basic Statistical Functions.
+* laplace_cdf:                           Distributions.
+* laplace_inv:                           Distributions.
+* laplace_pdf:                           Distributions.
+* laplace_rnd:                           Distributions.
+* lcm:                                   Utility Functions.
+* length:                                Object Sizes.
+* lgamma:                                Special Functions.
+* lin2mu:                                Audio Processing.
+* linspace:                              Special Utility Matrices.
+* list:                                  Lists.
+* load:                                  Simple File I/O.
+* loadaudio:                             Audio Processing.
+* loadimage:                             Image Processing.
+* localtime:                             Timing Utilities.
+* log:                                   Utility Functions.
+* log10:                                 Utility Functions.
+* log2:                                  Utility Functions.
+* logistic_cdf:                          Distributions.
+* logistic_inv:                          Distributions.
+* logistic_pdf:                          Distributions.
+* logistic_regression:                   Models.
+* logistic_rnd:                          Distributions.
+* logit:                                 Basic Statistical Functions.
+* loglog:                                Specialized Two-Dimensional Plots.
+* logm:                                  Functions of a Matrix.
+* lognormal_cdf:                         Distributions.
+* lognormal_inv:                         Distributions.
+* lognormal_pdf:                         Distributions.
+* lognormal_rnd:                         Distributions.
+* logspace:                              Special Utility Matrices.
+* lqe:                                   cacsd.
+* lqg:                                   cacsd.
+* lqr:                                   cacsd.
+* ls:                                    Current Working Directory.
+* lsim:                                  cacsd.
+* lsode:                                 Ordinary Differential Equations.
+* lsode_options:                         Ordinary Differential Equations.
+* lstat:                                 Filesystem Utilities.
+* ltifr:                                 sysfreq.
+* lu:                                    Matrix Factorizations.
+* lyap:                                  numerical.
+* mahalanobis:                           Basic Statistical Functions.
+* manova:                                Tests.
+* mcnemar_test:                          Tests.
+* mean:                                  Basic Statistical Functions.
+* meansq:                                Basic Statistical Functions.
+* median:                                Basic Statistical Functions.
+* menu:                                  Terminal Input.
+* mesh:                                  Three-Dimensional Plotting.
+* meshdom:                               Three-Dimensional Plotting.
+* meshgrid:                              Three-Dimensional Plotting.
+* mkdir:                                 Filesystem Utilities.
+* mkfifo:                                Filesystem Utilities.
+* mktime:                                Timing Utilities.
+* moddemo:                               misc.
+* moment:                                Basic Statistical Functions.
+* more:                                  Input and Output.
+* mplot:                                 Multiple Plots on One Page.
+* mu2lin:                                Audio Processing.
+* multiplot:                             Multiple Plots on One Page.
+* nargchk:                               Multiple Return Values.
+* newtroot:                              Evaluation.
+* nextpow2:                              Utility Functions.
+* norm:                                  Basic Matrix Functions.
+* normal_cdf:                            Distributions.
+* normal_inv:                            Distributions.
+* normal_pdf:                            Distributions.
+* normal_rnd:                            Distributions.
+* nper:                                  Financial Functions.
+* npv:                                   Financial Functions.
+* nth:                                   Lists.
+* ntsc2rgb:                              Image Processing.
+* null:                                  Basic Matrix Functions.
+* num2str:                               Creating Strings.
+* nyquist:                               sysfreq.
+* obsv:                                  sysprop.
+* ocean:                                 Image Processing.
+* octave_config_info:                    System Information.
+* ols:                                   Linear Least Squares.
+* oneplot:                               Multiple Plots on One Page.
+* ones:                                  Special Utility Matrices.
+* ord2:                                  blockdiag.
+* orth:                                  Basic Matrix Functions.
+* parallel:                              blockdiag.
+* pascal_cdf:                            Distributions.
+* pascal_inv:                            Distributions.
+* pascal_pdf:                            Distributions.
+* pascal_rnd:                            Distributions.
+* pause:                                 Timing Utilities.
+* pclose:                                Controlling Subprocesses.
+* periodogram:                           Signal Processing.
+* perror:                                Error Handling.
+* pinv:                                  Basic Matrix Functions.
+* pipe:                                  Controlling Subprocesses.
+* place:                                 cacsd.
+* playaudio:                             Audio Processing.
+* plot:                                  Two-Dimensional Plotting.
+* plot_border:                           Multiple Plots on One Page.
+* pmt:                                   Financial Functions.
+* poisson_cdf:                           Distributions.
+* poisson_inv:                           Distributions.
+* poisson_pdf:                           Distributions.
+* poisson_rnd:                           Distributions.
+* polar:                                 Specialized Two-Dimensional Plots.
+* poly:                                  Polynomial Manipulations.
+* polyderiv:                             Polynomial Manipulations.
+* polyfit:                               Polynomial Manipulations.
+* polyinteg:                             Polynomial Manipulations.
+* polyreduce:                            Polynomial Manipulations.
+* polyval:                               Polynomial Manipulations.
+* polyvalm:                              Polynomial Manipulations.
+* popen:                                 Controlling Subprocesses.
+* popen2:                                Controlling Subprocesses.
+* postpad:                               Rearranging Matrices.
+* pow2:                                  Utility Functions.
+* ppplot:                                Basic Statistical Functions.
+* prepad:                                Rearranging Matrices.
+* printf:                                Formatted Output.
+* probit:                                Basic Statistical Functions.
+* prod:                                  Sums and Products.
+* prompt:                                misc.
+* prop_test_2:                           Tests.
+* purge_tmp_files:                       Two-Dimensional Plotting.
+* putenv:                                Environment Variables.
+* puts:                                  Simple Output.
+* pv:                                    Financial Functions.
+* pvl:                                   Financial Functions.
+* pwd:                                   Current Working Directory.
+* pzmap:                                 sysprop.
+* qconj:                                 Quaternions.
+* qcoordinate_plot:                      Quaternions.
+* qderiv:                                Quaternions.
+* qderivmat:                             Quaternions.
+* qinv:                                  Quaternions.
+* qmult:                                 Quaternions.
+* qqplot:                                Basic Statistical Functions.
+* qr:                                    Matrix Factorizations.
+* qtrans:                                Quaternions.
+* qtransv:                               Quaternions.
+* qtransvmat:                            Quaternions.
+* quad:                                  Functions of One Variable.
+* quad_options:                          Functions of One Variable.
+* quaternion:                            Quaternions.
+* quit:                                  Quitting Octave.
+* qz:                                    Matrix Factorizations.
+* qzhess:                                Matrix Factorizations.
+* qzval:                                 numerical.
+* rand:                                  Special Utility Matrices.
+* randn:                                 Special Utility Matrices.
+* randperm:                              Special Utility Matrices.
+* range:                                 Basic Statistical Functions.
+* rank:                                  Basic Matrix Functions.
+* ranks:                                 Basic Statistical Functions.
+* rate:                                  Financial Functions.
+* read_readline_init_file:               Customizing readline.
+* readdir:                               Filesystem Utilities.
+* real:                                  Complex Arithmetic.
+* record:                                Audio Processing.
+* rectangle_lw:                          Signal Processing.
+* rectangle_sw:                          Signal Processing.
+* rehash:                                Function Files.
+* rem:                                   Utility Functions.
+* rename:                                Filesystem Utilities.
+* replot:                                Two-Dimensional Plotting.
+* reshape:                               Rearranging Matrices.
+* residue:                               Polynomial Manipulations.
+* reverse:                               Lists.
+* rgb2ind:                               Image Processing.
+* rgb2ntsc:                              Image Processing.
+* rindex:                                Searching and Replacing.
+* rldemo:                                misc.
+* rlocus:                                misc.
+* rmdir:                                 Filesystem Utilities.
+* roots:                                 Polynomial Manipulations.
+* rot90:                                 Rearranging Matrices.
+* round:                                 Utility Functions.
+* rows:                                  Object Sizes.
+* run_count:                             Basic Statistical Functions.
+* run_history:                           Commands For History.
+* run_test:                              Tests.
+* save:                                  Simple File I/O.
+* saveaudio:                             Audio Processing.
+* saveimage:                             Image Processing.
+* schur:                                 Matrix Factorizations.
+* sec:                                   Trigonometry.
+* sech:                                  Trigonometry.
+* semilogx:                              Specialized Two-Dimensional Plots.
+* semilogy:                              Specialized Two-Dimensional Plots.
+* set:                                   Two-Dimensional Plotting.
+* setgrent:                              Group Database Functions.
+* setpwent:                              Password Database Functions.
+* setstr:                                Creating Strings.
+* shg:                                   Two-Dimensional Plotting.
+* shift:                                 Rearranging Matrices.
+* show:                                  Two-Dimensional Plotting.
+* sign:                                  Utility Functions.
+* sign_test:                             Tests.
+* sin:                                   Trigonometry.
+* sinc:                                  Signal Processing.
+* sinetone:                              Signal Processing.
+* sinewave:                              Signal Processing.
+* sinh:                                  Trigonometry.
+* size:                                  Object Sizes.
+* skewness:                              Basic Statistical Functions.
+* sleep:                                 Timing Utilities.
+* sort:                                  Rearranging Matrices.
+* sortcom:                               misc.
+* source:                                Script Files.
+* spearman:                              Basic Statistical Functions.
+* spectral_adf:                          Signal Processing.
+* spectral_xdf:                          Signal Processing.
+* spencer:                               Signal Processing.
+* splice:                                Lists.
+* split:                                 Searching and Replacing.
+* sprintf:                               Formatted Output.
+* sqrt:                                  Utility Functions.
+* sqrtm:                                 Functions of a Matrix.
+* ss2sys:                                ss2sys.
+* ss2tf:                                 misc.
+* ss2zp:                                 misc.
+* sscanf:                                Formatted Input.
+* stairs:                                Specialized Two-Dimensional Plots.
+* starp:                                 misc.
+* stat:                                  Filesystem Utilities.
+* statistics:                            Basic Statistical Functions.
+* std:                                   Basic Statistical Functions.
+* stdnormal_cdf:                         Distributions.
+* stdnormal_inv:                         Distributions.
+* stdnormal_pdf:                         Distributions.
+* stdnormal_rnd:                         Distributions.
+* step:                                  systime.
+* str2mat:                               Creating Strings.
+* str2num:                               String Conversions.
+* strcat:                                Creating Strings.
+* strcmp:                                Searching and Replacing.
+* strerror:                              Error Handling.
+* strftime:                              Timing Utilities.
+* strrep:                                Searching and Replacing.
+* struct_contains:                       Data Structures.
+* struct_elements:                       Data Structures.
+* studentize:                            Basic Statistical Functions.
+* subplot:                               Multiple Plots on One Page.
+* substr:                                Searching and Replacing.
+* subwindow:                             Multiple Plots on One Page.
+* sum:                                   Sums and Products.
+* sumsq:                                 Sums and Products.
+* svd:                                   Matrix Factorizations.
+* syl:                                   Functions of a Matrix.
+* sylvester_matrix:                      Famous Matrices.
+* synthesis:                             Signal Processing.
+* sys2fir:                               fir2sys.
+* sys2ss:                                ss2sys.
+* sys2tf:                                tf2sys.
+* sys2zp:                                zp2sys.
+* sysadd:                                blockdiag.
+* sysappend:                             blockdiag.
+* syschnames:                            structaccess.
+* syschtsam:                             structaccess.
+* sysconnect:                            blockdiag.
+* syscont:                               blockdiag.
+* sysdimensions:                         structaccess.
+* sysdisc:                               blockdiag.
+* sysdup:                                blockdiag.
+* sysgetsignals:                         structaccess.
+* sysgettsam:                            structaccess.
+* sysgettype:                            structaccess.
+* sysgroup:                              blockdiag.
+* sysmin:                                blockdiag.
+* sysmult:                               blockdiag.
+* sysout:                                sysdisp.
+* sysprune:                              blockdiag.
+* sysreorder:                            blockdiag.
+* sysrepdemo:                            sysstruct.
+* sysscale:                              blockdiag.
+* syssetsignals:                         structaccess.
+* syssub:                                blockdiag.
+* system:                                Controlling Subprocesses.
+* sysupdate:                             structaccess.
+* t_cdf:                                 Distributions.
+* t_inv:                                 Distributions.
+* t_pdf:                                 Distributions.
+* t_rnd:                                 Distributions.
+* t_test:                                Tests.
+* t_test_2:                              Tests.
+* t_test_regression:                     Tests.
+* table:                                 Basic Statistical Functions.
+* tan:                                   Trigonometry.
+* tanh:                                  Trigonometry.
+* tf2ss:                                 misc.
+* tf2sys:                                tf2sys.
+* tf2zp:                                 misc.
+* tfout:                                 sysdisp.
+* tic:                                   Timing Utilities.
+* tilde_expand:                          Filesystem Utilities.
+* time:                                  Timing Utilities.
+* title:                                 Plot Annotations.
+* tmpnam:                                Temporary Files.
+* toascii:                               String Conversions.
+* toc:                                   Timing Utilities.
+* toeplitz:                              Famous Matrices.
+* tolower:                               String Conversions.
+* top_title:                             Multiple Plots on One Page.
+* toupper:                               String Conversions.
+* trace:                                 Basic Matrix Functions.
+* triangle_lw:                           Signal Processing.
+* triangle_sw:                           Signal Processing.
+* tril:                                  Rearranging Matrices.
+* triu:                                  Rearranging Matrices.
+* type:                                  Status of Variables.
+* typeinfo:                              Data Types.
+* tzero:                                 sysfreq.
+* tzero2:                                sysfreq.
+* u_test:                                Tests.
+* ugain:                                 blockdiag.
+* umask:                                 Filesystem Utilities.
+* undo_string_escapes:                   String Conversions.
+* uniform_cdf:                           Distributions.
+* uniform_inv:                           Distributions.
+* uniform_pdf:                           Distributions.
+* uniform_rnd:                           Distributions.
+* union:                                 Sets.
+* unlink:                                Filesystem Utilities.
+* usage:                                 Error Handling.
+* usleep:                                Timing Utilities.
+* va_arg:                                Variable-length Argument Lists.
+* va_start:                              Variable-length Argument Lists.
+* values:                                Basic Statistical Functions.
+* vander:                                Famous Matrices.
+* var:                                   Basic Statistical Functions.
+* var_test:                              Tests.
+* vec:                                   Rearranging Matrices.
+* vech:                                  Rearranging Matrices.
+* vol:                                   Financial Functions.
+* vr_val:                                Variable-length Return Lists.
+* waitpid:                               Controlling Subprocesses.
+* warning:                               Error Handling.
+* weibull_cdf:                           Distributions.
+* weibull_inv:                           Distributions.
+* weibull_pdf:                           Distributions.
+* weibull_rnd:                           Distributions.
+* welch_test:                            Tests.
+* wgt1o:                                 blockdiag.
+* which:                                 Status of Variables.
+* who:                                   Status of Variables.
+* whos:                                  Status of Variables.
+* wiener_rnd:                            Distributions.
+* wilcoxon_test:                         Tests.
+* xlabel:                                Plot Annotations.
+* xor:                                   Finding Elements and Checking Conditions.
+* ylabel:                                Plot Annotations.
+* yulewalker:                            Signal Processing.
+* z_test:                                Tests.
+* z_test_2:                              Tests.
+* zeros:                                 Special Utility Matrices.
+* zgfmul:                                numerical.
+* zgfslv:                                numerical.
+* zginit:                                numerical.
+* zgreduce:                              numerical.
+* zgrownorm:                             numerical.
+* zgscal:                                numerical.
+* zgsgiv:                                numerical.
+* zgshsr:                                numerical.
+* zlabel:                                Plot Annotations.
+* zp2ss:                                 misc.
+* zp2sys:                                zp2sys.
+* zp2tf:                                 misc.
+* zpout:                                 sysdisp.
+
+
+File: octave.info,  Node: Operator Index,  Prev: Function Index,  Up: Top
+
+Operator Index
+**************
+
+* Menu:
+
+* !:                                     Element-by-element Boolean Operators.
+* !=:                                    Comparison Ops.
+* " <1>:                                 Strings.
+* ":                                     String Objects.
+* &:                                     Element-by-element Boolean Operators.
+* &&:                                    Short-circuit Boolean Operators.
+* ' <1>:                                 Arithmetic Ops.
+* ' <2>:                                 Strings.
+* ':                                     String Objects.
+* (:                                     Index Expressions.
+* ):                                     Index Expressions.
+* *:                                     Arithmetic Ops.
+* **:                                    Arithmetic Ops.
+* +:                                     Arithmetic Ops.
+* ++:                                    Increment Ops.
+* ,:                                     Matrices.
+* -:                                     Arithmetic Ops.
+* --:                                    Increment Ops.
+* .':                                    Arithmetic Ops.
+* .*:                                    Arithmetic Ops.
+* .**:                                   Arithmetic Ops.
+* .+:                                    Arithmetic Ops.
+* ./:                                    Arithmetic Ops.
+* .\:                                    Arithmetic Ops.
+* .^:                                    Arithmetic Ops.
+* /:                                     Arithmetic Ops.
+* ;:                                     Matrices.
+* <:                                     Comparison Ops.
+* <=:                                    Comparison Ops.
+* <>:                                    Comparison Ops.
+* =:                                     Assignment Ops.
+* ==:                                    Comparison Ops.
+* >:                                     Comparison Ops.
+* >=:                                    Comparison Ops.
+* [:                                     Matrices.
+* \:                                     Arithmetic Ops.
+* ]:                                     Matrices.
+* ^:                                     Arithmetic Ops.
+* colon:                                 Ranges.
+* |:                                     Element-by-element Boolean Operators.
+* ||:                                    Short-circuit Boolean Operators.
+* ~:                                     Element-by-element Boolean Operators.
+* ~=:                                    Comparison Ops.
+
+

@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-10-17T04:04:57.239153Z
+K 7
+svn:log
+V 94
+added game command for listing total expenses and revenue, and per-admin-user amount recovered
+END

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cp /soda/admin.pl /afs/athena.mit.edu/activity/t/tetazoo/sodalord
+cp /soda/sodalord.pl /afs/athena.mit.edu/activity/t/tetazoo/sodalord
+cp /soda/sodaweb.pl /afs/athena.mit.edu/activity/t/tetazoo/sodalord
+cp /soda/sodafinger.pl /afs/athena.mit.edu/activity/t/tetazoo/sodalord
+cp /soda/sodacard.pl /afs/athena.mit.edu/activity/t/tetazoo/sodalord

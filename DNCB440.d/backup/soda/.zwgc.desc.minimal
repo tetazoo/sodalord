@@ -1,0 +1,27 @@
+if (upcase($opcode) == "PING") then exit endif
+
+case $class
+match "WG_CTL_CLASS"
+  exit
+match "message"
+
+  fields signature body
+
+  if (downcase($body) =~ "mytext") then
+    execport "zephyr" "/usr/athena/bin/zwrite" "-n" "-s" "Automated Reply" $sender
+    print "You Win!"
+    print "body: '"+$body+"'"
+    put "zephyr"
+    closeport "zephyr"
+  else
+    execport "zephyr" "/usr/athena/bin/zwrite" "-n" "-s" "Automated Reply" $sender
+    print "You Lose!"
+    print "body: '"+$body+"'"
+    put "zephyr"
+    closeport "zephyr"
+  endif
+  exit
+
+default
+  exit
+endcase

@@ -1,0 +1,2 @@
+ XDEFUN_DLD_INTERNAL (lpsolve, , , 0, "-*- texinfo -*-\n@deftypefn {Loadable Function} {} lpsolve ()\nNot implemented yet...\n@end deftypefn") 
+ XDEFUN_DLD_INTERNAL (lpsolve_options, , , 0, "-*- texinfo -*-\n@deftypefn {Loadable Function} {} lpsolve_options ()\nNot implemented yet...\n@end deftypefn") 

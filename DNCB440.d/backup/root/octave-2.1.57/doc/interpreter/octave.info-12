@@ -1,0 +1,1481 @@
+This is octave.info, produced by makeinfo version 4.5 from octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: Image Processing,  Next: Audio Processing,  Prev: Signal Processing,  Up: Top
+
+Image Processing
+****************
+
+   Octave can display images with the X Window System using the
+`xloadimage' program.  You do not need to be running X in order to
+manipulate images, however, so some of these functions may be useful
+even if you are not able to view the results.
+
+   Loading images only works with Octave's image format (a file with a
+matrix containing the image data, and a matrix containing the
+colormap).  Contributions of robust, well-written functions to read
+other image formats are welcome.  If you can provide them, or would like
+to improve Octave's image processing capabilities in other ways, please
+contact <bug-octave@bevo.che.wisc.edu>.
+
+ - Function File:  colormap (MAP)
+ - Function File:  colormap ("default")
+     Set the current colormap.
+
+     `colormap (MAP)' sets the current colormap to MAP.  The color map
+     should be an N row by 3 column matrix.  The columns contain red,
+     green, and blue intensities respectively.  All entries should be
+     between 0 and 1 inclusive.  The new colormap is returned.
+
+     `colormap ("default")' restores the default colormap (a gray scale
+     colormap with 64 entries).  The default colormap is returned.
+
+     With no arguments, `colormap' returns the current color map.
+
+ - Function File:  gray (N)
+     Return a gray colormap with N entries corresponding to values from
+     0 to N-1.  The argument N should be a scalar.  If it is omitted,
+     64 is assumed.
+
+ - Function File: [IMG, MAP] = gray2ind ()
+     Convert a gray scale intensity image to an Octave indexed image.
+
+ - Function File:  image (X, ZOOM)
+ - Function File:  image (X, Y, A, ZOOM)
+     Display a matrix as a color image.  The elements of X are indices
+     into the current colormap and should have values between 1 and the
+     length of the colormap.  If ZOOM is omitted, the image will be
+     scaled to fit within 600x350 (to a max of 4).
+
+     It first tries to use `display' from `ImageMagick' then `xv' and
+     then `xloadimage'.
+
+     The axis values corresponding to the matrix elements are specified
+     in X and Y. At present they are ignored.
+
+ - Function File:  imagesc (A)
+ - Function File:  imagesc (X, Y, A)
+ - Function File:  imagesc (..., ZOOM)
+ - Function File:  imagesc (..., LIMITS)
+ - Function File:  B =  imagesc (...)
+     Display a scaled version of the matrix A as a color image.  The
+     matrix is scaled so that its entries are indices into the current
+     colormap.  The scaled matrix is returned.  If ZOOM is omitted, a
+     comfortable size is chosen.  If LIMITS = [LO, HI] are given, then
+     that range maps into the full range of the colormap rather than
+     the minimum and maximum values of A.
+
+     The axis values corresponding to the matrix elements are specified
+     in X and Y, either as pairs giving the minimum and maximum values
+     for the respective axes, or as values for each row and column of
+     the matrix A.  At present they are ignored.
+
+ - Function File:  imshow (I)
+ - Function File:  imshow (X, MAP)
+ - Function File:  imshow (X, N)
+ - Function File:  imshow (I, N)
+ - Function File:  imshow (R, G, B)
+     Display an image.
+
+     `imshow (X)' displays an intensity image, estimating the number of
+     gray levels.
+
+     `imshow (X, MAP)' displays an indexed image using the specified
+     colormap.
+
+     `imshow (I, N)' displays a gray scale intensity image of N levels.
+
+     `imshow (R, G, B)' displays an RGB image.
+
+     The string `truesize' can always be used as an optional final
+     argument to prevent automatic zooming of the image.
+
+ - Function File:  ind2gray (X, MAP)
+     Convert an Octave indexed image to a gray scale intensity image.
+     If MAP is omitted, the current colormap is used to determine the
+     intensities.
+
+ - Function File: [R, G, B] = ind2rgb (X, MAP)
+     Convert an indexed image to red, green, and blue color components.
+     If MAP is omitted, the current colormap is used for the conversion.
+
+ - Function File: [X, MAP] = loadimage (FILE)
+     Load an image file and it's associated color map from the specified
+     FILE.  The image must be stored in Octave's image format.
+
+ - Function File:  rgb2ntsc (RGB)
+     Image format conversion.
+
+ - Function File:  ntsc2rgb (YIQ)
+     Image format conversion.
+
+ - Function File:  RGB_MAP = hsv2rgb (HSV_MAP)
+     Transform a colormap from the hsv space to the rgb space.
+
+ - Function File:  HSV_MAP = rgb2hsv (RGB_MAP)
+     Transform a colormap from the rgb space to the hsv space.
+
+     A color n the RGB space consists of the red, green and blue
+     intensities.
+
+     In the HSV space each color is represented by their hue, saturation
+     and value (brightness).  Value gives the amount of light in the
+     color.  Hue describes the dominant wavelegth.  Saturation is the
+     amount of Hue mixed into the color.
+
+ - Function File:  ocean (N)
+     Create color colormap.  The argument N should be a scalar.  If it
+     is omitted, 64 is assumed.
+
+ - Function File: [X, MAP] = rgb2ind (R, G, B)
+     Convert and RGB image to an Octave indexed image.
+
+ - Function File:  saveimage (FILE, X, FMT, MAP)
+     Save the matrix X to FILE in image format FMT.  Valid values for
+     FMT are
+
+    `"img"'
+          Octave's image format.  The current colormap is also saved in
+          the file.
+
+    `"ppm"'
+          Portable pixmap format.
+
+    `"ps"'
+          PostScript format.  Note that images saved in PostScript
+          format can not be read back into Octave with loadimage.
+
+     If the fourth argument is supplied, the specified colormap will
+     also be saved along with the image.
+
+     Note: if the colormap contains only two entries and these entries
+     are black and white, the bitmap ppm and PostScript formats are
+     used.  If the image is a gray scale image (the entries within each
+     row of the colormap are equal) the gray scale ppm and PostScript
+     image formats are used, otherwise the full color formats are used.
+
+ - Built-in Variable: IMAGEPATH
+     A colon separated list of directories in which to search for image
+     files.
+
+
+File: octave.info,  Node: Audio Processing,  Next: Quaternions,  Prev: Image Processing,  Up: Top
+
+Audio Processing
+****************
+
+   Octave provides a few functions for dealing with audio data.  An
+audio `sample' is a single output value from an A/D converter, i.e., a
+small integer number (usually 8 or 16 bits), and audio data is just a
+series of such samples.  It can be characterized by three parameters:
+the sampling rate (measured in samples per second or Hz, e.g. 8000 or
+44100), the number of bits per sample (e.g. 8 or 16), and the number of
+channels (1 for mono, 2 for stereo, etc.).
+
+   There are many different formats for representing such data.
+Currently, only the two most popular, _linear encoding_ and _mu-law
+encoding_, are supported by Octave.  There is an excellent FAQ on audio
+formats by Guido van Rossum <guido@cwi.nl> which can be found at any
+FAQ ftp site, in particular in the directory
+`/pub/usenet/news.answers/audio-fmts' of the archive site
+`rtfm.mit.edu'.
+
+   Octave simply treats audio data as vectors of samples (non-mono data
+are not supported yet).  It is assumed that audio files using linear
+encoding have one of the extensions `lin' or `raw', and that files
+holding data in mu-law encoding end in `au', `mu', or `snd'.
+
+ - Function File:  lin2mu (X, N)
+     Converts audio data from linear to mu-law.  Mu-law values use 8-bit
+     unsigned integers.  Linear values use N-bit signed integers or
+     floating point values in the range -1<=X<=1 if N is 0.  If N is
+     not specified it defaults to 0, 8 or 16 depending on the range
+     values in X.
+
+ - Function File:  mu2lin (X, BPS)
+     Converts audio data from linear to mu-law.  Mu-law values are 8-bit
+     unsigned integers.  Linear values use N-bit signed integers or
+     floating point values in the range -1<=y<=1 if N is 0.  If N is
+     not specified it defaults to 8.
+
+ - Function File:  loadaudio (NAME, EXT, BPS)
+     Loads audio data from the file `NAME.EXT' into the vector X.
+
+     The extension EXT determines how the data in the audio file is
+     interpreted;  the extensions `lin' (default) and `raw' correspond
+     to linear, the extensions `au', `mu', or `snd' to mu-law encoding.
+
+     The argument BPS can be either 8 (default) or 16, and specifies
+     the number of bits per sample used in the audio file.
+
+ - Function File:  saveaudio (NAME, X, EXT, BPS)
+     Saves a vector X of audio data to the file `NAME.EXT'.  The
+     optional parameters EXT and BPS determine the encoding and the
+     number of bits per sample used in the audio file (see
+     `loadaudio');  defaults are `lin' and 8, respectively.
+
+   The following functions for audio I/O require special A/D hardware
+and operating system support.  It is assumed that audio data in linear
+encoding can be played and recorded by reading from and writing to
+`/dev/dsp', and that similarly `/dev/audio' is used for mu-law
+encoding.  These file names are system-dependent.  Improvements so that
+these functions will work without modification on a wide variety of
+hardware are welcome.
+
+ - Function File:  playaudio (NAME, EXT)
+ - Function File:  playaudio (X)
+     Plays the audio file `NAME.EXT' or the audio data stored in the
+     vector X.
+
+ - Function File:  record (SEC, SAMPLING_RATE)
+     Records SEC seconds of audio input into the vector X.  The default
+     value for SAMPLING_RATE is 8000 samples per second, or 8kHz.  The
+     program waits until the user types <RET> and then immediately
+     starts to record.
+
+ - Function File: setaudio ([W_TYPE [, VALUE]])
+     executes the shell command `mixer [W_TYPE [, VALUE]]'
+
+
+File: octave.info,  Node: Quaternions,  Next: System Utilities,  Prev: Audio Processing,  Up: Top
+
+Quaternions
+***********
+
+   Quaternions are hypercomplex numbers used to represent spatial
+rotations in three dimensions.  This set of routines provides a useful
+basis for working with quaternions in Octave.  A tutorial is in the
+Octave source, scripts/quaternion/quaternion.ps.
+
+   These functions were written by A. S. Hodel, Associate Professor,
+Auburn University.
+
+ - Function File: [A, B, C, D] = quaternion (w)
+ - Function File: [VV, THETA] = quaternion (w)
+ - Function File: W = quaternion (A, B, C, D)
+ - Function File: W = quaternion (VV, THETA)
+     Construct or extract a quaternion
+
+          w = a*i + b*j + c*k + d
+
+     from given data.
+
+ - Function File:  qconj (Q)
+     Conjugate of a quaternion.
+
+          q = [w, x, y, z] = w*i + x*j + y*k + z
+          qconj (q) = -w*i -x*j -y*k + z
+
+ - Function File:  qderiv (omega)
+     Derivative of a quaternion.
+
+     Let Q be a quaternion to transform a vector from a fixed frame to
+     a rotating frame.  If the rotating frame is rotating about the [x,
+     y, z] axes at angular rates [wx, wy, wz], then the derivative of Q
+     is given by
+
+          Q' = qderivmat (omega) * Q
+
+     If the passive convention is used (rotate the frame, not the
+     vector), then
+
+          Q' = -qderivmat (omega) * Q
+
+ - Function File:  qderivmat (OMEGA)
+     Derivative of a quaternion.
+
+     Let Q be a quaternion to transform a vector from a fixed frame to
+     a rotating frame.  If the rotating frame is rotating about the [x,
+     y, z] axes at angular rates [wx, wy, wz], then the derivative of Q
+     is given by
+
+          Q' = qderivmat (omega) * Q
+
+     If the passive convention is used (rotate the frame, not the
+     vector), then
+
+          Q' = -qderivmat (omega) * Q.
+
+ - Function File:  qinv (Q)
+     Return the inverse of a quaternion.
+
+          q = [w, x, y, z] = w*i + x*j + y*k + z
+          qmult (q, qinv (q)) = 1 = [0 0 0 1]
+
+ - Function File:  qmult (A, B)
+     Multiply two quaternions.
+
+          [w, x, y, z] = w*i + x*j + y*k + z
+
+     identities:
+
+          i^2 = j^2 = k^2 = -1
+          ij = k                 jk = i
+          ki = j                 kj = -i
+          ji = -k                ik = -j
+
+ - Function File:  qtrans (V, Q)
+     Transform the unit quaternion V by the unit quaternion Q.  Returns
+     `V = Q*V/Q'.
+
+ - Function File:  qtransv (V, Q)
+     Transform the 3-D vector V by the unit quaternion Q.  Return a
+     column vector.
+
+          vi = (2*real(q)^2 - 1)*vb + 2*imag(q)*(imag(q)'*vb)
+             + 2*real(q)*cross(imag(q),vb)
+
+     Where imag(q) is a column vector of length 3.
+
+ - Function File:  qtransvmat (QIB)
+     Construct a 3x3 transformation matrix from quaternion QIB that is
+     equivalent to rotation of th radians about axis VV, where `[VV,
+     TH] = quaternion (QIB)'.
+
+ - Function File:  qcoordinate_plot (QF, QB, QV)
+     Plot in the current figure a set of coordinate axes as viewed from
+     the orientation specified by quaternion QV.  Inertial axes are
+     also plotted:
+
+    QF
+          Quaternion from reference (x,y,z) to inertial.
+
+    QB
+          Quaternion from reference to body.
+
+    QV
+          Quaternion from reference to view angle.
+
+
+File: octave.info,  Node: System Utilities,  Next: Tips,  Prev: Quaternions,  Up: Top
+
+System Utilities
+****************
+
+   This chapter describes the functions that are available to allow you
+to get information about what is happening outside of Octave, while it
+is still running, and use this information in your program.  For
+example, you can get information about environment variables, the
+current time, and even start other programs from the Octave prompt.
+
+* Menu:
+
+* Timing Utilities::
+* Filesystem Utilities::
+* Controlling Subprocesses::
+* Process ID Information::
+* Environment Variables::
+* Current Working Directory::
+* Password Database Functions::
+* Group Database Functions::
+* System Information::
+
+
+File: octave.info,  Node: Timing Utilities,  Next: Filesystem Utilities,  Up: System Utilities
+
+Timing Utilities
+================
+
+   Octave's core set of functions for manipulating time values are
+patterned after the corresponding functions from the standard C library.
+Several of these functions use a data structure for time that includes
+the following elements:
+
+`usec'
+     Microseconds after the second (0-999999).
+
+`sec'
+     Seconds after the minute (0-61).  This number can be 61 to account
+     for leap seconds.
+
+`min'
+     Minutes after the hour (0-59).
+
+`hour'
+     Hours since midnight (0-23).
+
+`mday'
+     Day of the month (1-31).
+
+`mon'
+     Months since January (0-11).
+
+`year'
+     Years since 1900.
+
+`wday'
+     Days since Sunday (0-6).
+
+`yday'
+     Days since January 1 (0-365).
+
+`isdst'
+     Daylight Savings Time flag.
+
+`zone'
+     Time zone.
+
+In the descriptions of the following functions, this structure is
+referred to as a TM_STRUCT.
+
+ - Loadable Function:  time ()
+     Return the current time as the number of seconds since the epoch.
+     The epoch is referenced to 00:00:00 CUT (Coordinated Universal
+     Time) 1 Jan 1970.  For example, on Monday February 17, 1997 at
+     07:15:06 CUT, the value returned by `time' was 856163706.
+
+ - Function File:  ctime (T)
+     Convert a value returned from `time' (or any other nonnegative
+     integer), to the local time and return a string of the same form as
+     `asctime'.  The function `ctime (time)' is equivalent to `asctime
+     (localtime (time))'.  For example,
+
+          ctime (time ())
+          => "Mon Feb 17 01:15:06 1997\n"
+
+ - Loadable Function:  gmtime (T)
+     Given a value returned from time (or any nonnegative integer),
+     return a time structure corresponding to CUT.  For example,
+
+          gmtime (time ())
+               => {
+                     usec = 0
+                     year = 97
+                     mon = 1
+                     mday = 17
+                     sec = 6
+                     zone = CST
+                     min = 15
+                     wday = 1
+                     hour = 7
+                     isdst = 0
+                     yday = 47
+                   }
+
+ - Loadable Function:  localtime (T)
+     Given a value returned from time (or any nonnegative integer),
+     return a time structure corresponding to the local time zone.
+
+          localtime (time ())
+               => {
+                     usec = 0
+                     year = 97
+                     mon = 1
+                     mday = 17
+                     sec = 6
+                     zone = CST
+                     min = 15
+                     wday = 1
+                     hour = 1
+                     isdst = 0
+                     yday = 47
+                   }
+
+ - Loadable Function:  mktime (TM_STRUCT)
+     Convert a time structure corresponding to the local time to the
+     number of seconds since the epoch.  For example,
+
+          mktime (localtime (time ())
+               => 856163706
+
+ - Function File:  asctime (TM_STRUCT)
+     Convert a time structure to a string using the following five-field
+     format: Thu Mar 28 08:40:14 1996.  For example,
+
+          asctime (localtime (time ())
+          => "Mon Feb 17 01:15:06 1997\n"
+
+     This is equivalent to `ctime (time ())'.
+
+ - Loadable Function:  strftime (TM_STRUCT)
+     Format a time structure in a flexible way using `%' substitutions
+     similar to those in `printf'.  Except where noted, substituted
+     fields have a fixed size; numeric fields are padded if necessary.
+     Padding is with zeros by default; for fields that display a single
+     number, padding can be changed or inhibited by following the `%'
+     with one of the modifiers described below.  Unknown field
+     specifiers are copied as normal characters.  All other characters
+     are copied to the output without change.  For example,
+
+          strftime ("%r (%Z) %A %e %B %Y", localtime (time ())
+               => "01:15:06 AM (CST) Monday 17 February 1997"
+
+     Octave's `strftime' function supports a superset of the ANSI C
+     field specifiers.
+
+     Literal character fields:
+
+    `%'
+          % character.
+
+    `n'
+          Newline character.
+
+    `t'
+          Tab character.
+
+     Numeric modifiers (a nonstandard extension):
+
+    `- (dash)'
+          Do not pad the field.
+
+    `_ (underscore)'
+          Pad the field with spaces.
+
+     Time fields:
+
+    `%H'
+          Hour (00-23).
+
+    `%I'
+          Hour (01-12).
+
+    `%k'
+          Hour (0-23).
+
+    `%l'
+          Hour (1-12).
+
+    `%M'
+          Minute (00-59).
+
+    `%p'
+          Locale's AM or PM.
+
+    `%r'
+          Time, 12-hour (hh:mm:ss [AP]M).
+
+    `%R'
+          Time, 24-hour (hh:mm).
+
+    `%s'
+          Time in seconds since 00:00:00, Jan 1, 1970 (a nonstandard
+          extension).
+
+    `%S'
+          Second (00-61).
+
+    `%T'
+          Time, 24-hour (hh:mm:ss).
+
+    `%X'
+          Locale's time representation (%H:%M:%S).
+
+    `%Z'
+          Time zone (EDT), or nothing if no time zone is determinable.
+
+     Date fields:
+
+    `%a'
+          Locale's abbreviated weekday name (Sun-Sat).
+
+    `%A'
+          Locale's full weekday name, variable length (Sunday-Saturday).
+
+    `%b'
+          Locale's abbreviated month name (Jan-Dec).
+
+    `%B'
+          Locale's full month name, variable length (January-December).
+
+    `%c'
+          Locale's date and time (Sat Nov 04 12:02:33 EST 1989).
+
+    `%C'
+          Century (00-99).
+
+    `%d'
+          Day of month (01-31).
+
+    `%e'
+          Day of month ( 1-31).
+
+    `%D'
+          Date (mm/dd/yy).
+
+    `%h'
+          Same as %b.
+
+    `%j'
+          Day of year (001-366).
+
+    `%m'
+          Month (01-12).
+
+    `%U'
+          Week number of year with Sunday as first day of week (00-53).
+
+    `%w'
+          Day of week (0-6).
+
+    `%W'
+          Week number of year with Monday as first day of week (00-53).
+
+    `%x'
+          Locale's date representation (mm/dd/yy).
+
+    `%y'
+          Last two digits of year (00-99).
+
+    `%Y'
+          Year (1970-).
+
+ - Loadable Function: [TM_STRUCT, NCHARS] = strptime (STR, FMT)
+     Convert the string STR to a time structure under the control of
+     the format FMT.
+
+   Most of the remaining functions described in this section are not
+patterned after the standard C library.  Some are available for
+compatiblity with MATLAB and others are provided because they are
+useful.
+
+ - Function File:  clock ()
+     Return a vector containing the current year, month (1-12), day
+     (1-31), hour (0-23), minute (0-59) and second (0-61).  For example,
+
+          clock ()
+          => [ 1993, 8, 20, 4, 56, 1 ]
+
+     The function clock is more accurate on systems that have the
+     `gettimeofday' function.
+
+ - Function File:  date ()
+     Return the date as a character string in the form DD-MMM-YY.  For
+     example,
+
+          date ()
+          => "20-Aug-93"
+
+ - Function File:  etime (T1, T2)
+     Return the difference (in seconds) between two time values
+     returned from `clock'.  For example:
+
+          t0 = clock ();
+           many computations later...
+          elapsed_time = etime (clock (), t0);
+
+     will set the variable `elapsed_time' to the number of seconds since
+     the variable `t0' was set.
+
+ - Function File: [TOTAL, USER, SYSTEM] = cputime ();
+     Return the CPU time used by your Octave session.  The first output
+     is the total time spent executing your process and is equal to the
+     sum of second and third outputs, which are the number of CPU
+     seconds spent executing in user mode and the number of CPU seconds
+     spent executing in system mode, respectively.  If your system does
+     not have a way to report CPU time usage, `cputime' returns 0 for
+     each of its output values.  Note that because Octave used some CPU
+     time to start, it is reasonable to check to see if `cputime' works
+     by checking to see if the total CPU time used is nonzero.
+
+ - Function File:  is_leap_year (YEAR)
+     Return 1 if the given year is a leap year and 0 otherwise.  If no
+     arguments are provided, `is_leap_year' will use the current year.
+     For example,
+
+          is_leap_year (2000)
+          => 1
+
+ - Function File:  tic ()
+ - Function File:  toc ()
+     These functions set and check a wall-clock timer.  For example,
+
+          tic ();
+           many computations later...
+          elapsed_time = toc ();
+
+     will set the variable `elapsed_time' to the number of seconds since
+     the most recent call to the function `tic'.
+
+     If you are more interested in the CPU time that your process used,
+     you should use the `cputime' function instead.  The `tic' and
+     `toc' functions report the actual wall clock time that elapsed
+     between the calls.  This may include time spent processing other
+     jobs or doing nothing at all.  For example,
+
+          tic (); sleep (5); toc ()
+          => 5
+          t = cputime (); sleep (5); cputime () - t
+          => 0
+
+     (This example also illustrates that the CPU timer may have a fairly
+     coarse resolution.)
+
+ - Built-in Function:  pause (SECONDS)
+     Suspend the execution of the program.  If invoked without any
+     arguments, Octave waits until you type a character.  With a
+     numeric argument, it pauses for the given number of seconds.  For
+     example, the following statement prints a message and then waits 5
+     seconds before clearing the screen.
+
+          fprintf (stderr, "wait please...
+          ");
+          pause (5);
+          clc;
+
+ - Built-in Function:  sleep (SECONDS)
+     Suspend the execution of the program for the given number of
+     seconds.
+
+ - Built-in Function:  usleep (MICROSECONDS)
+     Suspend the execution of the program for the given number of
+     microseconds.  On systems where it is not possible to sleep for
+     periods of time less than one second, `usleep' will pause the
+     execution for `round (MICROSECONDS / 1e6)' seconds.
+
+
+File: octave.info,  Node: Filesystem Utilities,  Next: Controlling Subprocesses,  Prev: Timing Utilities,  Up: System Utilities
+
+Filesystem Utilities
+====================
+
+   Octave includes the following functions for renaming and deleting
+files, creating, deleting, and reading directories, and for getting
+information about the status of files.
+
+ - Built-in Function: [ERR, MSG] = rename (OLD, NEW)
+     Change the name of file OLD to NEW.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [ERR, MSG] = link (OLD, NEW)
+     Create a new link (also known as a hard link) to an existing file.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [ERR, MSG] = symlink (OLD, NEW)
+     Create a symbolic link NEW which contains the string OLD.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [RESULT, ERR, MSG] = readlink (SYMLINK)
+     Read the value of the symbolic link SYMLINK.
+
+     If successful, RESULT contains the contents of the symbolic link
+     SYMLINK, ERR is 0 and MSG is an empty string.  Otherwise, ERR is
+     nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [ERR, MSG] = unlink (FILE)
+     Delete the file named FILE.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [FILES, ERR, MSG] = readdir (DIR)
+     Return names of the files in the directory DIR as a cell array of
+     strings.  If an error occurs, return an empty cell array in FILES.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [ERR, MSG] = mkdir (DIR)\nCreate a directory
+          named DIR.
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [ERR, MSG] = rmdir (DIR)
+     Remove the directory named DIR.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [ERR, MSG] = mkfifo (NAME, MODE)
+     Create a FIFO special file named NAME with file mode MODE \n If
+     successful, ERR is 0 and MSG is an empty string.  Otherwise, ERR
+     is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function:  umask (MASK)
+     Set the permission mask for file creation.  The parameter MASK is
+     an integer, interpreted as an octal number.  If successful,
+     returns the previous value of the mask (as an integer to be
+     interpreted as an octal number); otherwise an error message is
+     printed.
+
+ - Built-in Function: [INFO, ERR, MSG] = stat (FILE)
+ - Built-in Function: [INFO, ERR, MSG] = lstat (FILE)
+     Return a structure S containing the following information about
+     FILE.
+
+    `dev'
+          ID of device containing a directory entry for this file.
+
+    `ino'
+          File number of the file.
+
+    `modestr'
+          File mode, as a string of ten letters or dashes as would be
+          returned by `ls -l'.
+
+    `nlink'
+          Number of links.
+
+    `uid'
+          User ID of file's owner.
+
+    `gid'
+          Group ID of file's group.
+
+    `rdev'
+          ID of device for block or character special files.
+
+    `size'
+          Size in bytes.
+
+    `atime'
+          Time of last access in the same form as time values returned
+          from `time'.  *Note Timing Utilities::.
+
+    `mtime'
+          Time of last modification in the same form as time values
+          returned from `time'.  *Note Timing Utilities::.
+
+    `ctime'
+          Time of last file status change in the same form as time
+          values returned from `time'.  *Note Timing Utilities::.
+
+    `blksize'
+          Size of blocks in the file.
+
+    `blocks'
+          Number of blocks allocated for file.
+
+     If the call is successful ERR is 0 and MSG is an empty string.  If
+     the file does not exist, or some other error occurs, S is an empty
+     matrix, ERR is -1, and MSG contains the corresponding system error
+     message.
+
+     If FILE is a symbolic link, `stat' will return information about
+     the actual file the is referenced by the link.  Use `lstat' if you
+     want information about the symbolic link itself.
+
+     For example,
+
+          [s, err, msg] = stat ("/vmlinuz")
+                => s =
+                  {
+                    atime = 855399756
+                    rdev = 0
+                    ctime = 847219094
+                    uid = 0
+                    size = 389218
+                    blksize = 4096
+                    mtime = 847219094
+                    gid = 6
+                    nlink = 1
+                    blocks = 768
+                    modestr = -rw-r--r--
+                    ino = 9316
+                    dev = 2049
+                  }
+               => err = 0
+               => msg =
+
+ - Built-in Function:  glob (PATTERN)
+     Given an array of strings in PATTERN, return a cell array of file
+     names that match any of them, or an empty cell array if no
+     patterns match.  Tilde expansion is performed on each of the
+     patterns before looking for matching file names.  For example,
+
+          glob ("/vm*")
+               => "/vmlinuz"
+
+ - Built-in Function:  fnmatch (PATTERN, STRING)
+     Return 1 or zero for each element of STRING that matches any of
+     the elements of the string array PATTERN, using the rules of
+     filename pattern matching.  For example,
+
+          fnmatch ("a*b", ["ab"; "axyzb"; "xyzab"])
+               => [ 1; 1; 0 ]
+
+ - Built-in Function:  file_in_path (PATH, FILE)
+ - Built-in Function:  file_in_path (PATH, FILE, "all")
+     Return the absolute name name of FILE if it can be found in PATH.
+     The value of PATH should be a colon-separated list of directories
+     in the format described for the built-in variable `LOADPATH'.  If
+     no file is found, return an empty matrix.  For example,
+
+          file_in_path (LOADPATH, "nargchk.m")
+               => "/usr/local/share/octave/2.0/m/general/nargchk.m"
+
+     If the second argument is a cell array of of strings, search each
+     directory of the path for element of the cell array and return the
+     first that matches.
+
+     If the third optional argument `"all"' is supplied, return a cell
+     array containing the list of all files that have the same name in
+     the path.  If no files are found, return an empty cell array.
+
+
+ - Built-in Function:  tilde_expand (STRING)
+     Performs tilde expansion on STRING.  If STRING begins with a tilde
+     character, (`~'), all of the characters preceding the first slash
+     (or all characters, if there is no slash) are treated as a
+     possible user name, and the tilde and the following characters up
+     to the slash are replaced by the home directory of the named user.
+     If the tilde is followed immediately by a slash, the tilde is
+     replaced by the home directory of the user running Octave.  For
+     example,
+
+          tilde_expand ("~joeuser/bin")
+               => "/home/joeuser/bin"
+          tilde_expand ("~/bin")
+               => "/home/jwe/bin"
+
+
+File: octave.info,  Node: Controlling Subprocesses,  Next: Process ID Information,  Prev: Filesystem Utilities,  Up: System Utilities
+
+Controlling Subprocesses
+========================
+
+   Octave includes some high-level commands like `system' and `popen'
+for starting subprocesses.  If you want to run another program to
+perform some task and then look at its output, you will probably want
+to use these functions.
+
+   Octave also provides several very low-level Unix-like functions which
+can also be used for starting subprocesses, but you should probably only
+use them if you can't find any way to do what you need with the
+higher-level functions.
+
+ - Built-in Function:  system (STRING, RETURN_OUTPUT, TYPE)
+     Execute a shell command specified by STRING.  The second argument
+     is optional.  If TYPE is `"async"', the process is started in the
+     background and the process id of the child process is returned
+     immediately.  Otherwise, the process is started, and Octave waits
+     until it exits.  If TYPE argument is omitted, a value of `"sync"'
+     is assumed.
+
+     If two input arguments are given (the actual value of
+     RETURN_OUTPUT is irrelevant) and the subprocess is started
+     synchronously, or if SYSTEM is called with one input argument and
+     one or more output arguments, the output from the command is
+     returned.  Otherwise, if the subprocess is executed synchronously,
+     it's output is sent to the standard output.  To send the output of
+     a command executed with SYSTEM through the pager, use a command
+     like
+
+          disp (system (cmd, 1));
+
+     or
+
+          printf ("%s
+          ", system (cmd, 1));
+
+     The `system' function can return two values.  The first is any
+     output from the command that was written to the standard output
+     stream, and the second is the output status of the command.  For
+     example,
+
+          [output, status] = system ("echo foo; exit 2");
+
+     will set the variable `output' to the string `foo', and the
+     variable `status' to the integer `2'.
+
+ - Built-in Function: FID = popen (COMMAND, MODE)
+     Start a process and create a pipe.  The name of the command to run
+     is given by COMMAND.  The file identifier corresponding to the
+     input or output stream of the process is returned in FID.  The
+     argument MODE may be
+
+    `"r"'
+          The pipe will be connected to the standard output of the
+          process, and open for reading.
+
+    `"w"'
+          The pipe will be connected to the standard input of the
+          process, and open for writing.
+
+     For example,
+
+          fid = popen ("ls -ltr / | tail -3", "r");
+          while (isstr (s = fgets (fid)))
+            fputs (stdout, s);
+          endwhile
+               -| drwxr-xr-x  33 root  root  3072 Feb 15 13:28 etc
+               -| drwxr-xr-x   3 root  root  1024 Feb 15 13:28 lib
+               -| drwxrwxrwt  15 root  root  2048 Feb 17 14:53 tmp
+
+ - Built-in Function:  pclose (FID)
+     Close a file identifier that was opened by `popen'.  You may also
+     use `fclose' for the same purpose.
+
+ - Function File: [IN, OUT, PID] = popen2 (COMMAND, ARGS)
+     Start a subprocess with two-way communication.  The name of the
+     process is given by COMMAND, and ARGS is an array of strings
+     containing options for the command.  The file identifiers for the
+     input and output streams of the subprocess are returned in IN and
+     OUT.  If execution of the command is successful, PID contains the
+     process ID of the subprocess.  Otherwise, PID is -1.
+
+     For example,
+
+          [in, out, pid] = popen2 ("sort", "-nr");
+          fputs (in, "these\nare\nsome\nstrings\n");
+          fclose (in);
+          while (isstr (s = fgets (out)))
+            fputs (stdout, s);
+          endwhile
+          fclose (out);
+          -| are
+          -| some
+          -| strings
+          -| these
+
+ - Built-in Variable: EXEC_PATH
+     The variable `EXEC_PATH' is a colon separated list of directories
+     to search when executing external programs.  Its initial value is
+     taken from the environment variable `OCTAVE_EXEC_PATH' (if it
+     exists) or `PATH', but that value can be overridden by the command
+     line argument `--exec-path PATH', or by setting the value of
+     `EXEC_PATH' in a startup script.  If the value of `EXEC_PATH'
+     begins (ends) with a colon, the directories
+
+          OCTAVE-HOME/libexec/octave/site/exec/ARCH
+          OCTAVE-HOME/libexec/octave/VERSION/exec/ARCH
+
+     are prepended (appended) to `EXEC_PATH', where OCTAVE-HOME is the
+     top-level directory where all of Octave is installed (the default
+     value is `/usr/local').  If you don't specify a value for
+     `EXEC_PATH' explicitly, these special directories are prepended to
+     your shell path.
+
+   In most cases, the following functions simply decode their arguments
+and make the corresponding Unix system calls.  For a complete example
+of how they can be used, look at the definition of the function
+`popen2'.
+
+ - Built-in Function: [PID, MSG] = fork ()
+     Create a copy of the current process.
+
+     Fork can return one of the following values:
+
+    > 0
+          You are in the parent process.  The value returned from
+          `fork' is the process id of the child process.  You should
+          probably arrange to wait for any child processes to exit.
+
+    0
+          You are in the child process.  You can call `exec' to start
+          another process.  If that fails, you should probably call
+          `exit'.
+
+    < 0
+          The call to `fork' failed for some reason.  You must take
+          evasive action.  A system dependent error message will be
+          waiting in MSG.
+
+ - Built-in Function: [ERR, MSG] = exec (FILE, ARGS)
+     Replace current process with a new process.  Calling `exec' without
+     first calling `fork' will terminate your current Octave process and
+     replace it with the program named by FILE.  For example,
+
+          exec ("ls" "-l")
+
+     will run `ls' and return you to your shell prompt.
+
+     If successful, `exec' does not return.  If `exec' does return, ERR
+     will be nonzero, and MSG will contain a system-dependent error
+     message.
+
+ - Built-in Function: [FILE_IDS, ERR, MSG] = pipe ()
+     Create a pipe and return the vector FILE_IDS, which corresponding
+     to the reading and writing ends of the pipe.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ - Built-in Function: [FID, MSG] = dup2 (OLD, NEW)
+     Duplicate a file descriptor.
+
+     If successful, FID is greater than zero and contains the new file
+     ID.  Otherwise, FID is negative and MSG contains a
+     system-dependent error message.
+
+ - Built-in Function: [PID, MSG] = waitpid (PID, OPTIONS)
+     Wait for process PID to terminate.  The PID argument can be:
+
+    -1
+          Wait for any child process.
+
+    0
+          Wait for any child process whose process group ID is equal to
+          that of the Octave interpreter process.
+
+    > 0
+          Wait for termination of the child process with ID PID.
+
+     The OPTIONS argument can be:
+
+    0
+          Wait until signal is received or a child process exits (this
+          is the default if the OPTIONS argument is missing).
+
+    1
+          Do not hang if status is not immediately available.
+
+    2
+          Report the status of any child processes that are stopped,
+          and whose status has not yet been reported since they stopped.
+
+    3
+          Implies both 1 and 2.
+
+     If the returned value of PID is greater than 0, it is the process
+     ID of the child process that exited.  If an error occurs, PID will
+     be less than zero and MSG will contain a system-dependent error
+     message.
+
+ - Built-in Function: [ERR, MSG] = fcntl (FID, REQUEST, ARG)
+     Change the properties of the open file FID.  The following values
+     may be passed as REQUEST:
+
+    `F_DUPFD'
+          Return a duplicate file descriptor.
+
+    `F_GETFD'
+          Return the file descriptor flags for FID.
+
+    `F_SETFD'
+          Set the file descriptor flags for FID.
+
+    `F_GETFL'
+          Return the file status flags for FID.  The following codes
+          may be returned (some of the flags may be undefined on some
+          systems).
+
+         `O_RDONLY'
+               Open for reading only.
+
+         `O_WRONLY'
+               Open for writing only.
+
+         `O_RDWR'
+               Open for reading and writing.
+
+         `O_APPEND'
+               Append on each write.
+
+         `O_NONBLOCK'
+               Nonblocking mode.
+
+         `O_SYNC'
+               Wait for writes to complete.
+
+         `O_ASYNC'
+               Asynchronous I/O.
+
+    `F_SETFL'
+          Set the file status flags for FID to the value specified by
+          ARG.  The only flags that can be changed are `O_APPEND' and
+          `O_NONBLOCK'.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+
+File: octave.info,  Node: Process ID Information,  Next: Environment Variables,  Prev: Controlling Subprocesses,  Up: System Utilities
+
+Process, Group, and User IDs
+============================
+
+ - Built-in Function: pgid = getpgrp ()
+     Return the process group id of the current process.
+
+ - Built-in Function: pid = getpid ()
+     Return the process id of the current process.
+
+ - Built-in Function: pid = getppid ()
+     Return the process id of the parent process.
+
+ - Built-in Function: euid = geteuid ()
+     Return the effective user id of the current process.
+
+ - Built-in Function: uid = getuid ()
+     Return the real user id of the current process.
+
+ - Built-in Function: egid = getegid ()
+     Return the effective group id of the current process.
+
+ - Built-in Function: gid = getgid ()
+     Return the real group id of the current process.
+
+
+File: octave.info,  Node: Environment Variables,  Next: Current Working Directory,  Prev: Process ID Information,  Up: System Utilities
+
+Environment Variables
+=====================
+
+ - Built-in Function:  getenv (VAR)
+     Return the value of the environment variable VAR.  For example,
+
+          getenv ("PATH")
+
+     returns a string containing the value of your path.
+
+ - Built-in Function:  putenv (VAR, VALUE)
+     Set the value of the environment variable VAR to VALUE.
+
+
+File: octave.info,  Node: Current Working Directory,  Next: Password Database Functions,  Prev: Environment Variables,  Up: System Utilities
+
+Current Working Directory
+=========================
+
+ - Command: cd dir
+ - Command: chdir dir
+     Change the current working directory to DIR.  If DIR is omitted,
+     the current directory is changed to the users home directory.  For
+     example,
+
+          cd ~/octave
+
+     Changes the current working directory to `~/octave'.  If the
+     directory does not exist, an error message is printed and the
+     working directory is not changed.
+
+ - Command: ls options
+     List directory contents.  For example,
+
+          ls -l
+               -| total 12
+               -| -rw-r--r--   1 jwe  users  4488 Aug 19 04:02 foo.m
+               -| -rw-r--r--   1 jwe  users  1315 Aug 17 23:14 bar.m
+
+     The `dir' and `ls' commands are implemented by calling your
+     system's directory listing command, so the available options may
+     vary from system to system.
+
+ - Built-in Function:  pwd ()
+     Return the current working directory.
+
+
+File: octave.info,  Node: Password Database Functions,  Next: Group Database Functions,  Prev: Current Working Directory,  Up: System Utilities
+
+Password Database Functions
+===========================
+
+   Octave's password database functions return information in a
+structure with the following fields.
+
+`name'
+     The user name.
+
+`passwd'
+     The encrypted password, if available.
+
+`uid'
+     The numeric user id.
+
+`gid'
+     The numeric group id.
+
+`gecos'
+     The GECOS field.
+
+`dir'
+     The home directory.
+
+`shell'
+     The initial shell.
+
+   In the descriptions of the following functions, this data structure
+is referred to as a PW_STRUCT.
+
+ - Loadable Function: PW_STRUCT =  getpwent ()
+     Return a structure containing an entry from the password database,
+     opening it if necessary. Once the end of the data has been reached,
+     `getpwent' returns 0.
+
+ - Loadable Function: PW_STRUCT =  getpwuid (UID).
+     Return a structure containing the first entry from the password
+     database with the user ID UID.  If the user ID does not exist in
+     the database, `getpwuid' returns 0.
+
+ - Loadable Function: PW_STRUCT =  getpwnam (NAME)
+     Return a structure containing the first entry from the password
+     database with the user name NAME.  If the user name does not exist
+     in the database, `getpwname' returns 0.
+
+ - Loadable Function:  setpwent ()
+     Return the internal pointer to the beginning of the password
+     database.
+
+ - Loadable Function:  endpwent ()
+     Close the password database.
+
+
+File: octave.info,  Node: Group Database Functions,  Next: System Information,  Prev: Password Database Functions,  Up: System Utilities
+
+Group Database Functions
+========================
+
+   Octave's group database functions return information in a structure
+with the following fields.
+
+`name'
+     The user name.
+
+`passwd'
+     The encrypted password, if available.
+
+`gid'
+     The numeric group id.
+
+`mem'
+     The members of the group.
+
+   In the descriptions of the following functions, this data structure
+is referred to as a GRP_STRUCT.
+
+ - Loadable Function: GRP_STRUCT = getgrent ()
+     Return an entry from the group database, opening it if necessary.
+     Once the end of the data has been reached, `getgrent' returns 0.
+
+ - Loadable Function: GRP_STRUCT = getgrgid (GID).
+     Return the first entry from the group database with the group ID
+     GID.  If the group ID does not exist in the database, `getgrgid'
+     returns 0.
+
+ - Loadable Function: GRP_STRUCT = getgrnam (NAME)
+     Return the first entry from the group database with the group name
+     NAME.  If the group name does not exist in the database,
+     `getgrname' returns 0.
+
+ - Loadable Function:  setgrent ()
+     Return the internal pointer to the beginning of the group database.
+
+ - Loadable Function:  endgrent ()
+     Close the group database.
+
+
+File: octave.info,  Node: System Information,  Prev: Group Database Functions,  Up: System Utilities
+
+System Information
+==================
+
+ - Function File:  computer ()
+     Print or return a string of the form CPU-VENDOR-OS that identifies
+     the kind of computer Octave is running on.  If invoked with an
+     output argument, the value is returned instead of printed.  For
+     example,
+
+          computer ()
+          -| i586-pc-linux-gnu
+          
+          x = computer ()
+          => x = "i586-pc-linux-gnu"
+
+ - Built-in Function:  isieee ()
+     Return 1 if your computer claims to conform to the IEEE standard
+     for floating point calculations.
+
+ - Built-in Variable: OCTAVE_VERSION
+     The version number of Octave, as a string.
+
+ - Built-in Function:  octave_config_info (OPTION)
+     Return a structure containing configuration and installation
+     information for Octave.
+
+     if OPTION is a string, return the configuration information for the
+     specified option.
+
+
+ - Loadable Function:  getrusage ()
+     Return a structure containing a number of statistics about the
+     current Octave process.  Not all fields are available on all
+     systems.  If it is not possible to get CPU time statistics, the
+     CPU time slots are set to zero.  Other missing data are replaced
+     by NaN.  Here is a list of all the possible fields that can be
+     present in the structure returned by `getrusage':
+
+    `idrss'
+          Unshared data size.
+
+    `inblock'
+          Number of block input operations.
+
+    `isrss'
+          Unshared stack size.
+
+    `ixrss'
+          Shared memory size.
+
+    `majflt'
+          Number of major page faults.
+
+    `maxrss'
+          Maximum data size.
+
+    `minflt'
+          Number of minor page faults.
+
+    `msgrcv'
+          Number of messages received.
+
+    `msgsnd'
+          Number of messages sent.
+
+    `nivcsw'
+          Number of involuntary context switches.
+
+    `nsignals'
+          Number of signals received.
+
+    `nswap'
+          Number of swaps.
+
+    `nvcsw'
+          Number of voluntary context switches.
+
+    `oublock'
+          Number of block output operations.
+
+    `stime'
+          A structure containing the system CPU time used.  The
+          structure has the elements `sec' (seconds) `usec'
+          (microseconds).
+
+    `utime'
+          A structure containing the user CPU time used.  The structure
+          has the elements `sec' (seconds) `usec' (microseconds).
+
+
+File: octave.info,  Node: Tips,  Next: Trouble,  Prev: System Utilities,  Up: Top
+
+Tips and Standards
+******************
+
+   This chapter describes no additional features of Octave.  Instead it
+gives advice on making effective use of the features described in the
+previous chapters.
+
+* Menu:
+
+* Style Tips::                  Writing clean and robust programs.
+* Coding Tips::                 Making code run faster.
+* Documentation Tips::          Writing readable documentation strings.
+* Comment Tips::                Conventions for writing comments.
+* Function Headers::            Standard headers for functions.
+

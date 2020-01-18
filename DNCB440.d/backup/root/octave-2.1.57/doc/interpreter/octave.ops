@@ -1,0 +1,63 @@
+\initial {!}
+\entry {!}{72}
+\entry {!=}{71}
+\initial {&}
+\entry {&}{72}
+\entry {&&}{72}
+\initial {'}
+\entry {'}{30, 39, 70}
+\initial {(}
+\entry {(}{65}
+\initial {)}
+\entry {)}{65}
+\initial {*}
+\entry {*}{69}
+\entry {**}{70}
+\initial {,}
+\entry {,}{33}
+\initial {-}
+\entry {-}{69, 70}
+\entry {\code {--}}{75}
+\initial {.}
+\entry {.'}{70}
+\entry {.*}{69}
+\entry {.**}{70}
+\entry {./}{70}
+\entry {.+}{69}
+\entry {.^}{70}
+\entry {.{\tt\rawbackslashxx }}{70}
+\initial {/}
+\entry {/}{70}
+\initial {;}
+\entry {;}{33}
+\initial {=}
+\entry {=}{73}
+\entry {==}{71}
+\initial {[}
+\entry {[}{33}
+\initial {]}
+\entry {]}{33}
+\initial {{\tt\char 124}}
+\entry {|}{72}
+\entry {||}{72}
+\initial {{\tt\char 126}}
+\entry {~}{72}
+\entry {~=}{71}
+\initial {{\tt\char 34}}
+\entry {"}{30, 39}
+\initial {{\tt\char 43}}
+\entry {+}{69, 70}
+\entry {++}{75}
+\initial {{\tt\gtr}}
+\entry {>}{71}
+\entry {>=}{71}
+\initial {{\tt\hat}}
+\entry {^}{70}
+\initial {{\tt\indexbackslash }}
+\entry {{\tt\rawbackslashxx }}{70}
+\initial {{\tt\less}}
+\entry {<}{71}
+\entry {<=}{71}
+\entry {<>}{71}
+\initial {C}
+\entry {colon}{37}

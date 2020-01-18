@@ -1,0 +1,29 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2008.08.12.04.44.30;	author rhysh;	state Exp;
+branches;
+next	;
+
+
+desc
+@quick shortcut script to cancel a pending cashless vend (i.e. to uncrash the machine)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/usr/bin/python
+
+import mdb.cashless
+
+mdb.cashless.cancel()
+@

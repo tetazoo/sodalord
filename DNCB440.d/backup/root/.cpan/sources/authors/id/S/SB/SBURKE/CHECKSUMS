@@ -1,0 +1,512 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Fri Jul  2 00:31:47 2004 by CPAN::Checksums (v1.016)
+$cksum = {
+  'Sort-ArbBiLex-4.01.tar.gz' => {
+    'mtime' => '2004-03-28',
+    'md5-ungz' => '2e10bda776980146705aba5aebd22fe9',
+    'md5' => '9996bae43334fc9bb318e99f2d11cfc5',
+    'size' => 16524
+  },
+  'RTF-Writer-1.11.tar.gz' => {
+    'mtime' => '2003-11-04',
+    'md5-ungz' => 'a6325d59c4e74525691108ad206326dd',
+    'md5' => '71c3e81c16412770563ca072b1acb4c4',
+    'size' => 57731
+  },
+  'Class-Classless-1.34.tar.gz' => {
+    'mtime' => '2000-10-18',
+    'md5-ungz' => '125c33753081ab71833ee2206827cb3d',
+    'md5' => '042661b0e16e1a8e9efbd8e427f1d912',
+    'size' => 22075
+  },
+  'I18N-LangTags-0.32.tar.gz' => {
+    'mtime' => '2004-06-21',
+    'md5-ungz' => 'dcfec85bb719bef6ac4839b6eeac3908',
+    'md5' => 'e79b5a8f38801dab2f5af7d3839a4365',
+    'size' => 29921
+  },
+  'XML-RSS-Timing-1.07.meta' => {
+    'mtime' => '2004-05-19',
+    'md5' => '8169dce2f9266545316dda635b02619f',
+    'size' => 386
+  },
+  'XML-TreeBuilder-3.09.meta' => {
+    'mtime' => '2004-06-11',
+    'md5' => '100129e2ec568e31292ac79f0ae51322',
+    'size' => 431
+  },
+  'I18N-LangTags-0.31.tar.gz' => {
+    'mtime' => '2004-06-18',
+    'md5-ungz' => 'bb795ab5414771a321277f1e4a60304c',
+    'md5' => 'b88fe01840e71811ce85e373df551bbe',
+    'size' => 29789
+  },
+  'Class-ISA-0.32.tar.gz' => {
+    'mtime' => '2000-05-14',
+    'md5-ungz' => 'cff201e87c4555d36e3f7b16cdd24a4b',
+    'md5' => 'af2282c351ffb845001cb97ed8ea31fd',
+    'size' => 5341
+  },
+  'Lingua-EN-Numbers-Ordinate-0.01.tar.gz' => {
+    'mtime' => '2000-08-24',
+    'md5-ungz' => '693429c085d66ee1bbc28e6d81e348ed',
+    'md5' => '049064537f7967ea27ac4fdd7b263f88',
+    'size' => 4224
+  },
+  'Pod-Webserver-3.02.tar.gz' => {
+    'mtime' => '2004-05-26',
+    'md5-ungz' => '35d7247a78431f9fe7e1f7d2fabe0ec7',
+    'md5' => '4c9a6e1b994915d53e599e248b5fae71',
+    'size' => 7360
+  },
+  'Pod-Perldoc-3.12.meta' => {
+    'mtime' => '2003-10-22',
+    'md5' => '3b22b1393a40fa584eba2a98a98f8035',
+    'size' => 602
+  },
+  'XML-RSS-TimingBot-2.03.tar.gz' => {
+    'mtime' => '2004-05-19',
+    'md5-ungz' => '209f565ce8c4b02e81ca04a0a608f7d8',
+    'md5' => '5e600de79e02073a644a0119ca0bb16f',
+    'size' => 162494
+  },
+  'XML-RSS-SimpleGen-11.11.tar.gz' => {
+    'mtime' => '2004-02-07',
+    'md5-ungz' => 'c235f5a6f0be92ce19150754e703a261',
+    'md5' => '8a26892e85765d651e29adbd0bff6ad1',
+    'size' => 30883
+  },
+  'Pod-Simple-2.06.tar.gz' => {
+    'mtime' => '2004-05-07',
+    'md5-ungz' => '917f0103ed54be0a7ca61cd7401652c2',
+    'md5' => 'de373dc9ce15be2ea67ea72ca4872594',
+    'size' => 214108
+  },
+  'pxml_0.01.dtd' => {
+    'mtime' => '2001-05-26',
+    'md5' => '8b84472425ad0f7f2959316ea00cd08a',
+    'size' => 3612
+  },
+  'Pod-Escapes-1.04.tar.gz' => {
+    'mtime' => '2004-05-07',
+    'md5-ungz' => 'a0704032830a3f89fe1082d850bcb4de',
+    'md5' => '00ea2e0d2e84ed98517a4616708b68d3',
+    'size' => 10187
+  },
+  'Tree-DAG_Node-1.04.tar.gz' => {
+    'mtime' => '2001-02-23',
+    'md5-ungz' => '1bd710b7c292e341e4a1cd430fc33255',
+    'md5' => '233f5b2c0cfaa891d2e8cf87aaea3b68',
+    'size' => 31529
+  },
+  'XML-RSS-SimpleGen-11.11.meta' => {
+    'mtime' => '2004-02-07',
+    'md5' => 'a5c29e4852459558c3cca92ea55d106d',
+    'size' => 430
+  },
+  'I18N-LangTags-0.33.meta' => {
+    'mtime' => '2004-07-01',
+    'md5' => '55cf2a424122f9eb3ff39ff7fa0ab70e',
+    'size' => 310
+  },
+  'Array-Autojoin-0.02.tar.gz' => {
+    'mtime' => '2001-04-26',
+    'md5-ungz' => 'bb5acfaa3a05d93730576610e167f5f1',
+    'md5' => '02d436df9eb4e3a561675030b2fbdb33',
+    'size' => 4061
+  },
+  'Pod-Spell-1.01.tar.gz' => {
+    'mtime' => '2001-10-27',
+    'md5-ungz' => '58487e844b89e23c5bb7b355478d20b7',
+    'md5' => 'aa4964844da2586562aae5208e2dbe61',
+    'size' => 12846
+  },
+  'RTF-Writer-1.11.meta' => {
+    'mtime' => '2003-11-04',
+    'md5' => '4cefd8149af3f8be4d8c40a43593cfef',
+    'size' => 526
+  },
+  'I18N-LangTags-0.32.meta' => {
+    'mtime' => '2004-06-21',
+    'md5' => '9654a1e3ade8ad87aca14765ae323156',
+    'size' => 310
+  },
+  'I18N-LangTags-0.33.tar.gz' => {
+    'mtime' => '2004-07-01',
+    'md5-ungz' => '67edec6268b90e077c649f47a3592bc6',
+    'md5' => '2f262af20b18815e312344c587708f70',
+    'size' => 30178
+  },
+  'Getopt-Janus-1.03.tar.gz' => {
+    'mtime' => '2003-06-09',
+    'md5-ungz' => '24605d025d3b15f29154ee2f30bf9b43',
+    'md5' => 'fef3690b4c027c21b07c9b0ea0ecc88a',
+    'size' => 27857
+  },
+  'Mac-FileSpec-Unixish-1.11.tar.gz' => {
+    'mtime' => '2000-05-14',
+    'md5-ungz' => '93ad83e6b87e37ecae2a7f3e77fea5f1',
+    'md5' => '9c6259063e9b83c089738ea3efbfb416',
+    'size' => 7031
+  },
+  'IO-Null-0.02.tar.gz' => {
+    'mtime' => '2000-09-22',
+    'md5-ungz' => '2462f807464da15c8dcfb4e0477a03de',
+    'md5' => '93d9ef6b237d916b5305520fb51a53fd',
+    'size' => 3894
+  },
+  'Test-1.25.meta' => {
+    'mtime' => '2004-04-29',
+    'md5' => '656786830e567026b34a8fdb00c740a2',
+    'size' => 373
+  },
+  'Win32-Locale-0.04.tar.gz' => {
+    'mtime' => '2004-01-12',
+    'md5-ungz' => 'f0ebbdbaeb0dfc6eb7546dddc8d3846b',
+    'md5' => 'cd8e1f6851e54ec1d1dcf3436d82d34a',
+    'size' => 7598
+  },
+  'mp3split_1.01.pl' => {
+    'mtime' => '2002-04-11',
+    'md5' => '59ac1a2a9e76328e67d761b4d8c6e4a1',
+    'size' => 5684
+  },
+  'strict-ModuleName-0.04.tar.gz' => {
+    'mtime' => '2003-07-20',
+    'md5-ungz' => 'e19d6a57d64c51d77bb050e3c95d9cfc',
+    'md5' => '67bbaec58eae3949688d8452275ef744',
+    'size' => 4645
+  },
+  'PerlIO-via-Unidecode-1.01.tar.gz' => {
+    'mtime' => '2003-08-26',
+    'md5-ungz' => '7c12ecd44bd78e210f85097d0f90d4f0',
+    'md5' => '106c2ec81c5a10e319016e0f411cbe70',
+    'size' => 12589
+  },
+  'LWP-UserAgent-Determined-1.03.tar.gz' => {
+    'mtime' => '2004-04-09',
+    'md5-ungz' => 'a58b5dfdcc423573cf261d34fbfb3d20',
+    'md5' => '5a6c0a9e219dc06234698b49addef458',
+    'size' => 6268
+  },
+  'Time-Duration-1.02.tar.gz' => {
+    'mtime' => '2002-10-08',
+    'md5-ungz' => 'a45d539a67c7e8963b1e8df5e8f27df3',
+    'md5' => '997acb7e2d0b54dc0ec00b997175cc02',
+    'size' => 8288
+  },
+  'Sort-ArbBiLex-4.01.meta' => {
+    'mtime' => '2004-03-28',
+    'md5' => '1de1c471355059369ce76d29be50f632',
+    'size' => 301
+  },
+  'Locale-Maketext-1.09.tar.gz' => {
+    'mtime' => '2004-03-31',
+    'md5-ungz' => '2300030e65ca95e21009a6f8965cb217',
+    'md5' => 'd21c2d4ffe2d19c1936848187ea6ca37',
+    'size' => 46127
+  },
+  'Sort-Naturally-1.01.tar.gz' => {
+    'mtime' => '2001-05-26',
+    'md5-ungz' => 'a569e1726b29f7e83fa996a7c8f2548b',
+    'md5' => '2a32b8d1c1760dd828046805cba23af7',
+    'size' => 8980
+  },
+  'Pod-Perldoc-3.12.tar.gz' => {
+    'mtime' => '2003-10-22',
+    'md5-ungz' => '0c9a2f5186e90f4299f9f166df3b5da5',
+    'md5' => 'fe246791a2c738ecbecb3f8454e71d20',
+    'size' => 29080
+  },
+  'HTML-Tagset-3.03.tar.gz' => {
+    'mtime' => '2000-10-21',
+    'md5-ungz' => '4e008290672706f9b81f57361eae2e8f',
+    'md5' => '47c56ab15771fac1a6fdfcbf8bff4288',
+    'size' => 6642
+  },
+  'null.css' => {
+    'mtime' => '2003-11-10',
+    'md5' => 'ef38688a5764a3bf7bce662be689cc72',
+    'size' => 51
+  },
+  'Locale-Maketext-1.09.meta' => {
+    'mtime' => '2004-03-31',
+    'md5' => '01729cb2194a3044ff8151058845f411',
+    'size' => 353
+  },
+  'I18N-LangTags-0.31.meta' => {
+    'mtime' => '2004-06-18',
+    'md5' => '7b57893835e7be8512ae01e02b4c5eaf',
+    'size' => 310
+  },
+  'Pod-Webserver-3.03.tar.gz' => {
+    'mtime' => '2004-06-21',
+    'md5-ungz' => '01c19bff73ac23ad565a5a658cc55339',
+    'md5' => '90247c7b5d0eff924fead0aee94aacbf',
+    'size' => 8602
+  },
+  'File-HomeDir-0.05.tar.gz' => {
+    'mtime' => '2000-12-30',
+    'md5-ungz' => 'a29b0e4c9527d5c071e961186c8710e3',
+    'md5' => '1a19bada53b22ed65cd772282b647964',
+    'size' => 5941
+  },
+  'I18N-LangTags-0.30.meta' => {
+    'mtime' => '2004-03-31',
+    'md5' => '3bcd824064d25169f034287c4392ccec',
+    'size' => 310
+  },
+  'XML-TreeBuilder-3.09.tar.gz' => {
+    'mtime' => '2004-06-11',
+    'md5-ungz' => '0ee795ad221db7bdb1cb1eb431fc313f',
+    'md5' => '49e04fb6ba12b1414cb490e7f0c712a9',
+    'size' => 6546
+  },
+  'Pod-Perldoc-3.13.meta' => {
+    'mtime' => '2004-04-10',
+    'md5' => '47091f9ca5b887f73283d651ec054d65',
+    'size' => 602
+  },
+  'XML-RSS-TimingBotDBI-2.01.tar.gz' => {
+    'mtime' => '2004-04-24',
+    'md5-ungz' => 'b2c5b9e92d1a33627d61c4625ef66fff',
+    'md5' => 'db19e71b419f043740c9822079e10d6d',
+    'size' => 7324
+  },
+  'Class-BlackHole-0.03.tar.gz' => {
+    'mtime' => '2000-05-14',
+    'md5-ungz' => 'f337a25b57280b6825afd71f9c52c566',
+    'md5' => '568ca5e8a9520d0ae2453c3ee9a49d5f',
+    'size' => 3590
+  },
+  'rtf2xml' => {
+    'mtime' => '2001-02-25',
+    'md5' => '5d30930ff9f6d7d0b0a41651048f4c07',
+    'size' => 3743
+  },
+  'makepmdist_1.02.pl' => {
+    'mtime' => '2002-04-11',
+    'md5' => '5aa824e1b65c8e3813ea37965fa7e538',
+    'size' => 19584
+  },
+  'Test-1.25.tar.gz' => {
+    'mtime' => '2004-04-29',
+    'md5-ungz' => '52599a9b771ca3c0d670a6ebbf2dd5a9',
+    'md5' => '352678e9dff5eac544cdfdd378bbfc99',
+    'size' => 16580
+  },
+  'Pod-Escapes-1.04.meta' => {
+    'mtime' => '2004-05-07',
+    'md5' => '0d22be62cb6cef7e4b3a4efc04603687',
+    'size' => 306
+  },
+  'Win32-Autoglob-1.01.tar.gz' => {
+    'mtime' => '2002-04-11',
+    'md5-ungz' => '7b8df947d2f1ed4c323acc75d80156bf',
+    'md5' => '458265661ad4a693009e9cb0b2e015ed',
+    'size' => 2631
+  },
+  'Pod-HTML2Pod-4.04.tar.gz' => {
+    'mtime' => '2000-10-04',
+    'md5-ungz' => '334aff2660029773c63e21cfb179347f',
+    'md5' => '4c3308d254e66dc2468f69882e295693',
+    'size' => 18056
+  },
+  'HTML-DOMbo-3.08.tar.gz' => {
+    'mtime' => '2000-11-04',
+    'md5-ungz' => '5488fefe18038eb23339353b59e19660',
+    'md5' => '18305298f9eeb237082bf52a63946c9b',
+    'size' => 5226
+  },
+  'XML-RSS-TimingBotDBI-2.01.meta' => {
+    'mtime' => '2004-04-24',
+    'md5' => '0fd8747379e642af9e25c96467a54feb',
+    'size' => 398
+  },
+  'File-Findgrep-0.01.tar.gz' => {
+    'mtime' => '2001-05-25',
+    'md5-ungz' => '5cc4020badaa314b6ddcdf7ee1a81fa1',
+    'md5' => 'b35cb153af170243364ffb8516d21490',
+    'size' => 6695
+  },
+  'rtf2xml.html' => {
+    'mtime' => '2001-02-25',
+    'md5' => '2ee267d7d2e11b4e665ba9c0e002aa4f',
+    'size' => 1066
+  },
+  'LWP-UserAgent-Determined-1.03.meta' => {
+    'mtime' => '2004-04-09',
+    'md5' => 'cd45e9f72be5a78a0f94d9ac72ceca2f',
+    'size' => 369
+  },
+  'Text-Shoebox-1.02.tar.gz' => {
+    'mtime' => '2004-04-04',
+    'md5-ungz' => '0d1784ef76f878d2c5c43192666fcf66',
+    'md5' => 'a2003321f6610d3244aafc24c45b23bf',
+    'size' => 18423
+  },
+  'XML-RSS-Timing-1.07.tar.gz' => {
+    'mtime' => '2004-05-19',
+    'md5-ungz' => 'eff9d79fcb0a75f8865919cfccd8a0fe',
+    'md5' => '3e6c0dd90c8cb636f2f7fa0a15efbd9a',
+    'size' => 13373
+  },
+  'Pod-Perldoc-3.13.tar.gz' => {
+    'mtime' => '2004-04-10',
+    'md5-ungz' => '95721106535ec305c638e6ff23ae152b',
+    'md5' => 'deb19d626672ad8bc989c45210e9208b',
+    'size' => 30353
+  },
+  'I18N-LangTags-0.30.tar.gz' => {
+    'mtime' => '2004-03-31',
+    'md5-ungz' => '5cef1cf055731561d7046a36d2994185',
+    'md5' => '1c915817f640bb4191bdd80bd61aa75c',
+    'size' => 29230
+  },
+  'Pod-Simple-3.02.meta' => {
+    'mtime' => '2004-05-24',
+    'md5' => '49c74eca80d1130ec7914a46b9bb1c53',
+    'size' => 796
+  },
+  'XML-RSS-TimingBot-2.03.meta' => {
+    'mtime' => '2004-05-19',
+    'md5' => '1702441e324005cb06f2391f094e8596',
+    'size' => 429
+  },
+  'Pod-Webserver-3.03.meta' => {
+    'mtime' => '2004-06-21',
+    'md5' => '9008c3ed02fda2407caefe4f89280739',
+    'size' => 794
+  },
+  'Mac-RecentDocuments-0.01.tar.gz' => {
+    'mtime' => '2000-10-12',
+    'md5-ungz' => '8405e9f08959c9cf8e1376919903fd60',
+    'md5' => '7ff8e5616238f619fc74de0bbb47c9c5',
+    'size' => 4655
+  },
+  'Pod-PXML-0.1001.tar.gz' => {
+    'mtime' => '2001-05-26',
+    'md5-ungz' => '2fef8fc835c2b20251abba238bed1764',
+    'md5' => '0989e6a03f336f816c724f94b790e7a4',
+    'size' => 11398
+  },
+  'Business-US_Amort-0.08.tar.gz' => {
+    'mtime' => '2002-08-18',
+    'md5-ungz' => 'a2fd0c5f43ddab1598377170f5833adb',
+    'md5' => 'd116b48d0f25e3d131893e46aa95d46f',
+    'size' => 8471
+  },
+  'Getopt-constant-1.02.tar.gz' => {
+    'mtime' => '2001-02-25',
+    'md5-ungz' => 'a5dee2579e9a8b53621cfbe5ca6422d6',
+    'md5' => '46d0a8df705a46d811177e684ed022d6',
+    'size' => 6543
+  },
+  'Pod-Simple-2.06.meta' => {
+    'mtime' => '2004-05-07',
+    'md5' => 'd6edf12e038bfb8448da29788cd4e33e',
+    'size' => 389
+  },
+  'Pod-Webserver-3.02.meta' => {
+    'mtime' => '2004-05-26',
+    'md5' => 'd3bc48206b2d50ef84ccf7aa6b42b727',
+    'size' => 794
+  },
+  'Text-Shoebox-1.02.meta' => {
+    'mtime' => '2004-04-04',
+    'md5' => '0087383f65137fe08ff04888cc71bc0b',
+    'size' => 308
+  },
+  'Module-Versions-Report-1.02.tar.gz' => {
+    'mtime' => '2003-06-22',
+    'md5-ungz' => 'c9c6c25a8584e58d08ae8e7b10319195',
+    'md5' => 'a2ef9353386df4c4e49c7e4031c45bd3',
+    'size' => 4671
+  },
+  'Number-Latin-1.01.tar.gz' => {
+    'mtime' => '2001-02-23',
+    'md5-ungz' => 'bbda82cdc5f9d9c1eeecb4720b60fc33',
+    'md5' => '61b9234b286f896a3c6d83e7e21aebe7',
+    'size' => 5176
+  },
+  'Pod-Simple-3.02.tar.gz' => {
+    'mtime' => '2004-05-24',
+    'md5-ungz' => '91daa4b04c2cefc9f8a3d0292250f5aa',
+    'md5' => '4ca91ca6ff80b597608a7d1c3d1bda74',
+    'size' => 252317
+  },
+  'Games-Alak-0.14.tar.gz' => {
+    'mtime' => '2000-07-09',
+    'md5-ungz' => 'fb7fe9bad688dacaab6e57e8a5226eb3',
+    'md5' => '140be064f06db75ec537ebc4de951324',
+    'size' => 7777
+  },
+  'MIDI-Perl-0.8.tar.gz' => {
+    'mtime' => '2002-11-16',
+    'md5-ungz' => 'd2e7f084e28b226633cf7faef2358893',
+    'md5' => '5d2c37e1263e4b8dd9b468e094c1afcb',
+    'size' => 57443
+  },
+  'HTML-Tree-3.18.tar.gz' => {
+    'mtime' => '2003-09-15',
+    'md5-ungz' => '303d2a7528f270d1898079352e4d23b7',
+    'md5' => '6a9e4e565648c9772e7d8ec6d4392497',
+    'size' => 116025
+  },
+  'XML-TreeBuilder-3.08.tar.gz' => {
+    'mtime' => '2000-11-04',
+    'md5-ungz' => '44137330c8cd87829a56fe1a93d4d30d',
+    'md5' => 'dba61e25ac62fbf1544011ed87b36a0a',
+    'size' => 4419
+  },
+  'Games-Worms-0.61.tar.gz' => {
+    'mtime' => '1999-03-05',
+    'md5-ungz' => '27d236fac7fea475b50bc8d09240a4e8',
+    'md5' => '52c30f146c6ffae75dd29fc6aea5536a',
+    'size' => 20129
+  },
+  'Games-Dissociate-0.14.tar.gz' => {
+    'mtime' => '2001-03-09',
+    'md5-ungz' => '12255a1d4b7d9cd29e5cc706cbca713a',
+    'md5' => 'a4d71db43a0f401a7da6aad4e843759c',
+    'size' => 7952
+  },
+  'Text-Unidecode-0.04.tar.gz' => {
+    'mtime' => '2001-07-14',
+    'md5-ungz' => 'e296d0429c32949ee0ba9dce695a3f48',
+    'md5' => '06f6bddb396ab386aa66a2bc8a04df76',
+    'size' => 103091
+  },
+  'HTML-Format-2.04.meta' => {
+    'mtime' => '2004-06-02',
+    'md5' => 'df4368f6d9f0bbf19da97ff140c6ca08',
+    'size' => 389
+  },
+  'crontab2english_0.71.pl' => {
+    'mtime' => '2001-07-29',
+    'md5' => '4692e137b0c9475417d10397ccb742a7',
+    'size' => 27684
+  },
+  'PerlIO-via-Unidecode-1.01.meta' => {
+    'mtime' => '2003-08-26',
+    'md5' => 'c64f94b6ae1f91bba2695df95d2ed972',
+    'size' => 435
+  },
+  'HTML-Format-2.04.tar.gz' => {
+    'mtime' => '2004-06-02',
+    'md5-ungz' => '95a43bc40120503c94ad1ddb138751ac',
+    'md5' => '2d287392b77c959f06397371116c2d7e',
+    'size' => 23260
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQFA5Kz0Mo2oZ0UPiewRAj47AJ9O/X6F+O7oD2OEHzf+O30Ki9hPvQCfX2AZ
+vYqqX+O9FI0wkxqMTFfKSRc=
+=KreF
+-----END PGP SIGNATURE-----

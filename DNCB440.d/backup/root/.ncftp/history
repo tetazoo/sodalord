@@ -1,0 +1,39 @@
+open www.rpmfind.net
+ls
+cd linux/redhat
+ls
+cd 7.1
+ls
+cd en
+ls
+cd powertools
+ls
+cd i386
+ls
+cd RedHat/RPMS
+ls
+get nmap-2.54BETA7-3.i386.rpm 
+!
+exit
+ls
+cd bin
+ls
+cd ../pub
+ls
+cd octave
+ls
+cd bleeding-edge/
+ls
+get octave-2.1.36.tar.gz 
+exit
+cd pub/octave
+ls
+cd bleeding-edge/
+ls
+get octave-2.1.36.tar.gz 
+exit
+ls
+cd source
+ls
+get mod_ssl-2.8.12-1.3.27.tar.gz
+exit

@@ -1,0 +1,17 @@
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Sets, Polynomial Manipulations, Financial Functions, Top
+@chapter Sets
+
+Octave has a limited set of functions for managing sets of data, where a
+set is defined as a collection unique elements.
+
+@DOCSTRING(create_set)
+
+@DOCSTRING(union)
+
+@DOCSTRING(intersection)
+
+@DOCSTRING(complement)

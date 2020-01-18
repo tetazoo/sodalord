@@ -1,0 +1,15 @@
+K 10
+svn:author
+V 6
+mitchb
+K 8
+svn:date
+V 27
+2008-08-17T00:16:08.204780Z
+K 7
+svn:log
+V 103
+Add 1 to account ages to avoid dividing by 0 and producing no graphs on
+the day an account is created.
+
+END

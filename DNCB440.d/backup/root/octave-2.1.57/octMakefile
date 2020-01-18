@@ -1,0 +1,266 @@
+#
+# Makefile for octave
+#
+# John W. Eaton
+# jwe@bevo.che.wisc.edu
+# University of Wisconsin-Madison
+# Department of Chemical Engineering
+
+TOPDIR = .
+
+srcdir = .
+top_srcdir = .
+
+
+include $(TOPDIR)/Makeconf
+
+INSTALL = /usr/bin/install -c
+INSTALL_PROGRAM = ${INSTALL}
+INSTALL_SCRIPT = ${INSTALL}
+INSTALL_DATA = ${INSTALL} -m 644
+
+CONF_DISTFILES = Makefile Makefile.in octMakefile.in Makeconf.in \
+	configure configure.in config.guess config.sub aclocal.m4 \
+	acx_blas.m4 acx_lapack.m4 config.h.in install-sh autogen.sh
+
+DISTFILES = $(CONF_DISTFILES) \
+	BUGS COPYING FLEX.patch INSTALL INSTALL.OCTAVE NEWS \
+	NEWS.[0-9] PROJECTS README README.Linux README.Windows \
+	README.MachTen README.kpathsea ROADMAP SENDING-PATCHES \
+	THANKS move-if-change octave-sh octave-bug.in \
+	octave-config.in install-octave.in mk-opts.pl mkinstalldirs \
+	mkoctfile.in texi2dvi ChangeLog ChangeLog.[0-9]
+
+# Complete directory trees to distribute.
+DISTDIRS = glob # plplot
+
+# Subdirectories in which to run `make all'.
+SUBDIRS =   glob \
+	libcruft liboctave scripts doc examples
+
+ALL_SUBDIRS = $(SUBDIRS) src
+
+# Subdirectories in which to run `make all'.
+INSTALL_SUBDIRS = libcruft liboctave src scripts doc examples
+
+# Subdirectories in which to run `make conf-dist'.
+CONF_DISTSUBDIRS = src
+
+# Subdirectories in which to run `make dist'.
+DISTSUBDIRS_1 = $(sort $(ALL_SUBDIRS) dlfcn test emacs)
+DISTSUBDIRS = $(filter-out $(DISTDIRS), $(DISTSUBDIRS_1))
+
+XBINDISTFILES = BUGS COPYING INSTALL INSTALL.OCTAVE NEWS NEWS.[0-9] \
+	PROJECTS README README.Linux README.Windows README.MachTen \
+	SENDING-PATCHES THANKS octave-sh install-octave mkinstalldirs \
+	ChangeLog ChangeLog.[0-9]
+
+BINDISTFILES = $(addprefix $(srcdir)/, $(XBINDISTFILES)) \
+	octave-bug octave-config config.status config.h VERSION ARCH
+
+# Subdirectories in which to run `make bin-dist'.
+BINDISTSUBDIRS = libcruft liboctave src scripts doc emacs examples
+
+# Subdirectories in which to run clean targets.
+CLEANSUBDIRS = $(DISTSUBDIRS) glob
+
+DIRS_TO_MAKE = $(bindir) $(libdir) $(octincludedir)/octave $(fcnfiledir) \
+  $(octfiledir) $(archlibdir) $(localarchlibdir) $(localverarchlibdir) \
+  $(shell echo $(localfcnfilepath) | awk -F: '{for (i=1; i<=NF; i++) print $$i}') \
+  $(shell echo $(localoctfilepath) | awk -F: '{for (i=1; i<=NF; i++) print $$i}')
+
+all: octave-bug octave-config mkoctfile src
+.PHONY: all
+
+src: $(SUBDIRS)
+	$(MAKE) -C $@ all
+.PHONY: src
+
+octave-bug: octave-bug.in Makeconf octMakefile
+	@$(do-subst-config-vals)
+	chmod a+rx $@
+
+octave-config: octave-config.in Makeconf octMakefile
+	@$(do-subst-default-vals)
+	chmod a+rx $@
+
+mkoctfile: mkoctfile.in Makeconf octMakefile
+	@$(do-subst-config-vals)
+	chmod a+rx $@
+
+$(SUBDIRS):
+	$(MAKE) -C $@ all
+.PHONY: $(SUBDIRS)
+
+check:
+	$(MAKE) -C test check
+.PHONY: check
+
+octave.info:
+	$(MAKE) -C doc/interpreter octave.info
+.PHONY: octave.info
+
+BUGS INSTALL.OCTAVE:
+	$(MAKE) -C doc ../$@
+.PHONY: BUGS INSTALL.OCTAVE
+
+install install-strip ::
+	$(top_srcdir)/mkinstalldirs $(addprefix $(DESTDIR), $(DIRS_TO_MAKE))
+	rm -f $(DESTDIR)$(bindir)/octave-bug
+	$(INSTALL_SCRIPT) octave-bug $(DESTDIR)$(bindir)/octave-bug-$(version)
+	$(LN_S) octave-bug-$(version) $(DESTDIR)$(bindir)/octave-bug
+	rm -f $(DESTDIR)$(bindir)/octave-config
+	$(INSTALL_SCRIPT) \
+	  octave-config $(DESTDIR)$(bindir)/octave-config-$(version)
+	$(LN_S) octave-config-$(version) $(DESTDIR)$(bindir)/octave-config
+	rm -f $(DESTDIR)$(bindir)/mkoctfile
+	$(INSTALL_SCRIPT) mkoctfile $(DESTDIR)$(bindir)/mkoctfile-$(version)
+	$(LN_S) mkoctfile-$(version) $(DESTDIR)$(bindir)/mkoctfile
+	$(INSTALL_DATA) config.h $(DESTDIR)$(octincludedir)/octave/config.h
+
+uninstall::
+	rm -f $(DESTDIR)$(bindir)/octave-bug
+	rm -f $(DESTDIR)$(bindir)/octave-bug-$(version)
+	rm -f $(DESTDIR)$(bindir)/octave-config
+	rm -f $(DESTDIR)$(bindir)/octave-config-$(version)
+	rm -f $(DESTDIR)$(bindir)/mkoctfile
+	rm -f $(DESTDIR)$(bindir)/mkoctfile-$(version)
+	rm -f $(DESTDIR)$(octincludedir)/octave/config.h
+
+maintainer-clean::
+	@echo ""
+	@echo "************************************************************"
+	@echo "*                                                          *"
+	@echo "* This command is intended for maintainers to use; it      *"
+	@echo "* deletes files that may require special tools to rebuild. *"
+	@echo "*                                                          *"
+	@echo "************************************************************"
+	@echo ""
+
+install install-strip uninstall tags TAGS::
+	$(foreach d, $(INSTALL_SUBDIRS), $(do-subdir-for-command))
+.PHONY: install install-strip uninstall tags
+
+clean mostlyclean distclean maintainer-clean::
+	$(foreach d, $(CLEANSUBDIRS), $(do-subdir-for-command))
+.PHONY: clean mostlyclean distclean maintainer-clean
+
+maintainer-clean distclean::
+	rm -f octMakefile Makefile Makeconf Makefrag.f77 Makerules.f77
+	rm -f octave-bug octave-config mk-oct-links mkoctfile install-octave
+	rm -f config.cache config.h config.log config.status
+	rm -rf autom4te.cache
+
+maintainer-clean::
+	rm -f configure config.h.in BUGS INSTALL.OCTAVE
+
+# Rules for making a source distribution.
+
+dist-info-files: INSTALL.OCTAVE BUGS
+.PHONY: dist-info-files
+
+dist: dist-info-files
+	echo octave-$(version) > .fname
+	rm -rf `cat .fname`
+	mkdir `cat .fname`
+	ln $(DISTFILES) `cat .fname`
+	for dir in $(DISTDIRS); do ln -s ../$$dir `cat .fname`; done
+	for dir in $(DISTSUBDIRS); do \
+	  mkdir `cat .fname`/$$dir; \
+	  $(MAKE) -C $$dir dist; \
+	done
+	tar chf `cat .fname`.tar `cat .fname`
+	rm -rf `cat .fname`
+	tar xf `cat .fname`.tar
+	find `cat .fname` \( \( -name RCS -a -type d \) \
+	  -o \( -name CVS -a -type d \) -o \( -name OLD -a -type d \) \
+	  -o \( -name autom4te.cache -a -type d \) \
+	  -o -name "=*" -o -name '*~' -o -name '#*#' -o -name config.log \
+	  -o -name config.status -o -name config.cache -o -name stamp-h \
+	  -o -name klibtool.config -o -name stamp-auto \
+	  -o -name c-auto.h \) -print | xargs rm -rf
+	find `cat .fname`/glob -name Makefile | xargs rm -f
+	find `cat .fname`/glob -name config.h | xargs rm -f
+	rm -f `cat .fname`/test/octave.test/*.m
+	chmod -R a+rwX `cat .fname`
+	tar cf `cat .fname`.tar `cat .fname`
+	rm -rf `cat .fname`
+	gzip --best `cat .fname`.tar
+	rm -f .fname
+	@echo "*******************"
+	@echo "Tag the CVS archive"
+	@echo "*******************"
+.PHONY: dist
+
+# Rules for making a snapshot.
+
+snapshot-version:
+	@echo "creating src/version.h"
+	@gawk '/#define OCTAVE_VERSION[ \t]*/ { \
+	  datestring = strftime("%y%m%d", systime()); \
+	  printf("#define OCTAVE_VERSION \"ss-%s\"\n", datestring); \
+	  next; \
+	} { print $$0 }' src/version.h > src/version.h.new
+	@$(top_srcdir)/move-if-change src/version.h.new src/version.h
+.PHONY: snapshot-version
+
+snapshot: snapshot-version
+	$(MAKE) dist
+.PHONY: snapshot
+
+# Rules for making a dist of just the stuff needed to run configure.
+
+conf-dist:
+	echo config-dist-$(version) > .fname
+	rm -rf `cat .fname`
+	mkdir `cat .fname`
+	ln $(CONF_DISTFILES) `cat .fname`
+	for dir in $(CONF_DISTSUBDIRS); do \
+	  mkdir `cat .fname`/$$dir; \
+	  $(MAKE) -C $$dir conf-dist; \
+	done
+	tar chf `cat .fname`.tar `cat .fname`
+	rm -rf `cat .fname`
+	gzip --best `cat .fname`.tar
+	rm -f .fname
+.PHONY: conf-dist
+
+# Rules for making a binary distribution.
+
+VERSION:
+	echo $(version) > VERSION
+.PHONY: VERSION
+
+ARCH:
+	echo $(canonical_host_type) > ARCH
+.PHONY: ARCH
+
+binary-dist: VERSION ARCH octave-bug octave-config dist-info-files
+	echo octave-$(version)-$(canonical_host_type) > .fname
+	rm -rf `cat .fname`
+	mkdir `cat .fname`
+	ln $(BINDISTFILES) `cat .fname`
+	for dir in $(BINDISTSUBDIRS); do \
+	  mkdir `cat .fname`/$$dir; \
+	  $(MAKE) -C $$dir bin-dist; \
+	done
+	tar chf `cat .fname`.tar `cat .fname`
+	rm -rf `cat .fname`
+	tar xf `cat .fname`.tar
+	find `cat .fname` \( \( -name RCS -a -type d \) \
+	  -o \( -name CVS -a -type d \) -o \( -name OLD -a -type d \) \
+	  -o -name "=*" -o -name '*~' -o -name '#*#' -o -name Makefile \
+	  -o -name c-auto.h \) -print | xargs rm -rf
+	rm -f `cat .fname`/test/octave.test/*.m
+	chmod -R a+rw `cat .fname`
+	find `cat .fname` \( -perm 766 -o -perm 676 -o -perm 667 \
+	  -o -perm 776 -o -perm 677 -o -perm 767 \) -print | \
+	  xargs chmod a+x scripts
+	strip src/octave
+	tar cf `cat .fname`.tar `cat .fname`
+	rm -rf `cat .fname`
+	gzip --best `cat .fname`.tar
+	rm -f .fname
+.PHONY: binary-dist
+
+.NOTPARALLEL:

@@ -1,0 +1,138 @@
+This package requires at least perl5.003.  You're on your own before
+then.
+
+1) Make sure perl has been built.  Unpack "Curses-1.05.tar.gz".
+
+     gunzip -c Curses-1.05.tar.gz | tar xvf -
+
+2) Chdir to the "Curses" directory.
+
+     cd Curses-1.05
+
+3) Want to see if maybe the package can autoconfigure itself?  It's
+   pretty dumb about it, but give it a try and skip to (4.5).
+
+4) Look in the "hints" directory to see if any of the hint files are
+   appropriate to your machine's OS.  If so, symlink or copy it to the
+   file "c-config.h" in the current ("Curses") directory.  If not,
+   copy "hints/c-none.h" to "c-config.h" in the current directory.
+   Then edit "c-config.h" and follow the directions.  If you have to
+   "roll your own", be sure and save a copy.  A "make clean" will
+   delete "c-config.h".  If you "rolled your own", please send me a
+   copy so I can include it in future distributions (see
+   "hints/c-isc.h" for an example of a user-contributed "c-config.h").
+
+   Edit "Makefile.PL" and pick or add the appropriate options.
+
+4.5)
+
+   If you want panel support (from libpanel), you can either skip back
+   to (4) and add the appropriate flags, or give auto-configure a
+   whirl, by appending "PANELS":
+
+     perl Makefile.PL PANELS
+
+   NOTE: You must have a panels library for this to work.  This
+   doesn't create the functions; it only enables them.  Enabling
+   PANELS support without a panels library is the surest way
+   to keep this package from compiling.
+
+   Currently, panels support is not available for the BSD versions of
+   the hints file (c-*.bsd.h), because I'm not aware of any panels
+   libraries for BSD curses.
+
+5) perl Makefile.PL [PANELS]  [options]
+
+   This package needs the perl header files.  If you've already
+   installed perl, the "Makefile.PL" will magically know where they
+   are.  If you haven't installed perl, you may need to tell the
+   "Makefile.PL" where the header files are.  You can do this with the
+   "PERL_SRC=<source directory>" option.
+
+     perl Makefile.PL PERL_SRC=/local/src/perl
+
+   The "Makefile.PL", along with just about every other perl module,
+   uses the "ExtUtils::MakeMaker" package to generate the "Makefile".
+   I highly recommend reading the "ExtUtils::MakeMaker" man page, as
+   there are lots of neat options you can specify.
+
+   If the "Makefile.PL" tells you that it can't do something (it
+   prints out "I'm sorry" and some more stuff), then you'll need to go
+   back to step (4) and try configuring by hand.
+
+6) make
+
+   `make' will first run a perl script called `test.syms' that
+   generates the file "pCurses.h".  It should do a pretty good job,
+   but if you find that it isn't picking up the correct values, you
+   can edit "pCurses.h" by hand and follow the directions.  If you
+   have to "roll your own", be sure and save a copy.  A "make clean"
+   will delete "pCurses.h".
+
+   `make' will then try to compile "Curses.c".  If you get any
+   undefined curses symbols, it means that your curses really doesn't
+   have those functions, and you should edit "pCurses.h" and/or
+   "c-config.h" and change the #define to #undef for that function.
+
+   If you get other compile errors, it is probably because the curses
+   include file and the perl include files are conflicting.  You'll
+   have to figure out what's wrong and add proper C code to
+   "c-config.h".  See "hints/c-sunos.sysv.h" for an example of how to
+   do this.
+
+   One common problem: If the compile of Curses.c fails because of an
+   undefined type "chtype", put "#define chtype int" in "c-config.h"
+   after the include file (see "hints/c-sunos.bsd.h" for an example).
+
+   Another problem: Depending on the version of ncurses and the
+   compiler you use, you might get an error that looks approximately
+   like:
+
+      Curses.c: In function `XS_Curses_keyname':
+      Curses.c:1531: warning: initialization discards `const' from pointer
+      target type
+
+   Ignore it; it's only a warning.  Newer ncurses prototype keyname()
+   to returning a const char*, and I didn't feel like going through a
+   bunch of pain to both support older compilers and to make the
+   warning go away.
+
+7) Optionally test the distribution:
+
+   perl demo
+   perl gdc
+   perl panel.demo  [if you enabled panel support]
+   perl demo2       [stuff that has a 50/50 chance of showing up right]
+
+   "gdc" is a digital clock ported from the "ncurses" distribution.
+
+   As mentioned in the "README", the demo is not intended to be an
+   exhaustive test of all the possible Curses functions.  If it
+   doesn't do all the functions correctly, it may be a Curses bug or
+   it may be a problem with your system's "libcurses.a".  There's no
+   getting around the fact that you need to be conversant in how your
+   system's "libcurses.a" works to be able to use Curses most
+   effectively.
+
+   For "demo", you can try:
+
+   make cdemo
+
+   This will try to compile a pure-C version of the "demo".  If you
+   see the same errors in it that you see in "demo", it means there's
+   a bug in your libcurses.
+   
+8) Doing a :
+
+   make install
+
+   will install everything in the "standard" perl places, just like
+   stuff from the base perl distribution.
+
+9) Enjoy!
+
+   If your enjoyment is ruined (:-) because the module doesn't work
+   right, peruse the Curses pod document (located at the end of
+   "Curses.pm") for incompatibilities with other Perl programs.  Also
+   check the end of the "README" for problems that may exist for your
+   particular libcurses.a or operating system.

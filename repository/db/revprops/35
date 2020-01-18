@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-10-18T19:57:22.152232Z
+K 7
+svn:log
+V 84
+help now autogenerates (with a hidden command list for things like exit and buycard)
+END

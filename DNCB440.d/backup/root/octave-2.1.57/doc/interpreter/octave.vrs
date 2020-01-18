@@ -1,0 +1,140 @@
+\initial {A}
+\entry {\code {ans}}{110}
+\entry {\code {argv}}{15}
+\entry {\code {automatic_replot}}{60, 134}
+\initial {B}
+\entry {\code {beep_on_error}}{60, 105}
+\initial {C}
+\entry {\code {completion_append_char}}{20, 60}
+\entry {\code {crash_dumps_octave_core}}{60, 115}
+\initial {D}
+\entry {\code {debug_on_error}}{107}
+\entry {\code {debug_on_interrupt}}{107}
+\entry {\code {debug_on_warning}}{107}
+\entry {\code {DEFAULT_LOADPATH}}{59, 97}
+\entry {\code {default_save_format}}{60, 116}
+\entry {\code {do_what_i_mean_not_what_i_say}}{11}
+\initial {E}
+\entry {\code {e}}{167}
+\entry {\code {echo_executing_commands}}{24}
+\entry {\code {EDITOR}}{22, 59, 63}
+\entry {\code {eps}}{167}
+\entry {\code {EXEC_PATH}}{59, 301}
+\initial {F}
+\entry {\code {F_DUPFD}}{303}
+\entry {\code {F_GETFD}}{303}
+\entry {\code {F_GETFL}}{303}
+\entry {\code {F_SETFD}}{303}
+\entry {\code {F_SETFL}}{303}
+\entry {\code {false}}{37}
+\entry {\code {fixed_point_format}}{36, 60}
+\initial {G}
+\entry {\code {gnuplot_binary}}{60, 145}
+\entry {\code {gnuplot_command_axes}}{145}
+\entry {\code {gnuplot_command_end}}{145}
+\entry {\code {gnuplot_command_plot}}{145}
+\entry {\code {gnuplot_command_replot}}{145}
+\entry {\code {gnuplot_command_splot}}{145}
+\entry {\code {gnuplot_command_title}}{145}
+\entry {\code {gnuplot_command_using}}{145}
+\entry {\code {gnuplot_command_with}}{145}
+\entry {\code {gnuplot_has_frames}}{145}
+\initial {H}
+\entry {\code {history_file}}{22, 60}
+\entry {\code {history_size}}{22, 60}
+\initial {I}
+\entry {\code {i}}{167}
+\entry {\code {I}}{167}
+\entry {\code {If}}{75, 102}
+\entry {\code {ignore_function_time_stamp}}{60, 98}
+\entry {\code {IMAGEPATH}}{285}
+\entry {\code {inf}}{167}
+\entry {\code {Inf}}{167}
+\entry {\code {INFO_FILE}}{17, 59}
+\entry {\code {INFO_PROGRAM}}{17, 59}
+\initial {J}
+\entry {\code {j}}{167}
+\entry {\code {J}}{167}
+\initial {L}
+\entry {\code {LOADPATH}}{59, 97}
+\initial {M}
+\entry {\code {MAKEINFO_PROGRAM}}{17}
+\entry {\code {max_recursion_depth}}{60, 69}
+\initial {N}
+\entry {\code {NA}}{29}
+\entry {\code {nan}}{167}
+\entry {\code {NaN}}{167}
+\initial {O}
+\entry {\code {O_APPEND}}{303}
+\entry {\code {O_ASYNC}}{303}
+\entry {\code {O_NONBLOCK}}{303}
+\entry {\code {O_RDONLY}}{303}
+\entry {\code {O_RDWR}}{303}
+\entry {\code {O_SYNC}}{303}
+\entry {\code {O_WRONLY}}{303}
+\entry {\code {OCTAVE_EXEC_PATH}}{63}
+\entry {\code {OCTAVE_HISTFILE}}{64}
+\entry {\code {OCTAVE_HISTSIZE}}{64}
+\entry {\code {OCTAVE_HOME}}{59}
+\entry {\code {OCTAVE_INFO_FILE}}{63}
+\entry {\code {OCTAVE_INFO_PROGRAM}}{63}
+\entry {\code {OCTAVE_PATH}}{63}
+\entry {\code {OCTAVE_VERSION}}{307}
+\entry {\code {output_max_field_width}}{35, 60}
+\entry {\code {output_precision}}{35, 61}
+\initial {P}
+\entry {\code {page_output_immediately}}{109}
+\entry {\code {page_screen_output}}{61, 109}
+\entry {\code {PAGER}}{59, 109}
+\entry {\code {pi}}{167}
+\entry {\code {prefer_zero_one_indexing}}{66}
+\entry {\code {print_answer_id_name}}{61, 113}
+\entry {\code {print_empty_dimensions}}{36, 61}
+\entry {\code {program_invocation_name}}{15}
+\entry {\code {program_name}}{15}
+\entry {\code {PS1}}{23, 59}
+\entry {\code {PS2}}{23, 59}
+\entry {\code {PS4}}{23, 59}
+\initial {R}
+\entry {\code {realmax}}{168}
+\entry {\code {realmin}}{168}
+\entry {\code {return}}{96}
+\entry {\code {return_last_computed_value}}{61}
+\initial {S}
+\entry {\code {save_header_format_string}}{116}
+\entry {\code {save_precision}}{61, 116}
+\entry {\code {saving_history}}{22, 61}
+\entry {\code {SEEK_CUR}}{131}
+\entry {\code {SEEK_END}}{131}
+\entry {\code {SEEK_SET}}{131}
+\entry {\code {sighup_dumps_octave_core}}{61, 115}
+\entry {\code {sigterm_dumps_octave_core}}{61, 116}
+\entry {\code {silent_functions}}{61, 93}
+\entry {\code {split_long_rows}}{35, 61}
+\entry {\code {stderr}}{117}
+\entry {\code {stdin}}{117}
+\entry {\code {stdout}}{117}
+\entry {\code {string_fill_char}}{41}
+\entry {\code {struct_levels_to_print}}{48, 61}
+\entry {\code {suppress_verbose_help_message}}{17, 62}
+\initial {T}
+\entry {\code {true}}{37}
+\initial {W}
+\entry {\code {warn_assign_as_truth_value}}{62, 81}
+\entry {\code {warn_comma_in_global_decl}}{62}
+\entry {\code {warn_divide_by_zero}}{62, 71}
+\entry {\code {warn_empty_list_elements}}{37, 62}
+\entry {\code {warn_fortran_indexing}}{62, 65}
+\entry {\code {warn_function_name_clash}}{62, 98}
+\entry {\code {warn_future_time_stamp}}{98}
+\entry {\code {warn_imag_to_real}}{62, 154}
+\entry {\code {warn_missing_semicolon}}{62, 93}
+\entry {\code {warn_neg_dim_as_zero}}{62, 154}
+\entry {\code {warn_num_to_str}}{45, 62}
+\entry {\code {warn_reload_forces_clear}}{62, 102}
+\entry {\code {warn_resize_on_range_error}}{63, 66}
+\entry {\code {warn_separator_insert}}{35, 63}
+\entry {\code {warn_single_quote_string}}{45, 63}
+\entry {\code {warn_str_to_num}}{45, 63}
+\entry {\code {warn_undefined_return_values}}{63, 95}
+\entry {\code {warn_variable_switch_label}}{63, 82}

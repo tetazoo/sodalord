@@ -1,0 +1,159 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Sun Oct 12 21:36:58 2003 by CPAN::Checksums (v1.016)
+$cksum = {
+  'CGI-Lite-2.001-emergencyrelease.tar.gz' => {
+    'mtime' => '2003-02-17',
+    'md5-ungz' => '06e074ac38ed947a25b52923ccaeddb0',
+    'md5' => '6d7001840ad04916663050175bb2cfc7',
+    'size' => 15095
+  },
+  'Apache-HeavyCGI-0.0133.tar.gz' => {
+    'mtime' => '2001-04-15',
+    'md5-ungz' => 'a259cf868a2ee8fd0f903efa0d377fe7',
+    'md5' => 'b071d04957eebe028beb285c4248fcbb',
+    'size' => 25970
+  },
+  'podslides-ax-magicpoint-0.01.tar.gz' => {
+    'mtime' => '2002-11-04',
+    'md5-ungz' => '73332eab04f23bb21ce0df802dbc4710',
+    'md5' => '90cc95c1f5702f872f73f97aa579fdcf',
+    'size' => 6384
+  },
+  'CPAN-1.76.tar.gz' => {
+    'mtime' => '2003-07-31',
+    'md5-ungz' => 'adb265a3ee1eb168d9b27ec243aa1f2b',
+    'md5' => 'dfd1d2f8cfe75559e37d543d0c5f6606',
+    'size' => 135191
+  },
+  'Perl-Repository-APC-1.122.tar.gz' => {
+    'mtime' => '2003-09-06',
+    'md5-ungz' => 'eb7e060eab9ca6a91e73618e2da9d10b',
+    'md5' => '3f1b81c9466989f067d631de006ec7d8',
+    'size' => 146757
+  },
+  'MAB2-0.05.tar.gz' => {
+    'mtime' => '2003-02-10',
+    'md5-ungz' => 'd8ec0fadfc0a97c915d6a7d96c08cd55',
+    'md5' => '9ed4090558a366d92c9d4474bdbb46a0',
+    'size' => 65366
+  },
+  'Devel-Symdump-2.03.tar.gz' => {
+    'mtime' => '2002-04-18',
+    'md5-ungz' => '2a8add1a2baad8956ad25e9bd0e1dc34',
+    'md5' => 'ea5230185f1188b70ad9c3e431d981c5',
+    'size' => 9834
+  },
+  'DB_File-SV18x-kit-0.06.tar.gz' => {
+    'mtime' => '2000-03-06',
+    'md5-ungz' => '2466cb8c20448ef417e77120d854412f',
+    'md5' => 'f4e861703bc4f397751a14944f614110',
+    'size' => 8315
+  },
+  'Apache-Stage-1.20.tar.gz' => {
+    'mtime' => '2003-03-03',
+    'md5-ungz' => '64b0321ed88f7c1eb525681f779e1a0d',
+    'md5' => 'b5e3a0b2ebdcbe093da3625eb47f70ee',
+    'size' => 3363
+  },
+  'MAB2-0.06.meta' => {
+    'mtime' => '2003-10-12',
+    'md5' => '97b70e0d11a096d7bae226cbacbaa9c2',
+    'size' => 379
+  },
+  'Memo-bindist-any-bin-2-archname-compiler.tar.gz' => {
+    'mtime' => '1998-02-17',
+    'md5-ungz' => '0f318dc060f137ed9cf96b8312fc4b1f',
+    'md5' => '43138eee71f575f08a5b2b8ed1712fcc',
+    'size' => 1076
+  },
+  'CPAN-1.76.meta' => {
+    'mtime' => '2003-07-31',
+    'md5' => 'a793f0d9453ee070ccc9d27ca3529322',
+    'size' => 313
+  },
+  'CPAN-Checksums-1.016.tar.gz' => {
+    'mtime' => '2003-02-03',
+    'md5-ungz' => '6ab00f26cd5009cc893735cda355e7ef',
+    'md5' => '55c5c95473967322bc0ec9d13b0ab0fb',
+    'size' => 6267
+  },
+  'Perl-Repository-APC-1.122.meta' => {
+    'mtime' => '2003-09-06',
+    'md5' => '97cd06893869c013a5771fe718c944fa',
+    'size' => 360
+  },
+  'Apache-UploadSvr-1.024.tar.gz' => {
+    'mtime' => '1998-09-09',
+    'md5-ungz' => '51cf171a99a08fec9211b8ee900f77bd',
+    'md5' => 'e1f512bf64ad951d99d94505932c0813',
+    'size' => 18988
+  },
+  'Perl-Repository-APC-1.132.tar.gz' => {
+    'mtime' => '2003-09-14',
+    'md5-ungz' => 'ec3dec1e4cc056893b8acb0cd89492a8',
+    'md5' => 'b2ec439d82daafb32788fad771ad9010',
+    'size' => 148242
+  },
+  'CPAN-1.76_01.tar.gz' => {
+    'mtime' => '2003-09-21',
+    'md5-ungz' => '54d0ad37f5c5e12b9e79370a7a459983',
+    'md5' => 'cb2f0dc2da398607c0718c761f8d1793',
+    'size' => 135568
+  },
+  'patch.GD-1.32.work-with-perlio.txt' => {
+    'mtime' => '2001-01-28',
+    'md5' => '9870bcbd4ac5f00a487f67b9c79fe55e',
+    'size' => 6125
+  },
+  'Devel-SawAmpersand-0.30.tar.gz' => {
+    'mtime' => '2002-10-07',
+    'md5-ungz' => '300974380890e4c1402a0703f4e7a963',
+    'md5' => '7e23b11e808d7e5c57f83fe5b7c91a3c',
+    'size' => 4436
+  },
+  'Apache-correct_headers.readme.html' => {
+    'mtime' => '2000-05-07',
+    'md5' => 'e46958c569219251e5dc187a9ac879ce',
+    'size' => 605
+  },
+  'Convert-UU-0.52.tar.gz' => {
+    'mtime' => '2003-02-08',
+    'md5-ungz' => '3e6695fa67eca98ead4163359efbeff3',
+    'md5' => '1a52e65a9459e4deafd5b2fdf932d0ba',
+    'size' => 6292
+  },
+  'Apache-Session-Counted-1.118.tar.gz' => {
+    'mtime' => '2002-04-15',
+    'md5-ungz' => '277c655abd940bc27f35705e6b018195',
+    'md5' => 'c102eee6eac93f441bc3069b9d206783',
+    'size' => 8366
+  },
+  'MAB2-0.06.tar.gz' => {
+    'mtime' => '2003-10-12',
+    'md5-ungz' => '71475c6a8fc13ad43d4185ceb7427332',
+    'md5' => 'e69850c49f26d18925c05729cbcaa0c1',
+    'size' => 72355
+  },
+  'Perl-Repository-APC-1.132.meta' => {
+    'mtime' => '2003-09-14',
+    'md5' => 'a62f46fd06bb034e54cc3ca4f0cbd4be',
+    'size' => 360
+  },
+  'Apache-GzipChain-1.14.tar.gz' => {
+    'mtime' => '2003-03-03',
+    'md5-ungz' => '0e7d4a7db9def6ef07171b10ce467f69',
+    'md5' => '9330c5bfae432361fc4b1a955f2f7d91',
+    'size' => 4243
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD4DBQE/icl6Mo2oZ0UPiewRApcjAJj4EsubFJg+zRLw2iV9fKXbY2oYAJ9n6TaG
+QbrPSYMYe1M7438P/JxdUg==
+=fui4
+-----END PGP SIGNATURE-----

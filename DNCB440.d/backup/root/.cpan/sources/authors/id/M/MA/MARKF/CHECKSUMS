@@ -1,0 +1,170 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Thu Jul  1 18:26:26 2004 by CPAN::Checksums (v1.016)
+$cksum = {
+  'Template-Plugin-Textile-1.01.meta' => {
+    'mtime' => '2003-06-12',
+    'md5' => 'eced3cdd8cf1b29da5ff3d1f6a0df102',
+    'size' => 333
+  },
+  'Acme-VerySign-1.00.tar.gz' => {
+    'mtime' => '2003-09-16',
+    'md5-ungz' => '893f4ee17758a2a98bdfed08295d433d',
+    'md5' => 'b42f1b6fce4d162a2fb9923fac238f26',
+    'size' => 3766
+  },
+  'Template-Plugin-XML-LibXML-1.06.tar.gz' => {
+    'mtime' => '2003-06-12',
+    'md5-ungz' => '9f0811972e03637635f107ddc191335d',
+    'md5' => 'eb732d15d19797e0df051540edc5b5d3',
+    'size' => 13138
+  },
+  'Attempt-1.00.tar.gz' => {
+    'mtime' => '2003-09-18',
+    'md5-ungz' => 'c8b046aebe9394a7dd7ea188495a8223',
+    'md5' => '363bc0215945d273cc1bf892a39ce4be',
+    'size' => 5689
+  },
+  'Test-DatabaseRow-1.04.meta' => {
+    'mtime' => '2004-06-02',
+    'md5' => 'd79883b6901a52f8a3b32bb14ecdb93a',
+    'size' => 1043
+  },
+  'Acme-Test-Buffy-0.01.tar.gz' => {
+    'mtime' => '2002-09-20',
+    'md5-ungz' => '08c949c7fc94dc2226d2d07b3ea121a8',
+    'md5' => '92f38b65506a3cfc1e7e04612fab36df',
+    'size' => 3700
+  },
+  'Tie-DataUUID-1.00.meta' => {
+    'mtime' => '2004-04-23',
+    'md5' => 'f0fe1da29f3810dd3279b0d68de71336',
+    'size' => 350
+  },
+  'Template-Plugin-VMethods-0.03.meta' => {
+    'mtime' => '2003-09-03',
+    'md5' => '3fc76e005296c5f14525d77b0b907700',
+    'size' => 435
+  },
+  'Test-Builder-Tester-1.00.tar.gz' => {
+    'mtime' => '2004-07-01',
+    'md5-ungz' => '724930c0ddc4c95effc9e3b8faf82b17',
+    'md5' => '016f8e3cf364090bd4e0aef5ee4cbbb1',
+    'size' => 9686
+  },
+  'Template-Plugin-Textile-1.01.tar.gz' => {
+    'mtime' => '2003-06-12',
+    'md5-ungz' => '5e57171066cccd064eb7fae13ad5fba5',
+    'md5' => '4f89784414ebd346a7d5c6b29d1599e8',
+    'size' => 2930
+  },
+  'Test-DatabaseRow-1.04.tar.gz' => {
+    'mtime' => '2004-06-02',
+    'md5-ungz' => '0028494798627cf0629882f4f510fb87',
+    'md5' => 'e63d7ef63451f438074ab33e19c7cd09',
+    'size' => 14377
+  },
+  'Attempt-1.00.meta' => {
+    'mtime' => '2003-09-18',
+    'md5' => 'c9183030a40a288fd127de80bff184a6',
+    'size' => 464
+  },
+  'Template-Plugin-XML-LibXML-1.06.meta' => {
+    'mtime' => '2003-06-12',
+    'md5' => '19de369101a1209f0c4fd4de2011931d',
+    'size' => 450
+  },
+  'Test-Builder-Tester-0.09.tar.gz' => {
+    'mtime' => '2002-05-01',
+    'md5-ungz' => 'c291b7270972d978946a7f429682d79a',
+    'md5' => '53b0cb5238b03f4dd8190f38c1258324',
+    'size' => 8563
+  },
+  'Attempt-1.01.meta' => {
+    'mtime' => '2003-10-09',
+    'md5' => '84367904de19125526b8b6cf2b80656d',
+    'size' => 464
+  },
+  'Test-Builder-Tester-1.00.meta' => {
+    'mtime' => '2004-07-01',
+    'md5' => '957f57054d0d0b357f4133a55646d5c5',
+    'size' => 898
+  },
+  'Attempt-1.01.tar.gz' => {
+    'mtime' => '2003-10-09',
+    'md5-ungz' => '2dbee1f21c906cdcfe738cdd9028d5ef',
+    'md5' => '369496100e930e71d0a91d7678eb16b8',
+    'size' => 6150
+  },
+  'Template-Plugin-ListUtil-0.02.tar.gz' => {
+    'mtime' => '2003-09-03',
+    'md5-ungz' => 'a9bfc306dc66c4849f6bda26b5008ff5',
+    'md5' => 'b20b83426c5f7cd498085982995a1506',
+    'size' => 4987
+  },
+  'Template-Plugin-ListUtil-0.02.meta' => {
+    'mtime' => '2003-09-03',
+    'md5' => 'bf0091e681eab53075af5f5bc284f74a',
+    'size' => 467
+  },
+  'Tie-DataUUID-1.00.tar.gz' => {
+    'mtime' => '2004-04-23',
+    'md5-ungz' => 'f53820c4b8be103241c1440208ec1d8a',
+    'md5' => '99b6372fad0ed4f483be0d417c6d505c',
+    'size' => 2132
+  },
+  'Test-DatabaseRow-1.03.meta' => {
+    'mtime' => '2004-03-26',
+    'md5' => 'b58c55b00f2dc6f8f0bc841074423df8',
+    'size' => 413
+  },
+  'Test-DatabaseRow-1.03.tar.gz' => {
+    'mtime' => '2004-03-26',
+    'md5-ungz' => 'b90f4a97a1cdc07868ce6be3a0d56324',
+    'md5' => 'cc13394f1a27f6837869f7ad152ca09f',
+    'size' => 13166
+  },
+  'File-Path-Stderr-1.00.tar.gz' => {
+    'mtime' => '2003-08-11',
+    'md5-ungz' => '90e8682fd00ef5c3e47a3a000b44b46a',
+    'md5' => 'c3400a9929c7ec905ba4d04520527a16',
+    'size' => 1801
+  },
+  'Template-Plugin-VMethods-0.03.tar.gz' => {
+    'mtime' => '2003-09-03',
+    'md5-ungz' => 'd331964ee369cd3b8da4d406c1e20b16',
+    'md5' => '244a119a0462e9ea7f824e9502a9fa5b',
+    'size' => 5919
+  },
+  'File-Path-Stderr-1.00.meta' => {
+    'mtime' => '2003-08-11',
+    'md5' => '57a14dccbfa7aadc43ef832f94d138d7',
+    'size' => 280
+  },
+  'Acme-VerySign-1.00.meta' => {
+    'mtime' => '2003-09-16',
+    'md5' => '686b49dedb733846864e5db57059b1f6',
+    'size' => 326
+  },
+  'Template-Plugin-Clone-0.01.tar.gz' => {
+    'mtime' => '2003-08-30',
+    'md5-ungz' => 'b3743a38980cf9cad2f09a4df60b2ebb',
+    'md5' => '067ad4b445ed105dc296cbcbb4c9be5d',
+    'size' => 2739
+  },
+  'Template-Plugin-Clone-0.01.meta' => {
+    'mtime' => '2003-08-30',
+    'md5' => 'ee0f3aba30bc2affac01c1d2115be8b8',
+    'size' => 433
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQFA5FdSMo2oZ0UPiewRAk0qAJ41tMMyRqs0f66GajdK3C9i8SKxUgCglRaf
+THoYvO36WbfggCcxXEFGTx8=
+=Se02
+-----END PGP SIGNATURE-----

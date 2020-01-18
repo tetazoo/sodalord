@@ -1,0 +1,156 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Financial Functions, Sets, Statistics, Top
+@chapter Financial Functions
+@cindex financial functions
+@cindex money
+@cindex compounding, value of
+
+@anchor{doc-fv}
+@deftypefn {Function File} {} fv (@var{r}, @var{n}, @var{p}, @var{l}, @var{method})
+Return the future value at the end of period @var{n} of an investment
+which consists of @var{n} payments of @var{p} in each period,
+assuming an interest rate @var{r}.
+
+The optional argument @var{l} may be used to specify an
+additional lump-sum payment.
+
+The optional argument @var{method} may be used ot specify whether the
+payments are made at the end (@code{"e"}, default) or at the
+beginning (@code{"b"}) of each period.
+
+Note that the rate @var{r} is specified as a fraction (i.e., 0.05,
+not 5 percent).
+@end deftypefn
+
+
+@anchor{doc-fvl}
+@deftypefn {Function File} {} fvl (@var{r}, @var{n}, @var{l})
+Return the future value at the end of @var{n} periods of an initial
+lump sum investment @var{l}, given a per-period interest rate
+@var{r}.
+
+Note that the rate @var{r} is specified as a fraction (i.e., 0.05,
+not 5 percent).
+@end deftypefn
+
+
+@anchor{doc-irr}
+@deftypefn {Function File} {} irr (@var{p}, @var{i})
+Return the internal rate of return of a series of payments @var{p}
+from an initial investment @var{i} (i.e., the solution of
+@code{npv (r, p) = i}.  If the second argument is omitted, a value of
+0 is used.
+@end deftypefn
+@seealso{npv, pv, and rate}
+
+
+@anchor{doc-nper}
+@deftypefn {Function File} {} nper (@var{r}, @var{p}, @var{a}, @var{l}, @var{method})
+Return the number of regular payments of @var{p} necessary to
+amortize @var{a} loan of amount @var{a} and interest @var{r}.
+
+The optional argument @var{l} may be used to specify an additional
+lump-sum payment of @var{l} made at the end of the amortization time.
+
+The optional argument @var{method} may be used to specify whether
+payments are made at the end (@var{"e"}, default) or at the beginning
+(@var{"b"}) of each period.
+
+Note that the rate @var{r} is specified as a fraction (i.e., 0.05,
+not 5 percent).
+@end deftypefn
+@seealso{pv, pmt, rate, and npv}
+
+
+@anchor{doc-npv}
+@deftypefn {Function File} {} npv (@var{r}, @var{p}, @var{i})
+Returns the net present value of a series of irregular (i.e., not
+necessarily identical) payments @var{p} which occur at the ends of @var{n}
+consecutive periods.  @var{r} specifies the one-period interest rates and
+can either be a scalar (constant rates) or a vector of the same
+length as @var{p}.
+
+The optional argument @var{i} may be used to specify an initial
+investment.
+
+Note that the rate @var{r} is specified as a fraction (i.e., 0.05,
+not 5 percent).
+@end deftypefn
+@seealso{irr and pv}
+
+
+@anchor{doc-pmt}
+@deftypefn {Function File} {} pmt (@var{r}, @var{n}, @var{a}, @var{l}, @var{method})
+Return the amount of periodic payment necessary to amortize a loan
+of amount a with interest rate @var{r} in @var{n} periods.
+
+The optional argument @var{l} may be used to specify a terminal
+lump-sum payment.
+
+The optional argument @var{method} may be used to specify whether
+payments are made at the end (@var{"e"}, default) or at the beginning
+(@var{"b"}) of each period.
+@end deftypefn
+@seealso{pv, nper, and rate}
+
+
+@anchor{doc-pv}
+@deftypefn {Function File} {} pv (@var{r}, @var{n}, @var{p}, @var{l}, @var{method})
+Returns the present value of an investment that will pay off @var{p} for @var{n}
+consecutive periods, assuming an interest @var{r}.
+
+The optional argument @var{l} may be used to specify an additional
+lump-sum payment made at the end of @var{n} periods.
+
+The optional argument @var{method} may be used to specify whether
+payments are made at the end (@code{"e"}, default) or at the
+beginning (@code{"b"}) of each period.
+
+Note that the rate @var{r} is specified as a fraction (i.e., 0.05,
+not 5 percent).
+@end deftypefn
+@seealso{pmt, nper, rate, and npv}
+
+
+@anchor{doc-pvl}
+@deftypefn {Function File} {} pvl (@var{r}, @var{n}, @var{p})
+Return the present value of an investment that will pay off @var{p}
+in one lump sum at the end of @var{n} periods, given the interest
+rate @var{r}.
+
+Note that the rate @var{r} is specified as a fraction (i.e., 0.05,
+not 5 percent).
+@end deftypefn
+
+
+@anchor{doc-rate}
+@deftypefn {Function File} {} rate (@var{n}, @var{p}, @var{v}, @var{l}, @var{method})
+Return the rate of return on an investment of present value @var{v} which
+pays @var{p} in @var{n} consecutive periods.
+
+The optional argument @var{l} may be used to specify an additional
+lump-sum payment made at the end of @var{n} periods.
+
+The optional string argument @var{method} may be used to specify
+whether payments are made at the end (@code{"e"}, default) or at the
+beginning (@code{"b"}) of each period.
+@end deftypefn
+@seealso{pv, pmt, nper, and npv}
+
+
+@anchor{doc-vol}
+@deftypefn {Function File} {} vol (@var{x}, @var{m}, @var{n})
+Return the volatility of each column of the input matrix @var{x}.
+The number of data sets per period is given by @var{m} (e.g. the
+number of data per year if you want to compute the volatility per
+year).  The optional parameter @var{n} gives the number of past
+periods used for computation, if it is omitted, a value of 1 is used.
+If @var{t} is the number of rows of @var{x}, @code{vol} returns the
+volatility from @code{n*m} to @var{t}.
+@end deftypefn
+

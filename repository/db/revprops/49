@@ -1,0 +1,14 @@
+K 10
+svn:author
+V 6
+mitchb
+K 8
+svn:date
+V 27
+2008-11-29T00:44:26.376831Z
+K 7
+svn:log
+V 56
+Removed Nathan from sodabot ACL and UI credit messages.
+
+END

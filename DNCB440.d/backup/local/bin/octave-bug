@@ -1,0 +1,331 @@
+#! /bin/sh -
+#
+# octave-bug - create a bug report and mail it to the bug-octave
+# mailing list.
+#
+# Patterned after the bashbug script from bash 1.14.
+#
+# John W. Eaton
+# jwe@bevo.che.wisc.edu
+# University of Wisconsin-Madison
+# Department of Chemical Engineering
+
+# Configuration:  these variables are filled in when running make to
+# compile Octave.
+
+config_opts=""
+VERSION="2.1.36"
+MACHINE="i686-pc-linux-gnu"
+F77="g77"
+FFLAGS="-O"
+FPICFLAG="-fPIC"
+FLIBS="-L/usr/lib/gcc-lib/i386-redhat-linux/2.96 -L/usr/lib/gcc-lib/i386-redhat-linux/2.96/../../.. -lg2c -lm"
+F2C=""
+F2CFLAGS=""
+CPPFLAGS=""
+INCFLAGS="-I. -I. -I./liboctave -I./src -I./libcruft/misc  -I./glob -I./glob"
+CC="gcc"
+CC_VERSION="2.96 20000731 (Red Hat Linux 7.3 2.96-110)"
+CFLAGS="-g -O2"
+CPICFLAG="-fPIC"
+CXX="g++"
+CXX_VERSION="2.96 20000731 (Red Hat Linux 7.3 2.96-110)"
+CXXFLAGS="-g -O2 -Wall"
+CXXPICFLAG="-fPIC"
+LD_CXX="g++"
+LDFLAGS="-g"
+LIBFLAGS="-L."
+RLD_FLAG="-Xlinker -rpath -Xlinker /usr/local/lib/octave-2.1.36"
+LIBS="-lreadline  -lncurses -ldl -lm "
+BLAS_LIBS=""
+FFTW_LIBS=""
+LEXLIB=""
+LIBPLPLOT=""
+LIBGLOB="./glob/glob.o ./glob/fnmatch.o"
+LIBDLFCN=""
+DEFS="-DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DOCTAVE_SOURCE=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DSEPCHAR=1 -DSEPCHAR_STR=\":\" -D__NO_MATH_INLINES=1 -DCXX_NEW_FRIEND_TEMPLATE_DECL=1 -DCXX_ABI=gnu_v2 -DHAVE_LIBM=1 -DF77_FUNC(name,NAME)=name ## _ -DF77_FUNC_(name,NAME)=name ## __ -DHAVE_GETHOSTNAME=1 -DHAVE_GETPWNAM=1 -DSIZEOF_SHORT=2 -DSIZEOF_INT=4 -DSIZEOF_LONG=4 -DSIZEOF_LONG_LONG=8 -DHAVE_ALLOCA_H=1 -DHAVE_ALLOCA=1 -DNPOS=std::string::npos -DSTDC_HEADERS=1 -DHAVE_DIRENT_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_ASSERT_H=1 -DHAVE_CURSES_H=1 -DHAVE_DLFCN_H=1 -DHAVE_FCNTL_H=1 -DHAVE_FLOAT_H=1 -DHAVE_GRP_H=1 -DHAVE_LIMITS_H=1 -DHAVE_MEMORY_H=1 -DHAVE_NCURSES_H=1 -DHAVE_POLL_H=1 -DHAVE_PWD_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_POLL_H=1 -DHAVE_SYS_RESOURCE_H=1 -DHAVE_SYS_SELECT_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_SYS_TIMES_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_UTSNAME_H=1 -DHAVE_TERMCAP_H=1 -DHAVE_UNISTD_H=1 -DHAVE_VARARGS_H=1 -DHAVE_TERMIO_H=1 -DHAVE_SGTTY_H=1 -DHAVE_GLOB_H=1 -DHAVE_FNMATCH_H=1 -DHAVE_ATEXIT=1 -DHAVE_BCOPY=1 -DHAVE_BZERO=1 -DHAVE_DUP2=1 -DHAVE_ENDGRENT=1 -DHAVE_ENDPWENT=1 -DHAVE_EXECVP=1 -DHAVE_FCNTL=1 -DHAVE_FORK=1 -DHAVE_GETCWD=1 -DHAVE_GETEGID=1 -DHAVE_GETEUID=1 -DHAVE_GETGID=1 -DHAVE_GETGRENT=1 -DHAVE_GETGRGID=1 -DHAVE_GETGRNAM=1 -DHAVE_GETPGRP=1 -DHAVE_GETPID=1 -DHAVE_GETPPID=1 -DHAVE_GETPWENT=1 -DHAVE_GETPWUID=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_GETUID=1 -DHAVE_GETWD=1 -DHAVE_LINK=1 -DHAVE_LOCALTIME_R=1 -DHAVE_LSTAT=1 -DHAVE_MEMMOVE=1 -DHAVE_MKDIR=1 -DHAVE_MKFIFO=1 -DHAVE_ON_EXIT=1 -DHAVE_PIPE=1 -DHAVE_POLL=1 -DHAVE_PUTENV=1 -DHAVE_READLINK=1 -DHAVE_RENAME=1 -DHAVE_RINDEX=1 -DHAVE_RMDIR=1 -DHAVE_SELECT=1 -DHAVE_SETGRENT=1 -DHAVE_SETPWENT=1 -DHAVE_SETVBUF=1 -DHAVE_SIGACTION=1 -DHAVE_SIGPENDING=1 -DHAVE_SIGPROCMASK=1 -DHAVE_SIGSUSPEND=1 -DHAVE_STAT=1 -DHAVE_STRCASECMP=1 -DHAVE_STRDUP=1 -DHAVE_STRERROR=1 -DHAVE_STRFTIME=1 -DHAVE_STRNCASECMP=1 -DHAVE_STRPTIME=1 -DHAVE_SYMLINK=1 -DHAVE_TEMPNAM=1 -DHAVE_UMASK=1 -DHAVE_UNLINK=1 -DHAVE_USLEEP=1 -DHAVE_VFPRINTF=1 -DHAVE_VSPRINTF=1 -DHAVE_VSNPRINTF=1 -DHAVE_WAITPID=1 -DHAVE_LIBDL=1 -DHAVE_DLOPEN=1 -DHAVE_DLSYM=1 -DHAVE_DLERROR=1 -DHAVE_DLCLOSE=1 -DWITH_DL=1 -DWITH_DYNAMIC_LINKING=1 -DHAVE_TIMEVAL=1 -DHAVE_FINITE=1 -DHAVE_ISNAN=1 -DHAVE_ISINF=1 -DHAVE_ACOSH=1 -DHAVE_ASINH=1 -DHAVE_ATANH=1 -DHAVE_ERF=1 -DHAVE_ERFC=1 -DHAVE_STRUCT_STAT_ST_BLKSIZE=1 -DHAVE_STRUCT_STAT_ST_BLOCKS=1 -DHAVE_STRUCT_STAT_ST_RDEV=1 -DHAVE_STRUCT_TM_TM_ZONE=1 -DHAVE_TM_ZONE=1 -DUSE_READLINE=1 -DEXCEPTION_IN_MATH=1 -DRETSIGTYPE=void -DSYS_SIGLIST_DECLARED=1 -DHAVE_SYS_SIGLIST=1 -DHAVE_POSIX_SIGNALS=1 -DHAVE_DEV_T=1 -DHAVE_INO_T=1 -DHAVE_NLINK_T=1 -DHAVE_NLINK_T=1 -DHAVE_SIGSET_T=1 -DHAVE_GETRUSAGE=1 -DHAVE_TIMES=1 -DYYTEXT_POINTER=1"
+
+: ${USER=$LOGNAME}
+
+CC_AND_VERSION=
+if test -n "$CC_VERSION"; then
+  CC_AND_VERSION="$CC, version $CC_VERSION"
+fi
+
+CXX_AND_VERSION=
+if test -n "$CXX_VERSION"; then
+  CXX_AND_VERSION="$CXX, version $CXX_VERSION"
+fi
+
+PATH=/bin:/usr/bin:/usr/ucb:/usr/local/bin:$PATH
+export PATH
+
+TEMP=/tmp/octave-bug.$$
+
+: ${EDITOR=emacs}
+: ${PAGER=more}
+
+trap 'rm -f $TEMP $TEMP.x; exit 1' 1 2 3 13 15
+trap 'rm -f $TEMP $TEMP.x' 0
+
+UN=
+if (uname) > /dev/null 2>&1; then
+  UN=`uname -a`
+fi
+
+HAVE_FMT=false
+if (fmt < /dev/null) > /dev/null 2>&1; then
+  HAVE_FMT=true
+fi
+
+# Check whether to use -n or \c to keep echo from printing a newline
+# character.  Stolen from autoconf, which borrowed the idea from dist 3.0.
+
+if (echo "testing\c"; echo 1,2,3) | grep c >/dev/null; then
+  # Stardent Vistra SVR4 grep lacks -e, says ghazi@caip.rutgers.edu.
+  if (echo -n testing; echo 1,2,3) | sed s/-n/xn/ | grep xn >/dev/null; then
+    echo_n=
+    echo_c='
+'
+  else
+    echo_n=-n
+    echo_c=
+  fi
+else
+  echo_n=
+  echo_c='\c'
+fi
+
+ss_p=`echo $VERSION | grep "^ss-"`
+if test -n "$ss_p"; then
+  BUGADDR="octave-maintainers@bevo.che.wisc.edu"
+else
+  pretest_p=`echo $VERSION \
+    | sed 's,.*\.\([0-9]*\).*,\1,' \
+    | grep -v '\.' \
+    | grep '[0-9]'`
+
+  if test -n "$pretest_p" && test "$pretest_p" -ge 90; then
+    BUGADDR="octave-maintainers@bevo.che.wisc.edu"
+  else
+    BUGADDR="bug-octave@bevo.che.wisc.edu"
+  fi
+fi
+
+SUBJECT="[50 character or so descriptive subject here (for reference)]"
+if test $# -gt 0; then
+  case "$1" in
+    -s)
+      shift
+      if test $# -gt 0; then
+        SUBJECT="$1"
+        shift
+      else
+        echo "usage: octave-bug [-s subject]"
+        exit 1
+      fi
+    ;;
+  esac
+fi
+
+cat > $TEMP << EOF
+To: $BUGADDR
+EOF
+if test -n "$USER"; then
+cat >> $TEMP << EOF
+Cc: $USER
+EOF
+fi
+cat >> $TEMP << EOF
+Subject: $SUBJECT
+--------
+Bug report for Octave $VERSION configured for $MACHINE
+
+Description:
+-----------
+
+  * Please replace this item with a detailed description of the
+    problem.  Suggestions or general comments are also welcome.
+
+Repeat-By:
+---------
+
+  * Please replace this item with a description of the sequence of
+    events that causes the problem to occur. 
+
+Fix:
+---
+
+  * If possible, replace this item with a description of how to
+    fix the problem (if you don't have a fix for the problem, don't
+    include this section, but please do submit your report anyway).
+
+
+
+Configuration (please do not edit this section):
+-----------------------------------------------
+
+uname output:     $UN
+configure opts:   $config_opts
+Fortran compiler: $F77
+FFLAGS:           $FFLAGS
+F2C:              $F2C
+F2CFLAGS:         $F2CFLAGS
+FLIBS:            $FLIBS
+CPPFLAGS:         $CPPFLAGS
+INCFLAGS:         $INCFLAGS
+C compiler:       $CC_AND_VERSION
+CFLAGS:           $CFLAGS
+CPICFLAG:         $CPICFLAG
+C++ compiler:     $CXX_AND_VERSION
+CXXFLAGS:         $CXXFLAGS
+CXXPICFLAG:       $CXXPICFLAG
+LD_CXX:           $LD_CXX
+LDFLAGS:          $LDFLAGS
+LIBFLAGS:         $LIBFLAGS
+RLD_FLAG:         $RLD_FLAG
+BLAS_LIBS:        $BLAS_LIBS
+FFTW_LIBS:        $FFTW_LIBS
+LIBS:             $LIBS
+LEXLIB:           $LEXLIB
+LIBPLPLOT:        $LIBPLPLOT
+LIBDLFCN:         $LIBDLFCN
+LIBGLOB:          $LIBGLOB
+DEFS:
+
+EOF
+
+if $HAVE_FMT; then
+  echo $DEFS | fmt | sed 's/^/  /' >> $TEMP
+else
+  echo $DEFS >> $TEMP
+fi
+
+if test $# -gt 0; then
+  if test -f "$1"; then
+    cat >> $TEMP << EOF
+
+User-preferences (please do not edit this section):
+--------------------------------------------------
+
+EOF
+    cat $1 >> $TEMP
+  fi
+fi
+
+chmod u+w $TEMP
+cp $TEMP $TEMP.x
+
+status=0
+
+editing=true
+
+while $editing; do
+  if $EDITOR $TEMP; then
+    while $editing; do
+      echo $echo_n "(a)bort, (e)dit, (l)ist, (s)end? $echo_c"
+      read ans
+      case "$ans" in
+        a* | A*)
+          status=1
+          editing=false
+        ;;
+        e* | E*)
+          break;
+        ;;
+        l* | L*)
+          $PAGER $TEMP
+        ;;
+        s* | S*)
+          editing=false
+        ;;
+      esac
+    done
+  else
+    echo "problems with edit -- no bug report submitted"
+    status=1
+    editing=false
+  fi
+done
+
+if test $status -eq 0; then
+  if cmp -s $TEMP $TEMP.x; then
+    echo "file not changed -- no bug report submitted"
+    status=1
+  elif test `wc $TEMP | awk '{print $1}'` -eq 0; then
+    echo "empty bug report file -- not submitted"
+    status=1
+  else
+
+# Try to extract the recipient address, in case the To: line in the
+# message template has been changed.  Also get cc: lines.
+
+    TO_ADDR=`sed -e '/^--------[ \t]*$/q' $TEMP | sed -n -e 's/^[Tt][Oo]://p'`
+    CC_ADDR=`sed -e '/^--------[ \t]*$/q' $TEMP | sed -n -e 's/^[Cc][Cc]://p'`
+
+    if test -z "$TO_ADDR"; then
+      echo "no valid \`To:' field found in header -- using $BUGADDR instead"
+    else
+      BUGADDR="$TO_ADDR"      
+    fi
+
+    BUGADDR="$BUGADDR $CC_ADDR"
+
+    TMP_SUB=`sed -e '/^--------[ \t]*$/q' $TEMP | sed -n -e 's/^Subject://p'`
+
+    if test -n "$TMP_SUB"; then
+      SUBJECT="$TMP_SUB"
+    fi
+
+# Delete the `--------' separator in the message.
+
+# Don't pretty-print this.  Odd whitespace kills Ultrix AWK!
+
+    awk 'BEGIN{in_header=1;} /^--------[ \t]*$/ {
+      if (in_header) { in_header=0; print ""; next; }
+    } { print $0; }' $TEMP > $TEMP.x
+
+# Now try to mail it.
+
+    ( /bin/mail $BUGADDR < $TEMP.x ) > /dev/null 2>&1
+    status=$?
+    if test $status -ne 0; then
+      ( Mail -s "$SUBJECT" $BUGADDR < $TEMP.x ) > /dev/null 2>&1
+      status=$?
+      if test $status -ne 0; then
+	( /usr/ucb/mail -s "$SUBJECT" $BUGADDR < $TEMP.x ) > /dev/null 2>&1
+	status=$?
+	if test $status -ne 0; then
+	  ( mailx -s "$SUBJECT" $BUGADDR < $TEMP.x ) > /dev/null 2>&1
+	  status=$?
+	fi
+      fi
+    fi
+
+    if test $status -ne 0; then
+      echo "unable to send mail..."
+    fi
+  fi
+fi
+
+if test $status -ne 0; then
+  dead_bug_file=$HOME/dead-octave-bug
+  looking_for_file=true;
+  n=1
+  while $looking_for_file; do
+    if test -f "$dead_bug_file-$n"; then
+      n=`expr $n + 1`
+    else
+      looking_for_file=false
+      dead_bug_file=$dead_bug_file-$n
+    fi
+  done
+  echo "saving message in $dead_bug_file";
+  cat $TEMP >> $dead_bug_file;
+  exit 1
+else
+  echo "bug report sent to: $TO_ADDR"
+  echo "             cc to: $CC_ADDR"
+fi
+
+exit $status

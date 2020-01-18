@@ -1,0 +1,14 @@
+K 10
+svn:author
+V 6
+mitchb
+K 8
+svn:date
+V 27
+2008-10-27T08:09:59.327771Z
+K 7
+svn:log
+V 36
+Fix a failed variable substitution.
+
+END

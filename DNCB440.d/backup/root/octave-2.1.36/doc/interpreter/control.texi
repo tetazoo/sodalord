@@ -1,0 +1,3936 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Control Theory, Signal Processing, Polynomial Manipulations, Top
+@chapter Control Theory
+
+The Octave Control Systems Toolbox (OCST) was initially developed
+by Dr.@: A. Scottedward Hodel 
+@email{a.s.hodel@@eng.auburn.edu} with the assistance
+of his students
+@itemize @bullet
+@item R. Bruce Tenison @email{btenison@@dibbs.net}, 
+@item David C. Clem,
+@item John E. Ingram @email{John.Ingram@@sea.siemans.com}, and 
+@item Kristi McGowan.  
+@end itemize
+This development was supported in part by NASA's Marshall Space Flight 
+Center as part of an in-house CACSD environment.  Additional important 
+contributions were made by Dr. Kai Mueller @email{mueller@@ifr.ing.tu-bs.de}
+and Jose Daniel Munoz Frias (@code{place.m}).
+
+An on-line menu-driven tutorial is available via @code{DEMOcontrol};
+beginning OCST users should start with this program. 
+
+@anchor{doc-DEMOcontrol}
+@deftypefn {Function File} {} DEMOcontrol
+Octave Control Systems Toolbox demo/tutorial program.  The demo
+allows the user to select among several categories of OCST function:
+@example
+@group
+octave:1> DEMOcontrol
+O C T A V E    C O N T R O L   S Y S T E M S   T O O L B O X
+Octave Controls System Toolbox Demo
+
+  [ 1] System representation
+  [ 2] Block diagram manipulations
+  [ 3] Frequency response functions
+  [ 4] State space analysis functions
+  [ 5] Root locus functions
+  [ 6] LQG/H2/Hinfinity functions
+  [ 7] End
+@end group
+@end example
+Command examples are interactively run for users to observe the use
+of OCST functions.
+@end deftypefn
+@seealso{Demo Programs: bddemo.m, frdemo.m, analdemo.m,
+moddmeo.m, rldemo.m}
+
+
+@menu
+* sysstruct::                   
+* sysinterface::                
+* sysdisp::                     
+* blockdiag::                   
+* numerical::                   
+* sysprop::                     
+* systime::                     
+* sysfreq::                     
+* cacsd::                       
+* misc::                        
+@end menu
+
+@node sysstruct, sysinterface, Control Theory, Control Theory
+@section System Data Structure
+
+@menu
+* sysstructvars::               
+* sysstructtf::                 
+* sysstructzp::                 
+* sysstructss::                 
+@end menu
+
+The OCST stores all dynamic systems in
+a single data structure format that can represent continuous systems,
+discrete-systems, and mixed (hybrid) systems in state-space form, and
+can also represent purely continuous/discrete systems in either
+transfer function or pole-zero form. In order to
+provide more flexibility in treatment of discrete/hybrid systems, the
+OCST also keeps a record of which system outputs are sampled.
+
+Octave structures are accessed with a syntax much like that used
+by the C programming language.  For consistency in
+use of the data structure used in the OCST, it is recommended that
+the system structure access m-files be used (@pxref{sysinterface}).
+Some elements of the data structure are absent depending on the internal
+system representation(s) used.  More than one system representation
+can be used for SISO systems; the OCST m-files ensure that all representations
+used are consistent with one another.
+
+@anchor{doc-sysrepdemo}
+@deftypefn {Function File} {} sysrepdemo
+Tutorial for the use of the system data structure functions.
+@end deftypefn
+
+
+@node sysstructvars, sysstructtf, sysstruct, sysstruct
+@subsection Variables common to all OCST system formats
+
+The data structure elements (and variable types) common to all  system
+representations are listed below; examples of the initialization
+and use of the system data structures are given in subsequent sections and
+in the online demo @code{DEMOcontrol}.
+@table @var
+@item n
+@itemx nz
+The respective number of continuous and discrete states
+in the system (scalar)
+
+@item inname
+@itemx outname
+list of name(s) of the system input, output signal(s). (list of strings)
+
+@item sys
+System status vector.  (vector)
+
+This vector indicates both what representation was used to initialize
+the system data structure (called the primary system type) and which
+other representations are currently up-to-date with the primary system
+type (@pxref{structaccess}).
+
+The value of the first element of the vector indicates the primary
+system type.
+
+@table @asis
+@item 0
+for tf form (initialized with @code{tf2sys} or @code{fir2sys})
+
+@item 1
+for zp form (initialized with @code{zp2sys})
+
+@item 2
+for ss form (initialized with @code{ss2sys})
+@end table
+
+The next three elements are boolean flags that indicate whether tf, zp,
+or ss, respectively, are ``up to date" (whether it is safe to use the
+variables associated with these representations).  These flags are
+changed when calls are made to the @code{sysupdate} command.
+
+@item tsam
+ Discrete time sampling period  (nonnegative scalar).
+ @var{tsam} is set to 0 for continuous time systems.
+
+@item yd
+ Discrete-time output list (vector)
+
+ indicates which outputs are discrete time (i.e.,
+    produced by D/A converters) and which are continuous time.
+    yd(ii) = 0 if output ii is continuous, = 1 if discrete.
+@end table
+
+The remaining variables of the  system data structure are only present
+if the corresponding entry of the @code{sys} vector is true (=1).
+
+@node sysstructtf, sysstructzp, sysstructvars, sysstruct
+@subsection @code{tf} format variables
+
+@table @var
+@item num
+ numerator coefficients   (vector)
+
+@item den
+ denominator coefficients   (vector)
+
+@end table
+
+@node sysstructzp, sysstructss, sysstructtf, sysstruct
+@subsection @code{zp} format variables
+
+@table @var
+@item zer
+ system zeros   (vector)
+
+@item pol
+ system poles    (vector)
+
+@item k
+ leading coefficient   (scalar)
+
+@end table
+
+@node sysstructss,  , sysstructzp, sysstruct
+@subsection @code{ss} format variables
+
+@table @var
+@item a
+@itemx b
+@itemx c
+@itemx d
+The usual state-space matrices. If a system has both
+        continuous and discrete states, they are sorted so that
+        continuous states come first, then discrete states
+
+@strong{Note} some functions (e.g., @code{bode}, @code{hinfsyn}) 
+will not accept systems with both discrete and continuous states/outputs
+
+@item stname
+names of system states   (list of strings)
+
+@end table
+
+@node sysinterface, sysdisp, sysstruct, Control Theory
+@section System Construction and Interface Functions
+
+Construction and manipulations of the OCST system data structure
+(@pxref{sysstruct}) requires attention to many details in order
+to ensure that data structure contents remain consistent.  Users
+are strongly encouraged to use the system interface functions
+in this section.  Functions for the formatted display in of system
+data structures are given in @ref{sysdisp}.
+
+@menu
+* fir2sys::                     
+* ss2sys::                      
+* tf2sys::                      
+* zp2sys::                      
+* structaccess::                
+* structintern::                
+@end menu
+
+@node fir2sys, ss2sys, sysinterface, sysinterface
+@subsection Finite impulse response system interface functions
+
+@anchor{doc-fir2sys}
+@deftypefn {Function File} {} fir2sys (@var{num}, @var{tsam}, @var{inname}, @var{outname})
+construct a system data structure from FIR description
+
+@strong{Inputs:}
+@table @var
+@item num
+vector of coefficients @math{[c_0 c_1 ... c_n]}
+of the SISO FIR transfer function
+@ifinfo
+
+C(z) = c0 + c1*z^@{-1@} + c2*z^@{-2@} + ... + znz^@{-n@}
+
+@end ifinfo
+@iftex
+@tex
+$$C(z) = c0 + c1*z^{-1} + c2*z^{-2} + ... + znz^{-n}$$
+@end tex
+@end iftex
+
+@item tsam
+sampling time (default: 1)
+
+@item inname
+name of input signal;  may be a string or a list with a single entry.
+
+@item outname
+name of output signal; may be a string or a list with a single entry.
+@end table
+
+@strong{Outputs}
+@var{sys} (system data structure)
+
+@strong{Example}
+@example
+octave:1> sys = fir2sys([1 -1 2 4],0.342,"A/D input","filter output");
+octave:2> sysout(sys)
+Input(s)
+        1: A/D input
+
+Output(s):
+        1: filter output (discrete)
+
+Sampling interval: 0.342
+transfer function form:
+1*z^3 - 1*z^2 + 2*z^1 + 4
+-------------------------
+1*z^3 + 0*z^2 + 0*z^1 + 0
+@end example
+@end deftypefn
+
+
+@anchor{doc-sys2fir}
+@deftypefn {Function File} {[@var{c}, @var{tsam}, @var{input}, @var{output}] =} sys2fir (@var{sys})
+
+Extract FIR data from system data structure; see fir2sys for
+parameter descriptions.
+@end deftypefn
+@seealso{fir2sys}
+
+
+@node ss2sys, tf2sys, fir2sys, sysinterface
+@subsection State space system interface functions
+
+@anchor{doc-ss2sys}
+@deftypefn {Function File} {} ss2sys (@var{a}, @var{b}, @var{c}, @var{d}, @var{tsam}, @var{n}, @var{nz}, @var{stname}, @var{inname}, @var{outname}, @var{outlist})
+Create system structure from state-space data.   May be continous,
+discrete, or mixed (sampeled-data)
+
+@strong{Inputs}
+@table @var
+@item a
+@itemx b
+@itemx c
+@itemx d
+usual state space matrices.
+
+default: @var{d} = zero matrix
+
+@item   tsam
+sampling rate.  Default: @math{tsam = 0} (continuous system)
+
+@item n
+@itemx nz
+number of continuous, discrete states in the system
+
+If @var{tsam} is 0, @math{n = @code{rows}(@var{a})}, @math{nz = 0}.
+
+If @var{tsam} is greater than zero, @math{n = 0},
+@math{nz = @code{rows}(@var{a})}
+
+see below for system partitioning
+
+@item  stname
+list of strings of state signal names
+
+default (@var{stname}=[] on input): @code{x_n} for continuous states,
+@code{xd_n} for discrete states
+
+@item inname
+list of strings of input signal names
+
+default (@var{inname} = [] on input): @code{u_n}
+
+@item outname
+list of strings of input signal names
+
+default (@var{outname} = [] on input): @code{y_n}
+
+@item   outlist
+
+list of indices of outputs y that are sampled
+
+If @var{tsam} is 0, @math{outlist = []}.
+
+If @var{tsam} is greater than 0, @math{outlist = 1:@code{rows}(@var{c})}.
+@end table
+
+Unlike states, discrete/continous outputs may appear in any order.
+
+@strong{Note} @code{sys2ss} returns a vector @var{yd} where
+@var{yd}(@var{outlist}) = 1; all other entries of @var{yd} are 0.
+
+@strong{Outputs}
+@var{outsys} = system data structure
+
+@strong{System partitioning}
+
+Suppose for simplicity that outlist specified
+that the first several outputs were continuous and the remaining outputs
+were discrete.  Then the system is partitioned as
+@example
+@group
+x = [ xc ]  (n x 1)
+    [ xd ]  (nz x 1 discrete states)
+a = [ acc acd ]  b = [ bc ]
+    [ adc add ]      [ bd ]
+c = [ ccc ccd ]  d = [ dc ]
+    [ cdc cdd ]      [ dd ]
+
+    (cdc = c(outlist,1:n), etc.)
+@end group
+@end example
+with dynamic equations:
+@ifinfo
+@math{d/dt xc(t)     = acc*xc(t)      + acd*xd(k*tsam) + bc*u(t)}
+
+@math{xd((k+1)*tsam) = adc*xc(k*tsam) + add*xd(k*tsam) + bd*u(k*tsam)}
+
+@math{yc(t)      = ccc*xc(t)      + ccd*xd(k*tsam) + dc*u(t)}
+
+@math{yd(k*tsam) = cdc*xc(k*tsam) + cdd*xd(k*tsam) + dd*u(k*tsam)}
+@end ifinfo
+@iftex
+@tex
+$$\eqalign{
+{d \over dt} x_c(t)
+  & =   a_{cc} x_c(t)      + a_{cd} x_d(k*t_{sam}) + bc*u(t) \cr
+x_d((k+1)*t_{sam})
+  & =   a_{dc} x_c(k t_{sam}) + a_{dd} x_d(k t_{sam}) + b_d u(k t_{sam}) \cr
+y_c(t)
+ & =  c_{cc} x_c(t) + c_{cd} x_d(k t_{sam}) + d_c u(t) \cr
+y_d(k t_{sam})
+  & =  c_{dc} x_c(k t_{sam}) + c_{dd} x_d(k t_{sam}) + d_d u(k t_{sam})
+}$$
+@end tex
+@end iftex
+
+@strong{Signal partitions}
+@example
+@group
+        | continuous      | discrete               |
+----------------------------------------------------
+states  | stname(1:n,:)   | stname((n+1):(n+nz),:) |
+----------------------------------------------------
+outputs | outname(cout,:) | outname(outlist,:)     |
+----------------------------------------------------
+@end group
+@end example
+where @math{cout} is the list of in 1:@code{rows}(@var{p})
+that are not contained in outlist. (Discrete/continuous outputs
+may be entered in any order desired by the user.)
+
+@strong{Example}
+@example
+octave:1> a = [1 2 3; 4 5 6; 7 8 10];
+octave:2> b = [0 0 ; 0 1 ; 1 0];
+octave:3> c = eye(3);
+octave:4> sys = ss2sys(a,b,c,[],0,3,0,list("volts","amps","joules"));
+octave:5> sysout(sys);
+Input(s)
+        1: u_1
+        2: u_2
+
+Output(s):
+        1: y_1
+        2: y_2
+        3: y_3
+
+state-space form:
+3 continuous states, 0 discrete states
+State(s):
+        1: volts
+        2: amps
+        3: joules
+
+A matrix: 3 x 3
+   1   2   3
+   4   5   6
+   7   8  10
+B matrix: 3 x 2
+  0  0
+  0  1
+  1  0
+C matrix: 3 x 3
+  1  0  0
+  0  1  0
+  0  0  1
+D matrix: 3 x 3
+  0  0
+  0  0
+  0  0
+@end example
+Notice that the @math{D} matrix is constructed  by default to the
+correct dimensions.  Default input and output signals names were assigned
+since none were given.
+@end deftypefn
+
+
+@anchor{doc-sys2ss}
+@deftypefn {Function File} {[@var{a}, @var{b}, @var{c}, @var{d}, @var{tsam}, @var{n}, @var{nz}, @var{stname}, @var{inname}, @var{outname}, @var{yd}] =} sys2ss (@var{sys})
+Extract state space representation from system data structure.
+
+@strong{Inputs}
+@var{sys} system data structure
+
+@strong{Outputs}
+@table @var
+@item a
+@itemx b
+@itemx c
+@itemx d
+state space matrices for sys
+
+@item tsam
+sampling time of sys (0 if continuous)
+
+@item n
+@itemx nz
+number of continuous, discrete states (discrete states come
+last in state vector @var{x})
+
+@item stname
+@itemx inname
+@itemx outname
+signal names (lists of strings);  names of states,
+inputs, and outputs, respectively
+
+@item yd
+binary vector; @var{yd}(@var{ii}) is 1 if output @var{y}(@var{ii})$
+is discrete (sampled); otherwise  @var{yd}(@var{ii}) 0.
+
+@end table
+A warning massage is printed if the system is a mixed
+continuous and discrete system
+
+@strong{Example}
+@example
+octave:1> sys=tf2sys([1 2],[3 4 5]);
+octave:2> [a,b,c,d] = sys2ss(sys)
+a =
+   0.00000   1.00000
+  -1.66667  -1.33333
+b =
+  0
+  1
+c = 0.66667  0.33333
+d = 0
+@end example
+@end deftypefn
+
+
+@node tf2sys, zp2sys, ss2sys, sysinterface
+@subsection Transfer function system interface functions
+
+@anchor{doc-tf2sys}
+@deftypefn {Function File} {} tf2sys (@var{num}, @var{den}, @var{tsam}, @var{inname}, @var{outname})
+build system data structure from transfer function format data
+
+@strong{Inputs}
+@table @var
+@item  num
+@itemx den
+coefficients of numerator/denominator polynomials
+@item tsam
+sampling interval. default: 0 (continuous time)
+@item inname
+@itemx outname
+input/output signal names; may be a string or list with a single string
+entry.
+@end table
+
+@strong{Outputs}
+@var{sys} = system data structure
+
+@strong{Example}
+@example
+octave:1> sys=tf2sys([2 1],[1 2 1],0.1);
+octave:2> sysout(sys)
+Input(s)
+        1: u_1
+Output(s):
+        1: y_1 (discrete)
+Sampling interval: 0.1
+transfer function form:
+2*z^1 + 1
+-----------------
+1*z^2 + 2*z^1 + 1
+@end example
+@end deftypefn
+
+
+@anchor{doc-sys2tf}
+@deftypefn {Function File} {[@var{num}, @var{den}, @var{tsam}, @var{inname}, @var{outname}] =} sys2tf (@var{sys})
+Extract transfer function data from a system data structure
+
+See tf2sys for parameter descriptions.
+
+@strong{Example}
+@example
+octave:1> sys=ss2sys([1 -2; -1.1,-2.1],[0;1],[1 1]);
+octave:2> [num,den] = sys2tf(sys)
+num = 1.0000  -3.0000
+den = 1.0000   1.1000  -4.3000
+@end example
+@end deftypefn
+
+
+@node zp2sys, structaccess, tf2sys, sysinterface
+@subsection Zero-pole system interface functions
+
+@anchor{doc-zp2sys}
+@deftypefn {Function File} {} zp2sys (@var{zer}, @var{pol}, @var{k}, @var{tsam}, @var{inname}, @var{outname})
+Create system data structure from zero-pole data.
+
+@strong{Inputs}
+@table @var
+@item   zer
+vector of system zeros
+@item   pol
+vector of system poles
+@item   k
+scalar leading coefficient
+@item   tsam
+sampling period. default: 0 (continuous system)
+@item   inname
+@itemx  outname
+input/output signal names (lists of strings)
+@end table
+
+@strong{Outputs}
+sys: system data structure
+
+@strong{Example}
+@example
+octave:1> sys=zp2sys([1 -1],[-2 -2 0],1);
+octave:2> sysout(sys)
+Input(s)
+        1: u_1
+Output(s):
+        1: y_1
+zero-pole form:
+1 (s - 1) (s + 1)
+-----------------
+s (s + 2) (s + 2)
+@end example
+@end deftypefn
+
+
+@anchor{doc-sys2zp}
+@deftypefn {Function File} {[@var{zer}, @var{pol}, @var{k}, @var{tsam}, @var{inname}, @var{outname}] =} sys2zp (@var{sys})
+Extract zero/pole/leading coefficient information from a system data
+structure
+
+See zp2sys for parameter descriptions.
+
+@strong{Example}
+@example
+octave:1> sys=ss2sys([1 -2; -1.1,-2.1],[0;1],[1 1]);
+octave:2> [zer,pol,k] = sys2zp(sys)
+zer = 3.0000
+pol =
+  -2.6953
+   1.5953
+k = 1
+@end example
+@end deftypefn
+
+
+@node structaccess, structintern, zp2sys, sysinterface
+@subsection Data structure access functions
+
+@anchor{doc-syschnames}
+@deftypefn {Function File} {} syschnames (@var{sys}, @var{opt}, @var{list}, @var{names})
+Superseded by @code{syssetsignals}
+@end deftypefn
+
+
+@anchor{doc-syschtsam}
+@deftypefn {Function File} {} syschtsam (@var{sys}, @var{tsam})
+This function changes the sampling time (tsam) of the system.  Exits with
+an error if sys is purely continuous time.
+@end deftypefn
+
+
+@anchor{doc-sysdimensions}
+@deftypefn {Function File} {[@var{n}, @var{nz}, @var{m}, @var{p}, @var{yd}] =} sysdimensions (@var{sys}, @var{opt})
+return the number of states, inputs, and/or outputs in the system
+@var{sys}.
+
+@strong{Inputs}
+@table @var
+@item sys
+system data structure
+
+@item opt
+String indicating which dimensions are desired.  Values:
+@table @code
+@item "all"
+(default) return all parameters as specified under Outputs below.
+
+@item "cst"
+return @var{n}= number of continuous states
+
+@item "dst"
+return @var{n}= number of discrete states
+
+@item "in"
+return @var{n}= number of inputs
+
+@item "out"
+return @var{n}= number of outputs
+@end table
+@end table
+
+@strong{Outputs}
+@table @var
+@item  n
+ number of continuous states (or individual requested dimension as specified
+by @var{opt}).
+@item  nz
+ number of discrete states
+@item  m
+ number of system inputs
+@item  p
+ number of system outputs
+@item  yd
+ binary vector; @var{yd}(@var{ii}) is nonzero if output @var{ii} is
+discrete.
+@math{yd(ii) = 0} if output @var{ii} is continous
+@end table
+@end deftypefn
+@seealso{sysgetsignals and sysgettsam}
+
+
+@anchor{doc-sysgetsignals}
+@deftypefn {Function File} {[@var{stname}, @var{inname}, @var{outname}, @var{yd}] =} sysgetsignals (@var{sys})
+@deftypefnx{Function File} {@var{siglist} =} sysgetsignals (@var{sys}, @var{sigid})
+@deftypefnx{Function File} {@var{signame} =} sysgetsignals (@var{sys}, @var{sigid}, @var{signum}, @var{strflg})
+Get signal names from a system
+
+@strong{Inputs}
+@table @var
+@item sys
+system data structure for the state space system
+
+@item sigid
+signal id.  String.  Must be one of
+@table @code
+@item "in"
+input signals
+@item "out"
+output signals
+@item "st"
+stage signals
+@item "yd"
+value of logical vector @var{yd}
+@end table
+
+@item signum
+index(indices) or name(s) or signals; see @code{sysidx}
+
+@item strflg
+flag to return a string instead of a list;  Values:
+@table @code
+@item 0
+(default) return a list (even if signum specifies an individual signal)
+
+@item 1
+return a string.  Exits with an error if signum does not specify an 
+individual signal.
+@end table
+
+@end table
+
+@strong{Outputs}
+@table @bullet
+@item If @var{sigid} is not specified
+@table @var
+@item stname
+@itemx inname
+@itemx outname
+signal names (lists of strings);  names of states,
+inputs, and outputs, respectively
+@item yd
+binary vector; @var{yd}(@var{ii}) is nonzero if output @var{ii} is
+discrete.
+@end table
+
+@item If @var{sigid} is specified but @var{signum} is not specified, then
+@table @code
+@item sigid="in"
+@var{siglist} is set to the list of input names
+
+@item sigid="out"
+@var{siglist} is set to the list of output names
+
+@item sigid="st"
+@var{siglist} is set to the list of state names
+
+stage signals
+@item sigid="yd"
+@var{siglist} is set to logical vector indicating discrete outputs;
+@var{siglist}(@var{ii}) = 0 indicates that output @var{ii} is continuous
+(unsampled), otherwise it is discrete.
+
+@end table
+
+@item if the first three input arguments are specified, then @var{signame} is
+a list of the specified signal names (@var{sigid} is @code{"in"},
+@code{"out"}, or @code{"st"}), or else the logical flag
+indicating whether output(s) @var{signum} is(are) discrete (@var{sigval}=1)
+or continuous (@var{sigval}=0).
+@end table
+
+@strong{Examples} (From @code{sysrepdemo})
+@example
+octave> sys=ss2sys(rand(4),rand(4,2),rand(3,4));
+octave> [Ast,Ain,Aout,Ayd] = sysgetsignals(sys) i  # get all signal names
+Ast =
+(
+  [1] = x_1
+  [2] = x_2
+  [3] = x_3
+  [4] = x_4
+)
+Ain =
+(
+  [1] = u_1
+  [2] = u_2
+)
+Aout =
+(
+  [1] = y_1
+  [2] = y_2
+  [3] = y_3
+)
+Ayd =
+
+  0  0  0
+octave> Ain = sysgetsignals(sys,"in")   # get only input signal names
+Ain =
+(
+  [1] = u_1
+  [2] = u_2
+)
+octave> Aout = sysgetsignals(sys,"out",2)   # get name of output 2 (in list)
+Aout =
+(
+  [1] = y_2
+)
+octave> Aout = sysgetsignals(sys,"out",2,1)  # get name of output 2 (as string)
+Aout = y_2
+@end example
+@end deftypefn
+
+
+@anchor{doc-sysgettype}
+@deftypefn {Function File} {} sysgettype (@var{sys})
+return the initial system type of the system
+
+@strong{Inputs}
+@var{sys}: system data structure
+
+@strong{Outputs}
+@var{systype}: string indicating how the structure was initially
+constructed:
+values: @code{"ss"}, @code{"zp"}, or @code{"tf"}
+
+@strong{Note} FIR initialized systems return @code{systype="tf"}.
+@end deftypefn
+
+
+@anchor{doc-syssetsignals}
+@deftypefn {Function File} {} syssetsignals (@var{sys}, @var{opt}, @var{names}, @var{sig_idx})
+change the names of selected inputs, outputs and states.
+@strong{Inputs}
+@table @var
+@item sys
+system data structure
+
+@item opt
+change default name (output)
+
+@table @code
+@item "out"
+change selected output names
+@item "in"
+change selected input names
+@item "st"
+change selected state names
+@item "yd"
+change selected outputs from discrete to continuous or
+from continuous to discrete.
+@end table
+
+@item names
+@table @code
+@item opt = "out", "in", or "st"
+string or string array containing desired signal names or values.
+@item opt = "yd"
+To desired output continuous/discrete flag.
+Set name to 0 for continuous, or 1 for discrete.
+@end table
+@item sig_idx
+indices or names of outputs, yd, inputs, or
+states whose respective names/values should be changed.
+
+Default: replace entire list of names/entire yd vector.
+@end table
+@strong{Outputs}
+@var{retsys=sys} with appropriate signal names changed
+(or yd values, where appropriate)
+
+@strong{Example}
+@example
+octave:1> sys=ss2sys([1 2; 3 4],[5;6],[7 8]);
+octave:2> sys = syssetsignals(sys,"st",str2mat("Posx","Velx"));
+octave:3> sysout(sys)
+Input(s)
+        1: u_1
+Output(s):
+        1: y_1
+state-space form:
+2 continuous states, 0 discrete states
+State(s):
+        1: Posx
+        2: Velx
+A matrix: 2 x 2
+  1  2
+  3  4
+B matrix: 2 x 1
+  5
+  6
+C matrix: 1 x 2
+  7  8
+D matrix: 1 x 1
+0
+@end example
+@end deftypefn
+
+
+@anchor{doc-sysupdate}
+@deftypefn {Function File} {} sysupdate (@var{sys}, @var{opt})
+Update the internal representation of a system.
+
+@strong{Inputs}
+@table @var
+@item sys:
+system data structure
+@item opt
+string:
+@table @code
+@item "tf"
+update transfer function form
+@item "zp"
+update zero-pole form
+@item "ss"
+update state space form
+@item "all"
+all of the above
+@end table
+@end table
+
+@strong{Outputs}
+@var{retsys}: contains union of data in sys and requested data.
+If requested data in sys is already up to date then retsys=sys.
+
+Conversion to @code{tf} or @code{zp} exits with an error if the system is
+mixed continuous/digital.
+@end deftypefn
+@seealso{tf2sys, ss2sys, zp2sys, sysout, sys2ss, sys2tf, and sys2zp}
+
+
+ function [systype, nout, nin, ncstates, ndstates] = minfo(inmat)
+
+MINFO:  Determines the type of system matrix.  INMAT can be
+        a varying(*), system, constant, and empty matrix.
+
+   Returns:
+     systype can be one of:
+           varying, system, constant, and empty
+     nout is the number of outputs of the system
+     nin is the number of inputs of the system
+     ncstates is the number of continuous states of the system
+      ndstates is the number of discrete states of the system
+
+
+@anchor{doc-sysgettsam}
+@deftypefn {Function File} {} sysgettsam (@var{sys})
+Return the sampling time of the system @var{sys}.
+@end deftypefn
+
+
+@node structintern,  , structaccess, sysinterface
+@subsection Data structure internal functions
+
+
+
+
+
+
+
+
+
+@node sysdisp, blockdiag, sysinterface, Control Theory
+@section System display functions
+
+@anchor{doc-sysout}
+@deftypefn {Function File} {} sysout (@var{sys}, @var{opt})
+print out a system data structure in desired format
+@table @var
+@item  sys
+system data structure
+@item  opt
+Display option
+@table @code
+@item []
+primary system form (default)
+@item      "ss"
+state space form
+@item      "tf"
+transfer function form
+@item      "zp"
+zero-pole form
+@item      "all"
+all of the above
+@end table
+@end table
+@end deftypefn
+
+
+@anchor{doc-tfout}
+@deftypefn {Function File} {} tfout (@var{num}, @var{denom}, @var{x})
+Print formatted transfer function @math{n(s)/d(s)} to the screen.
+@var{x} defaults to the string @code{"s"}
+@end deftypefn
+@seealso{polyval, polyvalm, poly, roots, conv, deconv, residue,
+filter, polyderiv, polyinteg, and polyout}
+
+
+@anchor{doc-zpout}
+@deftypefn {Function File} {} zpout (@var{zer}, @var{pol}, @var{k}, @var{x})
+print formatted zero-pole form to the screen.
+@var{x} defaults to the string @code{"s"}
+@end deftypefn
+@seealso{polyval, polyvalm, poly, roots, conv, deconv, residue,
+filter, polyderiv, polyinteg, and polyout}
+
+
+
+
+@node blockdiag, numerical, sysdisp, Control Theory
+@section Block Diagram Manipulations
+
+@xref{systime}.
+
+Unless otherwise noted, all parameters (input,output) are
+system data structures.
+
+@anchor{doc-bddemo}
+@deftypefn {Function File} {} bddemo (@var{inputs})
+Octave Controls toolbox demo: Block Diagram Manipulations demo
+@end deftypefn
+
+
+@anchor{doc-buildssic}
+@deftypefn {Function File} {} buildssic (@var{clst}, @var{ulst}, @var{olst}, @var{ilst}, @var{s1}, @var{s2}, @var{s3}, @var{s4}, @var{s5}, @var{s6}, @var{s7}, @var{s8})
+
+Form an arbitrary complex (open or closed loop) system in
+state-space form from several systems. "@code{buildssic}" can
+easily (despite it's cryptic syntax) integrate transfer functions
+from a complex block diagram into a single system with one call.
+This function is especially useful for building open loop
+interconnections for H_infinity and H2 designs or for closing
+loops with these controllers.
+
+Although this function is general purpose, the use of "@code{sysgroup}"
+"@code{sysmult}", "@code{sysconnect}" and the like is recommended for
+standard operations since they can handle mixed discrete and continuous
+systems and also the names of inputs, outputs, and states.
+
+The parameters consist of 4 lists that describe the connections
+outputs and inputs and up to 8 systems s1-s8.
+Format of the lists:
+@table @var
+@item      clst
+connection list, describes the input signal of
+each system. The maximum number of rows of Clst is
+equal to the sum of all inputs of s1-s8.
+
+Example:
+@code{[1 2 -1; 2 1 0]} ==> new input 1 is old inpout 1
++ output 2 - output 1, new input 2 is old input 2
++ output 1. The order of rows is arbitrary.
+
+@item     ulst
+if not empty the old inputs in vector Ulst will
+be appended to the outputs. You need this if you
+want to "pull out" the input of a system. Elements
+are input numbers of s1-s8.
+
+@item     olst
+output list, specifiy the outputs of the resulting
+systems. Elements are output numbers of s1-s8.
+The numbers are alowed to be negative and may
+appear in any order. An empty matrix means
+all outputs.
+
+@item     ilst
+input list, specifiy the inputs of the resulting
+systems. Elements are input numbers of s1-s8.
+The numbers are alowed to be negative and may
+appear in any order. An empty matrix means
+all inputs.
+@end table
+
+Example:  Very simple closed loop system.
+@example
+@group
+w        e  +-----+   u  +-----+
+ --->o--*-->|  K  |--*-->|  G  |--*---> y
+     ^  |   +-----+  |   +-----+  |
+   - |  |            |            |
+     |  |            +----------------> u
+     |  |                         |
+     |  +-------------------------|---> e
+     |                            |
+     +----------------------------+
+@end group
+@end example
+
+The closed loop system GW can be optained by
+@example
+GW = buildssic([1 2; 2 -1], 2, [1 2 3], 2, G, K);
+@end example
+@table @var
+@item clst
+(1. row) connect input 1 (G) with output 2 (K).
+(2. row) connect input 2 (K) with neg. output 1 (G).
+@item ulst
+append input of (2) K to the number of outputs.
+@item olst
+Outputs are output of 1 (G), 2 (K) and appended output 3 (from Ulst).
+@item ilst
+the only input is 2 (K).
+@end table
+
+Here is a real example:
+@example
+@group
+                         +----+
+    -------------------->| W1 |---> v1
+z   |                    +----+
+----|-------------+                   || GW   ||     => min.
+    |             |                        vz   infty
+    |    +---+    v      +----+
+    *--->| G |--->O--*-->| W2 |---> v2
+    |    +---+       |   +----+
+    |                |
+    |                v
+   u                  y
+@end group
+@end example
+
+The closed loop system GW from [z; u]' to [v1; v2; y]' can be
+obtained by (all SISO systems):
+@example
+GW = buildssic([1, 4; 2, 4; 3, 1], 3, [2, 3, 5],
+               [3, 4], G, W1, W2, One);
+@end example
+where "One" is a unity gain (auxillary) function with order 0.
+(e.g. @code{One = ugain(1);})
+@end deftypefn
+
+
+@anchor{doc-jet707}
+@deftypefn {Function File} {} jet707 ()
+Creates linearized state space model of a Boeing 707-321 aircraft
+at v=80m/s. (M = 0.26, Ga0 = -3 deg, alpha0 = 4 deg, kappa = 50 deg)
+System inputs:   (1) thrust   and (2) elevator angle
+System outputs:  (1) airspeed and (2) pitch angle
+Ref: R. Brockhaus: Flugregelung (Flight Control), Springer, 1994
+@end deftypefn
+@seealso{ord2}
+
+
+@anchor{doc-ord2}
+@deftypefn {Function File} {} ord2 (@var{nfreq}, @var{damp}, @var{gain})
+Creates a continuous 2nd order system with parameters:
+@strong{Inputs}
+@table @var
+@item nfreq
+natural frequency [Hz]. (not in rad/s)
+@item damp
+damping coefficient
+@item gain
+dc-gain
+This is steady state value only for damp > 0.
+gain is assumed to be 1.0 if ommitted.
+@end table
+@strong{Outputs}
+@var{outsys}
+system data structure has representation with @math{w = 2 * pi * nfreq}:
+@example
+    /                                        \
+    | / -2w*damp -w \  / w \                 |
+G = | |             |, |   |, [ 0  gain ], 0 |
+    | \   w       0 /  \ 0 /                 |
+    \                                        /
+@end example
+@strong{See also} @code{jet707} (MIMO example, Boeing 707-321
+aircraft model)
+@end deftypefn
+
+
+@anchor{doc-sysadd}
+@deftypefn {Function File} {}  sysadd (@var{gsys}, @var{hsys})
+returns @var{sys} = @var{gsys} + @var{hsys}.
+@itemize @bullet
+@item Exits with
+an error if @var{gsys} and @var{hsys} are not compatibly dimensioned.
+@item Prints a warning message is system states have identical names;
+duplicate names are given a suffix to make them unique.
+@item @var{sys} input/output names are taken from @var{gsys}.
+@end itemize
+@example
+@group
+          ________
+     ----|  gsys  |---
+u   |    ----------  +|
+-----                (_)----> y
+    |     ________   +|
+     ----|  hsys  |---
+          --------
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-sysappend}
+@deftypefn {Function File} {} sysappend (@var{sys}, @var{b}, @var{c}, @var{d}, @var{outname}, @var{inname}, @var{yd})
+appends new inputs and/or outputs to a system
+
+@strong{Inputs}
+@table @var
+@item sys
+system data structure
+
+@item b
+matrix to be appended to sys "B" matrix (empty if none)
+
+@item c
+matrix to be appended to sys "C" matrix (empty if none)
+
+@item d
+revised sys d matrix (can be passed as [] if the revised d is all zeros)
+
+@item outname
+list of names for new outputs
+
+@item inname
+list of names for new inputs
+
+@item yd
+binary vector; @math{yd(ii)=0} indicates a continuous output;
+@math{yd(ii)=1} indicates a discrete output.
+@end table
+
+@strong{Outputs} @var{sys}
+@example
+@group
+   sys.b := [sys.b , b]
+   sys.c := [sys.c  ]
+            [ c     ]
+   sys.d := [sys.d | D12 ]
+            [D21   | D22 ]
+@end group
+@end example
+where @math{D12}, @math{D21}, and @math{D22} are the appropriate dimensioned
+blocks of the input parameter @var{d}.
+@itemize @bullet
+@item The leading block @math{D11} of @var{d} is ignored.
+@item If @var{inname} and @var{outname} are not given as arguments,
+     the new inputs and outputs are be assigned default names.
+@item @var{yd} is a binary vector of length rows(c) that indicates
+     continuous/sampled outputs.  Default value for @var{yd} is:
+
+@item @var{sys} = continuous or mixed
+@var{yd} = @code{zeros(1,rows(c))}
+
+@item @var{sys} = discrete
+@var{yd} = @code{ones(1,rows(c))}
+@end itemize
+@end deftypefn
+
+
+@anchor{doc-sysconnect}
+@deftypefn {Function File} {} sysconnect (@var{sys}, @var{out_idx}, @var{in_idx}, @var{order}, @var{tol})
+Close the loop from specified outputs to respective specified inputs
+
+@strong{Inputs}
+@table @var
+@item   sys
+system data structure
+@item   out_idx
+@itemx  in_idx
+names or indices of signals to connect (see @code{sysidx}).
+The output specified by @math{out_idx(ii)} is connected to the input
+specified by @math{in_idx(ii)}.
+@item   order
+logical flag (default = 0)
+@table @code
+@item        0
+leave inputs and outputs in their original order
+@item        1
+permute inputs and outputs to the order shown in the diagram below
+@end table
+@item     tol
+tolerance for singularities in algebraic loops default: 200@var{eps}
+@end table
+
+@strong{Outputs}
+@var{sys}: resulting closed loop system.
+
+@strong{Method}
+@code{sysconnect} internally permutes selected inputs, outputs as shown
+below, closes the loop, and then permutes inputs and outputs back to their
+original order
+@example
+@group
+                 ____________________
+ u_1       ----->|                  |----> y_1
+                 |        sys       |
+         old u_2 |                  |
+u_2* ---->(+)--->|                  |----->y_2
+(in_idx)   ^     -------------------|    | (out_idx)
+           |                             |
+           -------------------------------
+@end group
+@end example
+The input that has the summing junction added to it has an * added to
+the end  of the input name.
+@end deftypefn
+
+
+@anchor{doc-syscont}
+@deftypefn {Function File} {[@var{csys}, @var{acd}, @var{ccd}] =} syscont (@var{sys})
+Extract the purely continuous subsystem of an input system.
+
+@strong{Inputs}
+@var{sys} is a system data structure
+
+@strong{Outputs}
+@table @var
+@item csys
+is the purely continuous input/output connections of @var{sys}
+@item acd
+@itemx ccd
+connections from discrete states to continuous states,
+discrete states to continuous outputs, respectively.
+
+returns @var{csys} empty if no continuous/continous path exists
+@end table
+@end deftypefn
+
+
+
+
+@anchor{doc-sysdisc}
+@deftypefn {Function File} {[@var{dsys}, @var{adc}, @var{cdc}] =} sysdisc (@var{sys})
+
+@strong{Inputs}
+@var{sys} = system data structure
+
+@strong{Outputs}
+@table @var
+@item dsys
+purely discrete portion of sys (returned empty if there is
+no purely discrete path from inputs to outputs)
+@item    adc
+@itemx   cdc
+connections from continuous states to discrete states and discrete
+outputs, respectively.
+@end table
+@end deftypefn
+
+
+@anchor{doc-sysdup}
+@deftypefn {Function File} {} sysdup (@var{asys}, @var{out_idx}, @var{in_idx})
+Duplicate specified input/output connections of a system
+
+@strong{Inputs}
+@table @var
+@item asys
+system data structure
+@item out_idx
+@itemx in_idx
+indices or names of desired signals (see @code{sigidx}).
+duplicates are made of @code{y(out_idx(ii))} and @code{u(in_idx(ii))}.
+@end table
+
+@strong{Outputs}
+@var{retsys}: resulting closed loop system:
+duplicated i/o names are appended with a @code{"+"} suffix.
+
+
+@strong{Method}
+@code{sysdup} creates copies of selected inputs and outputs as
+shown below.  u1/y1 is the set of original inputs/outputs, and
+u2,y2 is the set of duplicated inputs/outputs in the order specified
+in @var{in_idx}, @var{out_idx}, respectively
+@example
+@group
+          ____________________
+u1  ----->|                  |----> y1
+          |       asys       |
+u2 ------>|                  |----->y2
+(in_idx)  -------------------| (out_idx)
+@end group
+@end example
+@end deftypefn
+ 
+
+@anchor{doc-sysgroup}
+@deftypefn {Function File} {} sysgroup (@var{asys}, @var{bsys})
+Combines two systems into a single system
+
+@strong{Inputs}
+@var{asys}, @var{bsys}: system data structures
+
+@strong{Outputs}
+@math{sys = @r{block diag}(asys,bsys)}
+@example
+@group
+         __________________
+         |    ________    |
+u1 ----->|--> | asys |--->|----> y1
+         |    --------    |
+         |    ________    |
+u2 ----->|--> | bsys |--->|----> y2
+         |    --------    |
+         ------------------
+              Ksys
+@end group
+@end example
+The function also rearranges the internal state-space realization of @var{sys}
+so that the
+continuous states come first and the discrete states come last.
+If there are duplicate names, the second name has a unique suffix appended
+on to the end of the name.
+@end deftypefn
+
+
+
+
+@anchor{doc-sysmult}
+@deftypefn {Function File} {} sysmult (@var{asys}, @var{bsys})
+Compute @math{sys = Asys*Bsys} (series connection):
+@example
+@group
+u   ----------     ----------
+--->|  bsys  |---->|  asys  |--->
+    ----------     ----------
+@end group
+@end example
+A warning occurs if there is direct feed-through
+from an input of Bsys or a continuous state of @var{bsys} through a
+discrete output of Bsys to a continuous state or output in @var{asys}
+(system data structure does not recognize discrete inputs).
+@end deftypefn
+
+
+@anchor{doc-sysprune}
+@deftypefn {Function File} {} sysprune (@var{asys}, @var{out_idx}, @var{in_idx})
+Extract specified inputs/outputs from a system
+
+@strong{Inputs}
+@table @var
+@item asys
+system data structure
+@item out_idx
+@itemx in_idx
+
+Indices or signal names of the outputs and inputs to be kept in the returned
+system; remaining connections are "pruned" off.
+May select as [] (empty matrix) to specify all outputs/inputs.
+
+@example
+retsys = sysprune(Asys,[1:3,4],"u_1");
+retsys = sysprune(Asys,list("tx","ty","tz"), 4);
+@end example
+
+@end table
+
+@strong{Outputs}
+@var{retsys}: resulting system
+@example
+@group
+           ____________________
+u1 ------->|                  |----> y1
+ (in_idx)  |       Asys       | (out_idx)
+u2 ------->|                  |----| y2
+  (deleted)-------------------- (deleted)
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-sysreorder}
+@deftypefn {Function File} {} sysreorder (@var{vlen}, @var{list})
+
+@strong{Inputs}
+@var{vlen}=vector length, @var{list}= a subset of @code{[1:vlen]},
+
+@strong{Outputs}
+@var{pv}: a permutation vector to order elements of @code{[1:vlen]} in
+@code{list} to the end of a vector.
+
+Used internally by @code{sysconnect} to permute vector elements to their
+desired locations.
+@end deftypefn
+
+
+@anchor{doc-sysscale}
+@deftypefn {Function File} {} sysscale (@var{sys}, @var{outscale}, @var{inscale}, @var{outname}, @var{inname})
+scale inputs/outputs of a system.
+
+@strong{Inputs}
+sys: structured system
+outscale, inscale: constant matrices of appropriate dimension
+
+@strong{Outputs}
+@var{sys}: resulting open loop system:
+@example
+      -----------    -------    -----------
+u --->| inscale |--->| sys |--->| outscale |---> y
+      -----------    -------    -----------
+@end example
+If the input names and output names (each a list of strings)
+are not given and the scaling matrices
+are not square, then default names will be given to the inputs and/or
+outputs.
+
+A warning message is printed if outscale attempts to add continuous
+system outputs to discrete system outputs; otherwise @var{yd} is
+set appropriately in the returned value of @var{sys}.
+@end deftypefn
+
+
+@anchor{doc-syssub}
+@deftypefn {Function File} {} syssub (@var{gsys}, @var{hsys})
+Return @math{sys = Gsys - Hsys}.
+
+Method: @var{gsys} and @var{hsys} are connected in parallel
+The input vector is connected to both systems; the outputs are
+subtracted.  Returned system names are those of @var{gsys}.
+@example
+@group
+         +--------+
+    +--->|  gsys  |---+
+    |    +--------+   |
+    |                +|
+u --+                (_)--> y
+    |                -|
+    |    +--------+   |
+    +--->|  hsys  |---+
+         +--------+
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-ugain}
+@deftypefn {Function File} {} ugain (@var{n})
+Creates a system with unity gain, no states.
+This trivial system is sometimes needed to create arbitrary
+complex systems from simple systems with buildssic.
+Watch out if you are forming sampled systems since "ugain"
+does not contain a sampling period.
+@end deftypefn
+@seealso{hinfdemo and jet707}
+
+
+@anchor{doc-wgt1o}
+@deftypefn {Function File} {} wgt1o (@var{vl}, @var{vh}, @var{fc})
+State space description of a first order weighting function.
+
+Weighting function are needed by the H2/H_infinity design procedure.
+These function are part of thye augmented plant P (see hinfdemo
+for an applicattion example).
+
+vl = Gain at low frequencies
+
+vh = Gain at high frequencies
+
+fc = Corner frequency (in Hz, *not* in rad/sec)
+@end deftypefn
+
+
+@anchor{doc-parallel}
+@deftypefn {Function File} {} parallel (@var{asys}, @var{bsys})
+Forms the parallel connection of two systems.
+
+             ____________________
+             |      ________    |
+    u  ----->|----> | asys |--->|----> y1
+        |    |      --------    |
+        |    |      ________    |
+        |--->|----> | bsys |--->|----> y2
+             |      --------    |
+             --------------------
+                  ksys
+@end deftypefn
+
+
+@anchor{doc-sysmin}
+@deftypefn {Function File} {[@var{retsys}, @var{nc}, @var{no}] =} sysmin (@var{sys}, @var{flg})
+return a minimal (or reduced order) system
+inputs:
+  sys: system data structure
+  flg: 0 [default] return minimal system; state names lost
+     : 1           return system with physical states removed that
+                   are either uncontrollable or unobservable
+                   (cannot reduce further without discarding physical
+                   meaning of states)
+outputs:
+  retsys: returned system
+  nc: number of controllable states in the returned system
+  no: number of observable states in the returned system
+  cflg: is_controllable(retsys)
+  oflg: is_observable(retsys)
+@end deftypefn
+
+
+@node numerical, sysprop, blockdiag, Control Theory
+@section Numerical Functions
+
+@anchor{doc-are}
+@deftypefn {Function File} {} are (@var{a}, @var{b}, @var{c}, @var{opt})
+Solve the algebraic Riccati equation
+@iftex
+@tex
+$$
+A^TX + XA - XBX + C = 0
+$$
+@end tex
+@end iftex
+@ifinfo
+@example
+a' * x + x * a - x * b * x + c = 0
+@end example
+@end ifinfo
+
+@strong{Inputs}
+@noindent
+for identically dimensioned square matrices
+@table @var
+@item a
+@var{n}x@var{n} matrix.
+@item b
+@var{n}x@var{n} matrix or @var{n}x@var{m} matrix; in the latter case
+@var{b} is replaced by @math{b:=b*b'}.
+@item c
+@var{n}x@var{n} matrix or @var{p}x@var{m} matrix; in the latter case
+@var{c} is replaced by @math{c:=c'*c}.
+@item opt
+(optional argument; default = @code{"B"}):
+String option passed to @code{balance} prior to ordered Schur decomposition.
+@end table
+
+@strong{Outputs}
+@var{x}: solution of the ARE.
+
+@strong{Method}
+Laub's Schur method (IEEE Transactions on
+Automatic Control, 1979) is applied to the appropriate Hamiltonian
+matrix.
+
+@end deftypefn
+@seealso{balance and dare}
+
+
+@anchor{doc-dare}
+@deftypefn {Function File} {} dare (@var{a}, @var{b}, @var{c}, @var{r}, @var{opt})
+
+Return the solution, @var{x} of the discrete-time algebraic Riccati
+equation
+@iftex
+@tex
+$$
+A^TXA - X + A^TXB (R + B^TXB)^{-1} B^TXA + C = 0
+$$
+@end tex
+@end iftex
+@ifinfo
+@example
+a' x a - x + a' x b (r + b' x b)^(-1) b' x a + c = 0
+@end example
+@end ifinfo
+@noindent
+
+@strong{Inputs}
+@table @var
+@item a
+@var{n} by @var{n}.
+
+@item b
+@var{n} by @var{m}.
+
+@item c
+@var{n} by @var{n}, symmetric positive semidefinite, or @var{p} by @var{n}.
+In the latter case @math{c:=c'*c} is used.
+
+@item r
+@var{m} by @var{m}, symmetric positive definite (invertible).
+
+@item opt
+(optional argument; default = @code{"B"}):
+String option passed to @code{balance} prior to ordered @var{QZ} decomposition.
+@end table
+
+@strong{Outputs}
+@var{x} solution of DARE.
+
+@strong{Method}
+Generalized eigenvalue approach (Van Dooren; SIAM J.
+ Sci. Stat. Comput., Vol 2) applied  to the appropriate symplectic pencil.
+
+ See also: Ran and Rodman, "Stable Hermitian Solutions of Discrete
+ Algebraic Riccati Equations," Mathematics of Control, Signals and
+ Systems, Vol 5, no 2 (1992)  pp 165-194.
+
+@end deftypefn
+@seealso{balance and are}
+
+
+@anchor{doc-dre}
+@deftypefn {Function File} {[@var{tvals}, @var{plist}] =} dre (@var{sys}, @var{q}, @var{r}, @var{qf}, @var{t0}, @var{tf}, @var{ptol}, @var{maxits});
+Solve the differential Riccati equation
+@ifinfo
+@example
+  -d P/dt = A'P + P A - P B inv(R) B' P + Q
+  P(tf) = Qf
+@end example
+@end ifinfo
+@iftex
+@tex
+$$ -{dP \over dt} = A^T P+PA-PBR^{-1}B^T P+Q $$
+$$ P(t_f) = Qf $$
+@end tex
+@end iftex
+for the LTI system sys.  Solution of standard LTI
+state feedback optimization
+@ifinfo
+@example
+  min \int_@{t_0@}^@{t_f@} x' Q x + u' R u dt + x(t_f)' Qf x(t_f)
+@end example
+@end ifinfo
+@iftex
+@tex
+$$ \min \int_{t_0}^{t_f} x^T Q x + u^T R u dt + x(t_f)^T Qf x(t_f) $$
+@end tex
+@end iftex
+optimal input is
+@ifinfo
+@example
+  u = - inv(R) B' P(t) x
+@end example
+@end ifinfo
+@iftex
+@tex
+$$ u = - R^{-1} B^T P(t) x $$
+@end tex
+@end iftex
+@strong{Inputs}
+@table @var
+@item sys
+continuous time system data structure
+@item q
+state integral penalty
+@item r
+input integral penalty
+@item qf
+state terminal penalty
+@item t0
+@itemx tf
+limits on the integral
+@item ptol
+tolerance (used to select time samples; see below); default = 0.1
+@item maxits
+number of refinement iterations (default=10)
+@end table
+@strong{Outputs}
+@table @var
+@item tvals
+time values at which @var{p}(@var{t}) is computed
+@item plist
+list values of @var{p}(@var{t}); nth (@var{plist}, @var{ii})
+is @var{p}(@var{tvals}(@var{ii})).
+
+@item tvals
+@example
+is selected so that || nth(Plist,ii) - nth(Plist,ii-1) || < Ptol
+for ii=2:length(tvals)
+@end example
+@end table
+@end deftypefn
+
+
+@anchor{doc-dgram}
+@deftypefn {Function File} {} dgram (@var{a}, @var{b})
+Return controllability grammian of discrete time system
+@example
+  x(k+1) = a x(k) + b u(k)
+@end example
+
+@strong{Inputs}
+@table @var
+@item a
+@var{n} by @var{n} matrix
+@item b
+@var{n} by @var{m} matrix
+@end table
+
+@strong{Outputs}
+@var{m} (@var{n} by @var{n}) satisfies
+@example
+ a m a' - m + b*b' = 0
+@end example
+@end deftypefn
+
+
+@anchor{doc-dlyap}
+@deftypefn {Function File} {} dlyap (@var{a}, @var{b})
+Solve the discrete-time Lyapunov equation
+
+@strong{Inputs}
+@table @var
+@item a
+@var{n} by @var{n} matrix
+@item b
+  Matrix: @var{n} by @var{n}, @var{n} by @var{m}, or @var{p} by @var{n}.
+@end table
+
+@strong{Outputs}
+@var{x}: matrix satisfying appropriate discrete time Lyapunov equation.
+Options:
+@itemize @bullet
+@item @var{b} is square: solve @code{a x a' - x + b = 0}
+@item @var{b} is not square: @var{x} satisfies either
+@example
+a x a' - x + b b' = 0
+@end example
+@noindent
+or
+@example
+a' x a - x + b' b = 0,
+@end example
+@noindent
+whichever is appropriate.
+@end itemize
+
+@strong{Method}
+Uses Schur decomposition method as in Kitagawa,
+@cite{An Algorithm for Solving the Matrix Equation @math{X = F X F' + S}},
+International Journal of Control, Volume 25, Number 5, pages 745--753
+(1977).
+
+Column-by-column solution method as suggested in
+Hammarling, @cite{Numerical Solution of the Stable, Non-Negative
+Definite Lyapunov Equation}, IMA Journal of Numerical Analysis, Volume
+2, pages 303--323 (1982).
+@end deftypefn
+
+
+@anchor{doc-gram}
+@deftypefn {Function File} {} gram (@var{a}, @var{b})
+Return controllability grammian @var{m} of the continuous time system
+@math{dx/dt = a x + b u}.
+
+@var{m} satisfies @math{a m + m a' + b b' = 0}.
+@end deftypefn
+
+
+@anchor{doc-lyap}
+@deftypefn {Function File} {} lyap (@var{a}, @var{b}, @var{c})
+@deftypefnx {Function File} {} lyap (@var{a}, @var{b})
+Solve the Lyapunov (or Sylvester) equation via the Bartels-Stewart
+algorithm (Communications of the ACM, 1972).
+
+If @var{a}, @var{b}, and @var{c} are specified, then @code{lyap} returns
+the solution of the  Sylvester equation
+@iftex
+@tex
+  $$ A X + X B + C = 0 $$
+@end tex
+@end iftex
+@ifinfo
+@example
+    a x + x b + c = 0
+@end example
+@end ifinfo
+If only @code{(a, b)} are specified, then @code{lyap} returns the
+solution of the Lyapunov equation
+@iftex
+@tex
+  $$ A^T X + X A + B = 0 $$
+@end tex
+@end iftex
+@ifinfo
+@example
+    a' x + x a + b = 0
+@end example
+@end ifinfo
+If @var{b} is not square, then @code{lyap} returns the solution of either
+@iftex
+@tex
+  $$ A^T X + X A + B^T B = 0 $$
+@end tex
+@end iftex
+@ifinfo
+@example
+    a' x + x a + b' b = 0
+@end example
+@end ifinfo
+@noindent
+or
+@iftex
+@tex
+  $$ A X + X A^T + B B^T = 0 $$
+@end tex
+@end iftex
+@ifinfo
+@example
+    a x + x a' + b b' = 0
+@end example
+@end ifinfo
+@noindent
+whichever is appropriate.
+
+Solves by using the Bartels-Stewart algorithm (1972).
+@end deftypefn
+
+
+@anchor{doc-qzval}
+@deftypefn {Function File} {} qzval (@var{a}, @var{b})
+Compute generalized eigenvalues of the matrix pencil
+@ifinfo
+@example
+(A - lambda B).
+@end example
+@end ifinfo
+@iftex
+@tex
+$(A - \lambda B)$.
+@end tex
+@end iftex
+
+@var{a} and @var{b} must be real matrices.
+
+@strong{Note} @code{qzval} is obsolete; use @code{qz} instead.
+@end deftypefn
+
+
+@anchor{doc-zgfmul}
+@deftypefn {Function File} {} zgfmul (@var{a}, @var{b}, @var{c}, @var{d}, @var{x})
+Compute product of zgep incidence matrix @math{F} with vector @var{x}.
+Used by zgepbal (in zgscal) as part of generalized conjugate gradient
+iteration.
+@end deftypefn
+
+
+@anchor{doc-zgfslv}
+@deftypefn {Function File} {} zgfslv (@var{n}, @var{m}, @var{p}, @var{b})
+Solve system of equations for dense zgep problem.
+@end deftypefn
+
+
+@anchor{doc-zginit}
+@deftypefn {Function File} {} zginit (@var{a}, @var{b}, @var{c}, @var{d})
+Construct right hand side vector zz
+for the zero-computation generalized eigenvalue problem
+balancing procedure.  Called by zgepbal.
+@end deftypefn
+
+
+
+
+@anchor{doc-zgreduce}
+@deftypefn {Function File} {} zgreduce (@var{sys}, @var{meps})
+Implementation of procedure REDUCE in (Emami-Naeini and Van Dooren,
+Automatica, # 1982).
+@end deftypefn
+
+
+@anchor{doc-zgrownorm}
+@deftypefn {Function File} {[@var{nonz}, @var{zer}] =} zgrownorm (@var{mat}, @var{meps})
+Return @var{nonz} = number of rows of @var{mat} whose two norm
+exceeds @var{meps}, and @var{zer} = number of rows of mat whose two
+norm is less than @var{meps}.
+@end deftypefn
+
+
+@anchor{doc-zgscal}
+@deftypefn {Function File} {} zgscal (@var{f}, @var{z}, @var{n}, @var{m}, @var{p})
+Generalized conjugate gradient iteration to
+solve zero-computation generalized eigenvalue problem balancing equation
+@math{fx=z};
+called by @code{zgepbal}
+@end deftypefn
+
+
+@anchor{doc-zgsgiv}
+@deftypefn {Function File} {[a, b] =} zgsgiv (@var{c}, @var{s}, @var{a}, @var{b})
+Apply givens rotation c,s to row vectors @var{a}, @var{b}.
+No longer used in zero-balancing (__zgpbal__); kept for backward
+compatibility.
+@end deftypefn
+
+
+@anchor{doc-zgshsr}
+@deftypefn {Function File} {} zgshsr (@var{y})
+apply householder vector based on @math{e^(m)} to
+(column vector) y.
+Called by zgfslv
+@end deftypefn
+
+
+References:
+@table @strong
+@item  ZGEP
+ Hodel, "Computation of Zeros with Balancing," 1992, Linear Algebra
+ and its Applications
+@item @strong{Generalized CG}
+ Golub and Van Loan, "Matrix Computations, 2nd ed" 1989
+@end table
+
+@node sysprop, systime, numerical, Control Theory
+@section System Analysis-Properties
+
+@anchor{doc-analdemo}
+@deftypefn {Function File} {} analdemo ()
+Octave Controls toolbox demo: State Space analysis demo
+@end deftypefn
+
+
+@anchor{doc-abcddim}
+@deftypefn {Function File} {[@var{n}, @var{m}, @var{p}] =} abcddim (@var{a}, @var{b}, @var{c}, @var{d})
+Check for compatibility of the dimensions of the matrices defining
+the linear system
+@iftex
+@tex
+$[A, B, C, D]$ corresponding to
+$$
+\eqalign{
+ {dx\over dt} &= A x + B u\cr
+            y &= C x + D u}
+$$
+@end tex
+@end iftex
+@ifinfo
+[A, B, C, D] corresponding to
+
+@example
+dx/dt = a x + b u
+y = c x + d u
+@end example
+
+@end ifinfo
+or a similar discrete-time system.
+
+If the matrices are compatibly dimensioned, then @code{abcddim} returns
+
+@table @var
+@item n
+The number of system states.
+
+@item m
+The number of system inputs.
+
+@item p
+The number of system outputs.
+@end table
+
+Otherwise @code{abcddim} returns @var{n} = @var{m} = @var{p} = @minus{}1.
+
+Note: n = 0 (pure gain block) is returned without warning.
+
+@end deftypefn
+@seealso{is_abcd}
+
+
+
+
+@anchor{doc-ctrb}
+@deftypefn {Function File} {} ctrb (@var{sys}, @var{b})
+@deftypefnx {Function File} {} ctrb (@var{a}, @var{b})
+Build controllability matrix
+@example
+             2       n-1
+Qs = [ B AB A B ... A   B ]
+@end example
+
+of a system data structure or the pair (@var{a}, @var{b}).
+
+@strong{Note} @code{ctrb} forms the controllability matrix.
+The numerical properties of @code{is_controllable}
+are much better for controllability tests.
+@end deftypefn
+
+
+@anchor{doc-h2norm}
+@deftypefn {Function Fil} {} h2norm (@var{sys})
+Computes the H2 norm of a system data structure (continuous time only)
+
+Reference:
+Doyle, Glover, Khargonekar, Francis, ``State Space Solutions to Standard
+H2 and Hinf Control Problems", IEEE TAC August 1989
+@end deftypefn
+
+
+@anchor{doc-hinfnorm}
+@deftypefn {Function File} {[@var{g}, @var{gmin}, @var{gmax}] =} hinfnorm (@var{sys}, @var{tol}, @var{gmin}, @var{gmax}, @var{ptol})
+ Computes the H infinity norm of a system data structure.
+
+@strong{Inputs}
+@table @var
+@item sys
+system data structure
+@item tol
+H infinity norm search tolerance (default: 0.001)
+@item gmin
+minimum value for norm search (default: 1e-9)
+@item gmax
+maximum value for norm search (default: 1e+9)
+@item ptol
+pole tolerance:
+@itemize @bullet
+@item if sys is continuous, poles with
+|real(pole)| < ptol*||H|| (H is appropriate Hamiltonian)
+are considered to be on the imaginary axis.
+
+@item if sys is discrete, poles with
+|abs(pole)-1| < ptol*||[s1,s2]|| (appropriate symplectic pencil)
+are considered to be on the unit circle
+
+@item Default: 1e-9
+@end itemize
+@end table
+
+@strong{Outputs}
+@table @var
+@item g
+Computed gain, within @var{tol} of actual gain.  @var{g} is returned as Inf
+if the system is unstable.
+@item gmin
+@itemx gmax
+Actual system gain lies in the interval [@var{gmin}, @var{gmax}]
+@end table
+
+References:
+Doyle, Glover, Khargonekar, Francis, "State space solutions to standard
+H2 and Hinf control problems", IEEE TAC August 1989
+Iglesias and Glover, "State-Space approach to discrete-time Hinf control,"
+Int. J. Control, vol 54, #5, 1991
+Zhou, Doyle, Glover, "Robust and Optimal Control," Prentice-Hall, 1996
+@end deftypefn
+
+
+@anchor{doc-obsv}
+@deftypefn {Function File} {} obsv (@var{sys}, @var{c})
+Build observability matrix
+@example
+@group
+     | C        |
+     | CA       |
+Qb = | CA^2     |
+     | ...      |
+     | CA^(n-1) |
+@end group
+@end example
+of a system data structure or the pair (A, C).
+
+Note: @code{obsv()} forms the observability matrix.
+
+The numerical properties of is_observable()
+are much better for observability tests.
+@end deftypefn
+
+
+@anchor{doc-pzmap}
+@deftypefn {Function File} {[@var{zer}, @var{pol}]=} pzmap (@var{sys})
+Plots the zeros and poles of a system in the complex plane.
+@strong{Inputs}
+@var{sys} system data structure
+
+@strong{Outputs}
+if omitted, the poles and zeros are plotted on the screen.
+otherwise, pol, zer are returned as the system poles and zeros.
+(see sys2zp for a preferable function call)
+@end deftypefn
+
+
+@anchor{doc-is_abcd}
+@deftypefn {Function File} {} is_abcd (@var{a}, @var{b}, @var{c}, @var{d})
+ Returns @var{retval} = 1 if the dimensions of @var{a}, @var{b},
+@var{c}, @var{d} are compatible, otherwise @var{retval} = 0 with an
+ appropriate diagnostic message printed to the screen.  The matrices
+ b, c, or d may be omitted.
+@end deftypefn
+@seealso{abcddim}
+
+
+@anchor{doc-is_controllable}
+@deftypefn {Function File} {[@var{retval}, @var{u}] =} is_controllable (@var{sys}, @var{tol})
+@deftypefnx {Function File} {[@var{retval}, @var{u}] =} is_controllable (@var{a}, @var{b}, @var{tol})
+Logical check for system controllability.
+
+@strong{Inputs}
+@table @var
+@item sys
+system data structure
+@item a
+@itemx b
+@var{n} by @var{n}, @var{n} by @var{m} matrices, respectively
+@item tol
+optional roundoff paramter.  default value: @code{10*eps}
+@end table
+
+@strong{Outputs}
+@table @var
+@item retval
+Logical flag; returns true (1) if the system @var{sys} or the
+pair (@var{a},@var{b}) is controllable, whichever was passed as input
+arguments.
+@item U
+ U is an orthogonal basis of the controllable subspace.
+@end table
+
+@strong{Method}
+Controllability is determined by applying Arnoldi iteration with
+complete re-orthogonalization to obtain an orthogonal basis of the
+Krylov subspace
+@example
+span ([b,a*b,...,a^@{n-1@}*b]).
+@end example
+The Arnoldi iteration is executed with @code{krylov} if the system
+has a single input; otherwise a block Arnoldi iteration is performed
+with @code{krylovb}.
+@end deftypefn
+@seealso{size, rows, columns, length, is_matrix, is_scalar, is_vector
+is_observable, is_stabilizable, is_detectable, krylov, and krylovb}
+
+
+@anchor{doc-is_detectable}
+@deftypefn {Function File} {[@var{retval}, @var{u}] =} is_detectable (@var{a}, @var{c}, @var{tol})
+@deftypefnx {Function File} {[@var{retval}, @var{u}] =} is_detectable (@var{sys}, @var{tol})
+Test for detactability (observability of unstable modes) of
+(@var{a},@var{c}).
+
+Returns 1 if the system @var{a} or the pair (@var{a},@var{c})is
+detectable, 0 if not.
+
+@strong{See} @code{is_stabilizable} for detailed description of
+arguments and computational method.
+
+Default: tol = 10*norm(a,'fro')*eps
+
+@end deftypefn
+@seealso{is_stabilizable, size, rows, columns, length, is_matrix,
+is_scalar, and is_vector}
+
+
+@anchor{doc-is_dgkf}
+@deftypefn {Function File} {[@var{retval}, @var{dgkf_struct} ] =} is_dgkf (@var{asys}, @var{nu}, @var{ny}, @var{tol} )
+Determine whether a continuous time state space system meets
+assumptions of DGKF algorithm.
+Partitions system into:
+@example
+[dx/dt] = [A  | Bw  Bu  ][w]
+[ z   ]   [Cz | Dzw Dzu ][u]
+[ y   ]   [Cy | Dyw Dyu ]
+@end example
+or similar discrete-time system.
+If necessary, orthogonal transformations @var{qw}, @var{qz} and nonsingular
+transformations @var{ru}, @var{ry} are applied to respective vectors
+@var{w}, @var{z}, @var{u}, @var{y} in order to satisfy DGKF assumptions.
+Loop shifting is used if @var{dyu} block is nonzero.
+
+@strong{Inputs}
+@table @var
+@item         asys
+system data structure
+@item           nu
+number of controlled inputs
+@item        ny
+number of measured outputs
+@item        tol
+threshhold for 0.  Default: 200@var{eps}
+@end table
+@strong{Outputs}
+@table @var
+@item    retval
+true(1) if system passes check, false(0) otherwise
+@item    dgkf_struct
+data structure of @code{is_dgkf} results.  Entries:
+@table @var
+@item      nw
+@itemx     nz
+dimensions of @var{w}, @var{z}
+@item      a
+system @math{A} matrix
+@item      bw
+(@var{n} x @var{nw}) @var{qw}-transformed disturbance input matrix
+@item      bu
+(@var{n} x @var{nu}) @var{ru}-transformed controlled input matrix;
+
+@strong{Note} @math{B = [Bw Bu]}
+@item      cz
+(@var{nz} x @var{n}) Qz-transformed error output matrix
+@item      cy
+(@var{ny} x @var{n}) @var{ry}-transformed measured output matrix
+
+@strong{Note} @math{C = [Cz; Cy]}
+@item      dzu
+@item      dyw
+off-diagonal blocks of transformed system @math{D} matrix that enter
+@var{z}, @var{y} from @var{u}, @var{w} respectively
+@item      ru
+controlled input transformation matrix
+@item      ry
+observed output transformation matrix
+@item      dyu_nz
+nonzero if the @var{dyu} block is nonzero.
+@item      dyu
+untransformed @var{dyu} block
+@item      dflg
+nonzero if the system is discrete-time
+@end table
+@end table
+@code{is_dgkf} exits with an error if the system is mixed
+discrete/continuous
+
+@strong{References}
+@table @strong
+@item [1]
+Doyle, Glover, Khargonekar, Francis, "State Space Solutions
+to Standard H2 and Hinf Control Problems," IEEE TAC August 1989
+@item [2]
+Maciejowksi, J.M.: "Multivariable feedback design,"
+@end table
+@end deftypefn
+
+
+@anchor{doc-is_digital}
+@deftypefn {Function File} {} is_digital (@var{sys})
+Return nonzero if system is digital;
+inputs:
+sys: system data structure
+eflg: 0 [default] exit with an error if system is mixed (continuous and
+discrete components)
+    : 1 print a warning if system is mixed (continuous and discrete)
+    : 2 silent operation
+outputs:
+DIGITAL:  0: system is purely continuous
+       :  1: system is purely discrete
+       : -1: system is mixed continuous and discrete
+Exits with an error of sys is a mixed (continuous and discrete) system
+@end deftypefn
+
+
+@anchor{doc-is_observable}
+@deftypefn {Function File} {[@var{retval}, @var{u}] =} is_observable (@var{a}, @var{c}, @var{tol})
+@deftypefnx {Function File} {[@var{retval}, @var{u}] =} is_observable (@var{sys}, @var{tol})
+Logical check for system observability.
+
+Default: tol = 10*norm(a,'fro')*eps
+
+Returns 1 if the system @var{sys} or the pair (@var{a},@var{c}) is
+observable, 0 if not.
+
+@strong{See} @code{is_controllable} for detailed description of arguments
+and default values.
+@end deftypefn
+@seealso{size, rows, columns, length, is_matrix, is_scalar, and is_vector}
+
+
+@anchor{doc-is_sample}
+@deftypefn {Function File} {} is_sample (@var{ts})
+Return true if @var{ts} is a valid sampling time
+(real,scalar, > 0)
+@end deftypefn
+
+
+@anchor{doc-is_siso}
+@deftypefn {Function File} {} is_siso (@var{sys})
+return nonzero if the system data structure
+@var{sys} is single-input, single-output.
+@end deftypefn
+
+
+@anchor{doc-is_stabilizable}
+@deftypefn {Function File} {[@var{retval}, @var{u}] =} is_stabilizable (@var{sys}, @var{tol})
+@deftypefnx {Function File} {[@var{retval}, @var{u}] =} is_stabilizable (@var{a}, @var{b}, @var{tol})
+Logical check for system stabilizability (i.e., all unstable modes are controllable).
+
+Test for stabilizability is performed via an ordered Schur decomposition
+that reveals the unstable subspace of the system @var{a} matrix.
+
+Returns @code{retval} = 1 if the system, @var{a}, is stabilizable,
+if the pair  (@var{a}, @var{b}) is stabilizable, or 0 if not.
+@var{u} = orthogonal basis of controllable subspace.
+
+Controllable subspace is determined by applying Arnoldi iteration with
+complete re-orthogonalization to obtain an orthogonal basis of the
+Krylov subspace.
+@example
+  span ([b,a*b,...,a^   b]).
+@end example
+tol is a roundoff paramter, set to 200*eps if omitted.
+@end deftypefn
+
+
+@anchor{doc-is_signal_list}
+@deftypefn {Function File} {} is_signal_list (@var{mylist})
+Return true if @var{mylist} is a list of individual strings.
+@end deftypefn
+
+
+@anchor{doc-is_stable}
+@deftypefn {Function File} {} is_stable (@var{a}, @var{tol}, @var{dflg})
+@deftypefnx {Function File} {} is_stable (@var{sys}, @var{tol})
+Returns 1 if the matrix @var{a} or the system @var{sys}
+is stable, or 0 if not.
+
+@strong{Inputs}
+@table @var
+@item  tol
+is a roundoff paramter, set to 200*@var{eps} if omitted.
+@item dflg
+Digital system flag (not required for system data structure):
+@table @code
+@item @var{dflg} != 0
+stable if eig(a) in unit circle
+
+@item @var{dflg} == 0
+stable if eig(a) in open LHP (default)
+@end table
+@end table
+@end deftypefn
+@seealso{size, rows, columns, length, is_matrix, is_scalar, is_vector
+is_observable, is_stabilizable, is_detectable, krylov, and krylovb}
+
+
+@node systime, sysfreq, sysprop, Control Theory
+@section System Analysis-Time Domain
+
+@anchor{doc-c2d}
+@deftypefn {Function File} {} c2d (@var{sys}, @var{opt}, @var{t})
+@deftypefnx {Function File} {} c2d (@var{sys}, @var{t})
+
+@strong{Inputs}
+@table @var
+@item sys
+system data structure (may have both continuous time and discrete
+time subsystems)
+@item opt
+string argument; conversion option (optional argument;
+may be omitted as shown above)
+@table @code
+@item "ex"
+use the matrix exponential (default)
+@item "bi"
+use the bilinear transformation
+@end table
+@example
+    2(z-1)
+s = -----
+    T(z+1)
+@end example
+FIXME: This option exits with an error if @var{sys} is not purely
+continuous. (The @code{ex} option can handle mixed systems.)
+@item t
+sampling time; required if sys is purely continuous.
+
+@strong{Note} If the 2nd argument is not a string, @code{c2d} assumes that
+the 2nd argument is @var{t} and performs appropriate argument checks.
+@item "matched"
+Use the matched pole/zero equivalent transformation (currently only
+works for purely continuous SISO systems).
+@end table
+
+@strong{Outputs}
+@var{dsys} discrete time equivalent via zero-order hold,
+sample each @var{t} sec.
+
+converts the system data structure describing
+@example
+.
+x = Ac x + Bc u
+@end example
+into a discrete time equivalent model
+@example
+x[n+1] = Ad x[n] + Bd u[n]
+@end example
+via the matrix exponential or bilinear transform
+
+@strong{Note} This function adds the suffix  @code{_d}
+to the names of the new discrete states.
+@end deftypefn
+
+
+@anchor{doc-d2c}
+@deftypefn {Function File} {} d2c (@var{sys}, @var{tol})
+@deftypefnx {Function File} {} d2c (@var{sys}, @var{opt})
+Convert discrete (sub)system to a purely continuous system.  Sampling
+time used is @code{sysgettsam(@var{sys})}
+
+@strong{Inputs}
+@table @var
+@item   sys
+system data structure with discrete components
+@item   tol
+Scalar value.
+tolerance for convergence of default @code{"log"} option (see below)
+@item   opt
+conversion option.  Choose from:
+@table @code
+@item         "log"
+(default) Conversion is performed via a matrix logarithm.
+Due to some problems with this computation, it is
+followed by a steepest descent algorithm to identify continuous time
+@var{a}, @var{b}, to get a better fit to the original data.
+
+If called as @code{d2c (@var{sys}, @var{tol})}, with @var{tol}
+positive scalar, the @code{"log"} option is used.  The default value
+for @var{tol} is @code{1e-8}.
+@item        "bi"
+Conversion is performed via bilinear transform
+@math{z = (1 + s T / 2)/(1 - s T / 2)} where @math{T} is the
+system sampling time (see @code{sysgettsam}).
+
+FIXME: bilinear option exits with an error if @var{sys} is not purely
+discrete
+@end table
+@end table
+@strong{Outputs} @var{csys} continuous time system (same dimensions and
+signal names as in @var{sys}).
+@end deftypefn
+
+
+@anchor{doc-dmr2d}
+@deftypefn {Function File} {[@var{dsys}, @var{fidx}] =} dmr2d (@var{sys}, @var{idx}, @var{sprefix}, @var{ts2}, @var{cuflg})
+convert a multirate digital system to a single rate digital system
+states specified by @var{idx}, @var{sprefix} are sampled at @var{ts2}, all
+others are assumed sampled at @var{ts1} = @code{sysgettsam (@var{sys})}.
+
+@strong{Inputs}
+@table @var
+@item   sys
+discrete time system;
+@code{dmr2d} exits with an error if @var{sys} is not discrete
+@item   idx
+indices or names of states with sampling time 
+@code{sysgettsam(@var{sys})} (may be empty); see @code{listidx}
+@item   sprefix
+list of string prefixes of states with sampling time
+@code{sysgettsam(@var{sys})} (may be empty)
+@item   ts2
+sampling time of states not specified by @var{idx}, @var{sprefix}
+must be an integer multiple of @code{sysgettsam(@var{sys})}
+@item   cuflg
+"constant u flag" if @var{cuflg} is nonzero then the system inputs are
+assumed to be constant over the revised sampling interval @var{ts2}.
+Otherwise, since the inputs can change during the interval
+@var{t} in @math{[k ts2, (k+1) ts2]}, an additional set of inputs is
+included in the revised B matrix so that these intersample inputs
+may be included in the single-rate system.
+default @var{cuflg} = 1.
+@end table
+
+@strong{Outputs}
+@table @var
+@item   dsys
+equivalent discrete time system with sampling time @var{ts2}.
+
+The sampling time of sys is updated to @var{ts2}.
+
+if @var{cuflg}=0 then a set of additional inputs is added to
+the system with suffixes _d1, ..., _dn to indicate their
+delay from the starting time k @var{ts2}, i.e.
+u = [u_1; u_1_d1; ..., u_1_dn] where u_1_dk is the input
+k*ts1 units of time after u_1 is sampled. (@var{ts1} is
+the original sampling time of the discrete time system and
+@var{ts2} = (n+1)*ts1)
+
+@item   fidx
+indices of "formerly fast" states specified by @var{idx} and @var{sprefix};
+these states are updated to the new (slower) sampling interval @var{ts2}.
+@end table
+
+@strong{WARNING} Not thoroughly tested yet; especially when
+@var{cuflg} == 0.
+@end deftypefn
+
+
+@anchor{doc-damp}
+@deftypefn {Function File} {} damp (@var{p}, @var{tsam})
+Displays eigenvalues, natural frequencies and damping ratios
+of the eigenvalues of a matrix @var{p} or the @math{A}-matrix of a
+system @var{p}, respectively.
+If @var{p} is a system, @var{tsam} must not be specified.
+If @var{p} is a matrix and @var{tsam} is specified, eigenvalues
+of @var{p} are assumed to be in @var{z}-domain.
+@end deftypefn
+@seealso{eig}
+
+
+@anchor{doc-dcgain}
+@deftypefn {Function File} {} dcgain (@var{sys}, @var{tol})
+Returns dc-gain matrix. If dc-gain is infinite
+an empty matrix is returned.
+The argument @var{tol} is an optional tolerance for the condition
+number of the @math{A}-Matrix in @var{sys} (default @var{tol} = 1.0e-10)
+@end deftypefn
+
+
+@anchor{doc-impulse}
+@deftypefn {Function File} {[@var{y}, @var{t}] =} impulse (@var{sys}, @var{inp}, @var{tstop}, @var{n})
+Impulse response for a linear system.
+The system can be discrete or multivariable (or both).
+If no output arguments are specified, @code{impulse}
+produces a plot or the impulse response data for system @var{sys}.
+
+@strong{Inputs}
+@table @var
+@item sys
+System data structure.
+@item inp
+Index of input being excited
+@item tstop
+The argument @var{tstop} (scalar value) denotes the time when the
+simulation should end.
+@item n
+the number of data values.
+
+Both parameters @var{tstop} and @var{n} can be omitted and will be
+computed from the eigenvalues of the A-Matrix.
+@end table
+@strong{Outputs}
+@var{y}, @var{t}: impulse response
+@end deftypefn
+@seealso{step and __stepimp__}
+
+
+@anchor{doc-step}
+@deftypefn {Function File} {[@var{y}, @var{t}] =} step (@var{sys}, @var{inp}, @var{tstop}, @var{n})
+Step response for a linear system.
+The system can be discrete or multivariable (or both).
+If no output arguments are specified, @code{step}
+produces a plot or the step response data for system @var{sys}.
+
+@strong{Inputs}
+@table @var
+@item sys
+System data structure.
+@item inp
+Index of input being excited
+@item tstop
+The argument @var{tstop} (scalar value) denotes the time when the
+simulation should end.
+@item n
+the number of data values.
+
+Both parameters @var{tstop} and @var{n} can be omitted and will be
+computed from the eigenvalues of the A-Matrix.
+@end table
+@strong{Outputs}
+@var{y}, @var{t}: impulse response
+
+When invoked with the output paramter y the plot is not displayed.
+@end deftypefn
+@seealso{impulse and __stepimp__}
+
+
+
+
+@node sysfreq, cacsd, systime, Control Theory
+@section System Analysis-Frequency Domain
+
+@strong{Demonstration/tutorial script}
+@anchor{doc-frdemo}
+@deftypefn {Function File} {} frdemo ()
+Octave Controls toolbox demo: Frequency Response demo
+@end deftypefn
+
+
+@anchor{doc-bode}
+@deftypefn {Function File} {[@var{mag}, @var{phase}, @var{w}] =} bode (@var{sys}, @var{w}, @var{out_idx}, @var{in_idx})
+If no output arguments are given: produce Bode plots of a system; otherwise,
+compute the frequency response of a system data structure
+
+@strong{Inputs}
+@table @var
+@item   sys
+a system data structure (must be either purely continuous or discrete;
+see is_digital)
+@item   w
+frequency values for evaluation.
+
+if @var{sys} is continuous, then bode evaluates @math{G(jw)} where
+@math{G(s)} is the system transfer function.
+
+if @var{sys} is discrete, then bode evaluates G(@code{exp}(jwT)), where
+@itemize @bullet
+@item @math{T} is the system sampling time
+@item @math{G(z)} is the system transfer function.
+@end itemize
+
+@strong{Default} the default frequency range is selected as follows: (These
+steps are NOT performed if @var{w} is specified)
+@enumerate
+@item via routine __bodquist__, isolate all poles and zeros away from
+@var{w}=0 (@var{jw}=0 or @math{@code{exp}(jwT)}=1) and select the frequency
+range based on the breakpoint locations of the frequencies.
+@item if @var{sys} is discrete time, the frequency range is limited
+              to @math{jwT} in
+@ifinfo
+[0,2 pi /T]
+@end ifinfo
+@iftex
+@tex
+$[0,2\pi/T]$
+@end tex
+@end iftex
+@item A "smoothing" routine is used to ensure that the plot phase does
+not change excessively from point to point and that singular
+points (e.g., crossovers from +/- 180) are accurately shown.
+
+@end enumerate
+@item out_idx
+@itemx in_idx
+
+The names or indices of outputs and inputs to be used in the frequency
+response.  See @code{sysprune}.
+
+@strong{Example}
+@example
+bode(sys,[],"y_3",list("u_1","u_4");
+@end example
+@end table
+@strong{Outputs}
+@table @var
+@item mag
+@itemx phase
+the magnitude and phase of the frequency response @math{G(jw)} or
+@math{G(@code{exp}(jwT))} at the selected frequency values.
+@item w
+the vector of frequency values used
+@end table
+
+@strong{Notes}
+@enumerate
+@item If no output arguments are given, e.g.,
+@example
+bode(sys);
+@end example
+bode plots the results to the screen.  Descriptive labels are
+automatically placed.
+
+Failure to include a concluding semicolon will yield some garbage
+being printed to the screen (@code{ans = []}).
+
+@item If the requested plot is for an MIMO system, mag is set to
+@math{||G(jw)||} or @math{||G(@code{exp}(jwT))||}
+and phase information is not computed.
+@end enumerate
+@end deftypefn
+
+
+@anchor{doc-bode_bounds}
+@deftypefn {Function File} {[@var{wmin}, @var{wmax}] =} bode_bounds (@var{zer}, @var{pol}, @var{dflg}, @var{tsam})
+Get default range of frequencies based on cutoff frequencies of system
+poles and zeros.
+Frequency range is the interval [10^wmin,10^wmax]
+
+Used internally in __freqresp__ (@code{bode}, @code{nyquist})
+@end deftypefn
+
+
+
+
+@anchor{doc-freqchkw}
+@deftypefn {Function File} {} freqchkw (@var{w})
+Used by @code{__freqresp__} to check that input frequency vector @var{w}
+is valid.
+Returns boolean value.
+@end deftypefn
+
+
+
+
+@anchor{doc-ltifr}
+@deftypefn {Function File} {} ltifr (@var{a}, @var{b}, @var{w})
+@deftypefnx {Function File} {} ltifr (@var{sys}, @var{w})
+Linear time invariant frequency response of single input systems
+@strong{Inputs}
+@table @var
+@item a
+@itemx b
+coefficient matrices of @math{dx/dt = A x + B u}
+@item sys
+system data structure
+@item w
+vector of frequencies
+@end table
+@strong{Outputs}
+@var{out}
+@example
+                           -1
+            G(s) = (jw I-A) B
+@end example
+for complex frequencies @math{s = jw}.
+@end deftypefn
+
+
+@anchor{doc-nyquist}
+@deftypefn {Function File} {[@var{realp}, @var{imagp}, @var{w}] =} nyquist (@var{sys}, @var{w}, @var{out_idx}, @var{in_idx}, @var{atol})
+@deftypefnx {Function File} {} nyquist (@var{sys}, @var{w}, @var{out_idx}, @var{in_idx}, @var{atol})
+Produce Nyquist plots of a system; if no output arguments are given, Nyquist
+plot is printed to the screen.
+
+Compute the frequency response of a system.
+@strong{Inputs} (pass as empty to get default values)
+@table @var
+@item sys
+system data structure (must be either purely continuous or discrete;
+see is_digital)
+@item w
+frequency values for evaluation.
+if sys is continuous, then bode evaluates @math{G(jw)}
+if sys is discrete, then bode evaluates @math{G(exp(jwT))}, where
+@math{T} is the system sampling time.
+@item default
+the default frequency range is selected as follows: (These
+steps are NOT performed if @var{w} is specified)
+@end table
+@enumerate
+@item via routine __bodquist__, isolate all poles and zeros away from
+@var{w}=0 (@var{jw}=0 or @math{exp(@var{jwT})=1}) and select the frequency
+range based on the breakpoint locations of the frequencies.
+@item if @var{sys} is discrete time, the frequency range is limited
+to @var{jwT} in
+@ifinfo
+[0,2p*pi]
+@end ifinfo
+@iftex
+$[0,2p*\pi]$
+@end iftex
+@item A "smoothing" routine is used to ensure that the plot phase does
+not change excessively from point to point and that singular
+points (e.g., crossovers from +/- 180) are accurately shown.
+@end enumerate
+outputs, inputs: names or indices of the output(s) and input(s) to be 
+used in the frequency response; see sysprune.
+
+@strong{Inputs} (pass as empty to get default values)
+@table @var
+@item   atol
+for interactive nyquist plots: atol is a change-in-slope tolerance
+for the of asymptotes (default = 0; 1e-2 is a good choice).  This allows
+the user to ``zoom in'' on portions of the Nyquist plot too small to be
+seen with large asymptotes.
+@end table
+@strong{Outputs}
+@table @var
+@item    realp
+@itemx   imagp
+the real and imaginary parts of the frequency response
+@math{G(jw)} or @math{G(exp(jwT))} at the selected frequency values.
+@item    w
+the vector of frequency values used
+@end table
+
+If no output arguments are given, nyquist plots the results to the screen.
+If @var{atol} != 0 and asymptotes are detected then the user is asked
+interactively if they wish to zoom in (remove asymptotes)
+Descriptive labels are automatically placed.
+
+Note: if the requested plot is for an MIMO system, a warning message is
+presented; the returned information is of the magnitude
+||G(jw)|| or ||G(exp(jwT))|| only; phase information is not computed.
+@end deftypefn
+
+
+@anchor{doc-tzero}
+@deftypefn {Function File} {} tzero (@var{a}, @var{b}, @var{c}, @var{d}, @var{opt})
+@deftypefnx {Function File} {} tzero (@var{sys}, @var{opt})
+Compute transmission zeros of a continuous
+@example
+.
+x = Ax + Bu
+y = Cx + Du
+@end example
+or discrete
+@example
+x(k+1) = A x(k) + B u(k)
+y(k)   = C x(k) + D u(k)
+@end example
+system.
+@strong{Outputs}
+@table @var
+@item zer
+ transmission zeros of the system
+@item gain
+leading coefficient (pole-zero form) of SISO transfer function
+returns gain=0 if system is multivariable
+@end table
+@strong{References}
+@enumerate
+@item Emami-Naeini and Van Dooren, Automatica, 1982.
+@item Hodel, "Computation of Zeros with Balancing," 1992 Lin. Alg. Appl.
+@end enumerate
+@end deftypefn
+
+
+@anchor{doc-tzero2}
+@deftypefn {Function File} {} tzero2 (@var{a}, @var{b}, @var{c}, @var{d}, @var{bal})
+Compute the transmission zeros of a, b, c, d.
+
+bal = balancing option (see balance); default is "B".
+
+Needs to incorporate @code{mvzero} algorithm to isolate finite zeros; use
+@code{tzero} instead.
+@end deftypefn
+
+
+@node cacsd, misc, sysfreq, Control Theory
+@section Controller Design
+
+@anchor{doc-dgkfdemo}
+@deftypefn {Function File} {} dgkfdemo ()
+Octave Controls toolbox demo: H2/Hinfinity options demos
+@end deftypefn
+
+
+@anchor{doc-hinfdemo}
+@deftypefn {Function File} {} hinfdemo ()
+
+H_infinity design demos for continuous SISO and MIMO systems and a
+discrete system.  The SISO system is difficult to control because it
+is non minimum phase and unstable.  The second design example
+controls the "jet707" plant, the linearized state space model of a
+Boeing 707-321 aircraft at v=80m/s (M = 0.26, Ga0 = -3 deg, alpha0 =
+4 deg, kappa = 50 deg).  Inputs: (1) thrust and (2) elevator angle
+outputs: (1) airspeed and (2) pitch angle. The discrete system is a
+stable and second order.
+
+@table @asis
+@item SISO plant
+@display
+@group
+                s - 2
+     G(s) = --------------
+            (s + 2)(s - 1)
+
+                              +----+
+         -------------------->| W1 |---> v1
+     z   |                    +----+
+     ----|-------------+                   || T   ||     => min.
+         |             |                       vz   infty
+         |    +---+    v   y  +----+
+       u *--->| G |--->O--*-->| W2 |---> v2
+         |    +---+       |   +----+
+         |                |
+         |    +---+       |
+         -----| K |<-------
+              +---+
+@end group
+@end display
+W1 und W2 are the robustness and performance weighting
+functions
+
+@item MIMO plant
+The optimal controller minimizes the H_infinity norm of the
+augmented plant P (mixed-sensitivity problem):
+@display
+@group
+     w
+      1 -----------+
+                   |                   +----+
+               +---------------------->| W1 |----> z1
+     w         |   |                   +----+
+      2 ------------------------+
+               |   |            |
+               |   v   +----+   v      +----+
+            +--*-->o-->| G  |-->o--*-->| W2 |---> z2
+            |          +----+      |   +----+
+            |                      |
+            ^                      v
+             u (from                 y (to K)
+               controller
+               K)
+
+
+                  +    +           +    +
+                  | z  |           | w  |
+                  |  1 |           |  1 |
+                  | z  | = [ P ] * | w  |
+                  |  2 |           |  2 |
+                  | y  |           | u  |
+                  +    +           +    +
+@end group
+@end display
+
+@item DISCRETE SYSTEM
+This is not a true discrete design. The design is carried out
+in continuous time while the effect of sampling is described by
+a bilinear transformation of the sampled system.
+This method works quite well if the sampling period is "small"
+compared to the plant time constants.
+
+@item The continuous plant
+@display
+@group
+                   1
+     G (s) = --------------
+      k      (s + 2)(s + 1)
+
+@end group
+@end display
+is discretised with a ZOH (Sampling period = Ts = 1 second):
+@display
+@group
+
+               0.199788z + 0.073498
+     G(s) = --------------------------
+            (z - 0.36788)(z - 0.13534)
+
+                              +----+
+         -------------------->| W1 |---> v1
+     z   |                    +----+
+     ----|-------------+                   || T   ||     => min.
+         |             |                       vz   infty
+         |    +---+    v      +----+
+         *--->| G |--->O--*-->| W2 |---> v2
+         |    +---+       |   +----+
+         |                |
+         |    +---+       |
+         -----| K |<-------
+              +---+
+@end group
+@end display
+W1 and W2 are the robustness and performancs weighting
+functions
+@end table
+@end deftypefn
+
+
+@anchor{doc-dlqe}
+@deftypefn {Function File} {[@var{l}, @var{m}, @var{p}, @var{e}] =} dlqe (@var{a}, @var{g}, @var{c}, @var{sigw}, @var{sigv}, @var{z})
+Construct the linear quadratic estimator (Kalman filter) for the
+discrete time system
+@iftex
+@tex
+$$
+ x_{k+1} = A x_k + B u_k + G w_k
+$$
+$$
+ y_k = C x_k + D u_k + v_k
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+x[k+1] = A x[k] + B u[k] + G w[k]
+  y[k] = C x[k] + D u[k] + v[k]
+@end example
+
+@end ifinfo
+where @var{w}, @var{v} are zero-mean gaussian noise processes with
+respective intensities @code{@var{sigw} = cov (@var{w}, @var{w})} and
+@code{@var{sigv} = cov (@var{v}, @var{v})}.
+
+If specified, @var{z} is @code{cov (@var{w}, @var{v})}.  Otherwise
+@code{cov (@var{w}, @var{v}) = 0}.
+
+The observer structure is
+@iftex
+@tex
+$$
+ z_{k|k} = z_{k|k-1} + l (y_k - C z_{k|k-1} - D u_k)
+$$
+$$
+ z_{k+1|k} = A z_{k|k} + B u_k
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+z[k|k] = z[k|k-1] + L (y[k] - C z[k|k-1] - D u[k])
+z[k+1|k] = A z[k|k] + B u[k]
+@end example
+@end ifinfo
+
+@noindent
+The following values are returned:
+
+@table @var
+@item l
+The observer gain,
+@iftex
+@tex
+$(A - ALC)$.
+@end tex
+@end iftex
+@ifinfo
+(@var{a} - @var{a}@var{l}@var{c}).
+@end ifinfo
+is stable.
+
+@item m
+The Riccati equation solution.
+
+@item p
+The estimate error covariance after the measurement update.
+
+@item e
+The closed loop poles of
+@iftex
+@tex
+$(A - ALC)$.
+@end tex
+@end iftex
+@ifinfo
+(@var{a} - @var{a}@var{l}@var{c}).
+@end ifinfo
+@end table
+@end deftypefn
+
+
+@anchor{doc-dlqr}
+@deftypefn {Function File} {[@var{k}, @var{p}, @var{e}] =} dlqr (@var{a}, @var{b}, @var{q}, @var{r}, @var{z})
+Construct the linear quadratic regulator for the discrete time system
+@iftex
+@tex
+$$
+ x_{k+1} = A x_k + B u_k
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+x[k+1] = A x[k] + B u[k]
+@end example
+
+@end ifinfo
+to minimize the cost functional
+@iftex
+@tex
+$$
+ J = \sum x^T Q x + u^T R u
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+J = Sum (x' Q x + u' R u)
+@end example
+@end ifinfo
+
+@noindent
+@var{z} omitted or
+@iftex
+@tex
+$$
+ J = \sum x^T Q x + u^T R u + 2 x^T Z u
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+J = Sum (x' Q x + u' R u + 2 x' Z u)
+@end example
+
+@end ifinfo
+@var{z} included.
+
+The following values are returned:
+
+@table @var
+@item k
+The state feedback gain,
+@iftex
+@tex
+$(A - B K)$
+@end tex
+@end iftex
+@ifinfo
+(@var{a} - @var{b}@var{k})
+@end ifinfo
+is stable.
+
+@item p
+The solution of algebraic Riccati equation.
+
+@item e
+The closed loop poles of
+@iftex
+@tex
+$(A - B K)$.
+@end tex
+@end iftex
+@ifinfo
+(@var{a} - @var{b}@var{k}).
+@end ifinfo
+@end table
+@end deftypefn
+
+
+@anchor{doc-dkalman}
+@deftypefn {Function File} {[@var{Lp}, @var{Lf}, @var{P}, @var{Z}] =} dkalman (@var{A}, @var{G}, @var{C}, @var{Qw}, @var{Rv}, @var{S})
+Construct the linear quadratic estimator (Kalman predictor) for the
+discrete time system
+@iftex
+@tex
+$$
+ x_{k+1} = A x_k + B u_k + G w_k
+$$
+$$
+ y_k = C x_k + D u_k + v_k
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+x[k+1] = A x[k] + B u[k] + G w[k]
+  y[k] = C x[k] + D u[k] + v[k]
+@end example
+
+@end ifinfo
+where @var{w}, @var{v} are zero-mean gaussian noise processes with
+respective intensities @code{@var{Qw} = cov (@var{w}, @var{w})} and
+@code{@var{Rv} = cov (@var{v}, @var{v})}.
+
+If specified, @var{S} is @code{cov (@var{w}, @var{v})}.  Otherwise
+@code{cov (@var{w}, @var{v}) = 0}.
+
+The observer structure is
+@iftex
+@tex
+$x_{k+1|k} = A x_{k|k-1} + B u_k + L_p (y_k - C x_{k|k-1} - D u_k)$
+$x_{k|k} = x_{k|k} + L_f (y_k - C x_{k|k-1} - D u_k)$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+x[k+1|k] = A x[k|k-1] + B u[k] + LP (y[k] - C x[k|k-1] - D u[k])
+x[k|k] = x[k|k-1] + LF (y[k] - C x[k|k-1] - D u[k])
+@end example
+@end ifinfo
+
+@noindent
+The following values are returned:
+
+@table @var
+@item Lp
+The predictor gain,
+@iftex
+@tex
+$(A - L_p C)$.
+@end tex
+@end iftex
+@ifinfo
+(@var{A} - @var{Lp} @var{C})
+@end ifinfo
+is stable.
+
+@item Lf
+The filter gain.
+
+@item P
+The Riccati solution. 
+@iftex
+@tex
+$P = E \{(x - x_{n|n-1})(x - x_{n|n-1})'\}$
+@end tex
+@end iftex
+
+@ifinfo
+P = E [(x - x[n|n-1])(x - x[n|n-1])']
+@end ifinfo
+
+@item Z
+The updated error covariance matrix.
+@iftex
+@tex
+$Z = E \{(x - x_{n|n})(x - x_{n|n})'\}$
+@end tex
+@end iftex
+
+@ifinfo
+Z = E [(x - x[n|n])(x - x[n|n])']
+@end ifinfo
+@end table
+@end deftypefn
+
+
+@anchor{doc-h2syn}
+@deftypefn {Function File} {[K}, @var{gain}, @var{kc}, @var{kf}, @var{pc}, @var{pf}] = h2syn (@var{asys}, @var{nu}, @var{ny}, @var{tol})
+Design H2 optimal controller per procedure in
+Doyle, Glover, Khargonekar, Francis, "State Space Solutions to Standard
+H2 and Hinf Control Problems", IEEE TAC August 1989
+
+Discrete time control per Zhou, Doyle, and Glover, ROBUST AND OPTIMAL
+CONTROL, Prentice-Hall, 1996
+
+@strong{Inputs} input system is passed as either
+@table @var
+@item asys
+system data structure (see ss2sys, sys2ss)
+@itemize @bullet
+@item controller is implemented for continuous time systems
+@item controller is NOT implemented for discrete time systems
+@end itemize
+@item nu
+number of controlled inputs
+@item ny
+number of measured outputs
+@item tol
+threshhold for 0.  Default: 200*eps
+@end table
+
+@strong{Outputs}
+@table @var
+@item    k
+system controller
+@item    gain
+optimal closed loop gain
+@item    kc
+full information control (packed)
+@item    kf
+state estimator (packed)
+@item    pc
+ARE solution matrix for regulator subproblem
+@item    pf
+ARE solution matrix for filter subproblem
+@end table
+@end deftypefn
+
+
+@anchor{doc-hinf_ctr}
+@deftypefn {Function File} {} hinf_ctr (@var{dgs}, @var{f}, @var{h}, @var{z}, @var{g})
+Called by @code{hinfsyn} to compute the H_inf optimal controller.
+
+@strong{Inputs}
+@table @var
+@item dgs
+data structure returned by @code{is_dgkf}
+@item f
+@itemx h
+feedback and filter gain (not partitioned)
+@item g
+final gamma value
+@end table
+@strong{Outputs}
+controller (system data structure)
+
+Do not attempt to use this at home; no argument checking performed.
+@end deftypefn
+
+
+@anchor{doc-hinfsyn}
+@deftypefn {Function File} {[@var{k}, @var{g}, @var{gw}, @var{xinf}, @var{yinf}] =} hinfsyn (@var{asys}, @var{nu}, @var{ny}, @var{gmin}, @var{gmax}, @var{gtol}, @var{ptol}, @var{tol})
+
+@strong{Inputs} input system is passed as either
+@table @var
+@item asys
+system data structure (see ss2sys, sys2ss)
+@itemize @bullet
+@item controller is implemented for continuous time systems
+@item controller is NOT implemented for discrete time systems  (see
+bilinear transforms in @code{c2d}, @code{d2c})
+@end itemize
+@item nu
+number of controlled inputs
+@item ny
+number of measured outputs
+@item gmin
+initial lower bound on H-infinity optimal gain
+@item gmax
+initial upper bound on H-infinity optimal gain
+@item gtol
+gain threshhold.  Routine quits when gmax/gmin < 1+tol
+@item ptol
+poles with abs(real(pole)) < ptol*||H|| (H is appropriate
+Hamiltonian) are considered to be on the imaginary axis.
+Default: 1e-9
+@item tol
+threshhold for 0.  Default: 200*eps
+
+@var{gmax}, @var{min}, @var{tol}, and @var{tol} must all be postive scalars.
+@end table
+@strong{Outputs}
+@table @var
+@item k
+system controller
+@item g
+designed gain value
+@item gw
+closed loop system
+@item xinf
+ARE solution matrix for regulator subproblem
+@item yinf
+ARE solution matrix for filter subproblem
+@end table
+
+@enumerate
+@item Doyle, Glover, Khargonekar, Francis, "State Space Solutions
+to Standard H2 and Hinf Control Problems," IEEE TAC August 1989
+
+@item Maciejowksi, J.M., "Multivariable feedback design,"
+Addison-Wesley, 1989, ISBN 0-201-18243-2
+
+@item Keith Glover and John C. Doyle, "State-space formulae for all
+stabilizing controllers that satisfy and h-infinity-norm bound
+and relations to risk sensitivity,"
+Systems & Control Letters 11, Oct. 1988, pp 167-172.
+@end enumerate
+@end deftypefn
+
+
+@anchor{doc-hinfsyn_chk}
+@deftypefn {Function File} {[@var{retval}, @var{pc}, @var{pf}] =} hinfsyn_chk (@var{a}, @var{b1}, @var{b2}, @var{c1}, @var{c2}, @var{d12}, @var{d21}, @var{g}, @var{ptol})
+Called by @code{hinfsyn} to see if gain @var{g} satisfies conditions in
+Theorem 3 of
+Doyle, Glover, Khargonekar, Francis, "State Space Solutions to Standard
+H2 and Hinf Control Problems", IEEE TAC August 1989
+
+@strong{Warning} Do not attempt to use this at home; no argument
+checking performed.
+
+@strong{Inputs} as returned by @code{is_dgkf}, except for:
+@table @var
+@item g
+candidate gain level
+@item ptol
+ as in @code{hinfsyn}
+@end table
+
+@strong{Outputs}
+@table @var
+@item retval
+ 1 if g exceeds optimal Hinf closed loop gain, else 0
+@item pc
+ solution of "regulator" H-inf ARE
+@item pf
+ solution of "filter" H-inf ARE
+@end table
+Do not attempt to use this at home; no argument checking performed.
+@end deftypefn
+
+
+@anchor{doc-hinfsyn_ric}
+@deftypefn {Function File} {[@var{xinf}, @var{x_ha_err}] =} hinfsyn_ric (@var{a}, @var{bb}, @var{c1}, @var{d1dot}, @var{r}, @var{ptol})
+Forms
+@example
+xx = ([BB; -C1'*d1dot]/R) * [d1dot'*C1 BB'];
+Ha = [A 0*A; -C1'*C1 -A'] - xx;
+@end example
+and solves associated Riccati equation.
+The error code @var{x_ha_err} indicates one of the following
+conditions:
+@table @asis
+@item 0
+successful
+@item 1
+@var{xinf} has imaginary eigenvalues
+@item 2
+@var{hx} not Hamiltonian
+@item 3
+@var{xinf} has infinite eigenvalues (numerical overflow)
+@item 4
+@var{xinf} not symmetric
+@item 5
+@var{xinf} not positive definite
+@item 6
+@var{r} is singular
+@end table
+@end deftypefn
+
+
+@anchor{doc-lqe}
+@deftypefn {Function File} {[@var{k}, @var{p}, @var{e}] =} lqe (@var{a}, @var{g}, @var{c}, @var{sigw}, @var{sigv}, @var{z})
+Construct the linear quadratic estimator (Kalman filter) for the
+continuous time system
+@iftex
+@tex
+$$
+ {dx\over dt} = A x + B u
+$$
+$$
+ y = C x + D u
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+dx
+-- = a x + b u
+dt
+
+y = c x + d u
+@end example
+
+@end ifinfo
+where @var{w} and @var{v} are zero-mean gaussian noise processes with
+respective intensities
+
+@example
+sigw = cov (w, w)
+sigv = cov (v, v)
+@end example
+
+The optional argument @var{z} is the cross-covariance
+@code{cov (@var{w}, @var{v})}.  If it is omitted,
+@code{cov (@var{w}, @var{v}) = 0} is assumed.
+
+Observer structure is @code{dz/dt = A z + B u + k (y - C z - D u)}
+
+The following values are returned:
+
+@table @var
+@item k
+The observer gain,
+@iftex
+@tex
+$(A - K C)$
+@end tex
+@end iftex
+@ifinfo
+(@var{a} - @var{k}@var{c})
+@end ifinfo
+is stable.
+
+@item p
+The solution of algebraic Riccati equation.
+
+@item e
+The vector of closed loop poles of
+@iftex
+@tex
+$(A - K C)$.
+@end tex
+@end iftex
+@ifinfo
+(@var{a} - @var{k}@var{c}).
+@end ifinfo
+@end table
+@end deftypefn
+
+
+@anchor{doc-lqg}
+@deftypefn {Function File} {[@var{k}, @var{q1}, @var{p1}, @var{ee}, @var{er}] =} lqg (@var{sys}, @var{sigw}, @var{sigv}, @var{q}, @var{r}, @var{in_idx})
+Design a linear-quadratic-gaussian optimal controller for the system
+@example
+dx/dt = A x + B u + G w       [w]=N(0,[Sigw 0    ])
+    y = C x + v               [v]  (    0   Sigv ])
+@end example
+or
+@example
+x(k+1) = A x(k) + B u(k) + G w(k)       [w]=N(0,[Sigw 0    ])
+  y(k) = C x(k) + v(k)                  [v]  (    0   Sigv ])
+@end example
+
+@strong{Inputs}
+@table @var
+@item  sys
+system data structure
+@item  sigw
+@itemx  sigv
+intensities of independent Gaussian noise processes (as above)
+@item  q
+@itemx  r
+state, control weighting respectively.  Control ARE is
+@item  in_idx
+names or indices of controlled inputs (see @code{sysidx}, @code{listidx})
+
+default: last dim(R) inputs are assumed to be controlled inputs, all
+others are assumed to be noise inputs.
+@end table
+@strong{Outputs}
+@table @var
+@item    k
+system data structure format LQG optimal controller (Obtain A,B,C
+matrices with @code{sys2ss}, @code{sys2tf}, or @code{sys2zp} as
+appropriate)
+@item    p1
+Solution of control (state feedback) algebraic Riccati equation
+@item    q1
+Solution of estimation algebraic Riccati equation
+@item    ee
+estimator poles
+@item    es
+controller poles
+@end table
+@end deftypefn
+@seealso{h2syn, lqe, and lqr}
+
+
+@anchor{doc-lqr}
+@deftypefn {Function File} {[@var{k}, @var{p}, @var{e}] =} lqr (@var{a}, @var{b}, @var{q}, @var{r}, @var{z})
+construct the linear quadratic regulator for the continuous time system
+@iftex
+@tex
+$$
+ {dx\over dt} = A x + B u
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+dx
+-- = A x + B u
+dt
+@end example
+
+@end ifinfo
+to minimize the cost functional
+@iftex
+@tex
+$$
+ J = \int_0^\infty x^T Q x + u^T R u
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+      infinity
+      /
+  J = |  x' Q x + u' R u
+     /
+    t=0
+@end example
+@end ifinfo
+
+@noindent
+@var{z} omitted or
+@iftex
+@tex
+$$
+ J = \int_0^\infty x^T Q x + u^T R u + 2 x^T Z u
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+      infinity
+      /
+  J = |  x' Q x + u' R u + 2 x' Z u
+     /
+    t=0
+@end example
+
+@end ifinfo
+@var{z} included.
+
+The following values are returned:
+
+@table @var
+@item k
+The state feedback gain,
+@iftex
+@tex
+$(A - B K)$
+@end tex
+@end iftex
+@ifinfo
+(@var{a} - @var{b}@var{k})
+@end ifinfo
+is stable and minimizes the cost functional
+
+@item p
+The stabilizing solution of appropriate algebraic Riccati equation.
+
+@item e
+The vector of the closed loop poles of
+@iftex
+@tex
+$(A - B K)$.
+@end tex
+@end iftex
+@ifinfo
+(@var{a} - @var{b}@var{k}).
+@end ifinfo
+@end table
+
+@strong{Reference}
+Anderson and Moore, OPTIMAL CONTROL: LINEAR QUADRATIC METHODS,
+Prentice-Hall, 1990, pp. 56-58
+@end deftypefn
+
+
+@anchor{doc-lsim}
+@deftypefn {Function File} {} lsim (@var{sys}, @var{u}, @var{t}, @var{x0})
+Produce output for a linear simulation of a system
+
+Produces a plot for the output of the system, sys.
+
+U is an array that contains the system's inputs.  Each column in u
+corresponds to a different time step.  Each row in u corresponds to a
+different input.  T is an array that contains the time index of the
+system.  T should be regularly spaced.  If initial conditions are required
+on the system, the x0 vector should be added to the argument list.
+
+When the lsim function is invoked with output parameters:
+[y,x] = lsim(sys,u,t,[x0])
+a plot is not displayed, however, the data is returned in y = system output
+and x = system states.
+@end deftypefn
+
+
+@anchor{doc-place}
+@deftypefn {Function File} {} place (@var{sys}, @var{p})
+Computes the matrix  K such that if the state
+is feedback with gain K, then the eigenvalues  of the closed loop
+system (i.e. A-BK) are those specified in the vector @var{p}.
+
+Version: Beta (May-1997): If you have any comments, please let me know.
+(see the file place.m for my address)
+@end deftypefn
+
+
+@node misc,  , cacsd, Control Theory
+@section Miscellaneous Functions (Not yet properly filed/documented)
+
+@anchor{doc-axis2dlim}
+@deftypefn{Function File} {} axis2dlim (@var{axdata})
+determine axis limits for 2-d data(column vectors); leaves a 10% margin
+around the plots.
+puts in margins of +/- 0.1 if data is one dimensional (or a single point)
+
+@strong{Inputs}
+@var{axdata} nx2 matrix of data [x,y]
+
+@strong{Outputs}
+@var{axvec} vector of axis limits appropriate for call to axis() function
+@end deftypefn
+
+
+@anchor{doc-moddemo}
+@deftypefn {Function File} {} moddemo (@var{inputs})
+Octave Controls toolbox demo: Model Manipulations demo
+@end deftypefn
+
+
+@anchor{doc-prompt}
+@deftypefn {Function File} {} prompt (@var{inputs})
+@format
+function prompt([str])
+Prompt user to continue
+str: input string. Default value: "\n ---- Press a key to continue ---"
+@end format
+@end deftypefn
+
+
+@anchor{doc-rldemo}
+@deftypefn {Function File} {} rldemo (@var{inputs})
+Octave Controls toolbox demo: Root Locus demo
+@end deftypefn
+
+
+@anchor{doc-rlocus}
+@deftypefn {Function File} {} rlocus (@var{inputs})
+@format
+[rldata, k] = rlocus(sys[,increment,min_k,max_k])
+Displays root locus plot of the specified SISO system.
+
+       -----   ---     --------
+   --->| + |---|k|---->| SISO |----------->
+       -----   ---     --------        |
+       - ^                             |
+         |_____________________________|
+
+inputs: sys = system data structure
+min_k, max_k,increment: minimum, maximum values of k and
+the increment used in computing gain values
+Outputs: plots the root locus to the screen.
+rldata: Data points plotted column 1: real values, column 2: imaginary
+values)
+k: gains for real axis break points.
+@end format
+@end deftypefn
+
+
+@anchor{doc-sortcom}
+@deftypefn {Function File} {} sortcom (@var{inputs})
+@format
+[yy,idx] = sortcom(xx[,opt]): sort a complex vector
+xx: complex vector
+opt: sorting option:
+ "re": real part (default)
+ "mag": by magnitude
+ "im": by imaginary part
+
+if opt != "im" then complex conjugate pairs are grouped together,
+a - jb followed by a + jb.
+yy: sorted values
+idx: permutation vector: yy = xx(idx)
+@end format
+@end deftypefn
+
+
+@anchor{doc-ss2tf}
+@deftypefn {Function File} {} ss2tf (@var{inputs})
+@format
+[num,den] = ss2tf(a,b,c,d)
+Conversion from tranfer function to state-space.
+The state space system
+      .
+      x = Ax + Bu
+      y = Cx + Du
+
+is converted to a transfer function
+
+                num(s)
+          G(s)=-------
+                den(s)
+
+used internally in system data structure format manipulations
+@end format
+@end deftypefn
+
+
+@anchor{doc-ss2zp}
+@deftypefn {Function File} {} ss2zp (@var{inputs})
+@format
+Converts a state space representation to a set of poles and zeros.
+
+[pol,zer,k] = ss2zp(a,b,c,d) returns the poles and zeros of the state space
+system (a,b,c,d).  K is a gain associated with the zeros.
+
+used internally in system data structure format manipulations
+@end format
+@end deftypefn
+
+
+@anchor{doc-starp}
+@deftypefn {Function File} {} starp (@var{P}, @var{K}, @var{ny}, @var{nu})
+@format
+
+Redheffer star product or upper/lower LFT, respectively.
+
+
+               +-------+
+     --------->|       |--------->
+               |   P   |
+          +--->|       |---+  ny
+          |    +-------+   |
+          +-------------------+
+                           |  |
+          +----------------+  |
+          |                   |
+          |    +-------+      |
+          +--->|       |------+ nu
+               |   K   |
+     --------->|       |--------->
+               +-------+
+
+If ny and nu "consume" all inputs and outputs of K then the result
+is a lower fractional transformation. If ny and nu "consume" all
+inputs and outputs of P then the result is an upper fractional
+transformation.
+
+ny and/or nu may be negative (= negative feedback)
+@end format
+@end deftypefn
+
+
+
+
+@anchor{doc-tf2ss}
+@deftypefn {Function File} {} tf2ss (@var{inputs})
+@format
+Conversion from tranfer function to state-space.
+The state space system
+      .
+      x = Ax + Bu
+      y = Cx + Du
+
+is obtained from a transfer function
+
+                num(s)
+          G(s)=-------
+                den(s)
+
+via the function call [a,b,c,d] = tf2ss(num,den).
+The vector 'den' must contain only one row, whereas the vector 'num'
+may contain as many rows as there are outputs of the system 'y'.
+The state space system matrices obtained from this function will be
+in controllable canonical form as described in "Modern Control Theory",
+[Brogan, 1991].
+
+
+@end format
+@end deftypefn
+
+
+@anchor{doc-tf2zp}
+@deftypefn {Function File} {} tf2zp (@var{inputs})
+Converts transfer functions to poles / zeros.
+
+[zer,pol,k] = tf2zp(num,den) returns the zeros and poles of the SISO system
+defined by num/den.  K is a gain associated with the system zeros.
+@end deftypefn
+
+
+@anchor{doc-zp2ss}
+@deftypefn {Function File} {[@var{a}, @var{b}, @var{c}, @var{d}] =} zp2ss (@var{zer}, @var{pol}, @var{k})
+Conversion from zero / pole to state space.
+@strong{Inputs}
+@table @var
+@item zer
+@itemx pol
+vectors of (possibly) complex poles and zeros of a transfer
+function.  Complex values must come in conjugate pairs
+(i.e., x+jy in zer means that x-jy is also in zer)
+@item k
+real scalar (leading coefficient)
+@end table
+@strong{Outputs}
+@var{a}, @var{b}, @var{c}, @var{d}
+The state space system
+@example
+.
+x = Ax + Bu
+y = Cx + Du
+@end example
+is obtained from a vector of zeros and a vector of poles via the
+function call @code{[a,b,c,d] = zp2ss(zer,pol,k)}.
+The vectors @samp{zer} and
+@samp{pol} may either be row or column vectors.  Each zero and pole that
+has an imaginary part must have a conjugate in the list.
+The number of zeros must not exceed the number of poles.
+@samp{k} is @code{zp}-form leading coefficient.
+@end deftypefn
+
+
+
+
+@anchor{doc-zp2tf}
+@deftypefn {Function File} {[@var{num}, @var{den}] =} zp2tf (@var{zer}, @var{pol}, @var{k})
+Converts zeros / poles to a transfer function.
+@strong{Inputs}
+@table @var
+@item zer
+@itemx pol
+vectors of (possibly complex) poles and zeros of a transfer
+function.  Complex values should appear in conjugate pairs
+@item k
+real scalar (leading coefficient)
+@end table
+@code{[num,den] = zp2tf(zer,pol,k)} forms the transfer function
+@code{num/den} from the vectors of poles and zeros.
+@end deftypefn
+
+

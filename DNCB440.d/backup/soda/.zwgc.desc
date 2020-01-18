@@ -1,0 +1,35 @@
+if (upcase($opcode) == "PING") then exit endif
+
+case $class
+match "WG_CTL_CLASS"
+  exit
+match "message"
+
+  fields signature body
+  set dummy = lbreak($body, "\n")
+
+  if (downcase($dummy) == "sodas") then
+    inputport "sodainfo" "/soda/info"
+    set soda1 = get("sodainfo")
+    set soda2 = get("sodainfo")
+    set soda3 = get("sodainfo")
+    set soda4 = get("sodainfo")
+    set soda5 = get("sodainfo")
+    set soda6 = get("sodainfo")
+    set soda7 = get("sodainfo")
+    execport "zephyr" "/usr/athena/bin/zwrite" "-n" "-s" "Automated Reply" $sender
+    print "Soda Status:\n"+$soda1+"\n"+$soda2+"\n"+$soda3+"\n"+$soda4+"\n"+
+          $soda5+"\n"+$soda6+"\n"+$soda7+"\n"
+    put "zephyr"
+    closeport "zephyr"
+  else
+    execport "zephyr" "/usr/athena/bin/zwrite" "-n" "-s" "Automated Reply" $sender
+    print "You Lose!"
+    put "zephyr"
+    closeport "zephyr"
+  endif
+  exit
+
+default
+  exit
+endcase

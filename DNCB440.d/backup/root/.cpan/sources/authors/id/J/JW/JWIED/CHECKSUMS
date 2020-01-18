@@ -1,0 +1,900 @@
+# CHECKSUMS file written on Mon Sep 23 20:49:17 2002 by CPAN::Checksums (v1.008)
+$cksum = {
+  'PlRPC-0.2011.tar.gz' => {
+    'md5-ungz' => 'cb8cea27ecbac09bc45f6d3829194be9',
+    'mtime' => '1999-06-21',
+    'md5' => 'f99186efe336a0d7eff8ac4aa74609d1',
+    'shortname' => 'plrp024.tgz',
+    'size' => '17040'
+  },
+  'Mail-IspMailGate-1.1013.tar.gz' => {
+    'md5-ungz' => 'a7e258608d942e4a906f948af55fa268',
+    'mtime' => '1999-09-30',
+    'md5' => '19d9eaae0c02bb095c5161844f4986dc',
+    'shortname' => 'mail112.tgz',
+    'size' => '50845'
+  },
+  'Net-Nessus-0.05.tar.gz' => {
+    'md5-ungz' => '7099a72fe501d7769755d91de6ebffec',
+    'mtime' => '1999-02-28',
+    'md5' => 'f44c1034db42a8d1e82b65c6b1238842',
+    'shortname' => 'netne005.tgz',
+    'size' => '15774'
+  },
+  'DBD-mysql-2.1013.tar.gz' => {
+    'md5-ungz' => '8b3ff16317e4c2ce528fcb3fc36ae837',
+    'mtime' => '2002-04-15',
+    'md5' => 'd60c94eb43904617b41722f70c09e268',
+    'shortname' => 'dbdm217.tgz',
+    'size' => '93453'
+  },
+  'DBD-Adabas-0.2003.tar.gz' => {
+    'md5-ungz' => '144a406b48b0baf64a48168327976e75',
+    'mtime' => '1999-11-01',
+    'md5' => '314414fe64b48e1f9cac2cf6f1396db0',
+    'shortname' => 'dbda022.tgz',
+    'size' => '134443'
+  },
+  'Text-CSV_XS-0.22.tar.gz' => {
+    'md5-ungz' => '43be8b40e1ec4338f3187fc9bfd93a43',
+    'mtime' => '2000-12-22',
+    'md5' => '62dc9ab3e286e7e3a38b3c027b0f50e0',
+    'shortname' => 'textc022.tgz',
+    'size' => '16103'
+  },
+  'Msql-Mysql-modules-1.2018.tar.gz' => {
+    'md5-ungz' => '604dcdc463ab8015afdbfc77cbea5ff3',
+    'mtime' => '1999-06-09',
+    'md5' => '60b289184d65dbf5215e6cf19225921a',
+    'shortname' => 'msql120.tgz',
+    'size' => '190859'
+  },
+  'SQL-Statement-0.1016.tar.gz' => {
+    'md5-ungz' => '93b5c02c729b593b8b229989e33ebc16',
+    'mtime' => '1999-08-29',
+    'md5' => '7942e84979dcf0fb3069b4327546cfdf',
+    'shortname' => 'sqls013.tgz',
+    'size' => '85700'
+  },
+  'ExtUtils-PerlPP-0.01.tar.gz' => {
+    'md5-ungz' => '4dc2480ce0b7f5bd04281032e069a996',
+    'mtime' => '1998-07-25',
+    'md5' => 'a44d310b2560c344c50d36b1e9cf00bf',
+    'shortname' => 'extut001.tgz',
+    'size' => '6438'
+  },
+  'PlRPC-0.2004.tar.gz' => {
+    'md5-ungz' => '0f27bf14971085c990bc863262dd474f',
+    'mtime' => '1999-06-21',
+    'md5' => 'd3dc6ac4493025b62e8fde60cf6a1ec6',
+    'shortname' => 'plrp022.tgz',
+    'size' => '15773'
+  },
+  'PlRPC-0.2013.tar.gz' => {
+    'md5-ungz' => 'a4a24a43e426b3c18ee70505ba4665fc',
+    'mtime' => '2001-01-23',
+    'md5' => '68f28b56b0466675930b084c4a1c26eb',
+    'shortname' => 'plrp026.tgz',
+    'size' => '17316'
+  },
+  'HTML-EP-0.1135.tar.gz' => {
+    'md5-ungz' => '4d167d3001b7d0e72075e7f59367415d',
+    'mtime' => '1999-09-21',
+    'md5' => 'fa25b3c91a5e28549fee9f756a0df6ae',
+    'shortname' => 'html012.tgz',
+    'size' => '100677'
+  },
+  'Net-Nessus-0.07.tar.gz' => {
+    'md5-ungz' => '6beca3a745740ec65ccc4ff98da4a687',
+    'mtime' => '2001-05-07',
+    'md5' => 'c41accd64be026b0cd2e73c931b86bff',
+    'shortname' => 'netne007.tgz',
+    'size' => '15922'
+  },
+  'DBD-mysql-2.1015.tar.gz' => {
+    'md5-ungz' => 'c573b64d497c025719467f9649abb601',
+    'mtime' => '2002-04-29',
+    'md5' => '795be6e630746813bfeba503b6f1f6c2',
+    'shortname' => 'dbdm210.tgz',
+    'size' => '93548'
+  },
+  'DBD-CSV-0.1029.tar.gz' => {
+    'md5-ungz' => 'cc84b923f62a787b81ac44cd2febf172',
+    'mtime' => '2001-11-28',
+    'md5' => 'dd43bfaa0526d4bb27bba329d2b3b86a',
+    'shortname' => 'dbdc011.tgz',
+    'size' => '42039'
+  },
+  'HTML-EP-MSWin32.tar.gz' => {
+    'md5-ungz' => 'e02d0c1db8f135797e79e46d2d748aa6',
+    'mtime' => '2001-01-05',
+    'md5' => '65f89c8114148452c4304712542cc434',
+    'shortname' => 'htmlep32.tgz',
+    'size' => '42860'
+  },
+  'Msql-Mysql-modules-1.2210.tar.gz' => {
+    'md5-ungz' => '13d29ad9abaf63a429053ee5fe81721e',
+    'mtime' => '1999-11-30',
+    'md5' => '9cbe22ac1277bd14508fb9b6a2490b54',
+    'shortname' => 'msql124.tgz',
+    'size' => '198674'
+  },
+  'SQL-Statement-0.1018.tar.gz' => {
+    'md5-ungz' => '57d41bed75e607adbac2391afcddc022',
+    'mtime' => '2001-04-24',
+    'md5' => '60bc1d301c12b9186a67fece56714b5d',
+    'shortname' => 'sqls015.tgz',
+    'size' => '86517'
+  },
+  'HTML-EP-MSWin32.ppd' => {
+    'mtime' => '2001-01-05',
+    'md5' => '46525c1203912c6b4e8bf461299e2533',
+    'shortname' => 'htmlep32.ppd',
+    'size' => '532'
+  },
+  'ExtUtils-PerlPP-0.03.tar.gz' => {
+    'md5-ungz' => '6b935ce027677869699eab9072da7c63',
+    'mtime' => '1999-08-22',
+    'md5' => '374a4aea0e190061ff4e21b903752ee4',
+    'shortname' => 'extut003.tgz',
+    'size' => '6899'
+  },
+  'PlRPC-0.2015.tar.gz' => {
+    'md5-ungz' => 'ca745c9f8a24fce048c0c2e4d5df0547',
+    'mtime' => '2001-03-26',
+    'md5' => '58df136e45f23bc990c74e45f93337f7',
+    'shortname' => 'plrp028.tgz',
+    'size' => '17450'
+  },
+  'HTML-EP-0.2011.tar.gz' => {
+    'md5-ungz' => '05d20024b8c178523ee7563a2c6069af',
+    'mtime' => '2001-01-05',
+    'md5' => '9753863bddef3c30e45d2e5f5a975ceb',
+    'shortname' => 'html025.tgz',
+    'size' => '106022'
+  },
+  'Text-CSV_XS-0.17.tar.gz' => {
+    'md5-ungz' => '0079d308e9ec643c37f40ba739d53743',
+    'mtime' => '1999-03-04',
+    'md5' => '4754ab66c8d4da27be08b15bd2796bd5',
+    'shortname' => 'textc017.tgz',
+    'size' => '12476'
+  },
+  'DBD-mysql-2.1017.tar.gz' => {
+    'md5-ungz' => '7e6b78850bae901049c94038b13cdefb',
+    'mtime' => '2002-05-02',
+    'md5' => '3d1b719a66f6d311c1df72990e48ab18',
+    'shortname' => 'dbdm212.tgz',
+    'size' => '93638'
+  },
+  'Msql-Mysql-modules-1.21_15.tar.gz' => {
+    'md5-ungz' => 'ab4e2e1e55283cfd130a5dc1137d2400',
+    'mtime' => '1999-01-26',
+    'md5' => 'fa93656069f0fcac23e153212f66f68a',
+    'shortname' => 'msqlm121.tgz',
+    'size' => '179652'
+  },
+  'Msql-Mysql-modules-1.2212.tar.gz' => {
+    'md5-ungz' => '59db7824f71899cb3e0d27b4bf7110d0',
+    'mtime' => '2000-04-15',
+    'md5' => 'e053759f4efcdaaf7df62c9430adff68',
+    'shortname' => 'msql126.tgz',
+    'size' => '190169'
+  },
+  'Net-Daemon-0.30.tar.gz' => {
+    'md5-ungz' => '1e0394a3ee39f25d664cc9e3d64ccc58',
+    'mtime' => '2000-05-10',
+    'md5' => '2e4c0e0e300b79b10e46609551f33f53',
+    'shortname' => 'netda030.tgz',
+    'size' => '24612'
+  },
+  'tunnel.pl-20000330' => {
+    'mtime' => '2000-03-31',
+    'md5' => '11c28763f6372981dc80ac6cfabb785a',
+    'shortname' => 'tunn2000.pl-',
+    'size' => '5938'
+  },
+  'HTML-EP-Explorer-0.1006.tar.gz' => {
+    'md5-ungz' => '56599ec1b88af8a32918b452d4a62ef4',
+    'mtime' => '1999-11-05',
+    'md5' => 'd085e43d375fa2815f176568ba30b4e1',
+    'shortname' => 'html013.tgz',
+    'size' => '23049'
+  },
+  'DBD-mysql-2.1019.tar.gz' => {
+    'md5-ungz' => '01f41bda41a44ae5d08a7b89d213b9ea',
+    'mtime' => '2002-09-16',
+    'md5' => '2fd926f65e321831c893fbb0d97246b0',
+    'shortname' => 'dbdm214.tgz',
+    'size' => '98685'
+  },
+  'Msql-Mysql-modules-1.2214.tar.gz' => {
+    'md5-ungz' => 'ede7fe0b182938a4e8f15b4c267928b8',
+    'mtime' => '2000-05-10',
+    'md5' => '2bdaebd9f2eb1f974631c5c48e53a36e',
+    'shortname' => 'msql128.tgz',
+    'size' => '191629'
+  },
+  'Net-Daemon-0.32.tar.gz' => {
+    'md5-ungz' => '77cf9ed5755ca388f627ce3745fb71c4',
+    'mtime' => '2000-11-07',
+    'md5' => '576c8b6d7558068589da245c4b11837c',
+    'shortname' => 'netda032.tgz',
+    'size' => '28322'
+  },
+  'Wizard-LDAP-0.1006.tar.gz' => {
+    'md5-ungz' => '875427c957b03694ba917406677b4bd2',
+    'mtime' => '1999-09-30',
+    'md5' => 'cb82c7d1306dcc5bf135907eda06ae90',
+    'shortname' => 'wiza013.tgz',
+    'size' => '16992'
+  },
+  'HTML-EP-0.2006.tar.gz' => {
+    'md5-ungz' => '0848919d3c62792aff7529991d61533c',
+    'mtime' => '1999-11-17',
+    'md5' => '1be051b56ff7931c85fbb5dc7185ed6f',
+    'shortname' => 'html020.tgz',
+    'size' => '92937'
+  },
+  'BuildAppletJar.pl' => {
+    'mtime' => '2000-11-29',
+    'md5' => '0a8decd48693d97a457fe2929935d3f9',
+    'shortname' => 'buildap0.pl',
+    'size' => '14504'
+  },
+  'Msql-Mysql-modules-1.2216.tar.gz' => {
+    'md5-ungz' => '70f5c5079f87fd4fb20f6dfef2dd8222',
+    'mtime' => '2001-04-07',
+    'md5' => 'b5f764a84c452c9f46c3f7d937798e77',
+    'shortname' => 'msql130.tgz',
+    'size' => '195351'
+  },
+  'Net-Daemon-0.34.tar.gz' => {
+    'md5-ungz' => 'd8763b14fc050b04694e727348440e19',
+    'mtime' => '2000-12-22',
+    'md5' => 'ca68ac13901f56d1d521dabe65ac11d4',
+    'shortname' => 'netda034.tgz',
+    'size' => '25231'
+  },
+  'Wizard-LDAP-0.1008.tar.gz' => {
+    'md5-ungz' => 'f4b8029aa480a7e9efff8be0c3cb4f98',
+    'mtime' => '1999-12-19',
+    'md5' => 'b2c61f0f6147e6c95792d13a80db9873',
+    'shortname' => 'wiza015.tgz',
+    'size' => '20681'
+  },
+  'HTML-EP-0.2008.tar.gz' => {
+    'md5-ungz' => '88c5a2eb521febab0974724193287832',
+    'mtime' => '1999-11-25',
+    'md5' => 'a1ee252c46e0882a19dfd29ea48ba527',
+    'shortname' => 'html022.tgz',
+    'size' => '103540'
+  },
+  'makerpm.pl-20000102' => {
+    'mtime' => '2000-01-02',
+    'md5' => '669d95889324c01b6c351e8c8be7c95f',
+    'shortname' => 'make2000.pl-',
+    'size' => '31955'
+  },
+  'tunnel.pl-20000417' => {
+    'mtime' => '2000-04-17',
+    'md5' => 'bde88307d1f7696df95246a7cb2f825e',
+    'shortname' => 'tunn2001.pl-',
+    'size' => '6061'
+  },
+  'DBD-test-0.02.tar.gz' => {
+    'md5-ungz' => 'a1ba4af755ecd7070a57c70f263bb7c4',
+    'mtime' => '1997-09-27',
+    'md5' => '3b82a3fd605f47138f874f41ca0c9979',
+    'shortname' => 'dbdte002.tgz',
+    'size' => '33980'
+  },
+  'Mail-IspMailGate-1.004.tar.gz' => {
+    'md5-ungz' => 'cc40d6c4f1cd86dc9a6a2aa60e8578c6',
+    'mtime' => '1999-08-17',
+    'md5' => 'c611afa9abe2a7d072150ea5aa940911',
+    'shortname' => 'mail1004.tgz',
+    'size' => '49860'
+  },
+  'Msql-Mysql-modules-1.2209.tar.gz' => {
+    'md5-ungz' => 'f27c5dad2f5869f6dd96b7dec32e68dd',
+    'mtime' => '1999-10-13',
+    'md5' => 'eef412c768c2fbb01d0881b467846755',
+    'shortname' => 'msql123.tgz',
+    'size' => '198538'
+  },
+  'Msql-Mysql-modules-1.2218.tar.gz' => {
+    'md5-ungz' => 'b5c069806c01cba6de44aaa363a83746',
+    'mtime' => '2001-10-29',
+    'md5' => '8f289af9b9860d56dd66cc45fa739faa',
+    'shortname' => 'msql132.tgz',
+    'size' => '195608'
+  },
+  'Wizard-0.1004.tar.gz' => {
+    'md5-ungz' => '2a5973dc7f1cc11fb0e6998fff5326bd',
+    'mtime' => '1999-09-28',
+    'md5' => '96f049977785ba80cd0a0d8727d6a68a',
+    'shortname' => 'wiza010.tgz',
+    'size' => '29583'
+  },
+  'Net-Daemon-0.27.tar.gz' => {
+    'md5-ungz' => '03c9a7b568ed1dc694655031bed42558',
+    'mtime' => '1999-08-12',
+    'md5' => 'dca83e5b034b336d6552daad72d6fb28',
+    'shortname' => 'netda027.tgz',
+    'size' => '24281'
+  },
+  'Net-Daemon-0.36.tar.gz' => {
+    'md5-ungz' => '6b541d5fc502e12824db669e7ee22594',
+    'mtime' => '2001-11-12',
+    'md5' => 'e423ca729dbb45c1cb1beed42413a554',
+    'shortname' => 'netda036.tgz',
+    'size' => '26496'
+  },
+  'Msql-Mysql-modules-1.1834.tar.gz' => {
+    'md5-ungz' => '5aca8de5936292989f8e005f95685cc2',
+    'mtime' => '1998-08-15',
+    'md5' => '4df8e3d041cb0e304cc70e6267d66bd8',
+    'shortname' => 'msql118.tgz',
+    'size' => '190447'
+  },
+  'HTML-EP-Glimpse-0.05.tar.gz' => {
+    'md5-ungz' => 'dbebd06183d79c408241fbc39faaf29c',
+    'mtime' => '1999-11-18',
+    'md5' => '4b1bdb8aae3008ca7143f9d47b78ca57',
+    'shortname' => 'htmle005.tgz',
+    'size' => '20688'
+  },
+  'SQL-Statement-0.1011.tar.gz' => {
+    'md5-ungz' => '3218fee8aec96a8831c40cb2bc07a9b9',
+    'mtime' => '1999-03-10',
+    'md5' => '67ca645ac4ed573416c71fb67b8cb573',
+    'shortname' => 'sqls011.tgz',
+    'size' => '80856'
+  },
+  'SQL-Statement-0.1020.tar.gz' => {
+    'md5-ungz' => '7971cfea91bd78c422c58bdfcd0b7071',
+    'mtime' => '2001-04-26',
+    'md5' => 'fb9d9abd95fc2bd13207659ae0d547ab',
+    'shortname' => 'sqls017.tgz',
+    'size' => '79219'
+  },
+  'rpmquery-19991213' => {
+    'mtime' => '1999-12-13',
+    'md5' => '106a2be38a968cc7549393bf51f5a343',
+    'shortname' => 'rpmq1999.rpm',
+    'size' => '6874'
+  },
+  'Wizard-0.1006.tar.gz' => {
+    'md5-ungz' => 'edfd9c9801da34e69b8edf70d0cc88d0',
+    'mtime' => '1999-11-10',
+    'md5' => '8e874022e8a602b7660e71b8c0e6e05d',
+    'shortname' => 'wiza011.tgz',
+    'size' => '29732'
+  },
+  'Net-Daemon-0.29.tar.gz' => {
+    'md5-ungz' => '5f8ace8dfde15a7f23d6e21f1f92d00d',
+    'mtime' => '1999-11-14',
+    'md5' => 'a283854dab5eb4dd1c49bd5371d14e48',
+    'shortname' => 'netda029.tgz',
+    'size' => '24570'
+  },
+  'DBD-pNET-0.1003.tar.gz' => {
+    'md5-ungz' => '500c7d858e10a86f29bbeb9bccaf7295',
+    'mtime' => '1997-11-29',
+    'md5' => '480c5dbed548940d395c4a78a397adef',
+    'shortname' => 'dbdp011.tgz',
+    'size' => '38749'
+  },
+  'SNMP-Monitor-0.1011.tar.gz' => {
+    'md5-ungz' => '158f9d4a5d93a33584101c48ae2dfe73',
+    'mtime' => '1999-06-09',
+    'md5' => 'ae2c12a454034cc0ddf5eadb2c669d19',
+    'shortname' => 'snmp011.tgz',
+    'size' => '30832'
+  },
+  'PlRPC-0.2001.tar.gz' => {
+    'md5-ungz' => '44da90726218b53ab791e2fe4d0b9fdc',
+    'mtime' => '1998-10-28',
+    'md5' => '0a536ca984aaa4513cf8dd83c360de66',
+    'shortname' => 'plrp020.tgz',
+    'size' => '15610'
+  },
+  'XML-EP-0.01.tar.gz' => {
+    'md5-ungz' => '1abba16d0dcc36dea61d92dba53b14dd',
+    'mtime' => '2000-03-23',
+    'md5' => '8a724b5874616dc0b7e49ca96e3fc853',
+    'shortname' => 'xmlep001.tgz',
+    'size' => '14512'
+  },
+  'PlRPC-0.2010.tar.gz' => {
+    'md5-ungz' => '9313c859fc705f062c63b9b9a2f53b45',
+    'mtime' => '1999-04-09',
+    'md5' => 'd5f1f5c98ab5b77b1da093de7c6b7987',
+    'shortname' => 'plrp023.tgz',
+    'size' => '16998'
+  },
+  'Mail-IspMailGate-1.1012.tar.gz' => {
+    'md5-ungz' => '8aaedfd362452672965ffeea69a10409',
+    'mtime' => '1999-09-17',
+    'md5' => '5cf3143edead0ba7f5a932c12470f73a',
+    'shortname' => 'mail111.tgz',
+    'size' => '50883'
+  },
+  'makerpm.pl-19991216' => {
+    'mtime' => '1999-12-16',
+    'md5' => 'a929fa855c1dca7a807cbbf4f5476221',
+    'shortname' => 'make1999.pl-',
+    'size' => '31605'
+  },
+  'Net-Nessus-0.04.tar.gz' => {
+    'md5-ungz' => '78a7eb22dc4da7c0fdd9c05eb0d06a5f',
+    'mtime' => '1999-01-29',
+    'md5' => 'd5e1e31ae1ae24a73f6919f1159cd849',
+    'shortname' => 'netne004.tgz',
+    'size' => '15529'
+  },
+  'DBD-mysql-2.1012.tar.gz' => {
+    'md5-ungz' => '1626842d104438a398be44ff39472558',
+    'mtime' => '2002-04-12',
+    'md5' => 'cfff26dd60e7857a9910508dfa96efbe',
+    'shortname' => 'dbdm216.tgz',
+    'size' => '93075'
+  },
+  'pRPC-modules-0.1005.tar.gz' => {
+    'md5-ungz' => 'a5e6a26a8d802aef1e0aba7457ff7d18',
+    'mtime' => '1998-08-13',
+    'md5' => '8e5a0c1c8833f424ee3382fdee97bbf5',
+    'shortname' => 'prpc011.tgz',
+    'size' => '19186'
+  },
+  'DBD-Adabas-0.2002.tar.gz' => {
+    'md5-ungz' => '4bf1534a17ea6e2184f4b549b4854417',
+    'mtime' => '1998-09-15',
+    'md5' => 'ab64c3a71d9a8776f055effa41daeb82',
+    'shortname' => 'dbda021.tgz',
+    'size' => '134416'
+  },
+  'Text-CSV_XS-0.21.tar.gz' => {
+    'md5-ungz' => 'b1c9774299d23bd2a1dd6fd1fca28dbb',
+    'mtime' => '2000-08-18',
+    'md5' => 'a77f03ab75dfb6a645a0001171780fe9',
+    'shortname' => 'textc021.tgz',
+    'size' => '16052'
+  },
+  'PlRPC-0.2003.tar.gz' => {
+    'md5-ungz' => '635f9d562dd577fade6cac0e6bf19720',
+    'mtime' => '1999-01-15',
+    'md5' => '2959ad32378d995bd147e072e3a324e1',
+    'shortname' => 'plrp021.tgz',
+    'size' => '15686'
+  },
+  'PlRPC-0.2012.tar.gz' => {
+    'md5-ungz' => 'aa551c99c0a155ec37d96c0083100001',
+    'mtime' => '1999-06-26',
+    'md5' => '4597768fe4f40e96d413b27fcb2cecbd',
+    'shortname' => 'plrp025.tgz',
+    'size' => '17195'
+  },
+  'DBD-mysql-1.2212.x86.tar.gz' => {
+    'md5-ungz' => 'a61ab642d7ee3fc1983cc1c7ed47a81d',
+    'mtime' => '2000-04-15',
+    'md5' => '99ce46ce4df3eb8e62484ebaf1a99326',
+    'shortname' => 'dbdm122.tgz',
+    'size' => '162827'
+  },
+  'HTML-EP-0.1134.tar.gz' => {
+    'md5-ungz' => 'a886f0990ff1031c193f74eddf0aa4e0',
+    'mtime' => '1999-08-31',
+    'md5' => '8a89f8239ec9c1ec61fe0fcdcc6b5083',
+    'shortname' => 'html011.tgz',
+    'size' => '97222'
+  },
+  'Net-Nessus-0.06.tar.gz' => {
+    'md5-ungz' => '83824738c62136a28f121c14d4ac660c',
+    'mtime' => '2001-02-26',
+    'md5' => '7499062a56603da399761f1198d2e58d',
+    'shortname' => 'netne006.tgz',
+    'size' => '15880'
+  },
+  'DBD-mysql-2.1014.tar.gz' => {
+    'md5-ungz' => 'e52e41a5485147e13d1cb86f1fb5ae73',
+    'mtime' => '2002-04-17',
+    'md5' => '5e74c4f976050d5dc1d959a099cffb53',
+    'shortname' => 'dbdm218.tgz',
+    'size' => '93509'
+  },
+  'Text-CSV_XS-0.23.tar.gz' => {
+    'md5-ungz' => 'a73dd3e739d31926cdf0000995bca135',
+    'mtime' => '2001-10-10',
+    'md5' => '936eca163a09e92353565ad37ee7a4fa',
+    'shortname' => 'textc023.tgz',
+    'size' => '16164'
+  },
+  'DBD-CSV-0.1028.tar.gz' => {
+    'md5-ungz' => '17c6bc685f27274542bef431ebe10bc7',
+    'mtime' => '2001-11-20',
+    'md5' => 'cf2c91f5d574f07aa35244dec65ce8d4',
+    'shortname' => 'dbdc010.tgz',
+    'size' => '42018'
+  },
+  'ifc' => {
+    'mtime' => '1999-05-20',
+    'md5' => '70dab25dcb67b0ebaa00d14527dcd90b',
+    'shortname' => 'ifc0.ifc',
+    'size' => '15684'
+  },
+  'SQL-Statement-0.1017.tar.gz' => {
+    'md5-ungz' => '49e2e18814f88667247a6679e27a7477',
+    'mtime' => '2001-02-17',
+    'md5' => '55f0305f94b065bdf913e6072b807aa3',
+    'shortname' => 'sqls014.tgz',
+    'size' => '77096'
+  },
+  'ExtUtils-PerlPP-0.02.tar.gz' => {
+    'md5-ungz' => '9fe3c9f6af38a6dd9a99013cfd32a99e',
+    'mtime' => '1998-10-19',
+    'md5' => 'c1473f5f50c021862fd91480b1d63cb2',
+    'shortname' => 'extut002.tgz',
+    'size' => '6791'
+  },
+  'HTML-EP-0.2010.tar.gz' => {
+    'md5-ungz' => '54b86388521a8308e3a6bdca624111dd',
+    'mtime' => '1999-12-15',
+    'md5' => '846dd6c4948e69fd18564f32d6e13b34',
+    'shortname' => 'html024.tgz',
+    'size' => '104509'
+  },
+  'PlRPC-0.2014.tar.gz' => {
+    'md5-ungz' => 'c56537c010ae4d0c56c299e7a409d889',
+    'mtime' => '2001-01-23',
+    'md5' => '7e0a636d60de1857a5e42bdb92f77d77',
+    'shortname' => 'plrp027.tgz',
+    'size' => '17396'
+  },
+  'Msql-Mysql-modules-1.19_03.tar.gz' => {
+    'md5-ungz' => '92e43421703c4c66bcb40bf7108df1af',
+    'mtime' => '1998-02-23',
+    'md5' => 'e64b8139ac3e42b028c26d00417c6073',
+    'shortname' => 'msqlm119.tgz',
+    'size' => '145360'
+  },
+  'Net-Nessus-0.08.tar.gz' => {
+    'md5-ungz' => '03cb7f4913af40f7af31f387b3d9d637',
+    'mtime' => '2001-06-08',
+    'md5' => '5fcdda49482b1df49d084cff94146154',
+    'shortname' => 'netne008.tgz',
+    'size' => '15959'
+  },
+  'DBD-mysql-2.1016.tar.gz' => {
+    'md5-ungz' => '239f87bd6b5e199fffee17e3d53522a9',
+    'mtime' => '2002-05-01',
+    'md5' => '69288eccf21eaf167e91f148896d467a',
+    'shortname' => 'dbdm211.tgz',
+    'size' => '93580'
+  },
+  'Text-CSV_XS-0.16.tar.gz' => {
+    'md5-ungz' => '3ae9c4fc11ee4e651e206161a294b4db',
+    'mtime' => '1999-02-11',
+    'md5' => '6d01903298e0ab459112d7fdf9e62466',
+    'shortname' => 'textc016.tgz',
+    'size' => '12207'
+  },
+  'Msql-Mysql-modules-1.2211.tar.gz' => {
+    'md5-ungz' => '56b4488d4e9d710101cfd14ec946fb9a',
+    'mtime' => '2000-04-02',
+    'md5' => 'b0dc86798baa820d2dc0ff1d3774e870',
+    'shortname' => 'msql125.tgz',
+    'size' => '190128'
+  },
+  'Net-Spooler-0.02.tar.gz' => {
+    'md5-ungz' => '6950a370251dc607482aa77bdb838134',
+    'mtime' => '1999-12-27',
+    'md5' => '855ace92d14993e50a18d6e6001346fb',
+    'shortname' => 'netsp002.tgz',
+    'size' => '13698'
+  },
+  'SQL-Statement-0.1019.tar.gz' => {
+    'md5-ungz' => '8ce6bcc5eb66a5affa15bbb08d0b8250',
+    'mtime' => '2001-04-25',
+    'md5' => 'db28533c7e66b8bd4a320f8322dc1e46',
+    'shortname' => 'sqls016.tgz',
+    'size' => '87237'
+  },
+  'Cisco-Conf-0.10.tar.gz' => {
+    'md5-ungz' => 'bc106bc2cc31394de521f7f7dd33486c',
+    'mtime' => '2000-03-29',
+    'md5' => '70d669dbba561238c4d22b3f7edae567',
+    'shortname' => 'cisco010.tgz',
+    'size' => '15530'
+  },
+  'PlRPC-0.2016.tar.gz' => {
+    'md5-ungz' => '0df826b426abb3f785c6b7a89bdc1bec',
+    'mtime' => '2001-10-01',
+    'md5' => '440aa210a452edbe3d3a4edaaa1548ba',
+    'shortname' => 'plrp029.tgz',
+    'size' => '17449'
+  },
+  'HTML-EP-Explorer-0.1005.tar.gz' => {
+    'md5-ungz' => '0e6364023e4a5eebdf3b20513da8cc20',
+    'mtime' => '1999-08-31',
+    'md5' => 'd9364e7fd881db6e6dc6aa4afeaf3850',
+    'shortname' => 'html010.tgz',
+    'size' => '22747'
+  },
+  'Msql-Mysql-modules-1.19_14.tar.gz' => {
+    'md5-ungz' => '5b492fc1360467a4bada701ed977a86b',
+    'mtime' => '1998-04-03',
+    'md5' => '6581cabd146ba09a6cd8c30b39c53ff7',
+    'shortname' => 'msqlm120.tgz',
+    'size' => '152554'
+  },
+  'DBD-mysql-2.1018.tar.gz' => {
+    'md5-ungz' => 'd523b242e16965da46cec5cd93f13dc3',
+    'mtime' => '2002-08-13',
+    'md5' => '80ad5d418ff412e4f5a2ffea2b015a16',
+    'shortname' => 'dbdm213.tgz',
+    'size' => '93758'
+  },
+  'Text-CSV_XS-0.18.tar.gz' => {
+    'md5-ungz' => 'c7108bed80f987c8bd3aaa0d7aae343f',
+    'mtime' => '1999-04-05',
+    'md5' => '034836bb7948dd51fa344fb98966e44b',
+    'shortname' => 'textc018.tgz',
+    'size' => '15344'
+  },
+  'Msql-Mysql-modules-1.2213.tar.gz' => {
+    'md5-ungz' => '485e6e504c55514f7a31783cee5e8b7b',
+    'mtime' => '2000-04-15',
+    'md5' => 'cde76c75aeec693af7e16def40dd249a',
+    'shortname' => 'msql127.tgz',
+    'size' => '191536'
+  },
+  'Net-Daemon-0.31.tar.gz' => {
+    'md5-ungz' => '5be2670dcb862e2f4b1a8112476c1f02',
+    'mtime' => '2000-06-26',
+    'md5' => 'adf1a0c662984bac612bfcd8a099b94f',
+    'shortname' => 'netda031.tgz',
+    'size' => '24881'
+  },
+  'Wizard-LDAP-0.1005.tar.gz' => {
+    'md5-ungz' => 'fdc25170c37835e9500357805e785cc7',
+    'mtime' => '1999-09-28',
+    'md5' => '7dab81f220c5b566f04b00c43116b5c2',
+    'shortname' => 'wiza012.tgz',
+    'size' => '16271'
+  },
+  'Apache-Roaming-0.1003.tar.gz' => {
+    'md5-ungz' => 'cd5abf0d7bbaffefd272034d2f1a05b9',
+    'mtime' => '2000-04-28',
+    'md5' => '4f52a2e702bbd0e6bf7800f39992a88e',
+    'shortname' => 'apac010.tgz',
+    'size' => '13898'
+  },
+  'Mail-IspMailGate-1.001.tar.gz' => {
+    'md5-ungz' => 'f1abf147c3c092cd00b9fb620887a52e',
+    'mtime' => '1998-10-20',
+    'md5' => '6601a055119c53c83a34129afd4fea82',
+    'shortname' => 'mail1001.tgz',
+    'size' => '50243'
+  },
+  'autoresponder' => {
+    'mtime' => '1999-03-21',
+    'md5' => '57b519c5fb05acca99c5838e20923748',
+    'shortname' => 'autores0.aut',
+    'size' => '3401'
+  },
+  'Msql-Mysql-modules-1.2215.tar.gz' => {
+    'md5-ungz' => '36fe41c825661b4a57e623eaf4c940f3',
+    'mtime' => '2000-08-20',
+    'md5' => 'e3f3c7f12456526ca5c3104908220c39',
+    'shortname' => 'msql129.tgz',
+    'size' => '191882'
+  },
+  'Net-Daemon-0.33.tar.gz' => {
+    'md5-ungz' => '83fc230851de05337b5a9abf9bb55bc9',
+    'mtime' => '2000-12-04',
+    'md5' => '0b8ed460e8593e5b9fd9d0f98bc80aee',
+    'shortname' => 'netda033.tgz',
+    'size' => '25110'
+  },
+  'Wizard-LDAP-0.1007.tar.gz' => {
+    'md5-ungz' => '7cb82217bd4c8e11f62558dd18a52e6d',
+    'mtime' => '1999-11-10',
+    'md5' => '4674332305836e447e2692fc7a974378',
+    'shortname' => 'wiza014.tgz',
+    'size' => '20132'
+  },
+  'HTML-EP-0.2007.tar.gz' => {
+    'md5-ungz' => 'e8b883b41f1e84badea87f6b3ebee153',
+    'mtime' => '1999-11-17',
+    'md5' => 'd3af85fb88c96b64be6e9d6a33600f5c',
+    'shortname' => 'html021.tgz',
+    'size' => '100963'
+  },
+  'Mail-IspMailGate-1.003.tar.gz' => {
+    'md5-ungz' => '003e28fbd2892ab4380258c16bbfa8df',
+    'mtime' => '1999-02-22',
+    'md5' => '78b320197cfd1d34358ca8789da588ac',
+    'shortname' => 'mail1003.tgz',
+    'size' => '52453'
+  },
+  'Msql-Mysql-modules-1.2208.tar.gz' => {
+    'md5-ungz' => '25ada8eebd355e8aefd3e28ed37da763',
+    'mtime' => '1999-10-08',
+    'md5' => 'bf191a33f7d057aa6c5cb3938f45bf44',
+    'shortname' => 'msql122.tgz',
+    'size' => '198404'
+  },
+  'Msql-Mysql-modules-1.2217.tar.gz' => {
+    'md5-ungz' => '7dfafac3296a25c3c65beaf9dd6df8b0',
+    'mtime' => '2001-10-28',
+    'md5' => '04b64c931480ed81bb0d4fa69e72f12e',
+    'shortname' => 'msql131.tgz',
+    'size' => '195611'
+  },
+  'Net-Daemon-0.35.tar.gz' => {
+    'md5-ungz' => '10f903cf2b9dbbb18c94f58f1c8bae4d',
+    'mtime' => '2001-04-08',
+    'md5' => '35d434aac15446af43dd70cad31c7870',
+    'shortname' => 'netda035.tgz',
+    'size' => '26410'
+  },
+  'HTML-EP-0.2009.tar.gz' => {
+    'md5-ungz' => '2f4af04bb43cdbad018b5464a95cb1ad',
+    'mtime' => '1999-12-07',
+    'md5' => 'ed94707c77f15382f41aa144f7a7eeda',
+    'shortname' => 'html023.tgz',
+    'size' => '103915'
+  },
+  'DBD-CSV-0.1030.tar.gz' => {
+    'md5-ungz' => '2d76de7bafcfe21172b7c1d069db399e',
+    'mtime' => '2002-01-20',
+    'md5' => 'd70e7aa4eb0defb01d61737f28ffae01',
+    'shortname' => 'dbdc012.tgz',
+    'size' => '42280'
+  },
+  'SQL-Statement-0.1010.tar.gz' => {
+    'md5-ungz' => '0e90eab9ff26728a1ed71d9b9db09246',
+    'mtime' => '1999-02-13',
+    'md5' => '414785ff3fc35814d4317f2b00ca7334',
+    'shortname' => 'sqls010.tgz',
+    'size' => '80377'
+  },
+  'Mail-IspMailGate-1.100.tar.gz' => {
+    'md5-ungz' => 'd54b014fc73a73b8b804cf2a26e3f585',
+    'mtime' => '1999-09-15',
+    'md5' => 'a987777e128490b7b61d155a099cf58f',
+    'shortname' => 'mail1100.tgz',
+    'size' => '50566'
+  },
+  'Msql-Mysql-modules-1.2219.tar.gz' => {
+    'md5-ungz' => 'b434e45cd93fa8582df176c1906a6259',
+    'mtime' => '2001-10-31',
+    'md5' => 'ad3dec1881d4c4ff9a353f33ff434b5f',
+    'shortname' => 'msql133.tgz',
+    'size' => '195634'
+  },
+  'Net-Daemon-0.28.tar.gz' => {
+    'md5-ungz' => 'ea6443289603f91692bb797de1e49753',
+    'mtime' => '1999-09-26',
+    'md5' => 'bb12cdd77d73c0d2903a371e46a158d7',
+    'shortname' => 'netda028.tgz',
+    'size' => '24471'
+  },
+  'Net-Daemon-0.37.tar.gz' => {
+    'md5-ungz' => 'fb4555ba8e8f87f5c3ee149671734eee',
+    'mtime' => '2002-08-20',
+    'md5' => '1f9acb45c6729e3a6ce3cae7697a6bde',
+    'shortname' => 'netda037.tgz',
+    'size' => '30228'
+  },
+  'cluster.pl-0.01' => {
+    'mtime' => '1999-07-04',
+    'md5' => '86750f3004b15c028dde1b5b440c0ba9',
+    'shortname' => 'clust001.01',
+    'size' => '16514'
+  },
+  'Msql-Mysql-modules-1.1835.tar.gz' => {
+    'md5-ungz' => 'c50e45a3022c4b579f63c560124555bf',
+    'mtime' => '1998-08-23',
+    'md5' => '622614a9d025caead51d857fd0472b7f',
+    'shortname' => 'msql119.tgz',
+    'size' => '190477'
+  },
+  'DBD-pNET-0.1002.tar.gz' => {
+    'md5-ungz' => '1b6fbe789bc1472513416be518f4801b',
+    'mtime' => '1997-09-19',
+    'md5' => 'bbc3b9384dcbf2b2f2fa60d5f58abd04',
+    'shortname' => 'dbdp010.tgz',
+    'size' => '36035'
+  },
+  'SNMP-Monitor-0.1010.tar.gz' => {
+    'md5-ungz' => 'abd49944ec54a9bc2086c3f9cca8441e',
+    'mtime' => '1999-04-26',
+    'md5' => '0ce480d7c76e780b6e5feea1a872bd1e',
+    'shortname' => 'snmp010.tgz',
+    'size' => '30701'
+  },
+  'SQL-Statement-0.1012.tar.gz' => {
+    'md5-ungz' => '816e8fdb65fe62e5f2f39cb34dc3a454',
+    'mtime' => '1999-04-04',
+    'md5' => 'c9d31ef3ffb2333ab158329b50ac137c',
+    'shortname' => 'sqls012.tgz',
+    'size' => '84043'
+  },
+  'SQL-Statement-0.1021.tar.gz' => {
+    'md5-ungz' => 'e9119e21be88cec87a81bd81de223b0a',
+    'mtime' => '2001-11-06',
+    'md5' => 'db3ea03b6781e669fcab1a74e5980c29',
+    'shortname' => 'sqls018.tgz',
+    'size' => '87328'
+  },
+  'Mail-IspMailGate-1.1011.tar.gz' => {
+    'md5-ungz' => '748af8173855553aad1dd36e04edfad7',
+    'mtime' => '1999-09-15',
+    'md5' => '6908413d0935c1bd01cc1d74098b1d7c',
+    'shortname' => 'mail110.tgz',
+    'size' => '50692'
+  },
+  'watchdog' => {
+    'mtime' => '1999-09-08',
+    'md5' => 'e56f18be9c7da4a8b5ec8734799676d0',
+    'shortname' => 'watchdo0.wat',
+    'size' => '12899'
+  },
+  'DBD-Adabas-0.2001.tar.gz' => {
+    'md5-ungz' => 'f0ca644b65c5af2915eff520531722b8',
+    'mtime' => '1998-09-09',
+    'md5' => '3d0b371970f6a1614ed62ac0dce32e62',
+    'shortname' => 'dbda020.tgz',
+    'size' => '133364'
+  },
+  'pRPC-modules-0.1004.tar.gz' => {
+    'md5-ungz' => 'da71bdfc338de1a51c18be855f66fa7d',
+    'mtime' => '1998-07-19',
+    'md5' => '7f9c4da5e054e0228e3f1ca009b407b3',
+    'shortname' => 'prpc010.tgz',
+    'size' => '18970'
+  },
+  'DBD-mysql-2.1020.tar.gz' => {
+    'md5-ungz' => 'c97e9a4fc6e78af3c84ef6831d8ae78a',
+    'mtime' => '2002-09-23',
+    'md5' => 'ca8c11d1a00c3757d3b9eb84624eed30',
+    'shortname' => 'dbdm215.tgz',
+    'size' => '94311'
+  },
+  'Text-CSV_XS-0.20.tar.gz' => {
+    'md5-ungz' => '780949e3b4678244be97c4847bb27295',
+    'mtime' => '1999-06-28',
+    'md5' => '11d1316ea98683343f4ffe0a05cfb46b',
+    'shortname' => 'textc020.tgz',
+    'size' => '15687'
+  },
+  'DBD-mysql-1.2212.x86.ppd' => {
+    'mtime' => '2000-04-15',
+    'md5' => 'e64edcc77f83b79c33d78e9d3c93358a',
+    'shortname' => 'dbdm122.ppd',
+    'size' => '542'
+  },
+  'SNMP-Monitor-0.1012.tar.gz' => {
+    'md5-ungz' => '93308b27bb71459d6c0bbcf902e16ae2',
+    'mtime' => '1999-07-26',
+    'md5' => '0df7ef284e7a537949263d27cd733c66',
+    'shortname' => 'snmp012.tgz',
+    'size' => '30983'
+  },
+  'DBD-Adabas-0.20.tar.gz' => {
+    'md5-ungz' => '78e29d1ec72f52566d7e11d66b805734',
+    'mtime' => '1998-08-20',
+    'md5' => '71dd20b8644ee55f3e9b547e1dfbd110',
+    'shortname' => 'dbdad020.tgz',
+    'size' => '133345'
+  },
+  'crlf2lf.pl' => {
+    'mtime' => '2001-04-26',
+    'md5' => '3cc892ec841cf0d44b8886a65cf78690',
+    'shortname' => 'crlf2lf0.pl',
+    'size' => '1095'
+  }
+};

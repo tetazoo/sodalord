@@ -1,0 +1,231 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Financial Functions</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_26.html">previous</A>, <A HREF="octave_28.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC177" HREF="octave_toc.html#TOC177">Financial Functions</A></H1>
+<P>
+<A NAME="IDX1006"></A>
+<A NAME="IDX1007"></A>
+<A NAME="IDX1008"></A>
+
+
+<P>
+@anchor{doc-fv}
+<DL>
+<DT><U>Function File:</U>  <B>fv</B> <I>(<VAR>r</VAR>, <VAR>n</VAR>, <VAR>p</VAR>, <VAR>l</VAR>, <VAR>method</VAR>)</I>
+<DD><A NAME="IDX1009"></A>
+Return the future value at the end of period <VAR>n</VAR> of an investment
+which consists of <VAR>n</VAR> payments of <VAR>p</VAR> in each period,
+assuming an interest rate <VAR>r</VAR>.
+
+
+<P>
+The optional argument <VAR>l</VAR> may be used to specify an
+additional lump-sum payment.
+
+
+<P>
+The optional argument <VAR>method</VAR> may be used ot specify whether the
+payments are made at the end (<CODE>"e"</CODE>, default) or at the
+beginning (<CODE>"b"</CODE>) of each period.
+
+
+<P>
+Note that the rate <VAR>r</VAR> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+</DL>
+
+
+<P>
+@anchor{doc-fvl}
+<DL>
+<DT><U>Function File:</U>  <B>fvl</B> <I>(<VAR>r</VAR>, <VAR>n</VAR>, <VAR>l</VAR>)</I>
+<DD><A NAME="IDX1010"></A>
+Return the future value at the end of <VAR>n</VAR> periods of an initial
+lump sum investment <VAR>l</VAR>, given a per-period interest rate
+<VAR>r</VAR>.
+
+
+<P>
+Note that the rate <VAR>r</VAR> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+</DL>
+
+
+<P>
+@anchor{doc-irr}
+<DL>
+<DT><U>Function File:</U>  <B>irr</B> <I>(<VAR>p</VAR>, <VAR>i</VAR>)</I>
+<DD><A NAME="IDX1011"></A>
+Return the internal rate of return of a series of payments <VAR>p</VAR>
+from an initial investment <VAR>i</VAR> (i.e., the solution of
+<CODE>npv (r, p) = i</CODE>.  If the second argument is omitted, a value of
+0 is used.
+</DL>
+@seealso{npv, pv, and rate}
+
+
+<P>
+@anchor{doc-nper}
+<DL>
+<DT><U>Function File:</U>  <B>nper</B> <I>(<VAR>r</VAR>, <VAR>p</VAR>, <VAR>a</VAR>, <VAR>l</VAR>, <VAR>method</VAR>)</I>
+<DD><A NAME="IDX1012"></A>
+Return the number of regular payments of <VAR>p</VAR> necessary to
+amortize <VAR>a</VAR> loan of amount <VAR>a</VAR> and interest <VAR>r</VAR>.
+
+
+<P>
+The optional argument <VAR>l</VAR> may be used to specify an additional
+lump-sum payment of <VAR>l</VAR> made at the end of the amortization time.
+
+
+<P>
+The optional argument <VAR>method</VAR> may be used to specify whether
+payments are made at the end (<VAR>"e"</VAR>, default) or at the beginning
+(<VAR>"b"</VAR>) of each period.
+
+
+<P>
+Note that the rate <VAR>r</VAR> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+</DL>
+@seealso{pv, pmt, rate, and npv}
+
+
+<P>
+@anchor{doc-npv}
+<DL>
+<DT><U>Function File:</U>  <B>npv</B> <I>(<VAR>r</VAR>, <VAR>p</VAR>, <VAR>i</VAR>)</I>
+<DD><A NAME="IDX1013"></A>
+Returns the net present value of a series of irregular (i.e., not
+necessarily identical) payments <VAR>p</VAR> which occur at the ends of <VAR>n</VAR>
+consecutive periods.  <VAR>r</VAR> specifies the one-period interest rates and
+can either be a scalar (constant rates) or a vector of the same
+length as <VAR>p</VAR>.
+
+
+<P>
+The optional argument <VAR>i</VAR> may be used to specify an initial
+investment.
+
+
+<P>
+Note that the rate <VAR>r</VAR> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+</DL>
+@seealso{irr and pv}
+
+
+<P>
+@anchor{doc-pmt}
+<DL>
+<DT><U>Function File:</U>  <B>pmt</B> <I>(<VAR>r</VAR>, <VAR>n</VAR>, <VAR>a</VAR>, <VAR>l</VAR>, <VAR>method</VAR>)</I>
+<DD><A NAME="IDX1014"></A>
+Return the amount of periodic payment necessary to amortize a loan
+of amount a with interest rate <VAR>r</VAR> in <VAR>n</VAR> periods.
+
+
+<P>
+The optional argument <VAR>l</VAR> may be used to specify a terminal
+lump-sum payment.
+
+
+<P>
+The optional argument <VAR>method</VAR> may be used to specify whether
+payments are made at the end (<VAR>"e"</VAR>, default) or at the beginning
+(<VAR>"b"</VAR>) of each period.
+</DL>
+@seealso{pv, nper, and rate}
+
+
+<P>
+@anchor{doc-pv}
+<DL>
+<DT><U>Function File:</U>  <B>pv</B> <I>(<VAR>r</VAR>, <VAR>n</VAR>, <VAR>p</VAR>, <VAR>l</VAR>, <VAR>method</VAR>)</I>
+<DD><A NAME="IDX1015"></A>
+Returns the present value of an investment that will pay off <VAR>p</VAR> for <VAR>n</VAR>
+consecutive periods, assuming an interest <VAR>r</VAR>.
+
+
+<P>
+The optional argument <VAR>l</VAR> may be used to specify an additional
+lump-sum payment made at the end of <VAR>n</VAR> periods.
+
+
+<P>
+The optional argument <VAR>method</VAR> may be used to specify whether
+payments are made at the end (<CODE>"e"</CODE>, default) or at the
+beginning (<CODE>"b"</CODE>) of each period.
+
+
+<P>
+Note that the rate <VAR>r</VAR> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+</DL>
+@seealso{pmt, nper, rate, and npv}
+
+
+<P>
+@anchor{doc-pvl}
+<DL>
+<DT><U>Function File:</U>  <B>pvl</B> <I>(<VAR>r</VAR>, <VAR>n</VAR>, <VAR>p</VAR>)</I>
+<DD><A NAME="IDX1016"></A>
+Return the present value of an investment that will pay off <VAR>p</VAR>
+in one lump sum at the end of <VAR>n</VAR> periods, given the interest
+rate <VAR>r</VAR>.
+
+
+<P>
+Note that the rate <VAR>r</VAR> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+</DL>
+
+
+<P>
+@anchor{doc-rate}
+<DL>
+<DT><U>Function File:</U>  <B>rate</B> <I>(<VAR>n</VAR>, <VAR>p</VAR>, <VAR>v</VAR>, <VAR>l</VAR>, <VAR>method</VAR>)</I>
+<DD><A NAME="IDX1017"></A>
+Return the rate of return on an investment of present value <VAR>v</VAR> which
+pays <VAR>p</VAR> in <VAR>n</VAR> consecutive periods.
+
+
+<P>
+The optional argument <VAR>l</VAR> may be used to specify an additional
+lump-sum payment made at the end of <VAR>n</VAR> periods.
+
+
+<P>
+The optional string argument <VAR>method</VAR> may be used to specify
+whether payments are made at the end (<CODE>"e"</CODE>, default) or at the
+beginning (<CODE>"b"</CODE>) of each period.
+</DL>
+@seealso{pv, pmt, nper, and npv}
+
+
+<P>
+@anchor{doc-vol}
+<DL>
+<DT><U>Function File:</U>  <B>vol</B> <I>(<VAR>x</VAR>, <VAR>m</VAR>, <VAR>n</VAR>)</I>
+<DD><A NAME="IDX1018"></A>
+Return the volatility of each column of the input matrix <VAR>x</VAR>.
+The number of data sets per period is given by <VAR>m</VAR> (e.g. the
+number of data per year if you want to compute the volatility per
+year).  The optional parameter <VAR>n</VAR> gives the number of past
+periods used for computation, if it is omitted, a value of 1 is used.
+If <VAR>t</VAR> is the number of rows of <VAR>x</VAR>, <CODE>vol</CODE> returns the
+volatility from <CODE>n*m</CODE> to <VAR>t</VAR>.
+</DL>
+
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_26.html">previous</A>, <A HREF="octave_28.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

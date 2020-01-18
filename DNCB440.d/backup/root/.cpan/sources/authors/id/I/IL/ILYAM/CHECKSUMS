@@ -1,0 +1,67 @@
+0&&<<''; # this PGP-signed message is also valid perl
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+# CHECKSUMS file written on Mon Nov 10 11:37:39 2003 by CPAN::Checksums (v1.016)
+$cksum = {
+  'XML-LibXML-XPathContext-0.05.meta' => {
+    'mtime' => '2003-09-22',
+    'md5' => 'c52966c7136e2c2695b10ad341a606ac',
+    'size' => 355
+  },
+  'XML-LibXML-XPathContext-0.05.tar.gz' => {
+    'mtime' => '2003-09-22',
+    'md5-ungz' => 'f73419d3fbee0e49471e5abdeefe289a',
+    'md5' => 'f2028653a26d8f8024bb6f1641b93510',
+    'size' => 46902
+  },
+  'XML-LibXML-XPathContext-0.06.tar.gz' => {
+    'mtime' => '2003-11-10',
+    'md5-ungz' => 'd2e09ebd82b5b1df5420b7a029e7a640',
+    'md5' => 'b7c71f1403f3d5b1cd3e5b94bd8f6209',
+    'size' => 43953
+  },
+  'HTTP-WebTest-Plugin-Apache-1.01.tar.gz' => {
+    'mtime' => '2002-12-16',
+    'md5-ungz' => '9d9fab030804f86f375cd908091df2da',
+    'md5' => 'e12ba3c97638508b881da180d7cae49e',
+    'size' => 26256
+  },
+  'Mail-CheckUser-1.21.tar.gz' => {
+    'mtime' => '2003-09-19',
+    'md5-ungz' => 'b9d3445252e831adb26202794e60196a',
+    'md5' => '32a57a4679e2bde8a85201617776d69f',
+    'size' => 13734
+  },
+  'XML-LibXML-XPathContext-0.06.meta' => {
+    'mtime' => '2003-11-10',
+    'md5' => 'da89d479c440ff338bf33840e5c1dc31',
+    'size' => 355
+  },
+  'HTTP-WebTest-1.07.tar.gz' => {
+    'mtime' => '2001-11-20',
+    'md5-ungz' => '6fe9f25fa4b4ece5c149d9acd326d22f',
+    'md5' => 'e7ca9ad3eb3a6020f380ffc4e84d6436',
+    'size' => 61156
+  },
+  'HTTP-WebTest-2.04.tar.gz' => {
+    'mtime' => '2003-09-05',
+    'md5-ungz' => 'e36863c222da1c9b4eca9669c2393e78',
+    'md5' => '16bfb8e76bf301e788241d774cab7cee',
+    'size' => 90381
+  },
+  'Data-Dumper-2.121.tar.gz' => {
+    'mtime' => '2003-08-25',
+    'md5-ungz' => '45f18474c296dc0382053a4b10924f99',
+    'md5' => '10d6ff7a85fa3e5f91fcb2e6593cfd1b',
+    'size' => 31931
+  }
+};
+__END__
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (GNU/Linux)
+
+iD8DBQE/r3iFMo2oZ0UPiewRAum6AJ95I4uDFpVKQNMbRfhc7RKIZaAlfACff/T7
+IsaYqPydJuYsn/q5ulB5vw8=
+=YrKW
+-----END PGP SIGNATURE-----

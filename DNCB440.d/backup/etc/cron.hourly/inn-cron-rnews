@@ -1,0 +1,3 @@
+#!/bin/sh
+/sbin/chkconfig innd || exit 0
+su - news -c 'unset LANG; unset LC_COLLATE; /usr/lib/news/bin/rnews -U'

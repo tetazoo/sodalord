@@ -1,0 +1,17 @@
+K 10
+svn:author
+V 6
+mitchb
+K 8
+svn:date
+V 27
+2008-10-19T07:32:09.047175Z
+K 7
+svn:log
+V 124
+New columns to accomodate these features:
+  o Per-user trust to post credits immediately
+  o Per-user hard limits
+  o Gifts
+
+END

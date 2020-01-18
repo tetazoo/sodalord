@@ -1,0 +1,2753 @@
+2002-04-30  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DASSL.h (DASSL_options::init): Undo previous change.
+	(DASSL_options::set_absolute_tolerance): Likewise.
+
+2002-04-27  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DASPK.h, DASPK.cc: New files.
+	* Makefile.in: Add them to the appropriate lists.
+
+2002-04-23  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (Array2<T>::index (idx_vector&, idx_vector&) const):
+	Simplify indexing when one or both of the indices are empty.
+
+2002-04-11  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DASSL.h (DASSL_options::init): Set absolute tolerance to eps ^ 2.
+	(DASSL_options::set_absolute_tolerance): Likewise.
+	* LSODE.h (LSODE_options::init): Likewise.
+	(LSODE_options::set_absolute_tolerance): Likewise.
+
+2002-04-03  Steven G. Johnson <stevenj@alum.mit.edu>
+
+	* f2c-main.c (MAIN_, MAIN__): Delete.  Use F77_DUMMY_MAIN instead.
+	* file-stat.cc (file_stat::update_internal, file_stat::copy):
+	Use HAVE_STRUCT_STAT_ST_RDEV instead of HAVE_ST_RDEV.
+	Use HAVE_STRUCT_STAT_ST_BLKSIZE instead of HAVE_ST_BLKSIZE.
+	Use HAVE_STRUCT_STAT_ST_BLOCKS instead of HAVE_ST_BLOCKS.
+	* file-stat.h: Likewise.
+	* oct-time.cc (octave_time::octave_time, octave_base_tm::strftime,
+	octave_base_tm::init, octave_strptime::init): Use HAVE_TM_ZONE
+	instead of HAVE_STRUCT_TM_TM_ZONE.
+	* strftime.c: Likewise.
+	* lo-specfun.cc, mach-info.cc, CColVector.cc, CMatrix.cc,
+	CRowVector.cc, CmplxAEPBAL.cc, CmplxCHOL.cc, CmplxHESS.cc,
+	CmplxLU.cc, CmplxQR.cc, CmplxQRP.cc, CmplxSCHUR.cc, CmplxSVD.cc,
+	CollocWt.cc, DASSL.cc, EIG.cc, LSODE.cc, NLEqn.cc, Quad.cc,
+	dColVector.cc, dMatrix.cc, dRowVector.cc, dbleAEPBAL.cc,
+	dbleCHOL.cc, dbleHESS.cc, dbleLU.cc, dbleQR.cc, dbleQRP.cc,
+	dbleSCHUR.cc, dbleSVD.cc: Use F77_FUNC instead of F77_FCN.
+
+2002-04-02  Paul Kienzle <pkienzle@users.sf.net>
+
+        * CmplxQR.cc (ComplexQR::init): Use economy QR decomposition
+	internally when the user requests it.
+	* CmplxQRP.cc (ComplexQRP::init): Ditto.
+	* dbleQR.cc (QR::init): Ditto.
+	* dbleQRP.cc (QRP::init): Ditto.
+
+2002-02-22  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-fftw.cc (octave_fftw::fft2d): Avoid having to find a
+	definition for NULL by passing 0 as the last arg to fftwnd_one.
+	(octave_fftw::ifft2d): Likewise.
+
+2002-02-22  Paul Kienzle <pkienzle@jazz.ncnr.nist.gov>
+
+	* lo-mappers.cc (arg): Simply call atan2 (0.0, x).
+
+2001-12-17  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* data-conv.cc (LS_DO_READ): Don't do anything unless len > 0.
+	(LS_DO_WRITE): Likewise.
+	
+2001-11-16  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* mx-inlines.cc (MX_CUMMULATIVE_OP): New macro.
+	* CMatrix.cc (ComplexMatrix::cumprod, ComplexMatrix::cumsum): Use it.
+	* dMatrix.cc (Matrix::cumprod, Matrix::cumsum): Likewise.
+
+	* mx-inlines.cc (MX_REDUCTION_OP, MX_REDUCTION_OP_COL_EXPR,
+	MX_REDUCTION_OP_ROW_EXPR): New macros.
+	* dMatrix.cc (Matrix::prod, Matrix::sum): Use MX_REDUCTION_OP.
+	* CMatrix.cc (ComplexMatrix::prod, ComplexMatrix::sum): Likewise.
+
+	* mx-inlines.cc (MX_BASE_REDUCTION_OP): New macro.
+	DIM == -1 now means no orientation for vector sums.
+	* dMatrix.cc (ComplexMatrix::sumsq): Use it.
+	* CMatrix.cc (ComplexMatrix::sumsq): Likewise.
+
+2001-11-08  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Range.cc (Range::nelem_internal): Special case ranges that must
+	have zero elements.
+
+2001-11-06  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in: Split out readline and pathsearch functionality
+	into separate liboct-readline and liboct-pathsearch libraries.
+
+	* oct-rl-edit.c (octave_rl_clear_screen): Call rl_clear_screen,
+	not _rl_clear_screen.  Temporarily redefine rl_redisplay_function
+	to do nothing for this call to rl_clear_screen.
+
+2001-10-08  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DASSL.cc (ddassl_f): Handle IRES returned from user supplied
+	function.
+	* DAEFunc.h (DAERHSFunc): Add IRES to prototype.
+
+2001-06-07  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::inverse, Matrix::solve, Matrix::determinant,
+	Matrix::inverse): Handle the case of rcond being a NaN the same as
+	a signular matrix.  From "Jianming" <caijianming@yahoo.co.uk>.
+	* CMatrix.cc (ComplexMatrix::inverse, ComplexMatrix::solve,
+	ComplexMatrix::determinant, ComplexMatrix::inverse): Likewise.
+
+2001-05-31  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* chMatrix.cc (charMatrix::row_as_string): New parameter, raw.
+
+	* Array-i.cc, Array-s.cc, Array-d.cc, Array-ch.cc, Array-C.cc,
+	Array-b.cc: Instantiate three arg assign functions.
+
+	* ArrayN.cc (assign (ArrayN<LT>&, const ArrayN<RT>&, const LT&)):
+	New arg, resize_fill_value.
+	* ArrayN.h: Provide declaration.
+	(assign (ArrayN<LT>&, const ArrayN<RT>&): Define here by calling
+	three arg version.
+
+	* Array3.cc (assign (Array3<LT>&, const Array3<RT>&, const LT&)):
+	New arg, resize_fill_value.
+	* Array3.h: Provide declaration.
+	(assign (Array3<LT>&, const Array3<RT>&): Define here by calling
+	three arg version.
+
+	* Array2.cc (assign (Array2<LT>&, const Array2<RT>&, const LT&)):
+	New arg, resize_fill_value.
+	* Array2.h: Provide declaration.
+	(assign (Array2<LT>&, const Array2<RT>&): Define here by calling
+	three arg version.
+
+	* Array.cc (assign (Array<LT>&, const Array<RT>&, const LT&)):
+	New arg, resize_fill_value.
+	* Array.h: Provide declaration.
+	(assign (Array<LT>&, const Array<RT>&): Define here by calling
+	three arg version.
+
+2001-05-17  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* pathsearch.cc (dir_path::set_program_name): Set the environment
+	variables SELFAUTOLOC, SELFAUTODIR, SELFAUTOPARENT, and TEXMFDBS
+	to the empty string.
+
+2001-05-15  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2.h (Array2<T>::operator = (const Array2<T>&)):
+	Don't check for rep != a.rep.
+
+2001-05-02  Mumit Khan  <khan@nanotech.wisc.edu>
+
+	* oct-fftw.h, oct-fftw.cc: New files.
+	* Makefile.in (INCLUDES, SOURCES): Add new files.
+	* CMatrix.cc (ComplexMatrix::{fourier, ifourier, fourier2d, 
+	ifourier2d}): Use fftw if available.
+	* dMatrix.cc (Matrix::{fourier, ifourier, fourier2d, ifourier2d}): 
+	Likewise.
+
+2001-04-25  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install-lib): Don't use mk-libdir-link.
+	(install-inc): Don't use mk-includedir-link.
+
+2001-02-28  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-cutils.c (octave_gethostname): New function.
+	* lo-utils.h: Provide declaration.
+	* oct-env.cc (octave_env::do_get_host_name):
+	Call octave_gethostname, instead of gethostname.
+
+	* lo-cutils.c (gethostname): Define here.
+	* lo-sysdep.cc: Not here.
+
+2001-02-07  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-cutils.c: Don't declare strptime.
+	(oct_strptime): Cast return type of strptime to char*.
+
+2001-02-06  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-rl-edit.c (octave_rl_newline): Call rl_newline with two args.
+	(octave_rl_set_name): call rl_re_read_init_file with two args.
+	(octave_rl_read_init_file): Ditto.
+	(octave_rl_clear_undo_list): Call rl_free_undo_list, not
+	free_undo_list.
+	(octave_rl_completion_matches): Call rl_completion_matches, not
+	completion_matches.
+	(octave_rl_enable_paren_matching): New function.
+	(octave_rl_set_blink_matching_paren_flag): Delete.
+	(octave_rl_get_blink_matching_paren_flag): Delete.
+
+	* lo-mappers.h, lo-mappers.cc (log10 (const Complex&),
+	tanh (const Complex&)): Declare and define if not 
+	CXX_ISO_COMPLIANT_LIBRARY.
+
+2001-02-05  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.h (tanh (const Complex&)): Only declare if not
+	CXX_ISO_COMPLIANT_LIBRARY.
+
+2001-02-05  Mumit Khan  <khan@nanotech.wisc.edu>
+
+	* lo-mappers.cc (tanh (const Complex&)): Only define if not
+	CXX_ISO_COMPLIANT_LIBRARY.
+
+	* Makefile.in (TEMPLATE_AR, TEMPLATE_ARFLAGS): Use to create
+	archive libraries containing templates.
+
+	* ArrayN-idx.h (freeze, all_ok, any_orig_empty, any_zero_len,
+	get_zero_len_size, all_colon_equiv): Inline. 
+	(ArrayN<T>::index): Rename idx to arr_idx.
+	* ArrayN.cc (ArrayN<T>::index, ArrayN<T>::compute_index, 
+	ArrayN<T>::get_size, ArrayN<T>::range_error, ArrayN<T>::range_error,
+	increment_index, ArrayN<T>::resize, ArrayN<T>::insert): Likewise.
+
+2001-02-05  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.h, lo-mappers.cc (tan (const Complex&),
+	log10 (const Complex&)): Delete.
+
+	* oct-cmplx.h: Define forwarding functions for real, imag, abs,
+	arg, norm, conj, polar, cos, cosh, exp, log, log10, pow, sin,
+	sinh, sqrt, tan, and tanh.
+
+2001-01-31  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.cc, help.cc, load-save.cc, pr-output.cc, utils.cc:
+	Add std:: namespace qualifier as needed.
+
+	* mx-inlines.cc: Rename all functions with mx_inline_ prefix.
+	Change all uses to match.
+
+2001-01-29  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-cutils.c: Don't delcare strptime.
+
+2001-01-02  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CMatrix.cc (operator * (const ComplexMatrix&, const ComplexMatrix&):
+	Return correct size result for empty matrix case.
+
+2000-12-15  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.cc (xmin (const Complex&, const Complex& y):
+	If args are equal in magnitude, return first arg instead of
+	second.
+
+2000-12-13  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Range.cc (Range::nelem_internal): Call tfloor, not round, but
+	then try harder to compute correct number of elements.
+
+	* dMatrix.cc (Matrix::lssolve): Ask DGELSS for size of work vector.
+	* CMatrix.cc (ComplexMatrix::lssolve): Likewise, for ZGELSS.
+
+2000-12-09  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Range.cc (Range::nelem_internal): Call round here, not tfloor.
+	Rename n_intervals to be n_elt.
+
+	* strptime.c: Surround everything after including config.h in
+	#ifndef HAVE_STRPTIME ... #endif.
+
+2000-11-29  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-idx.h (assign): When resizing, cast fill value to LT.
+	* Array2-idx.h (MAYBE_RESIZE_LHS): Likewise.
+
+2000-11-28  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* MArray-defs.h: Protect against multiple inclusion.
+
+2000-11-20  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* data-conv.h (enum save_type): Move LS_U_LONG and LS_LONG to the
+	end of the list, to be compatible with previous versions of Octave.
+
+2000-11-16  Paul Kienzle  <pkienzle@kienzle.powernet.co.uk>
+
+	* oct-time.cc (DEFINE_SET_INT_FIELD_FCN): Don't check limits here,
+	since mktime is supposed to `normalize' the results for us.
+
+2000-10-31  Paul Kienzle  <pkienzle@kienzle.powernet.co.uk>
+
+	* Array2.cc (Array2<T>::transpose): Avoid copy for empty matrices
+	and vectors.  Use xelem for faster access to elements when copying.
+
+2000-10-18  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CMatrix.cc (ComplexMatrix::cumsum, ComplexMatrix::cumprod):
+	Correct indexing for operation across rows.
+	* dMatrix.cc (Matrix::cumsum, Matrix::cumprod): Likewise.
+
+2000-10-12  Paul Kienzle  <pkienzle@kienzle.powernet.co.uk>
+
+	* Array2-idx.h (Array2<T>::index (idx_vector&)): Avoid copying
+	elements if arg is a colon.
+
+2000-10-12  Cai Jianming <caijianming@yahoo.co.uk>
+
+	* dMatrix.cc (Matrix::cumprod (int) const): New arg, DIM.
+	(Matrix::cumsum (int) const): Likewise.
+	(Matrix::prod (int) const): Likewise.
+	(Matrix::sum (int) const): Likewise.
+	(Matrix::sumsq (int) const): Likewise.
+	* CMatrix.cc (ComplexMatrix::cumprod (int dim) const): Likewise.
+	(ComplexMatrix::cumsum (int) const): Likewise.
+	(ComplexMatrix::prod (int) const): Likewise.
+	(ComplexMatrix::sum (int) const): Likewise.
+	(ComplexMatrix::sumsq (int) const): Likewise.
+
+2000-10-10  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (Array2<T>::index (idx_vector&)): Correctly set
+	size if Array<T>::index returns an empty array.
+
+2000-08-02  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.cc (file_ops::link, file_ops::symlink,
+	file_ops::readlink): New functions.
+
+2000-08-01  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (Array2<T>::index (idx_vector&)): If a scalar is
+	indexed, always return an object the same size as the index arg.
+
+	* oct-time.cc (octave_base_tm::strftime): Return empty string for
+	empty format.
+
+2000-07-25  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-cutils.c (oct_strptime): New function.
+	* oct-time.cc (octave_strptime::init): Call it instead of strptime.
+	Don't declare strptime.  Don't define _XOPEN_SOURCE or _BSD_SOURCE.
+
+2000-07-18  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-time.cc: Comment out _BSD_SOURCE and _XOPEN_SOURCE definitions.
+
+	* Makefile.in (MATRIX_INC): Add ArrayN-idx.h to the list.
+
+2000-06-29  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.h (read_int): Provide declaration.
+
+2000-06-29  James R. Van Zandt  <jrv@vanzandt.mv.com>
+
+	* data-conv.cc (read_doubles): Handle EIGHT_BYTE_INT cases.
+	(write_doubles): Ditto.
+	* data-conv.h: Ditto.
+	(enum save_type): New values, LS_U_LONG and LS_LONG.
+
+2000-06-27  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* boolMatrix.h: Declare MM_CMP_OPS here.
+	* boolMatrix.cc: Define them here.
+
+2000-06-08  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (assign): Allow x(bool) = RHS to succeed if x is
+	previously undefined and set size of x to size of bool index.
+	* idx-vector.cc (IDX_VEC_REP::maybe_convert_one_zero_to_idx):
+	Allow z_len to be zero.
+	(IDX_VEC_REP::freeze): If z_len is zero, set frozen_at_z_len to len.
+	If frozen, don't assert that frozen_at_z_len == z_len.
+
+2000-05-20  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-rl-edit.c (octave_rl_clear_screen): Call _rl_clear_screen
+	instead of rl_clear_screen.
+
+2000-05-11  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-d.cc: Instantiate ArrayN<double> here too.
+	* Array-idx-vec.cc, ArrayN-idx.h, ArrayN.cc, ArrayN.h: New files.
+	* Makefile.in: Add them to the appropriate lists.
+
+2000-04-06  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array.cc (Array<T>::operator =): Don't set max_indices to 1 here.
+
+2000-03-23  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-sysdep.h: octave_chdir returns int, not bool.
+
+2000-03-21  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (liboctave.$(SHLEXT)): Delete target
+	before rebuilding.
+
+2000-03-21  Ben Sapp <bsapp@nua.lampf.lanl.gov>:
+
+	* liboctave/Makefile.in (liboctave.$(LIBEXT)): New target.
+	(libraries): Depend only on library targets, not archive members.
+
+2000-03-17  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in: (objects): New target.
+
+	* lo-cutils.c: New file.
+	* Makefile.in (SOURCES): Add it to the list.
+	* lo-utils.h: Declare octave_qsort here.
+	* Array.h (Array::qsort): Use it here.
+
+2000-03-08  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-time.cc: Include <sys/types.h> and <unistd.h>, if available.
+
+2000-02-18  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-rl-hist.c (octave_history_list): Do something when not
+	printing line numbers.  Fix reallocation of retval.
+
+2000-02-11  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install-inc): Install files in
+	$(octincludedir)/octave.
+	(uninstall): Remove them from the correct directory too.
+
+	* oct-time.cc: Temporarily define _BSD_SOURCE and _XOPEN_SOURCE if
+	they are not already defined.
+
+2000-02-08  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CRowVector.cc, CRowVector.h, CColVector.cc, CColVector.h:
+	Delete declarations and definitions of mixed-type vector-vector ops.
+
+2000-02-07  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CMatrix.h, CMatrix.cc: Add lssolve methods for real-valued RHS
+	matrix and vector objects.
+
+	* mx-op-defs.h (DMM_BIN_OP): Explicitly request conversion to
+	return type from second arg type.
+	(MDM_BIN_OP): Likewise, for first arg type.
+
+	* dMatrix.cc (Matrix::fourier, Matrix::ifourier,
+	Matrix::fourier2d, Matrix::ifourier2d): Likewise.
+
+	* EIG.cc (EIG::symmetric_init, EIG::hermitian_init): Explicitly
+	request ColumnVector to ComplexColumnVector, and Matrix to
+	ComplexMatrix conversions.
+
+	* CmplxAEPBAL.cc (ComplexAEPBALANCE::init): Give balancing_mat its
+	initial value using ComplexMatrix constructor.
+
+	* CColVector.cc (product, quotient,
+	operator * (const DiagMatrix&, const ComplexColumnVetor&)):
+	Fix type of returned value.
+	* CDiagMatrix.cc (ComplexDiagMatrix::row,
+	ComplexDiagMatrix::column, ComplexDiagMatrix::inverse): Likewise.
+
+	* Array.h, CColVector.h, CDiagMatrix.h, CMatrix.h, CRowVector.h,
+	MArray.h, MDiagArray2.h, dColVector.h, dDiagMatrix.h, dMatrix.h,
+	dRowVector.h: Declare some constructors explicit, to disallow
+	potentially problematic automatic type conversions.
+
+2000-02-05  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* vx-rv-crv.h, vx-cv-ccv.h, vx-crv-rv.h, vx-ccv-cv.h,
+	vx-rv-crv.cc, vx-cv-ccv.cc, vx-crv-rv.cc, vx-ccv-cv.cc:
+	More new files.
+	* Makefile.in: Add them to the appropriate lists.
+
+	* vx-ccv-s.h, vx-crv-s.h, vx-cs-cv.h, vx-cs-rv.h, vx-cv-cs.h,
+	vx-rv-cs.h, vx-s-ccv.h, vx-s-crv.h, vx-ccv-s.cc, vx-crv-s.cc,
+	vx-cs-cv.cc, vx-cs-rv.cc, vx-cv-cs.cc, vx-rv-cs.cc, vx-s-ccv.cc,
+	vx-s-crv.cc:, New files.
+	* Makefile.in: Add them to the appropriate lists.
+
+	* CRowVector.h, CRowVector.cc, CColVector.h, CColVector.cc:
+	Delete scalar by vector and vector by scalar binary ops.
+
+	* MArray-defs.h: More new macros to handle MDiagArray operators.
+	* dDiagMatrix.h, CDiagMatrix.h: Use the op-forwarding macros.
+
+2000-02-04  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-rl-edit.c (octave_rl_set_event_hook): Take address of
+	rl_event_hook before casting to void **.
+	(octave_rl_set_startup_hook): Likewise, for rl_startup_hook.
+
+	* MArray-defs.h: Many new macros to make declaration and
+	definition of operators more consistent.
+	
+	* MArray.h, MArray2.h, dColVector.h, dRowVector.h, CColVector.h,
+	CRowVector.h, dMatrix.h, CMatrix.h: Use them.
+
+2000-02-03  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::ifourier): Cast divisor to double.
+	(Matrix::ifourier2d): Likewise.
+	* CMatrix.cc (ComplexMatrix::ifourier): Likewise.
+	(ComplexMatrix::ifourier2d): Likewise.
+
+	* Array.h (Array::ArrayRep::qsort): Cast len to size_t.
+
+2000-02-01  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-rl-edit.c, oct-rl-edit.h: New files for interface to GNU
+	readline library.
+	* Makefile.in: Add them to the appropriate lists.
+
+	* oct-rl-hist.c, oct-rl-hist.h: New files for interface to GNU
+	readline history library.
+	* Makefile.in: Add them to the appropriate lists.
+
+	* data-conv.cc (LS_DO_WRITE): Cast arg to ostream::write to char*.
+	(LS_DO_READ): Likewise, for istream::read.
+	(write_doubles): Likewise.
+	(read_doubles): Likewise.
+
+	* oct-env.cc (octave_env::do_polite_directory_format):
+	Use operator== and substr method to do limited-length string
+	comparison.
+
+	* Array2-idx.h, Array-idx.h: Avoid shadowing warnings for idx.
+
+	* Quad.h: Use do_integrate as name of pure virtual function.
+
+	* base-de.h: Use tt instead of t as arg names.
+	Add method with tcrit arg.
+
+	* DAE.h, DAE.cc: Likewise, also xx for x.
+
+	* DASSL.cc (dassl_fcn_ptr, dassl_jac_ptr): New typedefs.
+	* LSODE.cc: lsode_fcn_ptr, lsode_jac_ptr): Ditto.
+	* Quad.cc (quad_fcn_ptr): Ditto.
+	* NLEqn.cc (hybrd1_fcn_ptr, hybrj1_fcn_ptr): Ditto.
+
+	* oct-getopt.h, oct-getopt.c: New files for interface to getopt.
+	* Makefile.in: Add them to the appropriate lists.
+
+	* oct-kpse.h, oct-kpse.c: New files for interface to kpathsearch.
+	* Makefile.in: Add them to the appropriate lists.
+
+	* dMatrix.cc (write_int, read_int): No longer declared static.
+
+	* CDiagMatrix.h: Delete decls for friend operators that are
+	handled by MDiagArray2 class.  Move others outside class decl and
+	strip friend status.
+	* dDiagMatrix.h: Likewise.
+
+	* MArray.h: Delete decls for friend operators inside class decl.
+	* MArray2.h: Ditto.
+	* MDiagArray2.h: Ditto.
+
+	* MArray-defs.h (DO_VS_OP,, DO_SV_OP, DO_VV_OP, NEGV): Pass all
+	necessary parameters.  Don't allocate memory in the macro.  Change
+	all uses.
+
+	* dMatrix.h (class Matrix): Delete `friend class' decls.
+	* CMatrix.h (class ComplexMatrix): Ditto.
+
+	* mx-op-defs (MS_BOOL_OP, MS_BOOL_OPS, SM_BOOL_OP, SM_BOOL_OPS,
+	MM_BOOL_OP, MM_BOOL_OPS, MDM_MULTIPLY_OP, MDM_BIN_OPS,
+	DMM_MULTIPLY_OP, DMM_BIN_OPS): Pass zero constant as final arg, to
+	avoid type conflicts.  Change all uses.
+
+	* strptime.c (__mon_yday): Fix size of array decl.
+
+	* mx-inlines.cc: Use `xnot' instead of `not' for function name.
+
+	* chMatrix.cc (charMatrix::row_as_string): Delete extraneous
+	default value for second arg.
+
+	* Array2.cc (Array2<T>::resize): Add Array<T>:: qulaifier to
+	references to ArrayRep.
+
+2000-01-31  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array.h (Array::ArrayRep): Now protected, not private.
+
+	* All source files: Include iostream, fstream, strstream,
+	etc. as needed instead of using forward declarations for these
+	classes.  Add std:: qualifier as needed.
+
+2000-01-30  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-time.cc: Declare strptime extern "C".
+
+2000-01-29  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-time.cc [! HAVE_STRPTIME]: Provide declaration.
+
+2000-01-28  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2.h (Array2<T>::get_size): Now protected instead of private.
+	* Array3.h, Array3.cc: Use it in constructors and resize methods
+	to get total size to be allocated.
+
+	* DASSL.cc (DASSL::integrate): Declare do_restart and save_output
+	as bool, not int.
+
+2000-01-26  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (assign (Array2<LT>& lhs, const Array2<RT>& rhs)): 
+	Allow A(idx) = RHS if idx is a boolean index with the same shape
+	as A, even when do_fortran_indexing is not enabled.
+	(Array2<T>::index (idx_vector& idx) const): Likewise, for A(idx).
+
+2000-01-25  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::solve (...)): Add new variant with
+	function pointer as final arg.  Passed function (if any) will be
+	called for singularity errors.
+	* CMatrix.cc (ComplexMatrix::solve (...)): Likewise.
+
+	* dMatrix.cc (Matrix::pseudo_inverse): Use economy SVD.
+	* CMatrix.cc (ComplexMatrix::pseudo_inverse): Likewise.
+
+	* lo-ieee.cc (octave_ieee_init): Don't include sunmath.h.
+	No longer bother with infinity or quiet_nan.
+
+	* Array2.cc (Array2<T>::get_size): New function.
+	(Array2<T>::Array2, Array2<T>::resize): Use it.
+
+2000-01-23  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (Array2<T>::maybe_delete_elements (idx_vector&)):
+	New function.
+	(assign (Array2<LT>& lhs, const Array2<RT>& rhs)):
+	Use it when indexing with one arg instead of faking a second one.
+	(Array2<T>::maybe_delete_elements (idx_vector&, idx_vector&)):
+	Return empty matrices with the correct dimensions for A(:,:) = []
+	and also A(:,idx) = [], and A(idx,:) = [] when idx enumerates all
+	rows or columns.
+
+	* idx-vector.cc (IDX_VEC_REP::is_colon_equiv): Recognize a bool
+	vector that is all true values with a length equal to n as colon
+	equivalent.
+
+2000-01-22  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* strptime.c: Only include langinfo.h if _LIBC is defined.
+
+2000-01-21  A. Scottedward Hodel <a.s.hodel@eng.auburn.edu>
+
+	* CMatrix.cc (ComplexMatrix::expm): Apply permutation and scaling
+	operations directly in step 2 and reverse step 2.
+	* dMatrix.cc (Matrix::expm): Apply permutation and scaling
+	operations directly in step 2 and reverse step 2.
+
+2000-01-20  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-time.h, oct-time.cc (octave_strptime): New class.
+
+	* strptime.c: New file, from glibc 2.1.2.
+	* Makefile.in (SOURCES): Add strptime.c to the list.
+
+2000-01-11  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* MArray.h (MArray <const Array<T>&)): New constructor.
+
+2000-01-10  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* pathsearch.cc (dir_path::all_directories): Avoid dereferencing
+	NULL directory list returned from kpse_element_dirs
+
+1999-12-08  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleLU.cc (LU::LU): Call DGETRF directly instead of calling DGESV.
+	* CmplxLU.cc (ComplexLU::ComplexLU): Likewise, call ZGETRF
+	directly, instead of calling ZGESV.
+
+1999-11-18  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* data-conv.cc (init_sized_type_lookup_table): New function.
+	(string_to_data_type): Use it to improve lookup of data types.
+
+1999-11-16  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (is_symmetric): Move here from Array2.cc.
+	* Array2.h (is_symmetric): Delete declaration.
+
+1999-11-10  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-env.cc (do_get_user_name): Reverse sense of test.
+
+1999-11-07  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-time.cc (Fstrftime): Undo previous change.
+	(octave_time::octave_time (const octave_base_tm&)): Likewise.
+
+1999-11-03  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleSVD.cc (SVD::init): Let DGESVD determine work space requirement.
+	* CmplxSVD.cc (ComplexSVD::init): Likewise, for complex version.
+
+	* dbleSCHUR.cc (SCHUR::init): IWORK is always referenced by dgeesx.
+	Don't forget to pass length of third string argument to dgeesx.
+
+	* CmplxSCHUR.cc (ComplexSCHUR::init): Don't forget to pass length
+	of third string argument to zgeesx.
+
+1999-11-02  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DiagArray2.cc (DiagArray2<T>::operator () (int, int)):
+	On errors, simply return `T ()'.
+	(DiagArray2<T>::checkelem (int, int)): Likewise.
+
+1999-11-02  A. Scottedward Hodel <a.s.hodel@eng.auburn.edu>
+
+	* dMatrix.cc (Matrix::expm): Do balancing here instead of using
+	AEPBALANCE class.
+	* CMatrix.cc (ComplexMatrix::expm): Likewise.
+
+1999-10-29  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-shlib.cc, oct-shlib.h: New files.
+	* Makefile.in (INCLUDES, SOURCES): Add them to the lists.
+
+1999-10-26  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CRowVector.cc (linspace): Allow npoints == 1 if x1 == x2.
+	* dRowVector.cc (linspace): Ditto.
+
+	* oct-time.cc (Fstrftime): Don't save or delete tm_zone.
+	(octave_time::octave_time (const octave_base_tm&)): Likewise.
+
+1999-10-21  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DASSL.cc (DASSL::do_integrate (double)): If we have a function
+	to evaluate the Jacobian, set info(4), not iwork(4).
+	Set rwork(1) to the maximum step size, not rwork(2).
+
+1999-10-14  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-time.cc: Include <climits>.
+
+1999-10-13  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-edit.h (command_editor::do_resize_terminal): New function.
+	* cmd-edit.cc (command_editor::resize_terminal): New function.
+	(gnu_readline::do_resize_terminal): New function.
+
+Fri Sep  3 12:39:17 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.cc: Include ieeefp.h and sunmath.h if we have them.
+	* lo-ieee.c: Likewise.
+	Delete extern "C" declarations for infinity and quiet_nan.
+
+Fri Aug 20 07:58:00 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* mx-inlines.cc (VS_OP, SV_OP, VV_OP): Delete `extern template' decls.
+	(VS_OP_FCN, SV_OP_FCN, VV_OP_FCN): Declare template functions
+	`inline', not `static inline'.
+
+	* idx-vector.cc (intcmp): Declare args as const void *, not int *,
+	then cast to const int * to compare.
+
+Fri Jul 16 11:23:51 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DAEFunc.h: Remove useless preprocessor conditional.
+
+Thu Jul 15 14:10:33 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-edit.cc (command_editor::do_decode_prompt_string):
+	Use octave_time object instead of time_t.
+
+	* file-stat.h (file_stat::fs_atime, file_stat::fs_mtime,
+	file_stat::fs_ctime): Now octave_time objects.
+	(file_stat::atime, file_stat::mtime, file_stat::ctime):
+	Return octave_time objects.
+	(file_stat::is_newer): Args are now octave_time objects instead of
+	time_t.
+
+	* oct-time.h (octave_time::as_double): Delete.
+	(octave_time::operator double ()): New function.
+	(octave_time::operator time_t ()): New function.
+	(octave_time::ctime): New function.
+	(octave_base_tm::strftime): Renamed from format_as_string.
+	(octave_base_tm::asctime): New function.
+	(operator == (const octave_time&, const octave_time&),
+	operator != (const octave_time&, const octave_time&),
+	operator < (const octave_time&, const octave_time&),
+	operator <= (const octave_time&, const octave_time&),
+	operator > (const octave_time&, const octave_time&),
+	operator >= (const octave_time&, const octave_time&)):
+	New comparison functions.
+
+	* strftime.c: Move here from src directory.
+	* Makefile.in (SOURCES): Add it to the list.
+
+	* oct-time.h (octave_time::octave_time (time_t)): New constructor.
+
+Wed Jul 14 17:38:07 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-time.h, oct-time.cc: New files.
+	* Makefile.in (INCLUDES, SOURCES): Add them to the lists.
+
+	* systime.h: Move here from src directory.
+	* Makefile.in (INCLUDES): Add it to the list.
+
+Mon Jul 12 22:34:34 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* mx-defs.h (b_d_Mapper, b_c_Mapper): New typedefs.
+	* dMatrix.cc (Matrix::map (b_d_Mapper)): New function.
+	* CMatrix.cc (ComplexMatrix::map (b_c_Mapper)): New function.
+	* lo-mappers.cc (xisinf, xisnan, xfinite): Return bool, not double.
+
+	* lo-mappers.cc (xmin, xmax): New functions to correctly handle NaNs.
+
+Mon May 10 07:45:11 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* MArray-defs.h (DO_VV_OP2): Fix macro definition to use arg.
+
+Wed May  5 20:06:10 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (Array2<T>index (idx_vector& idx)): Always return a
+	column vector for A(:), for compatibility with Matlab.
+
+Fri Apr 23 11:52:23 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* LSODE.cc (LSODE::do_integrate (double)): Don't forget to set
+	iopt when there are optional inputs in rwork or iwork.
+
+Fri Mar 26 11:26:32 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (libraries): Use the libfoo.a(objects) method of
+	creating static libs.
+
+Thu Mar  4 02:17:04 1999  James Macnicol <jamesm@evans.ee.adfa.oz.au>
+
+	* data-conv.cc (oct_data_conv::string_to_data_type): Handle uint16
+	and uint32 data types.
+
+Thu Mar  4 01:51:37 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-ieee.cc (octave_ieee_init): Don't use __alpha__-specific code
+	for Linux.  Remove old Linux-specific code.
+
+Tue Jan 19 09:34:55 1999  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (operator * (const ColumnVector& v, const RowVector& a)):
+	Don't require lengths to be equal.
+	* CMatrix.cc (operator * (const ComplexColumnVector& v, const
+	ComplexRowVector& a)): Likewise
+
+Tue Nov 24 23:38:19 1998  Eric Norum <eric@skatter.USask.Ca>
+
+	* statdefs.h: Only define mode_t if not already defined.
+
+Tue Nov 24 17:24:52 1998  john <john@arrows.demon.co.uk>
+
+	* lo-specfun.cc (airy, biry): Set imaginary part of result to zero
+	when appropriate.
+
+Mon Nov 23 09:57:05 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-edit.cc (gnu_readline::gnu_readline): Set terminal name
+	before calling rl_initialize.
+
+Tue Nov 17 23:47:24 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-specfun.cc (besselh, airy, biry): New functions.
+	Update Bessel function support to use library by D. E. Amos.
+
+Thu Nov 12 17:44:15 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-edit.h (command_editor::readline): Add new variation that
+	allows EOF information to be passed back to caller.
+
+	* dMatrix.cc (Matrix::read): Do the right thing for EOF when
+	amount of data to read is unspecified.
+
+Tue Nov 10 07:53:15 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-alloc.h (DECLARE_OCTAVE_ALLOCATOR): New macro.
+	(DEFINE_OCTAVE_ALLOCATOR): Ditto.
+
+	* byte-swap.h (swap_bytes, swap_2_bytes, swap_4_bytes, swap_8_bytes): 
+	Add volatile qualifier to void* arg.
+	Cast volatile void* arg to volatile char*.
+
+Mon Nov  9 08:28:31 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-edit.h (command_editor::do_set_event_hook): New function.
+	(command_editor::do_restore_event_hook): Ditto.
+	* cmd-edit.cc (command_editor::set_event_hook): Ditto.
+	(command_editor::restore_event_hook): Ditto.
+	(gnu_readline::do_set_event_hook): Ditto.
+	(gnu_readline::do_restore_event_hook): Ditto.
+	(gnu_readline::previous_event_hook): New data member.
+	(gnu_readline::gnu_readline): Initialize previous_event_hook.
+
+Mon Nov  2 13:36:04 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (BINDISTLIBS): Don't include .$(SHLEXT_VER) in name.
+
+	* Makefile.in (stmp-pic): New target.
+	($(PICOBJ)): Depend on stmp-pic, not pic.
+	(clean): Remove stmp-pic
+
+	* Makefile.in: Undo previous change to avoid optmization when
+	compiling lo-ieee.cc.
+
+Sun Nov  1 10:10:40 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.cc (xfinite): Define in terms of xfinite for real and
+	imaginary parts.
+	(xisinf): Define in terms of xisinf for real and imaginary parts.
+
+Thu Oct 29 18:57:50 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* boolMatrix.cc (boolMatrix::operator !): New function.
+
+Fri Oct 23 21:46:20 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* pathsearch.h (dir_path::default_path): New data member.
+	* pathsearch.cc (dir_path::init): Use it.
+
+	* Makefile.in: Avoid optmization when compiling lo-ieee.cc.
+
+Fri Oct 16 01:08:30 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* chMatrix.cc (charMatrix::extract): New function.
+	(charMatrix::charMatrix (char c)): New constructor.
+
+Tue Oct 13 22:11:08 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-edit.h: (command_editor::do_read_init_file): New function.
+	* cmd-edit.cc (command_editor::read_init_file): New function.
+	(gnu_readline::do_read_init_file): Likewise.
+
+Fri Sep 25 14:26:44 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-env.cc (octave_env::do_get_home_directory): 
+ 	If HOME can't be found, set it to "/".
+	(octave_env::do_get_user_name)
+	If user name can't be found, set it to "unknown".
+	(octave_env::do_get_host_name)
+	If host name can't be found, set it to "unknown".
+
+	* pathsearch.h (dir_path::rehash): New function.
+	* pathsearch.cc (dir_path::init): Clear kpathsea's internal
+	diretcory cache before doing initialization.
+
+Thu Sep 24 13:23:25 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Qzval): Delete.
+	(qzhes, qzit, qzval): Delete F77_FCN declarations.
+	* dMatrix.h (Qzval): Delete declaration.
+
+	* dbleGEPBAL.h, dbleGEPBAL.cc: Delete.
+	* Makefile.in (MATRIX_INC, MATRIX_SRC): Delete them from the lists.
+	* mx-ext.h: Don't include dbleGEPBAL.
+
+	* lo-ieee.cc (octave_ieee_init): For now, use X_CAST instead of
+	static_cast.
+
+Fri Sep  4 10:58:22 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::read): Skip after reading, not before.
+	From: Dr.-Ing. Torsten Finke <fi@igh-essen.com>.
+
+Wed Sep  2 09:50:21 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-ieee.cc (octave_ieee_init): For Linux on arm, don't rely on
+	HUGE_VAL and NAN.
+
+Wed Aug 26 15:04:57 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (assign (Array2<LT>& lhs, const Array2<RT>& rhs)):
+	Handle x(i) = scalar for do_fortran_indexing == 1.
+
+Thu Jul 30 00:34:10 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CMatrix.cc (ComplexMatrix::ComplexMatrix (const charMatrix&)):
+	Alloctate space before attempting to use it.
+	(ComplexMatrix::ComplexMatrix (const boolMatrix&)): Likewise.
+
+Mon Jun 22 17:04:27 1998  Tomislav Goles <tom@ait-tech.com>
+
+	* EIG.cc (EIG::init): Move invariant code outside loop.
+
+Thu Jun 18 11:08:23 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* MArray2.cc (MARRAY_A2A2_OP): If operands are empty, make result
+	have the same size as the operands.
+	
+Thu May 28 10:41:04 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DASSL.cc (DASSL::do_integrate): If an exception occurs in the
+	call to ddassl, set integration_error to 1 before calling the
+	error handler and returning.
+	* LSODE.cc (LSODE::do_integrate): Likewise.
+
+Wed May 27 13:46:30 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (assign): Allow A([],[]) = scalar and, if
+	do_fortran_indexing is set, A([]) = scalar.
+	* Array-idx.h (assign): Allow A([]) = scalar.
+
+Thu May 14 11:50:24 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* mx-op-defs.h (MDM_MULTIPLY_OP): Compute result if dm_nc > 0, not
+	if dm_nc == 0.
+
+Thu Apr 23 16:15:37 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* pathsearch.h (dir_path::p_orig): New field.
+	* pathsearch.cc (dir_path::init): Perform variable and tilde
+	expansion on the original path here.
+	(dir_path::find_all): Don't do anything if not initialized.
+
+Tue Apr 14 14:41:30 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (index): Allow x(:) even when do_fortran_indexing
+	is not set.
+	(index): Allow x = zeros (2, 0); x(1,:) to work.
+
+	* lo-specfun.cc (gammainc): Use dgamit to compute
+	(\int_0^x exp(-t) t^(a-1) dt)/gamma(a), not just
+	\int_0^x exp(-t) t^(a-1) dt.
+
+Wed Apr  8 22:50:44 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-C.cc, Array-b.cc, Array-ch.cc, Array-i.cc, Array-d.cc,
+	Array-s.cc: Change return types of all `assign' explicit
+	instantiations to be int, not void, to match the template decl in
+	Array.h.
+
+Mon Apr  6 00:27:06 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-specfun.cc (gammainc): Reorder args in call to xdgami.
+
+Thu Feb 19 01:16:38 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-specfun.cc (xgamma, xlgamma): Define here.
+	* lo-mappers.cc: Not here.
+
+	* lo-specfun.h: Declare xgamma and xlgamma here.
+	* lo-mappers.h: Not here.
+
+	* lo-specfun.h: Never declare gamma or lgamma.
+
+Tue Feb 10 16:14:36 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-idx.h (assign): Allow A([]) = X to succeed if X is an
+	empty matrix of any dimension.
+
+Thu Feb  5 02:12:38 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-syscalls.cc (octave_syscalls::vfork): New function.
+
+	* lo-specfun.cc: Don't include dbleBessel.h.
+
+	* Makefile.in (INCLUDES): Delete oct-math.h from the list.
+
+	* dir-ops.h (dir_entry::operator bool ()): Return bool, not void*.
+	* file-stat.h (file_stat::operator bool ()): Likewise.
+	* idx-vector.h (idx_vector::operator bool ()): Likewise.
+	* oct-group.h (octave_group::operator bool ()): Likewise.
+	* oct-passwd.h (octave_passwd::operator bool ()): Likewise.
+
+	* data-conv.cc (IEEE_little_double_to_IEEE_big_double):
+	Don't cast arg in call to swap_8_bytes.
+	(IEEE_big_double_to_IEEE_little_double): Ditto
+	(IEEE_big_float_to_IEEE_little_float): Don't cast arg in call to
+	swap_4_bytes.
+	(IEEE_little_float_to_IEEE_big_float): Ditto
+
+	* oct-alloc.cc (grow): Use X_CAST, not static_cast.
+	* prog-args.cc (prog_args::getopt): Likewise.
+	* dMatrix.cc (read_int, do_read, write_int, do_write): Likewise.
+	* cmd-edit.cc (gnu_readline::do_set_completion_function): Likewise.
+	* data-conv.cc (LS_DO_READ, LS_DO_WRITE, read_doubles, write_doubles):
+	Likewise.
+
+	* byte-swap.h (swap_bytes, swap_2_bytes, swap_4_bytes,
+	swap_8_bytes): Declare ptr arg as void*, then use cast.
+
+Mon Feb  2 01:42:56 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install, uninstall): Use $(octlibdir), not $(libdir).
+	Use $(mk-libdir-link).
+
+	* file-stat.cc (file_stat::update_internal): Use stat and lstat,
+	not SAFE_STAT and SAFE_LSTAT.
+	(lstat): New function, defined if HAVE_LSTAT is not defined.
+	* safe-xstat.hin, safe-xstat.cin: Delete.
+	* Makefile.in: Delete rules for safe-stat.h, safe-stat.c,
+	safe-lstat.h, and safe-lstat.cc.
+
+Fri Jan 30 23:48:43 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* chMatrix.cc (charMatrix::all, charMatrix::any): New functions.
+
+Tue Jan 20 16:30:00 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::expm): Skip trace normalization step if the
+	trace is negative. 
+	* CMatrix.cc (ComplexMatrix::expm): Skip trace normalization if
+	the real part of the trace is negative.
+
+Mon Jan 19 16:01:59 1998  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::expm): Call xdlange instead of dlange.
+	* CMatrix.cc (ComplexMatrix::expm): Call xzlange instead of zlange.
+
+	* Array2-idx.h (assign): Allow operations like a = 1; a(2:3) = [1;2]
+	to succeed.
+
+Thu Dec 18 14:53:45 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* idx-vector.cc (IDX_VEC_REP::sort): Don't do anything unless len > 1.
+	(make_uniq): Likewise.
+
+Fri Dec 12 10:58:33 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-ieee.cc (octave_ieee_init): Check for linux before __alpha__.
+
+Sun Nov 30 14:59:12 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.cc: Include cmath and lo-specfun.h, not oct-math.h.
+
+	* lo-specfun.h, lo-specfun.cc: New files.
+	* Makefile.in (INCLUDES, SOURCES): Add them to the lists.
+
+	* acosh.c, asinh.c, atanh.c, erf.c, erfc.c, gamma.c, lgamma.c,
+	oct-math.h: Delete.
+	* Makefile.in (SOURCES): Delete them from the list.
+
+Wed Nov 26 20:02:13 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-sysdep.cc (octave_getcwd): Prefer getcwd over getwd.
+
+Wed Nov 19 02:30:04 1997  Mumit Khan <khan@dhaka.xraylith.wisc.edu>
+
+	Changes to make support egcs snapshots that implement explicit
+	specification of template functions according to CD2.
+
+	* MArray.h: If NEED_TEMPLATE_FCN_SPECS is defined, add explicit
+	template function specs for template friends.
+	* MArray2.h: Likewise.
+	* MDiagArray2.h: Likewise.
+
+Thu Nov 13 21:57:16 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CMatrix.cc (sumsq): Compute equivalent of sum (x .* conj (x))
+
+Thu Oct  2 17:13:02 1997  Mumit Khan  <khan@dhaka.xraylith.wisc.edu>
+
+	* CRowVector.cc (linspace): Removed attempt for implicit conversion 
+	to complex<double>(int) instead of complex<double>(double).
+
+	* lo-mappers.cc (atanh): Ditto.
+
+Thu Jul 31 22:13:54 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* idx-vector.cc (IDX_VEC_REP::sort): New function.
+	* idx-vector.h (idx_vector::sort): Ditto.
+	* Array2-idx.h (Array2<T>::maybe_delete_elements): Use it before
+	trying to delete elements specified by the index vectors.
+
+Fri Jul 25 17:31:26 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::lssolve): Increase lwork by factor of 16.
+	* CMatrix.cc (ComplexMatrix::lssolve): Ditto.
+
+Thu Jul 24 14:32:48 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.cc (tilde_expand_word): Fix off-by-one error.
+
+Wed Jul  9 19:40:23 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-sysdep.cc (octave_getcwd): If getwd is available, use it.
+	Call error handler if we can't find the current directory.
+
+Mon Jul  7 21:14:41 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.cc (xisnan (double)): Return only 1 or 0.
+	(xfinite (double)): Ditto.
+
+	* dbleQR.cc (QR::init): Don't forget to initialize Q when type is raw.
+	* CmplxQR.cc (ComplexQR::init): Ditto.
+
+Sun Jun 15 21:06:37 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.cc (acos (const Complex&)): Select branch that is
+	compatible with Matlab.
+
+Tue Jun 10 10:58:05 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h: Correctly handle empty matrices indexed by a
+	single colon.
+
+Fri Jun  6 04:27:40 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.cc (xlgamma): Use F77_XFCN function to call dlgams.
+	(xgamma): Likewise, for calling xdgamma.
+
+	* FSQP.h, NPSOL.h, QPSOL.h, FSQP.cc, NPSOL.cc, QPSOL.cc: Delete
+	* Makefile.in (INCLUDES, SOURCES): Remove them from the lists.
+
+	* file-ops.cc (file_ops::tilde_expand): Steal more code from bash
+	to do better job expanding tildes.
+
+	* str-vec.cc (string_vector::string_vector (const char * const *):
+	Use temporary variable to compute length.
+
+Thu Jun  5 01:44:43 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in: Make building of static library optional.
+	(liboctave.$(SHLEXT_VER)): Add $(SONAME_FLAGS) to command.
+
+	* Makefile.in (stamp-picdir): Delete.
+	(pic): New target.  Don't worry so much about creating pic
+	directory only when it is really needed.
+	(stamp-interp): Delete.
+	(libraries): New target.  Depend on shared library directly.
+
+Wed Jun  4 00:08:55 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* pathsearch.h, pathsearch.cc (dir_pat::set_program_name):
+	New static function.
+
+Mon Jun  2 12:44:14 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-mappers.cc (fix): Use floor and ceil instead of casting to int.
+
+Thu May 22 16:20:43 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-edit.h, cmd-edit.cc: Rename set_paren_string_delimiters to
+	set_basic_quote_characters, to match new version of readline.
+
+	* cmd-edit.cc (do_restore_terminal_state): Call readline function
+	for restoring terminal state through rl_deprep_term_function, now
+	declared in readline.h
+	(rl_deprep_terminal): Delete declaration.
+
+Wed May 21 16:30:25 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install-in): Use new mk-includedir-link macro.
+	(install-lib): Install in $octlibdir.  Use new mk-libdir-link macro.
+
+Thu May 15 11:46:42 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-edit.cc (command_editor::increment_current_command_number):
+	New static function.
+
+Mon May 12 02:14:13 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* idx-vector.cc (IDX_VEC_REP::is_colon_equiv): Make it work when
+	the vector is not sorted.
+
+	* CMatrix.cc (ComplexMatrix::operator !): Return boolMatrix.
+	* dMatrix.cc (Matrix::operator !): Likewise
+
+Wed May  7 21:14:06 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-syscalls.h, oct-syscalls.cc: New files.
+
+	* cmd-edit.h, cmd-edit.cc: Handle completion function.
+
+	* str-vec.h, str-vec.cc (string_vector::uniq): New function.
+
+Tue May  6 00:52:02 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (INCLUDES_FOR_INSTALL): New variable.
+	(install-inc): Use it.
+
+	* file-ops.h, file-ops.cc (tempnam): Add DIR and PREFIX args.
+	Handle errors and missing functions consistently.
+
+	* oct-group.h, oct-group.cc: New files.
+
+	* oct-passwd.cc: Handle errors and missing functions consistently.
+
+	* str-vec.h, str-vec.cc (c_str_vec, delete_c_str_vec): New functions.
+
+Mon May  5 17:53:01 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.cc: (file_ops::tilde_expand): Use new octave_passwd class.
+	* oct-env.cc (octave_env::do_get_user_name): Likewise.
+
+	* oct-passwd.h, oct-passwd.cc: New files.
+
+Sun May  4 22:17:08 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* statdefs.h: Only include sys/types.h if HAVE_SYS_STAT_H is defined.
+
+	* mach-info.h, mach-info.cc: Add missing const qualifiers.
+	(instance_ok ()): New function.
+
+	* glob-match.h, glob-match.cc: Rename from oct-glob.h, oct-glob.cc.
+
+	* cmd-hist.h, cmd-hist.cc: Make it work without GNU readline.
+
+	* lo-utils.h, lo-utils.cc (strsave, octave_putenv): Move here from
+	src/utils.h and src/utils.cc.
+	(octave_fgets): New function, extracted from src/input.cc.
+
+	* cmd-edit.h, cmd-edit.cc: New files.  Provide wrapper class for
+	GNU readline, and allow Octave to work without GNU readline.
+
+	* lo-sysdep.h, lo-sysdep.cc: New files for miscellaneous
+	system-dependent functions.
+
+	* oct-env.h, oct-env.cc: New files for process environment stuff.
+
+	* file-stat.h, file-stat.cc: New files.  Extract file_stat class
+	from file-ops.h and file-ops.cc and move here.
+
+	* file-ops.h, file-ops.cc: Wrap functions in struct.  Move
+	tilde_expand functions here from src/dirfns.cc.
+
+Fri May  2 19:50:12 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* pathlen.h: New file, from ../src.
+
+Tue Apr 29 04:39:01 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (Array2<T>::maybe_delete_elements): Prevent
+	out-of-bounds indexing of the index array.
+	* Array-idx.h (Array<T>::maybe_delete_elements): Likewise.
+
+Fri Mar 28 15:37:09 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* LSODE.h (x_step_limit): New field.
+	(LSODE_options::init): Initialize it.
+	(LSODE_options::copy): Copy it.
+	(LSODE_options::set_step_limit, LSODE_options::step_limit):
+	New functions.
+	(LSODE::working_too_hard): Delete.
+	* LSODE.cc (LSODE::do_integrate): Handle step limit.
+
+Wed Mar 26 15:31:57 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* MArray-b.cc: Delete.
+	* Makefile.in: Delete it from the lists.
+
+	* boolMatrix.h (class bboolMatrix): Derive from Array2, not
+	MArray2, since most of the numeric ops don't really make sense.
+
+Tue Mar 25 17:37:25 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* boolMatrix.cc (boolMatrix::all, boolMatrix::any): New functions.
+
+	* dMatrix.cc (Matrix::all, Matrix::any): Return boolMatrix.
+	* CMatrix.cc (ComplexMatrix::all, ComplexMatrix::any): Likewise.
+
+	* idx-vector.h (idx_vector::idx_vector_rep::freeze,
+	idx_vector::freeze): Delete prefer_zero_one arg.
+	* Array-idx.h, Array2-idx.h: Change all callers.
+
+	* Array-flags.h, Array-flags.cc (liboctave_pzo_flag): Delete.
+
+	* mx-op-defs.h: New file for operator definitions.
+	* mx-cdm-cm.h, mx-cdm-cs.h, mx-cdm-dm.h, mx-cdm-m.h, mx-cdm-s.h,
+	mx-cm-cdm.h, mx-cm-dm.h, mx-cm-m.h, mx-cm-s.h, mx-cs-cdm.h,
+	mx-cs-dm.h, mx-cs-m.h, mx-dm-cdm.h, mx-dm-cm.h, mx-dm-cs.h,
+	mx-dm-m.h, mx-dm-s.h, mx-m-cdm.h, mx-m-cm.h, mx-m-cs.h, mx-m-dm.h,
+	mx-s-cdm.h, mx-s-cm.h, mx-s-dm.h, mx-cdm-cm.cc, mx-cdm-cs.cc,
+	mx-cdm-dm.cc, mx-cdm-m.cc, mx-cdm-s.cc, mx-cm-cdm.cc, mx-cm-dm.cc,
+	mx-cm-m.cc, mx-cm-s.cc, mx-cs-cdm.cc, mx-cs-dm.cc, mx-cs-m.cc,
+	mx-dm-cdm.cc, mx-dm-cm.cc, mx-dm-cs.cc, mx-dm-m.cc, mx-dm-s.cc,
+	mx-m-cdm.cc, mx-m-cm.cc, mx-m-cs.cc, mx-m-dm.cc, mx-s-cdm.cc,
+	mx-s-cm.cc, mx-s-dm.cc:
+	New files for mixed-type operations.
+	* Makefiles.in: Add them to the appropriate lists.
+
+	* mx-inlines.cc: Add bool by bool EQ ops.
+
+	* idx-vector.h, idx-vector.cc: Add constructors for bool and
+	boolMatrix types.
+	(idx_vector::maybe_convert_one_zero_to_idx,
+	idx_vector::idx_vector_rep::maybe_convert_one_zero_to_idx):
+	Delete second arg, prefer_zero_one.  Change all callers.
+
+	* boolMatrix.h, boolMatrix.cc: New files.
+	* mx-base.h: Include boolMatrix.h here.
+	* mx-defs.h: Provide forward declaration for boolMatrix here.
+
+	* chMatrix.h, chMatrix.cc: Delete unused junk.
+
+	* dMatrix.h, CMatrix.h: Delete friend declarations for operator+,
+	operator-, operator*, product, and quotient functions.
+	Add constructor for boolMatrix type.
+	* dMatrix.cc, CMatrix.cc: Delete operator+, operator-, operator*,
+	product, and quotient functions.
+
+	* CDiagMatrix.h: Delete friend declarations for operator+,
+	operator-, and product functions.
+	* CDiagMatrix.h: Delete operator+, operator-, and product functions.
+
+	* Array-b.cc: Also instantiate 2d and 2d diagonal arrays.
+
+Fri Mar 14 00:29:46 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* EIG.cc (EIG::hermitian_init (const ComplexMatrix&)): New function.
+	(EIG::init (const ComplexMatrix&)): Call it if arg is hermitian.
+	(EIG::symmetric_init (const Matrix&)): New function.
+	(EIG::init (const Matrix&)): Call it if arg is symmetric.
+
+	* CMatrix.cc (ComplexMatrix::is_hermitian): New function.
+
+Thu Mar 13 17:04:26 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2.cc (is_symmetric): New function.
+	* Array2.h (is_square): New function.
+
+Wed Mar 12 16:59:49 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install-strip): New target.
+
+Mon Mar 10 22:34:22 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CmplxCHOL.cc, CmplxHESS.cc, CmplxLU.cc, CmplxQR.cc,
+	CmplxQRP.cc, CmplxSCHUR.cc, CmplxSVD.cc, EIG.cc, dbleCHOL.cc,
+	dbleHESS.cc, dbleLU.cc, dbleQR.cc, dbleQRP.cc, dbleSCHUR.cc,
+	dbleSVD.cc: Don't include mx-inlines.cc.
+
+	* mx-inlines.cc: Abuse the preprocessor to eliminate lots of
+	duplicate code.
+
+Sun Mar  9 03:44:52 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleQR.h (QR): Delete extra comma at end of list.
+
+	* prog-args.cc (prog_args::getopt): Add missing const in cast.
+
+	* dbleSVD.h (SVD::type): Delete extra comma at end of list.
+
+	* idx-vector.h (idx_vector): Delete unnecessary idx_vector:: and
+	idx_vecotr_rep:: qualifiers.
+
+	* Array.h (class Array): Delete unnecessary Array<T>:: qualifiers.
+
+	* data-conv.h (save_type): Delete extra comma at end of list.
+
+	* CMatrix.cc, FEGrid.cc, Range.cc, dMatrix.cc, data-conv.cc,
+	dir-ops.cc, file-ops.h, idx-vector.cc, idx-vector.h, lo-ieee.cc,
+	lo-mappers.cc, oct-alloc.cc: Use `static_cast<T> (val)' instead of
+	old C-style `(T) val' casts.
+
+Thu Mar  6 20:20:01 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (operator >>): Return if an error occurs instead of
+	just breaking out of the innermost loop.
+	* CMatrix.cc (operator >>): Likewise.
+
+Sat Mar  1 15:23:14 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.5 released.
+
+Fri Feb 28 20:11:23 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CmplxQR.cc (ComplexQR::init): New function.
+	(ComplexQR::ComplexQR): Use it.  Use initializer list too.
+	* CmplxQRP.cc (ComplexQRP::init): New function.
+	Get sizes right in all cases.
+	(ComplexQR::ComplexQRP): Use it.  Use initializer list too.
+
+	* dbleQR.cc (QR::init): New function.
+	(QR::QR): Use it.  Use initializer list too.
+	* dbleQRP.cc (QRP::init): New function.
+	Get sizes right in all cases.
+	(QR::QRP): Use it.  Use initializer list too.
+
+Wed Feb 26 15:46:28 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* mach-info.cc (oct_mach_info::string_to_float_format):
+	Recognize "vaxg", not "vax_g".
+
+Fri Feb 21 16:07:56 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (Array2<T>::maybe_delete_elements): Use correct
+	dimension in check for colon equivalent index.
+	* idx-vector.cc (IDX_VEC_REP::is_colon_equiv): A single-element
+	index whose value is 0 is also colon eqivalent for n == 1.
+
+	* lo-ieee.cc (octave_ieee_init): Reorder #ifdef stuff to put
+	system-specific tests first.
+
+Thu Feb 20 02:58:05 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.4 released.
+
+Wed Feb 19 09:42:30 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-ieee.cc: D'oh, it's `extern "C"', not `#extern "C"'.
+
+Tue Feb 18 09:22:04 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.3 released.
+
+Fri Feb 14 16:23:47 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (bin-dist): Don't write empty strings to LIBRARIES.
+
+Thu Feb 13 14:35:19 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (stamp-prereq): Depend on stamp-picdir.
+	(all): Don't depend on stamp-prereq or stamp-picdir.
+	(liboctave.a, stamp-shared): Do depend on stamp-prereq.
+	(stamp-picdir): Silence noise about making pic.
+	(stamp-shared): Use $(SH_LD) $(SH_LDFLAGS) instead of $(CXX) -shared.
+
+	* Array2-idx.h (Array2<T>::index (idx_vector&, idx_vector&)):
+	Fix typo in last change. 
+
+	* CColVector.cc (ComplexColumnVector::map (d_c_mapper)):
+	Convert from friend (moved from dColVector.cc).
+	* CMatrix.cc (ComplexMatrix::map (d_c_mapper)):
+	Likewise (moved	from dMatrix.cc).
+	* CRowVector.cc (ComplexRowVector::map (d_c_mapper)):
+	Likewise (moved	from dRowVector.cc).
+
+	* dColVector.cc (ColumnVector::map (d_d_mapper)): Convert from friend.
+	* dMatrix.cc (Matrix::map (d_d_mapper)): Likewise.
+	* dRowVector.cc (RowVector::map (d_d_mapper)): Likewise.
+	* CColVector.cc (ComplexColumnVector::map (c_c_mapper)): Likewise.
+	* CMatrix.cc (ComplexMatrix::map (c_c_mapper)): Likewise.
+	* CRowVector.cc (ComplexRowVector::map (c_c_mapper)): Likewise.
+
+	* dColVector.cc (ColumnVector::apply): Rename from map, return *this.
+	* dMatrix.cc (Matrix::apply): Likewise.
+	* dRowVector.cc (RowVector::apply): Likewise.
+	* CColVector.cc (ComplexColumnVector::apply): Likewise.
+	* CMatrix.cc (ComplexMatrix::apply): Likewise.
+	* CRowVector.cc (ComplexRowVector::apply): Likewise.
+
+Tue Feb 11 19:44:28 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-ieee.cc: Declare quiet_nan() and infinity().
+
+Mon Feb 10 01:17:45 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.cc (oct_unlink (const string&, string&)):
+	New two-arg version.
+	(oct_rmdir (const string&, string&)): New two-arg version.
+	(oct_mkdir (const string&, mode_t, string&)): New three-arg version.
+	(oct_mkfifo (const string&, mode_t, string&)): New three-arg version.
+	(oct_rename (const string&, const string&, string&)):
+	New three-arg version.
+
+Fri Feb  7 13:15:55 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* idx-vector.h (idx_vector::orig_empty): New function.
+
+	* Array2-idx.h (Array2<T>::index (idx_vector&, idx_vector&)):
+	Don't always resize to [](0x0) if one of the indices is empty or
+	zero.
+
+Sun Feb  2 22:33:44 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-hist.cc (command_history::read): New arg, must_exist.
+	Set line_in_file here too.
+	(command_history::read_range): New arg, must_exist.
+
+Fri Jan 31 09:21:57 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* f2c-main.c: Change C++-style comments to C-style comments.
+
+Tue Jan 28 10:46:02 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install-inc): Create a relative symbolic link.
+
+Mon Jan 27 15:52:27 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.2 released.
+
+Sat Jan 25 22:36:21 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (bin-dist): New target.
+
+Wed Jan 22 16:18:53 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleSVD.cc (SVD::init): Work around apparent dgesvd() bug.
+	* CmplxSVD.cc (ComplexSVD::init): Work around apparent zgesvd() bug.
+
+Mon Jan 20 18:44:11 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* chMatrix.cc (charMatrix::charMatrix (const string&)):
+	If the number of columns is zero, also set the number of rows to zero.
+	(charMatrix::charMatrix (const char *)): Likewise.
+
+Tue Jan  7 00:16:57 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0.1 released.
+
+Sun Jan  5 12:07:45 1997  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::read): Correctly compute the number of
+	columns for resizing when the number of rows is specified but the
+	number of columns is not.
+
+Wed Dec 18 16:18:58 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Range.cc (operator -): New function.
+
+	* lo-ieee.cc: Include <nan.h> on all systems that have it.
+
+Fri Dec 13 02:01:32 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (assign): Delay resizing left hand side until we
+	know if the assignment conforms.
+
+Tue Dec 10 01:43:09 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 2.0 released.
+
+Fri Dec  6 14:41:15 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (assign): If index is a colon, set number of
+	elements to the lhs dimension if the lhs dimension is greater than
+	zero.  Otherwise, set it to the rhs dimension.
+
+	* Version 1.94.
+
+	* Array2-idx.h (assign): Test for rhs scalar case first.
+	If index is colon, set number of elements to lhs dimension, not
+	rhs dimension.
+
+Thu Dec  5 13:05:18 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* sun-utils.h: Don't declare MAIN_ or MAIN__ here.
+	* sun-utils.cc: Delete.
+	* f2c-main.c: New file
+
+	* Makefile.in: Fix file name lists.
+
+	* CMatrix.cc (lssolve): Don't redeclare retval, resize it.
+
+Wed Dec  4 12:24:24 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Qzval): Don't try to use same memory three times.
+	Create result using Complex constructor, not multiplication.
+	Order elements as they are returned from Eispack.
+
+Mon Dec  2 00:26:41 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-ieee.cc (octave_ieee_init): Kluge for octave_Inf on SCO.
+	Only include nan.h if SCO is defined.  Define _IEEE before
+	including it and undefine it afterward.
+	[SCO] (isnan): Don't mistake Inf as NaN.
+
+	* Array-idx.h (assign): Only resize if assignment conforms.
+
+Wed Nov 20 01:00:40 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (INCLUDES): Delete lo-error.h.
+	* lo-error.h: Delete (moved to libcruft/misc).
+
+	* Version 1.93.
+
+Tue Nov 19 23:07:45 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-glob.cc (glob_match::match): Don't expect our flag values to
+	be the same as they are in fnmatch.h.
+
+	* f77-fcn.c, f77-fcn.h: Move to libcruft/misc directory.
+
+	* Makefile.in (INCLUDES): Delete f77-fcn.h.
+	(SOURCES): Delete f77-fcn.c.
+
+Fri Nov 15 13:47:34 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-ieee.h: [SCO]: Declare isinf and isnan.
+
+Thu Nov 14 00:06:53 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.92.
+
+Wed Nov 13 11:19:22 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-hist.cc (command_history::add): Ignore empty input lines, or
+	lines that have only carriage return or newline.
+
+	* lo-ieee.cc (isnan, isinf): Provide functions for SCO.
+
+Tue Nov 12 11:11:21 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* idx-vector.cc (idx_is_inf_or_nan): New function.
+	(IDX_VEC_REP::idx_vector_rep): Use it.
+
+Sun Nov 10 17:09:24 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* str-vec.h, str-vec.cc: Add constructors to make string vectors
+	from vectors of C strings.
+
+	* oct-glob.h, oct-glob.cc (glob_match): Allow pat to be a string
+	vector.
+	(glob_match::match): Allow match string to be a string vector.
+	(glob_match::glob): New function.
+
+	* chMatrix.cc (charMatrix::row_as_string): New arg, strip_ws.
+
+	* Array-b.cc: New file.
+	* Makefile.in (TI_SRC): Add it to the list.
+
+Fri Nov  8 18:09:12 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.cc: Change #include "" to #include <> for safe-lstat.h
+	and safe-stat.h, to avoid getting them from $srcdir when we really
+	want the version from the build directory.  (Maybe this should be
+	done for all the include files, not just those that are
+	auto-generated?  Hmm.)
+
+Thu Nov  7 10:45:11 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.91.
+
+	* Array3.cc (Array3<T>::resize): Make it work.
+
+Wed Nov  6 22:44:33 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-alloc.h, oct-alloc.cc: New files.
+	* Makefile.in: Add them to the lists.
+
+Mon Nov  4 21:49:51 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleQRP.cc (QRP::QRP): Don't pass tmp data to unsafe constructor.
+	* CmplxQRP.cc (ComplexQRP::ComplexQRP): Ditto.
+
+Sun Nov  3 15:45:37 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.cc (file_stat::is_blk, file_stat::is_chr,
+	file_stat::is_dir, file_stat::is_fifo, file_stat::is_lnk,
+	file_stat::is_reg, file_stat::is_sock): Just return false if the
+	underlying macro is not defined.	
+
+	* oct-math.h (lgamma, gamma): Delete declarations.
+	(asinh, acosh, atanh, erf, erfc): Declare arg types too.
+	Protect declarations with #ifdef HAVE_*.
+
+Wed Oct 30 11:42:58 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Version 1.90.
+
+	* Makefile.in (DISTFILES): Add ChangeLog.
+
+	* cmd-hist.cc: Only include fcntl.h if HAVE_FCNTL_H.
+
+	* Matrix-ext.cc: Include <cfloat>, not <float.h>.
+
+	* CMatrix.cc, cmd-hist.cc, file-ops.cc, file-ops.h, filemode.c,
+	mkdir.c, rename.c, rmdir.c, safe-xstat.cin, statdefs.h, sysdir.h,
+	tempname.c, utils.cc: Only include sys/types.h if HAVE_SYS_TYPES_H.
+
+	* Array3.h (T Array3<T>::checkelem): Return T() for bogus value,
+	since that is now accepatble syntax, even for built-in types.
+	* Array2.h (T Array2<T>::checkelem): Likewise
+
+Sat Oct 26 23:37:34 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.cc (mkfifo) [! HAVE_MKFIFO]: Just print an error
+	message and return -1.
+
+Fri Oct 25 01:24:51 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* str-vec.h (str_vec_compare): Declare args as const void *, then
+	cast them to const string * in the body of the function.
+
+	* file-ops.cc (file_stat::mode_as_string): Explicitly construct
+	string from buf.
+
+	* Array3.h (Array3::checkelem): Tag bogus return value with
+	GCC_ATTRIBUTE_UNUSED.
+	* Array2.h (Array2::checkelem): Likewise.
+	
+Thu Oct 24 19:40:36 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Quad.h (Quad): Define virtual destructor.
+
+Tue Oct 15 11:34:48 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CMatrix.cc (ComplexMatrix::all_elements_are_real): new function.
+
+Sun Oct 13 11:19:00 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* sun-utils.h: Conditionally declare MAIN__ too.  Declare MAIN_
+	and MAIN__ extern "C".
+	* sun-utils.cc: Include sun-utils.h here.  Delete extern "C" stuff.
+
+Sat Oct 12 12:40:00 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* MArray-misc.cc: New file.
+	* Makefile.in (MATRIX_SRC): Add it to the list.
+
+	* mx-inlines.cc (equal): Return bool, not int.
+
+	* idx-vector.h (idx_vector (double)): New constructor.
+
+	* chMatrix.h, chMatrix.cc, CMatrix.h, CMatrix.cc, dMatrix.h,
+	dMatrix.cc, dDiagMatrix.h, dDiagMatrix.cc, dRowVector.h,
+	dRowVector.cc, dColVector.h, dColVector.cc, CColVector.h,
+	CColVector.cc, CDiagMatrix.h, CDiagMatrix.cc, CRowVector.h,
+	CRowVector.cc: Logical operators return bool, not int.
+
+	* CMatrix.h, CMatrix.cc (ComplexMatrix::any_element_is_inf_or_nan):
+	New function.
+
+	* dMatrix.h, dMatrix.cc (Matrix::any_element_is_negative,
+	Matrix::any_element_is_inf_or_nan, Matrix::abs,
+	Matrix::all_elements_are_inf_or_nan): New functions.
+
+	* Range.h, Range.cc (Range::all_elements_are_ints): New function.
+
+	* MArray.cc, MArray2.cc, MDiagArray2.cc: Call gripe_nonconformant
+	for errors.  Simplify macros by converting FCN to string for error
+	messages.
+
+	* Array-idx.h (Array<T>::index): New function.  Don't call
+	clear_index() here.
+	(Array<T>::value): Call it, do call clear_index() here.
+	* Array2-idx.h (Array<T>::value, Array<T>::index): Likewise, for
+	one and two arg index functions.
+
+Tue Sep 17 21:21:16 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DAEFunc.h: Delete #pragma interface since there is no longer a
+	separate implementation file.
+
+Tue Aug 20 17:38:46 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (stamp-picdir): Only create a pic subdirectory if
+	SHARED_LIBS is true AND CPICFLAG or CXXPICFLAG is not empty.
+
+	* idx-vector.cc (IDX_VEC_REP::is_colon_equiv): Rename arg sort to
+	sort_uniq.  If sort_uniq is nonzero, sort the elements and make
+	them uniq.
+
+	* CMatrix.cc (ComplexMatrix::row_max, ComplexMatrix::row_min,
+	ComplexMatrix::column_max, ComplexMatrix::column_min):
+	Rewrite.  Also return index as a reference arg.
+	(ComplexMatrix::row_max_loc, ComplexMatrix::row_min_loc,
+	ComplexMatrix::column_max_loc, ComplexMatrix::column_min_loc):
+	Delete.
+
+	* dMatrix.cc (Matrix::row_max, Matrix::row_min,
+	Matrix::column_max, Matrix::column_min):
+	Rewrite.  Also return index as a reference arg.
+	(Matrix::row_max_loc, Matrix::row_min_loc,
+	Matrix::column_max_loc, Matrix::column_min_loc): Delete.
+
+Fri Aug  9 05:01:04 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::row_min, Matrix::row_min_loc,
+	Matrix::row_max, Matrix::row_max_loc, Matrix::column_min,
+	Matrix::column_min_loc, Matrix::column_max,
+	Matrix::column_max_loc): Ignore leading NaNs.
+	* CMatrix.cc (ComplexMatrix::row_min, ComplexMatrix::row_min_loc,
+	ComplexMatrix::row_max, ComplexMatrix::row_max_loc,
+	ComplexMatrix::column_min, ComplexMatrix::column_min_loc,
+	ComplexMatrix::column_max, ComplexMatrix::column_max_loc): Ignore
+	leading NaNs.
+
+Thu Aug  8 16:04:17 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* QPSOL.cc (QPSOL::do_minimize): Insert linear constraint bounds
+	starting at n, not 0.
+
+Sat Jul 27 02:54:44 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::Matrix (const RowVector&),
+	Matrix::Matrix (const ColumnVector&)): New constructors.
+
+	* CMatrix.cc (ComplexMatrix::ComplexMatrix (const RowVector&),
+	ComplexMatrix::ComplexMatrix (const ColumnVector&),
+	ComplexMatrix::ComplexMatrix (const ComplexRowVector&),
+	ComplexMatrix::ComplexMatrix (const ComplexColumnVector&)):
+	New constructors.
+
+	* chMatrix.cc (charMatrix::charMatrix (const string_vector&)):
+	New constructor.
+
+Wed Jul 24 16:39:16 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* LSODE.cc (do_integrate): Check to make sure that the state and
+	derivative vectors are the same size.
+	* DASSL.cc (do_integrate): Likewise.
+
+Sun Jul 14 17:30:37 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::read, Matrix::write): Convert to use
+	iostreams and handler data format conversions.  Delete old methods
+	that used stdio.
+
+	* data-conv.h, data-conv.cc (oct_data_conv): New class.
+
+Fri Jul 12 13:52:44 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* mach-info.h: Rename from float-fmt.h.
+	* mach-info.cc: Rename from float-fmt.cc.
+	Handle machine information using a singlton class.
+	* Makefile.in: Update appropriate lists.
+
+Tue Jul  9 11:49:10 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-flags.cc: Provide definitions for the flags even if
+	OCTAVE_SOURCE is not defined.
+
+	* Array.h, Array2.h, Array3.h: BOUNDS_CHECKING now affects
+	operator(), not elem().
+	* Array3.h: Move indexing methods here from Array3.cc.
+
+Mon Jun 24 02:30:05 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array3.cc (checkelem): Fix typo in call to Array2<T>::elem().
+
+	* Makefile.in (install-lib): Use INSTALL_PROGRAM instead of
+	INSTALL_DATA for shared libs.
+
+Thu Jun  6 09:59:06 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Quad.cc: Include lo-error.h here too.
+
+Mon May 27 12:41:07 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* file-ops.h: Include sys/types.h here.
+
+Wed May 22 00:20:24 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* chMatrix.cc (charMatrix::transpose): Provide definition.
+
+	* Array-idx.h (maybe_delete_elements): Correctly compute number of
+	elements in result.
+	* Array2-idx.h (maybe_delete_elements): Likewise for number of
+	rows and columns in result.
+
+Tue May 21 23:46:09 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleQR.cc (QR::QR): Don't create result from to-be-deleted data.
+	* CmplxQR.cc (ComplexQR::ComplexQR): Likewise.
+
+Fri May 17 03:06:02 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install-inc): Install in octincludedir, not includedir.
+
+Sun May 12 03:40:01 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (uninstall): Also delete shared library.
+	Split install into install-libs and install-includes.
+	(install-inc): If linkdir is a directory, leave it alone.
+
+	* sun-utils.cc (MAIN__): Define for Linux/ELF systems.
+
+Thu May  2 20:19:01 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-idx.h (assign): Handle A(:) = X for A undefined or empty.
+	* Array2-idx.h (assign): Likewise.
+
+Tue Apr 30 05:43:06 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2.cc (Array2<T>::range_error): New functions.
+
+	* Array.h (class Array<T>): elem() and operator() are now
+	equivalent, and do bounds checking by default.
+	* Array2.cc (class Array2<T>): Likewise.
+
+Sat Apr  6 21:26:11 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (maintainer-clean, distclean): Also delete
+	stamp-picdir, stamp-shared, and pic directory.
+	(stamp-prereq): New target.
+
+Fri Mar 29 13:44:13 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* NPSOL.h (NPSOL_options::set_option (const char *, int)):
+	New function.
+
+	* Array.h, Array.cc (Array<T>::range_error ()): New functions.
+	* Array.h (Array<T>::checkelem): Use them.
+
+	* base-lu.h, base-lu.cc: Parameterize based on types of matrix
+	elements too.
+	* dbleLU.h, dbleLU.cc, CmplxLU.h, CmplxLU.cc: Change to match.
+
+	* MDiagArray2.h (MDiagArray2 (const MArray<T>& a)): Delete.
+
+	* Makefile.in (distclean): Delete so_locations, which is created
+	on DEC Alpha systems.
+
+Sat Mar 23 04:02:53 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array.h (HEAVYWEIGHT_INDEXING): Do define this here if it is not
+	already defined.
+
+Fri Mar 22 23:53:58 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* pathsearch.cc: Include config.h.
+
+Wed Mar 20 04:54:03 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2-idx.h (assign (Array2<LT>&, const Array2<RT>&)): Don't
+	allow M(I, J) = scalar if I or J is empty.
+
+	* Array-idx.h: Delete Array2 and Array3 code (now in Array2-idx.h
+	and Array3-idx.h).
+
+Thu Mar  7 10:20:12 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-error.h: Make comments C friendly.
+
+Sun Mar  3 14:04:32 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2.h (make_unique): Move all indexing functions here.
+	* Array2.cc: From here.
+
+	* Array.h, Array2.h (NO_BOUNDS_CHECKING): New macro to control
+	whether operator() calls elem or checkelem.
+
+	* Array.h (make_unique): New private function.
+	Move all indexing functions here.
+	* Array.cc: From here.
+
+	* pathsearch.cc (dir_path::find_all): Index tmp, don't dereference
+	it too.
+
+	* Array-d.cc, Array-ch.cc, Array-C.cc, Array-s.cc, Array-str.cc,
+	Array-i.cc, MArray-i.cc, MArray-s.cc, MArray-d.cc, MArray-ch.cc,
+	MArray-C.cc: Include config.h.
+
+	* Array.h, Array2.h, DiagArray2.h, Array3.h:
+	Don't define HEAVYWEIGHT_INDEXING here.
+
+Sat Mar  2 18:39:35 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* base-lu.h, base-lu.cc: New files.
+	* Makefile.in: Add them to the appropriate lists.
+	* dbleLU.h, dbleLU.cc, CmplxLU.h, Cmplx.cc: Derive from base_lu.
+
+Fri Mar  1 08:30:58 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array2.h, Array3.h, DiagArray2.h: New files, extracted from Array.h
+	* Array2-idx.h, Array3-idx.h: New files, extracted from Array-idx.h
+ 	* Array2.cc, Array3.cc, DiagArray2.cc: New files, from Array.cc.
+	* MArray2.h, MDiagArray2.h: New files, extracted from MArray.h.
+	* MArray2.cc, MDiagArray2.cc, MArray-defs.h: New files, from MArray.cc.
+	
+	* MArray.h (INSTANTIATE_MARRAY_FRIENDS): New macro.
+	(INSTANTIATE_MARRAY2_FRIENDS): Likewise.
+	(INSTANTIATE_MDIAGARRAY_FRIENDS): Likewise.
+	* MArray-C.cc, MArray-ch.cc, MArray-c.cc, MArray-i.cc, MArray-s.cc:
+	Simplify using new macros.
+
+Mon Feb 26 03:04:29 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (install): If $(includedir) ends in version string,
+	make link to name that does not include version info.
+
+	* lo-ieee.cc: Include <cmath> here.
+
+Fri Feb 16 20:52:34 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-ieee.cc, lo-ieee.h: New files.
+	* lo-mappers.cc, lo-mappers.h: New files.
+	* lo-utils.cc, lo-utils.h: New files.
+	* Makefile.in: Add them to the appropriate lists.
+
+Thu Feb 15 22:02:17 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (all_integers, too_large_for_float): New functions.
+	* CMatrix.cc (all_integers, too_large_for_float): New functions.
+
+	* byte-swap.h, data-conv.h, data-conv.cc, float-fmt.h,
+	float-fmt.cc: New files.
+	* Makefile.in: Include them in the appropriate lists.
+
+Wed Feb 14 01:49:47 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Qzval): New function.
+
+Tue Feb 13 12:41:54 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* NPSOL.cc (NPSOL_options::set_option): Arg key is now string, not
+	char*.
+
+	* DASSL.h, DASSL.cc: Do better management of temporary workspace.
+	Use F77_XFCN to call Fortran subroutine.
+	* dColVector.cc, CColVector.cc: Likewise.
+	* dRowVector.cc, CRowVector.cc: Likewise.
+	* NPSOL.h, NPSOL.cc: Likewise.
+	* CmplxCHOL.cc: Likewise.
+	* dbleCHOL.cc: Likewise.
+	* CMatrix.cc: Likewise.
+	* dMatrix.cc: Likewise.
+	* QPSOL.cc: Likewise.
+	* LSODE.cc: Likewise.
+
+Sun Feb 11 14:14:26 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleHESS.cc (HESS::init): Dimension of tau is n-1, not n+1.
+
+	* dbleSCHUR.h, dbleSCHUR.cc: Do better management of temporary
+	workspace.  Use F77_XFCN to call Fortran subroutine.
+	* CmplxAEPBAL.h, CmplxAEPBAL.cc: Likewise.
+	* CmplxSCHUR.h, CmplxSCHUR.cc: Likewise.
+	* dbleGEPBAL.h, dbleGEPBAL.cc: Likewise.
+	* dbleAEPBAL.h, dbleAEPBAL.cc: Likewise.
+	* CmplxHESS.h, CmplxHESS.cc: Likewise.
+	* CmplxSVD.h, CmplxSVD.cc: Likewise.
+	* dbleHESS.h, dbleHESS.cc: Likewise.
+	* dbleSVD.h, dbleSVD.cc: Likewise.
+	* EIG.h, EIG.cc; Likewise.
+	* CollocWt.cc: Likewise.
+	* NLEqn.cc: Likewise.
+	* Quad.cc: Likewise.
+
+Sat Feb 10 12:14:59 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleLU.h, dbleLU.cc: Do better management of temporary workspace.
+	Use F77_XFCN to call Fortran subroutine.
+	* CmplxLU.h, CmplxLU.cc: Ditto.
+	* dbleQR.h, dbleQR.cc: Ditto.
+	* CmplxQR.h, CmplxQR.cc: Ditto.
+	* dbleQRP.h, dbleQRP.cc: Ditto.
+	* CmplxQRP.h, CmplxQRP.cc: Ditto.
+
+	* dir-ops.h (dir_entry::dir): Declare as void*, not DIR*.
+	(struct DIR): delete forward declaration.
+	(dir_entry::operator = (const dir_entry$)): Protect against
+	copying same object.
+	* dir-ops.cc: Cast dir appropriately.
+
+Fri Feb  9 16:12:44 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* lo-error.cc: Moved to libcruft/misc.
+	* Makefile.in: Delete it from the list.
+
+	* f77-fcn.c (f77_context, f77_exception_encountered): Delete
+	definitions (they have been moved to libcruft/misc/f77-extern.cc).
+
+	* Array-flags.h: New file.
+	* Array-idx.h: Include it here.
+	* Makefile.in (MATRIX_INC): Add it to the list.
+
+	* Array-flags.cc: Renamed from Array-ext.cc.
+	(liboctave_dfi_flag): Renamed from dfi_flag.
+	(liboctave_pcv_flag): Renamed from pcv_flag.
+	(liboctave_pzo_flag): Renamed from pzo_flag.
+	(liboctave_rre_flag): Renamed from rre_flag.
+	* Array-idx.h: Change all uses of dfi_flag, etc.
+	* Makefile.in (MATRIX_SRC): Change file name here too.
+
+	* Makefile.in (LIBOCTAVE_LFLAGS, LIBOCTAVE_LIBS): New variables.
+	(stamp-shared): Use them here.
+
+Tue Feb  6 09:53:41 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-hist.cc (command_history::ignore_entries): Delete default
+	argument value.
+
+Mon Feb  5 12:07:50 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CmplxAEPBAL.h, CmplxCHOL.h, CmplxDET.h, CmplxHESS.h, CmplxLU.h,
+	CmplxQR.h, CmplxQRP.h, CmplxSCHUR.h, CmplxSVD.h, dbleAEPBAL.h,
+	dbleCHOL.h, dbleDET.h, dbleGEPBAL.h, dbleHESS.h, dbleLU.h,
+	dbleQR.h, dbleQRP.h, dbleSCHUR.h, dbleSVD.h:
+	Clean up constructors, assigment operator.
+
+Sun Feb  4 03:12:04 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* NPSOL.cc (do_minimize): Use F77_XFCN to call npsol.
+	Check f77_exception_encountered on return.
+
+	* f77-fcn.c (f77_exception_encountered): New variable.
+	(F77_XFCN): Set it.
+	* f77-fcn.h: Provide declaration.
+
+	* QPSOL.h (QPSOL_options::set_options): Renamed from copy().
+
+	* NPSOL.h (NPSOL_options::set_options): Renamed from copy().
+
+	* NLEqn.h (NLEqn_options::set_options): New function.
+	* Quad.h (Quad_options::set_options): Likewise.
+
+	* LP.h (class LP): Add accessors for LP data.
+
+	* NLEqn.h (NLEqn::n): Delete.
+
+	* NLEqn.h (class NLEqn::n): Likewise.
+
+	* NLP.h (class NLP): Add accessors for NLP data.
+
+	* NPSOL.h (class NPSOL_options): Move constructors, set, and
+	access functions here.
+	* NPSOL.cc.cc: From here.
+
+	* QLD.h (class QLD): Add destructor definition.
+	* Objective.h (class Objective): Likewise.
+	* ODEFunc.h (class ODEFunc): Likewise.
+	* NLFunc.h (class NLFunc): Likewise.
+	* NLEqn.h (class NLEqn): Likewise.
+	* NLConst.h (class NLConst): Likewise.
+	* LinConst.h (class LinConst): Likewise.
+	* LSODE.h (class LSODE_options): Likewise.
+	* CollocWt.h (class CollocWt): Likewise.
+	* Bounds.h (class Bounds): Likewise.
+
+	* QLD.cc (QLD::set_default_options): Delete.
+
+	* QP.h (QP): Add accessors for QP data.
+	Add copy constructor, operator =, and destructor definitions.
+
+	* Range.h, Quad.h, QP.h, QLD.h, Objective.h, NLP.h, NLFunc.h,
+	NLConst.h, LinConst.h, LSODE.h, LP.h, FEGrid.h, EIG.h, DASSL.h,
+	DAEFunc.h, CollocWt.h, Bounds.h:
+	Clean up constructors, assigment operator.
+	
+	* dRowVector.cc (RowVector::transpose): Use magic of reference
+	counting to avoid duplicating the data immediately.
+	* dColVector.cc (ColumnVector::transpose): Likewise.
+	* CRowVector.cc (ComplexrowVector::transpose): Likewise.
+	* CColVector.cc (ComplexColumnVector::transpose): Likewise.
+
+Sat Feb  3 01:02:36 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* prog-args.h (prog_args::option_argument): New enum.
+
+	* f77-fcn.h: Rename from f77-uscore.h.
+	(F77_XFCN_ERROR, F77_XFCN): New macros.
+	* f77-fcn.c: New file.
+	* Makefile.in (SOURCES): Add it to the list.
+
+	* ODEFunc.h: Clean up.
+
+	* DASSL.cc, DASSL.h: New files.
+	* Makefile.in: Add them to the appropriate lists.
+
+	* LSODE.cc, LSODE.h: New files.
+	* Makefile.in: Add them to the appropriate lists.
+
+	* ODE.cc: Delete.
+	* Makefile.in (SOURCES): Remove from list.
+
+	* base-de.h, DAE.cc: New files.
+	* Makefile.in: Add them to the appropriate lists.
+	* ODE.h: Only define interface for ODE classes.
+	* DAE.h: Only define interface for ODE classes.
+
+	* LPsolve.cc (do_minimize): Print sorry not implemented message.
+	(LPsolve::set_default_options)): Delete
+	* LPsolve.h (class LPsolve): Add operator =, copy constructor, and
+	destructor.
+
+	* LP.h (class LP): Add operator =, copy constructor, and destructor.
+
+	* QPSOL.h (QPSOL::QPSOL (const QPSOL&)): New constructor.
+	(QPSOL::operator =): Call base class operator = instead of assuming
+	we know what to copy.
+
+	* base-min.h (size): New function.
+
+	* NLP.h (NLP::size): Delete.
+	(NLP::NLP (const NLP&)): New constructor.
+	(NLP::operator =): Call base class operator = instead of assuming
+	we know what to copy.
+
+	* NPSOL.h, NPSOL.cc (NPSOL::option): Delete.
+	(class NPSOL): Add operator = and destructor.
+
+	* NPSOL.h: Add NPSOL_options() to list of constructor initalizers.
+
+Fri Feb  2 22:52:55 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (liboctave.a): Depend on $(PICOBJ).
+
+Wed Jan 31 05:29:25 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Givens, Sylvester, Matrix::expm): New functions.
+	* CMatrix.cc (Givens, Sylvester, ComplexMatrix::expm): Ditto.
+
+Mon Jan 29 00:00:12 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* prog-args.h, prog-args.cc: New files.
+	* Makefile.in: Add them to lists.
+
+	* getopt.h, getopt.c, getopt1.c: New files.
+	* Makefile.in: Add them to the lists.
+
+	* oct-term.h, oct-term.cc: New files.
+	* Makefile.in: Add them to the lists.
+
+	* str-vec.cc: New file.
+	* Makefile.in (SOURCES): Add it to the list.
+
+	* file-ops.cc (oct_tmpnam): Move here from src/utils.cc.
+
+	* tempname.c, tempnam.c: Move here from src directory.
+	* Makefile.in: Add to lists.
+
+Sun Jan 28 23:06:19 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* cmd-hist.h, cmd-hist.cc: New files.
+	* Makefile.in: Add them to lists.
+
+Thu Jan 25 20:36:05 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* oct-glob.h, oct-glob.cc: New files.
+	* Makefile.in: Add them to lists.
+
+Wed Jan 24 01:55:08 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* pathsearch.h, pathsearch.cc: New files.
+	* Makefile.in: Add them to lists.
+
+	* dir-ops.h, dir-ops.cc: New files.
+	* sysdir.h: Move here from src directory.
+	* Makefile.in: Add them to lists.
+
+	* Array.h (Array::qsort): Return *this, not void.
+	* str-vec.h (string_vector::qsort): Likewise.
+
+	* chMatrix.cc (row_as_string): Resize result to eliminate
+	unnecessary NULs.
+
+Tue Jan 23 00:40:58 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* safe-xstat.hin, safe-xstat.cin, statdefs.h, file-ops.h,
+	file-ops.cc, filemode.c, mkdir.c, rmdir.c, rename.c:
+	Files moved here from src directory.
+	* Makefile.in: Add them to lists.  Include appropriate rules.
+
+	* acosh.c, asinh.c, atanh.c, erf.c, erfc.c, gamma.c, lgamma.c:
+	Use pointers, not references (this is C code!).
+
+	* oct-math.h: New file.
+	* acosh.c, asinh.c, atanh.c, erf.c, erfc.c, gamma.c, lgamma.c:
+	Files moved here from src directory.
+	* Makefile.in: Add them to lists.
+
+Sun Jan 21 22:53:37 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* idx-vector.cc (make_uniq): Fix major brain-o.
+
+	* CmplxSCHUR.h, CmplxSCHUR.cc, dbleSCHUR.h, dbleSCHUR.cc:
+	Convert	to use string class instead of char*.
+
+	* str-vec.h, Array-str.cc: New files.
+
+	* Array.h (Array::qsort): New function.
+
+Fri Jan 12 01:45:10 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array.h: Nest ArrayRep class inside Array class.
+	Refer to ArrayRep, not ArrayRep<T>.
+	Move all ArrayRep functions inline.
+	Don't declare other Array classes as friends of ArrayRep.
+	* Array.cc: Delete ArrayRep functions.
+	* Array-idx.h: Refer to ArrayRep, not ArrayRep<T>.
+
+	* Array-C.cc, Array-ch.cc, Array-d.cc, Array-i.cc, Array-s.cc:
+	Don't instantiate ArrayRep objects.
+
+Wed Jan 10 04:40:21 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* chMatrix.cc (charMatrix::charMatrix (const string&)):
+	New constructor.
+
+Tue Jan  9 04:44:56 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleGEPBAL.cc (GEPBALANCE::init): Use string instead of char*
+	for balance_job arg.
+	* dbleAEPBAL.cc (AEPBALANCE::init): Likewise.
+	* CmplxAEPBAL.cc (ComplexAEPBALANCE::init): Likewise.
+
+	* chMatrix.cc (row_as_string): Return string, not const char*.
+
+Mon Jan  8 03:20:01 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (clean): If $(SHARED_LIBS), also remove shared libs.
+
+	* chMatrix.cc (row_as_string): Undo previous change.
+
+Sun Jan  7 19:50:16 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* chMatrix.cc (row_as_string): Do memory management here.  Caller
+	is expected to save string if necessary.
+
+Sat Jan  6 19:28:20 1996  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array.h (class DiagArray): Enable nested Proxy class for all
+	platforms.
+
+	* Array.cc (Array<T>::operator = (const Array<T>&)): If rep ==
+	a.rep, don't mess with count.
+	* Array.h (Array2<T>& operator = (const Array2<T>&)): Likewise,
+	don't do anything if reps are the same.
+	(Array3<T>& operator = (const Array3<T>&)
+
+	* Array.h (ArrayRep<T>::operator = (const ArrayRep<T>&)):
+	Declare private with no definition to prevent misuse.
+
+	* Array.cc (Array2<T>::insert (const Array2<T>&, int, int)):
+	Get range check right.
+	* dMatrix.cc (Matrix::insert (const RowVector&, int, int)): Ditto.
+	(Matrix::insert (const ColumnVector&, int, int)): Ditto.
+	(Matrix::insert (const DiagMatrix&, int, int)): Ditto.
+	* CMatrix.cc (ComplexMatrix::insert (const Matrix&, int, int)): Ditto.
+	(ComplexMatrix::insert (const RowVector&, int, int)): Ditto.
+	(ComplexMatrix::insert (const ColumnVector&, int, int)): Ditto.
+	(ComplexMatrix::insert (const DiagMatrix&, int, int)): Ditto.
+	(ComplexMatrix::insert (const ComplexRowVector&, int, int)): Ditto.
+	(ComplexMatrix::insert (const ComplexColumnVector&, int, int)): Ditto.
+	(ComplexMatrix::insert (const ComplexDiagMatrix&, int, int)): Ditto.
+	* dRowVector.cc (RowVector::insert (const RowVector&, int)): Ditto.
+	* dColVector.cc
+	(ColumnVector::insert (const ColumnVector&, int)): Ditto.
+	* CRowVector.cc
+	(ComplexRowVector::insert (const RowVector&, int)): Ditto.
+	(ComplexRowVector::insert (const ComplexRowVector&, int)): Ditto.
+	* CColVector.cc
+	(ComplexColumnVector::insert (const ColumnVector&, int)): Ditto.
+	(ComplexColumnVector::insert (const ComplexColumnVector&, int)): Ditto.
+
+	* dMatrix.cc (Matrix::insert (const DiagMatrix&, int, int)):
+	Also fill in zeros, not just the diagonal.
+
+	* CDiagMatrix.cc (ComplexDiagMatrix::fill (double, int, int)):
+	Use END parameter properly.
+	(ComplexDiagMatrix::fill (const Complex&, int, int)): Ditto.
+	* dDiagMatrix.cc (DiagMatrix::fill (double, int, int)): Ditto.
+
+	* Array.h (ArrayRep<T>::ArrayRep (void)): Set count to 1 here.
+	(ArrayRep<T>::ArrayRep (T *, int)): Likewise.
+	* Array.cc (ArrayRep<T>::ArrayRep (const ArrayRep<T>&)):
+	Don't copy count.  Set it to 1.
+	(ArrayRep<T>::ArrayRep (int)): Set count to 1 here.
+
+	* Array.h (Array<T>::Array (T *, int)): After constructing rep,
+	don't set rep->count to 1 here (now handled by ArrayRep
+	constructors).
+	(Array<T>::Array (void)): Ditto.
+	(Array<T>::Array (int)): Ditto.
+	(Array<T>::T& elem (int)): Ditto.
+	* Array-idx.h (Array<T>::maybe_delete_elements (idx_vector&)): Ditto.
+	(Array2<T>::maybe_delete_elements (idx_vector&, idx_vector&)): Ditto.
+	* Array.cc: (Array<T>::Array (int, const T&)): Ditto.
+	(Array<T>::resize (int)): Ditto.
+	(Array<T>::resize (int, const T&)) :Ditto.
+	(Array<T>::fortran_vec (void)): Ditto.
+	(Array2<T>::resize (int, int)): Ditto.
+	(Array2<T>::resize (int, int, const T&)): Ditto.
+	(DiagArray<T>::resize (int, int)): Ditto.
+	(DiagArray<T>::resize (int, int, const T&)): Ditto.
+
+Sun Dec 31 21:23:26 1995  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-ch.cc: Rename from Array-c.cc.
+	* MArray-ch.cc: Rename from MArray-c.cc.
+	* chMatrix.cc: Rename from cMatrix.cc.
+	* chMatrix.h: Rename from cMatrix.h.
+	* Makefile.in (TI_SRC): Use new names here.
+	* mx-base.h: Likewise.
+
+Fri Dec 29 21:45:00 1995  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in: Handle shared libraries.
+
+Thu Dec 28 14:18:34 1995  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CRowVector.cc (operator * (ComplexRowVector, ComplexMatrix)):
+	Correctly compute length of return value.  Correct rows and
+	columns in zgemv call.
+	* dRowVector.cc (operator * (RowVector, Matrix)): Likewise.
+
+Tue Dec 26 00:37:57 1995  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (stamp-picdir): New target.
+	(all): Depend on it.
+
+Sun Dec 24 03:10:41 1995  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in (INCLUDES): Remove QLD.h.
+	(SOURCES): Remove QLD.cc.
+
+Wed Dec 20 00:43:46 1995  John W. Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc (Matrix::inverse): New arg, force.
+ 	If force is nonzero, invert even if matrix is singular.
+	(ComplexMatrix::inverse): Likewise.
+
+	* dRowVector.cc, mx-inlines.cc, dMatrix.cc, dDiagMatrix.cc,
+	dColVector.cc,MArray-C.cc, CmplxDET.cc, CRowVector.cc, CMatrix.cc,
+	CDiagMatrix.cc, CColVector.cc, Array-C.cc, CmplxDET.h, CMatrix.h:
+	Include "oct-cmplx.h" instead of <Complex.h>.
+
+	* mx-defs.h: Include oct-cmplx.h in place of forward declaration
+	for class Complex.
+
+	* oct-cmplx.h: New file.
+	* Makefile.in (INCLUDES): Add it to the list.
+
+	* idx-vector.cc (IDX_VEC_REP::idx_vector_rep): Don't redeclare len.
+	(IDX_VEC_REP::maybe_convert_one_zero_to_idx): Don't redeclare count.
+	(IDX_VEC_REP::freeze): Don't redeclare max_val and min_val.
+	(intcmp, sort_data, make_uniq, copy_data, IDX_VEC_REP::print):
+	Avoid g++ bugs.
+
+Tue Nov 14 14:24:16 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-idx.h (maybe_delete_elements): Give useful error message.
+
+	* dbleSCHUR.cc, dbleSVD.cc: Include iostream.h.
+
+Mon Nov 13 08:35:07 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CDiagMatrix.cc (inverse): Return retval, not *this.
+	* dDiagMatrix.cc (inverse): Use same method as for Complex case.
+
+Sat Nov  4 05:06:12 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array.h, Array.cc, Array-idx.h [HEAVYWEIGHT_INDEXING]: Keep
+	index vector object with Array, not ArrayRep.
+
+Fri Nov  3 06:52:38 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-idx.h (assign (Array2<T>&, const Array2<T>&): Don't fail
+	if index is a colon and resizing is maybe needed.
+
+Tue Oct 31 17:40:01 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* idx-vector.cc (IDX_VEC_REP::is_colon_equiv): Don't return true
+	if we have a vector of 1's.
+
+	* Array-idx.h (assign (Array2<LT>&, Array2<RT>&): If lhs has no
+	current orientation, require index and rhs to conform unless
+	do_fortran_indexing flag is set.
+
+Sun Oct 15 23:32:08 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array-d.cc, Array-C.cc, mx-base.h, mx-inlines.cc, dDiagMatrix.h,
+	CDiagMatrix.h, CMatrix.cc, CMatrix.h, dMatrix.h, mx-defs.h,
+	cMatrix.h, MArray.cc, MArray.h, MArray-i.cc, MArray-c.cc,
+	MArray-s.cc, Array.h, Array.cc, Array-c.cc, Array-i.cc,
+	Array-s.cc, cMatrix.cc, Array-idx.h, dMatrix.cc:
+	Massive changes to support additional data types.  Only charMatrix
+	is currently used in Octave.
+
+Thu Oct 12 02:22:36 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Array.cc (Array2<T>::insert (Array2<T>&, int, int): New function.
+	* CMatrix.cc (ComplexMatrix::insert (ComplexMatrix&, int, int):
+	Simply call Array2<Complex> version.
+	* dMatrix.cc (Matrix::insert (Matrix&, int, int): Similarly, just
+	call Array2<double> version.
+
+	* Array-C.cc, Array-d.cc: Instantiate new assign functions too.
+
+	* Array.h, Array.cc: Massive overhaul to support new way of
+	handling indexing.
+	* idx-vector.h, idx-vector.cc: Likewise.
+	* Array-ext.cc, Array-idx.h: New files.
+	* Makefile.in: Add them to the appropriate lists.
+
+Wed Oct 11 00:49:58 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Range.cc (nelem_internal): Use tfloor here, not round.
+
+Sun Oct  8 18:21:02 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* idx-vector.h, idx-vector.cc: New files, moved from ../src.
+	* Makefile.in (SOURCES, INCLUDES): Include them in the lists.
+
+Sat Oct  7 19:07:02 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* CMatrix.cc (pseudo_inverse): Avoid bogus g++ warning.
+
+	* Array.h: Move simple member functions here.
+	* Array.cc: From here.
+
+Fri Oct  6 00:36:04 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Range.cc (tfloor, tceil, round): New static functions.
+	(Range::nelem_internal): Rewrite to use better method.
+
+	* dbleSVD.h (SVD::type): New item, sigma_only.
+	(type_computed): New var.
+	* dbleSVD.cc (left_singular_matrix, right_singular_matrix):
+	Handle possible error condition.
+	(init): Allow for SVD::sigma_only, save type computed.
+	* CmplxSVD.cc (left_singular_matrix, right_singular_matrix):
+	Handle possible error condition.
+	(init): Allow for SVD::sigma_only, save type computed.
+
+Wed Oct  4 15:33:35 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Nearly all non-matrix .h and .cc files:
+	Move short function bodies into class declarations for inlining.
+	Generally clean up.
+
+	* base-min.h: New file.
+	* LP.h (class LP): Derive from base_minimizer.
+	* QLP.h (class QLP): Derive from base_minimizer.
+	* NLP.h (class NLP): Derive from base_minimizer.
+	* Makefile.in (INCLUDES): Add base-min.h to the list.
+
+	* Makefile.in (SOURCES): Delete DAEFunc.cc, LP.cc, NLConst.cc,
+	NLFunc.cc, Objective.cc and QP.cc from list.
+
+Tue Sep 26 04:14:23 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dbleSCHUR.cc (select_ana): Remove name of unused parameter.
+	(SCHUR::SCHUR): Delete unused parameter ord.
+	* CmplxSCHUR.h (ComplexSCHUR::CmplxSCHUR): Likewise.
+
+	* CRowVector.cc
+ 	(ComplexRowVector::operator+ (const Complex&, const RowVector&),
+	(ComplexRowVector::operator- (const Complex&, const RowVector&),
+	(ComplexRowVector::operator* (const Complex&, const RowVector&),
+	(ComplexRowVector::operator/ (const Complex&, const RowVector&)):
+	Actually do something.
+	
+	* dMatrix.cc (Matrix::lssolve (ComplexMatrix&)): Use dummy vars.
+	(Matrix::lssolve (ComplexMatrix&, int&)): Likewise.
+	(Matrix::lssolve (ComplexMatrix&, int&, int&)): Likewise.
+
+	* Quad.cc (Quad_options::Quad_options (double, double)): New function.
+	* (Quad::Quad (integrand_fcn, double, double): Properly initialize
+	tolerances.
+	
+	* DAE.cc (ddassl_f, ddassl_j): Remove names of unused parameters.
+	* LPsolve.cc (LPsolve::minimize): Likewise.
+	* NPSOL.cc (NPSOL::option, npsol_confun, npsol_objfun): Likewise.
+	* ODE.cc (lsode_f, lsode_j): Likewise.
+	* QPSOL.cc (qphess): Likewise.
+
+Fri Sep 22 04:14:51 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* dMatrix.cc: Include <cstring>.
+
+	* Array.cc: Try harder to avoid warnings from gcc in functions
+	that return bogus values after calling the error handler.
+
+Thu Sep 14 00:56:00 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in: Use `ifndef omit_deps', not `ifndef $(omit_deps)'.
+
+	* Makefile.in (TEMPLATE_SRC): Add Array-i.cc to the list.
+
+Tue Aug 22 00:41:06 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* DAE.cc (dassl_f): Add UNUSED attribute for unused parameters.
+	(dassl_j): Likewise.
+	
+	* DAE.cc, NLEqn.cc, NPSOL.cc, ODE.cc, CColVector.cc, CMatrix.cc,
+	dColVector.cc, dMatrix.cc, CmplxLU.cc, dbleLU.cc, QPSOL.cc,
+	Array.cc, CollocWt.cc, FEGrid.h, LinConst.h:
+	Update for change in for loop variable scope for gcc 2.7.0.
+
+Mon Aug 21 19:34:53 1995  John Eaton  <jwe@bevo.che.wisc.edu>
+
+	* Makefile.in: Only include dependency files if $(omit_deps) is
+	not set.
+
+Mon May  1 13:26:00 1995  John Eaton  (jwe@bullwinkle.che.utexas.edu)
+
+	* dbleSCHUR.h dbleSVD.h dbleQRP.h dbleQR.h dbleHESS.h dbleLU.h
+	dbleCHOL.h dbleGEPBAL.h dbleAEPBAL.h dbleDET.h dDiagMatrix.h
+	dColVector.h dMatrix.h dRowVector.h Quad.h Range.h QPSOL.h QLD.h
+	ODEFunc.h QP.h Objective.h NPSOL.h ODE.h NLEqn.h NLFunc.h
+	NLConst.h LinConst.h LPsolve.h LP.h FSQP.h FEGrid.h EIG.h
+	DAEFunc.h CollocWt.h DAE.h CmplxSVD.h CmplxQRP.h CmplxSCHUR.h
+	CmplxHESS.h CmplxDET.h CmplxLU.h CmplxQR.h CmplxCHOL.h
+	CmplxAEPBAL.h CRowVector.h CDiagMatrix.h Bounds.h CColVector.h
+	CMatrix.h dbleSCHUR.cc dbleSVD.cc dbleQRP.cc dbleQR.cc
+	dbleGEPBAL.cc dbleLU.cc dbleHESS.cc dbleDET.cc dbleCHOL.cc
+	dbleAEPBAL.cc dColVector.cc dRowVector.cc dMatrix.cc
+	dDiagMatrix.cc QPSOL.cc Range.cc Quad.cc QP.cc ODEFunc.cc QLD.cc
+	Objective.cc NLEqn.cc ODE.cc NPSOL.cc NLFunc.cc LPsolve.cc
+	NLConst.cc LinConst.cc FSQP.cc FEGrid.cc LP.cc DAE.cc EIG.cc
+	CollocWt.cc DAEFunc.cc CmplxSVD.cc CmplxSCHUR.cc CmplxQRP.cc
+	CmplxLU.cc CmplxQR.cc CmplxHESS.cc CmplxDET.cc CmplxCHOL.cc
+	CmplxAEPBAL.cc CRowVector.cc CColVector.cc CMatrix.cc
+	CDiagMatrix.cc Bounds.cc MArray.h MArray.cc Array.cc Array.h
+	NLP.h: Use pragma interface/implementation. Don't surround
+	contents in extern "C++".
+	* lo-error.h sun-utils.h: Don't surround contents in extern "C++".
+
+Tue Apr 11 10:59:24 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* f77-uscore.h (F77_FCN): Allow for possibility of uppercase
+	identifiers.
+	* utils.cc dbleSVD.cc dbleSCHUR.cc dbleQRP.cc dbleQR.cc dbleLU.cc
+	dbleHESS.cc dbleGEPBAL.cc dbleAEPBAL.cc dRowVector.cc
+	dColVector.cc QLD.cc CmplxSVD.cc CmplxCHOL.cc CmplxHESS.cc
+	CmplxQR.cc CmplxQRP.cc QPSOL.cc CmplxAEPBAL.cc CmplxLU.cc
+	CmplxSCHUR.cc dMatrix.cc CColVector.cc CRowVector.cc dbleCHOL.cc
+	CollocWt.cc NLEqn.cc EIG.cc DAE.cc ODE.cc CMatrix.cc NPSOL.cc
+	Quad.cc: Change usage of F77_FCN to match new definition
+
+	* utils.cc dbleSVD.cc dbleSCHUR.cc dbleQRP.cc dbleQR.cc dbleLU.cc
+	dbleHESS.cc dbleGEPBAL.cc dbleAEPBAL.cc dRowVector.cc
+	dColVector.cc QLD.cc CmplxSVD.cc CmplxCHOL.cc CmplxHESS.cc
+	CmplxQR.cc CmplxQRP.cc QPSOL.cc CmplxAEPBAL.cc CmplxLU.cc
+	CmplxSCHUR.cc dMatrix.cc CColVector.cc CRowVector.cc dbleCHOL.cc
+	CollocWt.cc NLEqn.cc EIG.cc DAE.cc ODE.cc CMatrix.cc NPSOL.cc
+	Quad.cc: Where appropriate, declare Fortran subroutines to take
+	args by reference instead of pointer.  Change all callers.
+
+Sun Apr  9 20:11:56 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* MArray.h (MArray2::~MArray2, MDiagArray::~MDiagArray): New
+	functions.  Make += and -= operators friend functions.
+
+	* Array.h (Array2::~Array2, Array3::~Array3,
+	DiagArray::~DiagArray): New functions.
+
+Wed Apr  5 21:21:13 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* Makefile.in (EXTRAS): Don't distribute mx-kludge.cc.
+	(MATRIX_INC): Don't distribute mx-kludge.h.
+
+	* CColVector.h CColVector.cc CDiagMatrix.h CDiagMatrix.cc
+	CMatrix.h CMatrix.cc CRowVector.h CRowVector.cc dColVector.h
+	dColVector.cc dDiagMatrix.h dDiagMatrix.cc dMatrix.h dMatrix.cc
+	dRowVector.h dRowVector.cc:
+	Derive classes from MArray, MArray2, and MDiagArray, not Array,
+	Array2, and DiagArray2.
+	Don't use functions defined in mx-kludge.cc for arithmetic
+	like-type operations on arrays.
+
+	* MArray.cc: Use the classes defined here like-type mathematical
+	operations on Array objects.  Abuse CPP more.
+	* Makefile.in (TEMPLATE_SRC): Add it to the list.
+	(EXTRAS): Delete it from this list.
+
+	* MArray-C.cc, MArray-d.cc: New files.
+	* Makefile.in (TI_SRC): Add them to the list.
+
+Tue Apr  4 14:13:46 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* mx-kludge.cc: Abuse CPP even more.
+
+Mon Apr  3 21:05:30 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* Objective.h (objective_function): Add missing const.
+	(gradient_function): Likewise.
+
+	* CColVector.h CColVector.cc CDiagMatrix.h CDiagMatrix.cc
+	CMatrix.h CMatrix.cc CRowVector.h CRowVector.cc dColVector.h
+	dColVector.cc dDiagMatrix.h dDiagMatrix.cc dMatrix.h dMatrix.cc
+	dRowVector.h dRowVector.cc:
+	Reorganize to declare and define friends where they should be,
+	based on the use of private constructors.
+
+Fri Mar 31 10:09:40 1995  John Eaton  <jwe@schoch.che.utexas.edu>
+
+	* CRowVector.h (linspace): Add declaration.
+	* dRowVector.h (linspace): Likewise.
+
+	* dMatrix.cc (Matrix::inverse, Matrix::determinant, Matrix::solve):
+	Force result of rcond + 1.0 to be stored.
+	* CMatrix.cc (ComplexMatrix::inverse, ComplexMatrix::determinant,
+	ComplexMatrix::solve): Likewise.
+
+See ChangeLog.1 in the top level directory for earlier changes.

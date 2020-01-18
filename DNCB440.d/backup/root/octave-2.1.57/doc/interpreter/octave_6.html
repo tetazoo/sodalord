@@ -1,0 +1,967 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Strings</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_5.html">previous</A>, <A HREF="octave_7.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC56" HREF="octave_toc.html#TOC56">Strings</A></H1>
+<P>
+<A NAME="IDX175"></A>
+<A NAME="IDX176"></A>
+<A NAME="IDX177"></A>
+<A NAME="IDX178"></A>
+
+
+<P>
+A <EM>string constant</EM> consists of a sequence of characters enclosed in
+either double-quote or single-quote marks.  For example, both of the
+following expressions
+
+
+
+<PRE>
+"parrot"
+'parrot'
+</PRE>
+
+<P>
+represent the string whose contents are <SAMP>`parrot'</SAMP>.  Strings in
+Octave can be of any length.
+
+
+<P>
+Since the single-quote mark is also used for the transpose operator
+(see section <A HREF="octave_11.html#SEC77">Arithmetic Operators</A>) but double-quote marks have no other purpose in
+Octave, it is best to use double-quote marks to denote strings.
+
+
+<P>
+<A NAME="IDX179"></A>
+Some characters cannot be included literally in a string constant.  You
+represent them instead with <EM>escape sequences</EM>, which are character
+sequences beginning with a backslash (<SAMP>`\'</SAMP>).
+
+
+<P>
+One use of an escape sequence is to include a double-quote
+(single-quote) character in a string constant that has been defined
+using double-quote (single-quote) marks.  Since a plain double-quote
+would end the string, you must use <SAMP>`\"'</SAMP> to represent a single
+double-quote character as a part of the string.  The backslash character
+itself is another character that cannot be included normally.  You must
+write <SAMP>`\\'</SAMP> to put one backslash in the string.  Thus, the string
+whose contents are the two characters <SAMP>`"\'</SAMP> may be written
+<CODE>"\"\\"</CODE> or <CODE>'"\\'</CODE>.  Similarly, the string whose contents are
+the two characters <SAMP>`'\'</SAMP> may be written <CODE>'\'\\'</CODE> or <CODE>"'\\"</CODE>.
+
+
+<P>
+Another use of backslash is to represent unprintable characters
+such as newline.  While there is nothing to stop you from writing most
+of these characters directly in a string constant, they may look ugly.
+
+
+<P>
+Here is a table of all the escape sequences used in Octave.  They are
+the same as those used in the C programming language.
+
+
+<DL COMPACT>
+
+<DT><CODE>\\</CODE>
+<DD>
+Represents a literal backslash, <SAMP>`\'</SAMP>.
+
+<DT><CODE>\"</CODE>
+<DD>
+Represents a literal double-quote character, <SAMP>`"'</SAMP>.
+
+<DT><CODE>\'</CODE>
+<DD>
+Represents a literal single-quote character, <SAMP>`''</SAMP>.
+
+<DT><CODE>\0</CODE>
+<DD>
+Represents the "nul" character, control-@, ASCII code 0.
+
+<DT><CODE>\a</CODE>
+<DD>
+Represents the "alert" character, control-g, ASCII code 7.
+
+<DT><CODE>\b</CODE>
+<DD>
+Represents a backspace, control-h, ASCII code 8.
+
+<DT><CODE>\f</CODE>
+<DD>
+Represents a formfeed, control-l, ASCII code 12.
+
+<DT><CODE>\n</CODE>
+<DD>
+Represents a newline, control-j, ASCII code 10.
+
+<DT><CODE>\r</CODE>
+<DD>
+Represents a carriage return, control-m, ASCII code 13.
+
+<DT><CODE>\t</CODE>
+<DD>
+Represents a horizontal tab, control-i, ASCII code 9.
+
+<DT><CODE>\v</CODE>
+<DD>
+Represents a vertical tab, control-k, ASCII code 11.
+
+</DL>
+
+<P>
+Strings may be concatenated using the notation for defining matrices.
+For example, the expression
+
+
+
+<PRE>
+[ "foo" , "bar" , "baz" ]
+</PRE>
+
+<P>
+produces the string whose contents are <SAMP>`foobarbaz'</SAMP>.  See section <A HREF="octave_5.html#SEC50">Numeric Data Types</A>, for more information about creating matrices.
+
+
+
+
+<H2><A NAME="SEC57" HREF="octave_toc.html#TOC57">Creating Strings</A></H2>
+
+<P>
+@anchor{doc-blanks}
+<DL>
+<DT><U>Function File:</U>  <B>blanks</B> <I>(<VAR>n</VAR>)</I>
+<DD><A NAME="IDX180"></A>
+Return a string of <VAR>n</VAR> blanks.
+</DL>
+
+
+<P>
+@anchor{doc-char}
+<DL>
+<DT><U>Built-in Function:</U>  <B>char</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX181"></A>
+<DT><U>Built-in Function:</U>  <B>char</B> <I>(<VAR>cell_array</VAR>)</I>
+<DD><A NAME="IDX182"></A>
+<DT><U>Built-in Function:</U>  <B>char</B> <I>(<VAR>s1</VAR>, <VAR>s2</VAR>, ...)</I>
+<DD><A NAME="IDX183"></A>
+Create a string array from a numeric matrix, cell array, or list of
+
+
+<P>
+If the argument is a numeric matrix, each element of the matrix is
+converted to the corresponding ASCII character.  For example,
+
+
+
+<PRE>
+char ([97, 98, 99])
+     => "abc"
+</PRE>
+
+<P>
+If the argument is a cell array of strings, the result is a string array
+with each element corresponding to one element of the cell array.
+
+
+<P>
+For multiple string arguments, the result is a string array with each
+element corresponding to the arguments.
+
+
+<P>
+The returned values are padded with blanks as needed to make each row
+of the string array have the same length.
+</DL>
+
+
+<P>
+@anchor{doc-int2str}
+<DL>
+<DT><U>Function File:</U>  <B>int2str</B> <I>(<VAR>n</VAR>)</I>
+<DD><A NAME="IDX184"></A>
+<DT><U>Function File:</U>  <B>num2str</B> <I>(<VAR>x</VAR>, <VAR>precision</VAR>)</I>
+<DD><A NAME="IDX185"></A>
+<DT><U>Function File:</U>  <B>num2str</B> <I>(<VAR>x</VAR>, <VAR>format</VAR>)</I>
+<DD><A NAME="IDX186"></A>
+Convert a number to a string.  These functions are not very flexible,
+but are provided for compatibility with MATLAB.  For better control
+over the results, use <CODE>sprintf</CODE> (see section <A HREF="octave_17.html#SEC119">Formatted Output</A>).
+</DL>
+@seealso{sprintf and num2str}
+
+
+<P>
+@anchor{doc-com2str}
+<DL>
+<DT><U>Function File:</U>  <B>com2str</B> <I>(<VAR>zz</VAR>, <VAR>flg</VAR>)</I>
+<DD><A NAME="IDX187"></A>
+
+
+<P>
+convert complex number to a string
+<STRONG>Inputs</STRONG>
+<DL COMPACT>
+
+<DT><VAR>zz</VAR>
+<DD>
+complex number
+<DT><VAR>flg</VAR>
+<DD>
+format flag
+0 (default):            -1, 0, 1,   1i,   1 + 0.5i
+1 (for use with zpout): -1, 0, + 1, + 1i, + 1 + 0.5i
+</DL>
+</DL>
+
+<P>
+@anchor{doc-strcat}
+<DL>
+<DT><U>Function File:</U>  <B>strcat</B> <I>(<VAR>s1</VAR>, <VAR>s2</VAR>, ...)</I>
+<DD><A NAME="IDX188"></A>
+Return a string containing all the arguments concatenated.  For example,
+
+
+
+<PRE>
+s = [ "ab"; "cde" ];
+strcat (s, s, s)
+=> "ab ab ab "
+        "cdecdecde"
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-string_fill_char}
+<DL>
+<DT><U>Built-in Variable:</U> <B>string_fill_char</B>
+<DD><A NAME="IDX189"></A>
+The value of this variable is used to pad all strings in a string matrix
+to the same length.  It should be a single character.  The default value
+is <CODE>" "</CODE> (a single space).  For example,
+
+
+
+<PRE>
+string_fill_char = "X";
+[ "these"; "are"; "strings" ]
+     => "theseXX"
+        "areXXXX"
+        "strings"
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-str2mat}
+<DL>
+<DT><U>Function File:</U>  <B>str2mat</B> <I>(<VAR>s_1</VAR>, ..., <VAR>s_n</VAR>)</I>
+<DD><A NAME="IDX190"></A>
+Return a matrix containing the strings <VAR>s_1</VAR>, ..., <VAR>s_n</VAR> as
+its rows.  Each string is padded with blanks in order to form a valid
+matrix.
+
+
+<P>
+<STRONG>Note:</STRONG>
+This function is modelled after MATLAB.  In Octave, you can create
+a matrix of strings by <CODE>[<VAR>s_1</VAR>; ...; <VAR>s_n</VAR>]</CODE> even if
+the strings are not all the same length.
+</DL>
+
+
+<P>
+@anchor{doc-ischar}
+<DL>
+<DT><U>Built-in Function:</U>  <B>ischar</B> <I>(<VAR>a</VAR>)</I>
+<DD><A NAME="IDX191"></A>
+Return 1 if <VAR>a</VAR> is a string.  Otherwise, return 0.
+</DL>
+
+
+<P>
+@anchor{doc-isstr}
+<DL>
+<DT><U>Function File:</U>  <B>isstr</B> <I>(<VAR>a</VAR>)</I>
+<DD><A NAME="IDX192"></A>
+This function has been deprecated.  Use ischar instead.
+</DL>
+
+
+
+
+<H2><A NAME="SEC58" HREF="octave_toc.html#TOC58">Searching and Replacing</A></H2>
+
+<P>
+@anchor{doc-deblank}
+<DL>
+<DT><U>Function File:</U>  <B>deblank</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX193"></A>
+Removes the trailing blanks and nulls from the string <VAR>s</VAR>.
+If <VAR>s</VAR> is a matrix, <VAR>deblank</VAR> trims each row to the 
+length of longest string.
+</DL>
+
+
+<P>
+@anchor{doc-findstr}
+<DL>
+<DT><U>Function File:</U>  <B>findstr</B> <I>(<VAR>s</VAR>, <VAR>t</VAR>, <VAR>overlap</VAR>)</I>
+<DD><A NAME="IDX194"></A>
+Return the vector of all positions in the longer of the two strings
+<VAR>s</VAR> and <VAR>t</VAR> where an occurrence of the shorter of the two starts.
+If the optional argument <VAR>overlap</VAR> is nonzero, the returned vector
+can include overlapping positions (this is the default).  For example,
+
+
+
+<PRE>
+findstr ("ababab", "a")
+=> [ 1, 3, 5 ]
+findstr ("abababa", "aba", 0)
+=> [ 1, 5 ]
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-index}
+<DL>
+<DT><U>Function File:</U>  <B>index</B> <I>(<VAR>s</VAR>, <VAR>t</VAR>)</I>
+<DD><A NAME="IDX195"></A>
+Return the position of the first occurrence of the string <VAR>t</VAR> in the
+string <VAR>s</VAR>, or 0 if no occurrence is found.  For example,
+
+
+
+<PRE>
+index ("Teststring", "t")
+=> 4
+</PRE>
+
+<P>
+<STRONG>Note:</STRONG>  This function does not work for arrays of strings.
+</DL>
+
+
+<P>
+@anchor{doc-rindex}
+<DL>
+<DT><U>Function File:</U>  <B>rindex</B> <I>(<VAR>s</VAR>, <VAR>t</VAR>)</I>
+<DD><A NAME="IDX196"></A>
+Return the position of the last occurrence of the string <VAR>t</VAR> in the
+string <VAR>s</VAR>, or 0 if no occurrence is found.  For example,
+
+
+
+<PRE>
+rindex ("Teststring", "t")
+=> 6
+</PRE>
+
+<P>
+<STRONG>Note:</STRONG>  This function does not work for arrays of strings.
+</DL>
+
+
+<P>
+@anchor{doc-split}
+<DL>
+<DT><U>Function File:</U>  <B>split</B> <I>(<VAR>s</VAR>, <VAR>t</VAR>)</I>
+<DD><A NAME="IDX197"></A>
+Divides the string <VAR>s</VAR> into pieces separated by <VAR>t</VAR>, returning
+the result in a string array (padded with blanks to form a valid
+matrix).  For example,
+
+
+
+<PRE>
+split ("Test string", "t")
+=> "Tes "
+        " s  "
+        "ring"
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-strcmp}
+<DL>
+<DT><U>Function File:</U>  <B>strcmp</B> <I>(<VAR>s1</VAR>, <VAR>s2</VAR>)</I>
+<DD><A NAME="IDX198"></A>
+Compares two strings, returning 1 if they are the same, and 0 otherwise.
+
+
+<P>
+<STRONG>Note:</STRONG>  For compatibility with MATLAB, Octave's strcmp
+function returns 1 if the strings are equal, and 0 otherwise.  This is
+just the opposite of the corresponding C library function.
+</DL>
+
+
+<P>
+@anchor{doc-strrep}
+<DL>
+<DT><U>Function File:</U>  <B>strrep</B> <I>(<VAR>s</VAR>, <VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX199"></A>
+Replaces all occurrences of the substring <VAR>x</VAR> of the string <VAR>s</VAR>
+with the string <VAR>y</VAR>.  For example,
+
+
+
+<PRE>
+strrep ("This is a test string", "is", "&#38;%$")
+=> "Th&#38;%$ &#38;%$ a test string"
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-substr}
+<DL>
+<DT><U>Function File:</U>  <B>substr</B> <I>(<VAR>s</VAR>, <VAR>beg</VAR>, <VAR>len</VAR>)</I>
+<DD><A NAME="IDX200"></A>
+Return the substring of <VAR>s</VAR> which starts at character number
+<VAR>beg</VAR> and is <VAR>len</VAR> characters long.
+
+
+<P>
+If OFFSET is negative, extraction starts that far from the end of
+the string.  If LEN is omitted, the substring extends to the end
+of S.
+
+
+<P>
+  For example,
+
+
+
+<PRE>
+substr ("This is a test string", 6, 9)
+=> "is a test"
+</PRE>
+
+
+<BLOCKQUOTE>
+<P>
+<STRONG>Note:</STRONG>
+This function is patterned after AWK.  You can get the same result by
+<CODE><VAR>s</VAR> (<VAR>beg</VAR> : (<VAR>beg</VAR> + <VAR>len</VAR> - 1))</CODE>.
+</BLOCKQUOTE>
+
+</DL>
+
+
+
+<H2><A NAME="SEC59" HREF="octave_toc.html#TOC59">String Conversions</A></H2>
+
+<P>
+@anchor{doc-bin2dec}
+<DL>
+<DT><U>Function File:</U>  <B>hex2dec</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX201"></A>
+Return the decimal number corresponding to the binary number stored
+in the string <VAR>s</VAR>.  For example,
+
+
+
+<PRE>
+hex2dec ("1110")
+=> 14
+</PRE>
+
+<P>
+If <VAR>s</VAR> is a string matrix, returns a column vector of converted
+numbers, one per row of <VAR>s</VAR>.  Invalid rows evaluate to NaN.
+</DL>
+
+
+<P>
+@seealso{dec2hex, base2dec, dec2base, bin2dec, dec2bin}
+
+
+<P>
+@anchor{doc-dec2bin}
+<DL>
+<DT><U>Function File:</U>  <B>dec2bin</B> <I>(<VAR>n</VAR>, <VAR>len</VAR>)</I>
+<DD><A NAME="IDX202"></A>
+Return a binary number corresponding the nonnegative decimal number
+<VAR>n</VAR>, as a string of ones and zeros.  For example,
+
+
+
+<PRE>
+dec2bin (14)
+=> "1110"
+</PRE>
+
+<P>
+If <VAR>n</VAR> is a vector, returns a string matrix, one row per value,
+padded with leading zeros to the width of the largest value.
+
+
+<P>
+The optional second argument, <VAR>len</VAR>, specifies the minimum
+number of digits in the result.
+</DL>
+
+
+<P>
+@seealso{bin2dec, dec2base, base2dec, hex2dec, dec2hex}
+
+
+<P>
+@anchor{doc-dec2hex}
+<DL>
+<DT><U>Function File:</U>  <B>dec2hex</B> <I>(<VAR>n</VAR>, <VAR>len</VAR>)</I>
+<DD><A NAME="IDX203"></A>
+Return the hexadecimal string corresponding to the nonnegative 
+integer <VAR>n</VAR>.  For example,
+
+
+
+<PRE>
+dec2hex (2748)
+=> "ABC"
+</PRE>
+
+<P>
+If <VAR>n</VAR> is a vector, returns a string matrix, one row per value,
+padded with leading zeros to the width of the largest value.
+
+
+<P>
+The optional second argument, <VAR>len</VAR>, specifies the minimum
+number of digits in the result.
+</DL>
+
+
+<P>
+@seealso{hex2dec, dec2base, base2dec, bin2dec, dec2bin}
+
+
+<P>
+@anchor{doc-hex2dec}
+<DL>
+<DT><U>Function File:</U>  <B>hex2dec</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX204"></A>
+Returns the integer corresponding to the hexadecimal number stored
+in the string <VAR>s</VAR>.  For example,
+
+
+
+<PRE>
+hex2dec ("12B")
+=> 299
+hex2dec ("12b")
+=> 299
+</PRE>
+
+<P>
+If <VAR>s</VAR> is a string matrix, returns a column vector of converted
+numbers, one per row of <VAR>s</VAR>.  Invalid rows evaluate to NaN.
+</DL>
+
+
+<P>
+@seealso{dec2hex, base2dec, dec2base, bin2dec, dec2bin}
+
+
+<P>
+@anchor{doc-dec2base}
+<DL>
+<DT><U>Function File:</U>  <B>dec2base</B> <I>(<VAR>n</VAR>, <VAR>b</VAR>, <VAR>len</VAR>)</I>
+<DD><A NAME="IDX205"></A>
+Return a string of symbols in base <VAR>b</VAR> corresponding to the
+the nonnegative integer <VAR>n</VAR>.
+
+
+
+<PRE>
+dec2base (123, 3)
+=> "11120"
+</PRE>
+
+<P>
+If <VAR>n</VAR> is a vector, return a string matrix with one row per value,
+padded with leading zeros to the width of the largest value.
+
+
+<P>
+If <VAR>b</VAR> is a string then the characters of <VAR>b</VAR> are used as
+the symbols for the digits of <VAR>n</VAR>.  Space (' ') may not be used
+as a symbol.
+
+
+
+<PRE>
+dec2base (123, "aei")
+=> "eeeia"
+</PRE>
+
+<P>
+The optional third argument, <VAR>len</VAR>, specifies the minimum
+number of digits in the result.
+</DL>
+
+
+<P>
+@seealso{base2dec, dec2bin, bin2dec, hex2dec, dec2hex}
+
+
+<P>
+@anchor{doc-base2dec}
+<DL>
+<DT><U>Function File:</U>  <B>base2dec</B> <I>(<VAR>s</VAR>, <VAR>b</VAR>)</I>
+<DD><A NAME="IDX206"></A>
+Convert <VAR>s</VAR> from a string of digits of base <VAR>b</VAR> into an
+integer.
+
+
+
+<PRE>
+base2dec ("11120", 3)
+=> 123
+</PRE>
+
+<P>
+If <VAR>s</VAR> is a matrix, returns a column vector with one value per
+row of <VAR>s</VAR>.  If a row contains invalid symbols then the
+corresponding value will be NaN.  Rows are right-justified before
+converting so that trailing spaces are ignored.
+
+
+<P>
+If <VAR>b</VAR> is a string, the characters of <VAR>b</VAR> are used as the
+symbols for the digits of <VAR>s</VAR>. Space (' ') may not be used as a
+symbol.
+
+
+
+<PRE>
+base2dec ("yyyzx", "xyz")
+=> 123
+</PRE>
+
+</DL>
+<P>
+@seealso{dec2base, dec2bin, bin2dec, hex2dec, dec2hex}
+
+
+<P>
+@anchor{doc-strjust}
+<DL>
+<DT><U>Function File:</U>  <B>strjust</B> <I>(<VAR>s</VAR>, ["left"|"right"|"center"])</I>
+<DD><A NAME="IDX207"></A>
+Shift the non-blank text of <VAR>s</VAR> to the left, right or center of
+the string.  If <VAR>s</VAR> is a string array, justify each string in the
+array.  Null characters are replaced by blanks.  If no justification
+is specified, then all rows are right-justified.
+</DL>
+
+
+<P>
+@anchor{doc-str2num}
+<DL>
+<DT><U>Function File:</U>  <B>str2num</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX208"></A>
+Convert the string <VAR>s</VAR> to a number.
+</DL>
+
+
+<P>
+@anchor{doc-toascii}
+<DL>
+<DT><U>Mapping Function:</U>  <B>toascii</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX209"></A>
+Return ASCII representation of <VAR>s</VAR> in a matrix.  For example,
+
+
+
+<PRE>
+toascii ("ASCII")
+     => [ 65, 83, 67, 73, 73 ]
+
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-tolower}
+<DL>
+<DT><U>Mapping Function:</U>  <B>tolower</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX210"></A>
+Return a copy of the string <VAR>s</VAR>, with each upper-case character
+replaced by the corresponding lower-case one; nonalphabetic characters
+are left unchanged.  For example,
+
+
+
+<PRE>
+tolower ("MiXeD cAsE 123")
+     => "mixed case 123"
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-toupper}
+<DL>
+<DT><U>Built-in Function:</U>  <B>toupper</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX211"></A>
+Return a copy of the string <VAR>s</VAR>, with each  lower-case character
+replaced by the corresponding upper-case one; nonalphabetic characters
+are left unchanged.  For example,
+
+
+
+<PRE>
+toupper ("MiXeD cAsE 123")
+     => "MIXED CASE 123"
+</PRE>
+
+</DL>
+
+<P>
+@anchor{doc-do_string_escapes}
+<DL>
+<DT><U>Built-in Function:</U>  <B>do_string_escapes</B> <I>(<VAR>string</VAR>)</I>
+<DD><A NAME="IDX212"></A>
+Convert special characters in <VAR>string</VAR> to their escaped forms.
+</DL>
+
+
+<P>
+@anchor{doc-undo_string_escapes}
+<DL>
+<DT><U>Built-in Function:</U>  <B>undo_string_escapes</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX213"></A>
+Converts special characters in strings back to their escaped forms.  For
+example, the expression
+
+
+
+<PRE>
+bell = "\a";
+</PRE>
+
+<P>
+assigns the value of the alert character (control-g, ASCII code 7) to
+the string variable <CODE>bell</CODE>.  If this string is printed, the
+system will ring the terminal bell (if it is possible).  This is
+normally the desired outcome.  However, sometimes it is useful to be
+able to print the original representation of the string, with the
+special characters replaced by their escape sequences.  For example,
+
+
+
+<PRE>
+octave:13&#62; undo_string_escapes (bell)
+ans = \a
+</PRE>
+
+<P>
+replaces the unprintable alert character with its printable
+representation.
+</DL>
+
+
+<P>
+@anchor{doc-warn_num_to_str}
+<DL>
+<DT><U>Built-in Variable:</U> <B>warn_num_to_str</B>
+<DD><A NAME="IDX214"></A>
+If the value of <CODE>warn_num_to_str</CODE> is nonzero, a warning is
+printed for implicit conversions of numbers to their ASCII character
+equivalents when strings are constructed using a mixture of strings and
+numbers in matrix notation.  For example,
+
+
+
+<PRE>
+[ "f", 111, 111 ]
+     => "foo"
+</PRE>
+
+<P>
+elicits a warning if <CODE>warn_num_to_str</CODE> is nonzero.  The default
+value is 1.
+</DL>
+
+
+<P>
+@anchor{doc-warn_str_to_num}
+<DL>
+<DT><U>Built-in Variable:</U> <B>warn_str_to_num</B>
+<DD><A NAME="IDX215"></A>
+If the value of <CODE>warn_str_to_num</CODE> is nonzero, a warning is printed
+for implicit conversions of strings to their numeric ASCII equivalents.
+For example,
+
+<PRE>
+"abc" + 0
+     => 97 98 99
+</PRE>
+
+<P>
+elicits a warning if <CODE>warn_str_to_num</CODE> is nonzero.  The default
+value is 0.
+</DL>
+
+
+<P>
+@anchor{doc-warn_single_quote_string}
+<DL>
+<DT><U>Built-in Variable:</U> <B>warn_single_quote_string</B>
+<DD><A NAME="IDX216"></A>
+Print warning if a signle quote character is used to introduce a
+string constant.
+</DL>
+
+
+
+
+<H2><A NAME="SEC60" HREF="octave_toc.html#TOC60">Character Class Functions</A></H2>
+
+<P>
+Octave also provides the following character class test functions
+patterned after the functions in the standard C library.  They all
+operate on string arrays and return matrices of zeros and ones.
+Elements that are nonzero indicate that the condition was true for the
+corresponding character in the string array.  For example,
+
+
+
+<PRE>
+isalpha ("!Q@WERT^Y&#38;")
+     => [ 0, 1, 0, 1, 1, 1, 1, 0, 1, 0 ]
+</PRE>
+
+<P>
+@anchor{doc-isalnum}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isalnum</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX217"></A>
+Return 1 for characters that are letters or digits (<CODE>isalpha
+(<VAR>s</VAR>)</CODE> or <CODE>isdigit (<VAR>s</VAR>)</CODE> is true).
+</DL>
+
+
+<P>
+@anchor{doc-isalpha}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isalpha</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX218"></A>
+<DT><U>Mapping Function:</U>  <B>isletter</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX219"></A>
+Return true for characters that are letters (<CODE>isupper (<VAR>s</VAR>)</CODE>
+or <CODE>islower (<VAR>s</VAR>)</CODE> is true).
+</DL>
+
+
+<P>
+@anchor{doc-isascii}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isascii</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX220"></A>
+Return 1 for characters that are ASCII (in the range 0 to 127 decimal).
+</DL>
+
+
+<P>
+@anchor{doc-iscntrl}
+<DL>
+<DT><U>Mapping Function:</U>  <B>iscntrl</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX221"></A>
+Return 1 for control characters.
+</DL>
+
+
+<P>
+@anchor{doc-isdigit}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isdigit</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX222"></A>
+Return 1 for characters that are decimal digits.
+</DL>
+
+
+<P>
+@anchor{doc-isgraph}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isgraph</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX223"></A>
+Return 1 for printable characters (but not the space character).
+</DL>
+
+
+<P>
+@anchor{doc-islower}
+<DL>
+<DT><U>Mapping Function:</U>  <B>islower</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX224"></A>
+Return 1 for characters that are lower case letters.
+</DL>
+
+
+<P>
+@anchor{doc-isprint}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isprint</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX225"></A>
+Return 1 for printable characters (including the space character).
+</DL>
+
+
+<P>
+@anchor{doc-ispunct}
+<DL>
+<DT><U>Mapping Function:</U>  <B>ispunct</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX226"></A>
+Return 1 for punctuation characters.
+</DL>
+
+
+<P>
+@anchor{doc-isspace}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isspace</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX227"></A>
+Return 1 for whitespace characters (space, formfeed, newline,
+carriage return, tab, and vertical tab).
+</DL>
+
+
+<P>
+@anchor{doc-isupper}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isupper</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX228"></A>
+Return 1 for upper case letters.
+</DL>
+
+
+<P>
+@anchor{doc-isxdigit}
+<DL>
+<DT><U>Mapping Function:</U>  <B>isxdigit</B> <I>(<VAR>s</VAR>)</I>
+<DD><A NAME="IDX229"></A>
+Return 1 for characters that are hexadecimal digits.
+</DL>
+
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_5.html">previous</A>, <A HREF="octave_7.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

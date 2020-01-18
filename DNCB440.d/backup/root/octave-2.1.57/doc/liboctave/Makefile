@@ -1,0 +1,107 @@
+#
+# Makefile for octave's doc/liboctave directory
+#
+# John W. Eaton
+# jwe@bevo.che.wisc.edu
+# University of Wisconsin-Madison
+# Department of Chemical Engineering
+
+TOPDIR = ../..
+
+srcdir = .
+top_srcdir = ../..
+
+
+include $(TOPDIR)/Makeconf
+
+INSTALL = /usr/bin/install -c
+INSTALL_PROGRAM = ${INSTALL}
+INSTALL_DATA = ${INSTALL} -m 644
+
+SOURCES =
+
+TEXINFO = array.texi bugs.texi cp-idx.texi dae.texi diffeq.texi \
+	error.texi factor.texi fn-idx.texi install.texi intro.texi \
+	liboctave.texi matvec.texi nleqn.texi nlfunc.texi ode.texi \
+	optim.texi preface.texi quad.texi range.texi
+
+FORMATTED = liboctave.dvi liboctave.ps liboctave.info \
+	liboctave.info-[0-9]* liboctave*.html
+
+DISTFILES = Makefile.in gpl.texi $(TEXINFO) $(FORMATTED)
+
+BINDISTFILES =
+
+SPELL = $(patsubst %.texi, %.spell, $(TEXINFO))
+
+%.spell : %.texi
+	rm -f $@
+	$(SED) -e 's/@@/ at /g' -e 's/@[a-zA-Z]*//g' $< | spell > $@.tmp
+	mv $@.tmp $@
+
+all: liboctave.info liboctave.dvi liboctave.ps liboctave_toc.html
+.PHONY: all
+
+liboctave.info: $(TEXINFO) ../conf.texi
+	-makeinfo -I$(srcdir) -I$(srcdir)/.. $(srcdir)/liboctave.texi
+
+liboctave.dvi: $(TEXINFO) ../conf.texi
+	-TEXINPUTS="$(srcdir):$(srcdir)/..:$(TEXINPUTS):"; \
+	  export TEXINPUTS; \
+	  $(TEXI2DVI) $(srcdir)/liboctave.texi
+
+liboctave.ps: liboctave.dvi
+	-dvips -o liboctave.ps liboctave.dvi
+
+# These option forms are supported by texi2html 1.65 and probably also
+# more recent versions.
+liboctave_toc.html:
+	-texi2html -expandinfo -split_chapter -I $(srcdir)/.. \
+	  $(srcdir)/liboctave.texi
+
+check:
+.PHONY: check
+
+install install-strip: all
+.PHONY: install install-strip
+
+uninstall:
+	rm -f $(DESTDIR)$(infodir)/liboctave.info*
+.PHONY: uninstall
+
+tags: $(SOURCES)
+	ctags $(SOURCES)
+
+TAGS: $(SOURCES)
+	etags $(SOURCES)
+
+spell: $(SPELL)
+.PHONY: spell
+
+mostlyclean clean:
+	rm -f liboctave.cp liboctave.fn liboctave.pg liboctave.tp \
+	liboctave.vr liboctave.ky liboctave.op liboctave.vrs \
+	liboctave.kys liboctave.ops liboctave.cps liboctave.fns \
+	liboctave.pgs liboctave.tps liboctave.aux liboctave.log \
+	liboctave.toc
+.PHONY: mostlyclean clean
+
+distclean: clean
+	rm -f Makefile
+.PHONY: distclean
+
+maintainer-clean: distclean
+	rm -f tags TAGS liboctave.info liboctave.info-*
+	rm -f liboctave.dvi liboctave.ps
+	rm -f liboctave*.html
+.PHONY: maintainer-clean
+
+dist: all
+	ln $(DISTFILES) ../../`cat ../../.fname`/doc/liboctave
+.PHONY: dist
+
+bin-dist:
+	if [ -n "$(BINDISTFILES)" ]; then \
+	  ln $(BINDISTFILES) ../../`cat ../../.fname`/doc/liboctave; \
+	fi
+.PHONY: bin-dist

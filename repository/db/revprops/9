@@ -1,0 +1,17 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-08-17T20:18:50.813401Z
+K 7
+svn:log
+V 255
+fixed: mdblog return, process_mdb elif, mdb_0x0B commented out code,
+commented out 'print's (added DEBUG, DEBUG_MDB, LOG_MDB global bools),
+mdb_0x14 now returns None, in_keys returns False at the end, made salt_chars
+local, made cmd_quit close the mdblog
+
+END

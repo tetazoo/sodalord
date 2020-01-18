@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-10-19T07:38:59.592943Z
+K 7
+svn:log
+V 100
+made a global allowedchars re for [0-9a-zA-Z_ ]*, which commands and usernames/aliases need to match
+END

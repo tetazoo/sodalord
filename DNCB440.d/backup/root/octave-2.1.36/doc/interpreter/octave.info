@@ -1,0 +1,2525 @@
+This is Info file octave.info, produced by Makeinfo version 1.68 from
+the input file octave.texi.
+
+START-INFO-DIR-ENTRY
+* Octave: (octave).	Interactive language for numerical computations.
+END-INFO-DIR-ENTRY
+
+   Copyright (C) 1996, 1997 John W. Eaton.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: octave.info,  Node: Top,  Next: Preface,  Prev: (dir),  Up: (dir)
+
+
+
+   This manual documents how to run, install and port GNU Octave, as
+well as its new features and incompatibilities, and how to report bugs.
+It corresponds to GNU Octave version 2.1.x.
+
+* Menu:
+
+* Preface::
+* Introduction::                A brief introduction to Octave.
+* Getting Started::
+* Data Types::
+* Numeric Data Types::
+* Strings::
+* Data Structures::
+* Containers::
+* I/O Streams::
+* Variables::
+* Expressions::                 Expressions.
+* Evaluation::
+* Statements::                  Looping and program flow control.
+* Functions and Scripts::
+* Error Handling::
+* Input and Output::
+* Plotting::
+* Matrix Manipulation::
+* Arithmetic::
+* Linear Algebra::
+* Nonlinear Equations::
+* Quadrature::
+* Differential Equations::
+* Optimization::
+* Statistics::
+* Financial Functions::
+* Sets::
+* Polynomial Manipulations::
+* Control Theory::
+* Signal Processing::
+* Image Processing::
+* Audio Processing::
+* Quaternions::
+* System Utilities::
+* Tips::
+* Trouble::                     If you have trouble installing Octave.
+* Installation::                How to configure, compile and install Octave.
+* Emacs::
+* Grammar::
+* Copying::                     The GNU General Public License.
+* Concept Index::               An item for each concept.
+* Variable Index::              An item for each documented variable.
+* Function Index::              An item for each documented function.
+* Operator Index::              An item for each documented operator.
+
+ -- The Detailed Node Listing --
+
+Preface
+
+* Acknowledgements::
+* How You Can Contribute to Octave::
+* Distribution::
+
+A Brief Introduction to Octave
+
+* Running Octave::
+* Simple Examples::
+* Conventions::
+
+Conventions
+
+* Fonts::
+* Evaluation Notation::
+* Printing Notation::
+* Error Messages::
+* Format of Descriptions::
+
+Format of Descriptions
+
+* A Sample Function Description::
+* A Sample Command Description::
+* A Sample Variable Description::
+
+Getting Started
+
+* Invoking Octave::
+* Quitting Octave::
+* Getting Help::
+* Command Line Editing::
+* Errors::
+* Executable Octave Programs::
+* Comments::
+
+Invoking Octave
+
+* Command Line Options::
+* Startup Files::
+
+Command Line Editing
+
+* Cursor Motion::
+* Killing and Yanking::
+* Commands For Text::
+* Commands For Completion::
+* Commands For History::
+* Customizing readline::
+* Customizing the Prompt::
+* Diary and Echo Commands::
+
+Data Types
+
+* Built-in Data Types::
+* User-defined Data Types::
+* Object Sizes::
+
+Built-in Data Types
+
+* Numeric Objects::
+* String Objects::
+* Data Structure Objects::
+
+Numeric Data Types
+
+* Matrices::
+* Ranges::
+* Logical Values::
+* Predicates for Numeric Objects::
+
+Matrices
+
+* Empty Matrices::
+
+Strings
+
+* Creating Strings::
+* Searching and Replacing::
+* String Conversions::
+* Character Class Functions::
+
+Containers
+
+* Lists::
+* Cell Arrays::
+
+Variables
+
+* Global Variables::
+* Status of Variables::
+* Summary of Built-in Variables::
+* Defaults from the Environment::
+
+Expressions
+
+* Index Expressions::
+* Calling Functions::
+* Arithmetic Ops::
+* Comparison Ops::
+* Boolean Expressions::
+* Assignment Ops::
+* Increment Ops::
+* Operator Precedence::
+
+Calling Functions
+
+* Call by Value::
+* Recursion::
+
+Boolean Expressions
+
+* Element-by-element Boolean Operators::
+* Short-circuit Boolean Operators::
+
+Statements
+
+* The if Statement::
+* The switch Statement::
+* The while Statement::
+* The do-until Statement::
+* The for Statement::
+* The break Statement::
+* The continue Statement::
+* The unwind_protect Statement::
+* The try Statement::
+* Continuation Lines::
+
+The `for' Statement
+
+* Looping Over Structure Elements::
+
+Functions and Script Files
+
+* Defining Functions::
+* Multiple Return Values::
+* Variable-length Argument Lists::
+* Variable-length Return Lists::
+* Returning From a Function::
+* Function Files::
+* Script Files::
+* Dynamically Linked Functions::
+* Organization of Functions::
+
+Input and Output
+
+* Basic Input and Output::
+* C-Style I/O Functions::
+
+Basic Input and Output
+
+* Terminal Output::
+* Terminal Input::
+* Simple File I/O::
+
+C-Style I/O Functions
+
+* Opening and Closing Files::
+* Simple Output::
+* Line-Oriented Input::
+* Formatted Output::
+* Output Conversion for Matrices::
+* Output Conversion Syntax::
+* Table of Output Conversions::
+* Integer Conversions::
+* Floating-Point Conversions::  Other Output Conversions::
+* Other Output Conversions::
+* Formatted Input::
+* Input Conversion Syntax::
+* Table of Input Conversions::
+* Numeric Input Conversions::
+* String Input Conversions::
+* Binary I/O::
+* Temporary Files::
+* EOF and Errors::
+* File Positioning::
+
+Plotting
+
+* Two-Dimensional Plotting::
+* Specialized Two-Dimensional Plots::
+* Three-Dimensional Plotting::
+* Plot Annotations::
+* Multiple Plots on One Page::
+* Multiple Plot Windows::
+* Interaction with gnuplot::
+
+Matrix Manipulation
+
+* Finding Elements and Checking Conditions::
+* Rearranging Matrices::
+* Special Utility Matrices::
+* Famous Matrices::
+
+Arithmetic
+
+* Utility Functions::
+* Complex Arithmetic::
+* Trigonometry::
+* Sums and Products::
+* Special Functions::
+* Mathematical Constants::
+
+Linear Algebra
+
+* Basic Matrix Functions::
+* Matrix Factorizations::
+* Functions of a Matrix::
+
+Quadrature
+
+* Functions of One Variable::
+* Orthogonal Collocation::
+
+Differential Equations
+
+* Ordinary Differential Equations::
+* Differential-Algebraic Equations::
+
+Optimization
+
+* Quadratic Programming::
+* Nonlinear Programming::
+* Linear Least Squares::
+
+Statistics
+
+* Basic Statistical Functions::
+* Tests::
+* Models::
+* Distributions::
+
+Control Theory
+
+* sysstruct::
+* sysinterface::
+* sysdisp::
+* blockdiag::
+* numerical::
+* sysprop::
+* systime::
+* sysfreq::
+* cacsd::
+* misc::
+
+System Data Structure
+
+* sysstructvars::
+* sysstructtf::
+* sysstructzp::
+* sysstructss::
+
+System Construction and Interface Functions
+
+* fir2sys::
+* ss2sys::
+* tf2sys::
+* zp2sys::
+* structaccess::
+* structintern::
+
+System Utilities
+
+* Timing Utilities::
+* Filesystem Utilities::
+* Controlling Subprocesses::
+* Process ID Information::
+* Environment Variables::
+* Current Working Directory::
+* Password Database Functions::
+* Group Database Functions::
+* System Information::
+
+Tips and Standards
+
+* Style Tips::                  Writing clean and robust programs.
+* Coding Tips::                 Making code run faster.
+* Documentation Tips::          Writing readable documentation strings.
+* Comment Tips::                Conventions for writing comments.
+* Function Headers::            Standard headers for functions.
+
+Known Causes of Trouble with Octave
+
+* Actual Bugs::                 Bugs we will fix later.
+* Reporting Bugs::
+* Bug Criteria::
+* Bug Lists::
+* Bug Reporting::
+* Sending Patches::
+* Service::
+
+Reporting Bugs
+
+* Bug Criteria::
+* Where: Bug Lists.             Where to send your bug report.
+* Reporting: Bug Reporting.     How to report a bug effectively.
+* Patches: Sending Patches.     How to send a patch for Octave.
+
+Installing Octave
+
+* Installation Problems::
+
+Emacs Octave Support
+
+* Installing EOS::
+* Using Octave Mode::
+* Running Octave From Within Emacs::
+* Using the Emacs Info Reader for Octave::
+
+Grammar
+
+* Keywords::
+
+
+File: octave.info,  Node: Preface,  Next: Introduction,  Prev: Top,  Up: Top
+
+Preface
+*******
+
+   Octave was originally intended to be companion software for an
+undergraduate-level textbook on chemical reactor design being written by
+James B. Rawlings of the University of Wisconsin-Madison and John G.
+Ekerdt of the University of Texas.
+
+   Clearly, Octave is now much more than just another `courseware'
+package with limited utility beyond the classroom.  Although our
+initial goals were somewhat vague, we knew that we wanted to create
+something that would enable students to solve realistic problems, and
+that they could use for many things other than chemical reactor design
+problems.
+
+   There are those who would say that we should be teaching the students
+Fortran instead, because that is the computer language of engineering,
+but every time we have tried that, the students have spent far too much
+time trying to figure out why their Fortran code crashes and not enough
+time learning about chemical engineering.  With Octave, most students
+pick up the basics quickly, and are using it confidently in just a few
+hours.
+
+   Although it was originally intended to be used to teach reactor
+design, it has been used in several other undergraduate and graduate
+courses in the Chemical Engineering Department at the University of
+Texas, and the math department at the University of Texas has been using
+it for teaching differential equations and linear algebra as well.  If
+you find it useful, please let us know.  We are always interested to
+find out how Octave is being used in other places.
+
+   Virtually everyone thinks that the name Octave has something to do
+with music, but it is actually the name of a former professor of mine
+who wrote a famous textbook on chemical reaction engineering, and who
+was also well known for his ability to do quick `back of the envelope'
+calculations.  We hope that this software will make it possible for many
+people to do more ambitious computations just as easily.
+
+   Everyone is encouraged to share this software with others under the
+terms of the GNU General Public License (*note Copying::.) as described
+at the beginning of this manual.  You are also encouraged to help make
+Octave more useful by writing and contributing additional functions for
+it, and by reporting any problems you may have.
+
+* Menu:
+
+* Acknowledgements::
+* How You Can Contribute to Octave::
+* Distribution::
+
+
+File: octave.info,  Node: Acknowledgements,  Next: How You Can Contribute to Octave,  Prev: Preface,  Up: Preface
+
+Acknowledgements
+================
+
+   Many people have already contributed to Octave's development.  In
+addition to John W. Eaton, the following people have helped write parts
+of Octave or helped out in various other ways.
+
+   * Thomas Baier <baier@ci.tuwien.ac.at> wrote the original versions
+     of `popen', `pclose', `execute', `sync_system', and `async_system'.
+
+   * Karl Berry <karl@cs.umb.edu> wrote the `kpathsea' library that
+     allows Octave to recursively search directory paths for function
+     and script files.
+
+   * Georg Beyerle <gbeyerle@awi-potsdam.de> contributed code to save
+     values in MATLAB's `.mat'-file format, and has provided many
+     useful bug reports and suggestions.
+
+   * John Campbell <jcc@bevo.che.wisc.edu> wrote most of the file and
+     C-style input and output functions.
+
+   * Dirk Eddelbuettel <edd@debian.org> makes Octave easy to install
+     for users of Debian GNU/Linux.
+
+   * Brian Fox <bfox@gnu.org> wrote the `readline' library used for
+     command history editing, and the portion of this manual that
+     documents it.
+
+   * Klaus Gebhardt <gebhardt@crunch.ikp.physik.th-darmstadt.de> ported
+     Octave to OS/2.
+
+   * Kai Habel <kai.habel@gmx.de> implemted functions for performing
+     coordinate transformations.
+
+   * A. Scottedward Hodel <A.S.Hodel@eng.auburn.edu> contributed a
+     number of functions including `expm', `qzval', `qzhess', `syl',
+     `lyap', and `balance'.
+
+   * Kurt Hornik <Kurt.Hornik@ci.tuwien.ac.at> provided the `corrcoef',
+     `cov', `fftconv', `fftfilt', `gcd', `lcd', `kurtosis', `null',
+     `orth', `poly', `polyfit', `roots', and `skewness' functions,
+     supplied documentation for these and numerous other functions,
+     rewrote the Emacs mode for editing Octave code and provided its
+     documentation, and has helped tremendously with testing.  He has
+     also been a constant source of new ideas for improving Octave.
+
+   * Phil Johnson <johnsonp@nicco.sscnet.ucla.edu> has helped to make
+     Linux releases available.
+
+   * Steven G. Johnson <stevenj@alum.mit.edu> added support for ATLAS,
+     saving data in HDF5 files, and ported Octave's configure script to
+     Autoconf 2.50.
+
+   * Mumit Khan <khan@nanotech.wisc.edu> helped make it possible for
+     Octave to be compiled by ISO standard C++ compilers other than GCC.
+
+   * Paul Kienzle <pkienzle@users.sf.net> has provided many
+     enhancements to improve Octave's compatibility with MATLAB, and
+     also maintains the collection of conributed code at
+     `http://octave.sf.net'.
+
+   * Bill Lash <lash@tellabs.com> provided the `unwrap' function.
+
+   * Dirk Laurie <dirk@calvyn.puk.ac.za> rewrote `invhilb' to be faster
+     and more accurate.
+
+   * Friedrich Leisch <leisch@ci.tuwien.ac.at> provided the
+     `mahalanobis' function.
+
+   * Ken Neighbors <wkn@leland.stanford.edu> has provided many useful
+     bug reports and comments on MATLAB compatibility.
+
+   * Rick Niles <niles@axp745.gsfc.nasa.gov> rewrote Octave's plotting
+     functions to add line styles and the ability to specify an
+     unlimited number of lines in a single call.  He also continues to
+     track down odd incompatibilities and bugs.
+
+   * Mark Odegard <meo@getech.com> provided the initial implementation
+     of `fread', `fwrite', `feof', and `ferror'.
+
+   * Gabriele Pannocchia  <pannocchia@ing.unipi.it> provided the
+     `dkalman.m' function and added support for singular system matrices
+     to `dlqe' and `dlqr'.
+
+   * Tony Richardson <arichard@stark.cc.oh.us> wrote Octave's image
+     processing functions as well as most of the original polynomial
+     functions.
+
+   * Ben Sapp <bsapp@lanl.gov> implemented the debugger functions and
+     added Texinfo markup commands to the internal doc strings.
+
+   * R. Bruce Tenison <btenison@dibbs.net> wrote the `hess' and `schur'
+     functions.
+
+   * Teresa Twaroch <twaroch@ci.tuwien.ac.at> provided the functions
+     `gls' and `ols'.
+
+   * James R. Van Zandt <jrv@vanzandt.mv.com> added support for reading
+     and writing MATLAB version 5 binary data files.
+
+   * Andreas Weingessel <Andreas.Weingessel@ci.tuwien.ac.at> wrote the
+     audio functions `lin2mu', `loadaudio', `mu2lin', `playaudio',
+     `record', `saveaudio', and `setaudio'.
+
+   * Fook Fah Yap <ffy@eng.cam.ac.uk> provided the `fft' and `ifft'
+     functions and valuable bug reports for early versions.
+
+   Special thanks to the following people and organizations for
+supporting the development of Octave:
+
+   * The National Science Foundation, through grant numbers CTS-0105360,
+     CTS-9708497, CTS-9311420, and CTS-8957123.
+
+   * The industrial members of the Texas-Wisconsin Modeling and Control
+     Consortium (TWMCC (http://www.che.utexas.edu/twmcc)).
+
+   * The Paul A. Elfers Endowed Chair in Chemical Engineering at the
+     University of Wisconsin-Madison.
+
+   * Digital Equipment Corporation, for an equipment grant as part of
+     their External Research Program.
+
+   * Sun Microsystems, Inc., for an Academic Equipment grant.
+
+   * International Business Machines, Inc., for providing equipment as
+     part of a grant to the University of Texas College of Engineering.
+
+   * Texaco Chemical Company, for providing funding to continue the
+     development of this software.
+
+   * The University of Texas College of Engineering, for providing a
+     Challenge for Excellence Research Supplement, and for providing an
+     Academic Development Funds grant.
+
+   * The State of Texas, for providing funding through the Texas
+     Advanced Technology Program under Grant No. 003658-078.
+
+   * Noel Bell, Senior Engineer, Texaco Chemical Company, Austin Texas.
+
+   * James B. Rawlings, Professor, University of Wisconsin-Madison,
+     Department of Chemical Engineering.
+
+   * Richard Stallman, for writing GNU.
+
+   This project would not have been possible without the GNU software
+used in and used to produce Octave.
+
+
+File: octave.info,  Node: How You Can Contribute to Octave,  Next: Distribution,  Prev: Acknowledgements,  Up: Preface
+
+How You Can Contribute to Octave
+================================
+
+   There are a number of ways that you can contribute to help make
+Octave a better system.  Perhaps the most important way to contribute
+is to write high-quality code for solving new problems, and to make
+your code freely available for others to use.
+
+   If you find Octave useful, consider providing additional funding to
+continue its development.  Even a modest amount of additional funding
+could make a significant difference in the amount of time that is
+available for development and support.
+
+   If you cannot provide funding or contribute code, you can still help
+make Octave better and more reliable by reporting any bugs you find and
+by offering suggestions for ways to improve Octave.  *Note Trouble::,
+for tips on how to write useful bug reports.
+
+
+File: octave.info,  Node: Distribution,  Prev: How You Can Contribute to Octave,  Up: Preface
+
+Distribution
+============
+
+   Octave is "free" software.  This means that everyone is free to use
+it and free to redistribute it on certain conditions.  Octave is not in
+the public domain.  It is copyrighted and there are restrictions on its
+distribution, but the restrictions are designed to ensure that others
+will have the same freedom to use and redistribute Octave that you
+have.  The precise conditions can be found in the GNU General Public
+License that comes with Octave and that also appears in *Note Copying::.
+
+   Octave is available on CD-ROM with various collections of other free
+software, and from the Free Software Foundation.  Ordering a copy of
+Octave from the Free Software Foundation helps to fund the development
+of more free software.  For more information, write to
+
+     Free Software Foundation
+     59 Temple Place--Suite 330
+     Boston, MA 02111-1307
+     USA
+
+   Octave is also available on the Internet from
+`ftp://ftp.che.wisc.edu/pub/octave', and additional information is
+available from `http://www.che.wisc.edu/octave'.
+
+
+File: octave.info,  Node: Introduction,  Next: Getting Started,  Prev: Preface,  Up: Top
+
+A Brief Introduction to Octave
+******************************
+
+   This manual documents how to run, install and port GNU Octave, and
+how to report bugs.
+
+   GNU Octave is a high-level language, primarily intended for numerical
+computations.  It provides a convenient command line interface for
+solving linear and nonlinear problems numerically, and for performing
+other numerical experiments.  It may also be used as a batch-oriented
+language.
+
+   GNU Octave is also freely redistributable software.  You may
+redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation.  The GPL is
+included in this manual in *Note Copying::.
+
+   This document corresponds to Octave version 2.1.x.
+
+* Menu:
+
+* Running Octave::
+* Simple Examples::
+* Conventions::
+
+
+File: octave.info,  Node: Running Octave,  Next: Simple Examples,  Prev: Introduction,  Up: Introduction
+
+Running Octave
+==============
+
+   On most systems, the way to invoke Octave is with the shell command
+`octave'.  Octave displays an initial message and then a prompt
+indicating it is ready to accept input.  You can begin typing Octave
+commands immediately afterward.
+
+   If you get into trouble, you can usually interrupt Octave by typing
+`Control-C' (usually written `C-c' for short).  `C-c' gets its name
+from the fact that you type it by holding down <CTRL> and then pressing
+<c>.  Doing this will normally return you to Octave's prompt.
+
+   To exit Octave, type `quit', or `exit' at the Octave prompt.
+
+   On systems that support job control, you can suspend Octave by
+sending it a `SIGTSTP' signal, usually by typing `C-z'.
+
+
+File: octave.info,  Node: Simple Examples,  Next: Conventions,  Prev: Running Octave,  Up: Introduction
+
+Simple Examples
+===============
+
+   The following chapters describe all of Octave's features in detail,
+but before doing that, it might be helpful to give a sampling of some
+of its capabilities.
+
+   If you are new to Octave, I recommend that you try these examples to
+begin learning Octave by using it.  Lines marked with `octave:13>' are
+lines you type, ending each with a carriage return.  Octave will
+respond with an answer, or by displaying a graph.
+
+Creating a Matrix
+-----------------
+
+   To create a new matrix and store it in a variable so that it you can
+refer to it later, type the command
+
+     octave:1> a = [ 1, 1, 2; 3, 5, 8; 13, 21, 34 ]
+
+Octave will respond by printing the matrix in neatly aligned columns.
+Ending a command with a semicolon tells Octave to not print the result
+of a command.  For example
+
+     octave:2> b = rand (3, 2);
+
+will create a 3 row, 2 column matrix with each element set to a random
+value between zero and one.
+
+   To display the value of any variable, simply type the name of the
+variable.  For example, to display the value stored in the matrix `b',
+type the command
+
+     octave:3> b
+
+Matrix Arithmetic
+-----------------
+
+   Octave has a convenient operator notation for performing matrix
+arithmetic.  For example, to multiply the matrix `a' by a scalar value,
+type the command
+
+     octave:4> 2 * a
+
+   To multiply the two matrices `a' and `b', type the command
+
+     octave:5> a * b
+
+   To form the matrix product `transpose (a) * a', type the command
+
+     octave:6> a' * a
+
+Solving Linear Equations
+------------------------
+
+   To solve the set of linear equations `aX = b', use the left division
+operator, `\':
+
+     octave:7> a \ b
+
+This is conceptually equivalent to `inv (a) * b', but avoids computing
+the inverse of a matrix directly.
+
+   If the coefficient matrix is singular, Octave will print a warning
+message and compute a minimum norm solution.
+
+Integrating Differential Equations
+----------------------------------
+
+   Octave has built-in functions for solving nonlinear differential
+equations of the form
+
+     dx
+     -- = f (x, t)
+     dt
+
+with the initial condition
+
+     x(t = t0) = x0
+
+For Octave to integrate equations of this form, you must first provide a
+definition of the function `f(x,t)'.  This is straightforward, and may
+be accomplished by entering the function body directly on the command
+line.  For example, the following commands define the right hand side
+function for an interesting pair of nonlinear differential equations.
+Note that while you are entering a function, Octave responds with a
+different prompt, to indicate that it is waiting for you to complete
+your input.
+
+     octave:8> function xdot = f (x, t)
+     >
+     >  r = 0.25;
+     >  k = 1.4;
+     >  a = 1.5;
+     >  b = 0.16;
+     >  c = 0.9;
+     >  d = 0.8;
+     >
+     >  xdot(1) = r*x(1)*(1 - x(1)/k) - a*x(1)*x(2)/(1 + b*x(1));
+     >  xdot(2) = c*a*x(1)*x(2)/(1 + b*x(1)) - d*x(2);
+     >
+     > endfunction
+
+Given the initial condition
+
+     x0 = [1; 2];
+
+and the set of output times as a column vector (note that the first
+output time corresponds to the initial condition given above)
+
+     t = linspace (0, 50, 200)';
+
+it is easy to integrate the set of differential equations:
+
+     x = lsode ("f", x0, t);
+
+The function `lsode' uses the Livermore Solver for Ordinary
+Differential Equations, described in A. C. Hindmarsh, `ODEPACK, a
+Systematized Collection of ODE Solvers', in: Scientific Computing, R. S.
+Stepleman et al. (Eds.), North-Holland, Amsterdam, 1983, pages 55-64.
+
+Producing Graphical Output
+--------------------------
+
+   To display the solution of the previous example graphically, use the
+command
+
+     plot (t, x)
+
+   If you are using the X Window System, Octave will automatically
+create a separate window to display the plot.  If you are using a
+terminal that supports some other graphics commands, you will need to
+tell Octave what kind of terminal you have.  Type the command
+
+     gset term
+
+to see a list of the supported terminal types.  Octave uses `gnuplot'
+to display graphics, and can display graphics on any terminal that is
+supported by `gnuplot'.
+
+   To capture the output of the plot command in a file rather than
+sending the output directly to your terminal, you can use a set of
+commands like this
+
+     gset term postscript
+     gset output "foo.ps"
+     replot
+
+This will work for other types of output devices as well.  Octave's
+`gset' command is really just piped to the `gnuplot' subprocess, so
+that once you have a plot on the screen that you like, you should be
+able to do something like this to create an output file suitable for
+your graphics printer.
+
+   Or, you can eliminate the intermediate file by using commands like
+this
+
+     gset term postscript
+     gset output "|lpr -Pname_of_your_graphics_printer"
+     replot
+
+Editing What You Have Typed
+---------------------------
+
+   At the Octave prompt, you can recall, edit, and reissue previous
+commands using Emacs- or vi-style editing commands.  The default
+keybindings use Emacs-style commands.  For example, to recall the
+previous command, type `Control-p' (usually written `C-p' for short).
+`C-p' gets its name from the fact that you type it by holding down
+<CTRL> and then pressing <p>.  Doing this will normally bring back the
+previous line of input.  `C-n' will bring up the next line of input,
+`C-b' will move the cursor backward on the line, `C-f' will move the
+cursor forward on the line, etc.
+
+   A complete description of the command line editing capability is
+given in this manual in *Note Command Line Editing::.
+
+Help and Documentation
+----------------------
+
+   Octave has an extensive help facility.  The same documentation that
+is available in printed form is also available from the Octave prompt,
+because both forms of the documentation are created from the same input
+file.
+
+   In order to get good help you first need to know the name of the
+command that you want to use.  This name of the function may not always
+be obvious, but a good place to start is to just type `help'.  This
+will show you all the operators, reserved words, functions, built-in
+variables, and function files.  You can then get more help on anything
+that is listed by simply including the name as an argument to help.
+For example,
+
+     help plot
+
+will display the help text for the `plot' function.
+
+   Octave sends output that is too long to fit on one screen through a
+pager like `less' or `more'.  Type a <RET> to advance one line, a <SPC>
+to advance one page, and <q> to exit the pager.
+
+   The part of Octave's help facility that allows you to read the
+complete text of the printed manual from within Octave normally uses a
+separate program called Info.  When you invoke Info you will be put
+into a menu driven program that contains the entire Octave manual.
+Help for using Info is provided in this manual in *Note Getting Help::.
+
+
+File: octave.info,  Node: Conventions,  Prev: Simple Examples,  Up: Introduction
+
+Conventions
+===========
+
+   This section explains the notational conventions that are used in
+this manual.  You may want to skip this section and refer back to it
+later.
+
+* Menu:
+
+* Fonts::
+* Evaluation Notation::
+* Printing Notation::
+* Error Messages::
+* Format of Descriptions::
+
+
+File: octave.info,  Node: Fonts,  Next: Evaluation Notation,  Prev: Conventions,  Up: Conventions
+
+Fonts
+-----
+
+   Examples of Octave code appear in this font or form: `svd (a)'.
+Names that represent arguments or metasyntactic variables appear in
+this font or form: FIRST-NUMBER.  Commands that you type at the shell
+prompt sometimes appear in this font or form: `octave --no-init-file'.
+Commands that you type at the Octave prompt sometimes appear in this
+font or form: `foo --bar --baz'.  Specific keys on your keyboard appear
+in this font or form: <ANY>.
+
+
+File: octave.info,  Node: Evaluation Notation,  Next: Printing Notation,  Prev: Fonts,  Up: Conventions
+
+Evaluation Notation
+-------------------
+
+   In the examples in this manual, results from expressions that you
+evaluate are indicated with `=>'.  For example,
+
+     sqrt (2)
+          => 1.4142
+
+You can read this as "`sqrt (2)' evaluates to 1.4142".
+
+   In some cases, matrix values that are returned by expressions are
+displayed like this
+
+     [1, 2; 3, 4] == [1, 3; 2, 4]
+          => [ 1, 0; 0, 1 ]
+
+and in other cases, they are displayed like this
+
+     eye (3)
+          =>  1  0  0
+              0  1  0
+              0  0  1
+
+in order to clearly show the structure of the result.
+
+   Sometimes to help describe one expression, another expression is
+shown that produces identical results.  The exact equivalence of
+expressions is indicated with `=='.  For example,
+
+     rot90 ([1, 2; 3, 4], -1)
+     ==
+     rot90 ([1, 2; 3, 4], 3)
+     ==
+     rot90 ([1, 2; 3, 4], 7)
+
+
+File: octave.info,  Node: Printing Notation,  Next: Error Messages,  Prev: Evaluation Notation,  Up: Conventions
+
+Printing Notation
+-----------------
+
+   Many of the examples in this manual print text when they are
+evaluated.  Examples in this manual indicate printed text with `-|'.
+The value that is returned by evaluating the expression (here `1') is
+displayed with `=>' and follows on a separate line.
+
+     printf ("foo %s\n", "bar")
+          -| foo bar
+          => 1
+
+
+File: octave.info,  Node: Error Messages,  Next: Format of Descriptions,  Prev: Printing Notation,  Up: Conventions
+
+Error Messages
+--------------
+
+   Some examples signal errors.  This normally displays an error message
+on your terminal.  Error messages are shown on a line starting with
+`error:'.
+
+     struct_elements ([1, 2; 3, 4])
+     error: struct_elements: wrong type argument `matrix'
+
+
+File: octave.info,  Node: Format of Descriptions,  Prev: Error Messages,  Up: Conventions
+
+Format of Descriptions
+----------------------
+
+   Functions, commands, and variables are described in this manual in a
+uniform format.  The first line of a description contains the name of
+the item followed by its arguments, if any.  The category--function,
+variable, or whatever--appears at the beginning of the line.  The
+description follows on succeeding lines, sometimes with examples.
+
+* Menu:
+
+* A Sample Function Description::
+* A Sample Command Description::
+* A Sample Variable Description::
+
+
+File: octave.info,  Node: A Sample Function Description,  Next: A Sample Command Description,  Prev: Format of Descriptions,  Up: Format of Descriptions
+
+A Sample Function Description
+.............................
+
+   In a function description, the name of the function being described
+appears first.  It is followed on the same line by a list of parameters.
+The names used for the parameters are also used in the body of the
+description.
+
+   Here is a description of an imaginary function `foo':
+
+ - Function:  foo (X, Y, ...)
+     The function `foo' subtracts X from Y, then adds the remaining
+     arguments to the result.  If Y is not supplied, then the number 19
+     is used by default.
+
+          foo (1, [3, 5], 3, 9)
+               => [ 14, 16 ]
+          foo (5)
+               => 14
+
+     More generally,
+
+          foo (W, X, Y, ...)
+          ==
+          X - W + Y + ...
+
+   Any parameter whose name contains the name of a type (e.g., INTEGER,
+INTEGER1 or MATRIX) is expected to be of that type.  Parameters named
+OBJECT may be of any type.  Parameters with other sorts of names (e.g.,
+NEW_FILE) are discussed specifically in the description of the
+function.  In some sections, features common to parameters of several
+functions are described at the beginning.
+
+   Functions in Octave may be defined in several different ways.  The
+catagory name for functions may include another name that indicates the
+way that the function is defined.  These additional tags include
+
+Built-in Function
+     The function described is written in a language like C++, C, or
+     Fortran, and is part of the compiled Octave binary.
+
+Loadable Function
+     The function described is written in a language like C++, C, or
+     Fortran.  On systems that support dynamic linking of user-supplied
+     functions, it may be automatically linked while Octave is running,
+     but only if it is needed.  *Note Dynamically Linked Functions::.
+
+Function File
+     The function described is defined using Octave commands stored in
+     a text file.  *Note Function Files::.
+
+Mapping Function
+     The function described works element-by-element for matrix and
+     vector arguments.
+
+
+File: octave.info,  Node: A Sample Command Description,  Next: A Sample Variable Description,  Prev: A Sample Function Description,  Up: Format of Descriptions
+
+A Sample Command Description
+............................
+
+   Command descriptions have a format similar to function descriptions,
+except that the word `Function' is replaced by `Command.  Commands are
+functions that may called without surrounding their arguments in
+parentheses.  For example, here is the description for Octave's `cd'
+command:
+
+ - Command: cd DIR
+ - Command: chdir DIR
+     Change the current working directory to DIR.  For example, `cd
+     ~/octave' changes the current working directory to `~/octave'.  If
+     the directory does not exist, an error message is printed and the
+     working directory is not changed.
+
+
+File: octave.info,  Node: A Sample Variable Description,  Prev: A Sample Command Description,  Up: Format of Descriptions
+
+A Sample Variable Description
+.............................
+
+   A "variable" is a name that can hold a value.  Although any variable
+can be set by the user, "built-in variables" typically exist
+specifically so that users can change them to alter the way Octave
+behaves (built-in variables are also sometimes called "user options").
+Ordinary variables and built-in variables are described using a format
+like that for functions except that there are no arguments.
+
+   Here is a description of the imaginary variable
+`do_what_i_mean_not_what_i_say'.
+
+ - Built-in Variable: do_what_i_mean_not_what_i_say
+     If the value of this variable is nonzero, Octave will do what you
+     actually wanted, even if you have typed a completely different and
+     meaningless list of commands.
+
+   Other variable descriptions have the same format, but `Built-in
+Variable' is replaced by `Variable', for ordinary variables, or
+`Constant' for symbolic constants whose values cannot be changed.
+
+
+File: octave.info,  Node: Getting Started,  Next: Data Types,  Prev: Introduction,  Up: Top
+
+Getting Started
+***************
+
+   This chapter explains some of Octave's basic features, including how
+to start an Octave session, get help at the command prompt, edit the
+command line, and write Octave programs that can be executed as commands
+from your shell.
+
+* Menu:
+
+* Invoking Octave::
+* Quitting Octave::
+* Getting Help::
+* Command Line Editing::
+* Errors::
+* Executable Octave Programs::
+* Comments::
+
+
+File: octave.info,  Node: Invoking Octave,  Next: Quitting Octave,  Prev: Getting Started,  Up: Getting Started
+
+Invoking Octave
+===============
+
+   Normally, Octave is used interactively by running the program
+`octave' without any arguments.  Once started, Octave reads commands
+from the terminal until you tell it to exit.
+
+   You can also specify the name of a file on the command line, and
+Octave will read and execute the commands from the named file and then
+exit when it is finished.
+
+   You can further control how Octave starts by using the command-line
+options described in the next section, and Octave itself can remind you
+of the options available.  Type `octave --help' to display all
+available options and briefly describe their use (`octave -h' is a
+shorter equivalent).
+
+* Menu:
+
+* Command Line Options::
+* Startup Files::
+
+
+File: octave.info,  Node: Command Line Options,  Next: Startup Files,  Prev: Invoking Octave,  Up: Invoking Octave
+
+Command Line Options
+--------------------
+
+   Here is a complete list of all the command line options that Octave
+accepts.
+
+`--debug'
+`-d'
+     Enter parser debugging mode.  Using this option will cause Octave's
+     parser to print a lot of information about the commands it reads,
+     and is probably only useful if you are actually trying to debug
+     the parser.
+
+`--echo-commands'
+`-x'
+     Echo commands as they are executed.
+
+`--exec-path PATH'
+     Specify the path to search for programs to run.  The value of PATH
+     specified on the command line will override any value of
+     `OCTAVE_EXEC_PATH' found in the environment, but not any commands
+     in the system or user startup files that set the built-in variable
+     `EXEC_PATH'.
+
+`--help'
+`-h'
+`-?'
+     Print short help message and exit.
+
+`--info-file FILENAME'
+     Specify the name of the info file to use.  The value of FILENAME
+     specified on the command line will override any value of
+     `OCTAVE_INFO_FILE' found in the environment, but not any commands
+     in the system or user startup files that set the built-in variable
+     `INFO_FILE'.
+
+`--info-program PROGRAM'
+     Specify the name of the info program to use.  The value of PROGRAM
+     specified on the command line will override any value of
+     `OCTAVE_INFO_PROGRAM' found in the environment, but not any
+     commands in the system or user startup files that set the built-in
+     variable `INFO_PROGRAM'.
+
+`--interactive'
+`-i'
+     Force interactive behavior.  This can be useful for running Octave
+     via a remote shell command or inside an Emacs shell buffer.  For
+     another way to run Octave within Emacs, see *Note Emacs::.
+
+`--no-history'
+`-H'
+     Disable command-line history.
+
+`--no-init-file'
+     Don't read the `~/.octaverc' or `.octaverc' files.
+
+`--no-line-editing'
+     Disable command-line editing.
+
+`--no-site-file'
+     Don't read the site-wide `octaverc' file.
+
+`--norc'
+`-f'
+     Don't read any of the system or user initialization files at
+     startup.  This is equivalent to using both of the options
+     `--no-init-file' and `--no-site-file'.
+
+`--path PATH'
+`-p PATH'
+     Specify the path to search for function files.  The value of PATH
+     specified on the command line will override any value of
+     `OCTAVE_PATH' found in the environment, but not any commands in the
+     system or user startup files that set the built-in variable
+     `LOADPATH'.
+
+`--silent'
+`--quiet'
+`-q'
+     Don't print the usual greeting and version message at startup.
+
+`--traditional'
+`--braindead'
+     Set initial values for user-preference variables to the following
+     values for compatibility with MATLAB.
+
+          PS1                           = ">> "
+          PS2                           = ""
+          beep_on_error                 = 1
+          default_save_format           = "mat-binary"
+          define_all_return_values      = 1
+          do_fortran_indexing           = 1
+          crash_dumps_octave_core       = 0
+          empty_list_elements_ok        = 1
+          implicit_str_to_num_ok        = 1
+          ok_to_lose_imaginary_part     = 1
+          page_screen_output            = 0
+          prefer_column_vectors         = 0
+          print_empty_dimensions        = 0
+          treat_neg_dim_as_zero         = 1
+          warn_function_name_clash      = 0
+          whitespace_in_literal_matrix  = "traditional"
+
+`--verbose'
+`-V'
+     Turn on verbose output.
+
+`--version'
+`-v'
+     Print the program version number and exit.
+
+`FILE'
+     Execute commands from FILE.
+
+   Octave also includes several built-in variables that contain
+information about the command line, including the number of arguments
+and all of the options.
+
+   doc-argv
+
+ - Built-in Variable: argv
+     The command line arguments passed to Octave are available in this
+     variable.  For example, if you invoked Octave using the command
+
+          octave --no-line-editing --silent
+
+     `argv' would be a list of strings with the elements
+     `--no-line-editing' and `--silent'.
+
+     If you write an executable Octave script, `argv' will contain the
+     list of arguments passed to the script.  *Note Executable Octave
+     Programs::, for an example of how to create an executable Octave
+     script.
+
+   doc-program_invocation_name
+
+ - Built-in Variable: program_invocation_name
+ - Built-in Variable: program_name
+     When Octave starts, the value of the built-in variable
+     `program_invocation_name' is automatically set to the name that was
+     typed at the shell prompt to run Octave, and the value of
+     `program_name' is automatically set to the final component of
+     `program_invocation_name'.  For example, if you typed
+     `/usr/local/bin/octave' to start Octave, `program_invocation_name'
+     would have the value `"/usr/local/bin/octave"', and `program_name'
+     would have the value `"octave"'.
+
+     If executing a script from the command line (e.g., `octave foo.m')
+     or using an executable Octave script, the program name is set to
+     the name of the script.  *Note Executable Octave Programs::, for
+     an example of how to create an executable Octave script.
+
+   Here is an example of using these variables to reproduce Octave's
+command line.
+
+     printf ("%s", program_name);
+     for i = 1:nargin
+       printf (" %s", nth (argv, i));
+     endfor
+     printf ("\n");
+
+*Note Index Expressions::, for an explanation of how to properly index
+arrays of strings and substrings in Octave, and *Note Defining
+Functions::, for information about the variable `nargin'.
+
+
+File: octave.info,  Node: Startup Files,  Prev: Command Line Options,  Up: Invoking Octave
+
+Startup Files
+-------------
+
+   When Octave starts, it looks for commands to execute from the
+following files:
+
+`OCTAVE-HOME/share/octave/site/m/startup/octaverc'
+     Where OCTAVE-HOME is the directory in which all of Octave is
+     installed (the default is `/usr/local').  This file is provided so
+     that changes to the default Octave environment can be made
+     globally for all users at your site for all versions of Octave you
+     have installed.  Some care should be taken when making changes to
+     this file, since all users of Octave at your site will be affected.
+
+`OCTAVE-HOME/share/octave/VERSION/m/startup/octaverc'
+     Where OCTAVE-HOME is the directory in which all of Octave is
+     installed (the default is `/usr/local'), and VERSION is the
+     version number of Octave.  This file is provided so that changes
+     to the default Octave environment can be made globally for all
+     users for a particular version of Octave.  Some care should be
+     taken when making changes to this file, since all users of Octave
+     at your site will be affected.
+
+`~/.octaverc'
+     This file is normally used to make personal changes to the default
+     Octave environment.
+
+`.octaverc'
+     This file can be used to make changes to the default Octave
+     environment for a particular project.  Octave searches for this
+     file in the current directory after it reads `~/.octaverc'.  Any
+     use of the `cd' command in the `~/.octaverc' file will affect the
+     directory that Octave searches for the file `.octaverc'.
+
+     If you start Octave in your home directory, commands from from the
+     file `~/.octaverc' will only be executed once.
+
+   A message will be displayed as each of the startup files is read if
+you invoke Octave with the `--verbose' option but without the
+`--silent' option.
+
+   Startup files may contain any valid Octave commands, including
+function definitions.
+
+
+File: octave.info,  Node: Quitting Octave,  Next: Getting Help,  Prev: Invoking Octave,  Up: Getting Started
+
+Quitting Octave
+===============
+
+   doc-quit
+
+ - Built-in Function:  exit (STATUS)
+ - Built-in Function:  quit (STATUS)
+     Exit the current Octave session.  If the optional integer value
+     STATUS is supplied, pass that value to the operating system as the
+     Octave's exit status.
+
+   doc-atexit
+
+ - Built-in Function:  atexit (FCN)
+     Register a function to be called when Octave exits.  For example,
+
+          function print_fortune ()
+            printf ("\n%s\n", system ("fortune"));
+            fflush (stdout);
+          endfunction
+          atexit ("print_fortune");
+
+     will print a message when Octave exits.
+
+
+File: octave.info,  Node: Getting Help,  Next: Command Line Editing,  Prev: Quitting Octave,  Up: Getting Started
+
+Commands for Getting Help
+=========================
+
+   The entire text of this manual is available from the Octave prompt
+via the command `help -i'.  In addition, the documentation for
+individual user-written functions and variables is also available via
+the `help' command.  This section describes the commands used for
+reading the manual and the documentation strings for user-supplied
+functions and variables.  *Note Function Files::, for more information
+about how to document the functions you write.
+
+   doc-help
+
+ - Command: help
+     Octave's `help' command can be used to print brief usage-style
+     messages, or to display information directly from an on-line
+     version of the printed manual, using the GNU Info browser.  If
+     invoked without any arguments, `help' prints a list of all the
+     available operators, functions, and built-in variables.  If the
+     first argument is `-i', the `help' command searches the index of
+     the on-line version of this manual for the given topics.
+
+     For example, the command `help help' prints a short message
+     describing the `help' command, and `help -i help' starts the GNU
+     Info browser at this node in the on-line version of the manual.
+
+     Once the GNU Info browser is running, help for using it is
+     available using the command `C-h'.
+
+   The help command can give you information about operators, but not
+the comma and semicolons that are used as command separators.  To get
+help for those, you must type `help comma' or `help semicolon'.
+
+   doc-INFO_FILE
+
+ - Built-in Variable: INFO_FILE
+     The variable `INFO_FILE' names the location of the Octave info
+     file.  The default value is `"OCTAVE-HOME/info/octave.info"', in
+     which OCTAVE-HOME is the directory where all of Octave is
+     installed.
+
+   doc-INFO_PROGRAM
+
+ - Built-in Variable: INFO_PROGRAM
+     The variable `INFO_PROGRAM' names the info program to run.  Its
+     default initial value is
+     `"OCTAVE-HOME/libexec/octave/VERSION/exec/ARCH/info"' in which
+     OCTAVE-HOME is the directory where all of Octave is installed,
+     VERSION is the Octave version number, and ARCH is the system type
+     (for example, `i686-pc-linux-gnu').  The default initial value may
+     be overridden by the environment variable `OCTAVE_INFO_PROGRAM',
+     or the command line argument `--info-program NAME', or by setting
+     the value of `INFO_PROGRAM' in a startup script
+
+   doc-MAKEINFO_PROGRAM
+
+ - Built-in Variable: MAKEINFO_PROGRAM
+     The variable `MAKEINFO_PROGRAM' names the makeinfo program that
+     Octave runs to format help text that contains Texinfo markup
+     commands.  Its default initial value is `"makeinfo"'.
+
+   doc-suppress_verbose_help_message
+
+ - Built-in Variable: suppress_verbose_help_message
+     If the value of `suppress_verbose_help_message' is nonzero, Octave
+     will not add additional help information to the end of the output
+     from the `help' command and usage messages for built-in commands.
+
+
+File: octave.info,  Node: Command Line Editing,  Next: Errors,  Prev: Getting Help,  Up: Getting Started
+
+Command Line Editing
+====================
+
+   Octave uses the GNU readline library to provide an extensive set of
+command-line editing and history features.  Only the most common
+features are described in this manual.  Please see The GNU Readline
+Library manual for more information.
+
+   To insert printing characters (letters, digits, symbols, etc.),
+simply type the character.  Octave will insert the character at the
+cursor and advance the cursor forward.
+
+   Many of the command-line editing functions operate using control
+characters.  For example, the character `Control-a' moves the cursor to
+the beginning of the line.  To type `C-a', hold down <CTRL> and then
+press <a>.  In the following sections, control characters such as
+`Control-a' are written as `C-a'.
+
+   Another set of command-line editing functions use Meta characters.
+On some terminals, you type `M-u' by holding down <META> and pressing
+<u>.  If your terminal does not have a <META> key, you can still type
+Meta charcters using two-character sequences starting with `ESC'.
+Thus, to enter `M-u', you could type <ESC><u>.  The `ESC' character
+sequences are also allowed on terminals with real Meta keys.  In the
+following sections, Meta characters such as `Meta-u' are written as
+`M-u'.
+
+* Menu:
+
+* Cursor Motion::
+* Killing and Yanking::
+* Commands For Text::
+* Commands For Completion::
+* Commands For History::
+* Customizing readline::
+* Customizing the Prompt::
+* Diary and Echo Commands::
+
+
+File: octave.info,  Node: Cursor Motion,  Next: Killing and Yanking,  Prev: Command Line Editing,  Up: Command Line Editing
+
+Cursor Motion
+-------------
+
+   The following commands allow you to position the cursor.
+
+`C-b'
+     Move back one character.
+
+`C-f'
+     Move forward one character.
+
+`<DEL>'
+     Delete the character to the left of the cursor.
+
+`C-d'
+     Delete the character underneath the cursor.
+
+`M-f'
+     Move forward a word.
+
+`M-b'
+     Move backward a word.
+
+`C-a'
+     Move to the start of the line.
+
+`C-e'
+     Move to the end of the line.
+
+`C-l'
+     Clear the screen, reprinting the current line at the top.
+
+`C-_'
+`C-/'
+     Undo the last thing that you did.  You can undo all the way back
+     to an empty line.
+
+`M-r'
+     Undo all changes made to this line.  This is like typing the `undo'
+     command enough times to get back to the beginning.
+
+   The above table describes the most basic possible keystrokes that
+you need in order to do editing of the input line.  On most terminals,
+you can also use the arrow keys in place of `C-f' and `C-b' to move
+forward and backward.
+
+   Notice how `C-f' moves forward a character, while `M-f' moves
+forward a word.  It is a loose convention that control keystrokes
+operate on characters while meta keystrokes operate on words.
+
+   There is also a function available so that you can clear the screen
+from within Octave programs.
+
+   doc-clc
+
+ - Built-in Function:  clc ()
+ - Built-in Function:  home ()
+     Clear the terminal screen and move the cursor to the upper left
+     corner.
+
+
+File: octave.info,  Node: Killing and Yanking,  Next: Commands For Text,  Prev: Cursor Motion,  Up: Command Line Editing
+
+Killing and Yanking
+-------------------
+
+   "Killing" text means to delete the text from the line, but to save
+it away for later use, usually by "yanking" it back into the line.  If
+the description for a command says that it `kills' text, then you can
+be sure that you can get the text back in a different (or the same)
+place later.
+
+   Here is the list of commands for killing text.
+
+`C-k'
+     Kill the text from the current cursor position to the end of the
+     line.
+
+`M-d'
+     Kill from the cursor to the end of the current word, or if between
+     words, to the end of the next word.
+
+`M-<DEL>'
+     Kill from the cursor to the start of the previous word, or if
+     between words, to the start of the previous word.
+
+`C-w'
+     Kill from the cursor to the previous whitespace.  This is
+     different than `M-<DEL>' because the word boundaries differ.
+
+   And, here is how to "yank" the text back into the line.  Yanking
+means to copy the most-recently-killed text from the kill buffer.
+
+`C-y'
+     Yank the most recently killed text back into the buffer at the
+     cursor.
+
+`M-y'
+     Rotate the kill-ring, and yank the new top.  You can only do this
+     if the prior command is `C-y' or `M-y'.
+
+   When you use a kill command, the text is saved in a "kill-ring".
+Any number of consecutive kills save all of the killed text together, so
+that when you yank it back, you get it in one clean sweep.  The kill
+ring is not line specific; the text that you killed on a previously
+typed line is available to be yanked back later, when you are typing
+another line.
+
+
+File: octave.info,  Node: Commands For Text,  Next: Commands For Completion,  Prev: Killing and Yanking,  Up: Command Line Editing
+
+Commands For Changing Text
+--------------------------
+
+   The following commands can be used for entering characters that would
+otherwise have a special meaning (e.g., `TAB', `C-q', etc.), or for
+quickly correcting typing mistakes.
+
+`C-q'
+`C-v'
+     Add the next character that you type to the line verbatim.  This is
+     how to insert things like `C-q' for example.
+
+`M-<TAB>'
+     Insert a tab character.
+
+`C-t'
+     Drag the character before the cursor forward over the character at
+     the cursor, also moving the cursor forward.  If the cursor is at
+     the end of the line, then transpose the two characters before it.
+
+`M-t'
+     Drag the word behind the cursor past the word in front of the
+     cursor moving the cursor over that word as well.
+
+`M-u'
+     Uppercase the characters following the cursor to the end of the
+     current (or following) word, moving the cursor to the end of the
+     word.
+
+`M-l'
+     Lowecase the characters following the cursor to the end of the
+     current (or following) word, moving the cursor to the end of the
+     word.
+
+`M-c'
+     Uppercase the character following the cursor (or the beginning of
+     the next word if the cursor is between words), moving the cursor
+     to the end of the word.
+
+
+File: octave.info,  Node: Commands For Completion,  Next: Commands For History,  Prev: Commands For Text,  Up: Command Line Editing
+
+Letting Readline Type For You
+-----------------------------
+
+   The following commands allow Octave to complete command and variable
+names for you.
+
+`<TAB>'
+     Attempt to do completion on the text before the cursor.  Octave can
+     complete the names of commands and variables.
+
+`M-?'
+     List the possible completions of the text before the cursor.
+
+   doc-completion_append_char
+
+ - Built-in Variable: completion_append_char
+     The value of `completion_append_char' is used as the character to
+     append to successful command-line completion attempts.  The default
+     value is `" "' (a single space).
+
+   doc-completion_matches
+
+ - Built-in Function:  completion_matches (HINT)
+     Generate possible completions given HINT.
+
+     This function is provided for the benefit of programs like Emacs
+     which might be controlling Octave and handling user input.  The
+     current command number is not incremented when this function is
+     called.  This is a feature, not a bug.
+
+
+File: octave.info,  Node: Commands For History,  Next: Customizing readline,  Prev: Commands For Completion,  Up: Command Line Editing
+
+Commands For Manipulating The History
+-------------------------------------
+
+   Octave normally keeps track of the commands you type so that you can
+recall previous commands to edit or execute them again.  When you exit
+Octave, the most recent commands you have typed, up to the number
+specified by the variable `history_size', are saved in a file.  When
+Octave starts, it loads an initial list of commands from the file named
+by the variable `history_file'.
+
+   Here are the commands for simple browsing and searching the history
+list.
+
+`<LFD>'
+`<RET>'
+     Accept the line regardless of where the cursor is.  If this line is
+     non-empty, add it to the history list.  If this line was a history
+     line, then restore the history line to its original state.
+
+`C-p'
+     Move `up' through the history list.
+
+`C-n'
+     Move `down' through the history list.
+
+`M-<'
+     Move to the first line in the history.
+
+`M->'
+     Move to the end of the input history, i.e., the line you are
+     entering!
+
+`C-r'
+     Search backward starting at the current line and moving `up'
+     through the history as necessary.  This is an incremental search.
+
+`C-s'
+     Search forward starting at the current line and moving `down'
+     through the history as necessary.
+
+   On most terminals, you can also use the arrow keys in place of `C-p'
+and `C-n' to move through the history list.
+
+   In addition to the keyboard commands for moving through the history
+list, Octave provides three functions for viewing, editing, and
+re-running chunks of commands from the history list.
+
+   doc-history
+
+ - Command: history OPTIONS
+     If invoked with no arguments, `history' displays a list of commands
+     that you have executed.  Valid options are:
+
+    `-w FILE'
+          Write the current history to the file FILE.  If the name is
+          omitted, use the default history file (normally
+          `~/.octave_hist').
+
+    `-r FILE'
+          Read the file FILE, replacing the current history list with
+          its contents.  If the name is omitted, use the default
+          history file (normally `~/.octave_hist').
+
+    `N'
+          Only display the most recent N lines of history.
+
+    `-q'
+          Don't number the displayed lines of history.  This is useful
+          for cutting and pasting commands if you are using the X
+          Window System.
+
+     For example, to display the five most recent commands that you have
+     typed without displaying line numbers, use the command `history -q
+     5'.
+
+   doc-edit_history
+
+ - Command: edit_history OPTIONS
+     If invoked with no arguments, `edit_history' allows you to edit the
+     history list using the editor named by the variable `EDITOR'.  The
+     commands to be edited are first copied to a temporary file.  When
+     you exit the editor, Octave executes the commands that remain in
+     the file.  It is often more convenient to use `edit_history' to
+     define functions rather than attempting to enter them directly on
+     the command line.  By default, the block of commands is executed
+     as soon as you exit the editor.  To avoid executing any commands,
+     simply delete all the lines from the buffer before exiting the
+     editor.
+
+     The `edit_history' command takes two optional arguments specifying
+     the history numbers of first and last commands to edit.  For
+     example, the command
+
+          edit_history 13
+
+     extracts all the commands from the 13th through the last in the
+     history list.  The command
+
+          edit_history 13 169
+
+     only extracts commands 13 through 169.  Specifying a larger number
+     for the first command than the last command reverses the list of
+     commands before placing them in the buffer to be edited.  If both
+     arguments are omitted, the previous command in the history list is
+     used.
+
+   doc-run_history
+
+ - Command: run_history [FIRST] [LAST]
+     Similar to `edit_history', except that the editor is not invoked,
+     and the commands are simply executed as they appear in the history
+     list.
+
+   doc-EDITOR
+
+ - Built-in Variable: EDITOR
+     A string naming the editor to use with the `edit_history' command.
+     If the environment variable `EDITOR' is set when Octave starts, its
+     value is used as the default.  Otherwise, `EDITOR' is set to
+     `"emacs"'.
+
+   doc-history_file
+
+ - Built-in Variable: history_file
+     This variable specifies the name of the file used to store command
+     history.  The default value is `"~/.octave_hist"', but may be
+     overridden by the environment variable `OCTAVE_HISTFILE'.
+
+   doc-history_size
+
+ - Built-in Variable: history_size
+     This variable specifies how many entries to store in the history
+     file.  The default value is `1024', but may be overridden by the
+     environment variable `OCTAVE_HISTSIZE'.
+
+   doc-saving_history
+
+ - Built-in Variable: saving_history
+     If the value of `saving_history' is nonzero, command entered on
+     the command line are saved in the file specified by the variable
+     `history_file'.
+
+
+File: octave.info,  Node: Customizing readline,  Next: Customizing the Prompt,  Prev: Commands For History,  Up: Command Line Editing
+
+Customizing `readline'
+----------------------
+
+   doc-read_readline_init_file
+
+ - Built-in Function:  read_readline_init_file (FILE)
+     Read the readline library initialiazation file FILE.  If FILE is
+     omitted, read the default initialization file (normally
+     `~/.inputrc'.
+
+
+File: octave.info,  Node: Customizing the Prompt,  Next: Diary and Echo Commands,  Prev: Customizing readline,  Up: Command Line Editing
+
+Customizing the Prompt
+----------------------
+
+   The following variables are available for customizing the appearance
+of the command-line prompts.  Octave allows the prompt to be customized
+by inserting a number of backslash-escaped special characters that are
+decoded as follows:
+
+`\t'
+     The time.
+
+`\d'
+     The date.
+
+`\n'
+     Begins a new line by printing the equivalent of a carriage return
+     followed by a line feed.
+
+`\s'
+     The name of the program (usually just `octave').
+
+`\w'
+     The current working directory.
+
+`\W'
+     The basename of the current working directory.
+
+`\u'
+     The username of the current user.
+
+`\h'
+     The hostname, up to the first `.'.
+
+`\H'
+     The hostname.
+
+`\#'
+     The command number of this command, counting from when Octave
+     starts.
+
+`\!'
+     The history number of this command.  This differs from `\#' by the
+     number of commands in the history list when Octave starts.
+
+`\$'
+     If the effective UID is 0, a `#', otherwise a `$'.
+
+`\nnn'
+     The character whose character code in octal is NNN.
+
+`\\'
+     A backslash.
+
+   doc-PS1
+
+ - Built-in Variable: PS1
+     The primary prompt string.  When executing interactively, Octave
+     displays the primary prompt `PS1' when it is ready to read a
+     command.
+
+     The default value of `PS1' is `"\s:\#> "'.  To change it, use a
+     command like
+
+          octave:13> PS1 = "\\u@\\H> "
+
+     which will result in the prompt `boris@kremvax> ' for the user
+     `boris' logged in on the host `kremvax.kgb.su'.  Note that two
+     backslashes are required to enter a backslash into a string.
+     *Note Strings::.
+
+   doc-PS2
+
+ - Built-in Variable: PS2
+     The secondary prompt string, which is printed when Octave is
+     expecting additional input to complete a command.  For example,
+     when defining a function over several lines, Octave will print the
+     value of `PS1' at the beginning of each line after the first.  The
+     default value of `PS2' is `"> "'.
+
+   doc-PS4
+
+ - Built-in Variable: PS4
+     If Octave is invoked with the `--echo-input' option, the value of
+     `PS4' is printed before each line of input that is echoed.  The
+     default value of `PS4' is `"+ "'.  *Note Invoking Octave::, for a
+     description of `--echo-input'.
+
+
+File: octave.info,  Node: Diary and Echo Commands,  Prev: Customizing the Prompt,  Up: Command Line Editing
+
+Diary and Echo Commands
+-----------------------
+
+   Octave's diary feature allows you to keep a log of all or part of an
+interactive session by recording the input you type and the output that
+Octave produces in a separate file.
+
+   doc-diary
+
+ - Command: diary OPTIONS
+     Create a list of all commands *and* the output they produce, mixed
+     together just as you see them on your terminal.  Valid options are:
+
+    `on'
+          Start recording your session in a file called `diary' in your
+          current working directory.
+
+    `off'
+          Stop recording your session in the diary file.
+
+    `FILE'
+          Record your session in the file named FILE.
+
+     Without any arguments, `diary' toggles the current diary state.
+
+   Sometimes it is useful to see the commands in a function or script as
+they are being evaluated.  This can be especially helpful for debugging
+some kinds of problems.
+
+   doc-echo
+
+ - Command: echo OPTIONS
+     Control whether commands are displayed as they are executed.  Valid
+     options are:
+
+    `on'
+          Enable echoing of commands as they are executed in script
+          files.
+
+    `off'
+          Disable echoing of commands as they are executed in script
+          files.
+
+    `on all'
+          Enable echoing of commands as they are executed in script
+          files and functions.
+
+    `off all'
+          Disable echoing of commands as they are executed in script
+          files and functions.
+
+     If invoked without any arguments, `echo' toggles the current echo
+     state.
+
+   doc-echo_executing_commands
+
+ - Built-in Variable: echo_executing_commands
+     This variable may also be used to control the echo state.  It may
+     be the sum of the following values:
+
+    1
+          Echo commands read from script files.
+
+    2
+          Echo commands from functions.
+
+    4
+          Echo commands read from command line.
+
+     More than one state can be active at once.  For example, a value
+     of 3 is equivalent to the command `echo on all'.
+
+     The value of `echo_executing_commands' is set by the `echo'
+     command and the command line option `--echo-input'.
+
+
+File: octave.info,  Node: Errors,  Next: Executable Octave Programs,  Prev: Command Line Editing,  Up: Getting Started
+
+How Octave Reports Errors
+=========================
+
+   Octave reports two kinds of errors for invalid programs.
+
+   A "parse error" occurs if Octave cannot understand something you
+have typed.  For example, if you misspell a keyword,
+
+     octave:13> functon y = f (x) y = x^2; endfunction
+
+Octave will respond immediately with a message like this:
+
+     parse error:
+     
+       functon y = f (x) y = x^2; endfunction
+               ^
+
+For most parse errors, Octave uses a caret (`^') to mark the point on
+the line where it was unable to make sense of your input.  In this
+case, Octave generated an error message because the keyword `function'
+was misspelled.  Instead of seeing `function f', Octave saw two
+consecutive variable names, which is invalid in this context.  It
+marked the error at `y' because the first name by itself was accepted
+as valid input.
+
+   Another class of error message occurs at evaluation time.  These
+errors are called "run-time errors", or sometimes "evaluation errors"
+because they occur when your program is being "run", or "evaluated".
+For example, if after correcting the mistake in the previous function
+definition, you type
+
+     octave:13> f ()
+
+Octave will respond with
+
+     error: `x' undefined near line 1 column 24
+     error: evaluating expression near line 1, column 24
+     error: evaluating assignment expression near line 1, column 22
+     error: called from `f'
+
+   This error message has several parts, and gives you quite a bit of
+information to help you locate the source of the error.  The messages
+are generated from the point of the innermost error, and provide a
+traceback of enclosing expressions and function calls.
+
+   In the example above, the first line indicates that a variable named
+`x' was found to be undefined near line 1 and column 24 of some
+function or expression.  For errors occurring within functions, lines
+are counted from the beginning of the file containing the function
+definition.  For errors occurring at the top level, the line number
+indicates the input line number, which is usually displayed in the
+prompt string.
+
+   The second and third lines in the example indicate that the error
+occurred within an assignment expression, and the last line of the error
+message indicates that the error occurred within the function `f'.  If
+the function `f' had been called from another function, for example,
+`g', the list of errors would have ended with one more line:
+
+     error: called from `g'
+
+   These lists of function calls usually make it fairly easy to trace
+the path your program took before the error occurred, and to correct the
+error before trying again.
+
+
+File: octave.info,  Node: Executable Octave Programs,  Next: Comments,  Prev: Errors,  Up: Getting Started
+
+Executable Octave Programs
+==========================
+
+   Once you have learned Octave, you may want to write self-contained
+Octave scripts, using the `#!' script mechanism.  You can do this on
+GNU systems and on many Unix systems (1)
+
+   For example, you could create a text file named `hello', containing
+the following lines:
+
+     #! OCTAVE-INTERPRETER-NAME -qf
+     # a sample Octave program
+     printf ("Hello, world!\n");
+
+(where OCTAVE-INTERPRETER-NAME should be replaced with the full file
+name for your Octave binary).  After making this file executable (with
+the `chmod' command), you can simply type:
+
+     hello
+
+at the shell, and the system will arrange to run Octave as if you had
+typed:
+
+     octave hello
+
+   The line beginning with `#!' lists the full file name of an
+interpreter to be run, and an optional initial command line argument to
+pass to that interpreter.  The operating system then runs the
+interpreter with the given argument and the full argument list of the
+executed program.  The first argument in the list is the full file name
+of the Octave program. The rest of the argument list will either be
+options to Octave, or data files, or both.  The `-qf' option is usually
+specified in stand-alone Octave programs to prevent them from printing
+the normal startup message, and to keep them from behaving differently
+depending on the contents of a particular user's `~/.octaverc' file.
+*Note Invoking Octave::.  Note that some operating systems may place a
+limit on the number of characters that are recognized after `#!'.
+
+   Self-contained Octave scripts are useful when you want to write a
+program which users can invoke without knowing that the program is
+written in the Octave language.
+
+   If you invoke an executable Octave script with command line
+arguments, the arguments are available in the built-in variable `argv'.
+*Note Command Line Options::.  For example, the following program will
+reproduce the command line that is used to execute it.
+
+     #! /bin/octave -qf
+     printf ("%s", program_name);
+     for i = 1:nargin
+       printf (" %s", argv(i,:));
+     endfor
+     printf ("\n");
+
+   ---------- Footnotes ----------
+
+   (1) The `#!'  mechanism works on Unix systems derived from Berkeley
+Unix, System V Release 4, and some System V Release 3 systems.
+
+
+File: octave.info,  Node: Comments,  Prev: Executable Octave Programs,  Up: Getting Started
+
+Comments in Octave Programs
+===========================
+
+   A "comment" is some text that is included in a program for the sake
+of human readers, and that is not really part of the program.  Comments
+can explain what the program does, and how it works.  Nearly all
+programming languages have provisions for comments, because programs are
+typically hard to understand without them.
+
+   In the Octave language, a comment starts with either the sharp sign
+character, `#', or the percent symbol `%' and continues to the end of
+the line.  The Octave interpreter ignores the rest of a line following
+a sharp sign or percent symbol.  For example, we could have put the
+following into the function `f':
+
+     function xdot = f (x, t)
+     
+     # usage: f (x, t)
+     #
+     # This function defines the right hand
+     # side functions for a set of nonlinear
+     # differential equations.
+     
+       r = 0.25;
+       ...
+     endfunction
+
+   The `help' command (*note Getting Help::.) is able to find the first
+block of comments in a function (even those that are composed directly
+on the command line).  This means that users of Octave can use the same
+commands to get help for built-in functions, and for functions that you
+have defined.  For example, after defining the function `f' above, the
+command `help f' produces the output
+
+      usage: f (x, t)
+     
+      This function defines the right hand
+      side functions for a set of nonlinear
+      differential equations.
+
+   Although it is possible to put comment lines into keyboard-composed
+throw-away Octave programs, it usually isn't very useful, because the
+purpose of a comment is to help you or another person understand the
+program at a later time.
+
+
+File: octave.info,  Node: Data Types,  Next: Numeric Data Types,  Prev: Getting Started,  Up: Top
+
+Data Types
+**********
+
+   All versions of Octave include a number of built-in data types,
+including real and complex scalars and matrices, character strings, and
+a data structure type.
+
+   It is also possible to define new specialized data types by writing a
+small amount of C++ code.  On some systems, new data types can be loaded
+dynamically while Octave is running, so it is not necessary to recompile
+all of Octave just to add a new type.  *Note Dynamically Linked
+Functions::, for more information about Octave's dynamic linking
+capabilities.  *Note User-defined Data Types:: describes what you must
+do to define a new data type for Octave.
+
+   doc-typeinfo
+
+ - Built-in Function:  typeinfo (EXPR)
+     Return the type of the expression EXPR, as a string.  If EXPR  is
+     omitted, return an array of strings containing all the currently
+     installed data types.
+
+* Menu:
+
+* Built-in Data Types::
+* User-defined Data Types::
+* Object Sizes::
+
+
+File: octave.info,  Node: Built-in Data Types,  Next: User-defined Data Types,  Prev: Data Types,  Up: Data Types
+
+Built-in Data Types
+===================
+
+   The standard built-in data types are real and complex scalars and
+matrices, ranges, character strings, and a data structure type.
+Additional built-in data types may be added in future versions.  If you
+need a specialized data type that is not currently provided as a
+built-in type, you are encouraged to write your own user-defined data
+type and contribute it for distribution in a future release of Octave.
+
+* Menu:
+
+* Numeric Objects::
+* String Objects::
+* Data Structure Objects::
+
+
+File: octave.info,  Node: Numeric Objects,  Next: String Objects,  Prev: Built-in Data Types,  Up: Built-in Data Types
+
+Numeric Objects
+---------------
+
+   Octave's built-in numeric objects include real and complex scalars
+and matrices.  All built-in numeric data is currently stored as double
+precision numbers.  On systems that use the IEEE floating point format,
+values in the range of approximately  2.2251e-308 to 1.7977e+308  can
+be stored, and the relative precision is approximately  2.2204e-16.
+The exact values are given by the variables `realmin', `realmax', and
+`eps', respectively.
+
+   Matrix objects can be of any size, and can be dynamically reshaped
+and resized.  It is easy to extract individual rows, columns, or
+submatrices using a variety of powerful indexing features.  *Note Index
+Expressions::.
+
+   *Note Numeric Data Types::, for more information.
+
+
+File: octave.info,  Node: String Objects,  Next: Data Structure Objects,  Prev: Numeric Objects,  Up: Built-in Data Types
+
+String Objects
+--------------
+
+   A character string in Octave consists of a sequence of characters
+enclosed in either double-quote or single-quote marks.  Internally,
+Octave currently stores strings as matrices of characters.  All the
+indexing operations that work for matrix objects also work for strings.
+
+   *Note Strings::, for more information.
+
+
+File: octave.info,  Node: Data Structure Objects,  Prev: String Objects,  Up: Built-in Data Types
+
+Data Structure Objects
+----------------------
+
+   Octave's data structure type can help you to organize related
+objects of different types.  The current implementation uses an
+associative array with indices limited to strings, but the syntax is
+more like C-style structures.
+
+   *Note Data Structures::, for more information.
+
+
+File: octave.info,  Node: User-defined Data Types,  Next: Object Sizes,  Prev: Built-in Data Types,  Up: Data Types
+
+User-defined Data Types
+=======================
+
+   Someday I hope to expand this to include a complete description of
+Octave's mechanism for managing user-defined data types.  Until this
+feature is documented here, you will have to make do by reading the code
+in the `ov.h', `ops.h', and related files from Octave's `src' directory.
+
+
+File: octave.info,  Node: Object Sizes,  Prev: User-defined Data Types,  Up: Data Types
+
+Object Sizes
+============
+
+   The following functions allow you to determine the size of a
+variable or expression.  These functions are defined for all objects.
+They return -1 when the operation doesn't make sense.  For example,
+Octave's data structure type doesn't have rows or columns, so the
+`rows' and `columns' functions return -1 for structure arguments.
+
+   doc-columns
+
+ - Function File:  columns (A)
+     Return the number of columns of A.
+
+   doc-rows
+
+ - Function File:  rows (A)
+     Return the number of rows of A.
+
+   doc-length
+
+ - Built-in Function:  length (A)
+     Return the `lenghth' of the object A.  For matrix objects, the
+     length is the number of rows or columns, whichever is greater (this
+     odd definition is used for compatibility with Matlab).
+
+   doc-size
+
+ - Built-in Function:  size (A, N)
+     Return the number rows and columns of A.
+
+     With one input argument and one output argument, the result is
+     returned in a 2 element row vector.  If there are two output
+     arguments, the number of rows is assigned to the first, and the
+     number of columns to the second.  For example,
+
+          size ([1, 2; 3, 4; 5, 6])
+               => [ 3, 2 ]
+          
+          [nr, nc] = size ([1, 2; 3, 4; 5, 6])
+               => nr = 3
+               => nc = 2
+
+     If given a second argument of either 1 or 2, `size' will return
+     only the row or column dimension.  For example
+
+          size ([1, 2; 3, 4; 5, 6], 2)
+               => 2
+
+     returns the number of columns in the given matrix.
+
+   doc-isempty
+
+ - Built-in Function:  isempty (A)
+     Return 1 if A is an empty matrix (either the number of rows, or
+     the number of columns, or both are zero).  Otherwise, return 0.
+
+
+File: octave.info,  Node: Numeric Data Types,  Next: Strings,  Prev: Data Types,  Up: Top
+
+Numeric Data Types
+******************
+
+   A "numeric constant" may be a scalar, a vector, or a matrix, and it
+may contain complex values.
+
+   The simplest form of a numeric constant, a scalar, is a single number
+that can be an integer, a decimal fraction, a number in scientific
+(exponential) notation, or a complex number.  Note that all numeric
+constants are represented within Octave in double-precision floating
+point format (complex constants are stored as pairs of double-precision
+floating point values).  Here are some examples of real-valued numeric
+constants, which all have the same value:
+
+     105
+     1.05e+2
+     1050e-1
+
+   To specify complex constants, you can write an expression of the form
+
+     3 + 4i
+     3.0 + 4.0i
+     0.3e1 + 40e-1i
+
+   all of which are equivalent.  The letter `i' in the previous example
+stands for the pure imaginary constant, defined as   `sqrt (-1)'.
+
+   For Octave to recognize a value as the imaginary part of a complex
+constant, a space must not appear between the number and the `i'.  If
+it does, Octave will print an error message, like this:
+
+     octave:13> 3 + 4 i
+     
+     parse error:
+     
+       3 + 4 i
+             ^
+
+   You may also use `j', `I', or `J' in place of the `i' above.  All
+four forms are equivalent.
+
+* Menu:
+
+* Matrices::
+* Ranges::
+* Logical Values::
+* Predicates for Numeric Objects::
+
+
+File: octave.info,  Node: Matrices,  Next: Ranges,  Prev: Numeric Data Types,  Up: Numeric Data Types
+
+Matrices
+========
+
+   It is easy to define a matrix of values in Octave.  The size of the
+matrix is determined automatically, so it is not necessary to explicitly
+state the dimensions.  The expression
+
+     a = [1, 2; 3, 4]
+
+results in the matrix
+
+
+             /      \
+             | 1  2 |
+       a  =  |      |
+             | 3  4 |
+             \      /
+
+   Elements of a matrix may be arbitrary expressions, provided that the
+dimensions all make sense when combining the various pieces.  For
+example, given the above matrix, the expression
+
+     [ a, a ]
+
+produces the matrix
+
+     ans =
+     
+       1  2  1  2
+       3  4  3  4
+
+but the expression
+
+     [ a, 1 ]
+
+produces the error
+
+     error: number of rows must match near line 13, column 6
+
+(assuming that this expression was entered as the first thing on line
+13, of course).
+
+   Inside the square brackets that delimit a matrix expression, Octave
+looks at the surrounding context to determine whether spaces and newline
+characters should be converted into element and row separators, or
+simply ignored, so commands like
+
+     [ linspace (1, 2) ]
+
+and
+
+     a = [ 1 2
+           3 4 ]
+
+will work.  However, some possible sources of confusion remain.  For
+example, in the expression
+
+     [ 1 - 1 ]
+
+the `-' is treated as a binary operator and the result is the scalar 0,
+but in the expression
+
+     [ 1 -1 ]
+
+the `-' is treated as a unary operator and the result is the vector `[
+1, -1 ]'.
+
+   Given `a = 1', the expression
+
+     [ 1 a' ]
+
+results in the single quote character `'' being treated as a transpose
+operator and the result is the vector `[ 1, 1 ]', but the expression
+
+     [ 1 a ' ]
+
+produces the error message
+
+     error: unterminated string constant
+
+because to not do so would make it impossible to correctly parse the
+valid expression
+
+     [ a 'foo' ]
+
+   For clarity, it is probably best to always use commas and semicolons
+to separate matrix elements and rows.  It is possible to enforce this
+style by setting the built-in variable `whitespace_in_literal_matrix' to
+`"ignore"'.
+

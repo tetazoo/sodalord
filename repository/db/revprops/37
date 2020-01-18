@@ -1,0 +1,13 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-10-19T06:47:41.993507Z
+K 7
+svn:log
+V 207
+added cmd_check, for checking the status of a selection (flavor, levels), and cmd_setlevel for setting the upper and lower estimates of a selection's level (only works when the door is open to prevent abuse)
+END

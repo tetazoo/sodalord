@@ -1,0 +1,14 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-08-18T03:28:29.828772Z
+K 7
+svn:log
+V 142
+refactored cmd_buy slightly to pull out sections that are shared with cash purchases. made cash purchases get recorded as the psudeouser cash
+
+END

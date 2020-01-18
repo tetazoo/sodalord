@@ -1,0 +1,105 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.5
+date	2005.08.31.03.55.13;	author kchen;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2005.08.29.02.42.51;	author kchen;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2005.02.25.08.15.49;	author kchen;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2003.10.09.04.30.02;	author kchen;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2003.09.04.03.45.18;	author kchen;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.5
+log
+@ignore "frosh" account
+@
+text
+@#!/opt/ActivePerl-5.8/bin/perl -w
+
+use strict;
+use DBI;
+use FileHandle;
+
+my $dbh = DBI->connect("dbi:mysql:sodalord","foo","foopass") || die "Can't connect: $DBI::errstr\n";
+
+my $total_sth = $dbh->prepare("SELECT SUM(tot) FROM user WHERE name != 'tetazoo' AND name != 'testuser' AND name != 'testuser7' AND name != 'frosh'");
+$total_sth->execute();
+my ($sum) = $total_sth->fetchrow_array;
+$total_sth->finish();
+$dbh->disconnect();
+
+print "Soda balance is $sum\n";
+@
+
+
+1.4
+log
+@use soda balance
+@
+text
+@d9 1
+a9 1
+my $total_sth = $dbh->prepare("SELECT SUM(tot) FROM user WHERE name != 'tetazoo' AND name != 'testuser' AND name != 'testuser7'");
+@
+
+
+1.3
+log
+@testuser7 also has money on it
+@
+text
+@d1 1
+a1 1
+#!/usr/athena/bin/perl -w
+d15 1
+a15 1
+print "Soda debt is $sum\n";
+@
+
+
+1.2
+log
+@don't query testuser
+@
+text
+@d9 1
+a9 1
+my $total_sth = $dbh->prepare("SELECT SUM(tot) FROM user WHERE name != 'tetazoo' AND name != 'testuser'");
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 1
+a9 1
+my $total_sth = $dbh->prepare("SELECT SUM(tot) FROM user WHERE name != 'tetazoo'");
+@

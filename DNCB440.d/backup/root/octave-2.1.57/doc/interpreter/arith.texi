@@ -1,0 +1,1246 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Arithmetic
+@chapter Arithmetic
+
+Unless otherwise noted, all of the functions described in this chapter
+will work for real and complex scalar or matrix arguments.
+
+@menu
+* Utility Functions::           
+* Complex Arithmetic::          
+* Trigonometry::                
+* Sums and Products::           
+* Special Functions::           
+* Coordinate Transformations::
+* Mathematical Constants::      
+@end menu
+
+@node Utility Functions
+@section Utility Functions
+
+The following functions are available for working with complex numbers.
+Each expects a single argument.  They are called @dfn{mapping functions}
+because when given a matrix argument, they apply the given function to
+each element of the matrix.
+
+@anchor{doc-ceil}
+@deftypefn {Mapping Function} {} ceil (@var{x})
+Return the smallest integer not less than @var{x}.  If @var{x} is
+complex, return @code{ceil (real (@var{x})) + ceil (imag (@var{x})) * I}.
+@end deftypefn
+
+
+@anchor{doc-exp}
+@deftypefn {Mapping Function} {} exp (@var{x})
+Compute the exponential of @var{x}.  To compute the matrix exponential,
+see @ref{Linear Algebra}.
+@end deftypefn
+
+
+@anchor{doc-fix}
+@deftypefn {Mapping Function} {} fix (@var{x})
+Truncate @var{x} toward zero.  If @var{x} is complex, return
+@code{fix (real (@var{x})) + fix (imag (@var{x})) * I}.
+@end deftypefn
+
+
+@anchor{doc-floor}
+@deftypefn {Mapping Function} {} floor (@var{x})
+Return the largest integer not greater than @var{x}.  If @var{x} is
+complex, return @code{floor (real (@var{x})) + floor (imag (@var{x})) * I}.
+@end deftypefn
+
+
+@anchor{doc-gcd}
+@deftypefn {Mapping Function} {} gcd (@var{x}, @code{...})
+Compute the greatest common divisor of the elements of @var{x}, or the
+list of all the arguments.  For example,
+
+@example
+gcd (a1, ..., ak)
+@end example
+
+@noindent
+is the same as
+
+@example
+gcd ([a1, ..., ak])
+@end example
+
+An optional second return value, @var{v}
+contains an integer vector such that
+
+@example
+g = v(1) * a(k) + ... + v(k) * a(k)
+@end example
+@end deftypefn
+@seealso{lcm, min, max, ceil, and floor}
+
+
+@anchor{doc-lcm}
+@deftypefn {Mapping Function} {} lcm (@var{x}, @code{...})
+Compute the least common multiple of the elements elements of @var{x}, or
+the list of all the arguments.  For example,
+
+@example
+lcm (a1, ..., ak)
+@end example
+
+@noindent
+is the same as
+
+@example
+lcm ([a1, ..., ak]).
+@end example
+@end deftypefn
+@seealso{gcd, min, max, ceil, and floor}
+
+
+@anchor{doc-log}
+@deftypefn {Mapping Function} {} log (@var{x})
+Compute the natural logarithm for each element of @var{x}.  To compute the
+matrix logarithm, see @ref{Linear Algebra}.
+@end deftypefn
+@seealso{log2, log10, logspace, and exp}
+
+
+@anchor{doc-log10}
+@deftypefn {Mapping Function} {} log10 (@var{x})
+Compute the base-10 logarithm for each element of @var{x}.
+@end deftypefn
+@seealso{log, log2, logspace, and exp}
+
+
+@anchor{doc-log2}
+@deftypefn {Mapping Function} {} log2 (@var{x})
+@deftypefnx {Mapping Function} {[@var{f}, @var{e}]} log2 (@var{x})
+Compute the base-2 logarithm of @var{x}.  With two outputs, returns
+@var{f} and @var{e} such that
+@iftex
+@tex
+ $1/2 <= |f| < 1$ and $x = f \cdot 2^e$.
+@end tex
+@end iftex
+@ifinfo
+ 1/2 <= abs(f) < 1 and x = f * 2^e.
+@end ifinfo
+@end deftypefn
+@seealso{log, log10, logspace, and exp}
+
+
+@anchor{doc-max}
+@deftypefn {Mapping Function} {} max (@var{x}, @var{y})
+@deftypefnx {Mapping Function} {[@var{w}, @var{iw}] =} max (@var{x})
+@cindex Utility Functions
+For a vector argument, return the maximum value.  For a matrix
+argument, return the maximum value from each column, as a row
+vector.
+For two matrices (or a matrix and scalar),
+return the pair-wise maximum.
+Thus,
+
+@example
+max (max (@var{x}))
+@end example
+
+@noindent
+returns the largest element of @var{x}, and
+
+@example
+@group
+max (2:5, pi)
+    @result{}  3.1416  3.1416  4.0000  5.0000
+@end group
+@end example
+@noindent
+compares each element of the range @code{2:5} with @code{pi}, and
+returns a row vector of the maximum values.
+
+For complex arguments, the magnitude of the elements are used for
+comparison.
+
+If called with one input and two output arguments,
+@code{max} also returns the first index of the
+maximum value(s). Thus,
+
+@example
+@group
+[x, ix] = max ([1, 3, 5, 2, 5])
+    @result{}  x = 5
+        ix = 3
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-min}
+@deftypefn {Mapping Function} {} min (@var{x}, @var{y})
+@deftypefnx {Mapping Function} {[@var{w}, @var{iw}] =} min (@var{x})
+@cindex Utility Functions
+For a vector argument, return the minimum value.  For a matrix
+argument, return the minimum value from each column, as a row
+vector.
+For two matrices (or a matrix and scalar),
+return the pair-wise minimum.
+Thus,
+
+@example
+min (min (@var{x}))
+@end example
+
+@noindent
+returns the smallest element of @var{x}, and
+
+@example
+@group
+min (2:5, pi)
+    @result{}  2.0000  3.0000  3.1416  3.1416
+@end group
+@end example
+@noindent
+compares each element of the range @code{2:5} with @code{pi}, and
+returns a row vector of the minimum values.
+
+For complex arguments, the magnitude of the elements are used for
+comparison.
+
+If called with one input and two output arguments,
+@code{min} also returns the first index of the
+minimum value(s). Thus,
+
+@example
+@group
+[x, ix] = min ([1, 3, 0, 2, 5])
+    @result{}  x = 0
+        ix = 3
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-mod}
+@deftypefn {Mapping Function} {} mod (@var{x}, @var{y})
+Compute modulo function, using
+
+@example
+x - y .* floor (x ./ y)
+@end example
+
+Note that this handles negative numbers correctly:
+@code{mod (-1, 3)} is 2, not -1 as @code{rem (-1, 3)} returns.
+Also, @code{mod (@var{x}, 0)} returns @var{x}.
+
+An error message is printed if the dimensions of the arguments do not
+agree, or if either of the arguments is complex.
+@end deftypefn
+@seealso{rem, round}
+
+
+@anchor{doc-nextpow2}
+@deftypefn {Function File} {} nextpow2 (@var{x})
+If @var{x} is a scalar, returns the first integer @var{n} such that
+@iftex
+@tex
+ $2^n \ge |x|$.
+@end tex
+@end iftex
+@ifinfo
+ 2^n >= abs (x).
+@end ifinfo
+
+If @var{x} is a vector, return @code{nextpow2 (length (@var{x}))}.
+@end deftypefn
+@seealso{pow2}
+
+
+@anchor{doc-pow2}
+@deftypefn {Mapping Function} {} pow2 (@var{x})
+@deftypefnx {Mapping Function} {} pow2 (@var{f}, @var{e})
+With one argument, computes
+@iftex
+@tex
+ $2^x$
+@end tex
+@end iftex
+@ifinfo
+ 2 .^ x
+@end ifinfo
+for each element of @var{x}.  With two arguments, returns
+@iftex
+@tex
+ $f \cdot 2^e$.
+@end tex
+@end iftex
+@ifinfo
+ f .* (2 .^ e).
+@end ifinfo
+@end deftypefn
+@seealso{nextpow2}
+
+
+@anchor{doc-rem}
+@deftypefn {Mapping Function} {} rem (@var{x}, @var{y})
+Return the remainder of @code{@var{x} / @var{y}}, computed using the
+expression
+
+@example
+x - y .* fix (x ./ y)
+@end example
+
+An error message is printed if the dimensions of the arguments do not
+agree, or if either of the arguments is complex.
+@end deftypefn
+@seealso{mod, round}
+
+
+@anchor{doc-round}
+@deftypefn {Mapping Function} {} round (@var{x})
+Return the integer nearest to @var{x}.  If @var{x} is complex, return
+@code{round (real (@var{x})) + round (imag (@var{x})) * I}.
+@end deftypefn
+@seealso{rem}
+
+
+@anchor{doc-sign}
+@deftypefn {Mapping Function} {} sign (@var{x})
+Compute the @dfn{signum} function, which is defined as
+@iftex
+@tex
+$$
+{\rm sign} (@var{x}) = \cases{1,&$x>0$;\cr 0,&$x=0$;\cr -1,&$x<0$.\cr}
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+           -1, x < 0;
+sign (x) =  0, x = 0;
+            1, x > 0.
+@end example
+@end ifinfo
+
+For complex arguments, @code{sign} returns @code{x ./ abs (@var{x})}.
+@end deftypefn
+
+
+@anchor{doc-sqrt}
+@deftypefn {Mapping Function} {} sqrt (@var{x})
+Compute the square root of @var{x}.  If @var{x} is negative, a complex
+result is returned.  To compute the matrix square root, see
+@ref{Linear Algebra}.
+@end deftypefn
+
+
+@node Complex Arithmetic
+@section Complex Arithmetic
+
+The following functions are available for working with complex
+numbers.  Each expects a single argument.  Given a matrix they work on
+an element by element basis.  In the descriptions of the following
+functions,
+@iftex
+@tex
+$z$ is the complex number $x + iy$, where $i$ is defined as
+$\sqrt{-1}$.
+@end tex
+@end iftex
+@ifinfo
+@var{z} is the complex number @var{x} + @var{i}@var{y}, where @var{i} is
+defined as @code{sqrt (-1)}.
+@end ifinfo
+
+@anchor{doc-abs}
+@deftypefn {Mapping Function} {} abs (@var{z})
+Compute the magnitude of @var{z}, defined as
+@iftex
+@tex
+$|z| = \sqrt{x^2 + y^2}$.
+@end tex
+@end iftex
+@ifinfo
+|@var{z}| = @code{sqrt (x^2 + y^2)}.
+@end ifinfo
+
+For example,
+
+@example
+@group
+abs (3 + 4i)
+     @result{} 5
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-arg}
+@deftypefn {Mapping Function} {} arg (@var{z})
+@deftypefnx {Mapping Function} {} angle (@var{z})
+Compute the argument of @var{z}, defined as
+@iftex
+@tex
+$\theta = \tan^{-1}(y/x)$.
+@end tex
+@end iftex
+@ifinfo
+@var{theta} = @code{atan (@var{y}/@var{x})}.
+@end ifinfo
+
+@noindent
+in radians. 
+
+For example,
+
+@example
+@group
+arg (3 + 4i)
+     @result{} 0.92730
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-conj}
+@deftypefn {Mapping Function} {} conj (@var{z})
+Return the complex conjugate of @var{z}, defined as
+@iftex
+@tex
+$\bar{z} = x - iy$.
+@end tex
+@end iftex
+@ifinfo
+@code{conj (@var{z})} = @var{x} - @var{i}@var{y}.
+@end ifinfo
+@end deftypefn
+@seealso{real and imag}
+
+
+@anchor{doc-imag}
+@deftypefn {Mapping Function} {} imag (@var{z})
+Return the imaginary part of @var{z} as a real number.
+@end deftypefn
+
+@seealso{real and conj}
+
+
+@anchor{doc-real}
+@deftypefn {Mapping Function} {} real (@var{z})
+Return the real part of @var{z}.
+@end deftypefn
+@seealso{imag and conj}
+
+
+@node Trigonometry
+@section Trigonometry
+
+Octave provides the following trigonometric functions.  Angles are
+specified in radians.  To convert from degrees to radians multipy by
+@iftex
+@tex
+$\pi/180$
+@end tex
+@end iftex
+@ifinfo
+@code{pi/180}
+@end ifinfo
+ (e.g. @code{sin (30 * pi/180)} returns the sine of 30 degrees).
+
+@anchor{doc-sin}
+@deftypefn {Mapping Function} {} sin (@var{x})
+Compute the sin of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-cos}
+@deftypefn {Mapping Function} {} cos (@var{x})
+Compute the cosine of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-tan}
+@deftypefn {Mapping Function} {} tan (@var{z})
+Compute tanget of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-sec}
+@deftypefn {Mapping Function} {} sec (@var{x})
+Compute the secant of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-csc}
+@deftypefn {Mapping Function} {} csc (@var{x})
+Compute the cosecant of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-cot}
+@deftypefn {Mapping Function} {} cot (@var{x})
+Compute the cotangent of each element of @var{x}.
+@end deftypefn
+
+
+@anchor{doc-asin}
+@deftypefn {Mapping Function} {} asin (@var{x})
+Compute the inverse sine of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-acos}
+@deftypefn {Mapping Function} {} acos (@var{x})
+Compute the inverse cosine of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-atan}
+@deftypefn {Mapping Function} {} atan (@var{x})
+Compute the inverse tangent of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-asec}
+@deftypefn {Mapping Function} {} asec (@var{x})
+Compute the inverse secant of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-acsc}
+@deftypefn {Mapping Function} {} acsc (@var{x})
+Compute the inverse cosecant of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-acot}
+@deftypefn {Mapping Function} {} acot (@var{x})
+Compute the inverse cotangent of each element of @var{x}.
+@end deftypefn
+
+
+@anchor{doc-sinh}
+@deftypefn {Mapping Function} {} sinh (@var{x})
+Compute the inverse hyperbolic sin of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-cosh}
+@deftypefn {Mapping Function} {} cosh (@var{x})
+Compute the hyperbolic cosine of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-tanh}
+@deftypefn {Mapping Function} {} tanh (@var{x})
+Compute hyperbolic tangent of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-sech}
+@deftypefn {Mapping Function} {} sech (@var{x})
+Compute the hyperbolic secant of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-csch}
+@deftypefn {Mapping Function} {} csch (@var{x})
+Compute the hyperbolic cosecant of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-coth}
+@deftypefn {Mapping Function} {} coth (@var{x})
+Compute the hyperbolic cotangent of each element of @var{x}.
+@end deftypefn
+
+
+@anchor{doc-asinh}
+@deftypefn {Mapping Function} {} asinh (@var{x})
+Ompute the inverse hyperbolic sine of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-acosh}
+@deftypefn {Mapping Function} {} acosh (@var{x})
+Compute the inverse hyperbolic cosine of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-atanh}
+@deftypefn {Mapping Function} {} atanh (@var{x})
+Compute the inverse hyperbolic tanget of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-asech}
+@deftypefn {Mapping Function} {} asech (@var{x})
+Compute the inverse hyperbolic secant of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-acsch}
+@deftypefn {Mapping Function} {} acsch (@var{x})
+Compute the inverse hyperbolic cosecant of each element of @var{x}.
+@end deftypefn
+
+@anchor{doc-acoth}
+@deftypefn {Mapping Function} acoth (@var{x})
+Compute the inverse hyperbolic cotangent of each element of @var{x}.
+@end deftypefn
+
+
+Each of these functions expect a single argument.  For matrix arguments,
+they work on an element by element basis.  For example,
+
+@example
+@group
+sin ([1, 2; 3, 4])
+     @result{}  0.84147   0.90930
+         0.14112  -0.75680
+@end group
+@end example
+
+@anchor{doc-atan2}
+@deftypefn {Mapping Function} {} atan2 (@var{y}, @var{x})
+Compute atan (@var{y} / @var{x}) for corresponding elements of @var{y}
+and @var{x}.  The result is in range -pi to pi.
+@end deftypefn
+
+
+
+@node Sums and Products
+@section Sums and Products
+
+@anchor{doc-sum}
+@deftypefn {Built-in Function} {} sum (@var{x}, @var{dim})
+Sum of elements along dimension @var{dim}.  If @var{dim} is
+omitted, it defaults to 1 (column-wise sum).
+@end deftypefn
+
+
+@anchor{doc-prod}
+@deftypefn {Built-in Function} {} prod (@var{x}, @var{dim})
+Product of elements along dimension @var{dim}.  If @var{dim} is
+omitted, it defaults to 1 (column-wise products).
+@end deftypefn
+
+
+@anchor{doc-cumsum}
+@deftypefn {Built-in Function} {} cumsum (@var{x}, @var{dim})
+Cumulative sum of elements along dimension @var{dim}.  If @var{dim}
+is omitted, it defaults to 1 (column-wise cumulative sums).
+@end deftypefn
+
+
+@anchor{doc-cumprod}
+@deftypefn {Built-in Function} {} cumprod (@var{x}, @var{dim})
+Cumulative product of elements along dimension @var{dim}.  If
+@var{dim} is omitted, it defaults to 1 (column-wise cumulative
+products).
+@end deftypefn
+
+
+@anchor{doc-sumsq}
+@deftypefn {Built-in Function} {} sumsq (@var{x}, @var{dim})
+Sum of squares of elements along dimension @var{dim}.  If @var{dim}
+is omitted, it defaults to 1 (column-wise sum of squares).
+
+This function is equivalent to computing
+@example
+sum (x .* conj (x), dim)
+@end example
+but it uses less memory and avoids calling conj if @var{x} is real.
+@end deftypefn
+
+
+@node Special Functions
+@section Special Functions
+
+@anchor{doc-besselj}
+@deftypefn {Loadable Function} {[@var{j}, @var{ierr}] =} besselj (@var{alpha}, @var{x}, @var{opt})
+@deftypefnx {Loadable Function} {[@var{y}, @var{ierr}] =} bessely (@var{alpha}, @var{x}, @var{opt})
+@deftypefnx {Loadable Function} {[@var{i}, @var{ierr}] =} besseli (@var{alpha}, @var{x}, @var{opt})
+@deftypefnx {Loadable Function} {[@var{k}, @var{ierr}] =} besselk (@var{alpha}, @var{x}, @var{opt})
+@deftypefnx {Loadable Function} {[@var{h}, @var{ierr}] =} besselh (@var{alpha}, @var{k}, @var{x}, @var{opt})
+Compute Bessel or Hankel functions of various kinds:
+
+@table @code
+@item besselj
+Bessel functions of the first kind.
+@item bessely
+Bessel functions of the second kind.
+@item besseli
+Modified Bessel functions of the first kind.
+@item besselk
+Modified Bessel functions of the second kind.
+@item besselh
+Compute Hankel functions of the first (@var{k} = 1) or second (@var{k}
+ = 2) kind.
+@end table
+
+If the argument @var{opt} is supplied, the result is scaled by the
+@code{exp (-I*@var{x})} for @var{k} = 1 or @code{exp (I*@var{x})} for
+ @var{k} = 2.
+
+If @var{alpha} is a scalar, the result is the same size as @var{x}.
+If @var{x} is a scalar, the result is the same size as @var{alpha}.
+If @var{alpha} is a row vector and @var{x} is a column vector, the
+result is a matrix with @code{length (@var{x})} rows and
+@code{length (@var{alpha})} columns.  Otherwise, @var{alpha} and
+@var{x} must conform and the result will be the same size.
+
+The value of @var{alpha} must be real.  The value of @var{x} may be
+complex.
+
+If requested, @var{ierr} contains the following status information
+and is the same size as the result.
+
+@enumerate 0
+@item
+Normal return.
+@item
+Input error, return @code{NaN}.
+@item
+Overflow, return @code{Inf}.
+@item
+Loss of significance by argument reduction results in less than
+half of machine accuracy.
+@item
+Complete loss of significance by argument reduction, return @code{NaN}.
+@item
+Error---no computation, algorithm termination condition not met,
+return @code{NaN}.
+@end enumerate
+@end deftypefn
+
+
+@anchor{doc-airy}
+@deftypefn {Loadable Function} {[@var{a}, @var{ierr}] =} airy (@var{k}, @var{z}, @var{opt})
+Compute Airy functions of the first and second kind, and their
+derivatives.
+
+@example
+  K   Function   Scale factor (if a third argument is supplied)
+ ---  --------   ----------------------------------------------
+  0   Ai (Z)     exp ((2/3) * Z * sqrt (Z))
+  1   dAi(Z)/dZ  exp ((2/3) * Z * sqrt (Z))
+  2   Bi (Z)     exp (-abs (real ((2/3) * Z *sqrt (Z))))
+  3   dBi(Z)/dZ  exp (-abs (real ((2/3) * Z *sqrt (Z))))
+@end example
+
+The function call @code{airy (@var{z})} is equivalent to
+@code{airy (0, @var{z})}.
+
+The result is the same size as @var{z}.
+
+If requested, @var{ierr} contains the following status information and
+is the same size as the result.
+
+@enumerate 0
+@item
+Normal return.
+@item
+Input error, return @code{NaN}.
+@item
+Overflow, return @code{Inf}.
+@item
+Loss of significance by argument reduction results in less than half
+ of machine accuracy.
+@item
+Complete loss of significance by argument reduction, return @code{NaN}.
+@item
+Error---no computation, algorithm termination condition not met,
+return @code{NaN}
+@end enumerate
+@end deftypefn
+
+
+@anchor{doc-beta}
+@deftypefn {Mapping Function} {} beta (@var{a}, @var{b})
+Return the Beta function,
+@iftex
+@tex
+$$
+ B (a, b) = {\Gamma (a) \Gamma (b) \over \Gamma (a + b)}.
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+beta (a, b) = gamma (a) * gamma (b) / gamma (a + b).
+@end example
+@end ifinfo
+@end deftypefn
+
+
+@anchor{doc-betainc}
+@deftypefn {Mapping Function} {} betainc (@var{x}, @var{a}, @var{b})
+Return the incomplete Beta function,
+@iftex
+@tex
+$$
+ \beta (a, b, x) = B (a, b)^{-1} \int_0^x t^{(a-z)} (1-t)^{(b-1)} dt.
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@smallexample
+                                    x
+                                   /
+betai (a, b, x) = beta (a, b)^(-1) | t^(a-1) (1-t)^(b-1) dt.
+                                   /
+                                t=0
+@end smallexample
+@end ifinfo
+
+If x has more than one component, both @var{a} and @var{b} must be
+scalars.  If @var{x} is a scalar, @var{a} and @var{b} must be of
+compatible dimensions.
+@end deftypefn
+
+
+@anchor{doc-bincoeff}
+@deftypefn {Mapping Function} {} bincoeff (@var{n}, @var{k})
+Return the binomial coefficient of @var{n} and @var{k}, defined as
+@iftex
+@tex
+$$
+ {n \choose k} = {n (n-1) (n-2) \cdots (n-k+1) \over k!}
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+@group
+ /   \
+ | n |    n (n-1) (n-2) ... (n-k+1)
+ |   |  = -------------------------
+ | k |               k!
+ \   /
+@end group
+@end example
+@end ifinfo
+
+For example,
+
+@example
+@group
+bincoeff (5, 2)
+@result{} 10
+@end group
+@end example
+@end deftypefn
+
+
+@anchor{doc-erf}
+@deftypefn {Mapping Function} {} erf (@var{z})
+Computes the error function,
+@iftex
+@tex
+$$
+ {\rm erf} (z) = {2 \over \sqrt{\pi}}\int_0^z e^{-t^2} dt
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@smallexample
+                         z
+                        /
+erf (z) = (2/sqrt (pi)) | e^(-t^2) dt
+                        /
+                     t=0
+@end smallexample
+@end ifinfo
+@end deftypefn
+@seealso{erfc and erfinv}
+
+
+@anchor{doc-erfc}
+@deftypefn {Mapping Function} {} erfc (@var{z})
+Computes the complementary error function,
+@iftex
+@tex
+$1 - {\rm erf} (z)$.
+@end tex
+@end iftex
+@ifinfo
+@code{1 - erf (@var{z})}.
+@end ifinfo
+@end deftypefn
+
+@seealso{erf and erfinv}
+
+
+@anchor{doc-erfinv}
+@deftypefn {Mapping Function} {} erfinv (@var{z})
+Computes the inverse of the error function.
+@end deftypefn
+@seealso{erf and erfc}
+
+
+@anchor{doc-gamma}
+@deftypefn {Mapping Function} {} gamma (@var{z})
+Computes the Gamma function,
+@iftex
+@tex
+$$
+ \Gamma (z) = \int_0^\infty t^{z-1} e^{-t} dt.
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@example
+            infinity
+            /
+gamma (z) = | t^(z-1) exp (-t) dt.
+            /
+         t=0
+@end example
+@end ifinfo
+@end deftypefn
+
+@seealso{gammai and lgamma}
+
+
+@anchor{doc-gammainc}
+@deftypefn {Mapping Function} {} gammainc (@var{x}, @var{a})
+Computes the incomplete gamma function,
+@iftex
+@tex
+$$
+ \gamma (x, a) = {\displaystyle\int_0^x e^{-t} t^{a-1} dt \over \Gamma (a)}
+$$
+@end tex
+@end iftex
+@ifinfo
+
+@smallexample
+                                x
+                      1        /
+gammainc (x, a) = ---------    | exp (-t) t^(a-1) dt
+                  gamma (a)    /
+                            t=0
+@end smallexample
+@end ifinfo
+
+If @var{a} is scalar, then @code{gammainc (@var{x}, @var{a})} is returned
+for each element of @var{x} and vice versa.
+
+If neither @var{x} nor @var{a} is scalar, the sizes of @var{x} and
+@var{a} must agree, and @var{gammainc} is applied element-by-element.
+@end deftypefn
+@seealso{gamma and lgamma}
+
+
+@anchor{doc-lgamma}
+@deftypefn {Mapping Function} {} lgamma (@var{a}, @var{x})
+@deftypefnx {Mapping Function} {} gammaln (@var{a}, @var{x})
+Return the natural logarithm of the gamma function.
+@end deftypefn
+@seealso{gamma and gammai}
+
+
+@anchor{doc-cross}
+@deftypefn {Function File} {} cross (@var{x}, @var{y})
+Computes the vector cross product of the two 3-dimensional vectors
+@var{x} and @var{y}.
+
+@example
+@group
+cross ([1,1,0], [0,1,1])
+@result{} [ 1; -1; 1 ]
+@end group
+@end example
+
+If @var{x} and @var{y} are two - dimensional matrices the
+cross product is applied along the first dimension with 3 elements.
+
+@end deftypefn
+
+
+@anchor{doc-commutation_matrix}
+@deftypefn {Function File} {} commutation_matrix (@var{m}, @var{n})
+Return the commutation matrix
+@iftex
+@tex
+ $K_{m,n}$
+@end tex
+@end iftex
+@ifinfo
+ K(m,n)
+@end ifinfo
+ which is the unique
+@iftex
+@tex
+ $m n \times m n$
+@end tex
+@end iftex
+@ifinfo
+@var{m}*@var{n} by @var{m}*@var{n}
+@end ifinfo
+ matrix such that
+@iftex
+@tex
+ $K_{m,n} \cdot {\rm vec} (A) = {\rm vec} (A^T)$
+@end tex
+@end iftex
+@ifinfo
+@math{K(m,n) * vec(A) = vec(A')}
+@end ifinfo
+ for all
+@iftex
+@tex
+ $m\times n$
+@end tex
+@end iftex
+@ifinfo
+@math{m} by @math{n}
+@end ifinfo
+ matrices
+@iftex
+@tex
+ $A$.
+@end tex
+@end iftex
+@ifinfo
+@math{A}.
+@end ifinfo
+
+If only one argument @var{m} is given,
+@iftex
+@tex
+ $K_{m,m}$
+@end tex
+@end iftex
+@ifinfo
+@math{K(m,m)}
+@end ifinfo
+ is returned.
+
+See Magnus and Neudecker (1988), Matrix differential calculus with
+applications in statistics and econometrics.
+@end deftypefn
+
+
+@anchor{doc-duplication_matrix}
+@deftypefn {Function File} {} duplication_matrix (@var{n})
+Return the duplication matrix
+@iftex
+@tex
+ $D_n$
+@end tex
+@end iftex
+@ifinfo
+@math{Dn}
+@end ifinfo
+ which is the unique
+@iftex
+@tex
+ $n^2 \times n(n+1)/2$
+@end tex
+@end iftex
+@ifinfo
+@math{n^2} by @math{n*(n+1)/2}
+@end ifinfo
+ matrix such that
+@iftex
+@tex
+ $D_n * {\rm vech} (A) = {\rm vec} (A)$
+@end tex
+@end iftex
+@ifinfo
+@math{Dn vech (A) = vec (A)}
+@end ifinfo
+ for all symmetric
+@iftex
+@tex
+ $n \times n$
+@end tex
+@end iftex
+@ifinfo
+@math{n} by @math{n}
+@end ifinfo
+ matrices
+@iftex
+@tex
+ $A$.
+@end tex
+@end iftex
+@ifinfo
+@math{A}.
+@end ifinfo
+
+See Magnus and Neudecker (1988), Matrix differential calculus with
+applications in statistics and econometrics.
+@end deftypefn
+
+
+@node Coordinate Transformations
+@section Coordinate Transformations
+
+@anchor{doc-cart2pol}
+@deftypefn {Function File} {} [@var{theta}, @var{r}] = cart2pol (@var{x}, @var{y})
+@deftypefnx {Function File} {} [@var{theta}, @var{r}, @var{z}] = cart2pol (@var{x}, @var{y}, @var{z})
+Transform cartesian to polar or cylindrical coordinates.
+@var{x}, @var{y} (and @var{z}) must be of same shape.
+@var{theta} describes the angle relative to the x - axis.
+@var{r} is the distance to the z - axis (0, 0, z).
+@end deftypefn
+@seealso{pol2cart, cart2sph, sph2cart}
+
+
+@anchor{doc-pol2cart}
+@deftypefn {Function File} {} [@var{x}, @var{y}] = pol2cart (@var{theta}, @var{r})
+@deftypefnx {Function File} {} [@var{x}, @var{y}, @var{z}] = pol2cart (@var{theta}, @var{r}, @var{z})
+Transform polar or cylindrical to cartesian coordinates.
+@var{theta}, @var{r} (and @var{z}) must be of same shape.
+@var{theta} describes the angle relative to the x - axis.
+@var{r} is the distance to the z - axis (0, 0, z).
+@end deftypefn
+@seealso{cart2pol, cart2sph, sph2cart}
+
+
+@anchor{doc-cart2sph}
+@deftypefn {Function File} {} [@var{theta}, @var{phi}, @var{r}] = cart2sph (@var{x}, @var{y}, @var{z})
+Transform cartesian to spherical coordinates.
+@var{x}, @var{y} and @var{z} must be of same shape.
+@var{theta} describes the angle relative to the x - axis.
+@var{phi} is the angle relative to the xy - plane.
+@var{r} is the distance to the origin (0, 0, 0).
+@end deftypefn
+@seealso{pol2cart, cart2pol, sph2cart}
+
+
+@anchor{doc-sph2cart}
+@deftypefn {Function File} {} [@var{x}, @var{y}, @var{z}] = sph2cart (@var{theta}, @var{phi}, @var{r})
+Transform spherical to cartesian coordinates.
+@var{x}, @var{y} and @var{z} must be of same shape.
+@var{theta} describes the angle relative to the x-axis.
+@var{phi} is the angle relative to the xy-plane.
+@var{r} is the distance to the origin (0, 0, 0).
+@end deftypefn
+@seealso{pol2cart, cart2pol, cart2sph}
+
+
+@node Mathematical Constants
+@section Mathematical Constants
+
+@anchor{doc-I}
+@defvr {Built-in Variable} I
+@defvrx {Built-in Variable} J
+@defvrx {Built-in Variable} i
+@defvrx {Built-in Variable} j
+A pure imaginary number, defined as
+@iftex
+@tex
+  $\sqrt{-1}$.
+@end tex
+@end iftex
+@ifinfo
+  @code{sqrt (-1)}.
+@end ifinfo
+The @code{I} and @code{J} forms are true constants, and cannot be
+modified.  The @code{i} and @code{j} forms are like ordinary variables,
+and may be used for other purposes.  However, unlike other variables,
+they once again assume their special predefined values if they are
+cleared @xref{Status of Variables}.
+@end defvr
+
+
+@anchor{doc-Inf}
+@defvr {Built-in Variable} Inf
+@defvrx {Built-in Variable} inf
+Infinity.  This is the result of an operation like 1/0, or an operation
+that results in a floating point overflow.
+@end defvr
+
+
+@anchor{doc-NaN}
+@defvr {Built-in Variable} NaN
+@defvrx {Built-in Variable} nan
+Not a number.  This is the result of an operation like
+@iftex
+@tex
+$0/0$, or $\infty - \infty$,
+@end tex
+@end iftex
+@ifinfo
+0/0, or @samp{Inf - Inf},
+@end ifinfo
+or any operation with a NaN.
+
+Note that NaN always compares not equal to NaN.  This behavior is
+specified by the IEEE standard for floating point arithmetic.  To
+find NaN values, you must use the @code{isnan} function.
+@end defvr
+
+
+@anchor{doc-pi}
+@defvr {Built-in Variable} pi
+The ratio of the circumference of a circle to its diameter.
+Internally, @code{pi} is computed as @samp{4.0 * atan (1.0)}.
+@end defvr
+
+
+@anchor{doc-e}
+@defvr {Built-in Variable} e
+The base of natural logarithms.  The constant
+@iftex
+@tex
+ $e$
+@end tex
+@end iftex
+@ifinfo
+ @var{e}
+@end ifinfo
+ satisfies the equation
+@iftex
+@tex
+ $\log (e) = 1$.
+@end tex
+@end iftex
+@ifinfo
+ @code{log} (@var{e}) = 1.
+@end ifinfo
+@end defvr
+
+
+@anchor{doc-eps}
+@defvr {Built-in Variable} eps
+The machine precision.  More precisely, @code{eps} is the largest
+relative spacing between any two adjacent numbers in the machine's
+floating point system.  This number is obviously system-dependent.  On
+machines that support 64 bit IEEE floating point arithmetic, @code{eps}
+is approximately
+@ifinfo
+ 2.2204e-16.
+@end ifinfo
+@iftex
+@tex
+ $2.2204\times10^{-16}$.
+@end tex
+@end iftex
+@end defvr
+
+
+@anchor{doc-realmax}
+@defvr {Built-in Variable} realmax
+The largest floating point number that is representable.  The actual
+value is system-dependent.  On machines that support 64-bit IEEE
+floating point arithmetic, @code{realmax} is approximately
+@ifinfo
+ 1.7977e+308
+@end ifinfo
+@iftex
+@tex
+ $1.7977\times10^{308}$.
+@end tex
+@end iftex
+@end defvr
+
+
+@anchor{doc-realmin}
+@defvr {Built-in Variable} realmin
+The smallest normalized floating point number that is representable.
+The actual value is system-dependent.  On machines that support
+64-bit IEEE floating point arithmetic, @code{realmin} is approximately
+@ifinfo
+ 2.2251e-308
+@end ifinfo
+@iftex
+@tex
+ $2.2251\times10^{-308}$.
+@end tex
+@end iftex
+@end defvr
+

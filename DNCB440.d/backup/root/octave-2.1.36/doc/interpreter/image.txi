@@ -1,0 +1,52 @@
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Image Processing, Audio Processing, Signal Processing, Top
+@chapter Image Processing
+
+Octave can display images with the X Window System using the
+@code{xloadimage} program.  You do not need to be running X in order to
+manipulate images, however, so some of these functions may be useful
+even if you are not able to view the results.
+
+Loading images only works with Octave's image format (a file with a
+matrix containing the image data, and a matrix containing the
+colormap).  Contributions of robust, well-written functions to read
+other image formats are welcome.  If you can provide them, or would like
+to improve Octave's image processing capabilities in other ways, please
+contact @email{bug-octave@@bevo.che.wisc.edu}.
+
+@DOCSTRING(colormap)
+
+@DOCSTRING(gray)
+
+@DOCSTRING(gray2ind)
+
+@DOCSTRING(image)
+
+@DOCSTRING(imagesc)
+
+@DOCSTRING(imshow)
+
+@DOCSTRING(ind2gray)
+
+@DOCSTRING(ind2rgb)
+
+@DOCSTRING(loadimage)
+
+@DOCSTRING(rgb2ntsc)
+
+@DOCSTRING(ntsc2rgb)
+
+@DOCSTRING(hsv2rgb)
+
+@DOCSTRING(rgb2hsv)
+
+@DOCSTRING(ocean)
+
+@DOCSTRING(rgb2ind)
+
+@DOCSTRING(saveimage)
+
+@DOCSTRING(IMAGEPATH)

@@ -1,0 +1,17 @@
+# CHECKSUMS file written on Mon Aug 12 14:18:08 2002 by CPAN::Checksums (v1.008)
+$cksum = {
+  'PerlMagick-5.47.tar.gz' => {
+    'md5-ungz' => '87f4a5ec8f33a14a073f5f5a7dff452f',
+    'mtime' => '2002-06-28',
+    'md5' => '3e35b50e39e2632a7201c5687a0aeac6',
+    'shortname' => 'perlm547.tgz',
+    'size' => '615617'
+  },
+  'PerlMagick-5.48.tar.gz' => {
+    'md5-ungz' => '87ad28562bc843b3317d86c27ea9bded',
+    'mtime' => '2002-08-12',
+    'md5' => '71e53d525df3da1e01105206b910afa6',
+    'shortname' => 'perlm548.tgz',
+    'size' => '609378'
+  }
+};

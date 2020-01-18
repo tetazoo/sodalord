@@ -1,0 +1,47 @@
+\entry{{\tt\char 34}}{29}{"}
+\entry{'}{29}{'}
+\entry{[}{31}{[}
+\entry{]}{31}{]}
+\entry{;}{31}{;}
+\entry{,}{31}{,}
+\entry{colon}{35}{colon}
+\entry{{\tt\char 34}}{37}{"}
+\entry{'}{37}{'}
+\entry{(}{63}{(}
+\entry{)}{63}{)}
+\entry{{\tt\char 43}}{68}{+}
+\entry{.{\tt\char 43}}{68}{.+}
+\entry{-}{68}{-}
+\entry{*}{68}{*}
+\entry{.*}{68}{.*}
+\entry{/}{68}{/}
+\entry{./}{68}{./}
+\entry{{\tt\indexbackslash }}{68}{{\tt\rawbackslashxx }}
+\entry{.{\tt\indexbackslash }}{68}{.{\tt\rawbackslashxx }}
+\entry{**}{68}{**}
+\entry{{\tt\hat}}{68}{^}
+\entry{.**}{68}{.**}
+\entry{.{\tt\hat}}{68}{.^}
+\entry{-}{68}{-}
+\entry{{\tt\char 43}}{68}{+}
+\entry{'}{68}{'}
+\entry{.'}{69}{.'}
+\entry{{\tt\less}}{69}{<}
+\entry{{\tt\less}=}{69}{<=}
+\entry{==}{69}{==}
+\entry{{\tt\gtr}=}{69}{>=}
+\entry{{\tt\gtr}}{69}{>}
+\entry{!=}{69}{!=}
+\entry{{\tt\char 126}=}{69}{~=}
+\entry{{\tt\less}{\tt\gtr}}{69}{<>}
+\entry{&}{70}{&}
+\entry{{\tt\char 124}}{70}{|}
+\entry{{\tt\char 126}}{70}{~}
+\entry{!}{70}{!}
+\entry{&&}{71}{&&}
+\entry{{\tt\char 124}{\tt\char 124}}{71}{||}
+\entry{=}{72}{=}
+\entry{{\tt\char 43}{\tt\char 43}}{74}{++}
+\entry{--}{74}{\code {--}}
+\entry{{\tt\char 43}{\tt\char 43}}{74}{++}
+\entry{--}{74}{\code {--}}

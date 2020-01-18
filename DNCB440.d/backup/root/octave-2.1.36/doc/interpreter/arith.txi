@@ -1,0 +1,220 @@
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Arithmetic, Linear Algebra, Matrix Manipulation, Top
+@chapter Arithmetic
+
+Unless otherwise noted, all of the functions described in this chapter
+will work for real and complex scalar or matrix arguments.
+
+@menu
+* Utility Functions::           
+* Complex Arithmetic::          
+* Trigonometry::                
+* Sums and Products::           
+* Special Functions::           
+* Coordinate Transformations::
+* Mathematical Constants::      
+@end menu
+
+@node Utility Functions, Complex Arithmetic, Arithmetic, Arithmetic
+@section Utility Functions
+
+The following functions are available for working with complex numbers.
+Each expects a single argument.  They are called @dfn{mapping functions}
+because when given a matrix argument, they apply the given function to
+each element of the matrix.
+
+@DOCSTRING(ceil)
+
+@DOCSTRING(exp)
+
+@DOCSTRING(fix)
+
+@DOCSTRING(floor)
+
+@DOCSTRING(gcd)
+
+@DOCSTRING(lcm)
+
+@DOCSTRING(log)
+
+@DOCSTRING(log10)
+
+@DOCSTRING(log2)
+
+@DOCSTRING(max)
+
+@DOCSTRING(min)
+
+@DOCSTRING(nextpow2)
+
+@DOCSTRING(pow2)
+
+@DOCSTRING(rem)
+
+@DOCSTRING(round)
+
+@DOCSTRING(sign)
+
+@DOCSTRING(sqrt)
+
+@node Complex Arithmetic, Trigonometry, Utility Functions, Arithmetic
+@section Complex Arithmetic
+
+The following functions are available for working with complex
+numbers.  Each expects a single argument.  Given a matrix they work on
+an element by element basis.  In the descriptions of the following
+functions,
+@iftex
+@tex
+$z$ is the complex number $x + iy$, where $i$ is defined as
+$\sqrt{-1}$.
+@end tex
+@end iftex
+@ifinfo
+@var{z} is the complex number @var{x} + @var{i}@var{y}, where @var{i} is
+defined as @code{sqrt (-1)}.
+@end ifinfo
+
+@DOCSTRING(abs)
+
+@DOCSTRING(arg)
+
+@DOCSTRING(conj)
+
+@DOCSTRING(imag)
+
+@DOCSTRING(real)
+
+@node Trigonometry, Sums and Products, Complex Arithmetic, Arithmetic
+@section Trigonometry
+
+Octave provides the following trigonometric functions.  Angles are
+specified in radians.  To convert from degrees to radians multipy by
+@iftex
+@tex
+$\pi/180$
+@end tex
+@end iftex
+@ifinfo
+@code{pi/180}
+@end ifinfo
+ (e.g. @code{sin (30 * pi/180)} returns the sine of 30 degrees).
+
+@DOCSTRING(sin)
+@DOCSTRING(cos)
+@DOCSTRING(tan)
+@DOCSTRING(sec)
+@DOCSTRING(csc)
+@DOCSTRING(cot)
+
+@DOCSTRING(asin)
+@DOCSTRING(acos)
+@DOCSTRING(atan)
+@DOCSTRING(asec)
+@DOCSTRING(acsc)
+@DOCSTRING(acot)
+
+@DOCSTRING(sinh)
+@DOCSTRING(cosh)
+@DOCSTRING(tanh)
+@DOCSTRING(sech)
+@DOCSTRING(csch)
+@DOCSTRING(coth)
+
+@DOCSTRING(asinh)
+@DOCSTRING(acosh)
+@DOCSTRING(atanh)
+@DOCSTRING(asech)
+@DOCSTRING(acsch)
+@DOCSTRING(acoth)
+
+Each of these functions expect a single argument.  For matrix arguments,
+they work on an element by element basis.  For example,
+
+@example
+@group
+sin ([1, 2; 3, 4])
+     @result{}  0.84147   0.90930
+         0.14112  -0.75680
+@end group
+@end example
+
+@DOCSTRING(atan2)
+
+
+@node Sums and Products, Special Functions, Trigonometry, Arithmetic
+@section Sums and Products
+
+@DOCSTRING(sum)
+
+@DOCSTRING(prod)
+
+@DOCSTRING(cumsum)
+
+@DOCSTRING(cumprod)
+
+@DOCSTRING(sumsq)
+
+@node Special Functions, Coordinate Transformations, Sums and Products, Arithmetic
+@section Special Functions
+
+@DOCSTRING(besselj)
+
+@DOCSTRING(airy)
+
+@DOCSTRING(beta)
+
+@DOCSTRING(betainc)
+
+@DOCSTRING(bincoeff)
+
+@DOCSTRING(erf)
+
+@DOCSTRING(erfc)
+
+@DOCSTRING(erfinv)
+
+@DOCSTRING(gamma)
+
+@DOCSTRING(gammainc)
+
+@DOCSTRING(lgamma)
+
+@DOCSTRING(cross)
+
+@DOCSTRING(commutation_matrix)
+
+@DOCSTRING(duplication_matrix)
+
+@node Coordinate Transformations, Mathematical Constants, Special Functions, Arithmetic
+@section Coordinate Transformations
+
+@DOCSTRING(cart2pol)
+
+@DOCSTRING(pol2cart)
+
+@DOCSTRING(cart2sph)
+
+@DOCSTRING(sph2cart)
+
+@node Mathematical Constants,  , Coordinate Transformations, Arithmetic
+@section Mathematical Constants
+
+@DOCSTRING(I)
+
+@DOCSTRING(Inf)
+
+@DOCSTRING(NaN)
+
+@DOCSTRING(pi)
+
+@DOCSTRING(e)
+
+@DOCSTRING(eps)
+
+@DOCSTRING(realmax)
+
+@DOCSTRING(realmin)

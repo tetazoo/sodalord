@@ -1,0 +1,122 @@
+#! /bin/sh -
+#
+# octave-config - reports some configuration values for Octave
+#
+# Rafael Laboissiere <rafael@laboissiere.net>
+# This script is in the public domain
+
+API_VERSION=""api-v8""
+CANONICAL_HOST_TYPE=""i686-pc-linux-gnu""
+DEFAULT_PAGER=""less""
+ARCHLIBDIR=""/usr/local/libexec/octave/2.1.57/exec/i686-pc-linux-gnu""
+BINDIR=""/usr/local/bin""
+DATADIR=""/usr/local/share""
+EXEC_PREFIX=""/usr/local""
+FCNFILEDIR=""/usr/local/share/octave/2.1.57/m""
+FCNFILEPATH="".:/usr/local/libexec/octave/2.1.57/site/oct/i686-pc-linux-gnu//:/usr/local/libexec/octave/site/oct/api-v8/i686-pc-linux-gnu//:/usr/local/libexec/octave/site/oct/i686-pc-linux-gnu//:/usr/local/share/octave/2.1.57/site/m//:/usr/local/share/octave/site/api-v8/m//:/usr/local/share/octave/site/m//:/usr/local/libexec/octave/2.1.57/oct/i686-pc-linux-gnu//:/usr/local/share/octave/2.1.57/m//""
+IMAGEDIR=""/usr/local/share/octave/2.1.57/imagelib""
+IMAGEPATH="".:/usr/local/share/octave/2.1.57/imagelib//""
+INCLUDEDIR=""/usr/local/include""
+INFODIR=""/usr/local/info""
+INFOFILE=""/usr/local/info/octave.info""
+LIBDIR=""/usr/local/lib""
+LIBEXECDIR=""/usr/local/libexec""
+LIBEXECDIR=""/usr/local/libexec""
+LOCALAPIFCNFILEDIR=""/usr/local/share/octave/site/api-v8/m""
+LOCALAPIOCTFILEDIR=""/usr/local/libexec/octave/site/oct/api-v8/i686-pc-linux-gnu""
+LOCALARCHLIBDIR=""/usr/local/libexec/octave/site/exec/i686-pc-linux-gnu""
+LOCALFCNFILEDIR=""/usr/local/share/octave/site/m""
+LOCALFCNFILEPATH=""/usr/local/share/octave/2.1.57/site/m//:/usr/local/share/octave/site/api-v8/m//:/usr/local/share/octave/site/m//""
+LOCALOCTFILEDIR=""/usr/local/libexec/octave/site/oct/i686-pc-linux-gnu""
+LOCALOCTFILEPATH=""/usr/local/libexec/octave/2.1.57/site/oct/i686-pc-linux-gnu//:/usr/local/libexec/octave/site/oct/api-v8/i686-pc-linux-gnu//:/usr/local/libexec/octave/site/oct/i686-pc-linux-gnu//""
+LOCALSTARTUPFILEDIR=""""
+LOCALVERARCHLIBDIR=""/usr/local/libexec/octave/2.1.57/site/exec/i686-pc-linux-gnu""
+LOCALVERFCNFILEDIR=""/usr/local/share/octave/2.1.57/site/m""
+LOCALVEROCTFILEDIR=""/usr/local/libexec/octave/2.1.57/site/oct/i686-pc-linux-gnu""
+MAN1DIR=""/usr/local/man/man1""
+MAN1EXT="".1""
+MANDIR=""/usr/local/man""
+OCTFILEDIR=""/usr/local/libexec/octave/2.1.57/oct/i686-pc-linux-gnu""
+OCTINCLUDEDIR=""/usr/local/include/octave-2.1.57""
+OCTLIBDIR=""/usr/local/lib/octave-2.1.57""
+PREFIX=""/usr/local""
+STARTUPFILEDIR=""/usr/local/share/octave/2.1.57/m/startup""
+VERSION=""2.1.57""
+
+usage_msg="usage: octave-config [options]"
+
+if [ $# -eq 0 ]; then
+  echo "$usage_msg" 1>&2
+  exit 1
+fi
+
+while [ $# -gt 0 ]
+do
+  case "$1" in
+    -h | -\? | --help)
+      echo "$usage_msg"
+      cat << EOF
+
+Options:
+
+  -h, -?, --help        Print this message.
+
+  --m-site-dir          Print the name of the directory where Octave
+                        expects to find locally installed .m files.
+
+  --oct-site-dir        Print the name of the directory where Octave
+                        expects to find locally installed .oct files.
+
+  -p VAR, --print VAR   Print the value of the given configuration
+		        variable VAR.  Recognized variables are:
+
+                          API_VERSION            LOCALARCHLIBDIR
+                          CANONICAL_HOST_TYPE    LOCALFCNFILEDIR
+                          DEFAULT_PAGER          LOCALFCNFILEPATH
+                          ARCHLIBDIR             LOCALOCTFILEDIR
+                          BINDIR                 LOCALOCTFILEPATH
+                          DATADIR                LOCALSTARTUPFILEDIR
+                          EXEC_PREFIX            LOCALVERARCHLIBDIR
+                          FCNFILEDIR             LOCALVERFCNFILEDIR
+                          FCNFILEPATH            LOCALVEROCTFILEDIR
+                          IMAGEDIR               MAN1DIR
+                          IMAGEPATH              MAN1EXT
+                          INCLUDEDIR             MANDIR
+                          INFODIR                OCTFILEDIR
+                          INFOFILE               OCTINCLUDEDIR
+                          LIBDIR                 OCTLIBDIR
+                          LIBEXECDIR             PREFIX
+                          LIBEXECDIR             STARTUPFILEDIR
+                          LOCALAPIFCNFILEDIR     VERSION
+                          LOCALAPIOCTFILEDIR
+
+  -v, --version         Print the Octave version number.
+
+EOF
+      exit 0
+    ;;
+    --m-site-dir)
+      echo $LOCALVERFCNFILEDIR
+    ;;
+    --oct-site-dir)
+      echo $LOCALVEROCTFILEDIR
+    ;;
+    -v | --version)
+      echo $VERSION
+    ;;
+    -p | --print)
+      opt="$1"
+      shift
+      if [ $# -eq 0 ]; then
+        echo "octave-config: $opt option requires argument" 1>&2
+        exit 1
+      fi
+      eval echo \${$1}
+    ;;
+    *)
+      echo "octave-config: unrecognized argument $1" 2>&1
+      exit 1
+    ;;
+  esac
+  shift
+done

@@ -1,0 +1,1084 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from octave.texi on 15 March 2004 -->
+
+<TITLE>GNU Octave - Differential Equations</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_23.html">previous</A>, <A HREF="octave_25.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC164" HREF="octave_toc.html#TOC164">Differential Equations</A></H1>
+
+<P>
+Octave has two built-in functions for solving differential equations.
+Both are based on reliable ODE solvers written in Fortran.
+
+
+<P>
+<A NAME="IDX844"></A>
+<A NAME="IDX845"></A>
+<A NAME="IDX846"></A>
+
+
+
+
+<H2><A NAME="SEC165" HREF="octave_toc.html#TOC165">Ordinary Differential Equations</A></H2>
+
+<P>
+The function <CODE>lsode</CODE> can be used to solve ODEs of the form
+
+
+
+<PRE>
+dx
+-- = f (x, t)
+dt
+</PRE>
+
+<P>
+using Hindmarsh's ODE solver LSODE.
+
+
+<P>
+@anchor{doc-lsode}
+<DL>
+<DT><U>Loadable Function:</U> [<VAR>x</VAR>, <VAR>istate</VAR>, <VAR>msg</VAR>] <B>lsode</B> <I>(<VAR>fcn</VAR>, <VAR>x_0</VAR>, <VAR>t</VAR>, <VAR>t_crit</VAR>)</I>
+<DD><A NAME="IDX847"></A>
+Solve the set of differential equations
+
+
+
+<PRE>
+dx
+-- = f(x, t)
+dt
+</PRE>
+
+<P>
+with
+
+
+
+<PRE>
+x(t_0) = x_0
+</PRE>
+
+<P>
+The solution is returned in the matrix <VAR>x</VAR>, with each row
+corresponding to an element of the vector <VAR>t</VAR>.  The first element
+of <VAR>t</VAR> should be <EM>t_0</EM> and should correspond to the initial
+state of the system <VAR>x_0</VAR>, so that the first row of the output
+is <VAR>x_0</VAR>.
+
+
+<P>
+The first argument, <VAR>fcn</VAR>, is a string that names the function to
+call to compute the vector of right hand sides for the set of equations.
+The function must have the form
+
+
+
+<PRE>
+<VAR>xdot</VAR> = f (<VAR>x</VAR>, <VAR>t</VAR>)
+</PRE>
+
+<P>
+in which <VAR>xdot</VAR> and <VAR>x</VAR> are vectors and <VAR>t</VAR> is a scalar.
+
+
+<P>
+If <VAR>fcn</VAR> is a two-element string array, the first element names the
+function <EM>f</EM> described above, and the second element names a function
+to compute the Jacobian of <EM>f</EM>.  The Jacobian function must have the
+form
+
+
+
+<PRE>
+<VAR>jac</VAR> = j (<VAR>x</VAR>, <VAR>t</VAR>)
+</PRE>
+
+<P>
+in which <VAR>jac</VAR> is the matrix of partial derivatives
+
+
+
+<PRE>
+             | df_1  df_1       df_1 |
+             | ----  ----  ...  ---- |
+             | dx_1  dx_2       dx_N |
+             |                       |
+             | df_2  df_2       df_2 |
+             | ----  ----  ...  ---- |
+      df_i   | dx_1  dx_2       dx_N |
+jac = ---- = |                       |
+      dx_j   |  .    .     .    .    |
+             |  .    .      .   .    |
+             |  .    .       .  .    |
+             |                       |
+             | df_N  df_N       df_N |
+             | ----  ----  ...  ---- |
+             | dx_1  dx_2       dx_N |
+</PRE>
+
+<P>
+The second and third arguments specify the intial state of the system,
+<EM>x_0</EM>, and the initial value of the independent variable <EM>t_0</EM>.
+
+
+<P>
+The fourth argument is optional, and may be used to specify a set of
+times that the ODE solver should not integrate past.  It is useful for
+avoiding difficulties with singularities and points where there is a
+discontinuity in the derivative.
+
+
+<P>
+After a successful computation, the value of <VAR>istate</VAR> will be 2
+(consistent with the Fortran version of LSODE).
+
+
+<P>
+If the computation is not successful, <VAR>istate</VAR> will be something
+other than 2 and <VAR>msg</VAR> will contain additional information.
+
+
+<P>
+You can use the function <CODE>lsode_options</CODE> to set optional
+parameters for <CODE>lsode</CODE>.
+</DL>
+@seealso{daspk, dassl, dasrt, odessa}
+
+
+<P>
+@anchor{doc-lsode_options}
+<DL>
+<DT><U>Loadable Function:</U>  <B>lsode_options</B> <I>(<VAR>opt</VAR>, <VAR>val</VAR>)</I>
+<DD><A NAME="IDX848"></A>
+When called with two arguments, this function
+allows you set options parameters for the function <CODE>lsode</CODE>.
+Given one argument, <CODE>lsode_options</CODE> returns the value of the
+corresponding option.  If no arguments are supplied, the names of all
+the available options and their current values are displayed.
+
+
+<P>
+Options include
+
+
+<DL COMPACT>
+
+<DT><CODE>"absolute tolerance"</CODE>
+<DD>
+Absolute tolerance.  May be either vector or scalar.  If a vector, it
+must match the dimension of the state vector.
+<DT><CODE>"relative tolerance"</CODE>
+<DD>
+Relative tolerance parameter.  Unlike the absolute tolerance, this
+parameter may only be a scalar.
+
+The local error test applied at each integration step is
+
+
+<PRE>
+  abs (local error in x(i)) &#60;= rtol * abs (y(i)) + atol(i)
+</PRE>
+
+<DT><CODE>"integration method"</CODE>
+<DD>
+A string specifing the method of integration to use to solve the ODE
+system.  Valid values are
+
+<DL COMPACT>
+
+<DT>"adams"
+<DD>
+<DT>"non-stiff"
+<DD>
+No Jacobian used (even if it is available).
+<DT>"bdf"
+<DD>
+<DT>"stiff"
+<DD>
+Use stiff backward differentiation formula (BDF) method.  If a
+function to compute the Jacobian is not supplied, <CODE>lsode</CODE> will
+compute a finite difference approximation of the Jacobian matrix.
+</DL>
+<DT><CODE>"initial step size"</CODE>
+<DD>
+The step size to be attempted on the first step (default is determined
+automatically).
+<DT><CODE>"maximum order"</CODE>
+<DD>
+Restrict the maximum order of the solution method.  If using the Adams
+method, this option must be between 1 and 12.  Otherwise, it must be
+between 1 and 5, inclusive.
+<DT><CODE>"maximum step size"</CODE>
+<DD>
+Setting the maximum stepsize will avoid passing over very large
+regions  (default is not specified).
+<DT><CODE>"minimum step size"</CODE>
+<DD>
+The minimum absolute step size allowed (default is 0).
+<DT><CODE>"step limit"</CODE>
+<DD>
+Maximum number of steps allowed (default is 100000).
+</DL>
+</DL>
+
+<P>
+Here is an example of solving a set of three differential equations using
+<CODE>lsode</CODE>.  Given the function
+
+
+<P>
+<A NAME="IDX849"></A>
+
+
+
+<PRE>
+function xdot = f (x, t)
+
+  xdot = zeros (3,1);
+
+  xdot(1) = 77.27 * (x(2) - x(1)*x(2) + x(1) \
+            - 8.375e-06*x(1)^2);
+  xdot(2) = (x(3) - x(1)*x(2) - x(2)) / 77.27;
+  xdot(3) = 0.161*(x(1) - x(3));
+
+endfunction
+</PRE>
+
+<P>
+and the initial condition <CODE>x0 = [ 4; 1.1; 4 ]</CODE>, the set of
+equations can be integrated using the command
+
+
+
+<PRE>
+t = linspace (0, 500, 1000);
+
+y = lsode ("f", x0, t);
+</PRE>
+
+<P>
+If you try this, you will see that the value of the result changes
+dramatically between <VAR>t</VAR> = 0 and 5, and again around <VAR>t</VAR> = 305.
+A more efficient set of output points might be
+
+
+
+<PRE>
+t = [0, logspace (-1, log10(303), 150), \
+        logspace (log10(304), log10(500), 150)];
+</PRE>
+
+<P>
+Octave also includes ODESSA, a modification of LSODE that
+allows for the computation of parametric sensitivity information
+simultaneously with the solution of the set of ODEs.
+
+
+<P>
+@anchor{doc-odessa}
+<DL>
+<DT><U>Loadable Function:</U> [<VAR>x</VAR>, <VAR>sx</VAR>, <VAR>istate</VAR>, <VAR>msg</VAR>] <B>odessa</B> <I>(<VAR>fcn</VAR>, <VAR>x_0</VAR>, <VAR>p</VAR>, <VAR>sx_0</VAR>, <VAR>t</VAR>, <VAR>t_crit</VAR>)</I>
+<DD><A NAME="IDX850"></A>
+Solve the set of differential equations
+
+
+
+<PRE>
+dx
+-- = f(x, t; p)
+dt
+</PRE>
+
+<P>
+with
+
+
+
+<PRE>
+x(t_0) = x_0
+</PRE>
+
+<P>
+and simultaneously compute the first-order sensitivity coefficients
+given by
+
+
+
+<PRE>
+s'(t) = j(t)*s(t) + df/dp
+</PRE>
+
+<P>
+in which
+
+
+
+<PRE>
+s(t)  = dx(t)/dp        (sensitivity functions)
+s'(t) = d(dx(t)/dp)/dt
+j(t)  = df(x,t;p)/dx(t) (Jacobian matrix)
+df/dp = df(x,t;p)/dp    (inhomogeneity matrix)
+</PRE>
+
+<P>
+The solution is returned in the matrix <VAR>x</VAR>, with each row
+corresponding to an element of the vector <VAR>t</VAR>.  The first element
+of <VAR>t</VAR> should be <EM>t_0</EM> and should correspond to the initial
+state of the system <VAR>x_0</VAR>, so that the first row of the output
+is <VAR>x_0</VAR>.
+
+
+<P>
+The sensitivities are returned in a list of matrices, <VAR>sx</VAR>,
+with each element of the list corresponding to an element of the
+vector <VAR>t</VAR>.
+
+
+<P>
+The first argument, <VAR>fcn</VAR>, is a string that names the function to
+call to compute the vector of right hand sides for the set of equations.
+The function must have the form
+
+
+
+<PRE>
+<VAR>xdot</VAR> = f (<VAR>x</VAR>, <VAR>t</VAR>, <VAR>p</VAR>)
+</PRE>
+
+<P>
+in which <VAR>xdot</VAR> and <VAR>x</VAR> are vectors and <VAR>t</VAR> is a scalar.
+
+
+<P>
+The variable <VAR>p</VAR> is a vector of parameters.
+
+
+<P>
+The <VAR>fcn</VAR> argument may also be an array of strings
+
+
+
+<PRE>
+["f"; "j"; "b"]
+</PRE>
+
+<P>
+in which the first element names the function <EM>f</EM> described
+above, the second element names a function to compute the Jacobian
+of <EM>f</EM>, and the third element names a function to compute the
+inhomogeneity matrix.
+
+
+<P>
+The Jacobian function must have the form
+
+
+
+<PRE>
+<VAR>jac</VAR> = j (<VAR>x</VAR>, <VAR>t</VAR>, <VAR>p</VAR>)
+</PRE>
+
+<P>
+in which <VAR>x</VAR>, <VAR>t</VAR>, and <VAR>p</VAR> have the same meanings as
+above for the function <VAR>f</VAR>, and  <VAR>jac</VAR> is the matrix of
+partial derivatives
+
+
+
+<PRE>
+      df_i
+jac = ----
+      dx_j
+</PRE>
+
+<P>
+The function <VAR>b</VAR> must have the form
+
+
+
+<PRE>
+<VAR>dfdp</VAR> = b (<VAR>x</VAR>, <VAR>t</VAR>, <VAR>p</VAR>, <VAR>c</VAR>)
+</PRE>
+
+<P>
+in which <VAR>x</VAR>, <VAR>t</VAR>, and <VAR>p</VAR> have the same meanings as
+above for the function <VAR>f</VAR>, <VAR>c</VAR> indicates which partial
+derivatives to return in <VAR>dfdp</VAR>.  For example, if <VAR>c</VAR> is 2,
+you should return the vector
+
+
+
+<PRE>
+       df_i
+dfdp = ----,    i = 1:length(x)
+       dp_2
+</PRE>
+
+<P>
+The second argument, <VAR>x_0</VAR>, specifies the intial state of the system.
+
+
+<P>
+The third argument, <VAR>p</VAR>, specifies the set of parameters.
+
+
+<P>
+The fourth argument, <VAR>sx_0</VAR> specifies the initial values of the
+sensitivities.
+
+
+<P>
+The sixth argument is optional, and may be used to specify a set of
+times that the ODE solver should not integrate past.  It is useful for
+avoiding difficulties with singularities and points where there is a
+discontinuity in the derivative.
+
+
+<P>
+After a successful computation, the value of <VAR>istate</VAR> will be 2
+(consistent with the Fortran version of ODESSA).
+
+
+<P>
+If the computation is not successful, <VAR>istate</VAR> will be something
+other than 2 and <VAR>msg</VAR> will contain additional information.
+
+
+<P>
+You can use the function <CODE>lsode_options</CODE> to set optional
+parameters for <CODE>lsode</CODE>.
+</DL>
+@seealso{daspk, dassl, dasrt, lsode}
+
+
+<P>
+@anchor{doc-odessa_options}
+<DL>
+<DT><U>Loadable Function:</U>  <B>odessa_options</B> <I>(<VAR>opt</VAR>, <VAR>val</VAR>)</I>
+<DD><A NAME="IDX851"></A>
+When called with two arguments, this function
+allows you set options parameters for the function <CODE>odessa</CODE>.
+Given one argument, <CODE>odessa_options</CODE> returns the value of the
+corresponding option.  If no arguments are supplied, the names of all
+the available options and their current values are displayed.
+
+
+<P>
+Options include
+
+
+<DL COMPACT>
+
+<DT><CODE>"absolute tolerance"</CODE>
+<DD>
+Absolute tolerance.  May be either vector or scalar.  If a vector, it
+must match the dimension of the state vector.
+<DT><CODE>"relative tolerance"</CODE>
+<DD>
+Relative tolerance parameter.  Unlike the absolute tolerance, this
+parameter may only be a scalar.
+
+The local error test applied at each integration step is
+
+
+<PRE>
+  abs (local error in x(i)) &#60;= rtol * abs (y(i)) + atol(i)
+</PRE>
+
+<DT><CODE>"integration method"</CODE>
+<DD>
+A string specifing the method of integration to use to solve the ODE
+system.  Valid values are
+
+<DL COMPACT>
+
+<DT>"adams"
+<DD>
+<DT>"non-stiff"
+<DD>
+No Jacobian used (even if it is available).
+<DT>"bdf"
+<DD>
+<DT>"stiff"
+<DD>
+Use stiff backward differentiation formula (BDF) method.  If a
+function to compute the Jacobian is not supplied, <CODE>lsode</CODE> will
+compute a finite difference approximation of the Jacobian matrix.
+</DL>
+<DT><CODE>"initial step size"</CODE>
+<DD>
+The step size to be attempted on the first step (default is determined
+automatically).
+<DT><CODE>"maximum order"</CODE>
+<DD>
+Restrict the maximum order of the solution method.  If using the Adams
+method, this option must be between 1 and 12.  Otherwise, it must be
+between 1 and 5, inclusive.
+<DT><CODE>"maximum step size"</CODE>
+<DD>
+Setting the maximum stepsize will avoid passing over very large
+regions  (default is not specified).
+<DT><CODE>"minimum step size"</CODE>
+<DD>
+The minimum absolute step size allowed (default is 0).
+<DT><CODE>"step limit"</CODE>
+<DD>
+Maximum number of steps allowed (default is 100000).
+</DL>
+</DL>
+
+<P>
+See Alan C. Hindmarsh, <CITE>ODEPACK, A Systematized Collection of ODE
+Solvers</CITE>, in Scientific Computing, R. S. Stepleman, editor, (1983) for
+more information about the inner workings of <CODE>lsode</CODE>.
+
+
+
+
+<H2><A NAME="SEC166" HREF="octave_toc.html#TOC166">Differential-Algebraic Equations</A></H2>
+
+<P>
+The function <CODE>daspk</CODE> can be used to solve DAEs of the form
+
+
+
+<PRE>
+0 = f (x-dot, x, t),    x(t=0) = x_0, x-dot(t=0) = x-dot_0
+</PRE>
+
+<P>
+using Petzold's DAE solver DASPK.
+
+
+<P>
+@anchor{doc-daspk}
+<DL>
+<DT><U>Loadable Function:</U> [<VAR>x</VAR>, <VAR>xdot</VAR>, <VAR>istate</VAR>, <VAR>msg</VAR>] = <B>daspk</B> <I>(<VAR>fcn</VAR>, <VAR>x_0</VAR>, <VAR>xdot_0</VAR>, <VAR>t</VAR>, <VAR>t_crit</VAR>)</I>
+<DD><A NAME="IDX852"></A>
+Solve the set of differential-algebraic equations
+
+
+
+<PRE>
+0 = f (x, xdot, t)
+</PRE>
+
+<P>
+with
+
+
+
+<PRE>
+x(t_0) = x_0, xdot(t_0) = xdot_0
+</PRE>
+
+<P>
+The solution is returned in the matrices <VAR>x</VAR> and <VAR>xdot</VAR>,
+with each row in the result matrices corresponding to one of the
+elements in the vector <VAR>t</VAR>.  The first element of <VAR>t</VAR>
+should be <EM>t_0</EM> and correspond to the initial state of the
+system <VAR>x_0</VAR> and its derivative <VAR>xdot_0</VAR>, so that the first
+row of the output <VAR>x</VAR> is <VAR>x_0</VAR> and the first row
+of the output <VAR>xdot</VAR> is <VAR>xdot_0</VAR>.
+
+
+<P>
+The first argument, <VAR>fcn</VAR>, is a string that names the function to
+call to compute the vector of residuals for the set of equations.
+It must have the form
+
+
+
+<PRE>
+<VAR>res</VAR> = f (<VAR>x</VAR>, <VAR>xdot</VAR>, <VAR>t</VAR>)
+</PRE>
+
+<P>
+in which <VAR>x</VAR>, <VAR>xdot</VAR>, and <VAR>res</VAR> are vectors, and <VAR>t</VAR> is a
+scalar.
+
+
+<P>
+If <VAR>fcn</VAR> is a two-element string array, the first element names
+the function <EM>f</EM> described above, and the second element names
+a function to compute the modified Jacobian
+
+
+
+<PRE>
+      df       df
+jac = -- + c ------
+      dx     d xdot
+</PRE>
+
+<P>
+The modified Jacobian function must have the form
+
+
+
+<PRE>
+
+<VAR>jac</VAR> = j (<VAR>x</VAR>, <VAR>xdot</VAR>, <VAR>t</VAR>, <VAR>c</VAR>)
+
+</PRE>
+
+<P>
+The second and third arguments to <CODE>daspk</CODE> specify the initial
+condition of the states and their derivatives, and the fourth argument
+specifies a vector of output times at which the solution is desired,
+including the time corresponding to the initial condition.
+
+
+<P>
+The set of initial states and derivatives are not strictly required to
+be consistent.  If they are not consistent, you must use the
+<CODE>daspk_options</CODE> function to provide additional information so
+that <CODE>daspk</CODE> can compute a consistent starting point.
+
+
+<P>
+The fifth argument is optional, and may be used to specify a set of
+times that the DAE solver should not integrate past.  It is useful for
+avoiding difficulties with singularities and points where there is a
+discontinuity in the derivative.
+
+
+<P>
+After a successful computation, the value of <VAR>istate</VAR> will be
+greater than zero (consistent with the Fortran version of DASPK).
+
+
+<P>
+If the computation is not successful, the value of <VAR>istate</VAR> will be
+less than zero and <VAR>msg</VAR> will contain additional information.
+
+
+<P>
+You can use the function <CODE>daspk_options</CODE> to set optional
+parameters for <CODE>daspk</CODE>.
+</DL>
+@seealso{dassl}
+
+
+<P>
+@anchor{doc-daspk_options}
+<DL>
+<DT><U>Loadable Function:</U>  <B>daspk_options</B> <I>(<VAR>opt</VAR>, <VAR>val</VAR>)</I>
+<DD><A NAME="IDX853"></A>
+When called with two arguments, this function
+allows you set options parameters for the function <CODE>daspk</CODE>.
+Given one argument, <CODE>daspk_options</CODE> returns the value of the
+corresponding option.  If no arguments are supplied, the names of all
+the available options and their current values are displayed.
+
+
+<P>
+Options include
+
+
+<DL COMPACT>
+
+<DT><CODE>"absolute tolerance"</CODE>
+<DD>
+Absolute tolerance.  May be either vector or scalar.  If a vector, it
+must match the dimension of the state vector, and the relative
+tolerance must also be a vector of the same length.
+<DT><CODE>"relative tolerance"</CODE>
+<DD>
+Relative tolerance.  May be either vector or scalar.  If a vector, it
+must match the dimension of the state vector, and the absolute
+tolerance must also be a vector of the same length.
+
+The local error test applied at each integration step is
+
+
+<PRE>
+  abs (local error in x(i)) &#60;= rtol(i) * abs (Y(i)) + atol(i)
+</PRE>
+
+<DT><CODE>"compute consistent initial condition"</CODE>
+<DD>
+Denoting the differential variables in the state vector by <SAMP>`Y_d'</SAMP>
+and the algebraic variables by <SAMP>`Y_a'</SAMP>, <CODE>ddaspk</CODE> can solve
+one of two initialization problems:
+
+
+<OL>
+<LI>Given Y_d, calculate Y_a and Y'_d
+
+<LI>Given Y', calculate Y.
+
+</OL>
+
+In either case, initial values for the given components are input, and
+initial guesses for the unknown components must also be provided as
+input.  Set this option to 1 to solve the first problem, or 2 to solve
+the second (the default default is 0, so you must provide a set of
+initial conditions that are consistent).
+
+If this option is set to a nonzero value, you must also set the
+<CODE>"algebraic variables"</CODE> option to declare which variables in the
+problem are algebraic.
+<DT><CODE>"use initial condition heuristics"</CODE>
+<DD>
+Set to a nonzero value to use the initial condition heuristics options
+described below.
+<DT><CODE>"initial condition heuristics"</CODE>
+<DD>
+A vector of the following parameters that can be used to control the
+initial condition calculation.
+
+<DL COMPACT>
+
+<DT><CODE>MXNIT</CODE>
+<DD>
+Maximum number of Newton iterations (default is 5).
+<DT><CODE>MXNJ</CODE>
+<DD>
+Maximum number of Jacobian evaluations (default is 6).
+<DT><CODE>MXNH</CODE>
+<DD>
+Maximum number of values of the artificial stepsize parameter to be
+tried if the <CODE>"compute consistent initial condition"</CODE> option has
+been set to 1 (default is 5).
+
+Note that the maximum number of Newton iterations allowed in all is
+<CODE>MXNIT*MXNJ*MXNH</CODE> if the <CODE>"compute consistent initial
+condition"</CODE> option has been set to 1 and <CODE>MXNIT*MXNJ</CODE> if it is
+set to 2.
+<DT><CODE>LSOFF</CODE>
+<DD>
+Set to a nonzero value to disable the linesearch algorithm (default is
+0).
+<DT><CODE>STPTOL</CODE>
+<DD>
+Minimum scaled step in linesearch algorithm (default is eps^(2/3)).
+<DT><CODE>EPINIT</CODE>
+<DD>
+Swing factor in the Newton iteration convergence test.  The test is
+applied to the residual vector, premultiplied by the approximate
+Jacobian.  For convergence, the weighted RMS norm of this vector
+(scaled by the error weights) must be less than <CODE>EPINIT*EPCON</CODE>,
+where <CODE>EPCON</CODE> = 0.33 is the analogous test constant used in the
+time steps. The default is <CODE>EPINIT</CODE> = 0.01.
+</DL>
+<DT><CODE>"print initial condition info"</CODE>
+<DD>
+Set this option to a nonzero value to display detailed information
+about the initial condition calculation (default is 0).
+<DT><CODE>"exclude algebraic variables from error test"</CODE>
+<DD>
+Set to a nonzero value to exclude algebraic variables from the error
+test.  You must also set the <CODE>"algebraic variables"</CODE> option to
+declare which variables in the problem are algebraic (default is 0).
+<DT><CODE>"algebraic variables"</CODE>
+<DD>
+A vector of the same length as the state vector.  A nonzero element
+indicates that the corresponding element of the state vector is an
+algebraic variable (i.e., its derivative does not appear explicitly
+in the equation set.
+
+This option is required by the
+<CODE>compute consistent initial condition"</CODE> and
+<CODE>"exclude algebraic variables from error test"</CODE> options.
+<DT><CODE>"enforce inequality constraints"</CODE>
+<DD>
+Set to one of the following values to enforce the inequality
+constraints specified by the <CODE>"inequality constraint types"</CODE>
+option (default is 0).
+
+
+<OL>
+<LI>To have constraint checking only in the initial condition calculation.
+
+<LI>To enforce constraint checking during the integration.
+
+<LI>To enforce both options 1 and 2.
+
+</OL>
+
+<DT><CODE>"inequality constraint types"</CODE>
+<DD>
+A vector of the same length as the state specifying the type of
+inequality constraint.  Each element of the vector corresponds to an
+element of the state and should be assigned one of the following
+codes 
+
+<DL COMPACT>
+
+<DT>-2
+<DD>
+Less than zero.
+<DT>-1
+<DD>
+Less than or equal to zero.
+<DT>0
+<DD>
+Not constrained.
+<DT>1
+<DD>
+Greater than or equal to zero.
+<DT>2
+<DD>
+Greater than zero.
+</DL>
+
+This option only has an effect if the
+<CODE>"enforce inequality constraints"</CODE> option is nonzero.
+<DT><CODE>"initial step size"</CODE>
+<DD>
+Differential-algebraic problems may occaisionally suffer from severe
+scaling difficulties on the first step.  If you know a great deal
+about the scaling of your problem, you can help to alleviate this
+problem by specifying an initial stepsize (default is computed
+automatically).
+<DT><CODE>"maximum order"</CODE>
+<DD>
+Restrict the maximum order of the solution method.  This option must
+be between 1 and 5, inclusive (default is 5).
+<DT><CODE>"maximum step size"</CODE>
+<DD>
+Setting the maximum stepsize will avoid passing over very large
+regions (default is not specified).
+</DL>
+</DL>
+
+<P>
+Octave also includes DASSL, an earlier version of <VAR>Daspk</VAR>,
+and <VAR>dasrt</VAR>, which can be used to solve DAEs with constraints
+(stopping conditions).
+
+
+<P>
+@anchor{doc-dasrt}
+<DL>
+<DT><U>Loadable Function:</U> [<VAR>x</VAR>, <VAR>xdot</VAR>, <VAR>t_out</VAR>, <VAR>istat</VAR>, <VAR>msg</VAR>] = <B>dasrt</B> <I>(<VAR>fcn</VAR> [, <VAR>g</VAR>], <VAR>x_0</VAR>, <VAR>xdot_0</VAR>, <VAR>t</VAR> [, <VAR>t_crit</VAR>])</I>
+<DD><A NAME="IDX854"></A>
+Solve the set of differential-algebraic equations
+
+
+
+<PRE>
+0 = f (xdot, x, t)
+</PRE>
+
+<P>
+with
+
+
+
+<PRE>
+x(t_0) = x_0, xdot(t_0) = xdot_0
+</PRE>
+
+<P>
+with functional stopping criteria (root solving).
+
+
+<P>
+The solution is returned in the matrices <VAR>x</VAR> and <VAR>xdot</VAR>,
+with each row in the result matrices corresponding to one of the
+elements in the vector <VAR>t_out</VAR>.  The first element of <VAR>t</VAR>
+should be <EM>t_0</EM> and correspond to the initial state of the
+system <VAR>x_0</VAR> and its derivative <VAR>xdot_0</VAR>, so that the first
+row of the output <VAR>x</VAR> is <VAR>x_0</VAR> and the first row
+of the output <VAR>xdot</VAR> is <VAR>xdot_0</VAR>.
+
+
+<P>
+The vector <VAR>t</VAR> provides an upper limit on the length of the
+integration.  If the stopping condition is met, the vector
+<VAR>t_out</VAR> will be shorter than <VAR>t</VAR>, and the final element of
+<VAR>t_out</VAR> will be the point at which the stopping condition was met,
+and may not correspond to any element of the vector <VAR>t</VAR>.
+
+
+<P>
+The first argument, <VAR>fcn</VAR>, is a string that names the function to
+call to compute the vector of residuals for the set of equations.
+It must have the form
+
+
+
+<PRE>
+<VAR>res</VAR> = f (<VAR>x</VAR>, <VAR>xdot</VAR>, <VAR>t</VAR>)
+</PRE>
+
+<P>
+in which <VAR>x</VAR>, <VAR>xdot</VAR>, and <VAR>res</VAR> are vectors, and <VAR>t</VAR> is a
+scalar.
+
+
+<P>
+If <VAR>fcn</VAR> is a two-element string array, the first element names
+the function <EM>f</EM> described above, and the second element names
+a function to compute the modified Jacobian
+
+
+
+<PRE>
+      df       df
+jac = -- + c ------
+      dx     d xdot
+</PRE>
+
+<P>
+The modified Jacobian function must have the form
+
+
+
+<PRE>
+
+<VAR>jac</VAR> = j (<VAR>x</VAR>, <VAR>xdot</VAR>, <VAR>t</VAR>, <VAR>c</VAR>)
+
+</PRE>
+
+<P>
+The optional second argument names a function that defines the
+constraint functions whose roots are desired during the integration.
+This function must have the form
+
+
+
+<PRE>
+<VAR>g_out</VAR> = g (<VAR>x</VAR>, <VAR>t</VAR>)
+</PRE>
+
+<P>
+and return a vector of the constraint function values.
+If the value of any of the constraint functions changes sign, DASRT
+will attempt to stop the integration at the point of the sign change.
+
+
+<P>
+If the name of the constraint function is omitted, <CODE>dasrt</CODE> solves
+the saem problem as <CODE>daspk</CODE> or <CODE>dassl</CODE>.
+
+
+<P>
+Note that because of numerical errors in the constraint functions
+due to roundoff and integration error, DASRT may return false
+roots, or return the same root at two or more nearly equal values of
+<VAR>T</VAR>.  If such false roots are suspected, the user should consider
+smaller error tolerances or higher precision in the evaluation of the
+constraint functions.
+
+
+<P>
+If a root of some constraint function defines the end of the problem,
+the input to DASRT should nevertheless allow integration to a
+point slightly past that root, so that DASRT can locate the root
+by interpolation.
+
+
+<P>
+The third and fourth arguments to <CODE>dasrt</CODE> specify the initial
+condition of the states and their derivatives, and the fourth argument
+specifies a vector of output times at which the solution is desired,
+including the time corresponding to the initial condition.
+
+
+<P>
+The set of initial states and derivatives are not strictly required to
+be consistent.  In practice, however, DASSL is not very good at
+determining a consistent set for you, so it is best if you ensure that
+the initial values result in the function evaluating to zero.
+
+
+<P>
+The sixth argument is optional, and may be used to specify a set of
+times that the DAE solver should not integrate past.  It is useful for
+avoiding difficulties with singularities and points where there is a
+discontinuity in the derivative.
+
+
+<P>
+After a successful computation, the value of <VAR>istate</VAR> will be
+greater than zero (consistent with the Fortran version of DASSL).
+
+
+<P>
+If the computation is not successful, the value of <VAR>istate</VAR> will be
+less than zero and <VAR>msg</VAR> will contain additional information.
+
+
+<P>
+You can use the function <CODE>dasrt_options</CODE> to set optional
+parameters for <CODE>dasrt</CODE>.
+</DL>
+@seealso{daspk, dasrt, lsode, odessa}
+
+
+<P>
+@anchor{doc-dasrt_options}
+<DL>
+<DT><U>Loadable Function:</U>  <B>dasrt_options</B> <I>(<VAR>opt</VAR>, <VAR>val</VAR>)</I>
+<DD><A NAME="IDX855"></A>
+When called with two arguments, this function
+allows you set options parameters for the function <CODE>dasrt</CODE>.
+Given one argument, <CODE>dasrt_options</CODE> returns the value of the
+corresponding option.  If no arguments are supplied, the names of all
+the available options and their current values are displayed.
+
+
+<P>
+Options include
+
+
+<DL COMPACT>
+
+<DT><CODE>"absolute tolerance"</CODE>
+<DD>
+Absolute tolerance.  May be either vector or scalar.  If a vector, it
+must match the dimension of the state vector, and the relative
+tolerance must also be a vector of the same length.
+<DT><CODE>"relative tolerance"</CODE>
+<DD>
+Relative tolerance.  May be either vector or scalar.  If a vector, it
+must match the dimension of the state vector, and the absolute
+tolerance must also be a vector of the same length.
+
+The local error test applied at each integration step is
+
+<PRE>
+  abs (local error in x(i)) &#60;= rtol(i) * abs (Y(i)) + atol(i)
+</PRE>
+
+<DT><CODE>"initial step size"</CODE>
+<DD>
+Differential-algebraic problems may occaisionally suffer from severe
+scaling difficulties on the first step.  If you know a great deal
+about the scaling of your problem, you can help to alleviate this
+problem by specifying an initial stepsize.
+<DT><CODE>"maximum order"</CODE>
+<DD>
+Restrict the maximum order of the solution method.  This option must
+be between 1 and 5, inclusive.
+<DT><CODE>"maximum step size"</CODE>
+<DD>
+Setting the maximum stepsize will avoid passing over very large
+regions.
+<DT><CODE>"step limit"</CODE>
+<DD>
+Maximum number of integration steps to attempt on a single call to the
+underlying Fortran code.
+</DL>
+</DL>
+
+<P>
+See K. E. Brenan, et al., <CITE>Numerical Solution of Initial-Value
+Problems in Differential-Algebraic Equations</CITE>, North-Holland (1989) for
+more information about the implementation of DASSL.
+
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_23.html">previous</A>, <A HREF="octave_25.html">next</A>, <A HREF="octave_45.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

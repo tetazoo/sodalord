@@ -1,0 +1,596 @@
+sinfit.m
+a=3
+exit
+y = [
+27 18 10 2 2 2 1 0 1 1 1 11 18 25 37 26 29 44 40 37 53 46 38 28
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+e = (y-Yc) ./ a(1);
+r = 1-sqrt(sum(e.^2)/24)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+if (sign(a(2)*a(3)) > 0)
+phi = abs(atan(a(3)/a(2)) / omega - 24)
+else
+phi = abs(atan(a(3)/a(2)) / omega - 12)
+endif 
+y = [
+650 527 382 206 145 118 70 65 94 96 152 258 444 419 469 501 578 641 710 877 904 850 810 759
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+e = (y-Yc) ./ a(1);
+r = 1-sqrt(sum(e.^2)/24)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+if (sign(a(2)*a(3)) > 0)
+phi = abs(atan(a(3)/a(2)) / omega - 24)
+else
+phi = abs(atan(a(3)/a(2)) / omega - 12)
+endif 
+y = [
+650 527 382 206 145 118 70 65 94 96 152 258 444 419 469 501 578 641 710 877 904 850 810 759
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+e = (y-Yc) ./ a(1);
+r = 1-sqrt(sum(e.^2)/24)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+if (sign(a(2)*a(3)) > 0)
+phi = abs(atan(a(3)/a(2)) / omega - 24)
+else
+phi = abs(atan(a(3)/a(2)) / omega - 12)
+endif 
+y = [
+650 527 382 206 145 118 70 65 94 96 152 258 444 419 469 501 578 641 710 877 904 850 810 759
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+e = (y-Yc) ./ a(1);
+r = 1-sqrt(sum(e.^2)/24)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+if (sign(a(2)*a(3)) > 0)
+phi = abs(atan(a(3)/a(2)) / omega - 24)
+else
+phi = abs(atan(a(3)/a(2)) / omega - 12)
+endif 
+t=[0:23]';
+X=[ones(size(t)) cos(t*pi/12) sin(t*pi/12)]
+help \
+\;
+help \\;
+help \\
+help \
+;
+help operator
+help
+help operators
+help
+quit
+help if
+help else if
+help else
+help elsif
+help elseif
+exit
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+y = [33,19,10,2,2,2,1,0,1,1,1,12,25,33,42,37,34,53,54,51,67,55,48,38];
+a= X\y
+y = y'
+a= X\y
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a;
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+Yc-a(1)
+(Yc-a(1)).^2
+(y-a(1)).^2
+sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+exit
+y = [
+1211 1001 790 417 283 212 135 112 164 182 281 480 804 830 918 969 1076 1179 1225 1659 1787 1639 1507 1443
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1211 1001 790 417 283 212 135 112 164 182 281 480 804 830 918 969 1076 1179 1225 1659 1787 1639 1507 1443
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [
+1211 1001 790 417 283 212 135 112 164 182 281 480 804 830 918 969 1076 1179 1225 1659 1787 1639 1507 1443
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+\q
+q
+quit
+y = [
+42 21 7 5 5 1 0 0 1 0 0 10 34 45 58 59 87 114 101 153 159 123 105 78
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+y = [1297
+1048
+834
+459
+301
+219
+146
+116
+172
+186
+287
+499
+838
+859
+972
+1017
+1137
+1239
+1275
+1780
+1893
+1733
+1582
+1540]
+y
+y = [1297
+1048
+834
+459
+301
+219
+146
+116
+172
+186
+287
+499
+838
+859
+972
+1017
+1137
+1239
+1275
+1780
+1893
+1733
+1582
+1540]
+y
+y = 
+[1297
+1048
+834
+459
+301
+219
+146
+116
+172
+186
+287
+499
+838
+859
+972
+1017
+1137
+1239
+1275
+1780
+1893
+1733
+1582
+1540]
+y = [$data[01]
+         $data[02]
+         $data[03]
+         $data[04]
+         $data[05]
+         $data[06]
+         $data[07]
+         $data[08]
+         $data[09]
+         $data[00]
+         $data[01]
+         $data[02]
+         $data[03]
+         $data[04]
+         $data[05]
+         $data[06]
+         $data[07]
+         $data[08]
+         $data[09]
+         $data[20]
+         $data[21]
+         $data[22]
+         $data[23]
+         $data[24]]
+y = 
+    [1297
+     1048
+     834
+     459
+     301
+     219
+     146
+     116
+     172
+     186
+     287
+     499
+     838
+     859
+     972
+     1017
+     1137
+     1239
+     1275
+     1780
+     1893
+     1733
+     1582
+     1540]
+     
+y
+y = 
+    [1297
+     1048
+     834
+     459
+     301
+     219
+     146
+     116
+     172
+     186
+     287
+     499
+     838
+     859
+     972
+     1017
+     1137
+     1239
+     1275
+     1780
+     1893
+     1733
+     1582
+     1541]
+  y
+y
+y = [1297
+     1048
+     834
+     459
+     301
+     219
+     146
+     116
+     172
+     186
+     287
+     499
+     838
+     859
+     972
+     1017
+     1137
+     1239
+     1275
+     1780
+     1893
+     1733
+     1582
+     1541]
+  y
+exit
+    y = [59 28 16 4 1 1 0 1 2 4 21 34 62 54 68 61 71 53 57 165 176 98 70 57]';
+    t = [0:23]';
+    X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+    a = X\y;
+    T = [0:.1:23.9]';
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+    Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+    r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+    alpha = a(1)
+    beta = sqrt(a(2)^2 + a(3)^2)
+    omega = pi/12;
+    phi = atan(-a(3)/a(2)) / omega;
+    if sign(a(2)) < 0
+        phi = phi + 12;
+    endif
+    if phi < 0
+        phi = phi + 24
+    else
+        phi = phi
+    endif
+    y = [1302 1049 834 459 301 219 146 116 172 186 287 499 838 859 972 1017 1137 1239 1275 1780 1893 1733 1582 1542]';
+    t = [0:23]';
+    X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+    a = X\y;
+    T = [0:.1:23.9]';
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+    Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+    r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+    alpha = a(1)
+    beta = sqrt(a(2)^2 + a(3)^2)
+    omega = pi/12;
+    phi = atan(-a(3)/a(2)) / omega;
+    if sign(a(2)) < 0
+        phi = phi + 12;
+    endif
+    if phi < 0
+        phi = phi + 24
+    else
+        phi = phi
+    endif
+    y = [59 28 16 4 1 1 0 1 2 4 21 34 62 54 68 61 71 53 57 165 176 98 70 57]';
+    t = [0:23]';
+    X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+    a = X\y;
+    T = [0:.1:23.9]';
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+y = [1302 1049 834 459 301 219 146 116 172 186 287 499 838 859 972 1017 1137 1239 1275 1780 1893 1733 1582 1542]';
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+    a = X\y;
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+\q
+?
+help
+version
+cd
+\q
+quit
+    y = [59 28 16 4 1 1 0 1 2 4 21 34 62 54 68 61 71 53 57 165 176 98 70 57]';
+    t = [0:23]';
+    X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+    a = X\y;
+    T = [0:.1:23.9]';
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+    Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+    r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+    alpha = a(1)
+    beta = sqrt(a(2)^2 + a(3)^2)
+    omega = pi/12;
+    phi = atan(-a(3)/a(2)) / omega;
+    if sign(a(2)) < 0
+        phi = phi + 12;
+    endif
+    if phi < 0
+        phi = phi + 24
+    else
+        phi = phi
+    endif
+y = [
+32 14 8 5 1 2 0 1 2 3 7 12 46 60 55 61 45 57 62 147 163 109 42 40
+]';
+t = [0:23]';
+X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+a = X\y;
+T = [0:.1:23.9]';
+Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+alpha = a(1)
+beta = sqrt(a(2)^2 + a(3)^2)
+omega = pi/12;
+phi = atan(-a(3)/a(2)) / omega;
+if sign(a(2)) < 0
+phi = phi + 12;
+endif
+if phi < 0
+phi = phi + 24
+else
+phi = phi
+endif 
+quit
+    y = [59 28 16 4 1 1 0 1 2 4 21 34 62 54 68 61 71 53 57 165 176 98 70 57]';
+    t = [0:23]';
+    X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+    a = X\y;
+    T = [0:.1:23.9]';
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+    Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+    r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+    alpha = a(1)
+    beta = sqrt(a(2)^2 + a(3)^2)
+    omega = pi/12;
+    phi = atan(-a(3)/a(2)) / omega;
+    if sign(a(2)) < 0
+        phi = phi + 12;
+    endif
+    if phi < 0
+        phi = phi + 24
+    else
+        phi = phi
+    endif
+    y = [59 28 16 4 1 1 0 1 2 4 21 34 62 54 68 61 71 53 57 165 176 98 70 57]';
+    t = [0:23]';
+    X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+    a = X\y;
+    T = [0:.1:23.9]';
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+    Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+    r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+    alpha = a(1)
+    beta = sqrt(a(2)^2 + a(3)^2)
+    omega = pi/12;
+    phi = atan(-a(3)/a(2)) / omega;
+    if sign(a(2)) < 0
+        phi = phi + 12;
+    endif
+    if phi < 0
+        phi = phi + 24
+    else
+        phi = phi
+    endif
+?
+help
+help
+help round
+help -i round
+rount
+round
+round 1.2345
+round(1.2345)
+round(1.2345,2)
+round(1.2345)
+round(1.2345*100)/100
+help
+help fix
+    y = [1306 1050 837 463 303 219 146 116 172 187 288 499 845 862 977 1021 1139 1241 1276 1785 1902 1739 1583 1543]';
+    t = [0:23]';
+    X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+    a = X\y;
+    T = [0:.1:23.9]';
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+    Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+    r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+    alpha = a(1)
+    beta = sqrt(a(2)^2 + a(3)^2)
+    omega = pi/12;
+    phi = atan(-a(3)/a(2)) / omega;
+    if sign(a(2)) < 0
+        phi = phi + 12;
+    endif
+    if phi < 0
+        phi = phi + 24
+    else
+        phi = phi
+    endif
+    y = [59 28 16 4 1 1 0 1 2 4 21 34 62 54 68 61 71 53 57 165 176 99 70 57]';
+
+    t = [0:23]';
+
+    X = [ones(size(t)) sin(pi/12*t) cos(pi/12*t)];
+
+    a = X\y;
+
+    T = [0:.1:23.9]';
+
+    Y = [ones(size(T)) sin(T*pi/12) cos(T*pi/12)]*a
+
+    Yc = [ones(size(t)) sin(t*pi/12) cos(t*pi/12)]*a;
+
+    r = sum((Yc-a(1)).^2)/sum((y-a(1)).^2)
+
+    alpha = a(1)
+
+    beta = sqrt(a(2)^2 + a(3)^2)
+
+    omega = pi/12;
+
+    phi = atan(-a(3)/a(2)) / omega;
+
+    if sign(a(2)) < 0
+
+        phi = phi + 12;
+
+    endif
+
+    if phi < 0
+
+        phi = phi + 24
+
+    else
+
+        phi = phi
+
+    endif
+

@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<!-- This HTML file has been created by texi2html 1.51
+     from octave.texi on 1 May 2002 -->
+
+<TITLE>GNU Octave - Sets</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_26.html">previous</A>, <A HREF="octave_28.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC174" HREF="octave_toc.html#TOC174">Sets</A></H1>
+
+<P>
+Octave has a limited set of functions for managing sets of data, where a
+set is defined as a collection unique elements.
+
+</P>
+<P>
+@anchor{doc-create_set}
+<DL>
+<DT><U>Function File:</U>  <B>create_set</B> <I>(<VAR>x</VAR>)</I>
+<DD><A NAME="IDX969"></A>
+Return a row vector containing the unique values in <VAR>x</VAR>, sorted in
+ascending order.  For example,
+
+</P>
+
+<PRE>
+create_set ([ 1, 2; 3, 4; 4, 2 ])
+=> [ 1, 2, 3, 4 ]
+</PRE>
+
+</DL>
+<P>
+@seealso{union, intersection, and complement}
+
+</P>
+
+<P>
+@anchor{doc-union}
+<DL>
+<DT><U>Function File:</U>  <B>union</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX970"></A>
+Return the set of elements that are in either of the sets <VAR>x</VAR> and
+<VAR>y</VAR>.  For example,
+
+</P>
+
+<PRE>
+union ([ 1, 2, 4 ], [ 2, 3, 5 ])
+=> [ 1, 2, 3, 4, 5 ]
+</PRE>
+
+</DL>
+<P>
+@seealso{create_set, intersection, and complement}
+
+</P>
+
+<P>
+@anchor{doc-intersection}
+<DL>
+<DT><U>Function File:</U>  <B>intersection</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX971"></A>
+Return the set of elements that are in both sets <VAR>x</VAR> and <VAR>y</VAR>.
+For example,
+
+</P>
+
+<PRE>
+intersection ([ 1, 2, 3 ], [ 2, 3, 5 ])
+=> [ 2, 3 ]
+</PRE>
+
+</DL>
+<P>
+@seealso{create_set, union, and complement}
+
+</P>
+
+<P>
+@anchor{doc-complement}
+<DL>
+<DT><U>Function File:</U>  <B>complement</B> <I>(<VAR>x</VAR>, <VAR>y</VAR>)</I>
+<DD><A NAME="IDX972"></A>
+Return the elements of set <VAR>y</VAR> that are not in set <VAR>x</VAR>.  For
+example,
+
+</P>
+
+<PRE>
+complement ([ 1, 2, 3 ], [ 2, 3, 5 ])
+=> 5
+</PRE>
+
+</DL>
+<P>
+@seealso{create_set, union, and intersection}
+
+</P>
+
+<P><HR><P>
+Go to the <A HREF="octave_1.html">first</A>, <A HREF="octave_26.html">previous</A>, <A HREF="octave_28.html">next</A>, <A HREF="octave_44.html">last</A> section, <A HREF="octave_toc.html">table of contents</A>.
+</BODY>
+</HTML>

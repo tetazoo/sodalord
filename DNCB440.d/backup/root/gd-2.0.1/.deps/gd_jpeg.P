@@ -1,0 +1,2 @@
+gd_jpeg.lo gd_jpeg.o : gd_jpeg.c
+gd_jpeg.c :

@@ -1,0 +1,15 @@
+K 10
+svn:author
+V 5
+rhysh
+K 8
+svn:date
+V 27
+2008-08-24T00:32:44.212330Z
+K 7
+svn:log
+V 121
+queries that update balances now use ROUND(value,2)
+'tetazoo' pseudouser now gets updated with new purchases and credits
+
+END

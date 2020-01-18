@@ -1,0 +1,29 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2008.08.12.04.47.19;	author rhysh;	state Exp;
+branches;
+next	;
+
+
+desc
+@wrapper around the sodalord% prompt program so we can use setuid and setgid
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include <stdlib.h>
+int main() {
+	execl("/soda/sodalord.py");
+	return 1;
+}
+@

@@ -1,0 +1,165 @@
+@c DO NOT EDIT!  Generated automatically by munge-texi.
+
+@c Copyright (C) 1996, 1997 John W. Eaton
+@c This is part of the Octave manual.
+@c For copying conditions, see the file gpl.texi.
+
+@node Quaternions, System Utilities, Audio Processing, Top
+@chapter Quaternions
+
+Quaternions are hypercomplex numbers used to represent spatial
+rotations in three dimensions.  This set of routines provides a useful
+basis for working with quaternions in Octave.  A tutorial is in the
+Octave source, scripts/quaternion/quaternion.ps.
+
+These functions were written by A. S. Hodel, Associate Professor,
+Auburn University.
+
+@anchor{doc-quaternion}
+@deftypefn {Function File} {[@var{a}, @var{b}, @var{c}, @var{d}] =} quaternion (w)
+@deftypefnx {Function File} {[@var{vv}, @var{theta}] =} quaternion (w)
+@deftypefnx {Function File} {@var{w} =} quaternion (@var{a}, @var{b}, @var{c}, @var{d})
+@deftypefnx {Function File} {@var{w} =} quaternion (@var{vv}, @var{theta})
+Construct or extract a quaternion
+
+@example
+w = a*i + b*j + c*k + d
+@end example
+
+@noindent
+from given data.
+@end deftypefn
+
+
+@anchor{doc-qconj}
+@deftypefn {Function File} {} qconj (@var{q})
+Conjugate of a quaternion.
+
+@example
+q = [w, x, y, z] = w*i + x*j + y*k + z
+qconj (q) = -w*i -x*j -y*k + z
+@end example
+@end deftypefn
+
+
+@anchor{doc-qderiv}
+@deftypefn {Function File} {} qderiv (omega)
+Derivative of a quaternion.
+
+Let Q be a quaternion to transform a vector from a fixed frame to
+a rotating frame.  If the rotating frame is rotating about the 
+[x, y, z] axes at angular rates [wx, wy, wz], then the derivative
+of Q is given by
+
+@example
+Q' = qderivmat (omega) * Q
+@end example
+
+If the passive convention is used (rotate the frame, not the vector),
+then
+
+@example
+Q' = -qderivmat (omega) * Q
+@end example
+@end deftypefn
+
+
+@anchor{doc-qderivmat}
+@deftypefn {Function File} {} qderivmat (@var{omega})
+Derivative of a quaternion.
+
+Let Q be a quaternion to transform a vector from a fixed frame to
+a rotating frame.  If the rotating frame is rotating about the 
+[x, y, z] axes at angular rates [wx, wy, wz], then the derivative
+of Q is given by
+
+@example
+Q' = qderivmat (omega) * Q
+@end example
+
+If the passive convention is used (rotate the frame, not the vector),
+then
+
+@example
+Q' = -qderivmat (omega) * Q.
+@end example
+@end deftypefn
+
+
+@anchor{doc-qinv}
+@deftypefn {Function File} {} qinv (@var{q})
+Return the inverse of a quaternion.
+
+@example
+q = [w, x, y, z] = w*i + x*j + y*k + z
+qmult (q, qinv (q)) = 1 = [0 0 0 1]
+@end example
+@end deftypefn
+
+
+@anchor{doc-qmult}
+@deftypefn {Function File} {} qmult (@var{a}, @var{b})
+Multiply two quaternions.
+
+@example
+[w, x, y, z] = w*i + x*j + y*k + z
+@end example
+
+@noindent
+identities:
+
+@example
+i^2 = j^2 = k^2 = -1
+ij = k                 jk = i
+ki = j                 kj = -i
+ji = -k                ik = -j
+@end example
+@end deftypefn
+
+
+@anchor{doc-qtrans}
+@deftypefn {Function File} {} qtrans (@var{v}, @var{q})
+Transform the unit quaternion @var{v} by the unit quaternion @var{q}.
+Returns @code{@var{v} = @var{q}*@var{v}/@var{q}}.
+@end deftypefn
+
+
+@anchor{doc-qtransv}
+@deftypefn {Function File} {} qtransv (@var{v}, @var{q})
+Transform the 3-D vector @var{v} by the unit quaternion @var{q}.
+Return a column vector.
+
+@example
+vi = (2*real(q)^2 - 1)*vb + 2*imag(q)*(imag(q)'*vb) 
+   + 2*real(q)*cross(imag(q),vb)
+@end example
+
+@noindent
+Where imag(q) is a column vector of length 3.
+@end deftypefn
+
+
+@anchor{doc-qtransvmat}
+@deftypefn {Function File} {} qtransvmat (@var{qib})
+Construct a 3x3 transformation matrix from quaternion @var{qib} that
+is equivalent to rotation of th radians about axis @var{vv}, where
+@code{[@var{vv}, @var{th}] = quaternion (@var{qib})}.
+@end deftypefn
+
+
+@anchor{doc-qcoordinate_plot}
+@deftypefn {Function File} {} qcoordinate_plot (@var{qf}, @var{qb}, @var{qv})
+Plot in the current figure a set of coordinate axes as viewed from 
+the orientation specified by quaternion @var{qv}.  Inertial axes are
+also plotted:
+
+@table @var
+@item qf
+Quaternion from reference (x,y,z) to inertial.
+@item qb
+Quaternion from reference to body.
+@item qv
+Quaternion from reference to view angle.
+@end table
+@end deftypefn
+
